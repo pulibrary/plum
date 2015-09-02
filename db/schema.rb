@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150902202234) do
+ActiveRecord::Schema.define(version: 20150902212000) do
 
   create_table "bookmarks", force: :cascade do |t|
     t.integer  "user_id",       null: false
@@ -37,6 +37,18 @@ ActiveRecord::Schema.define(version: 20150902202234) do
   end
 
   add_index "checksum_audit_logs", ["generic_file_id", "file_id"], name: "by_generic_file_id_and_file_id"
+
+  create_table "roles", force: :cascade do |t|
+    t.string "name"
+  end
+
+  create_table "roles_users", id: false, force: :cascade do |t|
+    t.integer "role_id"
+    t.integer "user_id"
+  end
+
+  add_index "roles_users", ["role_id", "user_id"], name: "index_roles_users_on_role_id_and_user_id"
+  add_index "roles_users", ["user_id", "role_id"], name: "index_roles_users_on_user_id_and_role_id"
 
   create_table "searches", force: :cascade do |t|
     t.text     "query_params"

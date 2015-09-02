@@ -33,26 +33,27 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # gem 'capistrano-rails', group: :development
 
 gem 'curation_concerns', github:'projecthydra-labs/curation_concerns'
+gem 'pul_metadata_services', github:'pulibrary/pul_metadata_services', ref: '71d537910bb62b0e91993362095bdd60b6d84e93'
+gem 'hydra-role-management', '0.1.0'
+gem 'rsolr', '~> 1.0.6'
+gem 'devise'
+gem 'devise-guests', '~> 0.3'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
+  gem 'rspec-rails'
+  gem 'jettywrapper'
+  gem "factory_girl_rails"
 end
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
-
+  gem 'web-console', '~> 2.0'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
 end
 
-gem "rspec-rails", :group => [:development, :test]
-
-gem 'rsolr', '~> 1.0.6'
-gem 'devise'
-gem 'devise-guests', '~> 0.3'
-group :development, :test do
-  gem 'rspec-rails'
-  gem 'jettywrapper'
-end
+gem "capybara", group: :test
+gem 'launchy', group: :test
