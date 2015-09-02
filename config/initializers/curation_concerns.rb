@@ -1,4 +1,6 @@
 CurationConcerns.configure do |config|
+  # Injected via `rails g curation_concerns:work ScannedBook`
+  config.register_curation_concern :scanned_book
   config.fits_to_desc_mapping = {
     file_title: :title,
     file_author: :creator
