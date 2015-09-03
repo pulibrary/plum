@@ -40,6 +40,10 @@ gem 'devise'
 gem 'devise-guests', '~> 0.3'
 
 group :development, :test do
+  gem 'rubocop', require: false
+  gem 'rubocop-rspec', require: false
+  gem 'simplecov', '~> 0.9', require: false
+  gem 'coveralls', require: false
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
   gem 'rspec-rails'

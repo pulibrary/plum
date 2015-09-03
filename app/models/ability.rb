@@ -1,6 +1,5 @@
 class Ability
   include Hydra::Ability
-  
   include CurationConcerns::Ability
   # self.ability_logic += [:everyone_can_create_curation_concerns]
 
@@ -32,14 +31,12 @@ class Ability
   # Abilities that should be granted to patron
   def campus_patron_permissions
     # Should ne able to read access rights "Princeton Only"
-    #can [:read, :read_private_collection], Collection
     can :read, curation_concerns
   end
 
   private
 
-  def curation_concerns
-    CurationConcerns.config.curation_concerns
-  end
-
+    def curation_concerns
+      CurationConcerns.config.curation_concerns
+    end
 end

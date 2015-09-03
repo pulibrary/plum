@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 describe CurationConcerns::ScannedBooksController do
-  it "should have some tests" do
-    skip "Add your tests here"
+  it 'has some tests' do
+    skip 'Add your tests here'
   end
 end

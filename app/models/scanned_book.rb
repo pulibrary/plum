@@ -13,10 +13,9 @@ class ScannedBook < ActiveFedora::Base
   property :source_metadata_identifier, predicate: ::RDF::URI.new('http://library.princeton.edu/terms/metadata_id'), multiple: false
   property :source_metadata, predicate: ::RDF::URI.new('http://library.princeton.edu/terms/source_metadata'), multiple: false
 
-  validates_presence_of :source_metadata_identifier,  message: 'You must provide a source metadata id.'
-  validates_presence_of :access_policy,  message: 'You must choose an Access Policy statement.'
-  validates_presence_of :use_and_reproduction,  message: 'You must provide a use statement.'
-
+  validates :source_metadata_identifier, presence: { message: 'You must provide a source metadata id.' }
+  validates :access_policy, presence: { message: 'You must choose an Access Policy statement.' }
+  validates :use_and_reproduction, presence: { message: 'You must provide a use statement.' }
 
   # Retrieves EAD recrord from pulfa
   #  * stores the full EAD record in source_metadata
@@ -39,7 +38,7 @@ class ScannedBook < ActiveFedora::Base
     begin
       self.source_metadata = marc_source
     rescue => e
-      logger.error("Record ID #{self.source_metadata_identifier} is malformed. Error:")
+      logger.error("Record ID #{source_metadata_identifier} is malformed. Error:")
       logger.error("#{e.class}: #{e.message}")
     end
     marc_record = ScannedBook.negotiate_record(marc_source)
@@ -50,16 +49,16 @@ class ScannedBook < ActiveFedora::Base
   end
 
   def retrieve_from_pulfa
-    response = pulfa_connection.get(source_metadata_identifier.gsub('_','/')+".xml?scope=record" )
+    response = pulfa_connection.get(source_metadata_identifier.tr('_', '/') + ".xml?scope=record")
     response.body
   end
 
   def pulfa_connection
-    Faraday.new(:url => 'http://findingaids.princeton.edu/collections/')
+    Faraday.new(url: 'http://findingaids.princeton.edu/collections/')
   end
 
   def bibdata_connection
-    Faraday.new(:url => 'http://bibdata.princeton.edu/bibliographic/')
+    Faraday.new(url: 'http://bibdata.princeton.edu/bibliographic/')
   end
 
   def retrieve_from_bibdata
@@ -73,7 +72,7 @@ class ScannedBook < ActiveFedora::Base
   end
 
   def apply_external_metadata
-    if is_bibdata?
+    if bibdata?
       apply_bibdata
     else
       apply_pulfa_data
@@ -83,8 +82,7 @@ class ScannedBook < ActiveFedora::Base
   private
 
     # http://stackoverflow.com/questions/1235863/test-if-a-string-is-basically-an-integer-in-quotes-using-ruby
-    def is_bibdata?
-      /\A[-+]?\d+\z/ === self.source_metadata_identifier
+    def bibdata?
+      source_metadata_identifier =~ /\A[-+]?\d+\z/
     end
-
 end

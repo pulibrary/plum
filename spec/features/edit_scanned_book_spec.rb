@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.feature "ScannedBooksController", type: :feature do
-
   let(:user) { FactoryGirl.create(:scanned_book_creator) }
   let(:scanned_book) { FactoryGirl.create(:scanned_book, user: user) }
 
@@ -25,9 +24,6 @@ RSpec.feature "ScannedBooksController", type: :feature do
   end
 
   scenario "User can add a new file" do
-    # stub out characterization. Travis doesn't have fits installed, and it's not relevant to the test.
-    s2 = double('resque message')
-    # expect(CharacterizeJob).to receive(:new).and_return(s2)
     allow(CharacterizeJob).to receive(:perform_later).once
 
     visit polymorphic_path [:curation_concerns, scanned_book]

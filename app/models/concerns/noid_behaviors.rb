@@ -9,7 +9,7 @@ module NoidBehaviors
 
   private
 
-  def noid_service
-    @noid_service ||= ActiveFedora::Noid::Service.new
-  end
+    def noid_service
+      @noid_service ||= ActiveFedora::Noid::Service.new
+    end
 end

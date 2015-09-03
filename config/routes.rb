@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  
   blacklight_for :catalog
   devise_for :users
   mount Hydra::RoleManagement::Engine => '/'

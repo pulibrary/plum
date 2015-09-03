@@ -1,4 +1,5 @@
 module Features
+  # Provides methods for login and logout within Feature Tests
   module SessionHelpers
     # Regular login
     def login_as(user)
@@ -6,7 +7,7 @@ module Features
       super(user, scope: :user, run_callbacks: false)
     end
     # Regular logout
-    def logout(user=:user)
+    def logout(user = :user)
       super(user)
     end
 
@@ -27,9 +28,7 @@ module Features
       user = if who.instance_of?(User)
                who
              else
-               FactoryGirl.build(:user).tap do |u|
-                 u.save!
-               end
+               FactoryGirl.create(:user)
              end
       visit new_user_session_path
       fill_in 'Email', with: user.email

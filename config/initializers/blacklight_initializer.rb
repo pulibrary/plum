@@ -4,4 +4,3 @@
 #
 
 # Blacklight.secret_key = 'fbd4ade5717817beaa3e2ed7e1e94fc5bceeddf4799de83b3616cd031b913376736d448f40d5fea715352850f72139aea512a608e5c965abaf2feb3270bb3589'
-

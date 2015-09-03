@@ -3,10 +3,10 @@
 require 'rails_helper'
 
 describe CurationConcerns::ScannedBookActor do
-  let(:curation_concern) { FactoryGirl.create(:scanned_book)}
-  let(:user)    { FactoryGirl.create(:user) }
-  let(:attributes) { { } }
-  let(:actor)   { described_class.new(curation_concern, user, attributes) }
+  let(:curation_concern) { FactoryGirl.create(:scanned_book) }
+  let(:user) { FactoryGirl.create(:user) }
+  let(:attributes) { {} }
+  let(:actor) { described_class.new(curation_concern, user, attributes) }
   subject { actor }
 
   describe "create" do

@@ -18,6 +18,5 @@ FactoryGirl.define do
     factory :campus_only_scanned_book do
       visibility Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_AUTHENTICATED
     end
-
   end
 end
