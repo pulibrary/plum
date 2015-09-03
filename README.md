@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/pulibrary/plum.png?label=ready&title=Ready)](https://waffle.io/pulibrary/plum)
 # Pluteum: The Hydra Head that @jpstroop hasn't picked a name for
 
 [![Build Status](https://travis-ci.org/pulibrary/pluteum.svg?branch=master)](https://travis-ci.org/pulibrary/pluteum)
