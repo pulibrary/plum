@@ -1,6 +1,6 @@
 class RemoteBibdata
   delegate :title, :creator, :publisher, to: :negotiator
-  
+
   attr_reader :identifier
 
   def initialize(identifier)
@@ -13,10 +13,10 @@ class RemoteBibdata
 
   def attributes
     {
-      :title => title,
-      :creator => creator,
-      :date_created => date_created,
-      :publisher => publisher
+      title: title,
+      creator: creator,
+      date_created: date_created,
+      publisher: publisher
     }
   end
 
@@ -30,42 +30,41 @@ class RemoteBibdata
 
   private
 
-  def connection
-    Faraday.new(url: root_url)
-  end
-
-
-  def root_url
-    'http://bibdata.princeton.edu/bibliographic/'
-  end
-  
-  def negotiator
-    @negotiator ||= Negotiator.new(source)
-  end
-
-  def logger
-    Rails.logger
-  end
-
-  class Negotiator
-    include PulMetadataServices::ExternalMetadataSource
-    attr_reader :marc_record
-    def initialize(marc_record)
-      @marc_record = self.class.negotiate_record(marc_record)
+    def connection
+      Faraday.new(url: root_url)
     end
-    
-    def method_missing(meth_name, *args, &block)
-      if self.class.respond_to?(:"#{meth_name}_from_marc")
-        Array.wrap(get_property(meth_name))
-      else
-        super
+
+    def root_url
+      'http://bibdata.princeton.edu/bibliographic/'
+    end
+
+    def negotiator
+      @negotiator ||= Negotiator.new(source)
+    end
+
+    def logger
+      Rails.logger
+    end
+
+    class Negotiator
+      include PulMetadataServices::ExternalMetadataSource
+      attr_reader :marc_record
+      def initialize(marc_record)
+        @marc_record = self.class.negotiate_record(marc_record)
       end
-    end
 
-    private
+      def method_missing(meth_name, *args, &block)
+        if self.class.respond_to?(:"#{meth_name}_from_marc")
+          Array.wrap(get_property(meth_name))
+        else
+          super
+        end
+      end
 
-    def get_property(property)
-      self.class.__send__(:"#{property}_from_marc", marc_record)
+      private
+
+        def get_property(property)
+          self.class.__send__(:"#{property}_from_marc", marc_record)
+        end
     end
-  end
 end
