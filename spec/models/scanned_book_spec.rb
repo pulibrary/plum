@@ -72,13 +72,13 @@ describe ScannedBook do
     end
   end
 
-  describe 'apply_external_metadata' do
+  describe 'apply_remote_metadata' do
     context 'when source_metadata_identifier is not set' do
       before { subject.source_metadata_identifier = nil }
       it 'does nothing' do
         original_attributes = subject.attributes
         expect(subject.send(:remote_metadata_factory)).to_not receive(:new)
-        subject.apply_external_metadata
+        subject.apply_remote_metadata
         expect(subject.attributes).to eq(original_attributes)
       end
     end
@@ -88,7 +88,7 @@ describe ScannedBook do
       end
 
       it 'Extracts Pulfa Metadata and full source' do
-        subject.apply_external_metadata
+        subject.apply_remote_metadata
         expect(subject.title.first).to eq('Series 1: University Librarian Records - Subseries 1A, Frederic Vinton - Correspondence')
         expect(subject.creator.first).to eq('Princeton University. Library. Dept. of Rare Books and Special Collections')
         expect(subject.publisher.first).to eq('Princeton University. Library. Dept. of Rare Books and Special Collections')
@@ -99,7 +99,7 @@ describe ScannedBook do
       # FIXME: Save currently raises a worthwhile dependency error for
       # Curate::DateFormatter
       it 'Saves a record with extacted ead metadata' do
-        subject.apply_external_metadata
+        subject.apply_remote_metadata
         subject.save
         expect { subject.save }.to_not raise_error
         expect(subject.id).to be_truthy
@@ -112,7 +112,7 @@ describe ScannedBook do
       end
 
       it 'Extracts Voyager Metadata' do
-        subject.apply_external_metadata
+        subject.apply_remote_metadata
         expect(subject.title).to eq(['The Giant Bible of Mainz; 500th anniversary, April fourth, fourteen fifty-two, April fourth, nineteen fifty-two.'])
         expect(subject.creator).to eq(['Miner, Dorothy Eugenia.'])
         expect(subject.date_created).to eq(['1952'])
@@ -121,7 +121,7 @@ describe ScannedBook do
       end
 
       it 'Saves a record with extacted Voyager metadata' do
-        subject.apply_external_metadata
+        subject.apply_remote_metadata
         subject.save
         expect { subject.save }.to_not raise_error
         expect(subject.id).to be_truthy
