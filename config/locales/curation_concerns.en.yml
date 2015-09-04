@@ -1,0 +1,15 @@
+en:
+  curation_concerns:
+    catalog:
+      index:
+        type_tabs:
+          all: All
+    division:
+      name: ""
+      homepage_url: "#"
+    document_language: "en"
+    google_analytics_id: ""
+    institution:
+      name: "Princeton University Library"
+      homepage_url: "#"
+    product_name: "Plum: A Repository"
