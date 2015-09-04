@@ -2,3 +2,7 @@
   <legend>Required Information</legend>
   <%= f.input :source_metadata_identifier, label: 'Source Metadata ID' %>
 </fieldset>
+<fieldset class="required">
+  <%= check_box_tag :refresh_remote_metadata, 1, false %>
+  <label for="refresh_metadata">Referesh metadata from PULFA/Voyager</label>
+</fieldset>

@@ -16,11 +16,7 @@ class ScannedBook < ActiveFedora::Base
   validates :access_policy, presence: { message: 'You must choose an Access Policy statement.' }
   validates :use_and_reproduction, presence: { message: 'You must provide a use statement.' }
 
-  def refresh_metadata
-    apply_external_metadata
-  end
-
-  def apply_external_metadata
+  def apply_remote_metadata
     return false unless source_metadata_identifier.present?
     remote_data = remote_metadata_factory.new(source_metadata_identifier)
     begin

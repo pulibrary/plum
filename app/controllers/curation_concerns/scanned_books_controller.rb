@@ -6,7 +6,7 @@ class CurationConcerns::ScannedBooksController < ApplicationController
   set_curation_concern_type ScannedBook
 
   def curation_concern
-    if needs_update?(@curation_concern)
+    if wants_to_update_remote_metadata?
       decorated_concern
     else
       @curation_concern
@@ -23,7 +23,7 @@ class CurationConcerns::ScannedBooksController < ApplicationController
       UpdatesMetadata
     end
 
-    def needs_update?(_result)
-      params[:action] == "create"
+    def wants_to_update_remote_metadata?
+      params[:action] == "create" || params[:refresh_remote_metadata]
     end
 end
