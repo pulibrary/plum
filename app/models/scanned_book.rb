@@ -12,7 +12,7 @@ class ScannedBook < ActiveFedora::Base
   property :source_metadata_identifier, predicate: ::RDF::URI.new('http://library.princeton.edu/terms/metadata_id'), multiple: false
   property :source_metadata, predicate: ::RDF::URI.new('http://library.princeton.edu/terms/source_metadata'), multiple: false
 
-  validates :source_metadata_identifier, presence: { message: 'You must provide a source metadata id.' }
+  validate :source_metadata_identifier_or_title
   validates :access_policy, presence: { message: 'You must choose an Access Policy statement.' }
   validates :use_and_reproduction, presence: { message: 'You must provide a use statement.' }
 
@@ -21,7 +21,8 @@ class ScannedBook < ActiveFedora::Base
   end
 
   def apply_external_metadata
-    remote_data = remote_ead_factory.new(source_metadata_identifier)
+    return false unless source_metadata_identifier.present?
+    remote_data = remote_metadata_factory.new(source_metadata_identifier)
     begin
       self.source_metadata = remote_data.source
     rescue => e
@@ -33,16 +34,24 @@ class ScannedBook < ActiveFedora::Base
 
   private
 
-  def remote_ead_factory
-    if bibdata?
-      RemoteBibdata
-    else
-      RemoteEad
+    def remote_metadata_factory
+      if bibdata?
+        RemoteBibdata
+      else
+        RemoteEad
+      end
     end
-  end
 
-  # http://stackoverflow.com/questions/1235863/test-if-a-string-is-basically-an-integer-in-quotes-using-ruby
-  def bibdata?
-    source_metadata_identifier =~ /\A[-+]?\d+\z/
-  end
+    # http://stackoverflow.com/questions/1235863/test-if-a-string-is-basically-an-integer-in-quotes-using-ruby
+    def bibdata?
+      source_metadata_identifier =~ /\A[-+]?\d+\z/
+    end
+
+    # Validate that either the source_metadata_identifier or the title is set.
+    def source_metadata_identifier_or_title
+      unless source_metadata_identifier.present? || title.present?
+        errors.add(:title, "You must provide a source metadata id or a title")
+        errors.add(:source_metadata_identifier, "You must provide a source metadata id or a title")
+      end
+    end
 end
