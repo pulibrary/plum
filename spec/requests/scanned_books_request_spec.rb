@@ -6,19 +6,9 @@ RSpec.describe 'ScannedBooksController', type: :request do
 
   before do
     login_as(user, scope: :user)
-    stubbed_requests = Faraday::Adapter::Test::Stubs.new do |stub|
-      response_body = fixture('voyager-2028405.xml').read
-      stub.get('/2028405') { [200, {}, response_body] }
-    end
-    stubbed_connection = Faraday.new do |builder|
-      builder.adapter :test, stubbed_requests
-    end
-    # allow calls to fedora, solr, etc to go through as normal.
-    allow(Faraday).to receive(:new).and_call_original
-    allow(Faraday).to receive(:new).with(url: 'http://bibdata.princeton.edu/bibliographic/').and_return(stubbed_connection)
   end
 
-  it 'User creates a new scanned book' do
+  it 'User creates a new scanned book', vcr: { cassette_name: 'bibdata', allow_playback_repeats: true }do
     get '/concern/scanned_books/new'
 
     expect(response).to render_template('curation_concerns/scanned_books/new')
@@ -38,6 +28,6 @@ RSpec.describe 'ScannedBooksController', type: :request do
 
     expect(response).to render_template(:show)
     expect(response.status).to eq 200
-    expect(response.body).to include('<h1>My Book')
+    expect(response.body).to include('<h1>The Giant Bible of Mainz; 500th anniversary, April fourth, fourteen fifty-two, April fourth, nineteen fifty-two.')
   end
 end
