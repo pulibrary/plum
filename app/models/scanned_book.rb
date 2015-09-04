@@ -34,18 +34,15 @@ class ScannedBook < ActiveFedora::Base
   #  * stores the full MARC record in source_metadata
   #  * extracts title, creator, date, and publisher from the MARC and sets those fields accordingly
   def apply_bibdata
-    marc_source = retrieve_from_bibdata
+    remote_bibdata = RemoteBibdata.new(source_metadata_identifier)
+
     begin
-      self.source_metadata = marc_source
+      self.source_metadata = remote_bibdata.source
     rescue => e
       logger.error("Record ID #{source_metadata_identifier} is malformed. Error:")
       logger.error("#{e.class}: #{e.message}")
     end
-    marc_record = ScannedBook.negotiate_record(marc_source)
-    self.title = ScannedBook.title_from_marc(marc_record)
-    self.creator = ScannedBook.creator_from_marc(marc_record)
-    self.date_created = [ScannedBook.date_from_marc(marc_record)]
-    self.publisher = ScannedBook.publisher_from_marc(marc_record)
+    self.attributes = remote_bibdata.attributes
   end
 
   def retrieve_from_pulfa
@@ -55,16 +52,6 @@ class ScannedBook < ActiveFedora::Base
 
   def pulfa_connection
     Faraday.new(url: 'http://findingaids.princeton.edu/collections/')
-  end
-
-  def bibdata_connection
-    Faraday.new(url: 'http://bibdata.princeton.edu/bibliographic/')
-  end
-
-  def retrieve_from_bibdata
-    response = bibdata_connection.get(source_metadata_identifier)
-    logger.info("Fetching #{source_metadata_identifier}")
-    response.body
   end
 
   def refresh_metadata

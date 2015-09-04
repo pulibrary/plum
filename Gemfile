@@ -58,5 +58,9 @@ group :development do
   gem 'spring'
 end
 
-gem "capybara", group: :test
-gem 'launchy', group: :test
+group :test do
+  gem "capybara"
+  gem "launchy"
+  gem "vcr"
+  gem "webmock"
+end
