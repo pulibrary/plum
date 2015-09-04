@@ -21,13 +21,14 @@ class ScannedBook < ActiveFedora::Base
   #  * stores the full EAD record in source_metadata
   #  * extracts title, creator, date, and publisher from the EAD and sets those fields accordingly
   def apply_pulfa_data
-    ead_source = retrieve_from_pulfa
-    self.source_metadata = ead_source
-    ead_record = ScannedBook.negotiate_ead(ead_source)
-    self.title = ScannedBook.title_from_ead(ead_record)
-    self.creator = ScannedBook.creator_from_ead(ead_record)
-    self.date_created = ScannedBook.date_from_ead(ead_record)
-    self.publisher = ScannedBook.publisher_from_ead(ead_record)
+    remote_ead = RemoteEad.new(source_metadata_identifier)
+    begin
+      self.source_metadata = remote_ead.source
+    rescue => e
+      logger.error("Record ID #{source_metadata_identifier} is malformed. Error:")
+      logger.error("#{e.class}: #{e.message}")
+    end
+    self.attributes = remote_ead.attributes
   end
 
   # Retrieves MARC recrord from bibdata service
@@ -43,15 +44,6 @@ class ScannedBook < ActiveFedora::Base
       logger.error("#{e.class}: #{e.message}")
     end
     self.attributes = remote_bibdata.attributes
-  end
-
-  def retrieve_from_pulfa
-    response = pulfa_connection.get(source_metadata_identifier.tr('_', '/') + ".xml?scope=record")
-    response.body
-  end
-
-  def pulfa_connection
-    Faraday.new(url: 'http://findingaids.princeton.edu/collections/')
   end
 
   def refresh_metadata

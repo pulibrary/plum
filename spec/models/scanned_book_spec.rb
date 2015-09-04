@@ -55,22 +55,9 @@ describe ScannedBook do
     end
   end
 
-  describe 'With a Pulfa ID' do
+  describe 'With a Pulfa ID', vcr: { cassette_name: 'pulfa' } do
     before do
-      stubbed_requests = Faraday::Adapter::Test::Stubs.new do |stub|
-        response_body = fixture('pulfa-AC123_c00004.xml').read
-        stub.get('/AC123/c00004.xml?scope=record') { |env| [200, {}, response_body] }
-      end
-      stubbed_connection = Faraday.new do |builder|
-        builder.adapter :test, stubbed_requests
-      end
-      allow(subject).to receive(:pulfa_connection).and_return(stubbed_connection)
       subject.source_metadata_identifier = 'AC123_c00004'
-    end
-
-    it 'Gets Data from PULFA' do
-      expect(subject.pulfa_connection).to receive(:get).with('AC123/c00004.xml?scope=record').and_return(double(body: fixture('pulfa-AC123_c00004.xml').read))
-      subject.apply_external_metadata
     end
 
     it 'Extracts Pulfa Metadata and full source' do
