@@ -1,0 +1,10 @@
+#!/usr/bin/env sh
+
+until $(curl --output /dev/null --silent --head --fail http://localhost:8983/solr); do
+    printf '.'
+    sleep 1
+done
+until $(curl --output /dev/null --silent --head --fail http://localhost:8983/fedora); do
+    printf '.'
+    sleep 1
+done

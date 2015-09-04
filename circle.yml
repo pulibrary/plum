@@ -1,0 +1,13 @@
+machine:
+  ruby:
+    version: 2.2.0
+general:
+  artifacts:
+    - "tmp/capybara"
+dependencies:
+  post:
+    - RAILS_ENV=development bundle exec rake jetty:clean
+    - bundle exec rake jetty:config
+    - cd jetty && java -Djetty.port=8983 -Dsolr.solr.home=/home/ubuntu/plum/jetty/solr -XX:MaxPermSize=256m -Xmx512m -jar start.jar:
+        background: true
+    - bin/jetty_wait
