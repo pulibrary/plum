@@ -49,12 +49,6 @@ describe ScannedBook do
     end
   end
 
-  describe 'pulfa connection' do
-    it 'has the right url' do
-      expect(subject.pulfa_connection.url_prefix.to_s).to eq('http://findingaids.princeton.edu/collections/')
-    end
-  end
-
   describe 'With a Pulfa ID', vcr: { cassette_name: 'pulfa' } do
     before do
       subject.source_metadata_identifier = 'AC123_c00004'
@@ -71,12 +65,12 @@ describe ScannedBook do
 
     # FIXME: Save currently raises a worthwhile dependency error for
     # Curate::DateFormatter
-    # it 'Saves a record with extacted ead metadata' do
-    #   subject.apply_external_metadata
-    #   subject.save
-    #   expect { subject.save }.to_not raise_error
-    #   expect(subject.id).to be_truthy
-    # end
+    it 'Saves a record with extacted ead metadata' do
+      subject.apply_external_metadata
+      subject.save
+      expect { subject.save }.to_not raise_error
+      expect(subject.id).to be_truthy
+    end
   end
 
   describe 'With a Voyager ID', vcr: { cassette_name: "bibdata"}do
