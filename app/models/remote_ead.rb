@@ -1,6 +1,6 @@
 class RemoteEad
   delegate :title, :creator, :publisher, to: :negotiator
-  
+
   attr_reader :identifier
 
   def initialize(identifier)
@@ -13,10 +13,10 @@ class RemoteEad
 
   def attributes
     {
-      :title => title,
-      :creator => creator,
-      :publisher => publisher,
-      :date_created => date_created
+      title: title,
+      creator: creator,
+      publisher: publisher,
+      date_created: date_created
     }
   end
 
@@ -30,46 +30,45 @@ class RemoteEad
 
   private
 
-  def connection
-    Faraday.new(url: root_url)
-  end
-
-
-  def root_url
-    'http://findingaids.princeton.edu/collections/'
-  end
-
-  def built_identifier
-    identifier.tr('_', '/') + ".xml?scope=record"
-  end
-  
-  def negotiator
-    @negotiator ||= Negotiator.new(source)
-  end
-
-  def logger
-    Rails.logger
-  end
-
-  class Negotiator
-    include PulMetadataServices::ExternalMetadataSource
-    attr_reader :ead
-    def initialize(ead)
-      @ead = self.class.negotiate_ead(ead)
+    def connection
+      Faraday.new(url: root_url)
     end
-    
-    def method_missing(meth_name, *args, &block)
-      if self.class.respond_to?(:"#{meth_name}_from_ead")
-        Array.wrap(get_property(meth_name))
-      else
-        super
+
+    def root_url
+      'http://findingaids.princeton.edu/collections/'
+    end
+
+    def built_identifier
+      identifier.tr('_', '/') + ".xml?scope=record"
+    end
+
+    def negotiator
+      @negotiator ||= Negotiator.new(source)
+    end
+
+    def logger
+      Rails.logger
+    end
+
+    class Negotiator
+      include PulMetadataServices::ExternalMetadataSource
+      attr_reader :ead
+      def initialize(ead)
+        @ead = self.class.negotiate_ead(ead)
       end
-    end
 
-    private
+      def method_missing(meth_name, *args, &block)
+        if self.class.respond_to?(:"#{meth_name}_from_ead")
+          Array.wrap(get_property(meth_name))
+        else
+          super
+        end
+      end
 
-    def get_property(property)
-      self.class.__send__(:"#{property}_from_ead", ead)
+      private
+
+        def get_property(property)
+          self.class.__send__(:"#{property}_from_ead", ead)
+        end
     end
-  end
 end

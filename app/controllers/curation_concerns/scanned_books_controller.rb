@@ -15,16 +15,15 @@ class CurationConcerns::ScannedBooksController < ApplicationController
 
   private
 
-  def decorated_concern
-    decorator.new(@curation_concern)
-  end
+    def decorated_concern
+      decorator.new(@curation_concern)
+    end
 
-  def decorator
-    UpdatesMetadata
-  end
+    def decorator
+      UpdatesMetadata
+    end
 
-  def needs_update?(result)
-    params[:action] == "create"
-  end
-
+    def needs_update?(_result)
+      params[:action] == "create"
+    end
 end

@@ -49,9 +49,8 @@ class ScannedBook < ActiveFedora::Base
 
     # Validate that either the source_metadata_identifier or the title is set.
     def source_metadata_identifier_or_title
-      unless source_metadata_identifier.present? || title.present?
-        errors.add(:title, "You must provide a source metadata id or a title")
-        errors.add(:source_metadata_identifier, "You must provide a source metadata id or a title")
-      end
+      return if source_metadata_identifier.present? || title.present?
+      errors.add(:title, "You must provide a source metadata id or a title")
+      errors.add(:source_metadata_identifier, "You must provide a source metadata id or a title")
     end
 end

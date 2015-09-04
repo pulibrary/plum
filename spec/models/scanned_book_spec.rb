@@ -106,7 +106,7 @@ describe ScannedBook do
       end
     end
 
-    context 'With a Voyager ID', vcr: { cassette_name: "bibdata"}do
+    context 'With a Voyager ID', vcr: { cassette_name: "bibdata" }do
       before do
         subject.source_metadata_identifier = '2028405'
       end

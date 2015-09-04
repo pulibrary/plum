@@ -11,3 +11,6 @@ dependencies:
     - cd jetty && java -Djetty.port=8983 -Dsolr.solr.home=/home/ubuntu/plum/jetty/solr -XX:MaxPermSize=256m -Xmx512m -jar start.jar:
         background: true
     - bin/jetty_wait
+test:
+  pre:
+    - bundle exec rake rubocop
