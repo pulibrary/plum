@@ -45,7 +45,7 @@ group :development, :test do
   gem 'simplecov', '~> 0.9', require: false
   gem 'coveralls', require: false
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug'
+  gem 'pry-byebug'
   gem 'rspec-rails'
   gem 'jettywrapper'
   gem "factory_girl_rails"
@@ -58,5 +58,9 @@ group :development do
   gem 'spring'
 end
 
-gem "capybara", group: :test
-gem 'launchy', group: :test
+group :test do
+  gem "capybara"
+  gem "launchy"
+  gem "vcr"
+  gem "webmock"
+end
