@@ -5,7 +5,7 @@ class ScannedBook < ActiveFedora::Base
   include ::CurationConcerns::BasicMetadata
   include ::NoidBehaviors
 
-  property :portion_note, predicate: ::RDF::URI.new(::RDF::DC.description), multiple: false
+  property :portion_note, predicate: ::RDF::URI.new(::RDF::SKOS.scopeNote), multiple: false
   property :description, predicate: ::RDF::URI.new(::RDF::DC.abstract), multiple: false
   property :access_policy, predicate: ::RDF::URI.new(::RDF::DC.accessRights), multiple: false
   property :use_and_reproduction, predicate: ::RDF::URI.new(::RDF::DC.rights), multiple: false
