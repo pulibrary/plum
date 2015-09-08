@@ -12,6 +12,9 @@ class ScannedBook < ActiveFedora::Base
   property :source_metadata_identifier, predicate: ::RDF::URI.new('http://library.princeton.edu/terms/metadata_id'), multiple: false
   property :source_metadata, predicate: ::RDF::URI.new('http://library.princeton.edu/terms/source_metadata'), multiple: false
 
+  # IIIF
+  apply_schema IIIFBookSchema
+
   validate :source_metadata_identifier_or_title
   validates :access_policy, presence: { message: 'You must choose an Access Policy statement.' }
   validates :use_and_reproduction, presence: { message: 'You must provide a use statement.' }

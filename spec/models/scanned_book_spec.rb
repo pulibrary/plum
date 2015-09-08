@@ -136,4 +136,16 @@ describe ScannedBook do
       expect(noid_service.valid? subject.id).to be_truthy
     end
   end
+
+  describe "#viewing_direction" do
+    it "maps to the IIIF predicate" do
+      expect(described_class.properties["viewing_direction"].predicate).to eq RDF::Vocab::IIIF.viewingDirection
+    end
+  end
+
+  describe "#viewing_hint" do
+    it "maps to the IIIF predicate" do
+      expect(described_class.properties["viewing_hint"].predicate).to eq RDF::Vocab::IIIF.viewingHint
+    end
+  end
 end
