@@ -20,4 +20,8 @@ class SolrDocument
   # Do content negotiation for AF models.
 
   use_extension(Hydra::ContentNegotiation)
+
+  def date_created
+    self[Solrizer.solr_name('date_created')]
+  end
 end

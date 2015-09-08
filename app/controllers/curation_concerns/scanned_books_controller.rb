@@ -15,6 +15,10 @@ class CurationConcerns::ScannedBooksController < ApplicationController
 
   private
 
+    def show_presenter
+      ScannedBookShowPresenter
+    end
+
     def decorated_concern
       decorator.new(@curation_concern)
     end
