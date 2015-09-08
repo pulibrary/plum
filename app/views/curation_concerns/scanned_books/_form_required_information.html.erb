@@ -1,5 +1,6 @@
 <fieldset class="required">
   <legend>Required Information</legend>
+  <%= f.input :title, as: :multi_value, readonly: f.object.source_metadata_identifier.present? %>
   <%= f.input :source_metadata_identifier, label: 'Source Metadata ID' %>
 </fieldset>
 <fieldset class="required">
