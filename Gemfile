@@ -33,7 +33,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # gem 'capistrano-rails', group: :development
 
 gem 'curation_concerns', github:'projecthydra-labs/curation_concerns'
-gem 'pul_metadata_services', github:'pulibrary/pul_metadata_services', ref: '71d537910bb62b0e91993362095bdd60b6d84e93'
+gem 'pul_metadata_services', github:'pulibrary/pul_metadata_services', branch: :master
 gem 'hydra-role-management', '0.1.0'
 gem 'rsolr', '~> 1.0.6'
 gem 'devise'

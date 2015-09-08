@@ -25,12 +25,14 @@ GIT
 
 GIT
   remote: git://github.com/pulibrary/pul_metadata_services.git
-  revision: 71d537910bb62b0e91993362095bdd60b6d84e93
-  ref: 71d537910bb62b0e91993362095bdd60b6d84e93
+  revision: bcbd23970addb65989680a4765f3e50f03975038
+  branch: master
   specs:
     pul_metadata_services (0.0.1)
-      marc
-      rdf
+      activesupport (~> 4.2.4)
+      faraday (~> 0.9.1)
+      marc (~> 1.0.0)
+      nokogiri (~> 1.6.6.2)
 
 GEM
   remote: https://rubygems.org/
@@ -583,3 +585,6 @@ DEPENDENCIES
   vcr
   web-console (~> 2.0)
   webmock
+
+BUNDLED WITH
+   1.10.6
