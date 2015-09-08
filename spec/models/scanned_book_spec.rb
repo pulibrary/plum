@@ -116,6 +116,7 @@ describe ScannedBook do
       it 'Extracts Voyager Metadata' do
         subject.apply_remote_metadata
         expect(subject.title).to eq(['The Giant Bible of Mainz; 500th anniversary, April fourth, fourteen fifty-two, April fourth, nineteen fifty-two.'])
+        expect(subject.sort_title).to eq('Giant Bible of Mainz; 500th anniversary, April fourth, fourteen fifty-two, April fourth, nineteen fifty-two.')
         expect(subject.creator).to eq(['Miner, Dorothy Eugenia.'])
         expect(subject.date_created).to eq(['1952'])
         expect(subject.publisher).to eq(['Fake Publisher'])
