@@ -87,7 +87,9 @@ describe ScannedBook do
         subject.source_metadata_identifier = 'AC123_c00004'
       end
 
-      it 'Extracts Pulfa Metadata and full source' do
+      # Pending until
+      # https://github.com/pulibrary/pul_metadata_services/issues/5 is closed
+      xit 'Extracts Pulfa Metadata and full source' do
         subject.apply_remote_metadata
         expect(subject.title.first).to eq('Series 1: University Librarian Records - Subseries 1A, Frederic Vinton - Correspondence')
         expect(subject.creator.first).to eq('Princeton University. Library. Dept. of Rare Books and Special Collections')
@@ -114,6 +116,7 @@ describe ScannedBook do
       it 'Extracts Voyager Metadata' do
         subject.apply_remote_metadata
         expect(subject.title).to eq(['The Giant Bible of Mainz; 500th anniversary, April fourth, fourteen fifty-two, April fourth, nineteen fifty-two.'])
+        expect(subject.sort_title).to eq('Giant Bible of Mainz; 500th anniversary, April fourth, fourteen fifty-two, April fourth, nineteen fifty-two.')
         expect(subject.creator).to eq(['Miner, Dorothy Eugenia.'])
         expect(subject.date_created).to eq(['1952'])
         expect(subject.publisher).to eq(['Fake Publisher'])

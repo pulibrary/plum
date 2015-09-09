@@ -5,6 +5,7 @@ class ScannedBook < ActiveFedora::Base
   include ::CurationConcerns::BasicMetadata
   include ::NoidBehaviors
 
+  property :sort_title, predicate: ::RDF::URI.new("http://opaquenamespace.org/ns/mods/titleForSort"), multiple: false
   property :portion_note, predicate: ::RDF::URI.new(::RDF::SKOS.scopeNote), multiple: false
   property :description, predicate: ::RDF::URI.new(::RDF::DC.abstract), multiple: false
   property :access_policy, predicate: ::RDF::URI.new(::RDF::DC.accessRights), multiple: false
@@ -21,7 +22,7 @@ class ScannedBook < ActiveFedora::Base
 
   def apply_remote_metadata
     return false unless source_metadata_identifier.present?
-    remote_data = remote_metadata_factory.new(source_metadata_identifier)
+    remote_data = remote_metadata_factory.retrieve(source_metadata_identifier)
     begin
       self.source_metadata = remote_data.source
     rescue => e
@@ -34,11 +35,7 @@ class ScannedBook < ActiveFedora::Base
   private
 
     def remote_metadata_factory
-      if bibdata?
-        RemoteBibdata
-      else
-        RemoteEad
-      end
+      RemoteRecord
     end
 
     # http://stackoverflow.com/questions/1235863/test-if-a-string-is-basically-an-integer-in-quotes-using-ruby
