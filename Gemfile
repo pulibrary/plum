@@ -38,6 +38,7 @@ gem 'hydra-role-management', '0.1.0'
 gem 'rsolr', '~> 1.0.6'
 gem 'devise'
 gem 'devise-guests', '~> 0.3'
+gem 'osullivan'
 
 # Copied from curation_concerns Gemfile.extra
 gem 'hydra-collections', github: 'projecthydra/hydra-collections', ref: 'd7864f33'

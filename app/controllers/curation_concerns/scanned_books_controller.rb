@@ -13,7 +13,19 @@ class CurationConcerns::ScannedBooksController < ApplicationController
     end
   end
 
+  def manifest
+    respond_to do |f|
+      f.json do
+        render json: manifest_builder
+      end
+    end
+  end
+
   private
+
+    def manifest_builder
+      ManifestBuilder.new(@curation_concern)
+    end
 
     def show_presenter
       ScannedBookShowPresenter

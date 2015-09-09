@@ -26,6 +26,22 @@ describe CurationConcerns::ScannedBooksController do
     end
   end
 
+  describe "#manifest" do
+    context "when requesting JSON" do
+      it "builds a manifest" do
+        manifest_builder = instance_double ManifestBuilder
+        book = instance_double(ScannedBook)
+        allow(ScannedBook).to receive(:find).with("1").and_return(book)
+        allow(ManifestBuilder).to receive(:new).with(book).and_return(manifest_builder)
+        allow(manifest_builder).to receive(:to_json).and_return({ "hi" => 1 }.to_json)
+
+        get :manifest, id: "1", format: :json
+
+        expect(response.body).to eq({ "hi" => 1 }.to_json)
+      end
+    end
+  end
+
   describe 'update' do
     let(:scanned_book_attributes) { { portion_note: 'Section 2', description: 'a description', source_metadata_identifier: '2028405' } }
     before do
