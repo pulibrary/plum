@@ -16,6 +16,7 @@ class Ability
   def admin_permissions
     can [:create, :show, :add_user, :remove_user, :index], Role
     can [:create, :read, :edit, :update, :destroy, :publish], curation_concerns
+    can [:create, :read, :edit, :update, :destroy, :publish], GenericFile
     # can :create, Collection
     can [:destroy], ActiveFedora::Base
     # can :manage, Resque

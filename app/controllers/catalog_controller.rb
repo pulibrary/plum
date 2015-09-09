@@ -4,17 +4,18 @@ class CatalogController < ApplicationController
     config.search_builder_class = CurationConcerns::SearchBuilder
     ## Default parameters to send to solr for all search-like requests. See also SolrHelper#solr_search_params
     config.default_solr_params = {
-      qf: search_config['qf'],
-      qt: search_config['qt'],
-      rows: search_config['rows']
+        qf: search_config['qf'],
+        qt: search_config['qt'],
+        rows: search_config['rows']
     }
 
     # solr field configuration for search results/index views
     config.index.title_field = solr_name('title', :stored_searchable)
     config.index.display_type_field = solr_name('has_model', :symbol)
 
-    config.index.thumbnail_method = :thumbnail_tag
+    config.index.thumbnail_field = 'thumbnail_path_ss'
     config.index.partials.delete(:thumbnail) # we render this inside _index_default.html.erb
+    config.index.partials += [:action_menu]
 
     # solr field configuration for document/show views
     # config.show.title_field = solr_name("title", :stored_searchable)
@@ -77,8 +78,8 @@ class CatalogController < ApplicationController
       label_name = solr_name('title', :stored_searchable, type: :string)
       contributor_name = solr_name('contributor', :stored_searchable, type: :string)
       field.solr_parameters = {
-        qf: "#{title_name} #{label_name} file_format_tesim #{contributor_name}",
-        pf: "#{title_name}"
+          qf: "#{title_name} #{label_name} file_format_tesim #{contributor_name}",
+          pf: "#{title_name}"
       }
     end
 
@@ -96,24 +97,24 @@ class CatalogController < ApplicationController
       # See: http://wiki.apache.org/solr/LocalParams
       solr_name = solr_name('contributor', :stored_searchable, type: :string)
       field.solr_local_parameters = {
-        qf: solr_name,
-        pf: solr_name
+          qf: solr_name,
+          pf: solr_name
       }
     end
 
     config.add_search_field('creator') do |field|
       solr_name = solr_name('creator', :stored_searchable, type: :string)
       field.solr_local_parameters = {
-        qf: solr_name,
-        pf: solr_name
+          qf: solr_name,
+          pf: solr_name
       }
     end
 
     config.add_search_field('title') do |field|
       solr_name = solr_name('title', :stored_searchable, type: :string)
       field.solr_local_parameters = {
-        qf: solr_name,
-        pf: solr_name
+          qf: solr_name,
+          pf: solr_name
       }
     end
 
@@ -121,48 +122,48 @@ class CatalogController < ApplicationController
       field.label = 'Abstract or Summary'
       solr_name = solr_name('description', :stored_searchable, type: :string)
       field.solr_local_parameters = {
-        qf: solr_name,
-        pf: solr_name
+          qf: solr_name,
+          pf: solr_name
       }
     end
 
     config.add_search_field('publisher') do |field|
       solr_name = solr_name('publisher', :stored_searchable, type: :string)
       field.solr_local_parameters = {
-        qf: solr_name,
-        pf: solr_name
+          qf: solr_name,
+          pf: solr_name
       }
     end
 
     config.add_search_field('date_created') do |field|
       solr_name = solr_name('created', :stored_searchable, type: :string)
       field.solr_local_parameters = {
-        qf: solr_name,
-        pf: solr_name
+          qf: solr_name,
+          pf: solr_name
       }
     end
 
     config.add_search_field('subject') do |field|
       solr_name = solr_name('subject', :stored_searchable, type: :string)
       field.solr_local_parameters = {
-        qf: solr_name,
-        pf: solr_name
+          qf: solr_name,
+          pf: solr_name
       }
     end
 
     config.add_search_field('language') do |field|
       solr_name = solr_name('language', :stored_searchable, type: :string)
       field.solr_local_parameters = {
-        qf: solr_name,
-        pf: solr_name
+          qf: solr_name,
+          pf: solr_name
       }
     end
 
     config.add_search_field('human_readable_type') do |field|
       solr_name = solr_name('human_readable_type', :stored_searchable, type: :string)
       field.solr_local_parameters = {
-        qf: solr_name,
-        pf: solr_name
+          qf: solr_name,
+          pf: solr_name
       }
     end
 
@@ -170,8 +171,8 @@ class CatalogController < ApplicationController
       field.include_in_advanced_search = false
       solr_name = solr_name('format', :stored_searchable, type: :string)
       field.solr_local_parameters = {
-        qf: solr_name,
-        pf: solr_name
+          qf: solr_name,
+          pf: solr_name
       }
     end
 
@@ -179,8 +180,8 @@ class CatalogController < ApplicationController
       field.include_in_advanced_search = false
       solr_name = solr_name('id', :stored_searchable, type: :string)
       field.solr_local_parameters = {
-        qf: solr_name,
-        pf: solr_name
+          qf: solr_name,
+          pf: solr_name
       }
     end
 
@@ -188,32 +189,32 @@ class CatalogController < ApplicationController
       field.label = 'Location'
       solr_name = solr_name('based_near', :stored_searchable, type: :string)
       field.solr_local_parameters = {
-        qf: solr_name,
-        pf: solr_name
+          qf: solr_name,
+          pf: solr_name
       }
     end
 
     config.add_search_field('tag') do |field|
       solr_name = solr_name('tag', :stored_searchable, type: :string)
       field.solr_local_parameters = {
-        qf: solr_name,
-        pf: solr_name
+          qf: solr_name,
+          pf: solr_name
       }
     end
 
     config.add_search_field('depositor') do |field|
       solr_name = solr_name('depositor', :stored_searchable, type: :string)
       field.solr_local_parameters = {
-        qf: solr_name,
-        pf: solr_name
+          qf: solr_name,
+          pf: solr_name
       }
     end
 
     config.add_search_field('rights') do |field|
       solr_name = solr_name('rights', :stored_searchable, type: :string)
       field.solr_local_parameters = {
-        qf: solr_name,
-        pf: solr_name
+          qf: solr_name,
+          pf: solr_name
       }
     end
 
