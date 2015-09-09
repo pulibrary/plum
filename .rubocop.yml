@@ -42,6 +42,10 @@ Style/BlockEndNewline:
   Exclude:
     - 'spec/**/*'
 
+Style/IndentHash:
+  Exclude:
+    - 'app/controllers/catalog_controller.rb'
+
 Style/LeadingCommentSpace:
   Exclude:
     - 'spec/**/*'

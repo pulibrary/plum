@@ -32,12 +32,17 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-gem 'curation_concerns', github:'projecthydra-labs/curation_concerns'
+gem 'curation_concerns', github:'projecthydra-labs/curation_concerns', ref:'5b7a872b5b0b84d5563a8f6de2a8bb8fd655c368'
 gem 'pul_metadata_services', github:'pulibrary/pul_metadata_services', branch: :master
 gem 'hydra-role-management', '0.1.0'
 gem 'rsolr', '~> 1.0.6'
 gem 'devise'
 gem 'devise-guests', '~> 0.3'
+
+# Copied from curation_concerns Gemfile.extra
+gem 'hydra-collections', github: 'projecthydra/hydra-collections', ref: 'd7864f33'
+gem 'hydra-works', github: 'projecthydra-labs/hydra-works', ref: 'bf57c69'
+gem 'hydra-pcdm', github: 'projecthydra-labs/hydra-pcdm', ref: '274f5e0'
 
 group :development, :test do
   gem 'rubocop', require: false
