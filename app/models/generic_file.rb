@@ -2,4 +2,6 @@
 class GenericFile < ActiveFedora::Base
   include ::CurationConcerns::GenericFileBehavior
   apply_schema IIIFPageSchema
+
+  validates_with ViewingHintValidator
 end

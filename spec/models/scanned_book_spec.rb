@@ -156,5 +156,8 @@ describe ScannedBook do
     it "validates with the viewing direction validator" do
       expect(subject._validators[nil].map(&:class)).to include ViewingDirectionValidator
     end
+    it "validates with the viewing hint validator" do
+      expect(subject._validators[nil].map(&:class)).to include ViewingHintValidator
+    end
   end
 end
