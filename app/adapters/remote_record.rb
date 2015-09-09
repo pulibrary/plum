@@ -5,7 +5,11 @@
 class RemoteRecord < SimpleDelegator
   class << self
     def retrieve(id)
-      new(PulMetadataServices::Client.retrieve(id))
+      if id.present?
+        new(PulMetadataServices::Client.retrieve(id))
+      else
+        Null.retrieve(id)
+      end
     end
   end
 
@@ -13,5 +17,23 @@ class RemoteRecord < SimpleDelegator
     result = super
     result[:date_created] = Array(result[:date_created])
     result
+  end
+
+  # Null class.
+  class Null
+    include Singleton
+    class << self
+      def retrieve(_id)
+        instance
+      end
+    end
+
+    def source
+      nil
+    end
+
+    def attributes
+      {}
+    end
   end
 end

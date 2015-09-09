@@ -21,26 +21,18 @@ class ScannedBook < ActiveFedora::Base
   validates :use_and_reproduction, presence: { message: 'You must provide a use statement.' }
 
   def apply_remote_metadata
-    return false unless source_metadata_identifier.present?
-    remote_data = remote_metadata_factory.retrieve(source_metadata_identifier)
-    begin
-      self.source_metadata = remote_data.source
-    rescue => e
-      logger.error("Record ID #{source_metadata_identifier} is malformed. Error:")
-      logger.error("#{e.class}: #{e.message}")
-    end
+    self.source_metadata = remote_data.source
     self.attributes = remote_data.attributes
   end
 
   private
 
-    def remote_metadata_factory
-      RemoteRecord
+    def remote_data
+      @remote_data ||= remote_metadata_factory.retrieve(source_metadata_identifier)
     end
 
-    # http://stackoverflow.com/questions/1235863/test-if-a-string-is-basically-an-integer-in-quotes-using-ruby
-    def bibdata?
-      source_metadata_identifier =~ /\A[-+]?\d+\z/
+    def remote_metadata_factory
+      RemoteRecord
     end
 
     # Validate that either the source_metadata_identifier or the title is set.
