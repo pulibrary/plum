@@ -151,4 +151,13 @@ describe ScannedBook do
       expect(described_class.properties["viewing_hint"].predicate).to eq RDF::Vocab::IIIF.viewingHint
     end
   end
+
+  describe "validations" do
+    it "validates with the viewing direction validator" do
+      expect(subject._validators[nil].map(&:class)).to include ViewingDirectionValidator
+    end
+    it "validates with the viewing hint validator" do
+      expect(subject._validators[nil].map(&:class)).to include ViewingHintValidator
+    end
+  end
 end

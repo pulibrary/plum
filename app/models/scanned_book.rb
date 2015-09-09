@@ -19,6 +19,8 @@ class ScannedBook < ActiveFedora::Base
   validate :source_metadata_identifier_or_title
   validates :access_policy, presence: { message: 'You must choose an Access Policy statement.' }
   validates :use_and_reproduction, presence: { message: 'You must provide a use statement.' }
+  validates_with ViewingDirectionValidator
+  validates_with ViewingHintValidator
 
   def apply_remote_metadata
     self.source_metadata = remote_data.source
