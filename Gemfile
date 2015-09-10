@@ -69,3 +69,4 @@ group :test do
   gem "vcr"
   gem "webmock"
 end
+gem 'posix-spawn'

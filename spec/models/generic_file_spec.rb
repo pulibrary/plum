@@ -14,4 +14,19 @@ RSpec.describe GenericFile do
       expect(subject._validators[nil].map(&:class)).to include ViewingHintValidator
     end
   end
+
+  describe "#create_derivatives" do
+    let(:path) { Pathname.new(CurationConcerns::DerivativePath.derivative_path_for_reference(subject, 'jp2')) }
+    it "creates a JP2" do
+      file = File.open(Rails.root.join("spec", "fixtures", "files", "color.tif"))
+      Hydra::Works::UploadFileToGenericFile.call(subject, file)
+
+      subject.create_derivatives
+
+      expect(path).to exist
+    end
+    after do
+      FileUtils.rm_rf(path.parent) if path.exist?
+    end
+  end
 end
