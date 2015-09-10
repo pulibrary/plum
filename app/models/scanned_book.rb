@@ -4,6 +4,7 @@ class ScannedBook < ActiveFedora::Base
   include ::CurationConcerns::GenericWorkBehavior
   include ::CurationConcerns::BasicMetadata
   include ::NoidBehaviors
+  include ::GeneratesPdfs
 
   property :sort_title, predicate: ::RDF::URI.new("http://opaquenamespace.org/ns/mods/titleForSort"), multiple: false
   property :portion_note, predicate: ::RDF::URI.new(::RDF::SKOS.scopeNote), multiple: false

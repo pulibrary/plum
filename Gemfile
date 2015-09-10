@@ -40,6 +40,10 @@ gem 'devise'
 gem 'devise-guests', '~> 0.3'
 gem 'osullivan'
 
+# PDF generation
+gem 'prawn'
+# gem 'pdf-inspector', '~> 1.2.0', group: [:test]
+
 # Copied from curation_concerns Gemfile.extra
 gem 'hydra-collections', github: 'projecthydra/hydra-collections', ref: 'd7864f33'
 gem 'hydra-works', github: 'projecthydra-labs/hydra-works', ref: 'bf57c69'
