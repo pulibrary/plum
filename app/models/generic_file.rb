@@ -4,4 +4,19 @@ class GenericFile < ActiveFedora::Base
   apply_schema IIIFPageSchema
 
   validates_with ViewingHintValidator
+  makes_derivatives :create_intermediate_file
+
+  private
+
+    def create_intermediate_file
+      case original_file.mime_type
+      when 'image/tiff'
+        transform_file :original_file, {
+          service: {
+            datastream: 'j2k',
+            recipe: :default
+          }
+        }, processor: 'jpeg2k_image'
+      end
+    end
 end
