@@ -1,0 +1,21 @@
+@font-face {
+    font-family: 'DejaVu Sans';
+    src: font-url('Dejavu/DejaVuSansCondensed-webfont.eot');
+    src: font-url('Dejavu/DejaVuSansCondensed-webfont.eot?#iefix') format('embedded-opentype'),
+         font-url('Dejavu/DejaVuSansCondensed-webfont.woff') format('woff'),
+         font-url('Dejavu/DejaVuSansCondensed-webfont.ttf') format('truetype'),
+         font-url('Dejavu/DejaVuSansCondensed-webfont.svg#svgFontName') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+  font-family: 'Droid Serif';
+  src: font-url('Droid_Serif/droidserif-webfont.eot'); /* IE9 Compat Modes */
+  src: font-url('Droid_Serif/droidserif-webfont.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       font-url('Droid_Serif/droidserif-webfont.woff2') format('woff2'), /* Super Modern Browsers */
+       font-url('Droid_Serif/droidserif-webfont.woff') format('woff'), /* Pretty Modern Browsers */
+       font-url('Droid_Serif/droidserif-webfont.ttf')  format('truetype'), /* Safari, Android, iOS */
+       font-url('Droid_Serif/droidserif-webfont.svg#svgFontName') format('svg'); /* Legacy iOS */
+}

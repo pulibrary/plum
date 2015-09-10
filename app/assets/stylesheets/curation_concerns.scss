@@ -1,3 +1,13 @@
-//@import 'blacklight/blacklight';
+@import "variables/colors";
+@import "variables/typography";
+
+$navbar-default-bg: $light-gray;
+
+$font-family-sans-serif: $font-sans;
+$font-family-serif: $font-serif;
+
 @import 'curation_concerns/curation_concerns';
 
+body {
+    padding: 0;
+}

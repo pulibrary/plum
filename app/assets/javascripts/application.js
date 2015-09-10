@@ -17,3 +17,5 @@
 //= require blacklight/blacklight
 
 //= require_tree .
+
+//= require modernizr
