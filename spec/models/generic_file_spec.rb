@@ -16,7 +16,7 @@ RSpec.describe GenericFile do
   end
 
   describe "#create_derivatives" do
-    let(:path) { Pathname.new(CurationConcerns::DerivativePath.derivative_path_for_reference(subject, 'j2k')) }
+    let(:path) { Pathname.new(CurationConcerns::DerivativePath.derivative_path_for_reference(subject, 'jp2')) }
     it "creates a JP2" do
       file = File.open(Rails.root.join("spec", "fixtures", "files", "color.tif"))
       Hydra::Works::UploadFileToGenericFile.call(subject, file)

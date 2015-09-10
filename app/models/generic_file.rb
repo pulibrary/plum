@@ -13,7 +13,7 @@ class GenericFile < ActiveFedora::Base
       when 'image/tiff'
         transform_file :original_file, {
           service: {
-            datastream: 'j2k',
+            datastream: 'jp2',
             recipe: :default
           }
         }, processor: 'jpeg2k_image'
