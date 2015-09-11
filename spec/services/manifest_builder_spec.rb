@@ -1,8 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe ManifestBuilder, vcr: { cassette_name: "iiif_manifest" } do
-  subject { described_class.new(record) }
+  subject { described_class.new(solr_document) }
 
+  let(:solr_document) { ScannedBookShowPresenter.new(SolrDocument.new(record.to_solr), nil) }
   let(:record) { FactoryGirl.build(:scanned_book) }
   before do
     allow(record).to receive(:persisted?).and_return(true)
@@ -18,8 +19,12 @@ RSpec.describe ManifestBuilder, vcr: { cassette_name: "iiif_manifest" } do
           allow(g).to receive(:id).and_return("x633f104m")
         end
       end
+      let(:solr) { ActiveFedora.solr.conn }
       before do
         record.generic_files << generic_file
+        record.generic_file_ids # Initialize the stubbed IDs
+        solr.add generic_file.to_solr
+        solr.commit
       end
       let(:first_canvas) { subject.canvases.first }
       it "has one" do
@@ -30,6 +35,9 @@ RSpec.describe ManifestBuilder, vcr: { cassette_name: "iiif_manifest" } do
       end
       it "has a viewing hint" do
         generic_file.viewing_hint = "paged"
+        solr.add generic_file.to_solr
+        solr.commit
+
         expect(first_canvas.viewing_hint).to eq "paged"
       end
       it "is a valid manifest" do

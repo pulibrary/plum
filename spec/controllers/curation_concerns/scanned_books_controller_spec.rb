@@ -27,17 +27,18 @@ describe CurationConcerns::ScannedBooksController do
   end
 
   describe "#manifest" do
+    let(:solr) { ActiveFedora.solr.conn }
     context "when requesting JSON" do
       it "builds a manifest" do
-        manifest_builder = instance_double ManifestBuilder
-        book = instance_double(ScannedBook)
-        allow(ScannedBook).to receive(:find).with("1").and_return(book)
-        allow(ManifestBuilder).to receive(:new).with(book).and_return(manifest_builder)
-        allow(manifest_builder).to receive(:to_json).and_return({ "hi" => 1 }.to_json)
+        book = FactoryGirl.build(:scanned_book)
+        allow(book).to receive(:id).and_return("test")
+        solr.add book.to_solr
+        solr.commit
+        expect(ScannedBook).not_to receive(:find)
 
         get :manifest, id: "1", format: :json
 
-        expect(response.body).to eq({ "hi" => 1 }.to_json)
+        expect(response).to be_success
       end
     end
   end

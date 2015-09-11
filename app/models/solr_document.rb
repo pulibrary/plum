@@ -24,4 +24,16 @@ class SolrDocument
   def date_created
     self[Solrizer.solr_name('date_created')]
   end
+
+  def viewing_hint
+    Array(self[Solrizer.solr_name("viewing_hint")]).first
+  end
+
+  def viewing_direction
+    Array(self[Solrizer.solr_name("viewing_direction")]).first
+  end
+
+  def generic_files
+    []
+  end
 end

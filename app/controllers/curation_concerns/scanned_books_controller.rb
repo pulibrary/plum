@@ -4,6 +4,7 @@
 class CurationConcerns::ScannedBooksController < ApplicationController
   include CurationConcerns::CurationConcernController
   set_curation_concern_type ScannedBook
+  skip_load_and_authorize_resource only: [:show, :manifest]
 
   def curation_concern
     if wants_to_update_remote_metadata?
@@ -23,8 +24,18 @@ class CurationConcerns::ScannedBooksController < ApplicationController
 
   private
 
+    def presenter
+      @presenter ||=
+        begin
+          _, document_list = search_results(params, CatalogController.search_params_logic)
+          curation_concern = document_list.first
+          raise CanCan::AccessDenied.new(nil, :manifest) unless curation_concern
+          @presenter = show_presenter.new(curation_concern, current_ability)
+        end
+    end
+
     def manifest_builder
-      ManifestBuilder.new(@curation_concern)
+      ManifestBuilder.new(presenter)
     end
 
     def show_presenter

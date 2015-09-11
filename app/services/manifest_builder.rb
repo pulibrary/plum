@@ -22,7 +22,7 @@ class ManifestBuilder
     end
 
     def canvas_builders
-      record.generic_files.map do |generic_file|
+      record.file_presenters.map do |generic_file|
         CanvasBuilder.new(generic_file, path)
       end
     end
