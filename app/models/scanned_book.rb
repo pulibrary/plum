@@ -14,7 +14,9 @@ class ScannedBook < ActiveFedora::Base
   property :source_metadata, predicate: ::RDF::URI.new('http://library.princeton.edu/terms/source_metadata'), multiple: false
 
   # IIIF
-  apply_schema IIIFBookSchema
+  apply_schema IIIFBookSchema, ActiveFedora::SchemaIndexingStrategy.new(
+    ActiveFedora::Indexers::GlobalIndexer.new([:stored_searchable, :symbol])
+  )
 
   validate :source_metadata_identifier_or_title
   validates :access_policy, presence: { message: 'You must choose an Access Policy statement.' }

@@ -1,4 +1,5 @@
 defaults: &defaults
+  iiif_url: <%= ENV["PLUM_IIIF_URL"] || "http://192.168.99.100:5004" %>
   jp2_recipes:
     default_color: >
       -rate 2.4,1.48331273,.91673033,.56657224,.35016049,.21641118,.13374944,.08266171 
@@ -32,7 +33,7 @@ defaults: &defaults
       Stiles=\{1024,1024\}
 
 development:
-    <<: *defaults
+  <<: *defaults
 
 test:
   <<: *defaults

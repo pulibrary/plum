@@ -15,6 +15,14 @@ RSpec.describe GenericFile do
     end
   end
 
+  describe "iiif_path" do
+    it "returns the manifest path" do
+      allow(subject).to receive(:id).and_return("1")
+
+      expect(subject.iiif_path).to eq "http://192.168.99.100:5004/1/jp2.jp2"
+    end
+  end
+
   describe "#create_derivatives" do
     let(:path) { Pathname.new(CurationConcerns::DerivativePath.derivative_path_for_reference(subject, 'jp2')) }
     it "creates a JP2" do

@@ -10,6 +10,7 @@ class Ability
     admin_permissions if current_user.admin?
     scanned_book_creator_permissions if current_user.scanned_book_creator?
     campus_patron_permissions if current_user.campus_patron?
+    manifest_permissions
   end
 
   # Abilities that should only be granted to admin users
@@ -21,6 +22,10 @@ class Ability
     can [:destroy], ActiveFedora::Base
     # can :manage, Resque
     # can :manage, :bulk_update
+  end
+
+  def manifest_permissions
+    can [:manifest], :all
   end
 
   # Abilities that should be granted to technicians

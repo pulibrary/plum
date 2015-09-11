@@ -26,6 +26,23 @@ describe CurationConcerns::ScannedBooksController do
     end
   end
 
+  describe "#manifest" do
+    let(:solr) { ActiveFedora.solr.conn }
+    context "when requesting JSON" do
+      it "builds a manifest" do
+        book = FactoryGirl.build(:scanned_book)
+        allow(book).to receive(:id).and_return("test")
+        solr.add book.to_solr
+        solr.commit
+        expect(ScannedBook).not_to receive(:find)
+
+        get :manifest, id: "1", format: :json
+
+        expect(response).to be_success
+      end
+    end
+  end
+
   describe 'update' do
     let(:scanned_book_attributes) { { portion_note: 'Section 2', description: 'a description', source_metadata_identifier: '2028405' } }
     before do
