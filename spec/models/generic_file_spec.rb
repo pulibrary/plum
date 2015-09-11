@@ -19,12 +19,12 @@ RSpec.describe GenericFile do
     it "returns the manifest path" do
       allow(subject).to receive(:id).and_return("1")
 
-      expect(subject.iiif_path).to eq "http://192.168.99.100:5004/1/jp2.jp2"
+      expect(subject.iiif_path).to eq "http://192.168.99.100:5004/1-intermediate_file.jp2"
     end
   end
 
   describe "#create_derivatives" do
-    let(:path) { Pathname.new(CurationConcerns::DerivativePath.derivative_path_for_reference(subject, 'jp2')) }
+    let(:path) { Pathname.new(PairtreeDerivativePath.derivative_path_for_reference(subject, 'intermediate_file')) }
     it "creates a JP2" do
       file = File.open(Rails.root.join("spec", "fixtures", "files", "color.tif"))
       Hydra::Works::UploadFileToGenericFile.call(subject, file)
