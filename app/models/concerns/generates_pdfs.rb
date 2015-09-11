@@ -5,6 +5,11 @@ module GeneratesPdfs
     pdf = Prawn::Document.new(info: pdf_metadata, margin: 0)
     generic_files.each do |generic_file|
       # using local_path_for_file from Hydra::Works::GenericFile::VirusCheck
+      # This _should_ be calling the IIIF server, rendering JPG or PNG images
+      # to a tmpfile the path to and passing those images to the pdf
+      # @example the rough idea...
+      #   path_to_tmp_file = generate_image_from_loris(max_height: 792, max_width: 612)
+      #   pdf.image path_to_tmp_file
       pdf.image generic_file.send(:local_path_for_file, generic_file.original_file.content), height: 792
     end
     pdf

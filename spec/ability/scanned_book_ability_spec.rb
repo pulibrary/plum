@@ -25,6 +25,7 @@ describe Ability do
       it { should be_able_to(:create, ScannedBook.new) }
       it { should be_able_to(:create, GenericFile.new) }
       it { should be_able_to(:read, scanned_book) }
+      it { should be_able_to(:pdf, scanned_book) }
       it { should be_able_to(:update, scanned_book) }
       it { should_not be_able_to(:destroy, scanned_book) }
     end
@@ -36,6 +37,7 @@ describe Ability do
       it { should be_able_to(:create, ScannedBook.new) }
       it { should be_able_to(:create, GenericFile.new) }
       it { should be_able_to(:read, scanned_book) }
+      it { should be_able_to(:pdf, scanned_book) }
       it { should be_able_to(:update, scanned_book) }
       it { should be_able_to(:destroy, scanned_book) }
     end
@@ -46,6 +48,7 @@ describe Ability do
       it { should_not be_able_to(:create, ScannedBook.new) }
       it { should_not be_able_to(:create, GenericFile.new) }
       it { should be_able_to(:read, campus_only_scanned_book) }
+      it { should be_able_to(:pdf, scanned_book) }
       it { should_not be_able_to(:update, scanned_book) }
       it { should_not be_able_to(:destroy, scanned_book) }
     end
@@ -56,9 +59,11 @@ describe Ability do
       it { should_not be_able_to(:create, ScannedBook.new) }
       it { should_not be_able_to(:create, GenericFile.new) }
       it { should_not be_able_to(:read, campus_only_scanned_book) }
+      it { should_not be_able_to(:pdf, campus_only_scanned_book) }
       it { should_not be_able_to(:update, scanned_book) }
       it { should_not be_able_to(:destroy, scanned_book) }
       it { should be_able_to(:read, open_scanned_book) }
+      it { should be_able_to(:pdf, open_scanned_book) }
     end
   end
 end
