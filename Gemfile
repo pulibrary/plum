@@ -49,9 +49,10 @@ gem 'hydra-collections', github: 'projecthydra/hydra-collections', ref: 'd7864f3
 gem 'hydra-works', github: 'projecthydra-labs/hydra-works', ref: 'bf57c69'
 gem 'hydra-pcdm', github: 'projecthydra-labs/hydra-pcdm', ref: '274f5e0'
 
+gem 'rubocop', require: false
+gem 'rubocop-rspec', require: false
+
 group :development, :test do
-  gem 'rubocop', require: false
-  gem 'rubocop-rspec', require: false
   gem 'simplecov', '~> 0.9', require: false
   gem 'coveralls', require: false
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -66,6 +67,9 @@ group :development do
   gem 'web-console', '~> 2.0'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+  gem 'capistrano-rails'
+  gem 'capistrano-passenger'
+  gem 'capistrano-rails-console'
 end
 
 group :test do
