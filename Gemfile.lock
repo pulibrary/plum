@@ -355,6 +355,7 @@ GEM
     parslet (1.7.1)
       blankslate (>= 2.0, <= 4.0)
     pdf-core (0.6.0)
+    pg (0.18.3)
     posix-spawn (0.3.11)
     powerpack (0.1.1)
     prawn (2.0.2)
@@ -609,6 +610,7 @@ DEPENDENCIES
   jquery-rails
   launchy
   osullivan
+  pg
   posix-spawn
   prawn
   pry-byebug
