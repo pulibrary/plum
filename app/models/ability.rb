@@ -7,6 +7,7 @@ class Ability
 
   # Define any customized permissions here.
   def custom_permissions
+    alias_action :pdf, :show, to: :read
     admin_permissions if current_user.admin?
     scanned_book_creator_permissions if current_user.scanned_book_creator?
     campus_patron_permissions if current_user.campus_patron?
@@ -15,7 +16,7 @@ class Ability
 
   # Abilities that should only be granted to admin users
   def admin_permissions
-    can [:create, :show, :add_user, :remove_user, :index], Role
+    can [:create, :read, :add_user, :remove_user, :index], Role
     can [:create, :read, :edit, :update, :destroy, :publish], curation_concerns
     can [:create, :read, :edit, :update, :destroy, :publish], GenericFile
     # can :create, Collection

@@ -6,6 +6,11 @@ class CurationConcerns::ScannedBooksController < ApplicationController
   set_curation_concern_type ScannedBook
   skip_load_and_authorize_resource only: [:show, :manifest]
 
+  def pdf
+    actor.generate_pdf
+    redirect_to main_app.download_path(curation_concern, file: 'pdf')
+  end
+
   def curation_concern
     if wants_to_update_remote_metadata?
       decorated_concern
