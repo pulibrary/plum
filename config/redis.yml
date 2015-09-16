@@ -4,6 +4,8 @@ development:
 test:
   host: localhost
   port: 6379
-production:
+production: &production
   host: localhost
   port: 6379
+staging:
+  <<: *production

@@ -20,6 +20,10 @@ test:
   <<: *default
   database: db/test.sqlite3
 
-production:
+production: &production
   <<: *default
-  database: db/production.sqlite3
+  adapter: postgresql
+  database: <%= ENV["PLUM_DB"] %>
+
+staging:
+  <<: *production
