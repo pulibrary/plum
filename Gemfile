@@ -32,7 +32,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-gem 'curation_concerns', github:'projecthydra-labs/curation_concerns', ref:'5b7a872b5b0b84d5563a8f6de2a8bb8fd655c368'
+gem 'curation_concerns', github:'projecthydra-labs/curation_concerns', branch: :master
 gem 'pul_metadata_services', github:'pulibrary/pul_metadata_services', branch: :master
 gem 'hydra-role-management', '0.1.0'
 gem 'rsolr', '~> 1.0.6'

@@ -47,6 +47,7 @@ RSpec.describe ManifestBuilder, vcr: { cassette_name: "iiif_manifest" } do
         first_image = first_canvas.images.first
         expect(first_canvas.images.length).to eq 1
         expect(first_image.resource.format).to eq "image/jpeg"
+        expect(first_image.resource.service['@id']).to eq "http://192.168.99.100:5004/x6%2F33%2Ff1%2F04%2Fm-intermediate_file.jp2"
         expect(first_image["on"]).to eq first_canvas['@id']
       end
     end

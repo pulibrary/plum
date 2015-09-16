@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: http://192.168.99.100:5004/x633f104m/jp2.jp2/info.json
+    uri: http://192.168.99.100:5004/x6%2F33%2Ff1%2F04%2Fm-intermediate_file.jp2/info.json
     body:
       encoding: US-ASCII
       string: ''
