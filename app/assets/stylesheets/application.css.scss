@@ -10,6 +10,21 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
- *= require_tree .
+ *= require normalize
  *= require_self
  */
+
+@import 'curation_concerns';
+
+@import 'abstractions/mixins';
+
+@import 'variables/breaks';
+@import 'variables/colors';
+@import 'variables/typography';
+
+@import 'base/typography';
+
+@import 'components/font-face';
+@import 'components/footer';
+@import 'components/header';
+@import 'components/positioning';
