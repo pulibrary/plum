@@ -28,4 +28,4 @@ ScannedBook
 3. Start the container: `docker run --name loris -v tmp/derivatives:/usr/local/share/images -d -p 5004:5004 lorisimageserver/loris`
 4. Export config variable for IIIF url: `export
    PLUM_IIIF_URL="http://<docker-ip>:5400"`
-4. Images should be available at `http://<docker-ip>:5400/<generic_file_id>`
+4. Images should be available at `http://<docker-ip>:5004/<generic_file_id>`
