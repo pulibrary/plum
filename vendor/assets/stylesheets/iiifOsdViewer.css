@@ -1,0 +1,253 @@
+.iov {
+  box-sizing: border-box;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+
+.iov a, .iov a:hover {
+  color: #000;
+}
+
+.iov-header {
+  background: #5a5d69;
+  height: 30px;
+  width: 100%;
+}
+
+.iov-menu-bar {
+  overflow: auto;
+  z-index: 1000;
+}
+
+.iov-menu-bar h2.iov-item-count {
+  display: inline;
+}
+
+.iov-fullscreen-height {
+  height: 100%;
+}
+
+.iov-menu-bar .iov-controls, .iov-menu-bar .iov-view-options {
+  float: right;
+  margin: 6px 10px 0 0;
+}
+
+.iov-menu-bar .iov-controls a, .iov-menu-bar .iov-controls a:hover {
+  color: white;
+  cursor: pointer;
+  font-size: 15px;
+  margin-top: 2px;
+}
+
+ .iov-list-view {
+  float: right;
+  height: 100%;
+  width: 100%;
+  margin-left: -100px;
+}
+
+.iov-list-view .iov-list-view-thumbs-viewport,
+.iov-list-view .iov-list-view-osd {
+  height: 100%;
+}
+
+.iov-list-view .iov-list-view-thumbs-viewport {
+  float: left;
+  height: 100%;
+  overflow-y: scroll;
+  position: relative;
+  width: 100px;
+}
+
+.iov-list-view .iov-list-view-osd {
+  margin-left: 100px;
+}
+
+.iov-list-view .iov-remove-margin {
+  margin-left: 0;
+}
+
+.iov-list-view .iov-list-view-thumbs-viewport ul {
+  margin: 0;
+  padding: 5px 0;
+  position: relative;
+}
+
+.iov-list-view .iov-list-view-thumbs-viewport li {
+  cursor: pointer;
+  list-style-type: none;
+  padding: 5px 5px 5px 5px;
+}
+
+.iov-list-view .iov-list-view-thumbs-viewport li img {
+  position: relative;
+  width: 100%;
+}
+
+.iov .iov-list-view-left-nav, .iov .iov-list-view-right-nav {
+  border-bottom: none;
+  color: silver;
+  font-size: 4em;
+  position: absolute;
+  text-decoration: none;
+  top: 50%;
+  z-index: 1000;
+}
+
+.iov .iov-list-view-left-nav:hover, .iov .iov-list-view-right-nav:hover {
+  border-bottom: none;
+  color: #999;
+}
+
+.iov .iov-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+.iov .iov-list-view-left-nav {
+  left: 100px;
+}
+
+.iov .iov-list-view-right-nav {
+  right: 1px;
+}
+
+.iov-list-view-thumb-selected {
+  background-color: #999;
+}
+
+.iov-list-view-controls {
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 5px;
+  float: left;
+  font-size: 14px;
+  position: absolute;
+  right: 10px;
+  top: 35px;
+  z-index: 1000;
+}
+
+.iov-menu-bar a {
+  color: #000;
+  text-decoration: none;
+}
+
+.iov-list-view-controls .fa {
+  padding: 4px 6px;
+}
+
+.iov-gallery-view {
+  height: 100%;
+  overflow-y: scroll;
+  width: 100%;
+}
+
+.iov-gallery-view ul {
+  margin: 0;
+  padding: 5px;
+  position: relative;
+}
+
+.iov-gallery-view li {
+  float: left;
+  list-style-type: none;
+  padding: 5px;
+  min-width: 72px;
+}
+
+.iov-gallery-view li img {
+  max-width: 100%;
+}
+
+.iov-list-view-thumbs li:after, .iov-gallery-view li:after, .iov-horizontal-view-images li:after {
+  content: attr(data-alt);
+  display: block;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 0.9em;
+}
+
+.iov-gallery-view li:after {
+  max-width: 72px;
+}
+
+.iov-horizontal-view {
+  height: 100%;
+}
+
+.iov-horizontal-view .iov-horizontal-view-viewport {
+  overflow-x: scroll;
+  overflow-y: hidden;
+}
+
+.iov-horizontal-view ul {
+  margin: 2px 0 5px 0;
+  padding: 0;
+}
+
+.iov-horizontal-view li {
+  float: left;
+  list-style-type: none;
+  padding: 0 5px;
+}
+
+.iov-menu-bar a,
+.iov-controls a,
+.iov-menu-bar a, .iov-menu-bar a:hover,
+.iov-list-view-controls a, .iov-list-view-controls a:hover,
+.iov-list-view-thumbs a, .iov-list-view-thumbs a:hover,
+.iov-gallery-view a, .iov-gallery-view a:hover,
+.iov-horizontal-view-images a, .iov-horizontal-view-images a:hover {
+  border-width: 0;
+  text-decoration: none;
+}
+
+
+:-webkit-full-screen  {
+  height: 100%;
+  left: 0;
+  margin: 0;
+  top: 0;
+  width: 100%;
+}
+
+:-moz-full-screen  {
+  height: 100%;
+  left: 0;
+  margin: 0;
+  top: 0;
+  width: 100%;
+}
+
+:-ms-fullscreen .iov {
+  height: 100%;
+  left: 0;
+  margin: 0;
+  top: 0;
+  width: 100%;
+}
+
+:full-screen .iov { /*pre-spec */
+  height: 100%;
+  left: 0;
+  margin: 0;
+  top: 0;
+  width: 100%;
+}
+
+:fullscreen .iov { /* spec */
+  height: 100%;
+  left: 0;
+  margin: 0;
+  top: 0;
+  width: 100%;
+}
