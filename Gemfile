@@ -41,7 +41,7 @@ gem 'hydra-role-management', '0.1.0'
 gem 'rsolr', '~> 1.0.6'
 gem 'devise'
 gem 'devise-guests', '~> 0.3'
-gem 'osullivan'
+gem 'iiif-presentation'
 
 # PDF generation
 gem 'prawn'
