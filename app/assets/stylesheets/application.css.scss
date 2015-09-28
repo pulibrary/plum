@@ -11,6 +11,7 @@
  * file per style scope.
  *
  *= require normalize
+ *= require iiifOsdViewer
  *= require_self
  */
 
@@ -28,3 +29,5 @@
 @import 'components/footer';
 @import 'components/header';
 @import 'components/positioning';
+
+@import "components/viewer";

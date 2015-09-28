@@ -86,3 +86,4 @@ group :production do
   gem 'pg'
 end
 gem 'posix-spawn'
+gem 'openseadragon'

@@ -3,8 +3,11 @@ class ScannedBookShowPresenter < CurationConcerns::GenericWorkShowPresenter
 
   def file_presenters
     @generic_files ||= begin
-      ids = solr_document.fetch('generic_file_ids_ssim', [])
-      CurationConcerns::PresenterFactory.build_presenters(ids, GenericFilePresenter, current_ability)
+      CurationConcerns::PresenterFactory.build_presenters(generic_file_ids, GenericFilePresenter, current_ability)
     end
+  end
+
+  def generic_file_ids
+    solr_document.fetch('generic_file_ids_ssim', [])
   end
 end
