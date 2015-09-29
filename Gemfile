@@ -87,3 +87,4 @@ group :production do
 end
 gem 'posix-spawn'
 gem 'openseadragon'
+gem 'sidekiq'
