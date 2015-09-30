@@ -11,6 +11,7 @@ AllCops:
     - 'script/**/*'
     - 'vendor/**/*'
     - 'bin/*'
+    - 'config/deploy.rb'
 
 Lint/UnusedBlockArgument:
   Exclude:
