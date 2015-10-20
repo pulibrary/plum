@@ -1,10 +1,10 @@
 require 'rails_helper'
 
-RSpec.describe "curation_concerns/scanned_books/_representative_media.html.erb" do
-  let(:work) { instance_double(ScannedBookShowPresenter, generic_file_ids: file_ids, id: "1") }
+RSpec.describe "curation_concerns/scanned_resources/_representative_media.html.erb" do
+  let(:work) { instance_double(ScannedResourceShowPresenter, generic_file_ids: file_ids, id: "1") }
   let(:file_ids) { [] }
   before do
-    render partial: "curation_concerns/scanned_books/representative_media", locals: { work: work }
+    render partial: "curation_concerns/scanned_resources/representative_media", locals: { work: work }
   end
   context "when there are no generic files" do
     it "shows a filler" do

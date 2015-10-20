@@ -14,8 +14,8 @@ FactoryGirl.define do
       roles { [Role.where(name: 'campus_patron').first_or_create] }
     end
 
-    factory :scanned_book_creator do
-      roles { [Role.where(name: 'scanned_book_creator').first_or_create] }
+    factory :scanned_resource_creator do
+      roles { [Role.where(name: 'scanned_resource_creator').first_or_create] }
     end
   end
 end

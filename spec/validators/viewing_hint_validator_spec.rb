@@ -42,7 +42,7 @@ RSpec.describe ViewingHintValidator do
   end
 
   def build_record(viewing_hint:)
-    record = instance_double ScannedBook
+    record = instance_double ScannedResource
     allow(record).to receive(:errors).and_return(errors)
     allow(record).to receive(:viewing_hint).and_return(Array(viewing_hint))
     allow(record).to receive(:read_attribute_for_validation).with(:viewing_hint).and_return(record.viewing_hint)

@@ -8,7 +8,7 @@
 
 
 ## Work Types
-ScannedBook
+ScannedResource
 
 ## Running the Code
 

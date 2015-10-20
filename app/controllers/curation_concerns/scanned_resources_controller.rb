@@ -1,9 +1,9 @@
 # Generated via
-#  `rails generate curation_concerns:work ScannedBook`
+#  `rails generate curation_concerns:work ScannedResource`
 
-class CurationConcerns::ScannedBooksController < ApplicationController
+class CurationConcerns::ScannedResourcesController < ApplicationController
   include CurationConcerns::CurationConcernController
-  set_curation_concern_type ScannedBook
+  set_curation_concern_type ScannedResource
   skip_load_and_authorize_resource only: [:show, :manifest]
 
   def pdf
@@ -44,7 +44,7 @@ class CurationConcerns::ScannedBooksController < ApplicationController
     end
 
     def show_presenter
-      ScannedBookShowPresenter
+      ScannedResourceShowPresenter
     end
 
     def decorated_concern

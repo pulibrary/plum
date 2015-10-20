@@ -13,7 +13,7 @@ RSpec.describe "curation_concerns/base/_attributes.html.erb" do
     )
   end
   let(:presenter) do
-    ScannedBookShowPresenter.new(solr_document, nil)
+    ScannedResourceShowPresenter.new(solr_document, nil)
   end
 
   before do

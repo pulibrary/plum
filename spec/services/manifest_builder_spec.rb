@@ -3,8 +3,8 @@ require 'rails_helper'
 RSpec.describe ManifestBuilder, vcr: { cassette_name: "iiif_manifest" } do
   subject { described_class.new(solr_document) }
 
-  let(:solr_document) { ScannedBookShowPresenter.new(SolrDocument.new(record.to_solr), nil) }
-  let(:record) { FactoryGirl.build(:scanned_book) }
+  let(:solr_document) { ScannedResourceShowPresenter.new(SolrDocument.new(record.to_solr), nil) }
+  let(:record) { FactoryGirl.build(:scanned_resource) }
   before do
     allow(record).to receive(:persisted?).and_return(true)
     allow(record).to receive(:id).and_return("1")
@@ -64,7 +64,7 @@ RSpec.describe ManifestBuilder, vcr: { cassette_name: "iiif_manifest" } do
       expect(result.label).to eq record.to_s
     end
     it "has an ID" do
-      expect(result['@id']).to eq "http://plum.com/concern/scanned_books/1/manifest"
+      expect(result['@id']).to eq "http://plum.com/concern/scanned_resources/1/manifest"
     end
     it "has a description" do
       expect(result.description).to eq record.description

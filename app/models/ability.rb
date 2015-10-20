@@ -9,7 +9,7 @@ class Ability
   def custom_permissions
     alias_action :pdf, :show, to: :read
     admin_permissions if current_user.admin?
-    scanned_book_creator_permissions if current_user.scanned_book_creator?
+    scanned_resource_creator_permissions if current_user.scanned_resource_creator?
     campus_patron_permissions if current_user.campus_patron?
     manifest_permissions
   end
@@ -30,8 +30,8 @@ class Ability
   end
 
   # Abilities that should be granted to technicians
-  def scanned_book_creator_permissions
-    can [:create, :read, :edit, :update, :publish], ScannedBook
+  def scanned_resource_creator_permissions
+    can [:create, :read, :edit, :update, :publish], ScannedResource
     can [:create, :read, :edit, :update, :publish], GenericFile
   end
 
