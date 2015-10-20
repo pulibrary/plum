@@ -1,0 +1,31 @@
+<br />
+<p>
+  <%=t('curation_concerns.product_name') %> is a secure repository service enabling the
+  <%=t('curation_concerns.institution.name') %> community to share its research and scholarly
+  work with a worldwide audience. Faculty, staff, and students can use
+  <%=t('curation_concerns.product_name') %> to collect their work in one location and create a
+  durable and citeable record of their papers, presentations, publications, data
+  sets, or other scholarly creations.
+</p>
+
+<div class="row">
+  <ul class="classify-work">
+    <% @curation_concerns.each do |klass| %>
+      <% if can? :create, klass %>
+        <li class="work-type">
+          <h3 class="title"><%= klass.human_readable_type %></h3>
+          <p class="short-description" id="<%= dom_class(klass, 'short_description') %>">
+            <%= klass.human_readable_short_description %>
+          </p>
+          <%= link_to 'Add New',
+            main_app.new_polymorphic_path([:curation_concerns, klass]),
+            class: "add-button btn btn-primary #{dom_class(klass, 'add_new')}"
+          %>
+        </li>
+      <% end %>
+    <% end %>
+    <li class="work-type placeholder" aria-hidden="true"></li>
+    <li class="work-type placeholder" aria-hidden="true"></li>
+    <li class="work-type placeholder" aria-hidden="true"></li>
+  </ul>
+</div>
