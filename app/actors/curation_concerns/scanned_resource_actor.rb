@@ -1,7 +1,7 @@
 # Generated via
-#  `rails generate curation_concerns:work ScannedBook`
+#  `rails generate curation_concerns:work ScannedResource`
 module CurationConcerns
-  class ScannedBookActor < CurationConcerns::BaseActor
+  class ScannedResourceActor < CurationConcerns::BaseActor
     include ::CurationConcerns::WorkActorBehavior
 
     # Generate the pdf and persist it as if it was any other local derivative

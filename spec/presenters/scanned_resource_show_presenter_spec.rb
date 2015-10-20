@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe ScannedBookShowPresenter do
+RSpec.describe ScannedResourceShowPresenter do
   subject { described_class.new(solr_document, ability) }
 
   let(:date_created) { "2015-09-02" }

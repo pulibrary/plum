@@ -42,7 +42,7 @@ RSpec.describe ViewingDirectionValidator do
   end
 
   def build_record(viewing_direction:)
-    record = instance_double ScannedBook
+    record = instance_double ScannedResource
     allow(record).to receive(:errors).and_return(errors)
     allow(record).to receive(:viewing_direction).and_return(Array(viewing_direction))
     allow(record).to receive(:read_attribute_for_validation).with(:viewing_direction).and_return(record.viewing_direction)

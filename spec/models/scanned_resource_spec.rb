@@ -1,11 +1,11 @@
 # Generated via
-#  `rails generate worthwhile:work ScannedBook`
+#  `rails generate worthwhile:work ScannedResource`
 require 'rails_helper'
 
-describe ScannedBook do
-  let(:scanned_book)  { FactoryGirl.build(:scanned_book, source_metadata_identifier: '12345', access_policy: 'Policy', use_and_reproduction: 'Statement') }
-  let(:reloaded)      { described_class.find(scanned_book.id) }
-  subject { scanned_book }
+describe ScannedResource do
+  let(:scanned_resource) { FactoryGirl.build(:scanned_resource, source_metadata_identifier: '12345', access_policy: 'Policy', use_and_reproduction: 'Statement') }
+  let(:reloaded)         { described_class.find(scanned_resource.id) }
+  subject { scanned_resource }
 
   describe 'has note fields' do
     [:portion_note, :description].each do |note_type|

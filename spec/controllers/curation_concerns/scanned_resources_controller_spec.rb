@@ -1,11 +1,11 @@
 # Generated via
-#  `rails generate curation_concerns:work ScannedBook`
+#  `rails generate curation_concerns:work ScannedResource`
 require 'rails_helper'
 
-describe CurationConcerns::ScannedBooksController do
+describe CurationConcerns::ScannedResourcesController do
   let(:user) { FactoryGirl.create(:user) }
-  let(:scanned_book) { FactoryGirl.create(:scanned_book, user: user, title: ['Dummy Title']) }
-  let(:reloaded) { scanned_book.reload }
+  let(:scanned_resource) { FactoryGirl.create(:scanned_resource, user: user, title: ['Dummy Title']) }
+  let(:reloaded) { scanned_resource.reload }
 
   describe "create" do
     let(:user) { FactoryGirl.create(:admin) }
@@ -13,14 +13,14 @@ describe CurationConcerns::ScannedBooksController do
       sign_in user
     end
     context "when given a bib id", vcr: { cassette_name: 'bibdata', allow_playback_repeats: true } do
-      let(:scanned_book_attributes) do
-        FactoryGirl.attributes_for(:scanned_book).merge(
+      let(:scanned_resource_attributes) do
+        FactoryGirl.attributes_for(:scanned_resource).merge(
           source_metadata_identifier: "2028405"
         )
       end
       it "updates the metadata" do
-        post :create, scanned_book: scanned_book_attributes
-        s = ScannedBook.last
+        post :create, scanned_resource: scanned_resource_attributes
+        s = ScannedResource.last
         expect(s.title).to eq ['The Giant Bible of Mainz; 500th anniversary, April fourth, fourteen fifty-two, April fourth, nineteen fifty-two.']
       end
     end
@@ -30,11 +30,11 @@ describe CurationConcerns::ScannedBooksController do
     let(:solr) { ActiveFedora.solr.conn }
     context "when requesting JSON" do
       it "builds a manifest" do
-        book = FactoryGirl.build(:scanned_book)
-        allow(book).to receive(:id).and_return("test")
-        solr.add book.to_solr
+        resource = FactoryGirl.build(:scanned_resource)
+        allow(resource).to receive(:id).and_return("test")
+        solr.add resource.to_solr
         solr.commit
-        expect(ScannedBook).not_to receive(:find)
+        expect(ScannedResource).not_to receive(:find)
 
         get :manifest, id: "1", format: :json
 
@@ -44,13 +44,13 @@ describe CurationConcerns::ScannedBooksController do
   end
 
   describe 'update' do
-    let(:scanned_book_attributes) { { portion_note: 'Section 2', description: 'a description', source_metadata_identifier: '2028405' } }
+    let(:scanned_resource_attributes) { { portion_note: 'Section 2', description: 'a description', source_metadata_identifier: '2028405' } }
     before do
       sign_in user
     end
     context 'by default' do
       it 'updates the record but does not refresh the exernal metadata' do
-        post :update, id: scanned_book, scanned_book: scanned_book_attributes
+        post :update, id: scanned_resource, scanned_resource: scanned_resource_attributes
         expect(reloaded.portion_note).to eq 'Section 2'
         expect(reloaded.title).to eq ['Dummy Title']
         expect(reloaded.description).to eq 'a description'
@@ -58,7 +58,7 @@ describe CurationConcerns::ScannedBooksController do
     end
     context 'when :refresh_remote_metadata is set', vcr: { cassette_name: 'bibdata', allow_playback_repeats: true } do
       it 'updates remote metadata' do
-        post :update, id: scanned_book, scanned_book: scanned_book_attributes, refresh_remote_metadata: true
+        post :update, id: scanned_resource, scanned_resource: scanned_resource_attributes, refresh_remote_metadata: true
         expect(reloaded.title).to eq ['The Giant Bible of Mainz; 500th anniversary, April fourth, fourteen fifty-two, April fourth, nineteen fifty-two.']
       end
     end
@@ -72,8 +72,8 @@ describe CurationConcerns::ScannedBooksController do
       actor = double("Actor")
       allow(controller).to receive(:actor).and_return(actor)
       expect(actor).to receive(:generate_pdf)
-      get :pdf, id: scanned_book
-      expect(response).to redirect_to(Rails.application.class.routes.url_helpers.download_path(scanned_book, file: 'pdf'))
+      get :pdf, id: scanned_resource
+      expect(response).to redirect_to(Rails.application.class.routes.url_helpers.download_path(scanned_resource, file: 'pdf'))
     end
   end
 end

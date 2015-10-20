@@ -14,6 +14,6 @@ Rails.application.routes.draw do
   # Add URL options
   default_url_options Rails.application.config.action_mailer.default_url_options
 
-  get '/concern/scanned_books/:id/manifest', to: 'curation_concerns/scanned_books#manifest', as: 'curation_concerns_scanned_book_manifest', defaults: { format: :json }
-  get '/concern/scanned_books/:id/pdf', to: 'curation_concerns/scanned_books#pdf', as: 'curation_concerns_scanned_book_pdf'
+  get '/concern/scanned_resources/:id/manifest', to: 'curation_concerns/scanned_resources#manifest', as: 'curation_concerns_scanned_resource_manifest', defaults: { format: :json }
+  get '/concern/scanned_resources/:id/pdf', to: 'curation_concerns/scanned_resources#pdf', as: 'curation_concerns_scanned_resource_pdf'
 end

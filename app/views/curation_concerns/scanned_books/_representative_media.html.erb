@@ -1,6 +1,0 @@
-<% if work.generic_file_ids.present? %>
-  <div class="viewer" data-manifest="<%= main_app.curation_concerns_scanned_book_manifest_path(id: work.id) %>"></div>
-<% else %>
-  <%= image_tag 'nope.png', class: "canonical-image" %>
-<% end %>
-

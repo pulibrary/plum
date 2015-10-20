@@ -18,7 +18,7 @@ class ManifestBuilder
   private
 
     def path
-      helper.curation_concerns_scanned_book_manifest_url(record)
+      helper.curation_concerns_scanned_resource_manifest_url(record)
     end
 
     def canvas_builders

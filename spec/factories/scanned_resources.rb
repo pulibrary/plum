@@ -1,5 +1,5 @@
 FactoryGirl.define do
-  factory :scanned_book do
+  factory :scanned_resource do
     title ["Test title"]
     source_metadata_identifier "1234567"
     access_policy "Do you want a jelly baby?"
@@ -16,7 +16,7 @@ FactoryGirl.define do
     end
 
     # https://github.com/projecthydra/hydra-head/blob/master/hydra-access-controls/app/models/concerns/hydra/access_controls/access_right.rb
-    factory :campus_only_scanned_book do
+    factory :campus_only_scanned_resource do
       visibility Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_AUTHENTICATED
     end
   end
