@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe GenericFile do
+RSpec.describe FileSet do
   subject { described_class.new.tap { |x| x.apply_depositor_metadata("bob") } }
 
   describe "#viewing_hint" do
@@ -27,9 +27,9 @@ RSpec.describe GenericFile do
     let(:path) { Pathname.new(PairtreeDerivativePath.derivative_path_for_reference(subject, 'intermediate_file')) }
     it "creates a JP2" do
       file = File.open(Rails.root.join("spec", "fixtures", "files", "color.tif"))
-      Hydra::Works::UploadFileToGenericFile.call(subject, file)
+      Hydra::Works::UploadFileToFileSet.call(subject, file)
 
-      subject.create_derivatives
+      subject.create_derivatives(file.path)
 
       expect(path).to exist
     end

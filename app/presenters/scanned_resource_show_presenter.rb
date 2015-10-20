@@ -1,13 +1,13 @@
-class ScannedResourceShowPresenter < CurationConcerns::GenericWorkShowPresenter
+class ScannedResourceShowPresenter < CurationConcerns::WorkShowPresenter
   delegate :date_created, :viewing_hint, :viewing_direction, to: :solr_document
 
   def file_presenters
-    @generic_files ||= begin
-      CurationConcerns::PresenterFactory.build_presenters(generic_file_ids, GenericFilePresenter, current_ability)
+    @file_sets ||= begin
+      CurationConcerns::PresenterFactory.build_presenters(file_set_ids, FileSetPresenter, current_ability)
     end
   end
 
-  def generic_file_ids
-    solr_document.fetch('generic_file_ids_ssim', [])
+  def file_set_ids
+    solr_document.fetch('file_set_ids_ssim', [])
   end
 end

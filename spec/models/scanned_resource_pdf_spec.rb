@@ -1,16 +1,16 @@
 require 'rails_helper'
 
 describe ScannedResource do
-  let(:page1) { FactoryGirl.create(:generic_file, content: fixture('files/pudl0032%2F267b%2F00000001.jpg')) }
-  let(:page2) { FactoryGirl.create(:generic_file, content: fixture('files/pudl0032%2F267b%2F00000002.jpg')) }
-  let(:page3) { FactoryGirl.create(:generic_file, content: fixture('files/pudl0032%2F267b%2F00000003.jpg')) }
-  let(:page4) { FactoryGirl.create(:generic_file, content: fixture('files/pudl0032%2F267b%2F00000004.jpg')) }
-  let(:resource_with_pages) { FactoryGirl.create(:scanned_resource, generic_files: [page1, page2, page3, page4]) }
+  let(:page1) { FactoryGirl.create(:file_set, content: fixture('files/pudl0032%2F267b%2F00000001.jpg')) }
+  let(:page2) { FactoryGirl.create(:file_set, content: fixture('files/pudl0032%2F267b%2F00000002.jpg')) }
+  let(:page3) { FactoryGirl.create(:file_set, content: fixture('files/pudl0032%2F267b%2F00000003.jpg')) }
+  let(:page4) { FactoryGirl.create(:file_set, content: fixture('files/pudl0032%2F267b%2F00000004.jpg')) }
+  let(:resource_with_pages) { FactoryGirl.create(:scanned_resource, ordered_members: [page1, page2, page3, page4]) }
 
   describe '#to_pdf' do
     let(:subject) { resource_with_pages }
     let(:pdf) { subject.to_pdf }
-    it 'generates a PDF document whose pages are the scanned resource\'s generic_files' do
+    it 'generates a PDF document whose pages are the scanned resource\'s file_sets' do
       expect(pdf.page_count).to eq 4
       # metadata_from_pdf = pdf.state.store.info.object
       # subject.send(:pdf_metadata).each_pair do |key,value|

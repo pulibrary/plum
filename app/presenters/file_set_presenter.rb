@@ -1,4 +1,4 @@
-class GenericFilePresenter < CurationConcerns::GenericFilePresenter
+class FileSetPresenter < CurationConcerns::FileSetPresenter
   include CurationConcerns::Serializers
   delegate :viewing_hint, to: :solr_document
 

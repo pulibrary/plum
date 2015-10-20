@@ -29,7 +29,7 @@ RSpec.feature "ScannedResourcesController", type: :feature do
     visit polymorphic_path [:curation_concerns, scanned_resource]
     click_link 'Attach a File'
 
-    within("form.new_generic_file") do
+    within("form.new_file_set") do
       fill_in("Title", with: 'image.png')
       attach_file("Upload a file", File.join(Rails.root, 'spec/fixtures/files/image.png'))
       click_on("Attach to Scanned Resource")

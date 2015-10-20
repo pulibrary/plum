@@ -1,7 +1,7 @@
 FactoryGirl.define do
-  # The ::GenericFile model is defined in spec/internal/app/models by the
+  # The ::FileSet model is defined in spec/internal/app/models by the
   # curation_concerns:install generator.
-  factory :generic_file, class: GenericFile do
+  factory :file_set, class: FileSet do
     transient do
       user { FactoryGirl.create(:user) }
       content nil
@@ -9,7 +9,7 @@ FactoryGirl.define do
 
     after(:create) do |file, evaluator|
       if evaluator.content
-        Hydra::Works::UploadFileToGenericFile.call(file, evaluator.content)
+        Hydra::Works::UploadFileToFileSet.call(file, evaluator.content)
       end
     end
 
@@ -19,9 +19,9 @@ FactoryGirl.define do
       end
       after(:create) do |file, evaluator|
         if evaluator.content
-          Hydra::Works::UploadFileToGenericFile.call(file, evaluator.content)
+          Hydra::Works::UploadFileToFileSet.call(file, evaluator.content)
         end
-        FactoryGirl.create(:generic_work, user: evaluator.user).generic_files << file
+        FactoryGirl.create(:generic_work, user: evaluator.user).file_sets << file
       end
     end
     after(:build) do |file, evaluator|
