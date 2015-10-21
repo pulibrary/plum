@@ -18,4 +18,8 @@ RSpec.describe "curation_concerns/base/_form_permission.html.erb" do
     expect(rendered).not_to have_selector "#scanned_resource_visibility_after_lease"
     expect(rendered).not_to have_selector "#scanned_resource_visibility_during_lease"
   end
+
+  it "hides access note" do
+    expect(rendered).not_to have_content "Please note, making something visible to the world"
+  end
 end
