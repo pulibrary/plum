@@ -23,7 +23,7 @@ describe Ability do
       let(:creating_user) { user }
       let(:current_user) { FactoryGirl.create(:scanned_resource_creator) }
       it { should be_able_to(:create, ScannedResource.new) }
-      it { should be_able_to(:create, GenericFile.new) }
+      it { should be_able_to(:create, FileSet.new) }
       it { should be_able_to(:read, scanned_resource) }
       it { should be_able_to(:pdf, scanned_resource) }
       it { should be_able_to(:update, scanned_resource) }
@@ -35,7 +35,7 @@ describe Ability do
       let(:creating_user) { user }
       let(:current_user) { manager_user }
       it { should be_able_to(:create, ScannedResource.new) }
-      it { should be_able_to(:create, GenericFile.new) }
+      it { should be_able_to(:create, FileSet.new) }
       it { should be_able_to(:read, scanned_resource) }
       it { should be_able_to(:pdf, scanned_resource) }
       it { should be_able_to(:update, scanned_resource) }
@@ -46,7 +46,7 @@ describe Ability do
       let(:creating_user) { FactoryGirl.create(:user) }
       let(:current_user) { user }
       it { should_not be_able_to(:create, ScannedResource.new) }
-      it { should_not be_able_to(:create, GenericFile.new) }
+      it { should_not be_able_to(:create, FileSet.new) }
       it { should be_able_to(:read, campus_only_scanned_resource) }
       it { should be_able_to(:pdf, scanned_resource) }
       it { should_not be_able_to(:update, scanned_resource) }
@@ -57,7 +57,7 @@ describe Ability do
       let(:creating_user) { FactoryGirl.create(:user) }
       let(:current_user) { nil }
       it { should_not be_able_to(:create, ScannedResource.new) }
-      it { should_not be_able_to(:create, GenericFile.new) }
+      it { should_not be_able_to(:create, FileSet.new) }
       it { should_not be_able_to(:read, campus_only_scanned_resource) }
       it { should_not be_able_to(:pdf, campus_only_scanned_resource) }
       it { should_not be_able_to(:update, scanned_resource) }

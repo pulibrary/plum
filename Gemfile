@@ -35,7 +35,7 @@ gem 'modernizr-rails'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-gem 'curation_concerns', github:'projecthydra-labs/curation_concerns', branch: :master
+gem 'curation_concerns', github:'projecthydra-labs/curation_concerns', branch: 'separate_orders'
 gem 'pul_metadata_services', github:'pulibrary/pul_metadata_services', branch: :master
 gem 'hydra-role-management', '0.1.0'
 gem 'rsolr', '~> 1.0.6'
@@ -48,9 +48,11 @@ gem 'prawn'
 # gem 'pdf-inspector', '~> 1.2.0', group: [:test]
 
 # Copied from curation_concerns Gemfile.extra
-gem 'hydra-collections', github: 'projecthydra/hydra-collections', ref: 'd7864f33'
-gem 'hydra-works', github: 'projecthydra-labs/hydra-works', ref: 'bf57c69'
-gem 'hydra-pcdm', github: 'projecthydra-labs/hydra-pcdm', ref: '274f5e0'
+gem 'hydra-collections', github: 'projecthydra/hydra-collections', branch: 'master'
+gem 'hydra-works', github: 'projecthydra-labs/hydra-works', branch: 'master'
+gem 'hydra-pcdm', github: 'projecthydra-labs/hydra-pcdm', branch: 'master'
+gem 'activefedora-aggregation', github: 'projecthydra-labs/activefedora-aggregation', branch: 'master'
+gem 'hydra-derivatives', github: 'projecthydra/hydra-derivatives', branch: 'master'
 
 gem 'rubocop', require: false
 gem 'rubocop-rspec', require: false

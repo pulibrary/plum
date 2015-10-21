@@ -18,7 +18,7 @@ class Ability
   def admin_permissions
     can [:create, :read, :add_user, :remove_user, :index], Role
     can [:create, :read, :edit, :update, :destroy, :publish], curation_concerns
-    can [:create, :read, :edit, :update, :destroy, :publish], GenericFile
+    can [:create, :read, :edit, :update, :destroy, :publish], FileSet
     # can :create, Collection
     can [:destroy], ActiveFedora::Base
     # can :manage, Resque
@@ -32,7 +32,7 @@ class Ability
   # Abilities that should be granted to technicians
   def scanned_resource_creator_permissions
     can [:create, :read, :edit, :update, :publish], ScannedResource
-    can [:create, :read, :edit, :update, :publish], GenericFile
+    can [:create, :read, :edit, :update, :publish], FileSet
   end
 
   # Abilities that should be granted to patron

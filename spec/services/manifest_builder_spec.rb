@@ -13,17 +13,17 @@ RSpec.describe ManifestBuilder, vcr: { cassette_name: "iiif_manifest" } do
   describe "#canvases" do
     context "when there is a generic file" do
       let(:type) { ::RDF::URI('http://pcdm.org/use#ExtractedText') }
-      let(:generic_file) do
-        GenericFile.new.tap do |g|
+      let(:file_set) do
+        FileSet.new.tap do |g|
           allow(g).to receive(:persisted?).and_return(true)
           allow(g).to receive(:id).and_return("x633f104m")
         end
       end
       let(:solr) { ActiveFedora.solr.conn }
       before do
-        record.generic_files << generic_file
-        record.generic_file_ids # Initialize the stubbed IDs
-        solr.add generic_file.to_solr
+        record.ordered_members << file_set
+        record.file_set_ids # Initialize the stubbed IDs
+        solr.add file_set.to_solr
         solr.commit
       end
       let(:first_canvas) { subject.canvases.first }
@@ -31,11 +31,11 @@ RSpec.describe ManifestBuilder, vcr: { cassette_name: "iiif_manifest" } do
         expect(subject.canvases.length).to eq 1
       end
       it "has a label" do
-        expect(first_canvas.label).to eq generic_file.to_s
+        expect(first_canvas.label).to eq file_set.to_s
       end
       it "has a viewing hint" do
-        generic_file.viewing_hint = "paged"
-        solr.add generic_file.to_solr
+        file_set.viewing_hint = "paged"
+        solr.add file_set.to_solr
         solr.commit
 
         expect(first_canvas.viewing_hint).to eq "paged"
