@@ -25,6 +25,7 @@ RSpec.feature "ScannedResourcesController", type: :feature do
 
   scenario "User can add a new file" do
     allow(CharacterizeJob).to receive(:perform_later).once
+    allow_any_instance_of(FileSet).to receive(:warn) # suppress virus warning messages
 
     visit polymorphic_path [:curation_concerns, scanned_resource]
     click_link 'Attach a File'
