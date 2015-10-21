@@ -9,7 +9,7 @@ class Ability
   def custom_permissions
     alias_action :pdf, :show, to: :read
     admin_permissions if current_user.admin?
-    scanned_resource_creator_permissions if current_user.scanned_resource_creator?
+    curation_concern_creator_permissions if current_user.curation_concern_creator?
     campus_patron_permissions if current_user.campus_patron?
     manifest_permissions
   end
@@ -30,8 +30,8 @@ class Ability
   end
 
   # Abilities that should be granted to technicians
-  def scanned_resource_creator_permissions
-    can [:create, :read, :edit, :update, :publish], ScannedResource
+  def curation_concern_creator_permissions
+    can [:create, :read, :edit, :update, :publish], curation_concerns
     can [:create, :read, :edit, :update, :publish], FileSet
   end
 
