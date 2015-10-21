@@ -11,6 +11,7 @@ describe ScannedResource do
     let(:subject) { resource_with_pages }
     let(:pdf) { subject.to_pdf }
     it 'generates a PDF document whose pages are the scanned resource\'s file_sets' do
+      allow_any_instance_of(FileSet).to receive(:warn) # suppress virus check warnings
       expect(pdf.page_count).to eq 4
       # metadata_from_pdf = pdf.state.store.info.object
       # subject.send(:pdf_metadata).each_pair do |key,value|

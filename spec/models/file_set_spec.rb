@@ -26,6 +26,7 @@ RSpec.describe FileSet do
   describe "#create_derivatives" do
     let(:path) { Pathname.new(PairtreeDerivativePath.derivative_path_for_reference(subject, 'intermediate_file')) }
     it "creates a JP2" do
+      allow_any_instance_of(described_class).to receive(:warn) # suppress virus check warnings
       file = File.open(Rails.root.join("spec", "fixtures", "files", "color.tif"))
       Hydra::Works::UploadFileToFileSet.call(subject, file)
 
