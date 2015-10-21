@@ -1,10 +1,10 @@
 <fieldset class="required">
   <legend>Required Information</legend>
-  <%= f.input :source_metadata_identifier, label: 'Source Metadata ID' %>
+  <%= f.input :source_metadata_identifier, label: 'Source Metadata ID', input_html: { class: 'mutex' } %>
   <%= check_box_tag :refresh_remote_metadata, 1, false %>
   <label for="refresh_metadata">Refresh metadata from PULFA/Voyager</label>
 </fieldset>
 
 <fieldset class="required">
-  <%= f.input :title, as: :multi_value, readonly: f.object.source_metadata_identifier.present? %>
+  <%= f.input :title, as: :multi_value, readonly: f.object.source_metadata_identifier.present?, input_html: { class: 'mutex' } %>
 </fieldset>
