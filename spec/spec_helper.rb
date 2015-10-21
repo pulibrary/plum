@@ -1,7 +1,12 @@
+require 'simplecov'
 if ENV['CI']
   require 'coveralls'
-  Coveralls.wear!
+  SimpleCov.formatter = Coveralls::SimpleCov::Formatter
 end
+SimpleCov.start('rails') do
+  add_filter '/spec'
+end
+
 RSpec.configure do |config|
   config.expect_with :rspec do |expectations|
     expectations.include_chain_clauses_in_custom_matcher_descriptions = true
