@@ -6,6 +6,15 @@ class CurationConcerns::ScannedResourcesController < ApplicationController
   set_curation_concern_type ScannedResource
   skip_load_and_authorize_resource only: [:show, :manifest]
 
+  def create
+    super
+  rescue StandardError => err
+    metadata_id = params['scanned_resource']['source_metadata_identifier']
+    logger.debug "Error retrieving metadata for #{metadata_id}: #{err}"
+    flash[:alert] = "Error retrieving metadata for '#{metadata_id}'"
+    render :new, status: 500
+  end
+
   def pdf
     actor.generate_pdf
     redirect_to main_app.download_path(curation_concern, file: 'pdf')

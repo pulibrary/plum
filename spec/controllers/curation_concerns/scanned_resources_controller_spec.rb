@@ -24,6 +24,20 @@ describe CurationConcerns::ScannedResourcesController do
         expect(s.title).to eq ['The Giant Bible of Mainz; 500th anniversary, April fourth, fourteen fifty-two, April fourth, nineteen fifty-two.']
       end
     end
+    context "when given a non-existent bib id", vcr: { cassette_name: 'bibdata_not_found', allow_playback_repeats: true } do
+      let(:scanned_resource_attributes) do
+        FactoryGirl.attributes_for(:scanned_resource).merge(
+          source_metadata_identifier: "0000000"
+        )
+      end
+      it "receives an error" do
+        expect do
+          post :create, scanned_resource: scanned_resource_attributes
+        end.not_to change { ScannedResource.count }
+        expect(response.status).to be 500
+        expect(flash[:alert]).to eq("Error retrieving metadata for '0000000'")
+      end
+    end
   end
 
   describe "#manifest" do
