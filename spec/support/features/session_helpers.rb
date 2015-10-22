@@ -27,15 +27,12 @@ module Features
     # Use this in feature tests
     def sign_in(who = :user)
       user = if who.instance_of?(User)
-               who
+               who.username
              else
-               FactoryGirl.create(:user)
+               FactoryGirl.create(:user).username
              end
-      visit new_user_session_path
-      fill_in 'Email', with: user.email
-      fill_in 'Password', with: user.password
-      click_button 'Log in'
-      expect(page).to_not have_text 'Invalid email or password.'
+      OmniAuth.config.add_mock(:cas, uid: user)
+      visit user_omniauth_authorize_path(:cas)
     end
   end
 end

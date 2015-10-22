@@ -277,6 +277,7 @@ GEM
     haml (4.0.7)
       tilt
     hashdiff (0.2.2)
+    hashie (3.4.2)
     hitimes (1.2.3)
     htmlentities (4.3.4)
     http-cookie (1.0.2)
@@ -398,6 +399,13 @@ GEM
       activesupport
       nokogiri (>= 1.4.2)
       solrizer (~> 3.3)
+    omniauth (1.2.2)
+      hashie (>= 1.2, < 4)
+      rack (~> 1.0)
+    omniauth-cas (1.1.0)
+      addressable (~> 2.3)
+      nokogiri (~> 1.5)
+      omniauth (~> 1.2.0)
     openseadragon (0.2.1)
       rails (> 3.2.0)
     orm_adapter (0.5.0)
@@ -680,6 +688,7 @@ DEPENDENCIES
   jquery-rails
   launchy
   modernizr-rails
+  omniauth-cas
   openseadragon
   pg
   posix-spawn
