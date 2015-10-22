@@ -1,0 +1,6 @@
+<% if current_user %>
+  <%= render 'shared/add_content' %>
+  <%= render 'shared/my_actions' %>
+<% else %>
+  <%= link_to 'Log In', user_omniauth_authorize_path(:cas), class: 'btn btn-primary login', role: 'menuitem' %>
+<% end %>

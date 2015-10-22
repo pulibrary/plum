@@ -35,6 +35,10 @@ Style/BlockDelimiters:
   Exclude:
     - 'spec/**/*'
 
+Style/SymbolProc:
+  Exclude:
+    - 'spec/factories/**/*'
+
 Style/BlockComments:
   Exclude:
     - 'spec/spec_helper.rb'
