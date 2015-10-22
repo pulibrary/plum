@@ -8,4 +8,8 @@ module PulUserRoles
   def campus_patron?
     roles.where(name: 'campus_patron').exists?
   end
+
+  def authorized?
+    roles.where(name: "authorized")
+  end
 end

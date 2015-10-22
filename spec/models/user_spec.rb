@@ -11,4 +11,17 @@ RSpec.describe User, type: :model do
     expect(included_modules).to include(Hydra::RoleManagement::UserRoles)
     expect(subject).to respond_to(:admin?)
   end
+  describe "#authorized?" do
+    context "when the user has an authorized role" do
+      it "is false" do
+        expect(subject).not_to be_authorized
+      end
+    end
+    context "when the user has an authorized role" do
+      it "is true" do
+        subject.roles << Role.first_or_create(name: "authorized")
+        expect(subject).to be_authorized
+      end
+    end
+  end
 end
