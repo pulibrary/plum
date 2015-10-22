@@ -8,27 +8,37 @@ RSpec.describe ManifestBuilder, vcr: { cassette_name: "iiif_manifest" } do
   before do
     allow(record).to receive(:persisted?).and_return(true)
     allow(record).to receive(:id).and_return("1")
+    allow(record.list_source).to receive(:id).and_return("1/list_source")
+    allow(record.list_source).to receive(:persisted?).and_return(true)
   end
 
   describe "#canvases" do
-    context "when there is a generic file" do
+    context "when there is two file sets" do
       let(:type) { ::RDF::URI('http://pcdm.org/use#ExtractedText') }
       let(:file_set) do
-        FileSet.new.tap do |g|
-          allow(g).to receive(:persisted?).and_return(true)
-          allow(g).to receive(:id).and_return("x633f104m")
-        end
+        build_file_set("x633f104m")
+      end
+      let(:file_set2) do
+        build_file_set("x633f104n")
       end
       let(:solr) { ActiveFedora.solr.conn }
+      def build_file_set(id)
+        FileSet.new.tap do |g|
+          allow(g).to receive(:persisted?).and_return(true)
+          allow(g).to receive(:id).and_return(id)
+        end
+      end
       before do
-        record.ordered_members << file_set
-        record.file_set_ids # Initialize the stubbed IDs
+        record.ordered_members << file_set2
+        record.ordered_member_proxies.insert_target_at(0, file_set)
         solr.add file_set.to_solr
+        solr.add file_set2.to_solr
+        solr.add record.list_source.to_solr
         solr.commit
       end
       let(:first_canvas) { subject.canvases.first }
-      it "has one" do
-        expect(subject.canvases.length).to eq 1
+      it "has two" do
+        expect(subject.canvases.length).to eq 2
       end
       it "has a label" do
         expect(first_canvas.label).to eq file_set.to_s
@@ -43,7 +53,7 @@ RSpec.describe ManifestBuilder, vcr: { cassette_name: "iiif_manifest" } do
       it "is a valid manifest" do
         expect { subject.manifest.to_json }.not_to raise_error
       end
-      it "has an image" do
+      it "has an ordered image" do
         first_image = first_canvas.images.first
         expect(first_canvas.images.length).to eq 1
         expect(first_image.resource.format).to eq "image/jpeg"
