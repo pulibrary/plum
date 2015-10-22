@@ -1,0 +1,12 @@
+<div class="row with-headroom">
+  <div class="col-md-12">
+    <fieldset id="set-license">
+      <legend>Usage Statement</legend>
+      <%= f.input :rights, label: false, as: :select, include_blank: false,
+        collection: RightsService.select_options,
+        input_html: {
+          value: RightsService.select_options[0][0],
+          class: 'form-control'
+        } %>
+    </fieldset>
+  </div>
