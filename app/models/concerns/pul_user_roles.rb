@@ -10,6 +10,6 @@ module PulUserRoles
   end
 
   def authorized?
-    roles.where(name: "authorized")
+    roles.where(name: "authorized").exists?
   end
 end

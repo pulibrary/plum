@@ -19,6 +19,7 @@ RSpec.describe User, type: :model do
     end
     context "when the user has an authorized role" do
       it "is true" do
+        subject.save
         subject.roles << Role.first_or_create(name: "authorized")
         expect(subject).to be_authorized
       end
