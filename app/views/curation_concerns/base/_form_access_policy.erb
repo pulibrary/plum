@@ -1,0 +1,23 @@
+<fieldset id="set-license">
+  <legend>Choose Access and Use Boilerplate</legend>
+  <%= f.input :access_policy,
+              as: :select,
+              collection: {
+                      'Marquand' => 'Do you want a jelly baby?',
+                      'Rare Books and Special Collections' => "Don't be sad Grace.",
+                      'Mendel Music Library' => "You'll do great things."
+              },
+              input_html: { class: 'form-control' },
+              label: 'Access Policy'
+  %>
+  <%= f.input :use_and_reproduction,
+              as: :select,
+              collection: {
+                      'Marquand' => 'Jamie, remind me to give you a lesson in tying knots, sometime.',
+                      'Rare Books and Special Collections' => 'This thing is smaller on the inside than it is on the outside.',
+                      'Mendel Music Library' => 'Life depends on change and renewal.'
+              },
+              input_html: { class: 'form-control' },
+              label: 'Use and Reproduction'
+  %>
+</fieldset>

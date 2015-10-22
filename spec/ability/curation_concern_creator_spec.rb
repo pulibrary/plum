@@ -21,7 +21,7 @@ describe Ability do
   describe 'without embargo' do
     describe 'as a scanned resource creator' do
       let(:creating_user) { user }
-      let(:current_user) { FactoryGirl.create(:scanned_resource_creator) }
+      let(:current_user) { FactoryGirl.create(:curation_concern_creator) }
       it { should be_able_to(:create, ScannedResource.new) }
       it { should be_able_to(:create, FileSet.new) }
       it { should be_able_to(:read, scanned_resource) }

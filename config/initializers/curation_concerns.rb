@@ -1,4 +1,6 @@
 CurationConcerns.configure do |config|
+  # Injected via `rails g curation_concerns:work MultiVolumeWork`
+  config.register_curation_concern :multi_volume_work
   # Injected via `rails g curation_concerns:work ScannedResource`
   config.register_curation_concern :scanned_resource
   config.fits_to_desc_mapping = {
