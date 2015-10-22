@@ -1,9 +1,9 @@
 GIT
   remote: git://github.com/projecthydra-labs/activefedora-aggregation.git
-  revision: 0b529e76685cc9c646a905b9190b58fbf7bfad82
+  revision: fc28a063e9aa475cfaf78f891e0233afb9d8153c
   branch: master
   specs:
-    activefedora-aggregation (0.4.2)
+    activefedora-aggregation (0.5.0)
       active-fedora (~> 9.5)
       activesupport
       rdf (~> 1.1.16.0)
@@ -11,24 +11,23 @@ GIT
 
 GIT
   remote: git://github.com/projecthydra-labs/curation_concerns.git
-  revision: 497302c644cf1eec7a242285a28d7b244d512c4b
-  branch: separate_orders
+  revision: 93196a0687cdfdf7f8e7545559bb28465b952abd
+  branch: master
   specs:
-    curation_concerns (0.1.0)
+    curation_concerns (0.2.0)
       blacklight_advanced_search (>= 5.1.4, < 6.0)
       breadcrumbs_on_rails (~> 2.3.0)
-      curation_concerns-models (= 0.1.0)
+      curation_concerns-models (= 0.2.0)
       hydra-editor (~> 1.1)
       hydra-head (~> 9.0)
       jquery-ui-rails
       simple_form (~> 3.1.0)
-    curation_concerns-models (0.1.0)
-      active-fedora (~> 9.3)
+    curation_concerns-models (0.2.0)
       active_attr
       active_fedora-noid (~> 1.0)
       hydra-collections (~> 6.0.0.rc1)
       hydra-head (~> 9.3)
-      hydra-works (~> 0.2)
+      hydra-works (~> 0.3)
       qa (~> 0.5)
       redlock (~> 0.1.2)
       resque (~> 1.23)
@@ -36,25 +35,22 @@ GIT
 
 GIT
   remote: git://github.com/projecthydra-labs/hydra-pcdm.git
-  revision: 80e8de5df6efe5b916fe48520f401cdd9b57b1f7
+  revision: 0bee650cdeb2c97b9e5072566aef5fc874da71f7
   branch: master
   specs:
-    hydra-pcdm (0.2.0)
-      active-fedora (>= 9.4.1)
-      activefedora-aggregation (~> 0.4)
+    hydra-pcdm (0.3.0)
+      activefedora-aggregation (~> 0.5)
       mime-types (>= 1)
 
 GIT
   remote: git://github.com/projecthydra-labs/hydra-works.git
-  revision: 7e9d8e93f33aae6f19c929eede2cc872e057398e
+  revision: 92badd6e329c38ef5b5da829f938abcda92b9ba0
   branch: master
   specs:
-    hydra-works (0.2.0)
-      active-fedora (>= 9.4.1)
-      activefedora-aggregation (~> 0.4)
+    hydra-works (0.3.0)
       hydra-derivatives (~> 3.0)
       hydra-file_characterization (~> 0.3, >= 0.3.3)
-      hydra-pcdm (~> 0.2)
+      hydra-pcdm (~> 0.3)
 
 GIT
   remote: git://github.com/projecthydra/hydra-collections.git
