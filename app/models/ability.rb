@@ -1,44 +1,30 @@
 class Ability
   include Hydra::Ability
   include CurationConcerns::Ability
-  # self.ability_logic += [:everyone_can_create_curation_concerns]
-
-  # Taken from https://github.com/KelvinSmithLibrary/absolute/blob/master/app/models/ability.rb
-
   # Define any customized permissions here.
   def custom_permissions
-    alias_action :pdf, :show, to: :read
+    alias_action :pdf, :show, :manifest, to: :read
     admin_permissions if current_user.admin?
     curation_concern_creator_permissions if current_user.curation_concern_creator?
     campus_patron_permissions if current_user.campus_patron?
-    manifest_permissions
   end
 
   # Abilities that should only be granted to admin users
   def admin_permissions
     can [:create, :read, :add_user, :remove_user, :index], Role
-    can [:create, :read, :edit, :update, :destroy, :publish], curation_concerns
-    can [:create, :read, :edit, :update, :destroy, :publish], FileSet
-    # can :create, Collection
-    can [:destroy], ActiveFedora::Base
-    # can :manage, Resque
-    # can :manage, :bulk_update
-  end
-
-  def manifest_permissions
-    can [:manifest], :all
+    can [:manage], curation_concerns
+    can [:manage], FileSet
   end
 
   # Abilities that should be granted to technicians
   def curation_concern_creator_permissions
+    # Do not allow creators to destroy what they make.
     can [:create, :read, :edit, :update, :publish], curation_concerns
     can [:create, :read, :edit, :update, :publish], FileSet
   end
 
   # Abilities that should be granted to patron
   def campus_patron_permissions
-    # Should ne able to read access rights "Princeton Only"
-    can :read, curation_concerns
   end
 
   private
