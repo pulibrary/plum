@@ -4,10 +4,14 @@ class CurationConcerns::CurationConcernsController < ApplicationController
   def create
     super
   rescue StandardError => err
-    metadata_id = params[curation_concern.class.name.underscore]['source_metadata_identifier']
+    metadata_id = params[curation_concern_name]['source_metadata_identifier']
     logger.debug "Error retrieving metadata for #{metadata_id}: #{err}"
     flash[:alert] = "Error retrieving metadata for '#{metadata_id}'"
     render :new, status: 500
+  end
+
+  def curation_concern_name
+    curation_concern.class.name.underscore
   end
 
   def curation_concern

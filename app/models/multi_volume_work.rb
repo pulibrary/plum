@@ -4,6 +4,4 @@ class MultiVolumeWork < ActiveFedora::Base
   include ::CurationConcerns::BasicMetadata
   include ::CommonMetadata
   include ::NoidBehaviors
-
-  ordered_aggregation :scanned_resources, has_member_relation: Hydra::PCDM::Vocab::PCDMTerms.hasMember, through: :list_source
 end
