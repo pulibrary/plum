@@ -11,4 +11,15 @@ RSpec.describe User, type: :model do
     expect(included_modules).to include(Hydra::RoleManagement::UserRoles)
     expect(subject).to respond_to(:admin?)
   end
+
+  describe "#campus_patron?" do
+    context "when logged in from CAS" do
+      subject do
+        described_class.from_omniauth(OpenStruct.new(provider: "cas", uid: "testuser"))
+      end
+      it "is true" do
+        expect(subject).to be_campus_patron
+      end
+    end
+  end
 end

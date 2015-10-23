@@ -6,6 +6,6 @@ module PulUserRoles
   end
 
   def campus_patron?
-    roles.where(name: 'campus_patron').exists?
+    persisted? && provider == "cas"
   end
 end

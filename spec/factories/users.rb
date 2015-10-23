@@ -13,7 +13,7 @@ FactoryGirl.define do
     end
 
     factory :campus_patron do
-      roles { [Role.where(name: 'campus_patron').first_or_create] }
+      # All CAS users are campus patrons.
     end
 
     factory :curation_concern_creator do
