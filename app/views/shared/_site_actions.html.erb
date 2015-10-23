@@ -2,5 +2,5 @@
   <%= render 'shared/add_content' %>
   <%= render 'shared/my_actions' %>
 <% else %>
-  <%= link_to 'Log In', user_omniauth_authorize_path(:cas), class: 'btn btn-primary login', role: 'menuitem' %>
+  <%= link_to 'Log In', main_app.user_omniauth_authorize_path(:cas), class: 'btn btn-primary login', role: 'menuitem' %>
 <% end %>
