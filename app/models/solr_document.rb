@@ -33,7 +33,4 @@ class SolrDocument
     Array(self[Solrizer.solr_name("viewing_direction")]).first
   end
 
-  def generic_files
-    []
-  end
 end
