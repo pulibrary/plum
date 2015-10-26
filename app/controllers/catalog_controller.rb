@@ -1,7 +1,8 @@
 class CatalogController < ApplicationController
   include CurationConcerns::CatalogController
+  self.search_params_logic += [:hide_parented_resources]
   configure_blacklight do |config|
-    config.search_builder_class = CurationConcerns::SearchBuilder
+    config.search_builder_class = SearchBuilder
     ## Default parameters to send to solr for all search-like requests. See also SolrHelper#solr_search_params
     config.default_solr_params = {
         qf: search_config['qf'],
