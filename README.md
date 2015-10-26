@@ -8,7 +8,15 @@
 
 
 ## Work Types
-ScannedResource
+* ScannedResource
+* MultiVolumeWork
+
+## Dependencies
+
+* [Redis](http://redis.io/)
+    * Start Redis with `redis-server` or if you're on certain Linuxes, you can do this via `sudo service redis-server start`.
+* [Kakadu](http://kakadusoftware.com/)
+    * The installer doesn't work on MacOSX 10.11 (El Capitan), but the files `kdu_compress` and `libkdu_v77R.dylib` can be extracted from the download packages and used by manually installing them in `/usr/local/bin` and `/usr/local/lib` respectively.
 
 ## Running the Code
 
