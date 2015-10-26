@@ -19,5 +19,12 @@ FactoryGirl.define do
     factory :campus_only_scanned_resource do
       visibility Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_AUTHENTICATED
     end
+
+    factory :private_scanned_resource do
+      visibility Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PRIVATE
+    end
+
+    factory :open_scanned_resource do
+    end
   end
 end
