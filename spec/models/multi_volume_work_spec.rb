@@ -59,10 +59,10 @@ describe MultiVolumeWork do
 
   describe 'has scanned resource members' do
     before do
-      subject.scanned_resources = [scanned_resource1, scanned_resource2]
+      subject.ordered_members = [scanned_resource1, scanned_resource2]
     end
     it "has scanned resources" do
-      expect(subject.scanned_resources).to eq [scanned_resource1, scanned_resource2]
+      expect(subject.ordered_members).to eq [scanned_resource1, scanned_resource2]
     end
   end
 end

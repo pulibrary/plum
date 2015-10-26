@@ -1,0 +1,17 @@
+<% if @presenter.member_presenters.present? %>
+  <div class="panel panel-default scanned_resources">
+    <div class="panel-heading">
+      <h2>Scanned Resources</h2>
+    </div>
+    <ul>
+      <% @presenter.member_presenters.each do |res| %>
+        <li>
+          <%= link_to res.title, main_app.curation_concerns_scanned_resource_path(res.id) %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+<% elsif can? :edit, @presenter.id %>
+  <h2>Scanned Resources</h2>
+  <p class="center"><em>This <%= @presenter.human_readable_type %> has no scanned resources associated with it. You can add one using the "Attach a Scanned Resource" button below.</em></p>
+<% end %>
