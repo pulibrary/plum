@@ -8,6 +8,12 @@ RSpec.describe CatalogController do
 
       expect(document_ids).to eq [resource.id]
     end
+    it "shows child-less parent resources" do
+      work = FactoryGirl.create(:multi_volume_work)
+
+      get :index, q: ""
+      expect(document_ids).to eq [work.id]
+    end
     it "hides scanned resources with parents" do
       work = FactoryGirl.build(:multi_volume_work)
       resource = FactoryGirl.create(:scanned_resource)
@@ -15,6 +21,15 @@ RSpec.describe CatalogController do
       work.save
 
       get :index, q: ""
+      expect(document_ids).to eq [work.id]
+    end
+    it "finds parents with child metadata" do
+      work = FactoryGirl.build(:multi_volume_work, title: ["Alpha"])
+      resource = FactoryGirl.create(:scanned_resource, title: ["Beta"])
+      work.ordered_members << resource
+      work.save
+
+      get :index, q: "Beta"
       expect(document_ids).to eq [work.id]
     end
 
