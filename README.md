@@ -19,6 +19,12 @@ ScannedResource
     $ rake db:migrate
     $ rake spec
 
+## Adding an Admin user
+
+1. Run Plum with `rails s`
+1. Go to http://localhost:3000/users/auth/cas and login with CAS
+1. From a terminal in the Plum directory, run `echo 'User.last.roles << Role.first_or_create(name: "admin")' | rails c`
+
 ## Configuring Loris for Development
 
 1. Install Docker Toolbox [https://www.docker.com/toolbox](https://www.docker.com/toolbox)
