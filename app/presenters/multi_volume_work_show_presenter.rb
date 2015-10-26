@@ -1,6 +1,4 @@
-class MultiVolumeWorkShowPresenter < CurationConcerns::WorkShowPresenter
-  delegate :date_created, :viewing_hint, :viewing_direction, to: :solr_document
-
+class MultiVolumeWorkShowPresenter < CurationConcernsShowPresenter
   def member_presenters
     @scanned_resources ||= begin
       # change to 'member_ids_ssim' when curation_concerns#434 is merged

@@ -1,4 +1,6 @@
 class CatalogController < ApplicationController
+  before_action :admin_state_facet
+
   include CurationConcerns::CatalogController
   self.search_params_logic += [:hide_parented_resources, :join_from_parent]
   configure_blacklight do |config|
@@ -233,5 +235,9 @@ class CatalogController < ApplicationController
     # If there are more than this many search results, no spelling ("did you
     # mean") suggestion is offered.
     config.spell_max = 5
+  end
+  def admin_state_facet
+    return unless can? :create, ScannedResource
+    blacklight_config.add_facet_field 'state_sim', label: 'State'
   end
 end

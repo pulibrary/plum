@@ -25,6 +25,10 @@ class SolrDocument
     self[Solrizer.solr_name('date_created')]
   end
 
+  def state
+    Array(self[Solrizer.solr_name("state")]).first
+  end
+
   def viewing_hint
     Array(self[Solrizer.solr_name("viewing_hint")]).first
   end
