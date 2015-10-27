@@ -91,6 +91,25 @@ describe CurationConcerns::ScannedResourcesController do
     end
   end
 
+  describe "show" do
+    before do
+      sign_in user
+    end
+    context "when there's a parent" do
+      it "is a success" do
+        resource = FactoryGirl.create(:scanned_resource)
+        work = FactoryGirl.build(:multi_volume_work)
+        work.ordered_members << resource
+        work.save
+        resource.update_index
+
+        get :show, id: resource.id
+
+        expect(response).to be_success
+      end
+    end
+  end
+
   describe 'pdf' do
     before do
       sign_in user
