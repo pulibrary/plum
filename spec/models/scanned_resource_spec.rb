@@ -174,4 +174,32 @@ describe ScannedResource do
       expect(subject.valid?).to eq false
     end
   end
+
+  describe "#check_completion" do
+    it "completes record when state changes to 'complete'", vcr: { cassette_name: "ezid" } do
+      allow(subject).to receive("state_changed?").and_return true
+      subject.state = 'complete'
+      expect { subject.check_completion }.to change { ActionMailer::Base.deliveries.count }.by(1)
+      expect(subject.identifier).to eq 'ark:/99999/fk4445wg45'
+    end
+    it "does not complete record when state doesn't change" do
+      allow(subject).to receive("state_changed?").and_return false
+      subject.state = 'complete'
+      expect(subject).not_to receive(:complete_record)
+      expect { subject.check_completion }.not_to change { ActionMailer::Base.deliveries.count }
+    end
+    it "does not complete record when state isn't 'complete'" do
+      subject.state = 'pending'
+      expect(subject).not_to receive(:complete_record)
+      expect { subject.check_completion }.not_to change { ActionMailer::Base.deliveries.count }
+    end
+    it "does not overwrite existing identifier" do
+      allow(subject).to receive("state_changed?").and_return true
+      subject.state = 'complete'
+      subject.identifier = '1234'
+      expect(subject).not_to receive("identifier=")
+      expect { subject.check_completion }.to change { ActionMailer::Base.deliveries.count }.by(1)
+      expect(subject.identifier).to eq('1234')
+    end
+  end
 end

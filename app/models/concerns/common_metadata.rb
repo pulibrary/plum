@@ -6,9 +6,12 @@ module CommonMetadata
   extend ActiveSupport::Concern
 
   included do
+    before_update :check_completion
+
     property :sort_title, predicate: ::OpaqueMods.titleForSort, multiple: false
     property :portion_note, predicate: ::RDF::SKOS.scopeNote, multiple: false
     property :description, predicate: ::RDF::DC.abstract, multiple: false
+    property :identifier, predicate: ::RDF::DC.identifier, multiple: false
     property :access_policy, predicate: ::RDF::DC.accessRights, multiple: false
     property :use_and_reproduction, predicate: ::RDF::DC.rights, multiple: false
     property :source_metadata_identifier, predicate: ::PULTerms.metadata_id, multiple: false
@@ -34,6 +37,10 @@ module CommonMetadata
       self.attributes = remote_data.attributes
     end
 
+    def check_completion
+      complete_record if self.state_changed? && state == 'complete'
+    end
+
     private
 
     def remote_data
@@ -49,6 +56,11 @@ module CommonMetadata
       return if source_metadata_identifier.present? || title.present?
       errors.add(:title, "You must provide a source metadata id or a title")
       errors.add(:source_metadata_identifier, "You must provide a source metadata id or a title")
+    end
+
+    def complete_record
+      self.identifier = Ezid::Identifier.create.id unless identifier
+      ReviewerMailer.completion_email(self).deliver_now
     end
   end
 end

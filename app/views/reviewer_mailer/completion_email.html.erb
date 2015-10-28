@@ -1,0 +1,17 @@
+<p>The following <%= @curation_concern.human_readable_type %> has been marked complete:</p>
+
+<table>
+  <tr>
+    <th>ID</th>
+    <td><%= @curation_concern.id %></td>
+  </tr>
+  <tr>
+    <th>Title</th>
+    <td><%= @curation_concern.title.first %></td>
+  </tr>
+  <tr>
+    <th>URL</th>
+    <% url = polymorphic_url [main_app, :curation_concerns, @curation_concern] %>
+    <td><%= link_to url, url %></td>
+  </tr>
+</table>
