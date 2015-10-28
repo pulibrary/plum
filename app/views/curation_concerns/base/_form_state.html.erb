@@ -1,0 +1,15 @@
+<fieldset id="set-state">
+  <legend>State</legend>
+  <div class="form-group">
+    <label class="radio">
+      <%= f.radio_button :state, 'pending', checked: curation_concern.state != 'complete' %>
+      <%= f.label 'Pending', class: 'label label-warning', for: 'scanned_resource_state_pending' %>
+      In progress and suppressed from public display
+    </label>
+    <label class="radio">
+      <%= f.radio_button :state, 'complete', checked: curation_concern.state == 'complete' %>
+      <%= f.label 'Complete', class: 'label label-success', for: 'scanned_resource_state_complete' %>
+      Finished work, visibility determined by Access Rights
+    </label>
+  </div>
+</fieldset>

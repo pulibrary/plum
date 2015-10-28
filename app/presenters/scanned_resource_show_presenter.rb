@@ -1,6 +1,4 @@
-class ScannedResourceShowPresenter < CurationConcerns::WorkShowPresenter
-  delegate :date_created, :viewing_hint, :viewing_direction, to: :solr_document
-
+class ScannedResourceShowPresenter < CurationConcernsShowPresenter
   def file_presenter_class
     ::FileSetPresenter
   end

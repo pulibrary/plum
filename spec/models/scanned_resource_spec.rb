@@ -160,4 +160,18 @@ describe ScannedResource do
       expect(subject._validators[nil].map(&:class)).to include ViewingHintValidator
     end
   end
+
+  describe "#state" do
+    it "validates with the state validator" do
+      expect(subject._validators[nil].map(&:class)).to include StateValidator
+    end
+    it "accepts a valid state" do
+      subject.state = "pending"
+      expect(subject.valid?).to eq true
+    end
+    it "rejects an invalid state" do
+      subject.state = "blargh"
+      expect(subject.valid?).to eq false
+    end
+  end
 end

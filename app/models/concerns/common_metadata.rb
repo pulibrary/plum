@@ -1,20 +1,21 @@
+require 'vocab/f3_access'
+require 'vocab/opaque_mods'
+require 'vocab/pul_terms'
+
 module CommonMetadata
   extend ActiveSupport::Concern
 
   included do
-    property :sort_title,
-             predicate: ::RDF::URI.new("http://opaquenamespace.org/ns/mods/titleForSort"),
-             multiple: false
-    property :portion_note, predicate: ::RDF::URI.new(::RDF::SKOS.scopeNote), multiple: false
-    property :description, predicate: ::RDF::URI.new(::RDF::DC.abstract), multiple: false
-    property :access_policy, predicate: ::RDF::URI.new(::RDF::DC.accessRights), multiple: false
-    property :use_and_reproduction, predicate: ::RDF::URI.new(::RDF::DC.rights), multiple: false
-    property :source_metadata_identifier,
-             predicate: ::RDF::URI.new('http://library.princeton.edu/terms/metadata_id'),
-             multiple: false
-    property :source_metadata,
-             predicate: ::RDF::URI.new('http://library.princeton.edu/terms/source_metadata'),
-             multiple: false
+    property :sort_title, predicate: ::OpaqueMods.titleForSort, multiple: false
+    property :portion_note, predicate: ::RDF::SKOS.scopeNote, multiple: false
+    property :description, predicate: ::RDF::DC.abstract, multiple: false
+    property :access_policy, predicate: ::RDF::DC.accessRights, multiple: false
+    property :use_and_reproduction, predicate: ::RDF::DC.rights, multiple: false
+    property :source_metadata_identifier, predicate: ::PULTerms.metadata_id, multiple: false
+    property :source_metadata, predicate: ::PULTerms.source_metadata, multiple: false
+    property :state, predicate: ::F3Access.objState, multiple: false do |index|
+      index.as :stored_searchable, :facetable
+    end
 
     # IIIF
     apply_schema IIIFBookSchema, ActiveFedora::SchemaIndexingStrategy.new(
@@ -24,6 +25,7 @@ module CommonMetadata
     validate :source_metadata_identifier_or_title
     validates :access_policy, presence: { message: 'You must choose an Access Policy statement.' }
     validates :use_and_reproduction, presence: { message: 'You must provide a use statement.' }
+    validates_with StateValidator
     validates_with ViewingDirectionValidator
     validates_with ViewingHintValidator
 
