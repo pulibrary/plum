@@ -31,7 +31,7 @@
 
 1. Run Plum with `rails s`
 1. Go to http://localhost:3000/users/auth/cas and login with CAS
-1. From a terminal in the Plum directory, run `echo 'User.last.roles << Role.first_or_create(name: "admin")' | rails c`
+1. $ rake add_admin_role
 
 ## Configuring Loris for Development
 
