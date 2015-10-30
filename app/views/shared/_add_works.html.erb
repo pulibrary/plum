@@ -10,7 +10,7 @@
               </li>
             <% end %>
             <% if can? :create, Role %>
-              <li><%= link_to 'Manage Roles', role_management.roles_path, class: 'item-option link-to-full-list', role: 'menuitem' %></li>
+              <li><%= link_to 'Manage Roles', role_management.roles_path, class: 'item-option', role: 'menuitem' %></li>
             <% end %>
             <li><%= link_to 'More Options', curation_concerns.new_classify_concern_path, class: 'item-option link-to-full-list', role: 'menuitem' %></li>
           </ul>
