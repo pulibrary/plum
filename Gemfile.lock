@@ -264,6 +264,7 @@ GEM
       nokogiri (>= 1.4.3)
     erubis (2.7.0)
     execjs (2.6.0)
+    ezid-client (1.1.1)
     factory_girl (4.5.0)
       activesupport (>= 3.0.0)
     factory_girl_rails (4.5.0)
@@ -676,6 +677,7 @@ DEPENDENCIES
   curation_concerns!
   devise
   devise-guests (~> 0.3)
+  ezid-client
   factory_girl_rails
   hydra-collections!
   hydra-derivatives!

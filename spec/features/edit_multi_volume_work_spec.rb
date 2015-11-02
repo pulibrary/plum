@@ -14,7 +14,9 @@ RSpec.feature "MultiVolumeWorksController", type: :feature do
     expect(page).to have_text('Manage Your Work')
   end
 
-  scenario "User can edit a multi-volume work" do
+  scenario "User can edit a multi-volume work", vcr: { cassette_name: "ezid" } do
+    Ezid::Client.configure do |conf| conf.logger = Logger.new(File::NULL); end
+
     visit edit_polymorphic_path [:curation_concerns, multi_volume_work]
     fill_in 'multi_volume_work_source_metadata_identifier', with: '1234568'
     fill_in 'multi_volume_work_portion_note', with: 'new portion note'

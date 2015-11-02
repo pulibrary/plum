@@ -1,0 +1,5 @@
+The following <%= @curation_concern.human_readable_type %> has been marked complete:
+
+ID...: <%= @curation_concern.id %>
+Title: <%= @curation_concern.title.first %>
+URL..: <%= polymorphic_url([main_app, :curation_concerns, @curation_concern]) %>
