@@ -1,0 +1,24 @@
+<div class="flash-message">
+  <div class="container">
+    <div class="col-md-12">
+      <div class="alert alert-success ui-corner-all alert-dismissable hidden" data-reorder-action="flash">
+        <a class="close" href="#">×</a>
+        <span class="text">
+          Test
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-2">
+    <button type="button" class="btn btn-primary disabled" data-reorder-action="persist">Save Reorder</button>
+  </div>
+  <div class="col-xs-8">
+    <ul id="sortable" data-id="<%= @presenter.id %>" class="list-unstyled">
+      <% @members.each do |member| %>
+        <%= render "member", member: member %>
+      <% end %>
+    </ul>
+  </div>
+</div>

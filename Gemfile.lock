@@ -1,12 +1,12 @@
 GIT
   remote: git://github.com/projecthydra-labs/activefedora-aggregation.git
-  revision: fc28a063e9aa475cfaf78f891e0233afb9d8153c
+  revision: 00d46792af0fa887da59dd9581f3ecf6b5b822e6
   branch: master
   specs:
-    activefedora-aggregation (0.5.0)
+    activefedora-aggregation (0.6.0)
       active-fedora (~> 9.5)
       activesupport
-      rdf (~> 1.1.16.0)
+      rdf (~> 1.1, >= 1.1.17.1)
       rdf-vocab (~> 0.8.1)
 
 GIT
@@ -51,6 +51,22 @@ GIT
       hydra-derivatives (~> 3.0)
       hydra-file_characterization (~> 0.3, >= 0.3.3)
       hydra-pcdm (~> 0.3)
+
+GIT
+  remote: git://github.com/projecthydra/active_fedora.git
+  revision: 608140a8ee2bf9a74fb89446558fbeb765f0dfca
+  branch: master
+  specs:
+    active-fedora (9.6.1)
+      active-triples (~> 0.7.1)
+      activesupport (>= 4.1.0)
+      deprecation
+      ldp (~> 0.4.0)
+      linkeddata
+      nom-xml (>= 0.5.1)
+      om (~> 3.1)
+      rdf-rdfxml (~> 1.1)
+      rsolr (~> 1.0.10)
 
 GIT
   remote: git://github.com/projecthydra/hydra-collections.git
@@ -108,16 +124,6 @@ GEM
       erubis (~> 2.7.0)
       rails-dom-testing (~> 1.0, >= 1.0.5)
       rails-html-sanitizer (~> 1.0, >= 1.0.2)
-    active-fedora (9.5.0)
-      active-triples (~> 0.7.1)
-      activesupport (>= 4.1.0)
-      deprecation
-      ldp (~> 0.4.0)
-      linkeddata
-      nom-xml (>= 0.5.1)
-      om (~> 3.1)
-      rdf-rdfxml (~> 1.1.0)
-      rsolr (~> 1.0.10)
     active-triples (0.7.2)
       activemodel (>= 3.0.0)
       activesupport (>= 3.0.0)
@@ -257,7 +263,7 @@ GEM
     docile (1.1.5)
     domain_name (0.5.25)
       unf (>= 0.0.5, < 1.0.0)
-    ebnf (0.3.9)
+    ebnf (1.0.0)
       rdf (~> 1.1)
       sxp (~> 0.1, >= 0.1.3)
     equivalent-xml (0.6.0)
@@ -331,9 +337,9 @@ GEM
     jquery-ui-rails (5.0.5)
       railties (>= 3.2.16)
     json (1.8.3)
-    json-ld (1.1.11)
+    json-ld (1.99.0)
       multi_json (~> 1.11)
-      rdf (~> 1.1, >= 1.1.7)
+      rdf (~> 1.99)
     kaminari (0.16.3)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
@@ -345,27 +351,27 @@ GEM
       linkeddata (>= 1.1)
       slop
     link_header (0.0.8)
-    linkeddata (1.1.11)
-      equivalent-xml (~> 0.5)
-      json-ld (~> 1.1, >= 1.1.8)
+    linkeddata (1.99.0)
+      equivalent-xml (~> 0.6)
+      json-ld (~> 1.99)
       nokogiri (~> 1.6)
-      rdf (~> 1.1, >= 1.1.11)
-      rdf-aggregate-repo (~> 1.1)
-      rdf-isomorphic (~> 1.1)
+      rdf (~> 1.99)
+      rdf-aggregate-repo (~> 1.99)
+      rdf-isomorphic (~> 1.99)
       rdf-json (~> 1.1, >= 1.1.2)
-      rdf-microdata (~> 2.0, >= 2.0.1)
-      rdf-n3 (~> 1.1, >= 1.1.3)
-      rdf-rdfa (~> 1.1, >= 1.1.6)
-      rdf-rdfxml (~> 1.1, >= 1.1.4)
-      rdf-reasoner (~> 0.2, >= 0.2.1)
-      rdf-tabular (~> 0.1, >= 0.1.2)
-      rdf-trig (~> 1.1, >= 1.1.4)
-      rdf-trix (~> 1.1)
-      rdf-turtle (~> 1.1, >= 1.1.6)
-      rdf-vocab (~> 0.8)
-      rdf-xsd (~> 1.1, >= 1.1.3)
-      sparql (~> 1.1, >= 1.1.5)
-      sparql-client (~> 1.1, >= 1.1.3)
+      rdf-microdata (~> 2.0, >= 2.0.2)
+      rdf-n3 (~> 1.99)
+      rdf-rdfa (~> 1.99)
+      rdf-rdfxml (~> 1.1, >= 1.1.5)
+      rdf-reasoner (~> 0.3)
+      rdf-tabular (~> 0.3)
+      rdf-trig (~> 1.99, >= 1.99.0.1)
+      rdf-trix (~> 1.99)
+      rdf-turtle (~> 1.99)
+      rdf-vocab (~> 0.8, >= 0.8.6)
+      rdf-xsd (~> 1.1, >= 1.1.5)
+      sparql (~> 1.99)
+      sparql-client (~> 1.99)
     logger (1.2.8)
     loofah (2.0.3)
       nokogiri (>= 1.5.9)
@@ -378,7 +384,7 @@ GEM
     mime-types (2.6.2)
     mini_magick (4.3.6)
     mini_portile (0.6.2)
-    minitest (5.8.1)
+    minitest (5.8.2)
     modernizr-rails (2.7.1)
     mono_logger (1.1.0)
     multi_json (1.11.2)
@@ -465,55 +471,56 @@ GEM
       thor (>= 0.18.1, < 2.0)
     rainbow (2.0.0)
     rake (10.4.2)
-    rdf (1.1.16.1)
+    rdf (1.99.0)
       link_header (~> 0.0, >= 0.0.8)
-    rdf-aggregate-repo (1.1.0)
-      rdf (>= 1.1)
-    rdf-isomorphic (1.1.0.1)
-      rdf (~> 1.1, >= 1.1.16.1)
+    rdf-aggregate-repo (1.99.0)
+      rdf (~> 1.99)
+    rdf-isomorphic (1.99.0)
+      rdf (~> 1.99)
     rdf-json (1.1.2)
       rdf (~> 1.1)
-    rdf-microdata (2.0.1)
+    rdf-microdata (2.0.2)
       htmlentities (~> 4.3)
       nokogiri (~> 1.6)
       rdf (~> 1.1)
       rdf-xsd (~> 1.1)
-    rdf-n3 (1.1.3)
-      rdf (~> 1.1, >= 1.1.5)
-    rdf-rdfa (1.1.6)
+    rdf-n3 (1.99.0)
+      rdf (~> 1.99)
+    rdf-rdfa (1.99.0)
       haml (~> 4.0)
       htmlentities (~> 4.3)
-      rdf (~> 1.1, >= 1.1.6)
+      rdf (~> 1.99)
       rdf-aggregate-repo (~> 1.1)
       rdf-xsd (~> 1.1)
-    rdf-rdfxml (1.1.4)
+    rdf-rdfxml (1.1.5)
       htmlentities (~> 4.3)
       rdf (~> 1.1, >= 1.1.6)
       rdf-rdfa (~> 1.1, >= 1.1.4.1)
       rdf-xsd (~> 1.1)
-    rdf-reasoner (0.2.2)
+    rdf-reasoner (0.3.0)
       rdf (~> 1.1, >= 1.1.4.2)
       rdf-turtle (~> 1.1)
       rdf-vocab (~> 0.8)
       rdf-xsd (~> 1.1)
-    rdf-tabular (0.2.1)
+    rdf-tabular (0.3.0)
       addressable (~> 2.3)
       bcp47 (~> 0.3, >= 0.3.3)
       json-ld (~> 1.1)
       rdf (~> 1.1, >= 1.1.7)
+      rdf-vocab (~> 0.8)
       rdf-xsd (~> 1.1)
-    rdf-trig (1.1.5)
-      ebnf (~> 0.3, >= 0.3.7)
-      rdf (~> 1.1, >= 1.1.11)
-      rdf-turtle (~> 1.1, >= 1.1.7)
-    rdf-trix (1.1.0)
-      rdf (>= 1.1)
-    rdf-turtle (1.1.8)
-      ebnf (~> 0.3, >= 0.3.6)
-      rdf (~> 1.1, >= 1.1.10)
+    rdf-trig (1.99.0.1)
+      ebnf (~> 1.0)
+      rdf (~> 1.99)
+      rdf-turtle (~> 1.99)
+    rdf-trix (1.99.0)
+      rdf (~> 1.1)
+    rdf-turtle (1.99.0)
+      ebnf (~> 1.0)
+      rdf (~> 1.99)
     rdf-vocab (0.8.6)
       rdf (~> 1.1, >= 1.1.10)
-    rdf-xsd (1.1.4)
+    rdf-xsd (1.1.5)
       rdf (~> 1.1, >= 1.1.9)
     rdoc (4.2.0)
     redis (3.2.1)
@@ -601,15 +608,15 @@ GEM
       nokogiri
       stomp
       xml-simple
-    sparql (1.1.9)
+    sparql (1.99.0)
       builder (~> 3.2)
-      ebnf (~> 0.3, >= 0.3.9)
-      rdf (~> 1.1, >= 1.1.13)
-      rdf-aggregate-repo (~> 1.1, >= 1.1.0)
+      ebnf (~> 1.0)
+      rdf (~> 1.99)
+      rdf-aggregate-repo (~> 1.99)
       rdf-xsd (~> 1.1)
       sparql-client (~> 1.1)
       sxp (~> 0.1)
-    sparql-client (1.1.6)
+    sparql-client (1.99.0)
       net-http-persistent (~> 2.9)
       rdf (~> 1.1)
     spring (1.4.0)
@@ -667,6 +674,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  active-fedora!
   activefedora-aggregation!
   capistrano-passenger
   capistrano-rails
@@ -688,6 +696,7 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jettywrapper
   jquery-rails
+  jquery-ui-rails
   launchy
   modernizr-rails
   omniauth-cas

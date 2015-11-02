@@ -19,6 +19,10 @@ Rails.application.routes.draw do
 
   get '/concern/scanned_resources/:id/manifest', to: 'curation_concerns/scanned_resources#manifest', as: 'curation_concerns_scanned_resource_manifest', defaults: { format: :json }
   get '/concern/scanned_resources/:id/pdf', to: 'curation_concerns/scanned_resources#pdf', as: 'curation_concerns_scanned_resource_pdf'
+  namespace :curation_concerns, path: :concern do
+    get '/scanned_resources/:id/reorder', to: 'scanned_resources#reorder', as: 'curation_concerns_scanned_resource_reorder'
+    post '/scanned_resources/:id/reorder', to: 'scanned_resources#save_order'
+  end
 
   namespace :curation_concerns, path: :concern do
     resources :scanned_resources, only: [:new, :create], path: 'container/:parent_id/scanned_resources', as: 'member_scanned_resource'
