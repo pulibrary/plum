@@ -5,4 +5,8 @@ class FileSetPresenter < CurationConcerns::FileSetPresenter
   def label
     nil
   end
+
+  def state_badge
+    StateBadge.new(solr_document).render
+  end
 end
