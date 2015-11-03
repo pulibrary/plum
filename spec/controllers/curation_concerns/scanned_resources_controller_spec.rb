@@ -56,16 +56,22 @@ describe CurationConcerns::ScannedResourcesController do
   describe "#manifest" do
     let(:solr) { ActiveFedora.solr.conn }
     context "when requesting JSON" do
+      render_views
       it "builds a manifest" do
         resource = FactoryGirl.build(:scanned_resource)
+        resource_2 = FactoryGirl.build(:scanned_resource)
         allow(resource).to receive(:id).and_return("test")
+        allow(resource_2).to receive(:id).and_return("test2")
         solr.add resource.to_solr
+        solr.add resource_2.to_solr
         solr.commit
         expect(ScannedResource).not_to receive(:find)
 
-        get :manifest, id: "1", format: :json
+        get :manifest, id: "test2", format: :json
 
         expect(response).to be_success
+        response_json = JSON.parse(response.body)
+        expect(response_json['@id']).to eq "http://plum.com/concern/scanned_resources/test2/manifest"
       end
     end
   end
