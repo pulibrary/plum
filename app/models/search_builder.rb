@@ -1,6 +1,10 @@
 class SearchBuilder < CurationConcerns::SearchBuilder
   include Blacklight::Solr::SearchBuilderBehavior
 
+  def self.show_actions
+    [:show, :manifest, :reorder]
+  end
+
   def hide_parented_resources(solr_params)
     return if show_action?
     solr_params[:fq] ||= []
@@ -13,6 +17,6 @@ class SearchBuilder < CurationConcerns::SearchBuilder
   end
 
   def show_action?
-    blacklight_params["action"] == "show"
+    self.class.show_actions.include? blacklight_params["action"].to_sym
   end
 end
