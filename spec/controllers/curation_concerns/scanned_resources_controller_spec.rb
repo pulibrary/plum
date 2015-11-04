@@ -61,6 +61,18 @@ describe CurationConcerns::ScannedResourcesController do
       before do
         sign_in user
       end
+      context "when requesting a child resource" do
+        it "returns a manifest" do
+          resource = FactoryGirl.build(:scanned_resource)
+          allow(resource).to receive(:id).and_return("resource")
+          solr.add resource.to_solr.merge(ordered_by_ssim: ["work"])
+          solr.commit
+
+          get :manifest, id: "resource", format: :json
+
+          expect(response).to be_success
+        end
+      end
       it "builds a manifest" do
         resource = FactoryGirl.build(:scanned_resource)
         resource_2 = FactoryGirl.build(:scanned_resource)
@@ -141,6 +153,19 @@ describe CurationConcerns::ScannedResourcesController do
       resource.save
       sign_in user
       get :reorder, id: resource.id
+    end
+
+    context "for a sub-resource" do
+      let(:resource) do
+        r = FactoryGirl.build(:scanned_resource)
+        allow(r).to receive(:id).and_return("testing")
+        allow(r).to receive(:save).and_return(true)
+        r.update_index
+        r
+      end
+      it "works" do
+        expect(response).to be_success
+      end
     end
 
     it "finds all proxies for the resource" do
