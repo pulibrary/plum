@@ -41,6 +41,8 @@ RSpec.feature "ScannedResourcesController", type: :feature do
 
     within '.related_files' do
       expect(page).to have_link "image.png"
+      click_link "image.png"
+      expect(page).to have_content "image.png"
     end
   end
 end
