@@ -13,9 +13,11 @@ class ViewingHintValidator < ActiveModel::Validator
 
     def valid_viewing_hints
       [
-        ["continuous"],
-        ["paged"],
-        ["individuals"]
+        "continuous",
+        "paged",
+        "individuals",
+        "non-paged",
+        "facing-pages"
       ]
     end
 end

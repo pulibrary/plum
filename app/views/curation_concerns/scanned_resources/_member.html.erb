@@ -1,8 +1,13 @@
 <li class="ui-state-default col-xs-3" data-reorder-id='<%= member.id %>'>
+  <%= simple_form_for member, url: main_app.curation_concerns_file_set_path(id: member.id), remote: true do |f| %>
   <div class="panel panel-default">
-    <div class="panel-heading"><%= member.to_s %></div>
+    <div class="panel-heading">
+      <%= f.input :title, label: false, input_html: { name: "file_set[title][]" }%>
+    </div>
     <div class="panel-body">
       <%= render_thumbnail_tag member %>
+      <%= f.input :viewing_hint, collection: [:"", :"non-paged", :"facing-pages"], as: :radio_buttons, label: false, defaults: { input_html: { class: '' }}%>
     </div>
   </div>
+  <% end %>
 </li>
