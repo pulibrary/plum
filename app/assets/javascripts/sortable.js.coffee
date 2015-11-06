@@ -22,6 +22,7 @@ class SortManager
     this.initialize_sort()
     this.initialize_persist_button()
     this.initialize_flash()
+    this.initialize_form()
   initialize_sort: ->
     @element.sortable()
     @element.disableSelection()
@@ -32,6 +33,10 @@ class SortManager
     @persist_button.click(this.persist_ordering)
   initialize_flash: ->
     @flash = new Flash
+  initialize_form: ->
+    $("*[data-reorder-id] input").change ->
+      parent_form = $(this).parents("form")
+      parent_form.submit()
   started_sorting: (event, ui) =>
     @sorting_element = $(ui.item)
     @sorting_info.start = this.get_sort_position(ui.item)

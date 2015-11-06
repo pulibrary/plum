@@ -14,7 +14,7 @@
   <div class="col-xs-2">
     <button type="button" class="btn btn-primary disabled" data-reorder-action="persist">Save Reorder</button>
   </div>
-  <div class="col-xs-8">
+  <div class="col-xs-10">
     <ul id="sortable" data-id="<%= @presenter.id %>" class="list-unstyled">
       <% @members.each do |member| %>
         <%= render "member", member: member %>

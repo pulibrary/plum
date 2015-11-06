@@ -44,11 +44,20 @@ RSpec.describe ManifestBuilder, vcr: { cassette_name: "iiif_manifest" } do
         expect(first_canvas.label).to eq file_set.to_s
       end
       it "has a viewing hint" do
-        file_set.viewing_hint = "paged"
+        file_set.viewing_hint = "non-paged"
         solr.add file_set.to_solr
         solr.commit
 
-        expect(first_canvas.viewing_hint).to eq "paged"
+        expect(first_canvas.viewing_hint).to eq "non-paged"
+        expect { subject.manifest.to_json }.not_to raise_error
+      end
+      it "handles facing-pages" do
+        file_set.viewing_hint = "facing-pages"
+        solr.add file_set.to_solr
+        solr.commit
+
+        expect(first_canvas.viewing_hint).to eq "facing-pages"
+        expect { subject.manifest.to_json }.not_to raise_error
       end
       it "is a valid manifest" do
         expect { subject.manifest.to_json }.not_to raise_error

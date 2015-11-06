@@ -8,7 +8,13 @@ class CanvasBuilder
   end
 
   def canvas
-    @canvas ||= IIIF::Presentation::Canvas.new
+    @canvas ||= Canvas.new
+  end
+
+  class Canvas < IIIF::Presentation::Canvas
+    def legal_viewing_hint_values
+      super + ['facing-pages']
+    end
   end
 
   private
