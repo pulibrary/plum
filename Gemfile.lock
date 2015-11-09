@@ -21,7 +21,7 @@ GIT
 
 GIT
   remote: git://github.com/projecthydra-labs/curation_concerns.git
-  revision: 93196a0687cdfdf7f8e7545559bb28465b952abd
+  revision: 64527cc03b7f8c610d6aa860eed7dbb0f1c59458
   branch: master
   specs:
     curation_concerns (0.2.0)
@@ -45,29 +45,30 @@ GIT
 
 GIT
   remote: git://github.com/projecthydra-labs/hydra-pcdm.git
-  revision: 0bee650cdeb2c97b9e5072566aef5fc874da71f7
+  revision: 2d1d3c0dbf9f5d6a94314b78ff6010bc5102c215
   branch: master
   specs:
-    hydra-pcdm (0.3.0)
-      activefedora-aggregation (~> 0.5)
+    hydra-pcdm (0.3.1)
+      active-fedora (~> 9.6)
+      activefedora-aggregation (~> 0.6)
       mime-types (>= 1)
 
 GIT
   remote: git://github.com/projecthydra-labs/hydra-works.git
-  revision: 92badd6e329c38ef5b5da829f938abcda92b9ba0
+  revision: efc470edf55ff7b35f693b0e800d02e5187aeecc
   branch: master
   specs:
-    hydra-works (0.3.0)
+    hydra-works (0.4.0)
       hydra-derivatives (~> 3.0)
       hydra-file_characterization (~> 0.3, >= 0.3.3)
       hydra-pcdm (~> 0.3)
 
 GIT
   remote: git://github.com/projecthydra/active_fedora.git
-  revision: 608140a8ee2bf9a74fb89446558fbeb765f0dfca
+  revision: a8ef64a56005812660147f1434ae444cff3bac98
   branch: master
   specs:
-    active-fedora (9.6.1)
+    active-fedora (9.6.2)
       active-triples (~> 0.7.1)
       activesupport (>= 4.1.0)
       deprecation
@@ -169,7 +170,7 @@ GEM
     ast (2.1.0)
     astrolabe (1.3.1)
       parser (~> 2.2)
-    autoprefixer-rails (6.0.3)
+    autoprefixer-rails (6.1.0.1)
       execjs
       json
     bcp47 (0.3.3)
@@ -177,14 +178,14 @@ GEM
     bcrypt (3.1.10)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
-    blacklight (5.15.0)
+    blacklight (5.16.3)
       bootstrap-sass (~> 3.2)
       deprecation
       kaminari (>= 0.15)
       nokogiri (~> 1.6)
       rails (>= 3.2.6, < 5)
       rsolr (~> 1.0.11)
-    blacklight_advanced_search (5.2.0)
+    blacklight_advanced_search (5.2.1)
       blacklight (~> 5.15)
       parslet
     blankslate (3.1.3)
@@ -235,7 +236,7 @@ GEM
       timers (>= 4.1.1)
     celluloid-supervision (0.20.5)
       timers (>= 4.1.1)
-    childprocess (0.5.6)
+    childprocess (0.5.7)
       ffi (~> 1.0, >= 1.0.11)
     coderay (1.1.0)
     coffee-rails (4.1.0)
@@ -300,16 +301,16 @@ GEM
     http-cookie (1.0.2)
       domain_name (~> 0.5)
     http_logger (0.5.1)
-    hydra-access-controls (9.3.0)
+    hydra-access-controls (9.4.1)
       active-fedora (~> 9.0)
       activesupport (~> 4.0)
       blacklight (~> 5.10)
       cancancan (~> 1.8)
       deprecation (~> 0.1)
       sass-rails
-    hydra-core (9.3.0)
+    hydra-core (9.4.1)
       active-fedora (~> 9.1)
-      hydra-access-controls (= 9.3.0)
+      hydra-access-controls (= 9.4.1)
       jettywrapper (>= 2.0.0)
       rails (~> 4.0)
     hydra-editor (1.1.0)
@@ -319,9 +320,9 @@ GEM
       simple_form (~> 3.1.0)
     hydra-file_characterization (0.3.3)
       activesupport (>= 3.0.0)
-    hydra-head (9.3.0)
-      hydra-access-controls (= 9.3.0)
-      hydra-core (= 9.3.0)
+    hydra-head (9.4.1)
+      hydra-access-controls (= 9.4.1)
+      hydra-core (= 9.4.1)
       rails (>= 3.2.6)
     hydra-role-management (0.1.0)
       bootstrap_forms
@@ -399,7 +400,7 @@ GEM
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
     net-ssh (3.0.1)
-    netrc (0.10.3)
+    netrc (0.11.0)
     noid (0.8.0)
     nokogiri (1.6.6.2)
       mini_portile (~> 0.6.0)
@@ -524,7 +525,7 @@ GEM
     rdf-turtle (1.99.0)
       ebnf (~> 1.0)
       rdf (~> 1.99)
-    rdf-vocab (0.8.6)
+    rdf-vocab (0.8.7.1)
       rdf (~> 1.1, >= 1.1.10)
     rdf-xsd (1.1.5)
       rdf (~> 1.1, >= 1.1.9)

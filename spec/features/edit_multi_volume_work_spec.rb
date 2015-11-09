@@ -39,6 +39,6 @@ RSpec.feature "MultiVolumeWorksController", type: :feature do
     click_button 'Create Scanned resource'
 
     visit polymorphic_path [:curation_concerns, multi_volume_work]
-    expect(page).to have_link('Volume 1')
+    expect(page).to have_link('Volume 1', count: 1)
   end
 end
