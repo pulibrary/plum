@@ -5,6 +5,11 @@
     box-shadow: none;
   }
 }
+*[data-reorder-id] {
+  img {
+    max-width: 100%;
+  }
+}
 #reorder-actions {
   .btn {
     margin-top: 10px;
