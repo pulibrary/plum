@@ -5,3 +5,11 @@
     box-shadow: none;
   }
 }
+#reorder-actions {
+  .btn {
+    margin-top: 10px;
+  }
+  .btn:first-child {
+    margin-top: 0;
+  }
+}
