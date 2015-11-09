@@ -6,7 +6,7 @@ class OrderLengthValidator < ActiveModel::Validator
   private
 
     def length_validator(length)
-      @length_validator ||= ActiveModel::Validations::LengthValidator.new(
+      ActiveModel::Validations::LengthValidator.new(
         attributes: [:order],
         is: length,
         message: "given has the wrong number of elements (should be #{length})"
