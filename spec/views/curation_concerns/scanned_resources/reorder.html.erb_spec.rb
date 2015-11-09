@@ -35,4 +35,7 @@ RSpec.describe "curation_concerns/scanned_resources/reorder.html.erb" do
       expect(rendered).to have_field hint
     end
   end
+  it "links back to parent" do
+    expect(rendered).to have_link "Back to Parent", href: polymorphic_path([main_app, :curation_concerns, presenter])
+  end
 end
