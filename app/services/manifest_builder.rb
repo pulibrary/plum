@@ -39,6 +39,7 @@ class ManifestBuilder
       manifest.viewing_direction = record.viewing_direction || "left-to-right"
       sequence = IIIF::Presentation::Sequence.new
       sequence["@id"] = path + "/sequence/normal"
+      sequence.viewing_hint = manifest.viewing_hint
       sequence.canvases += canvases
       manifest.sequences += [sequence]
     end

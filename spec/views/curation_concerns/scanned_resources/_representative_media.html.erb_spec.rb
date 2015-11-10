@@ -14,7 +14,7 @@ RSpec.describe "curation_concerns/scanned_resources/_representative_media.html.e
   context "when there are generic files" do
     let(:file_ids) { [1] }
     it "renders the viewer" do
-      expect(response).to have_selector ".viewer[data-manifest]"
+      expect(response).to have_selector ".viewer[data-uri]"
     end
   end
 end

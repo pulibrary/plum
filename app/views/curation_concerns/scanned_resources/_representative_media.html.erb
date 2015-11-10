@@ -1,5 +1,6 @@
 <% if work.file_set_ids.present? %>
-  <div class="viewer" data-manifest="<%= main_app.curation_concerns_scanned_resource_manifest_path(id: work.id) %>"></div>
+  <%= UniversalViewer.script_tag %>
+  <div class="uv viewer" data-uri="<%= main_app.curation_concerns_scanned_resource_manifest_path(id: work.id) %>"></div>
 <% else %>
   <%= image_tag 'nope.png', class: "canonical-image" %>
 <% end %>
