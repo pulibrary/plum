@@ -1,5 +1,5 @@
 <% if work.file_set_ids.present? %>
-  <script type="text/javascript" id="embedUV" src="/bower_includes/universalviewer/dist/uv-1.5.8/lib/embed.js"></script>
+  <%= UniversalViewer.script_tag %>
   <div class="uv viewer" data-uri="<%= main_app.curation_concerns_scanned_resource_manifest_path(id: work.id) %>"></div>
 <% else %>
   <%= image_tag 'nope.png', class: "canonical-image" %>
