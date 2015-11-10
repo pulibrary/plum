@@ -1,0 +1,27 @@
+{
+  "name": "plum",
+  "version": "0.0.0",
+  "homepage": "https://github.com/pulibrary/plum",
+  "authors": [
+    "Trey Pendragon <tpendragon@princeton.edu>"
+  ],
+  "description": "A Hydra head to support book digitization.",
+  "main": "",
+  "moduleType": [],
+  "keywords": [
+    "hydra"
+  ],
+  "license": "Apache2",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/bower_includes",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "universalviewer": "UniversalViewer/universalviewer"
+  }
+}

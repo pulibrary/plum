@@ -1,0 +1,41 @@
+{
+  "name": "Universal Viewer",
+  "version": "1.5.8",
+  "description": "The Universal Viewer is an open source project to enable cultural heritage institutions to present their digital artifacts in an IIIF-compliant and highly customisable user interface.",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/UniversalViewer/universalviewer"
+  },
+  "authors": [
+    "edsilv <e.silverton@gmail.com>"
+  ],
+  "ignore": [
+    "examples",
+    "src",
+    "tasks",
+    "tests"
+  ],
+  "dependencies": {},
+  "devDependencies": {
+    "es6-promise": "~2.2.0",
+    "extensions": "edsilv/extensions#~0.1.5",
+    "http-status-codes": "edsilv/http-status-codes#~0.0.2",
+    "jquery-plugins": "edsilv/jquery-plugins#~0.0.14",
+    "lodash-compat": "~3.10.0",
+    "manifesto": "universalviewer/manifesto#dev",
+    "r.js": "~2.1.18",
+    "utils": "edsilv/utils#~0.0.23",
+    "uv-cy-GB-theme": "universalviewer/uv-cy-GB-theme",
+    "uv-en-GB-theme": "universalviewer/uv-en-GB-theme"
+  },
+  "homepage": "https://github.com/UniversalViewer/universalviewer",
+  "_release": "1.5.8",
+  "_resolution": {
+    "type": "version",
+    "tag": "v1.5.8",
+    "commit": "8992a152cf3bf45236a68e72b2175c28ba3f1081"
+  },
+  "_source": "git://github.com/UniversalViewer/universalviewer.git",
+  "_target": "*",
+  "_originalSource": "UniversalViewer/universalviewer"
+}
