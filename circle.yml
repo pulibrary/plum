@@ -7,6 +7,8 @@ general:
 dependencies:
   cache_directories:
     - kakadu
+  pre:
+    - npm install -g eslint
   post:
     - sudo sh bin/ci_kakadu_install.sh
     - RAILS_ENV=development bundle exec rake jetty:clean
@@ -17,3 +19,4 @@ dependencies:
 test:
   pre:
     - bundle exec rake rubocop
+    - eslint app/assets/javascripts/*.es6

@@ -48,7 +48,6 @@
         }
         this.persisting = true
         this.begin_save()
-        console.log(this.sorter.id)
         $.post(`/concern/scanned_resources/${this.sorter.id}/reorder.json`,
                {order: this.sorter.order}
               )
@@ -66,11 +65,11 @@
     }
 
     get persist_failed() {
-      return (data, message) => {
-        if(data && data.message) {
-          this.flash.set('danger', data.message)
+      return (data) => {
+        if(data && data.responseJSON && data.responseJSON.message) {
+          this.flash.set("danger", data.responseJSON.message)
         } else {
-          this.flash.set('danger', "Unable to save new order.")
+          this.flash.set("danger", "Unable to save new order.")
         }
         this.disable()
       }
@@ -79,7 +78,7 @@
     get persist_success() {
       return (data) => {
         if(data.message) {
-          this.flash.set('success', data.message)
+          this.flash.set("success", data.message)
         }
       }
     }
