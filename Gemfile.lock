@@ -173,6 +173,10 @@ GEM
     autoprefixer-rails (6.1.0.1)
       execjs
       json
+    babel-source (5.8.33)
+    babel-transpiler (0.7.0)
+      babel-source (>= 4.0, < 6)
+      execjs (~> 2.0)
     bcp47 (0.3.3)
       i18n
     bcrypt (3.1.10)
@@ -629,6 +633,10 @@ GEM
     spring (1.4.0)
     sprockets (3.4.0)
       rack (> 1, < 3)
+    sprockets-es6 (0.8.2)
+      babel-source (>= 5.8.11)
+      babel-transpiler
+      sprockets (>= 3.0.0)
     sprockets-rails (2.3.3)
       actionpack (>= 3.0)
       activesupport (>= 3.0)
@@ -721,6 +729,7 @@ DEPENDENCIES
   sidekiq
   simplecov (~> 0.9)
   spring
+  sprockets-es6
   sqlite3
   uglifier (>= 1.3.0)
   vcr
