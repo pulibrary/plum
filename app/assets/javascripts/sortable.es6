@@ -1,6 +1,13 @@
 { // Keeps everything out of global scope.
   jQuery(() => {
     window.new_sort_manager = new SortManager
+    // Auto-submit reorder forms.
+    $("*[data-reorder-id] input").change(
+      function() {
+        const parent_form = $(this).parents("form")
+        parent_form.submit()
+      }
+    )
   })
 
   class Flash {
