@@ -13,4 +13,8 @@ class ScannedResource < ActiveFedora::Base
       doc[ActiveFedora::SolrQueryBuilder.solr_name("ordered_by", :symbol)] += send(:ordered_by_ids)
     end
   end
+
+  def pending_uploads
+    PendingUpload.where(curation_concern_id: id)
+  end
 end

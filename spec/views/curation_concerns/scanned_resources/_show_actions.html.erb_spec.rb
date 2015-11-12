@@ -17,4 +17,19 @@ RSpec.describe "curation_concerns/scanned_resources/_show_actions.html.erb" do
   it "renders a reorder link" do
     expect(rendered).to have_link "Reorder", curation_concerns_scanned_resource_reorder_path(id: resource.id)
   end
+  it "renders a server upload form" do
+    expect(rendered).to have_selector "form#browse-everything-form"
+    expect(rendered).to have_selector "button.browse-everything"
+  end
+  context "when there are pending uploads" do
+    let(:presenter) do
+      s = ScannedResourceShowPresenter.new(solr_document, nil)
+      allow(s).to receive(:pending_uploads).and_return([pending_upload])
+      s
+    end
+    let(:pending_upload) { FactoryGirl.build(:pending_upload) }
+    it "displays them" do
+      expect(rendered).to have_content pending_upload.file_name
+    end
+  end
 end

@@ -41,6 +41,13 @@ class CurationConcerns::ScannedResourcesController < CurationConcerns::CurationC
     end
   end
 
+  def browse_everything_files
+    upload_set_id = ActiveFedora::Noid::Service.new.mint
+    CompositePendingUpload.create(selected_files_params, curation_concern.id, upload_set_id)
+    BrowseEverythingIngestJob.perform_later(curation_concern.id, upload_set_id, current_user, selected_files_params)
+    redirect_to main_app.curation_concerns_scanned_resource_path(curation_concern)
+  end
+
   private
 
     def lock_manager
@@ -48,5 +55,9 @@ class CurationConcerns::ScannedResourcesController < CurationConcerns::CurationC
         CurationConcerns.config.lock_time_to_live,
         CurationConcerns.config.lock_retry_count,
         CurationConcerns.config.lock_retry_delay)
+    end
+
+    def selected_files_params
+      params[:selected_files]
     end
 end
