@@ -1,4 +1,4 @@
-# Plum. A Hydra head to support book digitization
+# Plum. A Hydra head to support digitization workflows
 
 [![Circle CI](https://circleci.com/gh/pulibrary/plum.svg?style=svg)](https://circleci.com/gh/pulibrary/plum)
 [![Coverage Status](https://coveralls.io/repos/pulibrary/plum/badge.svg?branch=master)](https://coveralls.io/r/pulibrary/plum?branch=master)
