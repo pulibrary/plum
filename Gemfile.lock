@@ -20,6 +20,22 @@ GIT
       rdf-vocab (~> 0.8.1)
 
 GIT
+  remote: git://github.com/projecthydra-labs/browse-everything.git
+  revision: 7f547a23d8fc20bd249b8f607e009b03aa112c5d
+  specs:
+    browse-everything (0.9.1)
+      bootstrap-sass
+      dropbox-sdk (>= 1.6.2)
+      font-awesome-rails
+      google-api-client
+      google_drive
+      httparty
+      rails (>= 3.1)
+      ruby-box
+      sass-rails
+      skydrive
+
+GIT
   remote: git://github.com/projecthydra-labs/curation_concerns.git
   revision: 64527cc03b7f8c610d6aa860eed7dbb0f1c59458
   branch: master
@@ -170,6 +186,10 @@ GEM
     ast (2.1.0)
     astrolabe (1.3.1)
       parser (~> 2.2)
+    autoparse (0.3.3)
+      addressable (>= 2.3.1)
+      extlib (>= 0.9.15)
+      multi_json (>= 1.0.0)
     autoprefixer-rails (6.1.0.1)
       execjs
       json
@@ -278,6 +298,8 @@ GEM
     docile (1.1.5)
     domain_name (0.5.25)
       unf (>= 0.0.5, < 1.0.0)
+    dropbox-sdk (1.6.5)
+      json
     ebnf (1.0.0)
       rdf (~> 1.1)
       sxp (~> 0.1, >= 0.1.3)
@@ -285,6 +307,7 @@ GEM
       nokogiri (>= 1.4.3)
     erubis (2.7.0)
     execjs (2.6.0)
+    extlib (0.9.16)
     ezid-client (1.1.1)
     factory_girl (4.5.0)
       activesupport (>= 3.0.0)
@@ -294,17 +317,50 @@ GEM
     faraday (0.9.2)
       multipart-post (>= 1.2, < 3)
     ffi (1.9.10)
+    font-awesome-rails (4.4.0.0)
+      railties (>= 3.2, < 5.0)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
+    google-api-client (0.8.6)
+      activesupport (>= 3.2)
+      addressable (~> 2.3)
+      autoparse (~> 0.3)
+      extlib (~> 0.9)
+      faraday (~> 0.9)
+      googleauth (~> 0.3)
+      launchy (~> 2.4)
+      multi_json (~> 1.10)
+      retriable (~> 1.4)
+      signet (~> 0.6)
+    google_drive (1.0.2)
+      google-api-client (>= 0.7.0, < 0.9)
+      minitest (>= 5.1.0)
+      nokogiri (>= 1.4.4, != 1.5.2, != 1.5.1)
+      oauth (>= 0.3.6)
+      oauth2 (>= 0.5.0)
+    googleauth (0.4.2)
+      faraday (~> 0.9)
+      jwt (~> 1.4)
+      logging (~> 2.0)
+      memoist (~> 0.12)
+      multi_json (~> 1.11)
+      signet (~> 0.6)
     haml (4.0.7)
       tilt
     hashdiff (0.2.2)
     hashie (3.4.2)
     hitimes (1.2.3)
     htmlentities (4.3.4)
+    httmultiparty (0.3.16)
+      httparty (>= 0.7.3)
+      mimemagic
+      multipart-post
     http-cookie (1.0.2)
       domain_name (~> 0.5)
     http_logger (0.5.1)
+    httparty (0.13.7)
+      json (~> 1.8)
+      multi_xml (>= 0.5.2)
     hydra-access-controls (9.4.1)
       active-fedora (~> 9.0)
       activesupport (~> 4.0)
@@ -351,6 +407,7 @@ GEM
     json-ld (1.99.0)
       multi_json (~> 1.11)
       rdf (~> 1.99)
+    jwt (1.5.2)
     kaminari (0.16.3)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
@@ -383,7 +440,11 @@ GEM
       rdf-xsd (~> 1.1, >= 1.1.5)
       sparql (~> 1.99)
       sparql-client (~> 1.99)
+    little-plugger (1.1.4)
     logger (1.2.8)
+    logging (2.0.0)
+      little-plugger (~> 1.1)
+      multi_json (~> 1.10)
     loofah (2.0.3)
       nokogiri (>= 1.5.9)
     mail (2.6.3)
@@ -391,14 +452,17 @@ GEM
     marc (1.0.0)
       scrub_rb (>= 1.0.1, < 2)
       unf
+    memoist (0.12.0)
     method_source (0.8.2)
     mime-types (2.6.2)
+    mimemagic (0.3.0)
     mini_magick (4.3.6)
     mini_portile (0.6.2)
     minitest (5.8.2)
     modernizr-rails (2.7.1)
     mono_logger (1.1.0)
     multi_json (1.11.2)
+    multi_xml (0.5.5)
     multipart-post (2.0.0)
     net-http-persistent (2.9.4)
     net-scp (1.2.1)
@@ -412,6 +476,13 @@ GEM
       activesupport (>= 3.2.18)
       i18n
       nokogiri
+    oauth (0.4.7)
+    oauth2 (1.0.0)
+      faraday (>= 0.8, < 0.10)
+      jwt (~> 1.0)
+      multi_json (~> 1.3)
+      multi_xml (~> 0.5)
+      rack (~> 1.2)
     om (3.1.0)
       activemodel
       activesupport
@@ -554,6 +625,7 @@ GEM
       http-cookie (>= 1.0.2, < 2.0)
       mime-types (>= 1.16, < 3.0)
       netrc (~> 0.7)
+    retriable (1.4.1)
     rsolr (1.0.13)
       builder (>= 2.1.2)
     rspec-core (3.3.2)
@@ -580,6 +652,11 @@ GEM
       rainbow (>= 1.99.1, < 3.0)
       ruby-progressbar (~> 1.4)
     rubocop-rspec (1.3.1)
+    ruby-box (1.15.0)
+      addressable
+      json
+      multipart-post
+      oauth2
     ruby-progressbar (1.7.5)
     rubyzip (1.1.7)
     safe_yaml (1.0.4)
@@ -600,6 +677,12 @@ GEM
       json (~> 1.0)
       redis (~> 3.2, >= 3.2.1)
       redis-namespace (~> 1.5, >= 1.5.2)
+    signet (0.6.1)
+      addressable (~> 2.3)
+      extlib (~> 0.9)
+      faraday (~> 0.9)
+      jwt (~> 1.5)
+      multi_json (~> 1.10)
     simple_form (3.1.1)
       actionpack (~> 4.0)
       activemodel (~> 4.0)
@@ -612,6 +695,11 @@ GEM
       rack (~> 1.4)
       rack-protection (~> 1.4)
       tilt (>= 1.3, < 3)
+    skydrive (1.2.0)
+      activesupport
+      httmultiparty
+      httparty (>= 0.11.0)
+      oauth2 (>= 0.9.2)
     slop (3.6.0)
     solrizer (3.3.0)
       activesupport
@@ -689,6 +777,7 @@ PLATFORMS
 DEPENDENCIES
   active-fedora!
   activefedora-aggregation!
+  browse-everything!
   capistrano-passenger
   capistrano-rails
   capistrano-rails-console

@@ -92,3 +92,4 @@ gem 'sidekiq'
 gem "omniauth-cas"
 gem 'ezid-client'
 gem 'sprockets-es6'
+gem 'browse-everything', github: 'projecthydra-labs/browse-everything'

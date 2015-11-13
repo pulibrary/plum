@@ -205,4 +205,46 @@ describe CurationConcerns::ScannedResourcesController do
       end
     end
   end
+
+  describe "#browse_everything_files" do
+    let(:resource) { FactoryGirl.create(:scanned_resource, user: user) }
+    let(:file) { File.open(Rails.root.join("spec", "fixtures", "files", "color.tif")) }
+    let(:user) { FactoryGirl.create(:admin) }
+    let(:params) do
+      {
+        "selected_files" => {
+          "0" => {
+            "url" => "file://#{file.path}",
+            "file_name" => File.basename(file.path),
+            "file_size" => file.size
+          }
+        }
+      }
+    end
+    let(:stub) {}
+    before do
+      sign_in user
+      allow(CharacterizeJob).to receive(:perform_later).once
+      allow(BrowseEverythingIngestJob).to receive(:perform_later).and_return(true) if stub
+      post :browse_everything_files, id: resource.id, selected_files: params["selected_files"]
+    end
+    it "appends a new file set" do
+      reloaded = resource.reload
+      expect(reloaded.file_sets.length).to eq 1
+      expect(reloaded.file_sets.first.files.first.mime_type).to eq "image/tiff"
+      path = Rails.application.class.routes.url_helpers.curation_concerns_scanned_resource_path(resource)
+      expect(response).to redirect_to path
+      expect(reloaded.pending_uploads.length).to eq 0
+    end
+    context "when the job hasn't run yet" do
+      let(:stub) { true }
+      it "creates pending uploads" do
+        expect(resource.pending_uploads.length).to eq 1
+        pending_upload = resource.pending_uploads.first
+        expect(pending_upload.file_name).to eq File.basename(file.path)
+        expect(pending_upload.file_path).to eq file.path
+        expect(pending_upload.upload_set_id).not_to be_blank
+      end
+    end
+  end
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151022175517) do
+ActiveRecord::Schema.define(version: 20151112191904) do
 
   create_table "bookmarks", force: :cascade do |t|
     t.integer  "user_id",       null: false
@@ -37,6 +37,15 @@ ActiveRecord::Schema.define(version: 20151022175517) do
   end
 
   add_index "checksum_audit_logs", ["file_set_id", "file_id"], name: "by_generic_file_id_and_file_id"
+
+  create_table "pending_uploads", force: :cascade do |t|
+    t.integer  "curation_concern_id"
+    t.integer  "upload_set_id"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+    t.string   "file_name"
+    t.string   "file_path"
+  end
 
   create_table "roles", force: :cascade do |t|
     t.string "name"

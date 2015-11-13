@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  mount BrowseEverything::Engine => '/browse'
   blacklight_for :catalog
   devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks" }, skip: [:passwords, :registration]
   devise_scope :user do
@@ -22,6 +23,7 @@ Rails.application.routes.draw do
   namespace :curation_concerns, path: :concern do
     get '/scanned_resources/:id/reorder', to: 'scanned_resources#reorder', as: 'scanned_resource_reorder'
     post '/scanned_resources/:id/reorder', to: 'scanned_resources#save_order'
+    post '/scanned_resources/:id/browse_everything_files', to: 'scanned_resources#browse_everything_files', as: 'scanned_resource_browse_everything_files'
   end
 
   namespace :curation_concerns, path: :concern do

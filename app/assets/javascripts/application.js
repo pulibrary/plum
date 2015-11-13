@@ -15,6 +15,7 @@
 //= require jquery-ui/sortable
 // Required by Blacklight
 //= require blacklight/blacklight
+//= require browse_everything
 
 //= require_tree .
 
