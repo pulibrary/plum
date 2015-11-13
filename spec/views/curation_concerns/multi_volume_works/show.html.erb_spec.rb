@@ -12,12 +12,28 @@ describe "curation_concerns/multi_volume_works/show.html.erb" do
       rights_tesim: rights
     )
   end
+  let(:resource_document) do
+    SolrDocument.new(
+      title_ssim: "test",
+      thumbnail_path_ss: "/test/bla.jpg",
+      has_model_ssim: ["ScannedResource"],
+      id: "1"
+    )
+  end
   let(:presenter) do
     MultiVolumeWorkShowPresenter.new(solr_document, nil)
   end
+  let(:resource_presenter) do
+    ScannedResourceShowPresenter.new(resource_document, nil)
+  end
+  let(:blacklight_config) { CatalogController.new.blacklight_config }
 
   before do
+    allow(presenter).to receive(:member_presenters).and_return([resource_presenter])
     allow(view).to receive(:dom_class) { '' }
+    allow(view).to receive(:blacklight_config).and_return(blacklight_config)
+    allow(view).to receive(:search_session).and_return({})
+    allow(view).to receive(:current_search_session).and_return(nil)
     assign(:presenter, presenter)
     render
   end
@@ -27,6 +43,9 @@ describe "curation_concerns/multi_volume_works/show.html.erb" do
       expect(rendered).not_to have_selector 'h2', text: 'Files'
       expect(rendered).not_to have_selector 'div.fileupload-buttonbar'
       expect(rendered).not_to have_selector 'a.btn', text: 'Attach a File'
+    end
+    it "has thumbnails for its members" do
+      expect(rendered).to have_selector("img[src='/test/bla.jpg']")
     end
   end
 end

@@ -3,13 +3,24 @@
     <div class="panel-heading">
       <h2>Scanned Resources</h2>
     </div>
-    <ul>
-      <% @presenter.member_presenters.each do |res| %>
-        <li>
-          <%= link_to res.title, main_app.curation_concerns_scanned_resource_path(res.id) %>
-        </li>
-      <% end %>
-    </ul>
+    <table class="table">
+      <thead>
+        <tr>
+          <th class="col-xs-3"></th>
+          <th>Scanned Resource</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @presenter.member_presenters.each do |res| %>
+          <tr>
+            <td class="col-xs-3"><%= render_thumbnail_tag res %></td>
+            <td>
+              <%= link_to res.title, main_app.curation_concerns_scanned_resource_path(res.id) %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
   </div>
 <% elsif can? :edit, @presenter.id %>
   <h2>Scanned Resources</h2>
