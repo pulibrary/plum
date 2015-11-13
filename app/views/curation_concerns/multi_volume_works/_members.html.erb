@@ -1,4 +1,4 @@
-<% if @presenter.member_presenters.present? %>
+<% if @presenter.file_presenters.present? %>
   <div class="panel panel-default scanned_resources">
     <div class="panel-heading">
       <h2>Scanned Resources</h2>
@@ -11,7 +11,7 @@
         </tr>
       </thead>
       <tbody>
-        <% @presenter.member_presenters.each do |res| %>
+        <% @presenter.file_presenters.each do |res| %>
           <tr>
             <td class="col-xs-3"><%= render_thumbnail_tag res %></td>
             <td>

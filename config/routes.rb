@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   default_url_options Rails.application.config.action_mailer.default_url_options
 
   get '/concern/scanned_resources/:id/manifest', to: 'curation_concerns/scanned_resources#manifest', as: 'curation_concerns_scanned_resource_manifest', defaults: { format: :json }
+  get '/concern/multi_volume_works/:id/manifest', to: 'curation_concerns/multi_volume_works#manifest', as: 'curation_concerns_multi_volume_work_manifest', defaults: { format: :json }
   get '/concern/scanned_resources/:id/pdf', to: 'curation_concerns/scanned_resources#pdf', as: 'curation_concerns_scanned_resource_pdf'
   namespace :curation_concerns, path: :concern do
     get '/scanned_resources/:id/reorder', to: 'scanned_resources#reorder', as: 'scanned_resource_reorder'
