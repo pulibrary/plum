@@ -12,6 +12,27 @@ RSpec.describe ManifestBuilder, vcr: { cassette_name: "iiif_manifest" } do
     allow(record.list_source).to receive(:persisted?).and_return(true)
   end
 
+  context "when given a MVW with Children" do
+    subject { described_class.new(mvw_document) }
+    let(:mvw_document) { MultiVolumeWorkShowPresenter.new(SolrDocument.new(mvw_record.to_solr), nil) }
+    let(:mvw_record) { FactoryGirl.build(:multi_volume_work) }
+    let(:manifest) { JSON.parse(subject.manifest.to_json) }
+    before do
+      allow(mvw_record).to receive(:persisted?).and_return(true)
+      allow(mvw_record).to receive(:id).and_return("2")
+      allow(mvw_document).to receive(:file_presenters).and_return([solr_document])
+    end
+    it "renders as a collection" do
+      expect(manifest['@type']).to eq "sc:Collection"
+      expect(manifest['@id']).to eq "http://plum.com/concern/multi_volume_works/2/manifest"
+    end
+    it "renders a manifest for every child scanned resource" do
+      expect(manifest['manifests'].length).to eq 1
+      expect(manifest['manifests'].first['label']).to eq solr_document.to_s
+      expect(manifest['manifests'].first['@type']).to eq "sc:Manifest"
+    end
+  end
+
   describe "#canvases" do
     context "when there is two file sets" do
       let(:type) { ::RDF::URI('http://pcdm.org/use#ExtractedText') }
@@ -37,8 +58,10 @@ RSpec.describe ManifestBuilder, vcr: { cassette_name: "iiif_manifest" } do
         solr.commit
       end
       let(:first_canvas) { subject.canvases.first }
+      let(:manifest_json) { JSON.parse(subject.to_json) }
       it "has two" do
         expect(subject.canvases.length).to eq 2
+        expect(manifest_json["sequences"].first["canvases"].length).to eq 2
       end
       it "has a label" do
         expect(first_canvas.label).to eq file_set.to_s

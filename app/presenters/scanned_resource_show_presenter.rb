@@ -4,10 +4,6 @@ class ScannedResourceShowPresenter < CurationConcernsShowPresenter
     ::FileSetPresenter
   end
 
-  def file_set_ids
-    ordered_ids
-  end
-
   def pending_uploads
     @pending_uploads ||= PendingUpload.where(curation_concern_id: id)
   end
