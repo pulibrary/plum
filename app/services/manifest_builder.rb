@@ -37,7 +37,7 @@ class ManifestBuilder
     end
 
     def path
-      helper.__send__(:"curation_concerns_#{record.model_name.singular}_manifest_url", record, protocol: protocol)
+      helper.__send__(:"manifest_curation_concerns_#{record.model_name.singular}_url", record, protocol: protocol)
     end
 
     def protocol

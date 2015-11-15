@@ -19,18 +19,22 @@ Rails.application.routes.draw do
   # Add URL options
   default_url_options Rails.application.config.action_mailer.default_url_options
 
-  get '/concern/scanned_resources/:id/manifest', to: 'curation_concerns/scanned_resources#manifest', as: 'curation_concerns_scanned_resource_manifest', defaults: { format: :json }
-  get '/concern/multi_volume_works/:id/manifest', to: 'curation_concerns/multi_volume_works#manifest', as: 'curation_concerns_multi_volume_work_manifest', defaults: { format: :json }
-  get '/concern/scanned_resources/:id/pdf', to: 'curation_concerns/scanned_resources#pdf', as: 'curation_concerns_scanned_resource_pdf'
   namespace :curation_concerns, path: :concern do
-    resources :scanned_resources, only: [] do
+    resources :multi_volume_works, only: [] do
       member do
-        get :bulk_label
+        get :manifest, defaults: { format: :json }
       end
     end
-    get '/scanned_resources/:id/reorder', to: 'scanned_resources#reorder', as: 'scanned_resource_reorder'
-    post '/scanned_resources/:id/reorder', to: 'scanned_resources#save_order'
-    post '/scanned_resources/:id/browse_everything_files', to: 'scanned_resources#browse_everything_files', as: 'scanned_resource_browse_everything_files'
+    resources :scanned_resources, only: [] do
+      member do
+        get :reorder
+        get :bulk_label
+        get :pdf
+        get :manifest, defaults: { format: :json }
+        post :reorder, action: :save_order
+        post :browse_everything_files
+      end
+    end
   end
 
   namespace :curation_concerns, path: :concern do
