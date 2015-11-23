@@ -30,6 +30,17 @@ class CurationConcerns::CurationConcernsController < ApplicationController
     end
   end
 
+  def deny_access(exception)
+    if exception.action == :manifest && !current_user
+      render json: AuthManifestBuilder.auth_services(login_url, nil), status: 401
+    elsif !current_user
+      session['user_return_to'.freeze] = request.url
+      redirect_to login_url, alert: exception.message
+    else
+      super
+    end
+  end
+
   private
 
     def presenter
@@ -43,7 +54,15 @@ class CurationConcerns::CurationConcernsController < ApplicationController
     end
 
     def manifest_builder
-      ManifestBuilder.new(presenter, ssl: request.ssl?)
+      ManifestBuilder.new(presenter, ssl: request.ssl?, services: AuthManifestBuilder.auth_services(login_url, logout_url))
+    end
+
+    def login_url
+      main_app.user_omniauth_authorize_url(:cas)
+    end
+
+    def logout_url
+      current_user.nil? ? nil : main_app.destroy_user_session_url
     end
 
     def decorated_concern

@@ -2,11 +2,12 @@ class ManifestBuilder
   attr_reader :record, :light
   delegate :to_json, to: :manifest
 
-  def initialize(record, light = false, ssl: false)
+  def initialize(record, light = false, ssl: false, services: nil)
     @record = record
     @light = light
     @ssl = ssl
     apply_record_properties
+    manifest['service'] = services if services
   end
 
   def manifest
