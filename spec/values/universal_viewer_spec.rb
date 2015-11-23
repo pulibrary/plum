@@ -4,12 +4,12 @@ RSpec.describe UniversalViewer do
   subject { described_class.instance }
   describe "#viewer_version" do
     it "calculates it from existing directories" do
-      expect(subject.viewer_version).to eq "1.5.8"
+      expect(subject.viewer_version).to eq "1.5.32"
     end
   end
   describe "#viewer_link" do
     it "is a relative link to the viewer" do
-      expect(subject.viewer_link).to eq "/#{subject.viewer_root}/uv-1.5.8/lib/embed.js"
+      expect(subject.viewer_link).to eq "/#{subject.viewer_root}/uv-1.5.32/lib/embed.js"
     end
   end
 
