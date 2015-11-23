@@ -10,7 +10,8 @@ module.exports = function (grunt) {
 
     function refresh() {
         packageJson = grunt.file.readJSON("package.json");
-        grunt.config.set('config.dirs.uv', 'uv-' + packageJson.version);
+        grunt.config.set('config.dirs.uvVersioned', 'uv-' + packageJson.version);
+        grunt.config.set('config.dirs.uv', 'uv');
     }
 
     refresh();
@@ -74,7 +75,15 @@ module.exports = function (grunt) {
                         expand: true,
                         flatten: true,
                         cwd: '<%= config.dirs.lib %>',
-                        src: ['embed.js', 'easyXDM.min.js', 'easyxdm.swf', 'json2.min.js', 'require.js', 'l10n.js', 'base64.min.js'],
+                        src: [
+                            'embed.js',
+                            'easyXDM.min.js',
+                            'easyxdm.swf',
+                            'json2.min.js',
+                            'require.js',
+                            'l10n.js',
+                            'base64.min.js'
+                        ],
                         dest: '<%= config.dirs.build %>/lib/'
                     },
                     // extension configuration files
@@ -172,7 +181,7 @@ module.exports = function (grunt) {
                         cwd: '<%= config.dirs.build %>',
                         expand: true,
                         src: ['**'],
-                        dest: '<%= config.dirs.dist %>/<%= config.dirs.uv %>/'
+                        dest: '<%= config.dirs.dist %>/<%= config.dirs.uvVersioned %>/'
                     }
                 ]
             }
@@ -203,12 +212,14 @@ module.exports = function (grunt) {
                         dest: '<%= config.dirs.themes %>'
                     },
                     {
-                        // all files that need to be copied from /lib to /src/lib post bower install
+                        // all js files that need to be copied from /lib to /src/lib post bower install
                         cwd: '<%= config.dirs.bower %>',
                         expand: true,
                         flatten: true,
                         src: [
                             'es6-promise/promise.min.js',
+                            'exjs/dist/ex.es3.min.js',
+                            'exjs/dist/ex.es3.min.js.map',
                             'extensions/dist/extensions.js',
                             'http-status-codes/dist/http-status-codes.js',
                             'jquery-plugins/dist/jquery-plugins.js',
@@ -220,11 +231,12 @@ module.exports = function (grunt) {
                         dest: '<%= config.dirs.lib %>'
                     },
                     {
-                        // all files that need to be copied from /lib to /src/typings post bower install
+                        // all d.ts files that need to be copied from /lib to /src/typings post bower install
                         cwd: '<%= config.dirs.bower %>',
                         expand: true,
                         flatten: true,
                         src: [
+                            'exjs/dist/ex.d.ts',
                             'extensions/typings/extensions.d.ts',
                             'http-status-codes/dist/http-status-codes.d.ts',
                             'jquery-plugins/typings/jquery-plugins.d.ts',
@@ -241,7 +253,7 @@ module.exports = function (grunt) {
             zip: {
                 options: {
                     mode: 'zip',
-                    archive: '<%= config.dirs.dist %>/<%= config.dirs.uv %>.zip',
+                    archive: '<%= config.dirs.dist %>/<%= config.dirs.uvVersioned %>.zip',
                     level: 9
                 },
                 files: [
@@ -255,7 +267,7 @@ module.exports = function (grunt) {
             tar: {
                 options: {
                     mode: 'tar',
-                    archive: '<%= config.dirs.dist %>/<%= config.dirs.uv %>.tar'
+                    archive: '<%= config.dirs.dist %>/<%= config.dirs.uvVersioned %>.tar'
                 },
                 files: [
                     {
@@ -321,10 +333,10 @@ module.exports = function (grunt) {
             examples: {
                 // replace uv version
                 src: [
-                    '<%= config.dirs.examples %>/index.html',
-                    '<%= config.dirs.examples %>/noeditor.html',
-                    '<%= config.dirs.examples %>/examples.js',
-                    '<%= config.dirs.examples %>/uv.js',
+                    //'<%= config.dirs.examples %>/index.html',
+                    //'<%= config.dirs.examples %>/noeditor.html',
+                    //'<%= config.dirs.examples %>/examples.js',
+                    //'<%= config.dirs.examples %>/uv.js',
                     '<%= config.dirs.examples %>/web.config'
                 ],
                 overwrite: true,
@@ -445,7 +457,8 @@ module.exports = function (grunt) {
             'replace:themeimages',
             'replace:examples',
             'clean:examples',
-            'copy:examples'
+            'copy:examples',
+            'dist'
         );
     });
 
