@@ -31,6 +31,12 @@ RSpec.describe ManifestBuilder, vcr: { cassette_name: "iiif_manifest" } do
       expect(manifest['manifests'].first['label']).to eq solr_document.to_s
       expect(manifest['manifests'].first['@type']).to eq "sc:Manifest"
     end
+    context "with SSL on" do
+      subject { described_class.new(mvw_document, ssl: true) }
+      it "renders collections with HTTPS urls" do
+        expect(manifest['manifests'].first['@id']).to eq "https://plum.com/concern/scanned_resources/1/manifest"
+      end
+    end
   end
 
   describe "#canvases" do
@@ -127,6 +133,12 @@ RSpec.describe ManifestBuilder, vcr: { cassette_name: "iiif_manifest" } do
     end
     it "is valid" do
       expect { subject.manifest.to_json }.not_to raise_error
+    end
+    context "with SSL on" do
+      subject { described_class.new(solr_document, ssl: true) }
+      it "has an SSL ID" do
+        expect(result['@id']).to eq "https://plum.com/concern/scanned_resources/1/manifest"
+      end
     end
   end
 end
