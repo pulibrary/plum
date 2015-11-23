@@ -43,7 +43,7 @@ class CurationConcerns::CurationConcernsController < ApplicationController
     end
 
     def manifest_builder
-      ManifestBuilder.new(presenter)
+      ManifestBuilder.new(presenter, ssl: request.ssl?)
     end
 
     def decorated_concern

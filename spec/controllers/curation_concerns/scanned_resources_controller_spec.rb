@@ -61,6 +61,21 @@ describe CurationConcerns::ScannedResourcesController do
       before do
         sign_in user
       end
+      context "when requesting via SSL" do
+        it "returns HTTPS paths" do
+          resource = FactoryGirl.build(:scanned_resource)
+          allow(resource).to receive(:id).and_return("test")
+          solr.add resource.to_solr
+          solr.commit
+
+          allow(request).to receive(:ssl?).and_return(true)
+          get :manifest, id: "test", format: :json
+
+          expect(response).to be_success
+          response_json = JSON.parse(response.body)
+          expect(response_json['@id']).to eq "https://plum.com/concern/scanned_resources/test/manifest"
+        end
+      end
       context "when requesting a child resource" do
         it "returns a manifest" do
           resource = FactoryGirl.build(:scanned_resource)

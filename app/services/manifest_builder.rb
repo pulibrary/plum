@@ -2,9 +2,10 @@ class ManifestBuilder
   attr_reader :record, :light
   delegate :to_json, to: :manifest
 
-  def initialize(record, light = false)
+  def initialize(record, light = false, ssl: false)
     @record = record
     @light = light
+    @ssl = ssl
     apply_record_properties
   end
 
@@ -22,6 +23,10 @@ class ManifestBuilder
 
   private
 
+    def ssl?
+      @ssl == true
+    end
+
     def manifest_builder_class
       if manifest_builders.length > 0
         IIIF::Presentation::Collection.new
@@ -31,7 +36,15 @@ class ManifestBuilder
     end
 
     def path
-      helper.__send__(:"curation_concerns_#{record.model_name.singular}_manifest_url", record)
+      helper.__send__(:"curation_concerns_#{record.model_name.singular}_manifest_url", record, protocol: protocol)
+    end
+
+    def protocol
+      if ssl?
+        :https
+      else
+        :http
+      end
     end
 
     def canvas_builders
@@ -48,7 +61,7 @@ class ManifestBuilder
 
     def manifest_builders
       manifest_presenters.map do |model|
-        ManifestBuilder.new(model, true)
+        ManifestBuilder.new(model, true, ssl: ssl?)
       end
     end
 
