@@ -64,6 +64,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'jettywrapper'
   gem "factory_girl_rails"
+  gem 'jasmine-rails'
 end
 
 group :development do
@@ -80,7 +81,7 @@ group :test do
   gem "capybara"
   gem "launchy"
   gem "vcr"
-  gem "webmock"
+  gem "webmock", require: false
 end
 
 group :production do
@@ -93,3 +94,6 @@ gem "omniauth-cas"
 gem 'ezid-client'
 gem 'sprockets-es6'
 gem 'browse-everything', github: 'projecthydra-labs/browse-everything'
+source 'https://rails-assets.org' do
+  gem 'rails-assets-babel-polyfill'
+end

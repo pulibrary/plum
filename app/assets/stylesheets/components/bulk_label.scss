@@ -1,0 +1,27 @@
+*[data-action=bulk-label] {
+  .actions {
+    border: 1px solid black;
+    padding: 5px;
+    .form-group div {
+      padding-left: 0;
+    }
+  }
+  ul {
+    list-style-type: none;
+    li {
+      margin: 5px;
+      padding: 5px;
+      border: 1px solid black;
+      .text {
+        display: inline-block;
+      }
+      &.ui-selecting {
+        background: #FECA40;
+      }
+      &.ui-selected {
+        background: #F39814;
+        color: white;
+      }
+    }
+  }
+}

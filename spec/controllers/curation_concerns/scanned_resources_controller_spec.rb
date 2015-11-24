@@ -262,4 +262,26 @@ describe CurationConcerns::ScannedResourcesController do
       end
     end
   end
+
+  describe "#bulk_label" do
+    before do
+      sign_in user
+    end
+    let(:solr) { ActiveFedora.solr.conn }
+    it "sets @members" do
+      resource = FactoryGirl.build(:scanned_resource)
+      allow(resource).to receive(:id).and_return("1")
+      allow(resource.list_source).to receive(:id).and_return("3")
+      file_set = FactoryGirl.build(:file_set)
+      allow(file_set).to receive(:id).and_return("2")
+      resource.ordered_members << file_set
+      solr.add file_set.to_solr.merge(ordered_by_ssim: [resource.id])
+      solr.add resource.to_solr
+      solr.add resource.list_source.to_solr
+      solr.commit
+      get :bulk_label, id: "1"
+
+      expect(assigns(:members).map(&:id)).to eq ["2"]
+    end
+  end
 end

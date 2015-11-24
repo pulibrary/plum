@@ -11,6 +11,8 @@ rules:
   semi:
     - 2
     - never
+  no-constant-condition:
+    - 0
 env:
   es6: true
   browser: true
