@@ -8,7 +8,7 @@ RSpec.describe StateValidator do
     before do
       allow(errors).to receive(:add)
     end
-    ["complete", "pending"].each do |state|
+    ["complete", "pending", "review"].each do |state|
       context "when state is #{state}" do
         it "does not add errors" do
           record = build_record(state: state)

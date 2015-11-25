@@ -14,7 +14,8 @@ class StateValidator < ActiveModel::Validator
     def valid_states
       [
         "complete",
-        "pending"
+        "pending",
+        "review"
       ]
     end
 end
