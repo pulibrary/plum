@@ -7,7 +7,7 @@ RSpec.feature "ScannedResourcesController", type: :feature do
 
   context "an anonymous user" do
     scenario "views a public manifest" do
-      visit curation_concerns_scanned_resource_manifest_path open_resource
+      visit manifest_curation_concerns_scanned_resource_path open_resource
       expect(page.status_code).to eq 200
       expect(page).to have_content "http://plum.com/concern/scanned_resources/#{open_resource.id}/manifest"
       expect(page).to have_content "http://www.example.com/users/auth/cas"
@@ -15,7 +15,7 @@ RSpec.feature "ScannedResourcesController", type: :feature do
     end
 
     scenario "views a private manifest" do
-      visit curation_concerns_scanned_resource_manifest_path private_resource
+      visit manifest_curation_concerns_scanned_resource_path private_resource
       expect(page.status_code).to eq 401
       expect(page).to have_content "http://www.example.com/users/auth/cas"
       expect(page).not_to have_content "http://www.example.com/sign_out"
@@ -28,7 +28,7 @@ RSpec.feature "ScannedResourcesController", type: :feature do
     end
 
     scenario "views a public manifest" do
-      visit curation_concerns_scanned_resource_manifest_path open_resource
+      visit manifest_curation_concerns_scanned_resource_path open_resource
       expect(page.status_code).to eq 200
       expect(page).to have_content "http://plum.com/concern/scanned_resources/#{open_resource.id}/manifest"
       expect(page).to have_content "http://www.example.com/users/auth/cas"
@@ -36,7 +36,7 @@ RSpec.feature "ScannedResourcesController", type: :feature do
     end
 
     scenario "views a private manifest" do
-      visit curation_concerns_scanned_resource_manifest_path private_resource
+      visit manifest_curation_concerns_scanned_resource_path private_resource
       expect(page.status_code).to eq 200
       expect(page).to have_content "http://plum.com/concern/scanned_resources/#{private_resource.id}/manifest"
       expect(page).to have_content "http://www.example.com/users/auth/cas"

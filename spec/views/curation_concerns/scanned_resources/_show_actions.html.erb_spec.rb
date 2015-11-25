@@ -15,7 +15,7 @@ RSpec.describe "curation_concerns/scanned_resources/_show_actions.html.erb" do
     render partial: "curation_concerns/scanned_resources/show_actions", locals: { collector: collector, editor: editor }
   end
   it "renders a reorder link" do
-    expect(rendered).to have_link "Reorder", curation_concerns_scanned_resource_reorder_path(id: resource.id)
+    expect(rendered).to have_link "Reorder", reorder_curation_concerns_scanned_resource_path(id: resource.id)
   end
   it "renders a labeling link" do
     expect(rendered).to have_link "Rename Children", bulk_label_curation_concerns_scanned_resource_path(id: resource.id)

@@ -1,5 +1,5 @@
   <div class="well">
-    <%= form_tag polymorphic_path([main_app, :curation_concerns, @presenter, :browse_everything_files]), id: "browse-everything-form" do %>
+    <%= form_tag polymorphic_path([main_app, :browse_everything_files, :curation_concerns, @presenter]), id: "browse-everything-form" do %>
       <%= button_tag type: 'button', class: 'browse-everything btn btn-primary' do %>
         Upload from Server
       <% end %>
