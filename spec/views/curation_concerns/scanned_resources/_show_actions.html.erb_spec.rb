@@ -17,6 +17,9 @@ RSpec.describe "curation_concerns/scanned_resources/_show_actions.html.erb" do
   it "renders a reorder link" do
     expect(rendered).to have_link "Reorder", curation_concerns_scanned_resource_reorder_path(id: resource.id)
   end
+  it "renders a labeling link" do
+    expect(rendered).to have_link "Rename Children", bulk_label_curation_concerns_scanned_resource_path(id: resource.id)
+  end
   it "renders a server upload form" do
     expect(rendered).to have_selector "form#browse-everything-form"
     expect(rendered).to have_selector "button.browse-everything"

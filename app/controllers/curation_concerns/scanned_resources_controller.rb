@@ -48,6 +48,10 @@ class CurationConcerns::ScannedResourcesController < CurationConcerns::CurationC
     redirect_to main_app.curation_concerns_scanned_resource_path(curation_concern)
   end
 
+  def bulk_label
+    @members = presenter.file_presenters
+  end
+
   private
 
     def lock_manager

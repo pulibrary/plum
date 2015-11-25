@@ -20,3 +20,4 @@ test:
   pre:
     - bundle exec rake rubocop
     - eslint app/assets/javascripts/*.es6
+    - bundle exec rake spec:javascript
