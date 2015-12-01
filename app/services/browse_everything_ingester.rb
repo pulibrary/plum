@@ -11,6 +11,7 @@ class BrowseEverythingIngester
   def save
     actor.create_metadata(upload_set_id, curation_concern, {})
     delete_pending_uploads if actor.create_content(decorated_file)
+    cleanup_download
   end
 
   private
@@ -33,5 +34,9 @@ class BrowseEverythingIngester
 
     def delete_pending_uploads
       curation_concern.pending_uploads.where(file_path: file_path.clean).destroy_all
+    end
+
+    def cleanup_download
+      File.delete(file.path)
     end
 end
