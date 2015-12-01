@@ -5,7 +5,7 @@ RSpec.describe ReviewerMailer, type: :mailer do
     let(:curation_concern) { FactoryGirl.create(:scanned_resource) }
     before(:each) do
       ActionMailer::Base.deliveries = []
-      described_class.completion_email(curation_concern).deliver_now
+      described_class.completion_email(curation_concern.id).deliver_now
     end
 
     it 'sends an email' do
