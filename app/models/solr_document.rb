@@ -36,4 +36,8 @@ class SolrDocument
   def viewing_direction
     Array(self[Solrizer.solr_name("viewing_direction")]).first
   end
+
+  def identifier
+    Array(self[Solrizer.solr_name("identifier")]).first
+  end
 end

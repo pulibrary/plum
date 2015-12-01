@@ -176,6 +176,9 @@ describe ScannedResource do
   end
 
   describe "#check_completion" do
+    before do
+      subject.save
+    end
     it "completes record when state changes to 'complete'", vcr: { cassette_name: "ezid" } do
       allow(subject).to receive("state_changed?").and_return true
       subject.state = 'complete'

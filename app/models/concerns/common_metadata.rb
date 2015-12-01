@@ -60,7 +60,7 @@ module CommonMetadata
 
     def complete_record
       self.identifier = Ezid::Identifier.create.id unless identifier
-      ReviewerMailer.completion_email(self).deliver_now
+      ReviewerMailer.completion_email(id).deliver_later
     end
   end
 end
