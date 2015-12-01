@@ -26,6 +26,10 @@ RSpec.describe "curation_concerns/scanned_resources/bulk_label.html.erb" do
     render
   end
 
+  it "has a bulk label header" do
+    expect(rendered).to include "<h1>Bulk Label</h1>"
+  end
+
   it "displays each file set's label" do
     expect(rendered).to have_text file_set.to_s
     expect(rendered).to have_selector "input[name='file_set[title][]'][type='hidden']"

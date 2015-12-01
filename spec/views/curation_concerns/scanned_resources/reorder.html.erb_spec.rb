@@ -38,4 +38,7 @@ RSpec.describe "curation_concerns/scanned_resources/reorder.html.erb" do
   it "links back to parent" do
     expect(rendered).to have_link "Back to Parent", href: polymorphic_path([main_app, :curation_concerns, presenter])
   end
+  it "has a title" do
+    expect(rendered).to include "<h1>Reorder Children</h1>"
+  end
 end
