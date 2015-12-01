@@ -210,6 +210,12 @@ describe ScannedResource do
 
       expect(subject.pending_uploads).to eq [pending_upload]
     end
+    it "doesn't return anything for other resources' pending uploads" do
+      subject.save
+      FactoryGirl.create(:pending_upload, curation_concern_id: "banana")
+
+      expect(subject.pending_uploads).to eq []
+    end
     context "when not persisted" do
       it "returns a blank array" do
         expect(described_class.new.pending_uploads).to eq []
