@@ -14,6 +14,8 @@ class StateBadge
     def dom_label_class
       if complete?
         'label-success'
+      elsif review?
+        'label-info'
       else
         'label-warning'
       end
@@ -22,6 +24,8 @@ class StateBadge
     def link_title
       if complete?
         'Complete'
+      elsif review?
+        'Review'
       else
         'Pending'
       end
@@ -29,5 +33,9 @@ class StateBadge
 
     def complete?
       @solr_document.state == 'complete'
+    end
+
+    def review?
+      @solr_document.state == 'review'
     end
 end

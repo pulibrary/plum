@@ -26,4 +26,16 @@ RSpec.describe StateBadge do
       expect(subject.render).to include("Complete")
     end
   end
+
+  describe "review" do
+    let(:state) { "review" }
+    let(:solr_document) do
+      instance_double(SolrDocument, state: state)
+    end
+
+    it "renders a badge" do
+      expect(subject.render).to include("label-info")
+      expect(subject.render).to include("Review")
+    end
+  end
 end
