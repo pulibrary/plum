@@ -21,6 +21,9 @@
 
 en:
   hello: "Hello world"
+  headers:
+    bulk_label: "Bulk Label"
+    reorder_children: "Reorder Children"
   simple_form:
     options:
       file_set:
