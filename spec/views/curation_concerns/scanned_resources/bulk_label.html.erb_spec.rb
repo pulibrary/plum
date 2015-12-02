@@ -6,7 +6,8 @@ RSpec.describe "curation_concerns/scanned_resources/bulk_label.html.erb" do
   let(:solr_doc) do
     SolrDocument.new(
       resource.to_solr.merge(
-        id: "test"
+        id: "test",
+        title_tesim: "Test"
       )
     )
   end
@@ -31,8 +32,7 @@ RSpec.describe "curation_concerns/scanned_resources/bulk_label.html.erb" do
   end
 
   it "displays each file set's label" do
-    expect(rendered).to have_text file_set.to_s
-    expect(rendered).to have_selector "input[name='file_set[title][]'][type='hidden']"
+    expect(rendered).to have_selector "input[name='file_set[title][]'][type='text'][value='#{file_set}']"
   end
 
   it "has a link back to parent" do
