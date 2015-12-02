@@ -4,22 +4,26 @@ RSpec.describe "curation_concerns/base/_attributes.html.erb" do
   let(:creator) { 'Bilbo' }
   let(:date_created) { "2015-09-08" }
   let(:rights) { "No touching" }
+  let(:workflow_note) { ["First", "Second"] }
 
   let(:solr_document) do
     SolrDocument.new(
       creator_tesim: creator,
       date_created_tesim: date_created,
-      rights_tesim: rights
+      rights_tesim: rights,
+      workflow_note_tesim: workflow_note
     )
   end
   let(:presenter) do
     ScannedResourceShowPresenter.new(solr_document, nil)
   end
+  let(:can_edit) { false }
 
   before do
     allow(view).to receive(:dom_class) { '' }
 
     assign(:presenter, presenter)
+    allow(view).to receive(:can?).with(:edit, presenter.id).and_return(can_edit)
     render
   end
 
@@ -33,6 +37,22 @@ RSpec.describe "curation_concerns/base/_attributes.html.erb" do
 
   it "displays date created" do
     expect(rendered).to have_content date_created
+  end
+
+  context "when they can edit" do
+    let(:can_edit) { true }
+    it "displays workflow note" do
+      expect(rendered).to have_content "Workflow note"
+      expect(rendered).to have_content "First"
+    end
+  end
+
+  context "when they can't edit" do
+    let(:can_edit) { false }
+    it "doesn't display workflow note" do
+      expect(rendered).not_to have_content "Workflow note"
+      expect(rendered).not_to have_content "First"
+    end
   end
 
   def assert_catalog_link(field, value)

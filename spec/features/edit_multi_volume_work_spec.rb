@@ -21,10 +21,12 @@ RSpec.feature "MultiVolumeWorksController", type: :feature do
     fill_in 'multi_volume_work_source_metadata_identifier', with: '1234568'
     fill_in 'multi_volume_work_portion_note', with: 'new portion note'
     fill_in 'multi_volume_work_description', with: 'new description'
+    fill_in 'multi_volume_work_workflow_note', with: 'New note'
     choose 'Complete'
 
     click_button 'Update Multi volume work'
     expect(page).to have_text("Test title (Multi Volume Work)")
+    expect(page).to have_text("New note")
     expect(page).to have_selector("span.label-success", "Complete")
   end
 

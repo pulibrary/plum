@@ -22,5 +22,8 @@
   <%= @presenter.attribute_to_html(:lease_expiration_date) %>
   <%= @presenter.attribute_to_html(:rights) %>
   <%= @presenter.attribute_to_html(:identifier) %>
+  <% if can? :edit, @presenter.id %>
+    <%= @presenter.attribute_to_html(:workflow_note) %>
+  <% end %>
   </tbody>
 </table>
