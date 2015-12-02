@@ -4,10 +4,15 @@
   <%= render "bulk_label_actions" %>
   <ul class="col-xs-8">
     <% @members.each do |member| %>
-      <li>
-        <%= simple_form_for [main_app, :curation_concerns, member], remote: true do |f| %>
-          <%= f.input :title, as: :string, input_html: { name: "file_set[title][]" }, value: member.to_s %>
-        <% end %>
+      <li class="row">
+        <div class="col-xs-3 text-center">
+          <%= render_thumbnail_tag member %>
+        </div>
+        <div class="col-xs-9">
+          <%= simple_form_for [main_app, :curation_concerns, member], remote: true do |f| %>
+            <%= f.input :title, as: :string, input_html: { name: "file_set[title][]" }, value: member.to_s %>
+          <% end %>
+        </div>
       </li>
     <% end %>
   </ul>

@@ -8,7 +8,12 @@
       this.element = $("*[data-action=bulk-label]")
       this.actions_element = new window.LabelerActionsManager(this.element.children(".actions"))
       $("#foliate-settings").hide()
-      this.element.children("ul").selectable({stop: this.stopped_label_select})
+      this.element.children("ul").selectable(
+        {
+          stop: this.stopped_label_select,
+          selecting: this.shift_enabled_selecting
+        }
+      )
       this.element.find("li input[type=text]").change(this.input_value_changed)
       this.element.find("li input[type=text]").on("focus", function() {
         $(this).data("current-value", $(this).val())
@@ -25,6 +30,18 @@
         form_input.find("input[data-old-title]").attr("data-old-title",null)
         master.actions_element.save_button.prop("disabled", master.changed_members.length == 0)
       })
+    }
+
+    get shift_enabled_selecting() {
+      let prev = -1
+      return function(e, ui) { // on select
+        let curr = $(ui.selecting.tagName, e.target).index(ui.selecting) // get selecting item index
+        if(e.shiftKey && prev > -1) { // if shift key was pressed and there is previous - select them all
+          $(ui.selecting.tagName, e.target).slice(Math.min(prev, curr), 1 + Math.max(prev, curr)).addClass("ui-selected")
+        } else {
+          prev = curr // othervise just save prev
+        }
+      }
     }
 
     get apply_labels() {
