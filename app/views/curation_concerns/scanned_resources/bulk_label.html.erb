@@ -5,11 +5,8 @@
   <ul class="col-xs-8">
     <% @members.each do |member| %>
       <li>
-        <span class="text">
-          <%= member.to_s %>
-        </span>
         <%= simple_form_for [main_app, :curation_concerns, member], remote: true do |f| %>
-          <%= f.input :title, as: :hidden, input_html: { name: "file_set[title][]" } %>
+          <%= f.input :title, as: :string, input_html: { name: "file_set[title][]" }, value: member.to_s %>
         <% end %>
       </li>
     <% end %>

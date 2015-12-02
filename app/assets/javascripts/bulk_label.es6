@@ -9,15 +9,21 @@
       this.actions_element = new window.LabelerActionsManager(this.element.children(".actions"))
       $("#foliate-settings").hide()
       this.element.children("ul").selectable({stop: this.stopped_label_select})
+      this.element.find("li input[type=text]").change(this.input_value_changed)
+      this.element.find("li input[type=text]").on("focus", function() {
+        $(this).data("current-value", $(this).val())
+      })
       this.setup_buttons()
     }
 
     setup_buttons() {
       this.actions_element.on_apply(this.apply_labels)
       this.actions_element.on_save(this.save_labels)
+      let master = this
       this.element.find("form").on("ajax:success", function() {
         let form_input = $(this)
         form_input.find("input[data-old-title]").attr("data-old-title",null)
+        master.actions_element.save_button.prop("disabled", master.changed_members.length == 0)
       })
     }
 
@@ -30,22 +36,25 @@
         for(let i of this.selected_elements.toArray()) {
           i = $(i)
           value = generator.next().value
-          i.children(".text").text(value)
           title_field = i.find("input[name='file_set[title][]']")
-          if(title_field.val() != value) {
-            if(!title_field.attr("data-old-title")) {
-              title_field.attr("data-old-title", title_field.val())
-            }
-            if(title_field.attr("data-old-title") == value) {
-              title_field.attr("data-old-title", null)
-            }
-          } else {
-            title_field.attr("data-old-title", null)
-          }
-          title_field.val(value)
+          this.title_field_changing(title_field, value)
         }
-        this.actions_element.save_button.prop("disabled", this.changed_members.length == 0)
       }
+    }
+
+    title_field_changing(title_field, value) {
+      if(title_field.val() != value) {
+        if(!title_field.attr("data-old-title")) {
+          title_field.attr("data-old-title", title_field.val())
+        }
+        if(title_field.attr("data-old-title") == value) {
+          title_field.attr("data-old-title", null)
+        }
+      } else {
+        title_field.attr("data-old-title", null)
+      }
+      title_field.val(value)
+      this.actions_element.save_button.prop("disabled", this.changed_members.length == 0)
     }
 
     get generator() {
@@ -62,6 +71,16 @@
           form.submit()
         }
         this.selected_elements.removeClass("ui-selected")
+      }
+    }
+
+    get input_value_changed() {
+      let master = this
+      return function() {
+        let title_field = $(this)
+        let new_value = title_field.val()
+        title_field.val(title_field.data("current-value"))
+        master.title_field_changing(title_field, new_value)
       }
     }
 
