@@ -7,7 +7,8 @@ RSpec.describe "curation_concerns/scanned_resources/bulk_label.html.erb" do
     SolrDocument.new(
       resource.to_solr.merge(
         id: "test",
-        title_tesim: "Test"
+        title_tesim: "Test",
+        thumbnail_path_ss: "/test/image/path.jpg"
       )
     )
   end
@@ -20,10 +21,16 @@ RSpec.describe "curation_concerns/scanned_resources/bulk_label.html.erb" do
       ), nil
     )
   end
+  let(:blacklight_config) { CatalogController.new.blacklight_config }
 
   before do
     assign(:members, members)
     assign(:presenter, parent_presenter)
+    # Blacklight nonsense
+    allow(view).to receive(:dom_class) { '' }
+    allow(view).to receive(:blacklight_config).and_return(blacklight_config)
+    allow(view).to receive(:search_session).and_return({})
+    allow(view).to receive(:current_search_session).and_return(nil)
     render
   end
 
@@ -48,5 +55,9 @@ RSpec.describe "curation_concerns/scanned_resources/bulk_label.html.erb" do
     expect(rendered).to have_selector("input[name=back_label]")
     expect(rendered).to have_selector("input[name=foliate_start_with]")
     expect(response).to have_selector("*[data-action=bulk-label]")
+  end
+
+  it "has thumbnails for each resource" do
+    expect(rendered).to have_selector("img[src='/test/image/path.jpg']")
   end
 end
