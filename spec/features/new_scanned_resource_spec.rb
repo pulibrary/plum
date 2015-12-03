@@ -18,7 +18,7 @@ RSpec.feature "ScannedResourcesController", type: :feature do
       click_button 'Create Scanned resource'
 
       expect(page).to have_selector("h1", "Test Title")
-      expect(page).to have_selector("span.label-warning", "Pending")
+      expect(page).to have_selector("span.label-default", "Pending")
       expect(page).to have_text("Jamie, remind me to give you a lesson in tying knots, sometime")
     end
   end

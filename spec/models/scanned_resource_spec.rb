@@ -176,6 +176,7 @@ describe ScannedResource do
   end
 
   describe "#check_completion" do
+    subject { FactoryGirl.build(:scanned_resource, source_metadata_identifier: '12345', access_policy: 'Policy', use_and_reproduction: 'Statement', state: 'final_review') }
     before do
       subject.save
     end
@@ -192,7 +193,7 @@ describe ScannedResource do
       expect { subject.check_completion }.not_to change { ActionMailer::Base.deliveries.count }
     end
     it "does not complete record when state isn't 'complete'" do
-      subject.state = 'pending'
+      subject.state = 'final_review'
       expect(subject).not_to receive(:complete_record)
       expect { subject.check_completion }.not_to change { ActionMailer::Base.deliveries.count }
     end
@@ -203,6 +204,13 @@ describe ScannedResource do
       expect(subject).not_to receive("identifier=")
       expect { subject.check_completion }.to change { ActionMailer::Base.deliveries.count }.by(1)
       expect(subject.identifier).to eq('1234')
+    end
+    it "does not complete the record when the state transition is invalid" do
+      allow(subject).to receive("state_changed?").and_return true
+      subject.state = 'pending'
+      expect(subject).not_to receive(:complete_record)
+      expect { subject.check_completion }.not_to change { ActionMailer::Base.deliveries.count }
+      expect(subject.identifier).to eq(nil)
     end
   end
 

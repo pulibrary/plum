@@ -8,6 +8,7 @@ RSpec.describe "curation_concerns/base/_attributes.html.erb" do
 
   let(:solr_document) do
     SolrDocument.new(
+      active_fedora_model_ssi: 'ScannedResource',
       creator_tesim: creator,
       date_created_tesim: date_created,
       rights_tesim: rights,

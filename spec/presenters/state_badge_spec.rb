@@ -1,25 +1,35 @@
 require 'rails_helper'
 
 RSpec.describe StateBadge do
-  subject { described_class.new(solr_document) }
-
   describe "pending" do
-    let(:state) { "pending" }
-    let(:solr_document) do
-      instance_double(SolrDocument, state: state)
-    end
+    subject { described_class.new('type', 'pending') }
 
     it "renders a badge" do
-      expect(subject.render).to include("label-warning")
+      expect(subject.render).to include("label-default")
       expect(subject.render).to include("Pending")
     end
   end
 
-  describe "complete" do
-    let(:state) { "complete" }
-    let(:solr_document) do
-      instance_double(SolrDocument, state: state)
+  describe "metadata_review" do
+    subject { described_class.new('type', 'metadata_review') }
+
+    it "renders a badge" do
+      expect(subject.render).to include("label-info")
+      expect(subject.render).to include("Metadata Review")
     end
+  end
+
+  describe "final_review" do
+    subject { described_class.new('type', 'final_review') }
+
+    it "renders a badge" do
+      expect(subject.render).to include("label-primary")
+      expect(subject.render).to include("Final Review")
+    end
+  end
+
+  describe "complete" do
+    subject { described_class.new('type', 'complete') }
 
     it "renders a badge" do
       expect(subject.render).to include("label-success")
@@ -27,15 +37,21 @@ RSpec.describe StateBadge do
     end
   end
 
-  describe "review" do
-    let(:state) { "review" }
-    let(:solr_document) do
-      instance_double(SolrDocument, state: state)
-    end
+  describe "flagged" do
+    subject { described_class.new('type', 'flagged') }
 
     it "renders a badge" do
-      expect(subject.render).to include("label-info")
-      expect(subject.render).to include("Review")
+      expect(subject.render).to include("label-warning")
+      expect(subject.render).to include("Flagged")
+    end
+  end
+
+  describe "takedown" do
+    subject { described_class.new('type', 'takedown') }
+
+    it "renders a badge" do
+      expect(subject.render).to include("label-danger")
+      expect(subject.render).to include("Takedown")
     end
   end
 end

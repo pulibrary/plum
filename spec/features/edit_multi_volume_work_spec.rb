@@ -22,12 +22,12 @@ RSpec.feature "MultiVolumeWorksController", type: :feature do
     fill_in 'multi_volume_work_portion_note', with: 'new portion note'
     fill_in 'multi_volume_work_description', with: 'new description'
     fill_in 'multi_volume_work_workflow_note', with: 'New note'
-    choose 'Complete'
+    choose 'Metadata Review'
 
     click_button 'Update Multi volume work'
     expect(page).to have_text("Test title (Multi Volume Work)")
     expect(page).to have_text("New note")
-    expect(page).to have_selector("span.label-success", "Complete")
+    expect(page).to have_selector("span.label-info", "Metadata Review")
   end
 
   scenario "User can create a new scanned resource attached to the multi-volume work" do

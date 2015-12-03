@@ -6,7 +6,7 @@ FactoryGirl.define do
     use_and_reproduction "Jamie, remind me to give you a lesson in tying knots, sometime."
     description "900 years of time and space, and I’ve never been slapped by someone’s mother."
     visibility Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PUBLIC
-    state "complete"
+    state "metadata_review"
 
     transient do
       user { FactoryGirl.create(:user) }
