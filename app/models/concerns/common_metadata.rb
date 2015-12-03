@@ -19,6 +19,9 @@ module CommonMetadata
     property :state, predicate: ::F3Access.objState, multiple: false do |index|
       index.as :stored_searchable, :facetable
     end
+    property :workflow_note, predicate: ::RDF::Vocab::MODS.note do |index|
+      index.as :stored_searchable, :symbol
+    end
 
     # IIIF
     apply_schema IIIFBookSchema, ActiveFedora::SchemaIndexingStrategy.new(
