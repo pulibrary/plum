@@ -29,6 +29,8 @@ Rails.application.routes.draw do
       member do
         get :bulk_edit
         get :pdf
+        get :structure
+        post :structure, action: :save_structure
         get :manifest, defaults: { format: :json }
         post :reorder, action: :save_order
         post :browse_everything_files

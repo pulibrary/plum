@@ -1,0 +1,28 @@
+<%= content_tag "li", data: { id: node.id, proxy: node.proxy_for_id }.compact do %>
+  <div>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <div class="title">
+          <% if !node.proxy_for_object %>
+            <%= text_field_tag "label", node.label %>
+          <% else %>
+            <%= node.proxy_for_object || node.label %>
+          <% end %>
+        </div>
+        <div class="toolbar">
+          <% if !node.proxy_for_object %>
+            <a href="" title="Remove" data-action="remove-list"><span class="glyphicon glyphicon-remove"></span></a>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <% if node.nodes.length > 0 %>
+    <ul>
+      <% node.nodes.each do |order| %>
+        <%= render "structure_node", node: order %>
+      <% end %>
+    </ul>
+  <% end %>
+<% end %>
+</li>

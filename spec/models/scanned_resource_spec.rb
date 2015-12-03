@@ -233,4 +233,99 @@ describe ScannedResource do
       end
     end
   end
+
+  describe "#logical_order" do
+    let(:params) do
+      {
+        "nodes": [
+          {
+            "label": "Chapter 1",
+            "nodes": [
+              {
+                "label": resource1.rdf_label.first,
+                "proxy": resource1.id
+              }
+            ]
+          },
+          {
+            "label": "Chapter 2",
+            "nodes": [
+              {
+                "label": resource2.rdf_label.first,
+                "proxy": resource2.id
+              }
+            ]
+          }
+        ]
+      }
+    end
+    let(:params2) do
+      {
+        "nodes": [
+          {
+            "label": "Chapter 1",
+            "nodes": [
+              {
+                "label": resource1.rdf_label.first,
+                "proxy": resource1.id
+              }
+            ]
+          },
+          {
+            "label": "Chapter 2",
+            "nodes": [
+              {
+                "label": "Chapter 2b",
+                "nodes": [
+                  {
+                    "label": resource2.rdf_label.first,
+                    "proxy": resource2.id
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    end
+    let(:resource1) { FactoryGirl.create(:file_set) }
+    let(:resource2) { FactoryGirl.create(:file_set) }
+    it "is a resource that can have an order" do
+      expect(subject.logical_order).to be_kind_of LogicalOrderBase
+    end
+    it "can have an order assigned" do
+      subject.logical_order.order = params
+
+      expect(subject.logical_order.resource.statements.to_a.length).to eq 19
+    end
+    it "marshals logical order into solr" do
+      subject.logical_order.order = params
+      expect(subject.to_solr["logical_order_ssim"]).to eq [subject.logical_order.order.to_json]
+    end
+    it "survives persistence" do
+      subject.logical_order.order = params
+      subject.save
+
+      expect(subject.reload.logical_order.order).to eq params.with_indifferent_access
+    end
+    it "can have order pulled out of solr" do
+      subject.logical_order.order = params
+      subject.save
+
+      doc = SolrDocument.new(ActiveFedora::SolrService.query("id:#{subject.id}").first)
+      expect(doc.logical_order).to eq subject.logical_order.order
+    end
+    it "has no order by default" do
+      expect(subject.logical_order.order).to eq({})
+    end
+    it "can have order re-assigned" do
+      subject.logical_order.order = params
+      subject.save
+      subject.reload
+      subject.logical_order.order = params2
+      subject.save
+
+      expect(subject.reload.logical_order.order).to eq params2.with_indifferent_access
+    end
+  end
 end

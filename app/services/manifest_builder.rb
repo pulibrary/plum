@@ -84,6 +84,7 @@ class ManifestBuilder
       end
       apply_canvases unless light
       apply_manifests if manifests.length > 0
+      apply_structures
     end
 
     def apply_canvases
@@ -97,5 +98,13 @@ class ManifestBuilder
 
     def apply_manifests
       manifest['manifests'] = manifests
+    end
+
+    def apply_structures
+      manifest['structures'] = [RangeBuilder.new(logical_order, path, top: true, label: "Logical").to_h]
+    end
+
+    def logical_order
+      @logical_order ||= LogicalOrder.new(record.logical_order)
     end
 end

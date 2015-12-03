@@ -48,6 +48,17 @@ class CurationConcerns::ScannedResourcesController < CurationConcerns::CurationC
     @members = presenter.file_presenters
   end
 
+  def structure
+    @members = presenter.file_presenters
+    @logical_order = presenter.logical_order_object
+  end
+
+  def save_structure
+    curation_concern.logical_order.order = { "nodes": params["nodes"] }
+    curation_concern.save
+    head 200
+  end
+
   private
 
     def lock_manager

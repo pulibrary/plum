@@ -53,11 +53,29 @@ RSpec.describe ManifestBuilder, vcr: { cassette_name: "iiif_manifest" } do
         FileSet.new.tap do |g|
           allow(g).to receive(:persisted?).and_return(true)
           allow(g).to receive(:id).and_return(id)
+          g.title = ["Test"]
         end
       end
       before do
         record.ordered_members << file_set2
         record.ordered_member_proxies.insert_target_at(0, file_set)
+        record.logical_order.order = {
+          "nodes": [
+            {
+              "label": "Chapter 1",
+              "nodes": [
+                {
+                  "label": file_set.rdf_label.first,
+                  "proxy": file_set.id
+                },
+                {
+                  "label": file_set2.rdf_label.first,
+                  "proxy": file_set2.id
+                }
+              ]
+            }
+          ]
+        }
         solr.add file_set.to_solr
         solr.add file_set2.to_solr
         solr.add record.list_source.to_solr
@@ -97,6 +115,14 @@ RSpec.describe ManifestBuilder, vcr: { cassette_name: "iiif_manifest" } do
         expect(first_image.resource.format).to eq "image/jpeg"
         expect(first_image.resource.service['@id']).to eq "http://192.168.99.100:5004/x6%2F33%2Ff1%2F04%2Fm-intermediate_file.jp2"
         expect(first_image["on"]).to eq first_canvas['@id']
+      end
+      it "builds ranges" do
+        expect(manifest_json["structures"].length).to eq 1
+        first_structure = manifest_json["structures"].first
+        expect(first_structure["viewingHint"]).to eq "top"
+        expect(first_structure["ranges"].length).to eq 1
+        expect(first_structure["ranges"].first["canvases"].length).to eq 2
+        expect(first_structure["ranges"].first["canvases"].first).to eq manifest_json["sequences"].first["canvases"].first['@id']
       end
     end
     it "has none" do
