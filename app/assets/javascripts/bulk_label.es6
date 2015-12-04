@@ -81,12 +81,7 @@
     get save_labels() {
       return (event) => {
         event.preventDefault()
-        let form = null
-        for(let i of this.changed_members.toArray()) {
-          i = $(i)
-          form = i.children("form")
-          form.submit()
-        }
+        this.changed_members.find("form").submit()
         this.selected_elements.removeClass("ui-selected")
       }
     }
