@@ -31,3 +31,22 @@ en:
           "": 'Single Page'
           non-paged: 'Non-Paged'
           facing-pages: 'Facing pages'
+  state:
+    pending:
+      label: 'Pending'
+      desc:  'Initial digitization, suppressed from display'
+    metadata_review:
+      label: 'Metadata Review'
+      desc:  'Awaiting metadata approval'
+    final_review:
+      label: 'Final Review'
+      desc:  'Awaiting final approval before being published'
+    complete:
+      label: 'Complete'
+      desc:  'Published and accessible according to access control rules'
+    flagged:
+      label: 'Flagged'
+      desc:  'In need of attention, but still accessible according to access rules'
+    takedown:
+      label: 'Takedown'
+      desc:  'Formerly-published but suppressed from display'

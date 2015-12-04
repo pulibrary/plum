@@ -41,7 +41,7 @@ module CommonMetadata
     end
 
     def check_completion
-      complete_record if self.state_changed? && state == 'complete'
+      complete_record if state_changed? && state == 'complete'
     end
 
     private

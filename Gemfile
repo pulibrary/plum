@@ -94,6 +94,7 @@ gem "omniauth-cas"
 gem 'ezid-client'
 gem 'sprockets-es6'
 gem 'browse-everything', github: 'projecthydra-labs/browse-everything'
+gem 'aasm'
 source 'https://rails-assets.org' do
   gem 'rails-assets-babel-polyfill'
 end

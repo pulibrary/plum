@@ -12,12 +12,14 @@
       <%= @presenter.permission_badge %>
     </td>
   </tr>
-  <tr>
-    <th>State</th>
-    <td>
-      <%= @presenter.state_badge %>
-    </td>
-  </tr>
+  <% if @presenter.respond_to? :state_badge %>
+    <tr>
+      <th>State</th>
+      <td>
+        <%= @presenter.state_badge %>
+      </td>
+    </tr>
+  <% end %>
   <%= @presenter.attribute_to_html(:embargo_release_date) %>
   <%= @presenter.attribute_to_html(:lease_expiration_date) %>
   <%= @presenter.attribute_to_html(:rights) %>

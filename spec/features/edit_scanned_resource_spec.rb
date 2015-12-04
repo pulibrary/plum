@@ -20,11 +20,11 @@ RSpec.feature "ScannedResourcesController", type: :feature do
       fill_in 'scanned_resource_source_metadata_identifier', with: '1234568'
       fill_in 'scanned_resource_portion_note', with: 'new portion note'
       fill_in 'scanned_resource_description', with: 'new description'
-      choose 'Pending'
+      choose 'Final Review'
 
       click_button 'Update Scanned resource'
       expect(page).to have_text("Test title (Scanned Resource)")
-      expect(page).to have_selector("span.label-warning", "Pending")
+      expect(page).to have_selector("span.label-primary", "Final Review")
     end
 
     scenario "User can add a new file" do

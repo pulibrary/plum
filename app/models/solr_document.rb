@@ -29,6 +29,10 @@ class SolrDocument
     Array(self[Solrizer.solr_name("state")]).first
   end
 
+  def type
+    self['active_fedora_model_ssi']
+  end
+
   def viewing_hint
     Array(self[Solrizer.solr_name("viewing_hint")]).first
   end

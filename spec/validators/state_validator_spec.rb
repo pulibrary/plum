@@ -8,10 +8,10 @@ RSpec.describe StateValidator do
     before do
       allow(errors).to receive(:add)
     end
-    ["complete", "pending", "review"].each do |state|
+    ["pending", "metadata_review", "final_review", "complete", "flagged", "takedown"].each do |state|
       context "when state is #{state}" do
         it "does not add errors" do
-          record = build_record(state: state)
+          record = build_record(state, nil)
 
           subject.validate(record)
 
@@ -22,7 +22,7 @@ RSpec.describe StateValidator do
 
     context "when state is blank" do
       it "does not add errors" do
-        record = build_record(state: nil)
+        record = build_record(nil, nil)
 
         subject.validate(record)
 
@@ -32,7 +32,7 @@ RSpec.describe StateValidator do
 
     context "when state is not acceptable" do
       it "adds errors" do
-        record = build_record(state: "bad")
+        record = build_record("bad", "bad")
 
         subject.validate(record)
 
@@ -41,11 +41,13 @@ RSpec.describe StateValidator do
     end
   end
 
-  def build_record(state:)
-    record = instance_double ScannedResource
+  def build_record(state, state_was)
+    record = double "ScannedResource"
     allow(record).to receive(:errors).and_return(errors)
     allow(record).to receive(:state).and_return(state)
     allow(record).to receive(:read_attribute_for_validation).with(:state).and_return(record.state)
+    allow(record).to receive(:state_changed?).and_return(state == state_was)
+    allow(record).to receive(:state_was).and_return(state_was)
     record
   end
 end

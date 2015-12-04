@@ -1,22 +1,10 @@
-<% unless curation_concern.new_record? %>
+<% if curation_concern.new_record? %>
+  <%= StateBadge.new(curation_concern.class.to_s).render_hidden %>
+<% else %>
   <fieldset id="set-state">
     <legend>State</legend>
     <div class="form-group">
-      <label class="radio">
-        <%= f.radio_button :state, 'pending', checked: curation_concern.state != 'complete' && curation_concern.state != 'review' %>
-        <%= f.label 'Pending', class: 'label label-warning', for: 'scanned_resource_state_pending' %>
-        In progress and suppressed from public display
-      </label>
-      <label class="radio">
-        <%= f.radio_button :state, 'review', checked: curation_concern.state == 'review' %>
-        <%= f.label 'Review', class: 'label label-info', for: 'scanned_resource_state_review' %>
-        In need of review
-      </label>
-      <label class="radio">
-        <%= f.radio_button :state, 'complete', checked: curation_concern.state == 'complete' %>
-        <%= f.label 'Complete', class: 'label label-success', for: 'scanned_resource_state_complete' %>
-        Finished work, visibility determined by Access Rights
-      </label>
+      <%= StateBadge.new(curation_concern.class.to_s, curation_concern.state).render_buttons %>
     </div>
   </fieldset>
 <% end %>

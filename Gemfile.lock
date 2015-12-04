@@ -133,6 +133,7 @@ GEM
   remote: https://rubygems.org/
   remote: https://rails-assets.org/
   specs:
+    aasm (4.5.0)
     actionmailer (4.2.4)
       actionpack (= 4.2.4)
       actionview (= 4.2.4)
@@ -784,6 +785,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  aasm
   active-fedora!
   activefedora-aggregation!
   browse-everything!
