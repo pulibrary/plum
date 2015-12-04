@@ -9,7 +9,7 @@ RSpec.feature "MultiVolumeWorksController", type: :feature do
   end
 
   scenario "Logged in user can follow link to edit multi-volume work" do
-    visit polymorphic_path [:curation_concerns, multi_volume_work]
+    visit polymorphic_path [multi_volume_work]
     click_link 'Edit This Multi Volume Work'
     expect(page).to have_text('Manage Your Work')
   end
@@ -17,7 +17,7 @@ RSpec.feature "MultiVolumeWorksController", type: :feature do
   scenario "User can edit a multi-volume work", vcr: { cassette_name: "ezid" } do
     Ezid::Client.configure do |conf| conf.logger = Logger.new(File::NULL); end
 
-    visit edit_polymorphic_path [:curation_concerns, multi_volume_work]
+    visit edit_polymorphic_path [multi_volume_work]
     fill_in 'multi_volume_work_source_metadata_identifier', with: '1234568'
     fill_in 'multi_volume_work_portion_note', with: 'new portion note'
     fill_in 'multi_volume_work_description', with: 'new description'
@@ -31,7 +31,7 @@ RSpec.feature "MultiVolumeWorksController", type: :feature do
   end
 
   scenario "User can create a new scanned resource attached to the multi-volume work" do
-    visit polymorphic_path [:curation_concerns, multi_volume_work]
+    visit polymorphic_path [multi_volume_work]
     expect(page).to have_text('This Multi Volume Work has no scanned resources associated with it')
 
     click_link 'Attach a Scanned Resource'
@@ -40,7 +40,7 @@ RSpec.feature "MultiVolumeWorksController", type: :feature do
     select 'Marquand', from: 'scanned_resource_use_and_reproduction'
     click_button 'Create Scanned resource'
 
-    visit polymorphic_path [:curation_concerns, multi_volume_work]
+    visit polymorphic_path [multi_volume_work]
     expect(page).to have_link('Volume 1', count: 1)
   end
 end

@@ -10,13 +10,13 @@ RSpec.feature "ScannedResourcesController", type: :feature do
     end
 
     scenario "Logged in user can follow link to edit scanned resource" do
-      visit polymorphic_path [:curation_concerns, scanned_resource]
+      visit polymorphic_path [scanned_resource]
       click_link 'Edit This Scanned Resource'
       expect(page).to have_text('Manage Your Work')
     end
 
     scenario "User can edit a scanned resource" do
-      visit edit_polymorphic_path [:curation_concerns, scanned_resource]
+      visit edit_polymorphic_path [scanned_resource]
       fill_in 'scanned_resource_source_metadata_identifier', with: '1234568'
       fill_in 'scanned_resource_portion_note', with: 'new portion note'
       fill_in 'scanned_resource_description', with: 'new description'
@@ -31,7 +31,7 @@ RSpec.feature "ScannedResourcesController", type: :feature do
       allow(CharacterizeJob).to receive(:perform_later).once
       allow_any_instance_of(FileSet).to receive(:warn) # suppress virus warning messages
 
-      visit polymorphic_path [:curation_concerns, scanned_resource]
+      visit polymorphic_path [scanned_resource]
       click_link 'Attach a File'
 
       within("form.new_file_set") do
@@ -50,7 +50,7 @@ RSpec.feature "ScannedResourcesController", type: :feature do
 
   context "an anonymous user" do
     scenario "User can't edit a scanned resource" do
-      visit edit_polymorphic_path [:curation_concerns, scanned_resource]
+      visit edit_polymorphic_path [scanned_resource]
       expect(page).to have_selector("div.alert-info", "You are not authorized to access this page")
     end
   end

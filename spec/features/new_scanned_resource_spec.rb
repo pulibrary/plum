@@ -9,7 +9,7 @@ RSpec.feature "ScannedResourcesController", type: :feature do
     end
 
     scenario "Logged in user can create a new scanned resource" do
-      visit new_polymorphic_path [:curation_concerns, ScannedResource]
+      visit new_polymorphic_path [ScannedResource]
       expect(page).to_not have_selector("label.label-warning", "Pending")
 
       fill_in 'scanned_resource_title', with: 'Test Title'
@@ -25,7 +25,7 @@ RSpec.feature "ScannedResourcesController", type: :feature do
 
   context "an anonymous user" do
     scenario "Anonymous user can't create a scanned resource" do
-      visit new_polymorphic_path [:curation_concerns, ScannedResource]
+      visit new_polymorphic_path [ScannedResource]
       expect(page).to have_selector("div.alert-info", "You are not authorized to access this page")
     end
   end

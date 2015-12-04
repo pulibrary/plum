@@ -1,6 +1,6 @@
 <% if work.file_presenters.present? %>
   <%= UniversalViewer.script_tag %>
-  <div class="uv viewer" data-uri="<%= main_app.polymorphic_path([main_app,:manifest,:curation_concerns,work]) %>"></div>
+  <div class="uv viewer" data-uri="<%= main_app.polymorphic_path([main_app,:manifest,work]) %>"></div>
 <% else %>
   <%= image_tag 'nope.png', class: "canonical-image" %>
 <% end %>
