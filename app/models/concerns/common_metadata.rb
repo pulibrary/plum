@@ -9,7 +9,7 @@ module CommonMetadata
     before_update :check_completion
 
     property :sort_title, predicate: ::OpaqueMods.titleForSort, multiple: false
-    property :portion_note, predicate: ::RDF::SKOS.scopeNote, multiple: false
+    property :portion_note, predicate: ::RDF::Vocab::SKOS.scopeNote, multiple: false
     property :description, predicate: ::RDF::DC.abstract, multiple: false
     property :identifier, predicate: ::RDF::DC.identifier, multiple: false
     property :access_policy, predicate: ::RDF::DC.accessRights, multiple: false
