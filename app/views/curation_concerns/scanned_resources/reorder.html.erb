@@ -13,7 +13,7 @@
 <div class="row" id="reorder-actions">
   <div class="col-xs-2">
     <button type="button" class="btn btn-primary disabled" data-reorder-action="persist">Save Reorder</button>
-    <%= link_to "Back to Parent", polymorphic_path([main_app, :curation_concerns, @presenter]), class: "btn btn-default" %>
+    <%= link_to "Back to Parent", polymorphic_path([main_app, @presenter]), class: "btn btn-default" %>
   </div>
   <div class="col-xs-10">
     <ul id="sortable" data-id="<%= @presenter.id %>" class="list-unstyled">

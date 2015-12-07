@@ -3,7 +3,7 @@ require 'rails_helper'
 describe "curation_concerns/scanned_resources/_form_rights.html.erb" do
   let(:curation_concern) { ScannedResource.new }
   before do
-    form = simple_form_for([:curation_concerns, curation_concern])
+    form = simple_form_for([curation_concern])
     render partial: "curation_concerns/scanned_resources/form_rights", locals: {
       f: form
     }

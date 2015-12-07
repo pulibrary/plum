@@ -9,5 +9,10 @@ module CurationConcerns
         super
       end
     end
+
+    def initialize_field(key)
+      return if key.to_sym == :description
+      super
+    end
   end
 end
