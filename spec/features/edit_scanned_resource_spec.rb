@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.feature "ScannedResourcesController", type: :feature do
   let(:user) { FactoryGirl.create(:curation_concern_creator) }
-  let(:scanned_resource) { FactoryGirl.create(:scanned_resource, user: user) }
+  let(:scanned_resource) { FactoryGirl.create(:scanned_resource_with_multi_volume_work, user: user) }
 
   context "an authorized user" do
     before(:each) do
@@ -23,7 +23,7 @@ RSpec.feature "ScannedResourcesController", type: :feature do
       choose 'Final Review'
 
       click_button 'Update Scanned resource'
-      expect(page).to have_text("Test title (Scanned Resource)")
+      expect(page).to have_text("Test title")
       expect(page).to have_selector("span.label-primary", "Final Review")
     end
 
@@ -52,6 +52,13 @@ RSpec.feature "ScannedResourcesController", type: :feature do
     scenario "User can't edit a scanned resource" do
       visit edit_polymorphic_path [scanned_resource]
       expect(page).to have_selector("div.alert-info", "You are not authorized to access this page")
+    end
+
+    scenario "User can follow link to parent multi volume work" do
+      parent_id = scanned_resource.ordered_by.first.id
+      visit curation_concerns_member_scanned_resource_path(parent_id, scanned_resource.id)
+      click_link 'Test title'
+      expect(page).to have_text('Test title')
     end
   end
 end

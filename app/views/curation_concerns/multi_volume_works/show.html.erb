@@ -1,6 +1,6 @@
 <% provide :page_title, @presenter.page_title %>
 <% provide :page_header do %>
-  <h1><%= @presenter %> <span class="human_readable_type">(<%= @presenter.human_readable_type %>)</span></h1>
+  <%= multi_volume_work_page_header %>
 <% end %>
 
 <% collector = can?(:collect, @presenter.id) %>
@@ -19,4 +19,3 @@
     <% end %>
   </div>
 <% end %>
-

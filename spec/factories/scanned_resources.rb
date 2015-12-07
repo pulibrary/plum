@@ -27,5 +27,14 @@ FactoryGirl.define do
 
     factory :open_scanned_resource do
     end
+
+    factory :scanned_resource_with_multi_volume_work do
+      after(:create) do |work, evaluator|
+        parent = FactoryGirl.create(:multi_volume_work, user: evaluator.user)
+        parent.ordered_members << work
+        parent.save
+        work.save
+      end
+    end
   end
 end
