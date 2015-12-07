@@ -27,8 +27,7 @@ Rails.application.routes.draw do
     end
     resources :scanned_resources, only: [] do
       member do
-        get :reorder
-        get :bulk_label
+        get :bulk_edit
         get :pdf
         get :manifest, defaults: { format: :json }
         post :reorder, action: :save_order

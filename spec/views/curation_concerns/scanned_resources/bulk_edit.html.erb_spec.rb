@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "curation_concerns/scanned_resources/bulk_label.html.erb" do
+RSpec.describe "curation_concerns/scanned_resources/bulk_edit.html.erb" do
   let(:members) { [file_set] }
   let(:file_set) { FileSetPresenter.new(solr_doc, nil) }
   let(:solr_doc) do
@@ -34,8 +34,8 @@ RSpec.describe "curation_concerns/scanned_resources/bulk_label.html.erb" do
     render
   end
 
-  it "has a bulk label header" do
-    expect(rendered).to include "<h1>Bulk Label</h1>"
+  it "has a bulk edit header" do
+    expect(rendered).to include "<h1>Bulk Edit</h1>"
   end
 
   it "displays each file set's label" do
@@ -59,5 +59,20 @@ RSpec.describe "curation_concerns/scanned_resources/bulk_label.html.erb" do
 
   it "has thumbnails for each resource" do
     expect(rendered).to have_selector("img[src='/test/image/path.jpg']")
+  end
+
+  it "renders a form for each member" do
+    expect(rendered).to have_selector("form", count: members.length)
+  end
+
+  it "renders an input for titles" do
+    expect(rendered).to have_selector("input[name='file_set[title][]']")
+  end
+
+  it "has radio inputs for viewing hints" do
+    expect(rendered).to have_selector("input[type=radio][name='file_set[viewing_hint]']", count: 3)
+    ["Single Page", "Non-Paged", "Facing pages"].each do |hint|
+      expect(rendered).to have_field hint
+    end
   end
 end
