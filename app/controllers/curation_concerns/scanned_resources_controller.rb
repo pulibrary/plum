@@ -25,10 +25,6 @@ class CurationConcerns::ScannedResourcesController < CurationConcerns::CurationC
     redirect_to main_app.download_path(curation_concern, file: 'pdf')
   end
 
-  def reorder
-    @members = presenter.file_presenters
-  end
-
   def save_order
     lock_manager.lock(curation_concern.id) do
       form = ReorderForm.new(curation_concern)
@@ -48,7 +44,7 @@ class CurationConcerns::ScannedResourcesController < CurationConcerns::CurationC
     redirect_to main_app.curation_concerns_scanned_resource_path(curation_concern)
   end
 
-  def bulk_label
+  def bulk_edit
     @members = presenter.file_presenters
   end
 

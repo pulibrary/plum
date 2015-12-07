@@ -1,53 +1,23 @@
 { // Keeps everything out of global scope.
   jQuery(() => {
     window.new_sort_manager = new SortManager
-    // Auto-submit reorder forms.
-    $("*[data-reorder-id] input").change(
-      function() {
-        const parent_form = $(this).parents("form")
-        parent_form.submit()
-      }
-    )
   })
 
-  class Flash {
-    constructor() {
-      this.element = $("*[data-reorder-action='flash']")
-      this.element.children(".close").click(
-        () => {
-          this.element.hide()
-        }
-      )
-    }
-    reset_type() {
-      this.element.removeClass("alert-success")
-      this.element.removeClass("alert-danger")
-    }
-    set(type, message) {
-      this.reset_type()
-      this.element.addClass(`alert-${type}`)
-      this.element.children(".text").text(message)
-      this.element.show()
-      this.element.removeClass("hidden")
-    }
-  }
 
   class SortablePersister {
     constructor(sorter) {
-      this.element = $("*[data-reorder-action='persist']")
-      this.element.click(this.persist_ordering)
       this.sorter = sorter
-      this.flash = new Flash
+      this.flash = new window.Flash
+      sorter.bulk_labeler.actions_element.on_save(this.persist_ordering)
     }
 
     get persist_ordering() {
       return (event) => {
         event.preventDefault()
-        if(this.persisting == true) {
+        if(this.persisting == true || !this.sorter.needs_saved) {
           return
         }
         this.persisting = true
-        this.begin_save()
         $.post(`/concern/scanned_resources/${this.sorter.id}/reorder.json`,
                {order: this.sorter.order}
               )
@@ -59,7 +29,6 @@
 
     get persist_finished() {
       return () => {
-        this.element.text(this.element.data("old-text"))
         this.persisting = false
       }
     }
@@ -79,22 +48,10 @@
       return (data) => {
         if(data.message) {
           this.flash.set("success", data.message)
+          this.sorter.reset_save()
+          this.sorter.bulk_labeler.check_save_button()
         }
       }
-    }
-
-    activate() {
-      this.element.removeClass("disabled")
-    }
-
-    disable() {
-      this.element.addClass("disabled")
-    }
-
-    begin_save() {
-      this.element.addClass("disabled")
-      this.element.data("old-text", this.element.text())
-      this.element.text("Saving...")
     }
   }
 
@@ -103,11 +60,14 @@
       this.element = $("#sortable")
       this.sorting_info = {}
       this.initialize_sort()
+      this.bulk_labeler = new window.BulkLabeler
+      this.bulk_labeler.sorter = this
       this.initialize_persist_button()
+      this.element.data("current-order", this.order)
     }
 
     initialize_sort() {
-      this.element.sortable()
+      this.element.sortable({handle: ".panel-heading"})
       this.element.disableSelection()
       this.element.on("sortstop", this.stopped_sorting)
       this.element.on("sortstart", this.started_sorting)
@@ -127,7 +87,7 @@
         if(this.sorting_info.end == this.sorting_info.start) {
           return
         }
-        this.sortable_persister.activate()
+        this.bulk_labeler.check_save_button()
       }
     }
 
@@ -140,6 +100,16 @@
 
     get id() {
       return this.element.data("id")
+    }
+
+    get needs_saved() {
+      let arr1 = this.order
+      let arr2 = this.element.data("current-order")
+      return JSON.stringify(arr1) != JSON.stringify(arr2)
+    }
+
+    reset_save() {
+      this.element.data("current-order", this.order)
     }
 
     get order() {

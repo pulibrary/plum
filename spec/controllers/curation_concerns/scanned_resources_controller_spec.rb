@@ -160,34 +160,6 @@ describe CurationConcerns::ScannedResourcesController do
     end
   end
 
-  describe "reorder" do
-    let(:resource) { FactoryGirl.create(:scanned_resource) }
-    let(:member) { FactoryGirl.create(:file_set) }
-    before do
-      3.times { resource.ordered_members << member }
-      resource.save
-      sign_in user
-      get :reorder, id: resource.id
-    end
-
-    context "for a sub-resource" do
-      let(:resource) do
-        r = FactoryGirl.build(:scanned_resource)
-        allow(r).to receive(:id).and_return("testing")
-        allow(r).to receive(:save).and_return(true)
-        r.update_index
-        r
-      end
-      it "works" do
-        expect(response).to be_success
-      end
-    end
-
-    it "finds all proxies for the resource" do
-      expect(assigns(:members).map(&:id)).to eq resource.ordered_member_ids
-    end
-  end
-
   describe "#save_order" do
     let(:resource) { FactoryGirl.create(:scanned_resource, user: user) }
     let(:member) { FactoryGirl.create(:file_set, user: user) }
@@ -263,7 +235,7 @@ describe CurationConcerns::ScannedResourcesController do
     end
   end
 
-  describe "#bulk_label" do
+  describe "#bulk-edit" do
     before do
       sign_in user
     end
@@ -279,7 +251,7 @@ describe CurationConcerns::ScannedResourcesController do
       solr.add resource.to_solr
       solr.add resource.list_source.to_solr
       solr.commit
-      get :bulk_label, id: "1"
+      get :bulk_edit, id: "1"
 
       expect(assigns(:members).map(&:id)).to eq ["2"]
     end
