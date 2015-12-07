@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: http://bibdata.princeton.edu/bibliographic/2028405
+    uri: https://bibdata.princeton.edu/bibliographic/2028405
     body:
       encoding: US-ASCII
       string: ''
