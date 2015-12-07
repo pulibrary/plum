@@ -8,12 +8,31 @@
   }
   ul {
     list-style-type: none;
+    &.grid li {
+      @extend .col-xs-4;
+      .thumbnail {
+        @extend .col-xs-12;
+      }
+      .spacer {
+        @extend .col-xs-12;
+      }
+      .attributes {
+        @extend .col-xs-12;
+      }
+    }
     li {
-      margin: 5px;
-      padding: 5px;
-      border: 1px solid black;
+      @extend .col-xs-12;
       .text {
         display: inline-block;
+      }
+      .thumbnail {
+        @extend .col-xs-3;
+      }
+      .spacer {
+        @extend .col-xs-3;
+      }
+      .attributes {
+        @extend .col-xs-6;
       }
       &.ui-selecting {
         background: #FECA40;
