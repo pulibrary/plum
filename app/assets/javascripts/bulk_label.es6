@@ -2,10 +2,11 @@
 class BulkLabeler {
   constructor() {
     this.element = $("*[data-action=bulk-label]")
-    this.actions_element = new window.LabelerActionsManager(this.element.children(".actions"))
+    this.actions_element = new window.LabelerActionsManager(this.element.find(".actions"))
     $("#foliate-settings").hide()
-    this.element.children("ul").selectable(
+    $("#order-grid").selectable(
       {
+        filter: ".panel",
         stop: this.stopped_label_select,
         selecting: this.shift_enabled_selecting
       }
@@ -130,7 +131,7 @@ class BulkLabeler {
   }
 
   get selected_elements() {
-    return this.element.find("li.ui-selected")
+    return this.element.find("li .panel.ui-selected")
   }
 
   get stopped_label_select() {

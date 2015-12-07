@@ -34,10 +34,10 @@
       .attributes {
         @extend .col-xs-6;
       }
-      &.ui-selecting {
+      .ui-selecting .panel-body {
         background: #FECA40;
       }
-      &.ui-selected {
+      .ui-selected .panel-body {
         background: #F39814;
       }
     }
