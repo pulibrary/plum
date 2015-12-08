@@ -13,40 +13,46 @@
 
 <div data-action="bulk-label">
   <div class="col-xs-3">
-    <%= link_to "Back to Parent", polymorphic_path([main_app, @presenter]) %>
-  </div>
-  <div class="col-xs-8">
-    <div class="btn-group col-xs-12" role="group" data-action="list-toggle">
-      <button type="button" class="btn btn-default active list" aria-label="List">
-        <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
-      </button>
-      <button type="button" class="btn btn-default grid" aria-label="Grid">
-        <span class="glyphicon glyphicon-th" aria-hidden="true"></span>
-      </button>
+    <div class="col-xs-12">
+      <%= link_to "Back to Parent", polymorphic_path([main_app, @presenter]) %>
+    </div>
+    <div class="col-xs-12">
+      <%= render "bulk_edit_actions" %>
     </div>
   </div>
-  <%= render "bulk_edit_actions" %>
-  <ul id="sortable" data-id="<%= @presenter.id %>" class="list-unstyled col-xs-8">
-    <% @members.each do |member| %>
-      <li data-reorder-id='<%= member.id %>'>
-        <%= simple_form_for [main_app, member], remote: true do |f| %>
-          <div class="panel panel-default">
-            <div class="panel-heading">
-              <%= f.input :title, as: :string, input_html: { name: "file_set[title][]" }, value: member.to_s, label: false %>
+  <div class="col-xs-8" id="order-grid">
+    <div class="col-xs-12">
+      <div class="btn-group col-xs-12" role="group" data-action="list-toggle">
+        <button type="button" class="btn btn-default active list" aria-label="List">
+          <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+        </button>
+        <button type="button" class="btn btn-default grid" aria-label="Grid">
+          <span class="glyphicon glyphicon-th" aria-hidden="true"></span>
+        </button>
+      </div>
+    </div>
+    <ul id="sortable" data-id="<%= @presenter.id %>" class="list-unstyled col-xs-12">
+      <% @members.each do |member| %>
+        <li data-reorder-id='<%= member.id %>'>
+          <%= simple_form_for [main_app, member], remote: true do |f| %>
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <%= f.input :title, as: :string, input_html: { name: "file_set[title][]" }, value: member.to_s, label: false %>
+              </div>
+              <div class="panel-body">
+                <div class="text-center thumbnail">
+                  <%= render_thumbnail_tag member %>
+                </div>
+                <div class="attributes">
+                  <%= f.input :viewing_hint, collection: [:"", :"non-paged", :"facing-pages"], as: :radio_buttons, label: false, defaults: { input_html: { class: '' }}%>
+                </div>
+                <div class="spacer">
+                </div>
+              </div>
             </div>
-            <div class="panel-body">
-              <div class="text-center thumbnail">
-                <%= render_thumbnail_tag member %>
-              </div>
-              <div class="attributes">
-                <%= f.input :viewing_hint, collection: [:"", :"non-paged", :"facing-pages"], as: :radio_buttons, label: false, defaults: { input_html: { class: '' }}%>
-              </div>
-              <div class="spacer">
-              </div>
-            </div>
-          </div>
-        <% end %>
-      </li>
-    <% end %>
-  </ul>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
 </div>
