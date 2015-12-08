@@ -1,14 +1,6 @@
 class CurationConcerns::CurationConcernsController < ApplicationController
   include CurationConcerns::CurationConcernController
-
-  def create
-    super
-  rescue StandardError => err
-    metadata_id = params[curation_concern_name]['source_metadata_identifier']
-    logger.debug "Error retrieving metadata for #{metadata_id}: #{err}"
-    flash[:alert] = "Error retrieving metadata for '#{metadata_id}'"
-    render :new, status: 500
-  end
+  include CurationConcerns::Collectible
 
   def curation_concern_name
     curation_concern.class.name.underscore

@@ -12,6 +12,7 @@ RSpec.feature 'Home Page', type: :feature do
       visit root_path
       expect(page).to have_content('Plum: A Repository is a secure repository service')
       expect(page).to have_selector('li.work-type/h3.title', text: 'Scanned Resource')
+      expect(page).to have_selector('li.work-type/h3.title', text: 'Collection')
     end
   end
 
@@ -20,6 +21,7 @@ RSpec.feature 'Home Page', type: :feature do
       visit root_path
       expect(page).to have_content('Plum: A Repository is a secure repository service')
       expect(page).not_to have_selector('li.work-type/h3.title', text: 'Scanned Resource')
+      expect(page).not_to have_selector('li.work-type/h3.title', text: 'Collection')
     end
   end
 end

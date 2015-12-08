@@ -61,4 +61,8 @@ class SolrDocument
   def file_label
     Array(self[Solrizer.solr_name('label')]).first
   end
+
+  def exhibit_id
+    self[Solrizer.solr_name('exhibit_id')]
+  end
 end

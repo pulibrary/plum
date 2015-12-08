@@ -13,6 +13,7 @@ class Ability
   def admin_permissions
     can [:create, :read, :add_user, :remove_user, :index], Role
     can [:manage], curation_concerns
+    can [:manage], Collection
     can [:manage], FileSet
   end
 
@@ -21,6 +22,7 @@ class Ability
     # Do not allow creators to destroy what they make.
     can [:create, :read, :edit, :update, :publish], curation_concerns
     can [:create, :read, :edit, :update, :publish], FileSet
+    can [:create, :read, :edit, :update, :publish], Collection
   end
 
   # Abilities that should be granted to patron
