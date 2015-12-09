@@ -6,7 +6,7 @@ module CommonMetadata
   extend ActiveSupport::Concern
 
   included do
-    before_update :check_completion
+    before_update :check_state
 
     property :sort_title, predicate: ::OpaqueMods.titleForSort, multiple: false
     property :portion_note, predicate: ::RDF::Vocab::SKOS.scopeNote, multiple: false
@@ -40,8 +40,10 @@ module CommonMetadata
       self.attributes = remote_data.attributes
     end
 
-    def check_completion
-      complete_record if state_changed? && state == 'complete'
+    def check_state
+      return unless state_changed?
+      complete_record if state == 'complete'
+      ReviewerMailer.notify(id, state).deliver_later
     end
 
     private
@@ -63,7 +65,6 @@ module CommonMetadata
 
     def complete_record
       self.identifier = Ezid::Identifier.create.id unless identifier
-      ReviewerMailer.completion_email(id).deliver_later
     end
   end
 end
