@@ -25,7 +25,7 @@ RSpec.feature "MultiVolumeWorksController", type: :feature do
     choose 'Metadata Review'
 
     click_button 'Update Multi volume work'
-    expect(page).to have_text("Test title (Multi Volume Work)")
+    expect(page).to have_text("Test title")
     expect(page).to have_text("New note")
     expect(page).to have_selector("span.label-info", "Metadata Review")
   end
