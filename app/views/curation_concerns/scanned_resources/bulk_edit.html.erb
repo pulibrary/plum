@@ -1,4 +1,4 @@
-<h1><%= t("headers.bulk_edit") %></h1>
+<%= bulk_edit_page_header %>
 <div class="flash-message">
   <div class="container">
     <div class="col-md-12">
@@ -11,21 +11,20 @@
   </div>
 </div>
 
+<div class="col-md-12">
+  <h2>Attach Files</h2>
+  <%= render 'multiple_upload', presenter: @presenter %>
+  <%= render "server_upload" %>
+</div>
+
 <div data-action="bulk-label">
-  <div class="col-xs-3">
-    <div class="col-xs-12">
-      <%= link_to "Back to Parent", polymorphic_path([main_app, @presenter]) %>
-    </div>
-    <div class="col-xs-12">
+    <div class="col-md-3">
+      <h2>Label & Order</h2>
       <%= render "bulk_edit_actions" %>
-    </div>
-    <div class="col-xs-12">
       <%= render "iiif_fields" %>
     </div>
-  </div>
-  <div class="col-xs-8" id="order-grid">
-    <div class="col-xs-12">
-      <div class="btn-group col-xs-12" role="group" data-action="list-toggle">
+    <div class="col-md-9" id="order-grid">
+      <div class="btn-group" role="group" data-action="list-toggle">
         <button type="button" class="btn btn-default active list" aria-label="List">
           <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
         </button>
@@ -33,11 +32,10 @@
           <span class="glyphicon glyphicon-th" aria-hidden="true"></span>
         </button>
       </div>
+      <ul id="sortable" data-id="<%= @presenter.id %>" class="list-unstyled">
+        <% @members.each do |member| %>
+          <%= render "bulk_edit_member", node: member %>
+        <% end %>
+      </ul>
     </div>
-    <ul id="sortable" data-id="<%= @presenter.id %>" class="list-unstyled col-xs-12">
-      <% @members.each do |member| %>
-        <%= render "bulk_edit_member", node: member %>
-      <% end %>
-    </ul>
-  </div>
 </div>
