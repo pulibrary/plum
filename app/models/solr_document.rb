@@ -48,4 +48,13 @@ class SolrDocument
   def workflow_note
     self[Solrizer.solr_name('workflow_note')]
   end
+
+  def logical_order
+    @logical_order ||=
+      begin
+        JSON.parse(self[Solrizer.solr_name("logical_order", :symbol)].first)
+      rescue
+        {}
+      end
+  end
 end

@@ -11,6 +11,10 @@ class CanvasBuilder
     @canvas ||= Canvas.new
   end
 
+  def path
+    CanvasID.new(record.id, parent_path).to_s
+  end
+
   class Canvas < IIIF::Presentation::Canvas
     def legal_viewing_hint_values
       super + ['facing-pages']
@@ -39,9 +43,5 @@ class CanvasBuilder
       canvas.images << annotation
       canvas.width = image.width
       canvas.height = image.height
-    end
-
-    def path
-      parent_path + "/canvas/#{record.id}"
     end
 end

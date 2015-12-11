@@ -2,7 +2,7 @@ class SearchBuilder < CurationConcerns::SearchBuilder
   include Blacklight::Solr::SearchBuilderBehavior
 
   def self.show_actions
-    [:show, :manifest, :bulk_edit]
+    [:show, :manifest, :bulk_edit, :structure]
   end
 
   def hide_parented_resources(solr_params)

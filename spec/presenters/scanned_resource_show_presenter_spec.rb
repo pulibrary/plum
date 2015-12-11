@@ -27,4 +27,16 @@ RSpec.describe ScannedResourceShowPresenter do
       expect(subject.pending_uploads).to eq [pending_upload]
     end
   end
+
+  describe "#logical_order_object" do
+    before do
+      allow(solr_document).to receive(:logical_order).and_return("nodes": [{ label: "Chapter 1", proxy: "test" }])
+    end
+    it "returns a logical order object" do
+      expect(subject.logical_order_object.nodes.length).to eq 1
+    end
+    it "returns decorated nodes" do
+      expect(subject.logical_order_object.nodes.first).to respond_to :proxy_for_object
+    end
+  end
 end

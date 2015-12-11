@@ -65,6 +65,7 @@ group :development, :test do
   gem 'jettywrapper'
   gem "factory_girl_rails"
   gem 'jasmine-rails'
+  gem 'jasmine-jquery-rails'
 end
 
 group :development do
