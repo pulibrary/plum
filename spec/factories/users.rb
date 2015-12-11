@@ -19,5 +19,15 @@ FactoryGirl.define do
     factory :curation_concern_creator do
       roles { [Role.where(name: 'curation_concern_creator').first_or_create] }
     end
+
+    factory :complete_reviewer do
+      email 'complete@example.com'
+      roles { [Role.where(name: 'notify_complete').first_or_create] }
+    end
+
+    factory :takedown_reviewer do
+      email 'takedown@example.com'
+      roles { [Role.where(name: 'notify_takedown').first_or_create] }
+    end
   end
 end
