@@ -37,7 +37,12 @@
           <%= simple_form_for [main_app, member], remote: true do |f| %>
             <div class="panel panel-default">
               <div class="panel-heading">
-                <%= f.input :title, as: :string, input_html: { name: "file_set[title][]" }, value: member.to_s, label: false %>
+                <div class="order-title">
+                  <%= f.input :title, as: :string, input_html: { name: "file_set[title][]" }, value: member.to_s, label: false %>
+                </div>
+                <div class="order-filename">
+                  <em>(<%= member.file_label %>)</em>
+                </div>
               </div>
               <div class="panel-body">
                 <div class="text-center thumbnail">

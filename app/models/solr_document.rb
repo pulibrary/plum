@@ -57,4 +57,8 @@ class SolrDocument
         {}
       end
   end
+
+  def file_label
+    Array(self[Solrizer.solr_name('label')]).first
+  end
 end
