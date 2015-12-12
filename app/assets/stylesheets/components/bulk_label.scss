@@ -45,6 +45,9 @@
         cursor: -webkit-grab;
         cursor: -moz-grab;
       }
+      input[type=radio] {
+        width: 20px;
+      }
     }
   }
 }
