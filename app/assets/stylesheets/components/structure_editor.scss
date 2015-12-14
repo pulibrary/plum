@@ -2,6 +2,50 @@
   .placeholder {
     outline: 1px dashed #4183C4;
   }
+  .ui-selected > div > .panel > .panel-heading {
+    background: #F39814;
+  }
+  .ui-selecting > div > .panel > .panel-heading {
+    background: #FECA40;
+  }
+  .expanded {
+    > div > .panel > .panel-heading > div > .title > .expand-collapse {
+      @extend .glyphicon-arrow-down;
+    }
+  }
+  .collapsed {
+    > div > .panel > .panel-heading > div > .title > .expand-collapse {
+      @extend .glyphicon-arrow-up;
+    }
+  }
+  .expand-collapse {
+    cursor: pointer;
+  }
+  li.collapsed {
+    ul {
+      display: none;
+    }
+  }
+  .move {
+    cursor: move;
+  }
+  &, ul {
+    list-style: none;
+  }
+  .title {
+    @extend .col-xs-8;
+    input[type=text] {
+      width: 80%;
+    }
+  }
+  .toolbar {
+    @extend .col-xs-4;
+    text-align: right;
+    .glyphicon-remove {
+      @extend .text-danger;
+      top: 5px;
+    }
+  }
 }
 #list-toolbar {
   margin-bottom: 10px;

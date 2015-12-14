@@ -20,12 +20,19 @@ RSpec.describe "curation_concerns/scanned_resources/structure" do
   end
   let(:members) do
     [
-      instance_double(FileSet, id: "a", to_s: "Banana"),
-      instance_double(FileSet, id: "b", to_s: "Banana")
+      build_file_set(id: "a", to_s: "banana"),
+      build_file_set(id: "b", to_s: "banana")
     ]
+  end
+
+  def build_file_set(id:, to_s:)
+    i = instance_double(FileSetPresenter, id: id, to_s: to_s)
+    allow(i).to receive(:has?).with("thumbnail_path_ss").and_return(false)
+    i
   end
   let(:scanned_resource) { ScannedResource.new("test") }
   before do
+    stub_blacklight_views
     assign(:logical_order, logical_order)
     assign(:presenter, scanned_resource)
     render

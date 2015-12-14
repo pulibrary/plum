@@ -57,7 +57,9 @@
       expandedClass: "mjs-nestedSortable-expanded",
       hoveringClass: "mjs-nestedSortable-hovering",
       leafClass: "mjs-nestedSortable-leaf",
-      disabledClass: "mjs-nestedSortable-disabled"
+      disabledClass: "mjs-nestedSortable-disabled",
+      temporaryNodeClass: "created-item",
+      parentNodeFactory: function() { return $("<li>").append($("<div>").text("Temporary")) }
     },
 
     _create: function() {
@@ -465,6 +467,20 @@
 
       this.beyondMaxLevels = 0;
 
+      // tpendragon - if the previous item can't be nested under, create a node.
+      if (
+        (!parentItem || !parentItem.hasClass(o.temporaryNodeClass))
+          && (previousItem == null || previousItem.hasClass(o.disableNestingClass))
+          && (
+               (parentItem == null && this.positionAbs.left > $(this.element).offset().left + 100)
+               || (parentItem != null && this.positionAbs.left > (parentItem.offset().left + 100))
+          )
+      ) {
+        $("."+o.temporaryNodeClass).remove()
+        var new_element = o.parentNodeFactory().addClass(o.temporaryNodeClass)
+        new_element.insertBefore($(this.placeholder))
+        previousItem = new_element
+      }
       // mjs - if the item is moved to the left, send it one level up
       // but only if it's at the bottom of the list
       if (parentItem != null &&
@@ -493,6 +509,11 @@
            }
            if(typeof parentItem !== 'undefined')
              this._clearEmpty(parentItem[0]);
+           // tpendragon - Delete the temporary parent container if you move out
+           // of it.
+           if(parentItem.hasClass(o.temporaryNodeClass) && parentItem.children(o.listType).length == 0) {
+             parentItem.remove()
+           }
            this._trigger("change", event, this._uiHash());
            // mjs - if the item is below a sibling and is moved to the right,
            // make it a child of that sibling
@@ -539,6 +560,10 @@
                      if(typeof parentItem !== 'undefined')
                        this._clearEmpty(parentItem[0]);
                      this._trigger("change", event, this._uiHash());
+                     //tpendragon
+                     if(!previousItem.hasClass(o.temporaryNodeClass)) {
+                       $("."+o.temporaryNodeClass).remove()
+                     }
                    } else {
                      this._isAllowed(parentItem, level, level + childLevels);
                    }
@@ -589,6 +614,8 @@
       this._relocate_event = event;
       this._pid_current = $(this.domPosition.parent).parent().attr("id");
       this._sort_current = this.domPosition.prev ? $(this.domPosition.prev).next().index() : 0;
+      //tpendragon - Remove temporary class.
+      $("."+this.options.temporaryNodeClass).removeClass(this.options.temporaryNodeClass)
       $.ui.sortable.prototype._mouseStop.apply(this, arguments); //asybnchronous execution, @see _clear for the relocate event.
     },
 

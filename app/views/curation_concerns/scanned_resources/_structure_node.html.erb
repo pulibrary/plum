@@ -1,20 +1,29 @@
-<%= content_tag "li", data: { id: node.id, proxy: node.proxy_for_id }.compact do %>
+<%= content_tag "li", data: { id: node.id, proxy: node.proxy_for_id }.compact, class: (node.proxy_for_id ? 'mjs-nestedSortable-no-nesting' : '') do %>
   <div>
     <div class="panel panel-default">
       <div class="panel-heading">
-        <div class="title">
-          <% if !node.proxy_for_object %>
-            <%= text_field_tag "label", node.label %>
-          <% else %>
-            <%= node.proxy_for_object || node.label %>
-          <% end %>
-        </div>
-        <div class="toolbar">
-          <% if !node.proxy_for_object %>
-            <a href="" title="Remove" data-action="remove-list"><span class="glyphicon glyphicon-remove"></span></a>
-          <% end %>
+        <div class="row">
+          <div class="title">
+            <span class="move glyphicon glyphicon-move"></span>
+            <span class="expand-collapse glyphicon"></span>
+            <% if !node.proxy_for_object %>
+              <%= text_field_tag "label", node.label %>
+            <% else %>
+              <%= node.proxy_for_object || node.label %>
+            <% end %>
+          </div>
+          <div class="toolbar">
+            <% if !node.proxy_for_object %>
+              <a href="" title="Remove" data-action="remove-list"><span class="glyphicon glyphicon-remove"></span></a>
+            <% end %>
+          </div>
         </div>
       </div>
+      <% if node.proxy_for_id %>
+        <div class="panel-body">
+          <%= render_thumbnail_tag node.proxy_for_object %>
+        </div>
+      <% end %>
     </div>
   </div>
   <% if node.nodes.length > 0 %>
