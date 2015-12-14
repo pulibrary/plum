@@ -8,7 +8,8 @@ class BulkLabeler {
       {
         filter: ".panel",
         stop: this.stopped_label_select,
-        selecting: this.shift_enabled_selecting
+        selecting: this.shift_enabled_selecting,
+        cancel: "a,input,option,label,button"
       }
     )
     this.element.find("li input[type=text]").change(this.input_value_changed)
@@ -21,6 +22,17 @@ class BulkLabeler {
   }
 
   initialize_radio_buttons() {
+    // Simple form doesn't add unique IDs to the form IDs, so need javascript to
+    // fix them up.
+    this.element.find("span.radio").each((index, element) => {
+      element = $(element)
+      let input = $("input[type=radio]", element)
+      let label = $("label", element)
+      let id = element.parents("li[data-reorder-id]").first().attr("data-reorder-id")
+      let current_id = input.attr("id")
+      input.attr("id", `${current_id}_${id}`)
+      label.attr("for", input.attr("id"))
+    })
     this.element.find("li input[type=radio]:checked").each(function(id, element) {
       element = $(element)
       let parent = element.parents("div").first()
