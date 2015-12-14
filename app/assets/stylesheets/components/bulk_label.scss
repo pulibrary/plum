@@ -19,6 +19,12 @@
       .attributes {
         @extend .col-xs-12;
       }
+      .order-title {
+        width: 100%;
+      }
+      .order-filename {
+        width: 100%;
+      }
     }
     li {
       @extend .col-xs-12;
@@ -33,6 +39,14 @@
       }
       .attributes {
         @extend .col-xs-6;
+      }
+      .order-title {
+        width: 49%;
+        display: inline-block;
+      }
+      .order-filename {
+        width: 49%;
+        display: inline-block;
       }
       .ui-selecting .panel-body {
         background: #FECA40;

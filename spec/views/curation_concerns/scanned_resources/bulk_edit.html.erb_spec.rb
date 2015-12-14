@@ -8,7 +8,8 @@ RSpec.describe "curation_concerns/scanned_resources/bulk_edit.html.erb" do
       resource.to_solr.merge(
         id: "test",
         title_tesim: "Test",
-        thumbnail_path_ss: "/test/image/path.jpg"
+        thumbnail_path_ss: "/test/image/path.jpg",
+        label_tesim: "file_name.tif"
       )
     )
   end
@@ -40,6 +41,10 @@ RSpec.describe "curation_concerns/scanned_resources/bulk_edit.html.erb" do
 
   it "displays each file set's label" do
     expect(rendered).to have_selector "input[name='file_set[title][]'][type='text'][value='#{file_set}']"
+  end
+
+  it "displays each file set's file name" do
+    expect(rendered).to have_content "file_name.tif"
   end
 
   it "has a link back to parent" do
