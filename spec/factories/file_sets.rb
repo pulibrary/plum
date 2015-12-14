@@ -13,17 +13,6 @@ FactoryGirl.define do
       end
     end
 
-    factory :file_with_work do
-      after(:build) do |file, _evaluator|
-        file.title = ['testfile']
-      end
-      after(:create) do |file, evaluator|
-        if evaluator.content
-          Hydra::Works::UploadFileToFileSet.call(file, evaluator.content)
-        end
-        FactoryGirl.create(:generic_work, user: evaluator.user).ordered_members << file
-      end
-    end
     after(:build) do |file, evaluator|
       file.apply_depositor_metadata(evaluator.user.user_key)
     end

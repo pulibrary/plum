@@ -45,5 +45,14 @@ FactoryGirl.define do
         col.update_index
       end
     end
+
+    factory :scanned_resource_with_file do
+      after(:create) do |scanned_resource, evaluator|
+        file = FactoryGirl.create(:file_set, user: evaluator.user)
+        scanned_resource.ordered_members << file
+        scanned_resource.save
+        file.update_index
+      end
+    end
   end
 end

@@ -21,6 +21,7 @@ class Ability
   def curation_concern_creator_permissions
     # Do not allow creators to destroy what they make.
     can [:create, :read, :edit, :update, :publish], curation_concerns
+    can [:bulk_edit], ScannedResource
     can [:create, :read, :edit, :update, :publish], FileSet
     can [:create, :read, :edit, :update, :publish], Collection
   end

@@ -17,6 +17,7 @@ class BulkLabeler {
       $(this).data("current-value", $(this).val())
     })
     this.track_radio_buttons()
+    this.track_resource_form()
     this.setup_buttons()
     this.flash = new window.Flash
   }
@@ -52,7 +53,13 @@ class BulkLabeler {
       master.check_save_button()
     })
   }
-
+  track_resource_form() {
+    let master = this
+    this.element.find("input.resource-radio-button").change(function() {
+      $("#resource-form").attr("changed", "true")
+      master.check_save_button()
+    })
+  }
   setup_buttons() {
     this.actions_element.on_apply(this.apply_labels)
     this.actions_element.on_save(this.save_labels)
@@ -106,6 +113,11 @@ class BulkLabeler {
       event.preventDefault()
       this.changed_members.find("form").submit()
       this.selected_elements.removeClass("ui-selected")
+
+      if ($("#resource-form").attr("changed") == "true") {
+        $("#resource-form").submit()
+        $("#resource-form").attr("changed", "false")
+      }
     }
   }
 
@@ -120,7 +132,7 @@ class BulkLabeler {
   }
 
   get needs_saved() {
-    return this.changed_members.length != 0 || this.sorter.needs_saved
+    return this.changed_members.length != 0 || this.sorter.needs_saved || $("#resource-form").attr("changed") == "true"
   }
 
   check_save_button() {

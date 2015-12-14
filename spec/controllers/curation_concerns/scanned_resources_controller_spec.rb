@@ -144,6 +144,21 @@ describe CurationConcerns::ScannedResourcesController do
     end
   end
 
+  describe "viewing direction and hint" do
+    let(:scanned_resource) { FactoryGirl.build(:scanned_resource) }
+    let(:user) { FactoryGirl.create(:admin) }
+    before do
+      sign_in user
+      scanned_resource.save!
+    end
+    it "updates metadata" do
+      post :update, id: scanned_resource.id, scanned_resource: { viewing_hint: 'continuous', viewing_direction: 'bottom-to-top' }
+      scanned_resource.reload
+      expect(scanned_resource.viewing_direction).to eq 'bottom-to-top'
+      expect(scanned_resource.viewing_hint).to eq 'continuous'
+    end
+  end
+
   describe "show" do
     before do
       sign_in user
@@ -252,24 +267,18 @@ describe CurationConcerns::ScannedResourcesController do
   end
 
   describe "#bulk-edit" do
+    let(:user) { FactoryGirl.create(:curation_concern_creator) }
     before do
       sign_in user
     end
     let(:solr) { ActiveFedora.solr.conn }
     it "sets @members" do
-      resource = FactoryGirl.build(:scanned_resource)
-      allow(resource).to receive(:id).and_return("1")
-      allow(resource.list_source).to receive(:id).and_return("3")
-      file_set = FactoryGirl.build(:file_set)
-      allow(file_set).to receive(:id).and_return("2")
-      resource.ordered_members << file_set
-      solr.add file_set.to_solr.merge(ordered_by_ssim: [resource.id])
-      solr.add resource.to_solr
-      solr.add resource.list_source.to_solr
-      solr.commit
-      get :bulk_edit, id: "1"
+      scanned_resource = FactoryGirl.create(:scanned_resource_with_file, user: user)
+      file_set = scanned_resource.members.first
+      get :bulk_edit, id: scanned_resource.id
 
-      expect(assigns(:members).map(&:id)).to eq ["2"]
+      expect(assigns(:curation_concern)).to eq scanned_resource
+      expect(assigns(:members).map(&:id)).to eq [file_set.id]
     end
   end
 
