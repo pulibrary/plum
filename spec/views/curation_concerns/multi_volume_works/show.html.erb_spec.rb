@@ -39,6 +39,8 @@ describe "curation_concerns/multi_volume_works/show.html.erb" do
     allow(view).to receive(:search_session).and_return({})
     allow(view).to receive(:current_search_session).and_return(nil)
     allow(view).to receive(:can?).and_return(true)
+    allow(presenter).to receive(:in_collections).and_return([])
+    allow(resource_presenter).to receive(:in_collections).and_return([])
     assign(:presenter, presenter)
     render
   end

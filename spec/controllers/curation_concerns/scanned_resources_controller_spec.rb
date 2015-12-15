@@ -34,8 +34,7 @@ describe CurationConcerns::ScannedResourcesController do
         expect do
           post :create, scanned_resource: scanned_resource_attributes
         end.not_to change { ScannedResource.count }
-        expect(response.status).to be 500
-        expect(flash[:alert]).to eq("Error retrieving metadata for '0000000'")
+        expect(response.status).to be 422
       end
     end
 
@@ -124,6 +123,23 @@ describe CurationConcerns::ScannedResourcesController do
       it 'updates remote metadata' do
         post :update, id: scanned_resource, scanned_resource: scanned_resource_attributes, refresh_remote_metadata: true
         expect(reloaded.title).to eq ['The Giant Bible of Mainz; 500th anniversary, April fourth, fourteen fifty-two, April fourth, nineteen fifty-two.']
+      end
+    end
+    context "with collections" do
+      let(:resource) { FactoryGirl.create(:scanned_resource_in_collection, user: user) }
+      let(:col2) { FactoryGirl.create(:collection, user: user, title: 'Col 2', exhibit_id: 'slug2') }
+
+      before do
+        col2.save
+      end
+
+      it "updates collection membership" do
+        expect(resource.in_collections).to_not be_empty
+
+        updated_attributes = resource.attributes
+        updated_attributes[:collection_ids] = [col2.id]
+        post :update, id: resource, scanned_resource: updated_attributes
+        expect(resource.reload.in_collections).to eq [col2]
       end
     end
   end

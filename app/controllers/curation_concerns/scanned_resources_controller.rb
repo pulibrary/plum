@@ -59,6 +59,10 @@ class CurationConcerns::ScannedResourcesController < CurationConcerns::CurationC
     head 200
   end
 
+  def form_class
+    CurationConcerns::ScannedResourceForm
+  end
+
   private
 
     def lock_manager

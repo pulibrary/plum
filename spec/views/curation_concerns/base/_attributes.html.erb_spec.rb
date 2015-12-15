@@ -22,6 +22,7 @@ RSpec.describe "curation_concerns/base/_attributes.html.erb" do
 
   before do
     allow(view).to receive(:dom_class) { '' }
+    allow(presenter).to receive(:in_collections).and_return([])
 
     assign(:presenter, presenter)
     allow(view).to receive(:can?).with(:edit, presenter.id).and_return(can_edit)

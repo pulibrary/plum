@@ -5,6 +5,11 @@ class CurationConcernsShowPresenter < CurationConcerns::WorkShowPresenter
     StateBadge.new(type, state).render
   end
 
+  def in_collections
+    ActiveFedora::SolrService.query("active_fedora_model_ssi:Collection AND member_ids_ssim:#{id}")
+      .map { |c| CurationConcerns::CollectionPresenter.new(SolrDocument.new(c), current_ability) }
+  end
+
   def logical_order_object
     @logical_order_object ||=
       logical_order_factory.new(logical_order, nil, logical_order_factory)
