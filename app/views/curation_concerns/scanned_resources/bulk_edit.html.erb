@@ -33,30 +33,7 @@
     </div>
     <ul id="sortable" data-id="<%= @presenter.id %>" class="list-unstyled col-xs-12">
       <% @members.each do |member| %>
-        <li data-reorder-id='<%= member.id %>'>
-          <%= simple_form_for [main_app, member], remote: true do |f| %>
-            <div class="panel panel-default">
-              <div class="panel-heading">
-                <div class="order-title">
-                  <%= f.input :title, as: :string, input_html: { name: "file_set[title][]" }, value: member.to_s, label: false %>
-                </div>
-                <div class="order-filename">
-                  <em>(<%= member.file_label %>)</em>
-                </div>
-              </div>
-              <div class="panel-body">
-                <div class="text-center thumbnail">
-                  <%= render_thumbnail_tag member %>
-                </div>
-                <div class="attributes">
-                  <%= f.input :viewing_hint, collection: [:"", :"non-paged", :"facing-pages"], as: :radio_buttons, label: false, defaults: { input_html: { class: '' }}%>
-                </div>
-                <div class="spacer">
-                </div>
-              </div>
-            </div>
-          <% end %>
-        </li>
+        <%= render "bulk_edit_member", node: member %>
       <% end %>
     </ul>
   </div>

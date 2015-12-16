@@ -51,7 +51,7 @@ jQuery(() => {
     expandedClass: "expanded"
   })
   $(".sortable").selectable({
-    cancel: ".move,input,a,.expand-collapse",
+    cancel: ".move,input,a,.expand-collapse,.ignore-select",
     filter: "li",
     selecting: window.shift_enabled_selecting()
   })

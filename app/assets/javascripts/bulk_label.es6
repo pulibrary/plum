@@ -9,7 +9,7 @@ class BulkLabeler {
         filter: ".panel",
         stop: this.stopped_label_select,
         selecting: window.shift_enabled_selecting(),
-        cancel: "a,input,option,label,button"
+        cancel: "a,input,option,label,button,.ignore-select"
       }
     )
     this.element.find("li input[type=text]").change(this.input_value_changed)

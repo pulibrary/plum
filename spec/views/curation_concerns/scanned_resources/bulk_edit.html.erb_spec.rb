@@ -80,4 +80,8 @@ RSpec.describe "curation_concerns/scanned_resources/bulk_edit.html.erb" do
       expect(rendered).to have_field hint
     end
   end
+
+  it "renders an OSD link for each member" do
+    expect(rendered).to have_selector("*[data-modal-manifest='#{IIIFPath.new(file_set.id)}']")
+  end
 end
