@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  helper Openseadragon::OpenseadragonHelper
   before_action :vary_header
   before_action do
     resource = controller_path.singularize.tr('/', '_').to_sym

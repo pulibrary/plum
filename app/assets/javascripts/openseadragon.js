@@ -1,2 +1,2 @@
 //= require openseadragon/openseadragon
-//= require openseadragon/rails
+//= require openseadragon/jquery
