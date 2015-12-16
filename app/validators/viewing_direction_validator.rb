@@ -13,10 +13,10 @@ class ViewingDirectionValidator < ActiveModel::Validator
 
     def valid_viewing_directions
       [
-        ["left-to-right"],
-        ["right-to-left"],
-        ["top-to-bottom"],
-        ["bottom-to-top"]
+        "left-to-right",
+        "right-to-left",
+        "top-to-bottom",
+        "bottom-to-top"
       ]
     end
 end

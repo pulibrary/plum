@@ -13,6 +13,7 @@ RSpec.describe "curation_concerns/scanned_resources/bulk_edit.html.erb" do
       )
     )
   end
+  let(:scanned_resource) { FactoryGirl.build(:scanned_resource) }
   let(:resource) { FactoryGirl.build(:file_set) }
   let(:parent) { FactoryGirl.build(:scanned_resource) }
   let(:parent_presenter) do
@@ -32,6 +33,7 @@ RSpec.describe "curation_concerns/scanned_resources/bulk_edit.html.erb" do
     allow(view).to receive(:blacklight_config).and_return(blacklight_config)
     allow(view).to receive(:search_session).and_return({})
     allow(view).to receive(:current_search_session).and_return(nil)
+    allow(view).to receive(:curation_concern).and_return(scanned_resource)
     render
   end
 
@@ -67,7 +69,7 @@ RSpec.describe "curation_concerns/scanned_resources/bulk_edit.html.erb" do
   end
 
   it "renders a form for each member" do
-    expect(rendered).to have_selector("form", count: members.length)
+    expect(rendered).to have_selector("form", count: members.length + 1)
   end
 
   it "renders an input for titles" do
