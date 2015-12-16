@@ -1,11 +1,22 @@
 *[data-action=bulk-label] {
   .actions {
-    border: 1px solid black;
-    padding: 5px;
+    padding: 10px;
     .form-group div {
       padding-left: 0;
     }
   }
+
+  .ui-selectable {
+    padding-left: 0px;
+    padding-right: 0px;
+    margin-top: 61px;
+  }
+
+  .btn-group {
+    margin-bottom: 10px;
+    padding-left: 15px;
+  }
+
   ul {
     list-style-type: none;
     &.grid li {

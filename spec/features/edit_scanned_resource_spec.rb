@@ -3,6 +3,13 @@ require 'rails_helper'
 RSpec.feature "ScannedResourcesController", type: :feature do
   let(:user) { FactoryGirl.create(:curation_concern_creator) }
   let(:scanned_resource) { FactoryGirl.create(:scanned_resource_with_multi_volume_work, user: user) }
+  let(:parent_presenter) do
+    ScannedResourceShowPresenter.new(
+      SolrDocument.new(
+        scanned_resource.to_solr
+      ), nil
+    )
+  end
 
   context "an authorized user" do
     before(:each) do
@@ -40,11 +47,8 @@ RSpec.feature "ScannedResourcesController", type: :feature do
         click_on("Attach to Scanned Resource")
       end
 
-      within '.related_files' do
-        expect(page).to have_link "image.png"
-        click_link "image.png"
-        expect(page).to have_content "image.png"
-      end
+      visit polymorphic_path [parent_presenter.file_presenters.first]
+      expect(page).to have_content "image.png"
     end
   end
 

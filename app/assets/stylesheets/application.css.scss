@@ -17,6 +17,7 @@
  */
 
 @import 'curation_concerns';
+@import 'curation_concerns/fileupload';
 
 @import 'abstractions/mixins';
 
@@ -35,6 +36,7 @@
 @import "components/viewer";
 @import "components/sorting";
 @import "components/bulk_label";
+@import "components/fileupload";
 @import "jquery-ui/sortable";
 @import "jquery-ui/selectable";
 @import "browse_everything";

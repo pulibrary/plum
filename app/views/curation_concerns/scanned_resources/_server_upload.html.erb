@@ -1,10 +1,18 @@
-  <div class="well">
-    <%= form_tag polymorphic_path([main_app, :browse_everything_files, @presenter]), id: "browse-everything-form" do %>
-      <%= button_tag type: 'button', class: 'browse-everything btn btn-primary' do %>
-        Upload from Server
+ <div class="row">
+  <div class="col-md-3"> 
+    <div class="well well-sm">
+      <%= form_tag polymorphic_path([main_app, :browse_everything_files, @presenter]), id: "browse-everything-form" do %>
+        <%= button_tag type: 'button', class: 'browse-everything btn btn-primary' do %>
+          Upload from Server
+        <% end %>
       <% end %>
-    <% end %>
-    <% if @presenter.pending_uploads.present? %>
-      <%= render "pending_uploads", uploads: @presenter.pending_uploads %>
-    <% end %>
+    </div>
   </div>
+  <% if @presenter.pending_uploads.present? %>
+    <div class="col-md-9">
+      <div class="well well-sm">
+        <%= render "pending_uploads", uploads: @presenter.pending_uploads %>
+      </div>
+    </div>
+  <% end %>
+</div>

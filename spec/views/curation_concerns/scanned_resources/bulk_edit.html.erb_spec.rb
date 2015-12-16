@@ -15,14 +15,18 @@ RSpec.describe "curation_concerns/scanned_resources/bulk_edit.html.erb" do
   end
   let(:scanned_resource) { FactoryGirl.build(:scanned_resource) }
   let(:resource) { FactoryGirl.build(:file_set) }
+
   let(:parent) { FactoryGirl.build(:scanned_resource) }
-  let(:parent_presenter) do
-    ScannedResourceShowPresenter.new(
-      SolrDocument.new(
-        parent.to_solr.merge(id: "resource")
-      ), nil
-    )
+  let(:parent_solr_doc) do
+    SolrDocument.new(parent.to_solr.merge(id: "resource"), nil)
   end
+  let(:pending_upload) { FactoryGirl.build(:pending_upload) }
+  let(:parent_presenter) do
+    s = ScannedResourceShowPresenter.new(parent_solr_doc, nil)
+    allow(s).to receive(:pending_uploads).and_return([pending_upload])
+    s
+  end
+
   let(:blacklight_config) { CatalogController.new.blacklight_config }
 
   before do
@@ -69,7 +73,7 @@ RSpec.describe "curation_concerns/scanned_resources/bulk_edit.html.erb" do
   end
 
   it "renders a form for each member" do
-    expect(rendered).to have_selector("form", count: members.length + 1)
+    expect(rendered).to have_selector("form", count: members.length + 3)
   end
 
   it "renders an input for titles" do
@@ -85,5 +89,14 @@ RSpec.describe "curation_concerns/scanned_resources/bulk_edit.html.erb" do
 
   it "renders an OSD link for each member" do
     expect(rendered).to have_selector("*[data-modal-manifest='#{IIIFPath.new(file_set.id)}']")
+  end
+
+  it "renders a server upload form" do
+    expect(rendered).to have_selector "form#browse-everything-form"
+    expect(rendered).to have_selector "button.browse-everything"
+  end
+
+  it "displays pending uploads" do
+    expect(rendered).to have_content pending_upload.file_name
   end
 end
