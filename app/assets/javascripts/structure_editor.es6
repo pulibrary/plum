@@ -1,24 +1,68 @@
 jQuery(() => {
+  function new_node() {
+    return $("<li>", { class: "expanded" }).append(
+      $("<div>").append(
+        $("<div>", { class: "panel panel-default" }).append(
+          $("<div>", { class: "panel-heading" }).append(
+            $("<div>", { class: "row" }).append(
+              $("<div>", { class: "title" }).append(
+                $("<span>", { class: "move glyphicon glyphicon-move" })).append(
+                $("<span>", { class: "glyphicon expand-collapse" })).append(
+                $("<input>", { type: "text", name: "label", id: "label" }))).append(
+              $("<div>", { class: "toolbar" }).append(
+                $("<a>", { href: "", "data-action": "remove-list", title: "Remove "}).append(
+                  $("<span>", { class: "glyphicon glyphicon-remove" })
+                )
+              )
+            )
+          )
+        )
+      )
+    )
+  }
   $(".sortable").nestedSortable({
-    handle: "div",
+    handle: ".move",
     items: "li",
     toleranceElement: "> div",
     listType: "ul",
     placeholder: "placeholder",
-    isAllowed: function(placeholder, placeholderParent) {
-      if($(placeholderParent).attr("data-proxy")) {
-        return false
-      } else {
-        return true
+    parentNodeFactory: new_node,
+    helper: function(e, item) {
+      if ( ! item.hasClass("ui-selected") ) {
+        item.parent().children(".ui-selected").removeClass("ui-selected")
+        item.addClass("ui-selected")
       }
-    }
+
+      var selected = item.parent().children(".ui-selected").clone()
+      item.data("multidrag", selected).siblings(".ui-selected").remove()
+      return $("<li/>").append(selected)
+    },
+    stop: function(e, ui) {
+      var selected = ui.item.data("multidrag")
+      ui.item.after(selected)
+      ui.item.remove()
+      $(".ui-selected").removeClass("ui-selected")
+    },
+    start: function(event, ui) {
+      ui.placeholder.height(ui.item.height())
+    },
+    isTree: true,
+    collapsedClass: "collapsed",
+    expandedClass: "expanded"
+  })
+  $(".sortable").selectable({
+    cancel: ".move,input,a,.expand-collapse",
+    filter: "li",
+    selecting: window.shift_enabled_selecting()
   })
   $(".sortable").on("click", "*[data-action=remove-list]", function(event) {
     event.preventDefault()
-    let parent_li = $(this).parents("li").first()
-    let child_items = parent_li.find("li")
-    parent_li.before(child_items)
-    parent_li.remove()
+    if(confirm("Delete this structure?")) {
+      let parent_li = $(this).parents("li").first()
+      let child_items = parent_li.children("ul").children()
+      parent_li.before(child_items)
+      parent_li.remove()
+    }
   })
   $("*[data-action=submit-list]").click(function(event) {
     event.preventDefault()
@@ -42,23 +86,12 @@ jQuery(() => {
   $("*[data-action=add-to-list]").click(function(event) {
     event.preventDefault()
     let top_element = $(".sortable")
-    let new_element = $("<li>").append(
-      $("<div>").append(
-        $("<div>", { class: "panel panel-default" }).append(
-          $("<div>", { class: "panel-heading" }).append(
-            $("<div>", { class: "title" }).append(
-              $("<input>", { type: "text", name: "label", id: "label" })
-            )
-          ).append(
-            $("<div>", { class: "toolbar" }).append(
-              $("<a>", { href: "", "data-action": "remove-list", title: "Remove "}).append(
-                $("<span>", { class: "glyphicon glyphicon-remove" })
-              )
-            )
-          )
-        )
-      )
-    )
-    top_element.append(new_element)
+    let new_element = new_node()
+    top_element.prepend(new_element)
+  })
+  $(".sortable").on("click", ".expand-collapse", function() {
+    let parent = $(this).parents("li").first()
+    parent.toggleClass("expanded")
+    parent.toggleClass("collapsed")
   })
 })
