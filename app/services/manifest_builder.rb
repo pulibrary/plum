@@ -37,7 +37,7 @@ class ManifestBuilder
     end
 
     def path
-      helper.__send__(:"manifest_curation_concerns_#{record.model_name.singular}_url", record, protocol: protocol)
+      helper.polymorphic_url([:manifest, record], protocol: protocol)
     end
 
     def protocol
@@ -71,7 +71,12 @@ class ManifestBuilder
     end
 
     def helper
-      @helper ||= Rails.application.routes.url_helpers
+      @helper ||= RouteHelper.new
+    end
+
+    class RouteHelper
+      include Rails.application.routes.url_helpers
+      include ActionDispatch::Routing::PolymorphicRoutes
     end
 
     def apply_record_properties
@@ -82,9 +87,15 @@ class ManifestBuilder
       if manifest.respond_to?(:viewing_direction)
         manifest.viewing_direction = record.try(:viewing_direction) || "left-to-right"
       end
-      apply_canvases unless light
+      apply_extras
+    end
+
+    def apply_extras
+      unless light
+        apply_canvases
+        apply_structures
+      end
       apply_manifests if manifests.length > 0
-      apply_structures
     end
 
     def apply_canvases
