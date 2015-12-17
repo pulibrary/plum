@@ -34,7 +34,12 @@ class LabelerActionsManager {
   }
 
   get first() {
-    return parseInt(this.element.find("input[name=start_with]").val())
+    let val = this.element.find("input[name=start_with]").val()
+    if(isNaN(val)) {
+      return val
+    } else {
+      return parseInt(val)
+    }
   }
 
   get method() {
