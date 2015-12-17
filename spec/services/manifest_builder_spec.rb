@@ -82,6 +82,9 @@ RSpec.describe ManifestBuilder, vcr: { cassette_name: "iiif_manifest" } do
                   "proxy": file_set2.id
                 }
               ]
+            },
+            {
+              "label": "Bla"
             }
           ]
         }
