@@ -25,14 +25,14 @@
     </div>
     <div class="col-md-9" id="order-grid">
       <div class="btn-group" role="group" data-action="list-toggle">
-        <button type="button" class="btn btn-default active list" aria-label="List">
+        <button type="button" class="btn btn-default list" aria-label="List">
           <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
         </button>
-        <button type="button" class="btn btn-default grid" aria-label="Grid">
+        <button type="button" class="btn btn-default active grid" aria-label="Grid">
           <span class="glyphicon glyphicon-th" aria-hidden="true"></span>
         </button>
       </div>
-      <ul id="sortable" data-id="<%= @presenter.id %>" class="list-unstyled">
+      <ul id="sortable" data-id="<%= @presenter.id %>" class="list-unstyled grid">
         <% @members.each do |member| %>
           <%= render "bulk_edit_member", node: member %>
         <% end %>
