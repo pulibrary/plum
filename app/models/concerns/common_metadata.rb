@@ -36,7 +36,7 @@ module CommonMetadata
     validates_with ViewingHintValidator
 
     def apply_remote_metadata
-      self.source_metadata = remote_data.source
+      self.source_metadata = remote_data.source.try(:force_encoding, 'utf-8')
       self.attributes = remote_data.attributes
     end
 
