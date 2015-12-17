@@ -53,6 +53,10 @@ RSpec.describe "curation_concerns/scanned_resources/bulk_edit.html.erb" do
     expect(rendered).to have_content "file_name.tif"
   end
 
+  it "has a link to edit each file set" do
+    expect(rendered).to have_selector('a[href="/concern/file_sets/test"]')
+  end
+
   it "has a link back to parent" do
     expect(rendered).to have_link "Back to Parent", href: curation_concerns_scanned_resource_path(id: "resource")
   end
