@@ -15,6 +15,10 @@ class RangeBuilder
     build_range
   end
 
+  def apply(manifest)
+    manifest['structures'] = [to_h]
+  end
+
   private
 
     def build_range
@@ -23,7 +27,7 @@ class RangeBuilder
       range['@id'] = path
       range.viewing_hint = "top" if top
       unless regular_nodes.empty?
-        range['ranges'] = nodes.map { |x| self.class.new(x, parent_path).to_h }
+        range['ranges'] = regular_nodes.map { |x| self.class.new(x, parent_path).to_h }
       end
       unless proxy_nodes.empty?
         range['canvases'] = proxy_nodes.map do |proxy_node|
@@ -46,7 +50,7 @@ class RangeBuilder
     end
 
     def regular_nodes
-      @regular_nodes ||= nodes.select { |x| !x.proxy_for.present? }
+      @regular_nodes ||= nodes.select { |x| !x.proxy_for.present? && x.nodes.length > 0 }
     end
 
     def canvas_id(id)

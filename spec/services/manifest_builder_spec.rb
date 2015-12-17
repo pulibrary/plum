@@ -31,6 +31,15 @@ RSpec.describe ManifestBuilder, vcr: { cassette_name: "iiif_manifest" } do
       expect(manifest['manifests'].first['label']).to eq solr_document.to_s
       expect(manifest['manifests'].first['@type']).to eq "sc:Manifest"
     end
+    it "doesn't render structures for child manifests" do
+      expect(manifest['manifests'].first['structures']).to eq nil
+    end
+    it "doesn't render canvases for child manifests" do
+      allow(ManifestBuilder::SequenceBuilder).to receive(:new).and_call_original
+
+      expect(manifest['manifests'].first['sequences']).to eq nil
+      expect(ManifestBuilder::SequenceBuilder).to have_received(:new).exactly(1).times
+    end
     context "with SSL on" do
       subject { described_class.new(mvw_document, ssl: true) }
       it "renders collections with HTTPS urls" do
@@ -73,6 +82,9 @@ RSpec.describe ManifestBuilder, vcr: { cassette_name: "iiif_manifest" } do
                   "proxy": file_set2.id
                 }
               ]
+            },
+            {
+              "label": "Bla"
             }
           ]
         }
@@ -84,7 +96,6 @@ RSpec.describe ManifestBuilder, vcr: { cassette_name: "iiif_manifest" } do
       let(:first_canvas) { subject.canvases.first }
       let(:manifest_json) { JSON.parse(subject.to_json) }
       it "has two" do
-        expect(subject.canvases.length).to eq 2
         expect(manifest_json["sequences"].first["canvases"].length).to eq 2
       end
       it "has a label" do
