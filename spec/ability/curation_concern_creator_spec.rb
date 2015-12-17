@@ -47,10 +47,13 @@ describe Ability do
       let(:manager_user) { FactoryGirl.create(:admin) }
       let(:creating_user) { user }
       let(:current_user) { manager_user }
+      let(:open_scanned_resource_presenter) { ScannedResourceShowPresenter.new(open_scanned_resource, subject) }
       it { should be_able_to(:create, ScannedResource.new) }
       it { should be_able_to(:create, FileSet.new) }
       it { should be_able_to(:read, open_scanned_resource) }
       it { should be_able_to(:pdf, open_scanned_resource) }
+      it { should be_able_to(:edit, open_scanned_resource) }
+      it { should be_able_to(:edit, open_scanned_resource_presenter.id) }
       it { should be_able_to(:update, open_scanned_resource) }
       it { should be_able_to(:destroy, open_scanned_resource) }
       it { should be_able_to(:manifest, open_scanned_resource) }
