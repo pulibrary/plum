@@ -38,6 +38,12 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :collections do
+    member do
+      get :manifest, defaults: { format: :json }
+    end
+  end
+
   namespace :curation_concerns, path: :concern do
     resources :scanned_resources, only: [:new, :create, :show], path: 'container/:parent_id/scanned_resources', as: 'member_scanned_resource'
   end
