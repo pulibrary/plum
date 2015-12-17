@@ -15,6 +15,10 @@ class RangeBuilder
     build_range
   end
 
+  def apply(manifest)
+    manifest['structures'] = [to_h]
+  end
+
   private
 
     def build_range

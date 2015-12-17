@@ -12,7 +12,11 @@ class CanvasBuilder
   end
 
   def path
-    CanvasID.new(record.id, parent_path).to_s
+    CanvasID.new(record.id, parent_path.to_s).to_s
+  end
+
+  def apply(sequence)
+    sequence.canvases += [canvas]
   end
 
   class Canvas < IIIF::Presentation::Canvas
@@ -39,7 +43,7 @@ class CanvasBuilder
       annotation = IIIF::Presentation::Annotation.new
       annotation.resource = image
       annotation["on"] = path
-      annotation["@id"] = parent_path + "/annotation/#{record.id}-image"
+      annotation["@id"] = parent_path.to_s + "/annotation/#{record.id}-image"
       canvas.images << annotation
       canvas.width = image.width
       canvas.height = image.height
