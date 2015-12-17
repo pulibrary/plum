@@ -50,6 +50,12 @@ RSpec.feature "ScannedResourcesController", type: :feature do
       visit polymorphic_path [parent_presenter.file_presenters.first]
       expect(page).to have_content "image.png"
     end
+
+    scenario "User can follow link to bulk edit scanned resource" do
+      visit polymorphic_path [scanned_resource]
+      click_link 'Bulk Edit'
+      expect(page).to have_text('Bulk Edit')
+    end
   end
 
   context "an anonymous user" do
