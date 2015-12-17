@@ -1,7 +1,7 @@
 /* exported Flash */
 class Flash {
   constructor() {
-    this.element = $("*[data-reorder-action='flash']")
+    this.element = $(".alert-js")
     this.element.children(".close").click(
       () => {
         this.element.hide()
