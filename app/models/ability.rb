@@ -11,10 +11,7 @@ class Ability
 
   # Abilities that should only be granted to admin users
   def admin_permissions
-    can [:create, :read, :add_user, :remove_user, :index], Role
-    can [:manage], curation_concerns
-    can [:manage], Collection
-    can [:manage], FileSet
+    can [:manage], :all
   end
 
   # Abilities that should be granted to technicians
