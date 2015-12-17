@@ -101,6 +101,9 @@ RSpec.describe ManifestBuilder, vcr: { cassette_name: "iiif_manifest" } do
       it "has a label" do
         expect(first_canvas.label).to eq file_set.to_s
       end
+      it "has a viewing hint on the sequence" do
+        expect(manifest_json["sequences"].first["viewingHint"]).to eq "individuals"
+      end
       it "has a viewing hint" do
         file_set.viewing_hint = "non-paged"
         solr.add file_set.to_solr

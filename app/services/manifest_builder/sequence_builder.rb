@@ -7,6 +7,7 @@ class ManifestBuilder
     end
 
     def apply(manifest)
+      sequence.viewing_hint = manifest.viewing_hint
       manifest.sequences += [sequence] unless empty?
     end
 
