@@ -27,6 +27,7 @@ RSpec.describe ManifestBuilder, vcr: { cassette_name: "iiif_manifest" } do
       expect(manifest['@id']).to eq "http://plum.com/concern/multi_volume_works/2/manifest"
     end
     it "renders a manifest for every child scanned resource" do
+      expect(subject.manifests.length).to eq 1
       expect(manifest['manifests'].length).to eq 1
       expect(manifest['manifests'].first['label']).to eq solr_document.to_s
       expect(manifest['manifests'].first['@type']).to eq "sc:Manifest"
