@@ -31,10 +31,13 @@
         @extend .col-xs-12;
       }
       .order-title {
-        width: 100%;
+        width: 85%;
       }
       .order-filename {
         width: 100%;
+      }
+      .file-set-link {
+        padding-right: 15px;
       }
     }
     li {
