@@ -40,7 +40,6 @@
         } else {
           this.flash.set("danger", "Unable to save new order.")
         }
-        this.disable()
       }
     }
 
