@@ -1,8 +1,9 @@
 class CurationConcernsShowPresenter < CurationConcerns::WorkShowPresenter
   delegate :date_created, :viewing_hint, :viewing_direction, :state, :type, :identifier, :workflow_note, :logical_order, :logical_order_object, to: :solr_document
+  delegate :flaggable?, to: :state_badge_instance
 
   def state_badge
-    StateBadge.new(type, state).render
+    state_badge_instance.render
   end
 
   def in_collections
@@ -19,5 +20,9 @@ class CurationConcernsShowPresenter < CurationConcerns::WorkShowPresenter
 
     def logical_order_factory
       @logical_order_factory ||= WithProxyForObject::Factory.new(file_presenters)
+    end
+
+    def state_badge_instance
+      StateBadge.new(type, state)
     end
 end
