@@ -4,7 +4,7 @@ class ScannedResourcePDF
     delegate :manifest_builder, to: :scanned_resource_pdf
     def initialize(scanned_resource_pdf, path)
       @scanned_resource_pdf = scanned_resource_pdf
-      @path = path
+      @path = Pathname.new(path.to_s)
     end
 
     def render
@@ -12,6 +12,7 @@ class ScannedResourcePDF
         prawn_document.start_new_page layout: downloader.layout if index > 0
         prawn_document.image downloader.download
       end
+      FileUtils.mkdir_p(path.dirname)
       prawn_document.render_file(path)
       File.open(path)
     end
