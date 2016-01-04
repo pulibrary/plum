@@ -5,7 +5,6 @@ class ScannedResource < ActiveFedora::Base
   include ::CurationConcerns::BasicMetadata
   include ::CommonMetadata
   include ::NoidBehaviors
-  include ::GeneratesPdfs
 
   contains :logical_order, class_name: "LogicalOrderBase"
 

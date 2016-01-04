@@ -21,8 +21,8 @@ class CurationConcerns::ScannedResourcesController < CurationConcerns::CurationC
   end
 
   def pdf
-    actor.generate_pdf
-    redirect_to main_app.download_path(curation_concern, file: 'pdf')
+    ScannedResourcePDF.new(presenter).render(pdf_path)
+    redirect_to main_app.download_path(presenter, file: 'pdf')
   end
 
   def save_order
@@ -74,5 +74,9 @@ class CurationConcerns::ScannedResourcesController < CurationConcerns::CurationC
 
     def selected_files_params
       params[:selected_files]
+    end
+
+    def pdf_path
+      PairtreeDerivativePath.derivative_path_for_reference(presenter, 'pdf')
     end
 end
