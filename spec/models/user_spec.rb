@@ -5,7 +5,7 @@ RSpec.describe User, type: :model do
   it 'has PulUserRoles functionality' do
     expect(included_modules).to include(::PulUserRoles)
     expect(subject).to respond_to(:campus_patron?)
-    expect(subject).to respond_to(:curation_concern_creator?)
+    expect(subject).to respond_to(:image_editor?)
   end
   it 'has Hydra Role Management behaviors' do
     expect(included_modules).to include(Hydra::RoleManagement::UserRoles)

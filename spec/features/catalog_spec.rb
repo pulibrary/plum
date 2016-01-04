@@ -17,8 +17,8 @@ RSpec.feature "CatalogController", type: :feature do
     end
   end
 
-  describe "curation_concern_creator user" do
-    let(:user) { FactoryGirl.create(:curation_concern_creator) }
+  describe "image_editor user" do
+    let(:user) { FactoryGirl.create(:image_editor) }
     let(:scanned_resource) { FactoryGirl.create(:scanned_resource, user: user) }
 
     before(:each) do
@@ -34,7 +34,7 @@ RSpec.feature "CatalogController", type: :feature do
   end
 
   describe "anonymous user" do
-    let(:user) { FactoryGirl.create(:curation_concern_creator) }
+    let(:user) { FactoryGirl.create(:image_editor) }
     let(:scanned_resource) { FactoryGirl.create(:scanned_resource, user: user) }
 
     before(:each) do

@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.feature 'Home Page', type: :feature do
   describe 'a logged in user' do
-    let(:user) { FactoryGirl.create(:curation_concern_creator) }
+    let(:user) { FactoryGirl.create(:image_editor) }
 
     before(:each) do
       sign_in user

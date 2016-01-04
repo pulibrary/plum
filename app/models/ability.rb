@@ -5,7 +5,7 @@ class Ability
   def custom_permissions
     alias_action :pdf, :show, :manifest, to: :read
     admin_permissions if current_user.admin?
-    curation_concern_creator_permissions if current_user.curation_concern_creator?
+    image_editor_permissions if current_user.image_editor?
     campus_patron_permissions if current_user.campus_patron?
   end
 
@@ -15,12 +15,18 @@ class Ability
   end
 
   # Abilities that should be granted to technicians
-  def curation_concern_creator_permissions
-    # Do not allow creators to destroy what they make.
+  def image_editor_permissions
     can [:create, :read, :edit, :update, :publish], curation_concerns
-    can [:bulk_edit], ScannedResource
-    can [:create, :read, :edit, :update, :publish], FileSet
+    can [:bulk_edit, :save_structure], ScannedResource
+    can [:create, :read, :edit, :update, :publish, :download], FileSet
     can [:create, :read, :edit, :update, :publish], Collection
+
+    # do not allow completing resources
+    cannot [:complete], curation_concerns
+
+    # only allow deleting for own objects, without ARKs
+    can [:destroy], FileSet, depositor: current_user.uid
+    can [:destroy], curation_concerns, depositor: current_user.uid, identifier: nil
   end
 
   # Abilities that should be granted to patron

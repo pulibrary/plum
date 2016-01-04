@@ -14,7 +14,7 @@ RSpec.feature 'Collections', type: :feature do
   end
 
   describe 'a logged in user is allowed to create a collection' do
-    let(:user) { FactoryGirl.create(:curation_concern_creator) }
+    let(:user) { FactoryGirl.create(:image_editor) }
 
     before(:each) do
       sign_in user

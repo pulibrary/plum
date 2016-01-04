@@ -284,7 +284,7 @@ describe CurationConcerns::ScannedResourcesController do
   end
 
   describe "#bulk-edit" do
-    let(:user) { FactoryGirl.create(:curation_concern_creator) }
+    let(:user) { FactoryGirl.create(:image_editor) }
     before do
       sign_in user
     end
@@ -413,6 +413,36 @@ describe CurationConcerns::ScannedResourcesController do
         expect(response.status).to eq 302
         expect(flash[:alert]).to eq 'Unable to update resource'
         expect(reloaded.state).to eq 'pending'
+      end
+    end
+  end
+
+  describe "marking complete" do
+    let(:scanned_resource) { FactoryGirl.create(:scanned_resource, user: user, state: 'final_review') }
+    let(:scanned_resource_attributes) { { state: 'complete' } }
+    let(:reloaded) { ScannedResource.find scanned_resource.id }
+
+    context "as an admin" do
+      let(:admin) { FactoryGirl.create(:admin) }
+      before do
+        sign_in admin
+        Ezid::Client.configure do |conf| conf.logger = Logger.new(File::NULL); end
+      end
+
+      it "succeeds", vcr: { cassette_name: "ezid" } do
+        post :update, id: scanned_resource.id, scanned_resource: scanned_resource_attributes
+        expect(reloaded.state).to eq 'complete'
+      end
+    end
+    context "as an image editor" do
+      before do
+        sign_in user
+      end
+
+      it "fails" do
+        post :update, id: scanned_resource.id, scanned_resource: scanned_resource_attributes
+        expect(flash[:alert]).to eq 'Unable to mark resource complete'
+        expect(reloaded.state).to eq 'final_review'
       end
     end
   end

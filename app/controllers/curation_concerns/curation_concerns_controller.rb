@@ -33,6 +33,12 @@ class CurationConcerns::CurationConcernsController < ApplicationController
     end
   end
 
+  def update
+    authorize!(:complete, @curation_concern, message: 'Unable to mark resource complete') if @curation_concern.state != 'complete' && params[curation_concern_name][:state] == 'complete'
+    add_to_collections(params[curation_concern_name].delete(:collection_ids))
+    super
+  end
+
   def flag
     curation_concern.state = 'flagged'
     note = params[curation_concern_name][:workflow_note]

@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.feature "ScannedResourcesController", type: :feature do
-  let(:user) { FactoryGirl.create(:curation_concern_creator) }
+  let(:user) { FactoryGirl.create(:image_editor) }
 
   context "an authorized user" do
     before(:each) do
