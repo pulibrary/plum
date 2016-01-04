@@ -1,8 +1,8 @@
 module PulUserRoles
   extend ActiveSupport::Concern
 
-  def curation_concern_creator?
-    roles.where(name: 'curation_concern_creator').exists?
+  def image_editor?
+    roles.where(name: 'image_editor').exists?
   end
 
   def campus_patron?

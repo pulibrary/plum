@@ -1,6 +1,12 @@
 class DownloadsController < ApplicationController
   include CurationConcerns::DownloadBehavior
 
+  protected
+
+    def authorize_download!
+      authorize! :download, asset
+    end
+
   private
 
     def load_file
