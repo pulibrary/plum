@@ -23,6 +23,7 @@ Rails.application.routes.draw do
     resources :multi_volume_works, only: [] do
       member do
         get :manifest, defaults: { format: :json }
+        post :flag
       end
     end
     resources :scanned_resources, only: [] do
@@ -34,6 +35,7 @@ Rails.application.routes.draw do
         get :manifest, defaults: { format: :json }
         post :reorder, action: :save_order
         post :browse_everything_files
+        post :flag
       end
     end
   end

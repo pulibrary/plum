@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 describe ScannedResource do
-  let(:scanned_resource) { FactoryGirl.build(:scanned_resource, source_metadata_identifier: '12345', access_policy: 'Policy', use_and_reproduction: 'Statement') }
+  let(:scanned_resource) { FactoryGirl.build(:scanned_resource, source_metadata_identifier: '12345', access_policy: 'Policy', use_and_reproduction: 'Statement', workflow_note: ['Note 1']) }
   let(:reloaded)         { described_class.find(scanned_resource.id) }
   subject { scanned_resource }
 
@@ -15,6 +15,19 @@ describe ScannedResource do
         expect { subject.save }.to_not raise_error
         expect(reloaded.send(note_type)).to eq note
       end
+    end
+  end
+
+  describe 'has a repeatable workflow note field' do
+    it "allows multiple workflow notes" do
+      subject.workflow_note = ['Note 1', 'Note 2']
+      expect { subject.save }.to_not raise_error
+      expect(reloaded.workflow_note).to include 'Note 1', 'Note 2'
+    end
+    it "allows adding to the workflow notes" do
+      subject.workflow_note << 'Note 2'
+      expect { subject.save }.to_not raise_error
+      expect(reloaded.workflow_note).to include 'Note 1', 'Note 2'
     end
   end
 

@@ -20,6 +20,10 @@ class StateBadge
     html
   end
 
+  def flaggable?
+    @state.flagged? || @state.valid_transitions.include?(:flagged)
+  end
+
   def render_hidden
     tag :input, id: "#{field_id}", name: field_name, type: :hidden, value: current_state
   end

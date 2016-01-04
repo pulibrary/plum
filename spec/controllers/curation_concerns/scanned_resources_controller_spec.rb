@@ -347,4 +347,56 @@ describe CurationConcerns::ScannedResourcesController do
       expect(resource.reload.logical_order.order).to eq({ "nodes": nodes }.with_indifferent_access)
     end
   end
+
+  describe "#flag" do
+    context "a complete object with an existing workflow note" do
+      let(:scanned_resource) { FactoryGirl.create(:scanned_resource, user: user, state: 'complete', workflow_note: ['Existing note']) }
+      let(:flag_attributes) { { workflow_note: 'Page 4 is broken' } }
+      let(:reloaded) { ScannedResource.find scanned_resource.id }
+      before do
+        sign_in user
+      end
+
+      it "updates the state" do
+        post :flag, id: scanned_resource.id, scanned_resource: flag_attributes
+        expect(response.status).to eq 302
+        expect(flash[:notice]).to eq 'Resource updated'
+
+        expect(reloaded.state).to eq 'flagged'
+        expect(reloaded.workflow_note).to include 'Existing note', 'Page 4 is broken'
+      end
+    end
+    context "a complete object without a workflow note" do
+      let(:scanned_resource) { FactoryGirl.create(:scanned_resource, user: user, state: 'complete') }
+      let(:flag_attributes) { { workflow_note: 'Page 4 is broken' } }
+      let(:reloaded) { ScannedResource.find scanned_resource.id }
+      before do
+        sign_in user
+      end
+
+      it "updates the state" do
+        post :flag, id: scanned_resource.id, scanned_resource: flag_attributes
+        expect(response.status).to eq 302
+        expect(flash[:notice]).to eq 'Resource updated'
+
+        expect(reloaded.state).to eq 'flagged'
+        expect(reloaded.workflow_note).to include 'Page 4 is broken'
+      end
+    end
+    context "a pending object" do
+      let(:scanned_resource) { FactoryGirl.create(:scanned_resource, user: user, state: 'pending') }
+      let(:flag_attributes) { { workflow_note: 'Page 4 is broken' } }
+      let(:reloaded) { ScannedResource.find scanned_resource.id }
+      before do
+        sign_in user
+      end
+
+      it "receives an error" do
+        post :flag, id: scanned_resource.id, scanned_resource: flag_attributes
+        expect(response.status).to eq 302
+        expect(flash[:alert]).to eq 'Unable to update resource'
+        expect(reloaded.state).to eq 'pending'
+      end
+    end
+  end
 end

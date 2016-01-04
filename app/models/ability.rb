@@ -25,6 +25,7 @@ class Ability
 
   # Abilities that should be granted to patron
   def campus_patron_permissions
+    can [:flag], curation_concerns
   end
 
   private
