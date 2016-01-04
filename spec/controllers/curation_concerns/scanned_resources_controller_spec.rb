@@ -183,9 +183,9 @@ describe CurationConcerns::ScannedResourcesController do
       sign_in user
     end
     it 'generates the pdf then redirects to its download url' do
-      actor = double("Actor")
-      allow(controller).to receive(:actor).and_return(actor)
-      expect(actor).to receive(:generate_pdf)
+      pdf = double("Actor")
+      allow(ScannedResourcePDF).to receive(:new).and_return(pdf)
+      allow(pdf).to receive(:render).and_return(true)
       get :pdf, id: scanned_resource
       expect(response).to redirect_to(Rails.application.class.routes.url_helpers.download_path(scanned_resource, file: 'pdf'))
     end

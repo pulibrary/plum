@@ -66,6 +66,7 @@ group :development, :test do
   gem "factory_girl_rails"
   gem 'jasmine-rails'
   gem 'jasmine-jquery-rails'
+  gem 'pdf-reader', github: 'yob/pdf-reader'
 end
 
 group :development do
