@@ -30,7 +30,7 @@ class CurationConcerns::ScannedResourcesController < CurationConcerns::CurationC
       form = ReorderForm.new(curation_concern)
       form.order = params[:order]
       if form.save
-        render json: { message: "Succesfully updated order." }
+        render json: { message: "Successfully updated order." }
       else
         render json: { message: form.errors.full_messages.to_sentence }, status: :bad_request
       end
