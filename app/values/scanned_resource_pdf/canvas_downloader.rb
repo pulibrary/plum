@@ -1,6 +1,7 @@
 class ScannedResourcePDF
   class CanvasDownloader
     attr_reader :canvas
+    delegate :width, :height, to: :canvas
     def initialize(canvas)
       @canvas = canvas
     end
@@ -17,26 +18,30 @@ class ScannedResourcePDF
       end
     end
 
+    def portrait?
+      canvas.width <= canvas.height
+    end
+
     private
 
-      def portrait?
-        canvas.width <= canvas.height
-      end
-
       def canvas_url
-        "#{canvas.url}/full/!#{max_width},#{max_height}/0/#{quality}.jpg"
+        "#{canvas.url}/full/#{max_width},#{max_height}/0/#{quality}.jpg"
       end
 
       def max_width
-        792
+        [(Canvas::LETTER_WIDTH * scale_factor).round, canvas.width].min
       end
 
       def max_height
-        792
+        [(Canvas::LETTER_HEIGHT * scale_factor).round, canvas.height].min
       end
 
       def quality
         "gray"
+      end
+
+      def scale_factor
+        1.5
       end
   end
 end

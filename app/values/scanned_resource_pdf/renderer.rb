@@ -10,7 +10,9 @@ class ScannedResourcePDF
     def render
       canvas_downloaders.each_with_index do |downloader, index|
         prawn_document.start_new_page layout: downloader.layout if index > 0
-        prawn_document.image downloader.download
+        page_size = [Canvas::LETTER_WIDTH, Canvas::LETTER_HEIGHT]
+        page_size.reverse! unless downloader.portrait?
+        prawn_document.image downloader.download, width: downloader.width, height: downloader.height, fit: page_size
       end
       FileUtils.mkdir_p(path.dirname)
       prawn_document.render_file(path)
