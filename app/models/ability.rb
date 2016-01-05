@@ -6,6 +6,7 @@ class Ability
     alias_action :pdf, :show, :manifest, to: :read
     admin_permissions if current_user.admin?
     image_editor_permissions if current_user.image_editor?
+    editor_permissions if current_user.editor?
     campus_patron_permissions if current_user.campus_patron?
   end
 
@@ -27,6 +28,16 @@ class Ability
     # only allow deleting for own objects, without ARKs
     can [:destroy], FileSet, depositor: current_user.uid
     can [:destroy], curation_concerns, depositor: current_user.uid, identifier: nil
+  end
+
+  def editor_permissions
+    can [:read, :edit, :update], curation_concerns
+    can [:bulk_edit, :save_structure], ScannedResource
+    can [:read, :edit, :update], FileSet
+    can [:read, :edit, :update], Collection
+
+    # do not allow completing resources
+    cannot [:complete], curation_concerns
   end
 
   # Abilities that should be granted to patron

@@ -5,6 +5,10 @@ module PulUserRoles
     roles.where(name: 'image_editor').exists?
   end
 
+  def editor?
+    roles.where(name: 'editor').exists?
+  end
+
   def campus_patron?
     persisted? && provider == "cas"
   end
