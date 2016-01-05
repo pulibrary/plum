@@ -57,7 +57,7 @@ class CurationConcerns::CurationConcernsController < ApplicationController
         begin
           _, document_list = search_results(params, CatalogController.search_params_logic + [:find_one])
           curation_concern = document_list.first
-          raise CanCan::AccessDenied.new(nil, :manifest) unless curation_concern
+          raise CanCan::AccessDenied.new(nil, params[:action].to_sym) unless curation_concern
           @presenter = show_presenter.new(curation_concern, current_ability)
         end
     end

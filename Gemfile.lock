@@ -542,6 +542,8 @@ GEM
     pry-byebug (3.2.0)
       byebug (~> 5.0)
       pry (~> 0.10)
+    pry-rails (0.3.4)
+      pry (>= 0.9.10)
     qa (0.5.0)
       activerecord-import
       deprecation
@@ -842,6 +844,7 @@ DEPENDENCIES
   posix-spawn
   prawn
   pry-byebug
+  pry-rails
   pul_metadata_services!
   rails (= 4.2.4)
   rails-assets-babel-polyfill!
