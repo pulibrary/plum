@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe 'ScannedResourcesController', type: :request do
-  let(:user) { FactoryGirl.create(:curation_concern_creator) }
+  let(:user) { FactoryGirl.create(:image_editor) }
   let(:scanned_resource) { FactoryGirl.create(:scanned_resource) }
 
   before do

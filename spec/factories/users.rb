@@ -16,8 +16,8 @@ FactoryGirl.define do
       # All CAS users are campus patrons.
     end
 
-    factory :curation_concern_creator do
-      roles { [Role.where(name: 'curation_concern_creator').first_or_create] }
+    factory :image_editor do
+      roles { [Role.where(name: 'image_editor').first_or_create] }
     end
 
     factory :complete_reviewer do

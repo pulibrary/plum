@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.feature "ScannedResourcesController", type: :feature do
-  let(:user) { FactoryGirl.create(:curation_concern_creator) }
+  let(:user) { FactoryGirl.create(:image_editor) }
   let(:scanned_resource) { FactoryGirl.create(:scanned_resource_with_multi_volume_work, user: user) }
   let(:parent_presenter) do
     ScannedResourceShowPresenter.new(

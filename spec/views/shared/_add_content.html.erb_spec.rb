@@ -10,7 +10,7 @@ RSpec.describe "shared/_add_content.html.erb" do
     expect(rendered).to have_link "Manage Roles"
   end
   context "for a non-admin" do
-    let(:user) { FactoryGirl.create(:curation_concern_creator) }
+    let(:user) { FactoryGirl.create(:image_editor) }
     it "doesn't display a link to role management" do
       expect(rendered).not_to have_link "Manage Roles"
     end
