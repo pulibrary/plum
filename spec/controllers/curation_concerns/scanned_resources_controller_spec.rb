@@ -1,5 +1,3 @@
-# Generated via
-#  `rails generate curation_concerns:work ScannedResource`
 require 'rails_helper'
 
 describe CurationConcerns::ScannedResourcesController do
@@ -179,15 +177,34 @@ describe CurationConcerns::ScannedResourcesController do
   end
 
   describe 'pdf' do
-    before do
-      sign_in user
+    context "when given permission" do
+      it 'generates the pdf then redirects to its download url' do
+        pdf = double("Actor")
+        allow(ScannedResourcePDF).to receive(:new).and_return(pdf)
+        allow(pdf).to receive(:render).and_return(true)
+        get :pdf, id: scanned_resource
+        expect(response).to redirect_to(Rails.application.class.routes.url_helpers.download_path(scanned_resource, file: 'pdf'))
+      end
     end
-    it 'generates the pdf then redirects to its download url' do
-      pdf = double("Actor")
-      allow(ScannedResourcePDF).to receive(:new).and_return(pdf)
-      allow(pdf).to receive(:render).and_return(true)
-      get :pdf, id: scanned_resource
-      expect(response).to redirect_to(Rails.application.class.routes.url_helpers.download_path(scanned_resource, file: 'pdf'))
+    context "when not given permission" do
+      let(:scanned_resource) { FactoryGirl.create(:private_scanned_resource, user: user, title: ['Dummy Title']) }
+      context "and not logged in" do
+        it "redirects for auth" do
+          get :pdf, id: scanned_resource
+
+          expect(response).to redirect_to "http://test.host/users/auth/cas"
+        end
+      end
+      context "and logged in" do
+        before do
+          sign_in FactoryGirl.create(:user)
+        end
+        it "redirects to root" do
+          get :pdf, id: scanned_resource
+
+          expect(response).to redirect_to Rails.application.class.routes.url_helpers.root_path
+        end
+      end
     end
   end
 
