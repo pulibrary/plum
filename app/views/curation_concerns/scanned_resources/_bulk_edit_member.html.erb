@@ -17,7 +17,7 @@
       <div class="panel-body">
         <div class="text-center thumbnail">
           <%= osd_modal_for(node.id) do %>
-            <%= render_thumbnail_tag node %>
+            <%= render_thumbnail_tag node, class: 'thumbnail-inner' %>
           <% end %>
         </div>
         <div class="attributes">
