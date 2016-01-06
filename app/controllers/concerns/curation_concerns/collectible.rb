@@ -34,11 +34,6 @@ module CurationConcerns::Collectible
       logger.debug "Error retrieving metadata: #{params[curation_concern_name]['source_metadata_identifier']}"
       return false
     end
-
-    def update
-      add_to_collections(params[curation_concern_name].delete(:collection_ids))
-      super
-    end
   end
 
   private

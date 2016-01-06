@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.feature "MultiVolumeWorksController", type: :feature do
-  let(:user) { FactoryGirl.create(:curation_concern_creator) }
+  let(:user) { FactoryGirl.create(:image_editor) }
   let(:multi_volume_work) { FactoryGirl.create(:multi_volume_work, user: user) }
 
   before(:each) do
