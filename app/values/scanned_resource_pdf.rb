@@ -8,8 +8,12 @@ class ScannedResourcePDF
     manifest_builder.canvases.length
   end
 
-  def render(path)
-    Renderer.new(self, path).render
+  def render(path, force: false)
+    if File.exist?(path) && !force
+      File.open(path)
+    else
+      Renderer.new(self, path).render
+    end
   end
 
   def manifest_builder

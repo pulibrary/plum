@@ -22,5 +22,15 @@ describe PairtreeDerivativePath do
 
       it { is_expected.to eq 'tmp/08/61/2n/57/q-unrecognized.unrecognized' }
     end
+    context "when given a PDF" do
+      let(:destination_name) { 'pdf' }
+      it "returns a unique PDF path based on the resource identifier" do
+        identifier = instance_double(ResourceIdentifier)
+        allow(ResourceIdentifier).to receive(:new).with(object.id).and_return(identifier)
+        allow(identifier).to receive(:to_s).and_return("banana")
+
+        expect(subject).to eql "tmp/08/61/2n/57/q-banana-pdf.pdf"
+      end
+    end
   end
 end
