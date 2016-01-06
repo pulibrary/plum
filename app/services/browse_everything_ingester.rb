@@ -9,7 +9,7 @@ class BrowseEverythingIngester
   end
 
   def save
-    actor.create_metadata(upload_set_id, curation_concern, {})
+    actor.create_metadata(curation_concern, {})
     delete_pending_uploads if actor.create_content(decorated_file)
     cleanup_download
   end

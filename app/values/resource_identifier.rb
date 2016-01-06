@@ -22,18 +22,10 @@ class ResourceIdentifier
 
   # Combined timestamp of this resource and all its state dependancies.
   def timestamp
-    @timestamp ||= CompositeTimestamp.new([solr_record.timestamp, dependency_record.timestamp]).to_s
+    @timestamp ||= solr_record.timestamp
   end
 
   private
-
-    def dependency_record
-      if solr_record.dependant_ids.blank?
-        NoDependencies.instance
-      else
-        ResourceIdentifier.new(solr_record.dependant_ids)
-      end
-    end
 
     def solr_record
       repository.find(id)

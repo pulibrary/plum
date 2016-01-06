@@ -8,7 +8,6 @@ class FileSet < ActiveFedora::Base
   )
 
   validates_with ViewingHintValidator
-  # makes_derivatives :create_intermediate_file
 
   def iiif_path
     IIIFPath.new(id).to_s

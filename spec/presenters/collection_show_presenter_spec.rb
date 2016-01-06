@@ -6,6 +6,7 @@ RSpec.describe CollectionShowPresenter do
   let(:doc) do
     c = Collection.new("collection")
     c.members << scanned_resource
+    allow(c).to receive(:new_record?).and_return(false)
     c.to_solr
   end
   let(:scanned_resource) do
