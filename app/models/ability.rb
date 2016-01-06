@@ -1,11 +1,10 @@
 class Ability
   include Hydra::Ability
   include CurationConcerns::Ability
+
   # Define any customized permissions here.
   def custom_permissions
     alias_action :pdf, :show, :manifest, to: :read
-    roles = ['campus_patron', 'curator', 'fulfiller', 'editor', 'image_editor', 'admin']
-
     roles.each do |role|
       send "#{role}_permissions" if current_user.send "#{role}?"
     end
@@ -28,7 +27,10 @@ class Ability
 
     # only allow deleting for own objects, without ARKs
     can [:destroy], FileSet, depositor: current_user.uid
-    can [:destroy], curation_concerns, depositor: current_user.uid, identifier: nil
+    can [:destroy], curation_concerns, depositor: current_user.uid
+    cannot [:destroy], curation_concerns do |obj|
+      !obj.identifier.nil?
+    end
   end
 
   def editor_permissions
@@ -58,15 +60,25 @@ class Ability
 
   # Abilities that should be granted to patron
   def campus_patron_permissions
+    anonymous_permissions
     can [:flag], curation_concerns
+  end
 
-    # do not allow viewing pending resources
+  def anonymous_permissions
+    # do not allow viewing incomplete resources
     cannot [:read], curation_concerns, state: 'pending'
+    cannot [:read], curation_concerns, state: 'metadata_review'
+    cannot [:read], curation_concerns, state: 'final_review'
+    cannot [:read], curation_concerns, state: 'takedown'
   end
 
   private
 
     def curation_concerns
       CurationConcerns.config.curation_concerns
+    end
+
+    def roles
+      ['anonymous', 'campus_patron', 'curator', 'fulfiller', 'editor', 'image_editor', 'admin']
     end
 end

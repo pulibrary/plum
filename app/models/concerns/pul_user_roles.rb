@@ -20,4 +20,8 @@ module PulUserRoles
   def campus_patron?
     persisted? && provider == "cas"
   end
+
+  def anonymous?
+    !persisted?
+  end
 end
