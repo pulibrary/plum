@@ -7,6 +7,7 @@ class Ability
     admin_permissions if current_user.admin?
     image_editor_permissions if current_user.image_editor?
     editor_permissions if current_user.editor?
+    fulfiller_permissions if current_user.fulfiller?
     campus_patron_permissions if current_user.campus_patron?
   end
 
@@ -38,6 +39,12 @@ class Ability
 
     # do not allow completing resources
     cannot [:complete], curation_concerns
+  end
+
+  def fulfiller_permissions
+    can [:read], curation_concerns
+    can [:read, :download], FileSet
+    can [:read], Collection
   end
 
   # Abilities that should be granted to patron

@@ -9,6 +9,10 @@ module PulUserRoles
     roles.where(name: 'editor').exists?
   end
 
+  def fulfiller?
+    roles.where(name: 'fulfiller').exists?
+  end
+
   def campus_patron?
     persisted? && provider == "cas"
   end
