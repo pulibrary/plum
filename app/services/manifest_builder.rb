@@ -39,12 +39,17 @@ class ManifestBuilder
           services,
           sequence_builder,
           range_builder,
-          manifest_builders
+          manifest_builders,
+          pdf_link_builder
         )
     end
 
     def record_property_builder
       RecordPropertyBuilder.new(record, root_path)
+    end
+
+    def pdf_link_builder
+      PDFLinkBuilder.new(record, ssl: @ssl)
     end
 
     def sequence_builder

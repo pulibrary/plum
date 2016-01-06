@@ -41,6 +41,9 @@ RSpec.describe ManifestBuilder, vcr: { cassette_name: "iiif_manifest" } do
       expect(manifest['manifests'].first['sequences']).to eq nil
       expect(ManifestBuilder::SequenceBuilder).to have_received(:new).exactly(1).times
     end
+    it "doesn't generate a PDF link" do
+      expect(manifest['rendering']).to eql nil
+    end
     context "with SSL on" do
       subject { described_class.new(mvw_document, ssl: true) }
       it "renders collections with HTTPS urls" do
@@ -138,6 +141,15 @@ RSpec.describe ManifestBuilder, vcr: { cassette_name: "iiif_manifest" } do
         expect(first_structure["ranges"].length).to eq 1
         expect(first_structure["ranges"].first["canvases"].length).to eq 2
         expect(first_structure["ranges"].first["canvases"].first).to eq manifest_json["sequences"].first["canvases"].first['@id']
+      end
+      it "has a pdf link" do
+        expect(manifest_json['sequences'][0]["rendering"]["@id"]).to eql "http://plum.com/concern/scanned_resources/1/pdf"
+      end
+      context "when given SSL" do
+        subject { described_class.new(solr_document, ssl: true) }
+        it "generates https links appropriately for pdfs" do
+          expect(manifest_json['sequences'][0]["rendering"]["@id"]).to eql "https://plum.com/concern/scanned_resources/1/pdf"
+        end
       end
     end
     it "has none" do
