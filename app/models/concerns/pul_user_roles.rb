@@ -13,6 +13,10 @@ module PulUserRoles
     roles.where(name: 'fulfiller').exists?
   end
 
+  def curator?
+    roles.where(name: 'curator').exists?
+  end
+
   def campus_patron?
     persisted? && provider == "cas"
   end

@@ -4,11 +4,11 @@ class Ability
   # Define any customized permissions here.
   def custom_permissions
     alias_action :pdf, :show, :manifest, to: :read
-    admin_permissions if current_user.admin?
-    image_editor_permissions if current_user.image_editor?
-    editor_permissions if current_user.editor?
-    fulfiller_permissions if current_user.fulfiller?
-    campus_patron_permissions if current_user.campus_patron?
+    roles = ['admin', 'image_editor', 'editor', 'fulfiller', 'curator', 'campus_patron']
+
+    roles.each do |role|
+      send "#{role}_permissions" if current_user.send "#{role}?"
+    end
   end
 
   # Abilities that should only be granted to admin users
@@ -45,6 +45,15 @@ class Ability
     can [:read], curation_concerns
     can [:read, :download], FileSet
     can [:read], Collection
+  end
+
+  def curator_permissions
+    can [:read], curation_concerns
+    can [:read], FileSet
+    can [:read], Collection
+
+    # do not allow viewing pending resources
+    cannot [:read], curation_concerns, state: 'pending'
   end
 
   # Abilities that should be granted to patron
