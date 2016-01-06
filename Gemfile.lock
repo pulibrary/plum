@@ -10,10 +10,10 @@ GIT
 
 GIT
   remote: git://github.com/projecthydra-labs/activefedora-aggregation.git
-  revision: f953afb564ef922c5b4cc08245c96feca101bd8d
+  revision: e481a71c9e17f26e379fae60bf5a1a64550d6cc4
   branch: master
   specs:
-    activefedora-aggregation (0.7.0)
+    activefedora-aggregation (0.8.0)
       active-fedora (~> 9.5)
       activesupport
       rdf (~> 1.1, >= 1.1.17.1)
@@ -37,24 +37,24 @@ GIT
 
 GIT
   remote: git://github.com/projecthydra-labs/curation_concerns.git
-  revision: f01b61292bef75f038de206429fa506a07806844
+  revision: 08008bf9073ff0fe4b7d60d9327ab4b643825fe8
   branch: master
   specs:
-    curation_concerns (0.3.0)
+    curation_concerns (0.5.0)
       blacklight_advanced_search (>= 5.1.4, < 6.0)
       breadcrumbs_on_rails (~> 2.3)
-      curation_concerns-models (= 0.3.0)
+      curation_concerns-models (= 0.5.0)
       hydra-editor (~> 1.1)
       hydra-head (~> 9.0)
       jquery-ui-rails
       rails_autolink
       simple_form (~> 3.1)
-    curation_concerns-models (0.3.0)
+    curation_concerns-models (0.5.0)
       active_attr
       active_fedora-noid (~> 1.0)
-      hydra-collections (~> 6.0.0.rc1)
+      hydra-collections (~> 6.0.0)
       hydra-head (~> 9.3)
-      hydra-works (~> 0.3)
+      hydra-works (~> 0.6)
       qa (~> 0.5)
       redlock (~> 0.1.2)
       resque (~> 1.23)
@@ -72,10 +72,10 @@ GIT
 
 GIT
   remote: git://github.com/projecthydra-labs/hydra-works.git
-  revision: efc470edf55ff7b35f693b0e800d02e5187aeecc
+  revision: d9bde6cbebe29674ab10dafa3014c271f0a370b8
   branch: master
   specs:
-    hydra-works (0.4.0)
+    hydra-works (0.6.0)
       hydra-derivatives (~> 3.0)
       hydra-file_characterization (~> 0.3, >= 0.3.3)
       hydra-pcdm (~> 0.3)
@@ -98,14 +98,15 @@ GIT
 
 GIT
   remote: git://github.com/projecthydra/hydra-collections.git
-  revision: c8abfb472265e45f852b358b769f3d8cb7af9979
+  revision: f4667aa04deadfd1cee1153c85e9e96816b65212
   branch: master
   specs:
-    hydra-collections (6.0.0.rc1)
+    hydra-collections (6.0.0)
       blacklight (~> 5.10)
       deprecation (~> 0.1)
       hydra-head (~> 9.1)
-      hydra-works (~> 0.2)
+      hydra-works (~> 0.4)
+      rdf (~> 1.99)
 
 GIT
   remote: git://github.com/projecthydra/hydra-derivatives.git
@@ -166,7 +167,7 @@ GEM
       erubis (~> 2.7.0)
       rails-dom-testing (~> 1.0, >= 1.0.5)
       rails-html-sanitizer (~> 1.0, >= 1.0.2)
-    active-triples (0.7.2)
+    active-triples (0.7.3)
       activemodel (>= 3.0.0)
       activesupport (>= 3.0.0)
       deprecation (~> 0.1)
@@ -175,8 +176,8 @@ GEM
     active_attr (0.8.5)
       activemodel (>= 3.0.2, < 5.0)
       activesupport (>= 3.0.2, < 5.0)
-    active_fedora-noid (1.0.2)
-      active-fedora (~> 9.0)
+    active_fedora-noid (1.0.3)
+      active-fedora (~> 9.7)
       noid (~> 0.7)
     activejob (4.2.4)
       activesupport (= 4.2.4)
@@ -206,7 +207,7 @@ GEM
       addressable (>= 2.3.1)
       extlib (>= 0.9.15)
       multi_json (>= 1.0.0)
-    autoprefixer-rails (6.1.2)
+    autoprefixer-rails (6.2.3)
       execjs
       json
     babel-source (5.8.33)
@@ -218,7 +219,7 @@ GEM
     bcrypt (3.1.10)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
-    blacklight (5.16.4)
+    blacklight (5.17.1)
       bootstrap-sass (~> 3.2)
       deprecation
       kaminari (>= 0.15)
@@ -276,7 +277,7 @@ GEM
       timers (>= 4.1.1)
     celluloid-supervision (0.20.5)
       timers (>= 4.1.1)
-    childprocess (0.5.8)
+    childprocess (0.5.9)
       ffi (~> 1.0, >= 1.0.11)
     coderay (1.1.0)
     coffee-rails (4.1.0)
@@ -584,7 +585,7 @@ GEM
       thor (>= 0.18.1, < 2.0)
     rainbow (2.0.0)
     rake (10.4.2)
-    rdf (1.99.0)
+    rdf (1.99.1)
       link_header (~> 0.0, >= 0.0.8)
     rdf-aggregate-repo (1.99.0)
       rdf (~> 1.99)
@@ -636,7 +637,7 @@ GEM
     rdf-xsd (1.99.0)
       rdf (~> 1.99)
     rdoc (4.2.0)
-    redis (3.2.1)
+    redis (3.2.2)
     redis-namespace (1.5.2)
       redis (~> 3.0, >= 3.0.4)
     redlock (0.1.5)
@@ -692,7 +693,7 @@ GEM
     ruby-rc4 (0.1.5)
     rubyzip (1.1.7)
     safe_yaml (1.0.4)
-    sass (3.4.19)
+    sass (3.4.20)
     sass-rails (5.0.4)
       railties (>= 4.0.0, < 5.0)
       sass (~> 3.1)
@@ -751,7 +752,7 @@ GEM
       net-http-persistent (~> 2.9)
       rdf (~> 1.1)
     spring (1.4.0)
-    sprockets (3.5.1)
+    sprockets (3.5.2)
       concurrent-ruby (~> 1.0)
       rack (> 1, < 3)
     sprockets-es6 (0.8.2)
@@ -773,7 +774,7 @@ GEM
       tins (~> 1.0)
     thor (0.19.1)
     thread_safe (0.3.5)
-    tilt (2.0.1)
+    tilt (2.0.2)
     timers (4.1.1)
       hitimes
     tins (1.6.0)
@@ -858,6 +859,7 @@ DEPENDENCIES
   simplecov (~> 0.9)
   spring
   sprockets-es6
+  sprockets-rails (~> 2.3.3)
   sqlite3
   uglifier (>= 1.3.0)
   vcr

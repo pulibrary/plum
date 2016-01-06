@@ -96,6 +96,7 @@ gem 'sidekiq'
 gem "omniauth-cas"
 gem 'ezid-client'
 gem 'sprockets-es6'
+gem 'sprockets-rails', '~> 2.3.3'
 gem 'browse-everything', github: 'projecthydra-labs/browse-everything'
 gem 'aasm'
 source 'https://rails-assets.org' do
