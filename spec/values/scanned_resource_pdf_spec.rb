@@ -51,6 +51,16 @@ RSpec.describe ScannedResourcePDF, vcr: { cassette_name: "iiif_manifest" } do
       expect(pdf_reader.pages.first.orientation).to eq "portrait"
       expect(pdf_reader.pages.last.orientation).to eq "landscape"
     end
+    it "doesn't re-render if it exists already" do
+      allow(File).to receive(:exist?).and_call_original
+      allow(File).to receive(:exist?).with(path).and_return(true)
+      allow(File).to receive(:open).and_call_original
+      allow(File).to receive(:open).with(path).and_return("test")
+      allow(ScannedResourcePDF::Renderer).to receive(:new).and_call_original
+      file = subject.render(path)
+      expect(file).to eq "test"
+      expect(ScannedResourcePDF::Renderer).not_to have_received(:new)
+    end
     describe "#canvas_images" do
       let(:renderer) { ScannedResourcePDF::Renderer.new(subject, path) }
       it "returns all the IIIF ids of canvas images" do
