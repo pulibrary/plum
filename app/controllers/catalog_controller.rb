@@ -3,6 +3,13 @@ class CatalogController < ApplicationController
 
   include CurationConcerns::CatalogController
   self.search_params_logic += [:hide_parented_resources, :join_from_parent]
+  def self.search_config
+    {
+      'qf' => %w(title_tesim name_tesim source_metadata_identifier_ssim),
+      'qt' => 'search',
+      'rows' => 10
+    }
+  end
   configure_blacklight do |config|
     config.search_builder_class = SearchBuilder
     ## Default parameters to send to solr for all search-like requests. See also SolrHelper#solr_search_params
