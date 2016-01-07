@@ -1,14 +1,4 @@
 GIT
-  remote: git://github.com/iiif/osullivan.git
-  revision: cfecc93384869dd25165eb7f42e5dd13dadb4865
-  branch: development
-  specs:
-    iiif-presentation (0.0.5.pre.dev)
-      activesupport (>= 3.2.18)
-      faraday (~> 0.9.0)
-      json
-
-GIT
   remote: git://github.com/projecthydra-labs/activefedora-aggregation.git
   revision: e481a71c9e17f26e379fae60bf5a1a64550d6cc4
   branch: master
@@ -407,6 +397,10 @@ GEM
       bootstrap_forms
       cancan
     i18n (0.7.0)
+    iiif-presentation (0.0.5)
+      activesupport (>= 3.2.18)
+      faraday (~> 0.9.0)
+      json
     jasmine-core (2.3.4)
     jasmine-jquery-rails (2.0.3)
     jasmine-rails (0.12.2)
@@ -829,7 +823,7 @@ DEPENDENCIES
   hydra-pcdm!
   hydra-role-management (= 0.1.0)
   hydra-works!
-  iiif-presentation!
+  iiif-presentation
   jasmine-jquery-rails
   jasmine-rails
   jbuilder (~> 2.0)
