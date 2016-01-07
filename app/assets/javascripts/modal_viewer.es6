@@ -6,7 +6,7 @@
     constructor() {
       this.element = $(this.selector)
       $("a", this.element).unbind("click")
-      this.element.click(function(event) {
+      $("body").on("click", this.selector, function(event) {
         event.stopPropagation()
         event.preventDefault()
         let manifest_url = $(this).attr("data-modal-manifest")
@@ -17,6 +17,7 @@
         osd_viewer.html("")
         new_source.appendTo(osd_viewer)
         osd_viewer.openseadragon()
+        return true
       })
     }
 
