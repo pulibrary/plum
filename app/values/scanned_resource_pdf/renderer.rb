@@ -1,7 +1,7 @@
 class ScannedResourcePDF
   class Renderer
     attr_reader :scanned_resource_pdf, :path
-    delegate :manifest_builder, to: :scanned_resource_pdf
+    delegate :manifest_builder, :scanned_resource, to: :scanned_resource_pdf
     def initialize(scanned_resource_pdf, path)
       @scanned_resource_pdf = scanned_resource_pdf
       @path = Pathname.new(path.to_s)
@@ -14,6 +14,7 @@ class ScannedResourcePDF
         page_size.reverse! unless downloader.portrait?
         prawn_document.image downloader.download, width: downloader.width, height: downloader.height, fit: page_size
       end
+      apply_outline
       FileUtils.mkdir_p(path.dirname)
       prawn_document.render_file(path)
       File.open(path)
@@ -31,6 +32,14 @@ class ScannedResourcePDF
         @canvas_images ||= canvas_images.map do |image|
           CanvasDownloader.new(image)
         end
+      end
+
+      def apply_outline
+        OutlineApplier.new(logical_order).apply(prawn_document)
+      end
+
+      def logical_order
+        scanned_resource.logical_order_object
       end
 
       def prawn_document

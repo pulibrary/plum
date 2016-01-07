@@ -6,24 +6,26 @@ RSpec.describe ScannedResourcePDF, vcr: { cassette_name: "iiif_manifest" } do
     r = FactoryGirl.build(:scanned_resource, id: "test")
     r.ordered_members << file_set
     r.ordered_members << file_set2
+    r.logical_order.order = order
     solr.add r.to_solr
     solr.add r.list_source.to_solr
     solr.commit
     r
   end
+  let(:order) { {} }
   let(:solr) { ActiveFedora.solr.conn }
   let(:file_set) do
-    build_file_set(id: "x633f104n", content: file)
+    build_file_set(id: "x633f104n", content: file, title: "Page 1")
   end
   let(:file_set2) do
-    build_file_set(id: "x633f104m", content: file2)
+    build_file_set(id: "x633f104m", content: file2, title: "Page 2")
   end
   let(:presenter) do
     ScannedResourceShowPresenter.new(SolrDocument.new(resource.to_solr), nil)
   end
 
-  def build_file_set(id:, content:)
-    f = FactoryGirl.build(:file_set, content: content, id: id)
+  def build_file_set(id:, content:, title: nil)
+    f = FactoryGirl.build(:file_set, content: content, id: id, title: Array.wrap(title))
     solr.add f.to_solr
     solr.commit
     f
@@ -60,6 +62,79 @@ RSpec.describe ScannedResourcePDF, vcr: { cassette_name: "iiif_manifest" } do
       file = subject.render(path)
       expect(file).to eq "test"
       expect(ScannedResourcePDF::Renderer).not_to have_received(:new)
+    end
+    context "when there's an order" do
+      let(:order) do
+        {
+          "nodes": [
+            {
+              "label": "Chapter 1",
+              "nodes":
+              [
+                {
+                  "label": "Chapter 1a",
+                  "nodes": [
+                    {
+                      "proxy": file_set.id
+                    }
+                  ]
+                },
+                {
+                  "label": "Chapter 1b",
+                  "nodes": [
+                  ]
+                }
+              ]
+            },
+            {
+              "proxy": file_set2.id
+            }
+          ]
+        }
+      end
+      it "builds up an outline" do
+        renderer = ScannedResourcePDF::Renderer.new(subject, path)
+        renderer.render
+        @pdf = renderer.send(:prawn_document)
+        render_and_find_objects
+        # First element is Chapter 1
+        expect(referenced_object(@outline_root[:First])).to eql @section_1
+        # Last element is Page 2
+        expect(referenced_object(@outline_root[:Last])).to eql @page_2
+        # First element of Chapter 1 is Chapter 1a
+        expect(referenced_object(@section_1[:First])).to eql @section_1a
+        # Last element of Chapter 1 is Chapter 1b
+        expect(referenced_object(@section_1[:Last])).to eql @section_1b
+        # First element of Chapter 1a is Page 1
+        expect(referenced_object(@section_1a[:First])).to eql @page_1
+      end
+      def render_and_find_objects
+        output = StringIO.new(@pdf.render, 'r+')
+        @hash = PDF::Reader::ObjectHash.new(output)
+        @outline_root = @hash.values.find { |obj| obj.is_a?(Hash) && obj[:Type] == :Outlines }
+        @pages = @hash.values.find { |obj| obj.is_a?(Hash) && obj[:Type] == :Pages }[:Kids]
+        @section_1 = find_by_title('Chapter 1')
+        @page_1 = find_by_title('Page 1')
+        @section_1a = find_by_title('Chapter 1a')
+        @section_1b = find_by_title('Chapter 1b')
+        @page_2 = find_by_title('Page 2')
+      end
+
+      # Outline titles are stored as UTF-16. This method accepts a UTF-8 outline title
+      # and returns the PDF Object that contains an outline with that name
+      def find_by_title(title)
+        @hash.values.find {|obj|
+          next unless obj.is_a?(Hash) && obj[:Title]
+          title_codepoints = obj[:Title].unpack("n*")
+          title_codepoints.shift
+          utf8_title = title_codepoints.pack("U*")
+          utf8_title == title ? obj : nil
+        }
+      end
+
+      def referenced_object(reference)
+        @hash[reference]
+      end
     end
     describe "#canvas_images" do
       let(:renderer) { ScannedResourcePDF::Renderer.new(subject, path) }
