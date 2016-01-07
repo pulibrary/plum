@@ -13,3 +13,7 @@ en:
       name: "Princeton University Library"
       homepage_url: "#"
     product_name: "Plum: A Repository"
+  simple_form:
+    hints:
+      defaults:
+        files: ''

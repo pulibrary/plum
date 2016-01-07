@@ -40,6 +40,7 @@ RSpec.feature "ScannedResourcesController", type: :feature do
 
       visit polymorphic_path [scanned_resource]
       click_link 'Attach a File'
+      expect(page).not_to have_text("A PDF is preferred")
 
       within("form.new_file_set") do
         fill_in("Title", with: 'image.png')
