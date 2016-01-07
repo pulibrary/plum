@@ -79,4 +79,12 @@ class CurationConcerns::ScannedResourcesController < CurationConcerns::CurationC
     def pdf_path
       PairtreeDerivativePath.derivative_path_for_reference(presenter, 'pdf')
     end
+
+    def after_create_response
+      dest = parent_id.nil? ? polymorphic_path([main_app, curation_concern]) : main_app.curation_concerns_member_scanned_resource_path(parent_id, curation_concern)
+      respond_to do |wants|
+        wants.html { redirect_to dest }
+        wants.json { render :show, status: :created, location: dest }
+      end
+    end
 end

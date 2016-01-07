@@ -39,6 +39,7 @@ RSpec.feature "MultiVolumeWorksController", type: :feature do
     select 'Marquand', from: 'scanned_resource_access_policy'
     select 'Marquand', from: 'scanned_resource_use_and_reproduction'
     click_button 'Create Scanned resource'
+    expect(current_path).to start_with "/concern/container/#{multi_volume_work.id}/scanned_resources/"
 
     visit polymorphic_path [multi_volume_work]
     expect(page).to have_link('Volume 1', count: 1)
