@@ -27,7 +27,7 @@ GIT
 
 GIT
   remote: git://github.com/projecthydra-labs/curation_concerns.git
-  revision: 08008bf9073ff0fe4b7d60d9327ab4b643825fe8
+  revision: 5527443e85bfaa115de4cd81d028e75124d62795
   branch: master
   specs:
     curation_concerns (0.5.0)
@@ -382,7 +382,7 @@ GEM
       hydra-access-controls (= 9.5.0)
       jettywrapper (>= 2.0.0)
       rails (~> 4.0)
-    hydra-editor (1.1.0)
+    hydra-editor (1.1.1)
       active-fedora (>= 9.0.0)
       cancancan (~> 1.8)
       rails (~> 4.1)
