@@ -45,6 +45,16 @@ RSpec.describe LogicalOrder do
     expect { described_class.new(params, RDF::URI("http://test.com/bla")) }.not_to raise_error
   end
 
+  describe "#each_section" do
+    it "returns every section in the order" do
+      expect(subject.each_section.map(&:label)).to eq [
+        "Chapter 1",
+        "Chapter 1b",
+        "Chapter 2"
+      ]
+    end
+  end
+
   describe "#nodes" do
     it "returns the two nodes" do
       expect(subject.nodes.length).to eq 2
