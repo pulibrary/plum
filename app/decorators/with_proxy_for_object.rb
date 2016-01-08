@@ -21,17 +21,18 @@ class WithProxyForObject < SimpleDelegator
       end
   end
 
+  def each_node(&block)
+    return enum_for(:each_node) unless block_given?
+    nodes.each do |node|
+      yield node.proxy_for_object if node.proxy_for_object
+      node.send(:each_node, &block)
+    end
+  end
+
   private
 
     def all_nodes
       @all_nodes ||= enum_for(:each_node).to_a
-    end
-
-    def each_node(&block)
-      nodes.each do |node|
-        yield node.proxy_for_object if node.proxy_for_object
-        node.send(:each_node, &block)
-      end
     end
 
     class Factory
