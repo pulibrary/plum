@@ -5,7 +5,7 @@ class CatalogController < ApplicationController
   self.search_params_logic += [:hide_parented_resources, :join_from_parent]
   def self.search_config
     {
-      'qf' => %w(title_tesim name_tesim source_metadata_identifier_ssim),
+      'qf' => %w(title_tesim name_tesim source_metadata_identifier_ssim logical_order_headings_tesim),
       'qt' => 'search',
       'rows' => 10
     }

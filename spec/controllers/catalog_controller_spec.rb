@@ -41,6 +41,22 @@ RSpec.describe CatalogController do
       expect(document_ids).to eq [resource.id]
     end
 
+    it "finds items by their section headings" do
+      resource = FactoryGirl.build(:scanned_resource)
+      resource.logical_order.order = {
+        "nodes": [
+          {
+            "label": "The Doctor's Tales"
+          }
+        ]
+      }
+      resource.save!
+
+      get :index, q: "Tales"
+
+      expect(document_ids).to eq [resource.id]
+    end
+
     def document_ids
       assigns[:document_list].map do |x|
         x["id"]

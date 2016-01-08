@@ -320,14 +320,14 @@ describe ScannedResource do
     it "indexes the headings into the solr record" do
       subject.logical_order.order = params2
 
-      expect(subject.to_solr["logical_order_headings_ssim"]).to eq [
+      expect(subject.to_solr["logical_order_headings_tesim"]).to eq [
         "Chapter 1",
         "Chapter 2",
         "Chapter 2b"
       ]
     end
     it "can index even without order" do
-      expect(subject.to_solr["logical_order_headings_ssim"]).to eq []
+      expect(subject.to_solr["logical_order_headings_tesim"]).to eq []
     end
     it "survives persistence" do
       subject.logical_order.order = params
