@@ -3,16 +3,18 @@ require 'rails_helper'
 RSpec.feature "CatalogController", type: :feature do
   describe "admin user" do
     let(:user) { FactoryGirl.create(:admin) }
-    let(:scanned_resource) { FactoryGirl.create(:scanned_resource, user: user) }
+    let(:scanned_resource) { FactoryGirl.create(:scanned_resource_in_collection, user: user, language: ['English']) }
 
     before(:each) do
       sign_in user
       scanned_resource.update_index
     end
 
-    scenario "Admin users see a state facet" do
+    scenario "Admin users see collection, language, and state facets" do
       visit catalog_index_path q: ""
       expect(page).to have_text "Test title"
+      expect(page).to have_selector "div.blacklight-collection_sim", text: "Collection"
+      expect(page).to have_selector "div.blacklight-language_sim", text: "Language"
       expect(page).to have_selector "div.blacklight-state_sim", text: "State"
     end
   end
