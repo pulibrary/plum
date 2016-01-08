@@ -63,6 +63,14 @@ class LogicalOrder
     @rdf_subject ||= ordered_list.send(:new_node_subject)
   end
 
+  def each_section(&block)
+    return enum_for(:each_section) unless block_given?
+    nodes.each do |node|
+      yield node unless node.proxy_for.present?
+      node.send(:each_section, &block)
+    end
+  end
+
   private
 
     def ordered_list

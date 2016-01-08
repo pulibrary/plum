@@ -317,6 +317,18 @@ describe ScannedResource do
       subject.logical_order.order = params
       expect(subject.to_solr["logical_order_ssim"]).to eq [subject.logical_order.order.to_json]
     end
+    it "indexes the headings into the solr record" do
+      subject.logical_order.order = params2
+
+      expect(subject.to_solr["logical_order_headings_ssim"]).to eq [
+        "Chapter 1",
+        "Chapter 2",
+        "Chapter 2b"
+      ]
+    end
+    it "can index even without order" do
+      expect(subject.to_solr["logical_order_headings_ssim"]).to eq []
+    end
     it "survives persistence" do
       subject.logical_order.order = params
       subject.save

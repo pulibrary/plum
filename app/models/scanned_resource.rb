@@ -13,6 +13,7 @@ class ScannedResource < ActiveFedora::Base
       doc[ActiveFedora::SolrQueryBuilder.solr_name("ordered_by", :symbol)] ||= []
       doc[ActiveFedora::SolrQueryBuilder.solr_name("ordered_by", :symbol)] += send(:ordered_by_ids)
       doc[ActiveFedora::SolrQueryBuilder.solr_name("logical_order", :symbol)] = [logical_order.order.to_json]
+      doc[ActiveFedora::SolrQueryBuilder.solr_name("logical_order_headings", :symbol)] = logical_order.object.each_section.map(&:label)
     end
   end
 
