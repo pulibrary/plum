@@ -17,22 +17,16 @@
     padding-left: 15px;
   }
 
-  .fixed {
-    position: fixed;
-    width: inherit;
-  }
-
   ul {
     list-style-type: none;
     &.grid li {
       @extend .col-xs-4;
       .thumbnail {
+        height: 150px;
         @extend .col-xs-12;
-        padding-bottom: 100%;
-        width: 100%;
-      }
-      .thumbnail-inner, .img-responsive {
-        position: absolute; width: 85%;
+        img {
+          max-height: 140px;
+        }
       }
 
       .spacer {
