@@ -41,6 +41,17 @@ RSpec.describe CatalogController do
       expect(document_ids).to eq [resource.id]
     end
 
+    it "finds items by metadata in their fileset" do
+      file_set = FactoryGirl.create(:file_set, title: ["Screwdriver"])
+      resource = FactoryGirl.build(:scanned_resource, title: ["Sonic"])
+      resource.ordered_members << file_set
+      resource.save!
+
+      get :index, q: "Screwdriver"
+
+      expect(document_ids).to eq [resource.id]
+    end
+
     it "finds items by their section headings" do
       resource = FactoryGirl.build(:scanned_resource)
       resource.logical_order.order = {
