@@ -100,4 +100,22 @@
       }
     }
   }
+  #label-tools {
+    @media (max-width: $screen-md-min) {
+      &.affix {
+        position: inherit;
+      }
+    }
+    @media (min-width: $screen-md-min) {
+      &.affix {
+        top: 0;
+        width: 235px;
+      }
+    }
+    @media (min-width: $screen-lg-min) {
+      &.affix {
+        width: 285px;
+      }
+    }
+  }
 }

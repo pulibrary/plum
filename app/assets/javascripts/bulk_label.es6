@@ -162,24 +162,15 @@ class BulkLabeler {
 }
 
 $(() => {
-  var tools = $("#label-tools")
-  var pos = tools.position()
-  var maxpos = $(document).outerHeight() - $("#upload-tools").outerHeight() - $("#footer").outerHeight() - tools.outerHeight()
-  $(window).scroll(function() {
-    if ($(window).width() > 979) {
-      var windowpos = $(window).scrollTop()
-      if (windowpos >= pos.top && windowpos < maxpos) {
-        tools.attr("style", "")
-        tools.addClass("fixed")
-        $("#label-tools-spacer").removeClass("fixed")
-      } else if (windowpos >= maxpos) {
-        tools.removeClass("fixed")
-        tools.css({position: "absolute", top: maxpos + "px"})
-      } else {
-        tools.removeClass("fixed")
+  let tools = $("#label-tools")
+  if(tools.length > 0) {
+    tools.affix({
+      offset: {
+        top: $("#label-tools").parent().offset().top,
+        bottom: function() {
+          return $("#upload-tools").outerHeight(true) + $("footer").outerHeight(true)
+        }
       }
-    } else {
-      tools.removeClass("fixed")
-    }
-  })
+    })
+  }
 })
