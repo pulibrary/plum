@@ -1,16 +1,13 @@
 <%= bulk_edit_page_header %>
-<div class="col-md-12">
-  <h2>Attach Files</h2>
-  <%= render 'multiple_upload', presenter: @presenter %>
-  <%= render "server_upload" %>
-</div>
 
-<div data-action="bulk-label">
-    <div class="col-md-3">
+<% if !@members.empty? %>
+  <div data-action="bulk-label">
+    <div class="col-md-3" id="label-tools">
       <h2>Label & Order</h2>
       <%= render "bulk_edit_actions" %>
       <%= render "iiif_fields" %>
     </div>
+    <div class="col-md-3" id="label-tools-spacer" class="fixed"></div>
     <div class="col-md-9" id="order-grid">
       <div class="btn-group" role="group" data-action="list-toggle">
         <button type="button" class="btn btn-default list" aria-label="List">
@@ -26,4 +23,11 @@
         <% end %>
       </ul>
     </div>
+  </div>
+<% end %>
+
+<div class="col-md-12" id="upload-tools">
+  <h2>Attach Files</h2>
+  <%= render 'multiple_upload', presenter: @presenter %>
+  <%= render "server_upload" %>
 </div>

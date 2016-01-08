@@ -17,13 +17,24 @@
     padding-left: 15px;
   }
 
+  .fixed {
+    position: fixed;
+    width: inherit;
+  }
+
   ul {
     list-style-type: none;
     &.grid li {
       @extend .col-xs-4;
       .thumbnail {
         @extend .col-xs-12;
+        padding-bottom: 100%;
+        width: 100%;
       }
+      .thumbnail-inner, .img-responsive {
+        position: absolute; width: 85%;
+      }
+
       .spacer {
         @extend .col-xs-12;
       }
@@ -86,6 +97,24 @@
       }
       input[type=radio] {
         width: 20px;
+      }
+    }
+  }
+  #label-tools {
+    @media (max-width: $screen-md-min) {
+      &.affix {
+        position: inherit;
+      }
+    }
+    @media (min-width: $screen-md-min) {
+      &.affix {
+        top: 0;
+        width: 235px;
+      }
+    }
+    @media (min-width: $screen-lg-min) {
+      &.affix {
+        width: 285px;
       }
     }
   }

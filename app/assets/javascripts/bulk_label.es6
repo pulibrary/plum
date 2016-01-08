@@ -160,3 +160,17 @@ class BulkLabeler {
     }
   }
 }
+
+$(() => {
+  let tools = $("#label-tools")
+  if(tools.length > 0) {
+    tools.affix({
+      offset: {
+        top: $("#label-tools").parent().offset().top,
+        bottom: function() {
+          return $("#upload-tools").outerHeight(true) + $("footer").outerHeight(true)
+        }
+      }
+    })
+  }
+})
