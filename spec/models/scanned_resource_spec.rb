@@ -315,10 +315,12 @@ describe ScannedResource do
     end
     it "marshals logical order into solr" do
       subject.logical_order.order = params
+      subject.save
       expect(subject.to_solr["logical_order_ssim"]).to eq [subject.logical_order.order.to_json]
     end
     it "indexes the headings into the solr record" do
       subject.logical_order.order = params2
+      subject.save
 
       expect(subject.to_solr["logical_order_headings_tesim"]).to eq [
         "Chapter 1",

@@ -14,6 +14,7 @@ class ScannedResource < ActiveFedora::Base
       doc[ActiveFedora::SolrQueryBuilder.solr_name("ordered_by", :symbol)] += send(:ordered_by_ids)
       doc[ActiveFedora::SolrQueryBuilder.solr_name("logical_order", :symbol)] = [logical_order.order.to_json]
       doc[ActiveFedora::SolrQueryBuilder.solr_name("logical_order_headings", :stored_searchable)] = logical_order.object.each_section.map(&:label)
+      doc[ActiveFedora::SolrQueryBuilder.solr_name("collection", :facetable)] = in_collections.map(&:title)
     end
   end
 

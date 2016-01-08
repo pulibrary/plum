@@ -1,3 +1,7 @@
 en:
   blacklight:
     application_name: 'Blacklight'
+    search:
+      fields:
+        facet:
+          collection_sim: Collection
