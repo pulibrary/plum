@@ -14,7 +14,9 @@ module CommonMetadata
     property :identifier, predicate: ::RDF::DC.identifier, multiple: false
     property :access_policy, predicate: ::RDF::DC.accessRights, multiple: false
     property :use_and_reproduction, predicate: ::RDF::DC.rights, multiple: false
-    property :source_metadata_identifier, predicate: ::PULTerms.metadata_id, multiple: false
+    property :source_metadata_identifier, predicate: ::PULTerms.metadata_id, multiple: false do |index|
+      index.as :stored_searchable, :symbol
+    end
     property :source_metadata, predicate: ::PULTerms.source_metadata, multiple: false
     property :state, predicate: ::F3Access.objState, multiple: false do |index|
       index.as :stored_searchable, :facetable

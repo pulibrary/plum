@@ -33,6 +33,14 @@ RSpec.describe CatalogController do
       expect(document_ids).to eq [work.id]
     end
 
+    it "finds items by their identifier" do
+      resource = FactoryGirl.create(:scanned_resource, source_metadata_identifier: "ab5")
+
+      get :index, q: "ab5"
+
+      expect(document_ids).to eq [resource.id]
+    end
+
     def document_ids
       assigns[:document_list].map do |x|
         x["id"]
