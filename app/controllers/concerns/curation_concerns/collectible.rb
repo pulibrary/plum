@@ -55,7 +55,7 @@ module CurationConcerns::Collectible
       # add to new
       (new_collection_ids - previous_collections).each do |coll_id|
         collection = Collection.find(coll_id)
-        collection.members << curation_concern
+        collection.members << @curation_concern
         collection.save
         collection.update_index
       end

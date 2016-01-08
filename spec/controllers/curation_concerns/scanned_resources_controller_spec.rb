@@ -48,6 +48,20 @@ describe CurationConcerns::ScannedResourcesController do
         expect(solr_document["ordered_by_ssim"]).to eq [parent.id]
       end
     end
+
+    context "when selecting a collection" do
+      let(:collection) { FactoryGirl.create(:collection, user: user) }
+      let(:scanned_resource_attributes) do
+        FactoryGirl.attributes_for(:scanned_resource).except(:source_metadata_identifier).merge(
+          collection_ids: [collection.id]
+        )
+      end
+      it "successfully add the resource to the collection" do
+        post :create, scanned_resource: scanned_resource_attributes
+        s = ScannedResource.last
+        expect(s.in_collections).to eq [collection]
+      end
+    end
   end
 
   describe "#manifest" do
