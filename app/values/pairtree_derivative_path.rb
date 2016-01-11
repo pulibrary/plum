@@ -20,7 +20,7 @@ class PairtreeDerivativePath < CurationConcerns::DerivativePath
         if extension == ".pdf"
           file_name = "#{ResourceIdentifier.new(object.id)}-pdf.pdf"
         end
-        File.join(CurationConcerns.config.derivatives_path, pair_path(object.id, file_name))
+        "#{path_prefix(object)}-#{file_name}"
       end
   end
 end

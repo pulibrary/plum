@@ -27,7 +27,7 @@ GIT
 
 GIT
   remote: git://github.com/projecthydra-labs/curation_concerns.git
-  revision: 5527443e85bfaa115de4cd81d028e75124d62795
+  revision: 4bf8491c0487db46fe040bc1a6ad24841d9ef2f0
   branch: master
   specs:
     curation_concerns (0.5.0)
@@ -861,4 +861,4 @@ DEPENDENCIES
   webmock
 
 BUNDLED WITH
-   1.10.6
+   1.11.2
