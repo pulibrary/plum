@@ -4,4 +4,3 @@ class ManifestBuilder
     include ActionDispatch::Routing::PolymorphicRoutes
   end
 end
-

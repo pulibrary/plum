@@ -170,6 +170,26 @@ RSpec.describe ManifestBuilder, vcr: { cassette_name: "iiif_manifest" } do
     it "has a description" do
       expect(result.description).to eq record.description
     end
+    describe "metadata" do
+      it "has a creator" do
+        record.creator = ["Test Author"]
+        expect(result.metadata.first).to eql(
+          "label" => "Creator",
+          "value" => [
+            {
+              "@value" => "Test Author"
+            }
+          ]
+        )
+      end
+      it "is empty with no metadata" do
+        expect(result.metadata).to be_empty
+      end
+      it "has a date created" do
+        record.date_created = ["1981"]
+        expect(result.metadata).not_to be_empty
+      end
+    end
     it "has a viewing hint" do
       record.viewing_hint = "paged"
       expect(result.viewing_hint).to eq "paged"

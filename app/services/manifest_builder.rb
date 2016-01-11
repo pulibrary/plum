@@ -40,7 +40,8 @@ class ManifestBuilder
           sequence_builder,
           range_builder,
           manifest_builders,
-          pdf_link_builder
+          pdf_link_builder,
+          metadata_builder
         )
     end
 
@@ -50,6 +51,10 @@ class ManifestBuilder
 
     def pdf_link_builder
       PDFLinkBuilder.new(record, ssl: @ssl)
+    end
+
+    def metadata_builder
+      MetadataBuilder.new(record)
     end
 
     def sequence_builder
