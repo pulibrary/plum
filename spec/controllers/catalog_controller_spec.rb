@@ -67,11 +67,22 @@ RSpec.describe CatalogController do
 
       expect(document_ids).to eq [resource.id]
     end
+  end
 
-    def document_ids
-      assigns[:document_list].map do |x|
-        x["id"]
-      end
+  describe "resources in collections" do
+    it "finds resources in a collection by the collection's slug" do
+      resource = FactoryGirl.create(:scanned_resource_in_collection)
+      resource.save
+
+      get :index, q: "slug1"
+
+      expect(document_ids).to eq [resource.id]
+    end
+  end
+
+  def document_ids
+    assigns[:document_list].map do |x|
+      x["id"]
     end
   end
 end
