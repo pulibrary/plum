@@ -357,4 +357,13 @@ describe ScannedResource do
       expect(subject.reload.logical_order.order).to eq params2.with_indifferent_access
     end
   end
+
+  describe "collection indexing" do
+    let(:scanned_resource) { FactoryGirl.create(:scanned_resource_in_collection) }
+    let(:solr_doc) { scanned_resource.to_solr }
+    it "indexes collection" do
+      expect(solr_doc['collection_sim']).to eq('Test Collection')
+      expect(solr_doc['collection_slug_sim']).to eq('slug1')
+    end
+  end
 end
