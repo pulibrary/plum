@@ -41,7 +41,8 @@ class ManifestBuilder
           range_builder,
           manifest_builders,
           pdf_link_builder,
-          metadata_builder
+          metadata_builder,
+          thumbnail_builder
         )
     end
 
@@ -51,6 +52,10 @@ class ManifestBuilder
 
     def pdf_link_builder
       PDFLinkBuilder.new(record, ssl: @ssl)
+    end
+
+    def thumbnail_builder
+      ThumbnailBuilder.new(record, canvas_builders)
     end
 
     def metadata_builder
