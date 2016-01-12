@@ -16,4 +16,20 @@ RSpec.describe CollectionsController do
       expect(response).to be_success
     end
   end
+
+  describe "#index_manifest" do
+    let(:user) { FactoryGirl.create(:admin) }
+    before do
+      sign_in user
+    end
+    it "returns a manifest for all collections" do
+      FactoryGirl.create(:collection)
+      allow(AllCollectionsManifestBuilder).to receive(:new).and_call_original
+
+      get :index_manifest, format: :json
+
+      expect(AllCollectionsManifestBuilder).to have_received(:new).with(nil, ssl: false)
+      expect(response).to be_success
+    end
+  end
 end

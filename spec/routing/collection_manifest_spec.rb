@@ -7,4 +7,8 @@ RSpec.describe "Collection Manifest Routes" do
   it "routes to the manifest action" do
     expect(get manifest_collection_path(id: "1")).to route_to controller: "collections", action: "manifest", format: :json, id: "1"
   end
+
+  it "can route an index manifest" do
+    expect(get "/collections/manifest").to route_to controller: "collections", action: "index_manifest", format: :json
+  end
 end

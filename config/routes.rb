@@ -8,16 +8,25 @@ Rails.application.routes.draw do
   end
   mount Hydra::RoleManagement::Engine => '/'
 
-  mount Hydra::Collections::Engine => '/'
-  mount CurationConcerns::Engine, at: '/'
   resources :welcome, only: 'index'
   root to: 'welcome#index'
+  # Add URL options
+  default_url_options Rails.application.config.action_mailer.default_url_options
+
+  # Collections have to go before CC routes, to add index_manifest.
+  resources :collections, only: [] do
+    member do
+      get :manifest, defaults: { format: :json }
+    end
+    collection do
+      get :manifest, defaults: { format: :json }, action: :index_manifest
+    end
+  end
+  mount Hydra::Collections::Engine => '/'
+  mount CurationConcerns::Engine, at: '/'
   curation_concerns_collections
   curation_concerns_basic_routes
   curation_concerns_embargo_management
-
-  # Add URL options
-  default_url_options Rails.application.config.action_mailer.default_url_options
 
   namespace :curation_concerns, path: :concern do
     resources :multi_volume_works, only: [] do
@@ -37,12 +46,6 @@ Rails.application.routes.draw do
         post :browse_everything_files
         post :flag
       end
-    end
-  end
-
-  resources :collections do
-    member do
-      get :manifest, defaults: { format: :json }
     end
   end
 
