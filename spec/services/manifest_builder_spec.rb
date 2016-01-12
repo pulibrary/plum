@@ -106,6 +106,16 @@ RSpec.describe ManifestBuilder, vcr: { cassette_name: "iiif_manifest" } do
       it "has a label" do
         expect(first_canvas.label).to eq file_set.to_s
       end
+      it "uses the first one as a thumbnail" do
+        expect(manifest_json["thumbnail"]).to eq(
+          "@id" => "http://192.168.99.100:5004/x6%2F33%2Ff1%2F04%2Fm-intermediate_file.jp2/full/100,/0/default.jpg",
+          "service" => {
+            "@context" => "http://iiif.io/api/image/2/context.json",
+            "@id" => "http://192.168.99.100:5004/x6%2F33%2Ff1%2F04%2Fm-intermediate_file.jp2",
+            "profile" => "http://iiif.io/api/image/2/level2.json"
+          }
+        )
+      end
       it "has a viewing hint on the sequence" do
         expect(manifest_json["sequences"].first["viewingHint"]).to eq "individuals"
       end
