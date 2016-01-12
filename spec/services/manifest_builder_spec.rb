@@ -25,6 +25,7 @@ RSpec.describe ManifestBuilder, vcr: { cassette_name: "iiif_manifest" } do
     it "renders as a collection" do
       expect(manifest['@type']).to eq "sc:Collection"
       expect(manifest['@id']).to eq "http://plum.com/concern/multi_volume_works/2/manifest"
+      expect(manifest['viewingHint']).to eq "multi-part"
     end
     it "renders a manifest for every child scanned resource" do
       expect(subject.manifests.length).to eq 1
