@@ -37,7 +37,9 @@ RSpec.describe CollectionShowPresenter do
   end
 
   it "can be used to create a manifest" do
-    expect { ManifestBuilder.new(subject).to_json }.not_to raise_error
+    manifest = nil
+    expect { manifest = ManifestBuilder.new(subject).to_json }.not_to raise_error
+    expect(JSON.parse(manifest)['viewingHint']).not_to eq "multi-part"
   end
 
   describe "#label" do
