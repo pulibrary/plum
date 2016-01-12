@@ -23,7 +23,7 @@ class ManifestBuilder
       end
 
       def helper
-        @helper ||= ManifestPath::RouteHelper.new
+        @helper ||= ManifestHelper.new
       end
 
       def label

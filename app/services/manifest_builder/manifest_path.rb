@@ -13,12 +13,7 @@ class ManifestBuilder
     private
 
       def helper
-        @helper ||= RouteHelper.new
-      end
-
-      class RouteHelper
-        include Rails.application.routes.url_helpers
-        include ActionDispatch::Routing::PolymorphicRoutes
+        @helper ||= ManifestHelper.new
       end
 
       def ssl?
