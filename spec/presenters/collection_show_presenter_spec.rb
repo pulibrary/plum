@@ -4,7 +4,7 @@ RSpec.describe CollectionShowPresenter do
   subject { described_class.new(solr_doc, nil) }
   let(:solr_doc) { SolrDocument.new(doc) }
   let(:doc) do
-    c = Collection.new("collection")
+    c = FactoryGirl.build(:collection, id: "collection")
     c.members << scanned_resource
     allow(c).to receive(:new_record?).and_return(false)
     c.to_solr
@@ -39,7 +39,9 @@ RSpec.describe CollectionShowPresenter do
   it "can be used to create a manifest" do
     manifest = nil
     expect { manifest = ManifestBuilder.new(subject).to_json }.not_to raise_error
-    expect(JSON.parse(manifest)['viewingHint']).not_to eq "multi-part"
+    json_manifest = JSON.parse(manifest)
+    expect(json_manifest['viewingHint']).not_to eq "multi-part"
+    expect(json_manifest['metadata'][0]['value'].first['@value']).to eq subject.exhibit_id.first
   end
 
   describe "#label" do

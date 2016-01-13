@@ -13,14 +13,17 @@ class ManifestBuilder
 
       def metadata_objects
         metadata_fields.map do |field|
-          MetadataObject.new(field, record.try(field)).to_h
+          if record.respond_to?(field)
+            MetadataObject.new(field, record.try(field)).to_h
+          end
         end.select(&:present?)
       end
 
       def metadata_fields
         [
           :creator,
-          :date_created
+          :date_created,
+          :exhibit_id
         ]
       end
 

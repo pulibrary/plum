@@ -15,6 +15,10 @@ class AllCollectionsPresenter < CollectionShowPresenter
     nil
   end
 
+  def exhibit_id
+    nil
+  end
+
   def file_presenters
     @file_presenters ||= super.select do |presenter|
       if presenter.current_ability
