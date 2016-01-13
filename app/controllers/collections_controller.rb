@@ -1,6 +1,7 @@
 class CollectionsController < ApplicationController
   include CurationConcerns::CollectionsControllerBehavior
   skip_load_and_authorize_resource only: :index_manifest
+  skip_action_callback :authenticate_user!, only: :index_manifest
 
   def form_class
     CollectionEditForm
@@ -33,7 +34,7 @@ class CollectionsController < ApplicationController
     end
 
     def all_manifests_builder
-      AllCollectionsManifestBuilder.new(nil, ssl: request.ssl?)
+      AllCollectionsManifestBuilder.new(nil, ability: current_ability, ssl: request.ssl?)
     end
 
     def login_url
