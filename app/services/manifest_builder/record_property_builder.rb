@@ -1,10 +1,9 @@
 class ManifestBuilder
   class RecordPropertyBuilder
     attr_reader :record, :path
-    def initialize(record, path, ssl: false)
+    def initialize(record, path)
       @record = record
       @path = path
-      @ssl = ssl
     end
 
     def apply(manifest)

@@ -1,5 +1,6 @@
 class CollectionsController < ApplicationController
   include CurationConcerns::CollectionsControllerBehavior
+  skip_load_and_authorize_resource only: :index_manifest
 
   def form_class
     CollectionEditForm
@@ -17,10 +18,22 @@ class CollectionsController < ApplicationController
     end
   end
 
+  def index_manifest
+    respond_to do |f|
+      f.json do
+        render json: all_manifests_builder
+      end
+    end
+  end
+
   private
 
     def manifest_builder
       ManifestBuilder.new(presenter, ssl: request.ssl?, services: AuthManifestBuilder.auth_services(login_url, logout_url))
+    end
+
+    def all_manifests_builder
+      AllCollectionsManifestBuilder.new(nil, ssl: request.ssl?)
     end
 
     def login_url
