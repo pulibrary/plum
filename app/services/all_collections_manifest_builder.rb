@@ -1,6 +1,8 @@
 class AllCollectionsManifestBuilder < ManifestBuilder
-  def initialize(record = nil, ssl: false)
-    super
+  attr_reader :ability
+  def initialize(record = nil, ability: nil, ssl: false)
+    @ability = ability
+    super(record, ssl: ssl)
   end
 
   private
@@ -22,6 +24,6 @@ class AllCollectionsManifestBuilder < ManifestBuilder
     end
 
     def record
-      @record ||= AllCollectionsPresenter.new
+      @record ||= AllCollectionsPresenter.new(ability)
     end
 end

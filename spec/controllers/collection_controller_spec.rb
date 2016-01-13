@@ -20,7 +20,7 @@ RSpec.describe CollectionsController do
   describe "#index_manifest" do
     let(:user) { FactoryGirl.create(:admin) }
     before do
-      sign_in user
+      sign_in user if user
     end
     it "returns a manifest for all collections" do
       FactoryGirl.create(:collection)
@@ -28,8 +28,21 @@ RSpec.describe CollectionsController do
 
       get :index_manifest, format: :json
 
-      expect(AllCollectionsManifestBuilder).to have_received(:new).with(nil, ssl: false)
+      expect(AllCollectionsManifestBuilder).to have_received(:new).with(nil, ability: anything, ssl: false)
       expect(response).to be_success
+    end
+    context "if not signed in" do
+      let(:user) { nil }
+      it "returns all public collections" do
+        FactoryGirl.create(:collection)
+        FactoryGirl.create(:private_collection)
+
+        get :index_manifest, format: :json
+
+        expect(response).to be_success
+        json = IIIF::Service.parse(response.body)
+        expect(json.manifests.length).to eq 1
+      end
     end
   end
 end
