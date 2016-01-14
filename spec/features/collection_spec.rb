@@ -33,6 +33,26 @@ RSpec.feature 'Collections', type: :feature do
       expect(page).to have_selector 'h1', 'Test Collection'
       expect(page).to have_selector 'li.exhibit_id', 'slug1'
     end
+    scenario 'is edited' do
+      c = FactoryGirl.create(:collection, user: user)
+      visit collection_path(c)
+      click_link 'Edit'
+
+      fill_in 'collection_title', with: "Alfafa"
+      click_button "Update Collection"
+      expect(page).to have_selector "h1", "Alfafa"
+    end
+    scenario 'fails to input exhibit ID' do
+      visit root_path
+      expect(page).to have_link 'Add a Collection'
+
+      click_link 'Add a Collection'
+      expect(page).to have_selector 'h1', 'Create New Collection'
+
+      fill_in 'collection_title', with: 'Test Collection'
+      click_button 'Create Collection'
+      expect(page).to have_selector ".alert"
+    end
   end
 
   describe 'adding resources to collections' do

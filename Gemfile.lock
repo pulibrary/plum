@@ -27,7 +27,7 @@ GIT
 
 GIT
   remote: git://github.com/projecthydra-labs/curation_concerns.git
-  revision: 4bf8491c0487db46fe040bc1a6ad24841d9ef2f0
+  revision: 3c296d2ab94bf23a6b81b97d032efea50daf41b9
   branch: master
   specs:
     curation_concerns (0.5.0)
@@ -88,7 +88,7 @@ GIT
 
 GIT
   remote: git://github.com/projecthydra/hydra-collections.git
-  revision: f4667aa04deadfd1cee1153c85e9e96816b65212
+  revision: 49aee399d241844cd06862917fa7cb15e6903746
   branch: master
   specs:
     hydra-collections (6.0.0)
