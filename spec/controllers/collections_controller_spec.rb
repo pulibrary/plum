@@ -4,7 +4,7 @@ RSpec.describe CollectionsController do
   describe "#manifest" do
     let(:user) { FactoryGirl.create(:admin) }
     before do
-      sign_in user
+      sign_in user if user
     end
     it "returns a manifest for the collection" do
       coll = FactoryGirl.create(:collection)
@@ -14,6 +14,24 @@ RSpec.describe CollectionsController do
 
       expect(ManifestBuilder).to have_received(:new)
       expect(response).to be_success
+    end
+
+    context "when not logged in" do
+      let(:user) {}
+      it "returns a manifest for a public collection" do
+        coll = FactoryGirl.create(:collection)
+
+        get :manifest, id: coll.id, format: :json
+
+        expect(response).to be_success
+      end
+      it "returns unauthorized for a collection they don't have access to" do
+        coll = FactoryGirl.create(:private_collection)
+
+        get :manifest, id: coll.id, format: :json
+
+        expect(response).to redirect_to "/users/auth/cas"
+      end
     end
   end
 
