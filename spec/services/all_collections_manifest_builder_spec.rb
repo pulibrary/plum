@@ -4,10 +4,16 @@ RSpec.describe AllCollectionsManifestBuilder do
   subject { described_class.new }
   context "when there are collections" do
     let(:manifest_json) { JSON.parse(subject.to_json) }
-    it "builds them as sub-manifests" do
+    it "builds them as sub-collections" do
       FactoryGirl.create(:collection)
 
-      expect(manifest_json["manifests"].length).to eq 1
+      expect(manifest_json["collections"].length).to eq 1
+      expect(manifest_json["collections"].first["metadata"]).not_to be_blank
+    end
+    it "doesn't populate manifests" do
+      FactoryGirl.create(:collection)
+
+      expect(manifest_json["manifests"]).to be_nil
     end
     it "has an ID" do
       expect(manifest_json["@id"]).to eq "http://plum.com/collections/manifest"
