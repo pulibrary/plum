@@ -3,16 +3,18 @@
     <div class="panel panel-default">
       <div class="panel-heading">
         <div class="order-title">
-          <%= f.input :title, as: :string, input_html: { name: "file_set[title][]" }, value: node.to_s, label: false %>
+          <%= f.input :title, as: :string, input_html: { name: "#{f.object.model_name.singular}[title][]", class: "title" }, value: node.to_s, label: false %>
         </div>
         <div class="file-set-link pull-right">
           <%= link_to polymorphic_path([main_app, node]), title: "Edit file" do %>
             <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
           <% end %>
         </div>
-        <div class="order-filename">
-          <em title="<%= node.file_label %>">(<%= truncate(node.file_label, length: 29) %>)</em>
-        </div>
+        <% if node.respond_to?(:file_label) %>
+          <div class="order-filename">
+            <em title="<%= node.file_label %>">(<%= truncate(node.file_label, length: 29) %>)</em>
+          </div>
+        <% end %>
       </div>
       <div class="panel-body">
         <div class="text-center thumbnail">
@@ -21,7 +23,9 @@
           <% end %>
         </div>
         <div class="attributes">
-          <%= f.input :viewing_hint, collection: [:"", :"non-paged", :"facing-pages"], as: :radio_buttons, label: false, defaults: { input_html: { class: '' }}%>
+          <% if f.object.model_name.singular == "file_set" %>
+            <%= f.input :viewing_hint, collection: [:"", :"non-paged", :"facing-pages"], as: :radio_buttons, label: false, defaults: { input_html: { class: '' }}%>
+          <% end %>
         </div>
         <div class="spacer">
         </div>

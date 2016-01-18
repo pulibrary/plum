@@ -16,6 +16,10 @@ class CurationConcernsShowPresenter < CurationConcerns::WorkShowPresenter
       logical_order_factory.new(logical_order, nil, logical_order_factory)
   end
 
+  def pending_uploads
+    @pending_uploads ||= PendingUpload.where(curation_concern_id: id)
+  end
+
   private
 
     def logical_order_factory

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "curation_concerns/scanned_resources/bulk_edit.html.erb" do
+RSpec.describe "curation_concerns/base/bulk_edit.html.erb" do
   let(:members) { [file_set] }
   let(:file_set) { FileSetPresenter.new(solr_doc, nil) }
   let(:solr_doc) do
@@ -13,7 +13,6 @@ RSpec.describe "curation_concerns/scanned_resources/bulk_edit.html.erb" do
       )
     )
   end
-  let(:scanned_resource) { FactoryGirl.build(:scanned_resource) }
   let(:resource) { FactoryGirl.build(:file_set) }
 
   let(:parent) { FactoryGirl.build(:scanned_resource) }
@@ -37,8 +36,28 @@ RSpec.describe "curation_concerns/scanned_resources/bulk_edit.html.erb" do
     allow(view).to receive(:blacklight_config).and_return(blacklight_config)
     allow(view).to receive(:search_session).and_return({})
     allow(view).to receive(:current_search_session).and_return(nil)
-    allow(view).to receive(:curation_concern).and_return(scanned_resource)
+    allow(view).to receive(:curation_concern).and_return(parent)
     render
+  end
+
+  context "for a MVW" do
+    let(:parent) { FactoryGirl.build(:multi_volume_work) }
+    let(:parent_presenter) do
+      s = MultiVolumeWorkShowPresenter.new(parent_solr_doc, nil)
+      allow(s).to receive(:pending_uploads).and_return([pending_upload])
+      s
+    end
+    let(:file_set) { ScannedResourceShowPresenter.new(solr_doc, nil) }
+    let(:resource) { FactoryGirl.build(:scanned_resource) }
+    it "renders scanned resources as reorderable" do
+      expect(rendered).to have_selector "input[name='scanned_resource[title][]'][type='text'][value='#{file_set}']"
+    end
+    it "has a link back to parent" do
+      expect(rendered).to have_link "Back to Parent", href: curation_concerns_multi_volume_work_path(id: "resource")
+    end
+    it "doesn't have radio inputs" do
+      expect(rendered).not_to have_selector("#sortable input[type=radio][name='scanned_resource[viewing_hint]']")
+    end
   end
 
   it "has a bulk edit header" do

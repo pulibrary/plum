@@ -34,6 +34,9 @@ Rails.application.routes.draw do
       member do
         get :manifest, defaults: { format: :json }
         post :flag
+        get :bulk_edit
+        post :reorder, action: :save_order
+        post :browse_everything_files
       end
     end
     resources :scanned_resources, only: [] do

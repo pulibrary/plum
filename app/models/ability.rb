@@ -19,6 +19,7 @@ class Ability
   def image_editor_permissions
     can [:create, :read, :edit, :update, :publish], curation_concerns
     can [:bulk_edit, :save_structure], ScannedResource
+    can [:bulk_edit, :save_structure], MultiVolumeWork
     can [:create, :read, :edit, :update, :publish, :download], FileSet
     can [:create, :read, :edit, :update, :publish], Collection
 

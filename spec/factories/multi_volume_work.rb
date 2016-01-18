@@ -15,6 +15,13 @@ FactoryGirl.define do
       work.apply_depositor_metadata(evaluator.user.user_key)
     end
 
+    factory :multi_volume_work_with_volume do
+      after(:build) do |work, evaluator|
+        resource = FactoryGirl.build(:scanned_resource, user: evaluator.user)
+        work.ordered_members << resource
+      end
+    end
+
     # https://github.com/projecthydra/hydra-head/blob/master/hydra-access-controls/app/models/concerns/hydra/access_controls/access_right.rb
     factory :campus_only_multi_volume_work do
       visibility Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_AUTHENTICATED
