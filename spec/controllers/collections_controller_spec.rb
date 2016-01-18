@@ -59,7 +59,7 @@ RSpec.describe CollectionsController do
 
         expect(response).to be_success
         json = IIIF::Service.parse(response.body)
-        expect(json.manifests.length).to eq 1
+        expect(json.collections.length).to eq 1
       end
     end
   end

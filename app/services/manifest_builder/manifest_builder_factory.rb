@@ -1,15 +1,16 @@
 class ManifestBuilder
   class ManifestBuilderFactory
-    attr_reader :record, :ssl
-    def initialize(record, ssl: false)
+    attr_reader :record, :ssl, :child_factory
+    def initialize(record, child_factory: ChildManifestBuilder, ssl: false)
       @record = record
       @ssl = ssl
+      @child_factory = child_factory
     end
 
     def new
       CompositeBuilder.new(
         *manifest_presenters.map do |model|
-          ChildManifestBuilder.new(model, ssl: @ssl)
+          child_factory.new(model, ssl: @ssl)
         end
       )
     end

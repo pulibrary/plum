@@ -19,6 +19,10 @@ class AllCollectionsManifestBuilder < ManifestBuilder
       end
     end
 
+    def child_manifest_factory
+      ChildCollectionManifest
+    end
+
     def helper
       @helper ||= ManifestBuilder::ManifestHelper.new
     end
