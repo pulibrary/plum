@@ -1,3 +1,4 @@
+# rubocop:disable Metrics/ClassLength
 class CurationConcerns::CurationConcernsController < ApplicationController
   include CurationConcerns::CurationConcernController
   include CurationConcerns::Collectible
@@ -39,6 +40,22 @@ class CurationConcerns::CurationConcernsController < ApplicationController
     super
   end
 
+  def bulk_edit
+    @members = presenter.file_presenters
+  end
+
+  def save_order
+    lock_manager.lock(curation_concern.id) do
+      form = ReorderForm.new(curation_concern)
+      form.order = params[:order]
+      if form.save
+        render json: { message: "Successfully updated order." }
+      else
+        render json: { message: form.errors.full_messages.to_sentence }, status: :bad_request
+      end
+    end
+  end
+
   def flag
     curation_concern.state = 'flagged'
     note = params[curation_concern_name][:workflow_note]
@@ -56,7 +73,21 @@ class CurationConcerns::CurationConcernsController < ApplicationController
     end
   end
 
+  def browse_everything_files
+    upload_set_id = ActiveFedora::Noid::Service.new.mint
+    CompositePendingUpload.create(selected_files_params, curation_concern.id, upload_set_id)
+    BrowseEverythingIngestJob.perform_later(curation_concern.id, upload_set_id, current_user, selected_files_params)
+    redirect_to main_app.curation_concerns_scanned_resource_path(curation_concern)
+  end
+
   private
+
+    def lock_manager
+      @lock_manager ||= CurationConcerns::LockManager.new(
+        CurationConcerns.config.lock_time_to_live,
+        CurationConcerns.config.lock_retry_count,
+        CurationConcerns.config.lock_retry_delay)
+    end
 
     def presenter
       @presenter ||=
@@ -92,3 +123,4 @@ class CurationConcerns::CurationConcernsController < ApplicationController
       params[:action] == "create" || params[:refresh_remote_metadata]
     end
 end
+# rubocop:enable Metrics/ClassLength

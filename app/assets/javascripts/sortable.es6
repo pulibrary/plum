@@ -18,7 +18,7 @@
           return
         }
         this.persisting = true
-        $.post(`/concern/scanned_resources/${this.sorter.id}/reorder.json`,
+        $.post(`/concern/${this.sorter.class_name}/${this.sorter.id}/reorder.json`,
                {order: this.sorter.order}
               )
               .done(this.persist_success)
@@ -99,6 +99,10 @@
 
     get id() {
       return this.element.data("id")
+    }
+
+    get class_name() {
+      return this.element.data("class-name")
     }
 
     get needs_saved() {

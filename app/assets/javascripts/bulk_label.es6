@@ -83,7 +83,7 @@ class BulkLabeler {
       for(let i of this.selected_elements.toArray()) {
         i = $(i)
         value = generator.next().value
-        title_field = i.find("input[name='file_set[title][]']")
+        title_field = i.find("input.title")
         this.field_changing(title_field, value)
       }
     }

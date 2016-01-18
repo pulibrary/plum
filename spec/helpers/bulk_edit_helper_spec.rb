@@ -4,7 +4,14 @@ describe BulkEditHelper do
   let(:solr_document) { SolrDocument.new }
   let(:parent_id) { 'testid' }
   let(:presenter) { double(solr_document: solr_document,
-                           id: parent_id) }
+                           id: parent_id,
+                           to_model: scanned_resource) }
+  let(:scanned_resource) do
+    s = FactoryGirl.build(:scanned_resource)
+    allow(s).to receive(:persisted?).and_return(true)
+    allow(s).to receive(:id).and_return(parent_id)
+    s
+  end
   before do
     assign(:presenter, presenter)
   end

@@ -21,7 +21,12 @@ module BulkEditHelper
   end
 
   def bulk_edit_parent_path
-    Rails.application.routes.url_helpers
-      .curation_concerns_scanned_resource_path(@presenter.id)
+    local_helper.polymorphic_path(@presenter)
   end
+
+  private
+
+    def local_helper
+      @local_helper ||= ManifestBuilder::ManifestHelper.new
+    end
 end

@@ -25,29 +25,6 @@ class CurationConcerns::ScannedResourcesController < CurationConcerns::CurationC
     redirect_to main_app.download_path(presenter, file: 'pdf')
   end
 
-  def save_order
-    lock_manager.lock(curation_concern.id) do
-      form = ReorderForm.new(curation_concern)
-      form.order = params[:order]
-      if form.save
-        render json: { message: "Successfully updated order." }
-      else
-        render json: { message: form.errors.full_messages.to_sentence }, status: :bad_request
-      end
-    end
-  end
-
-  def browse_everything_files
-    upload_set_id = ActiveFedora::Noid::Service.new.mint
-    CompositePendingUpload.create(selected_files_params, curation_concern.id, upload_set_id)
-    BrowseEverythingIngestJob.perform_later(curation_concern.id, upload_set_id, current_user, selected_files_params)
-    redirect_to main_app.curation_concerns_scanned_resource_path(curation_concern)
-  end
-
-  def bulk_edit
-    @members = presenter.file_presenters
-  end
-
   def structure
     @members = presenter.file_presenters
     @logical_order = presenter.logical_order_object
@@ -64,13 +41,6 @@ class CurationConcerns::ScannedResourcesController < CurationConcerns::CurationC
   end
 
   private
-
-    def lock_manager
-      @lock_manager ||= CurationConcerns::LockManager.new(
-        CurationConcerns.config.lock_time_to_live,
-        CurationConcerns.config.lock_retry_count,
-        CurationConcerns.config.lock_retry_delay)
-    end
 
     def selected_files_params
       params[:selected_files]
