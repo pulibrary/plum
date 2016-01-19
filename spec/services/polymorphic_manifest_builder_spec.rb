@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe ManifestBuilder, vcr: { cassette_name: "iiif_manifest" } do
+RSpec.describe PolymorphicManifestBuilder, vcr: { cassette_name: "iiif_manifest" } do
   subject { described_class.new(solr_document) }
 
   let(:solr_document) { ScannedResourceShowPresenter.new(SolrDocument.new(record.to_solr), nil) }
@@ -51,6 +51,64 @@ RSpec.describe ManifestBuilder, vcr: { cassette_name: "iiif_manifest" } do
         expect(manifest['manifests'].first['@id']).to eq "https://plum.com/concern/scanned_resources/1/manifest"
       end
     end
+    context "and some are canvases" do
+      let(:file_set) do
+        build_file_set("x633f104m")
+      end
+      let(:file_set2) do
+        build_file_set("x633f104n")
+      end
+      let(:file_set3) do
+        build_file_set("x633f104o")
+      end
+      let(:file_set_presenter) { FileSetPresenter.new(SolrDocument.new(file_set.to_solr), nil) }
+      let(:file_set2_presenter) { FileSetPresenter.new(SolrDocument.new(file_set2.to_solr), nil) }
+      let(:file_set3_presenter) { FileSetPresenter.new(SolrDocument.new(file_set3.to_solr), nil) }
+      let(:sr_2) { ScannedResourceShowPresenter.new(SolrDocument.new(sr_2_resource.to_solr), nil) }
+      let(:sr_2_resource) { FactoryGirl.build(:scanned_resource) }
+      let(:solr) { ActiveFedora.solr.conn }
+      before do
+        record.ordered_members << file_set2
+        record.logical_order.order = {
+          "nodes": [
+            {
+              "label": "Chapter 1",
+              "nodes": [
+                {
+                  "label": file_set2.rdf_label.first,
+                  "proxy": file_set2.id
+                }
+              ]
+            }
+          ]
+        }
+        allow(mvw_document).to receive(:file_presenters).and_return([solr_document, file_set_presenter, sr_2])
+        allow(solr_document).to receive(:file_presenters).and_return([file_set2_presenter])
+        allow(solr_document).to receive(:logical_order).and_return(record.logical_order.order)
+        allow(sr_2).to receive(:file_presenters).and_return([file_set3_presenter])
+      end
+      it "renders them all as canvases" do
+        expect(manifest['manifests']).to eq nil
+        expect(manifest['sequences'].first['canvases'].length).to eq 3
+      end
+      it "renders ranges" do
+        expect(manifest["structures"].length).to eq 1
+        first_structure = manifest["structures"].first
+        expect(first_structure["viewingHint"]).to eq "top"
+        expect(first_structure["ranges"].length).to eq 2
+        expect(first_structure["ranges"].first["label"]).to eq record.title.first
+        expect(first_structure["ranges"].first["ranges"].length).to eq 1
+        expect(first_structure["ranges"].first["ranges"].first["canvases"].first).to eq manifest["sequences"].first["canvases"].first['@id']
+      end
+    end
+  end
+
+  def build_file_set(id)
+    FileSet.new.tap do |g|
+      allow(g).to receive(:persisted?).and_return(true)
+      allow(g).to receive(:id).and_return(id)
+      g.title = ["Test"]
+    end
   end
 
   describe "#canvases" do
@@ -63,13 +121,6 @@ RSpec.describe ManifestBuilder, vcr: { cassette_name: "iiif_manifest" } do
         build_file_set("x633f104n")
       end
       let(:solr) { ActiveFedora.solr.conn }
-      def build_file_set(id)
-        FileSet.new.tap do |g|
-          allow(g).to receive(:persisted?).and_return(true)
-          allow(g).to receive(:id).and_return(id)
-          g.title = ["Test"]
-        end
-      end
       before do
         record.ordered_members << file_set2
         record.ordered_member_proxies.insert_target_at(0, file_set)

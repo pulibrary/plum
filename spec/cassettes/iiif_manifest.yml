@@ -4194,4 +4194,49 @@ http_interactions:
         t0q0Y1x0qpJGu84FNIA7VbihQpnHNKI09KVlAU4FQwcyc0txw3Ff/9k=
     http_version: 
   recorded_at: Mon, 04 Jan 2016 20:01:58 GMT
+- request:
+    method: get
+    uri: http://192.168.99.100:5004/x6%2F33%2Ff1%2F04%2Fo-intermediate_file.jp2/info.json
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.9.1
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Link:
+      - <http://iiif.io/api/image/2/level2.json>;rel="profile",<http://iiif.io/api/image/2/context.json>;rel="http://www.w3.org/ns/json-ld#context";type="application/ld+json"
+      Access-Control-Allow-Origin:
+      - "*"
+      Last-Modified:
+      - Thu, 10 Sep 2015 23:12:15 GMT
+      Content-Length:
+      - '727'
+      Server:
+      - Werkzeug/0.10.4 Python/2.7.8
+      Date:
+      - Thu, 10 Sep 2015 23:42:13 GMT
+    body:
+      encoding: UTF-8
+      string: '{"profile": ["http://iiif.io/api/image/2/level2.json", {"supports":
+        ["canonicalLinkHeader", "profileLinkHeader", "mirroring", "rotationArbitrary",
+        "sizeAboveFull"], "qualities": ["default", "bitonal", "gray", "color"], "formats":
+        ["jpg", "png", "gif", "webp"]}], "tiles": [{"width": 1024, "scaleFactors":
+        [1, 2, 4, 8, 16, 32, 64]}], "protocol": "http://iiif.io/api/image", "sizes":
+        [{"width": 4, "height": 5}, {"width": 7, "height": 9}, {"width": 13, "height":
+        18}, {"width": 25, "height": 36}, {"width": 50, "height": 72}, {"width": 100,
+        "height": 144}, {"width": 200, "height": 287}], "height": 287, "width": 200,
+        "@context": "http://iiif.io/api/image/2/context.json", "@id": "http://192.168.99.100:5004/x633f104o%2Fjp2.jp2"}'
+    http_version: 
+  recorded_at: Thu, 10 Sep 2015 23:42:14 GMT
 recorded_with: VCR 2.9.3
