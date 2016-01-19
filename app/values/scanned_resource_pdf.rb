@@ -17,6 +17,6 @@ class ScannedResourcePDF
   end
 
   def manifest_builder
-    @manifest_builder ||= ManifestBuilder.new(scanned_resource)
+    @manifest_builder ||= PolymorphicManifestBuilder.new(scanned_resource)
   end
 end

@@ -100,7 +100,7 @@ class CurationConcerns::CurationConcernsController < ApplicationController
     end
 
     def manifest_builder
-      ManifestBuilder.new(presenter, ssl: request.ssl?, services: AuthManifestBuilder.auth_services(login_url, logout_url))
+      PolymorphicManifestBuilder.new(presenter, ssl: request.ssl?, services: AuthManifestBuilder.auth_services(login_url, logout_url))
     end
 
     def login_url

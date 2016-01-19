@@ -9,6 +9,7 @@ class ManifestBuilder
     def apply(manifest)
       return if record.file_presenters.length == 0
       return if manifest['sequences'].blank?
+      return unless path
       manifest['sequences'].first['rendering'] = {
         '@id' => path,
         'label' => label,
@@ -20,6 +21,8 @@ class ManifestBuilder
 
       def path
         helper.polymorphic_url([:pdf, record], protocol: protocol)
+      rescue
+        nil
       end
 
       def helper

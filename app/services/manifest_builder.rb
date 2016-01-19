@@ -75,7 +75,11 @@ class ManifestBuilder
     end
 
     def canvas_builders
-      @canvas_builders ||= CanvasBuilderFactory.new(record).new(root_path)
+      @canvas_builders ||= canvas_builder_factory.new(record).new(root_path)
+    end
+
+    def canvas_builder_factory
+      ::ManifestBuilder::CanvasBuilderFactory
     end
 
     def manifest_builders

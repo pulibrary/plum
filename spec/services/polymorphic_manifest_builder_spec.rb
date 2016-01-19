@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe ManifestBuilder, vcr: { cassette_name: "iiif_manifest" } do
+RSpec.describe PolymorphicManifestBuilder, vcr: { cassette_name: "iiif_manifest" } do
   subject { described_class.new(solr_document) }
 
   let(:solr_document) { ScannedResourceShowPresenter.new(SolrDocument.new(record.to_solr), nil) }
@@ -51,6 +51,34 @@ RSpec.describe ManifestBuilder, vcr: { cassette_name: "iiif_manifest" } do
         expect(manifest['manifests'].first['@id']).to eq "https://plum.com/concern/scanned_resources/1/manifest"
       end
     end
+    context "and some are canvases" do
+      let(:file_set) do
+        build_file_set("x633f104m")
+      end
+      let(:file_set2) do
+        build_file_set("x633f104n")
+      end
+      let(:file_set_presenter) { FileSetPresenter.new(SolrDocument.new(file_set.to_solr), nil) }
+      let(:file_set2_presenter) { FileSetPresenter.new(SolrDocument.new(file_set2.to_solr), nil) }
+      let(:solr) { ActiveFedora.solr.conn }
+      before do
+        record.ordered_members << file_set2
+        allow(mvw_document).to receive(:file_presenters).and_return([solr_document, file_set_presenter])
+        allow(solr_document).to receive(:file_presenters).and_return([file_set2_presenter])
+      end
+      it "renders them all as canvases" do
+        expect(manifest['manifests']).to eq nil
+        expect(manifest['sequences'].first['canvases'].length).to eq 2
+      end
+    end
+  end
+
+  def build_file_set(id)
+    FileSet.new.tap do |g|
+      allow(g).to receive(:persisted?).and_return(true)
+      allow(g).to receive(:id).and_return(id)
+      g.title = ["Test"]
+    end
   end
 
   describe "#canvases" do
@@ -63,13 +91,6 @@ RSpec.describe ManifestBuilder, vcr: { cassette_name: "iiif_manifest" } do
         build_file_set("x633f104n")
       end
       let(:solr) { ActiveFedora.solr.conn }
-      def build_file_set(id)
-        FileSet.new.tap do |g|
-          allow(g).to receive(:persisted?).and_return(true)
-          allow(g).to receive(:id).and_return(id)
-          g.title = ["Test"]
-        end
-      end
       before do
         record.ordered_members << file_set2
         record.ordered_member_proxies.insert_target_at(0, file_set)
