@@ -42,6 +42,7 @@ RSpec.describe CollectionShowPresenter do
     json_manifest = JSON.parse(manifest)
     expect(json_manifest['viewingHint']).not_to eq "multi-part"
     expect(json_manifest['metadata'][0]['value'].first['@value']).to eq subject.exhibit_id.first
+    expect(json_manifest['structures']).to eq nil
   end
 
   describe "#label" do
