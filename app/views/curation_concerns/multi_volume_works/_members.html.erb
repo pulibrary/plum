@@ -15,7 +15,7 @@
           <tr>
             <td class="col-xs-3"><%= render_thumbnail_tag res %></td>
             <td>
-              <%= link_to res.title, main_app.curation_concerns_member_scanned_resource_path(@presenter.id, res.id) %>
+              <%= @presenter.link_child res %>
             </td>
           </tr>
         <% end %>

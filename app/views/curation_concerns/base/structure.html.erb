@@ -8,7 +8,7 @@
   </a>
   <button data-action="submit-list" class="btn btn-primary">Save</button>
 </div>
-<ul class="sortable" data-id="<%= @presenter.id %>">
+<ul class="sortable" data-id="<%= @presenter.id %>" data-class-name="<%= @presenter.model_name.plural %>">
   <% @logical_order.nodes.each do |node| %>
     <%= render "structure_node", node: node %>
   <% end %>

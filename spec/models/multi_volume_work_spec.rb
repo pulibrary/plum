@@ -65,4 +65,6 @@ describe MultiVolumeWork do
       expect(subject.ordered_members).to eq [scanned_resource1, scanned_resource2]
     end
   end
+
+  include_examples "structural metadata"
 end

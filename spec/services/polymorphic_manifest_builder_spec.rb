@@ -65,7 +65,7 @@ RSpec.describe PolymorphicManifestBuilder, vcr: { cassette_name: "iiif_manifest"
       let(:file_set2_presenter) { FileSetPresenter.new(SolrDocument.new(file_set2.to_solr), nil) }
       let(:file_set3_presenter) { FileSetPresenter.new(SolrDocument.new(file_set3.to_solr), nil) }
       let(:sr_2) { ScannedResourceShowPresenter.new(SolrDocument.new(sr_2_resource.to_solr), nil) }
-      let(:sr_2_resource) { FactoryGirl.build(:scanned_resource) }
+      let(:sr_2_resource) { FactoryGirl.build(:scanned_resource, id: "2") }
       let(:solr) { ActiveFedora.solr.conn }
       before do
         record.ordered_members << file_set2

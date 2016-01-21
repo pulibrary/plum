@@ -15,4 +15,10 @@ RSpec.describe SolrDocument do
       expect(subject.date_created).to eq date_created
     end
   end
+
+  describe "#logical_order" do
+    it "is an empty hash by default" do
+      expect(subject.logical_order).to eq({})
+    end
+  end
 end

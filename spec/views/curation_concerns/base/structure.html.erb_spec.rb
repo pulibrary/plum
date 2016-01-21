@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "curation_concerns/scanned_resources/structure" do
+RSpec.describe "curation_concerns/base/structure" do
   let(:logical_order) do
     WithProxyForObject::Factory.new(members).new(params)
   end
@@ -51,5 +51,12 @@ RSpec.describe "curation_concerns/scanned_resources/structure" do
   end
   it "renders unstructured nodes" do
     expect(rendered).to have_selector("li[data-proxy='b']")
+  end
+  context "when given a multi volume work" do
+    let(:scanned_resource) { MultiVolumeWork.new("test") }
+    it "renders" do
+      expect(rendered).to have_selector("li", count: 3)
+      expect(rendered).to have_selector("*[data-class-name='multi_volume_works']")
+    end
   end
 end

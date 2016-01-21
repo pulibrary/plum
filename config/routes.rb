@@ -37,6 +37,8 @@ Rails.application.routes.draw do
         get :bulk_edit
         post :reorder, action: :save_order
         post :browse_everything_files
+        get :structure
+        post :structure, action: :save_structure
       end
     end
     resources :scanned_resources, only: [] do

@@ -14,30 +14,7 @@ class SammelbandManifestBuilder < ManifestBuilder
     end
 
     def logical_order
-      @logical_order ||= LogicalOrder.new(combined_logical_order)
-    end
-
-    def combined_logical_order
-      range_presenters.each_with_object("nodes" => []) do |presenter, hsh|
-        hsh["nodes"] << {
-          "label" => presenter.to_s,
-          "nodes" => (presenter.logical_order["nodes"] || canvas_ids(presenter))
-        }
-      end
-    end
-
-    def canvas_ids(presenter)
-      presenter.file_presenters.map do |file_presenter|
-        {
-          "proxy" => file_presenter.id
-        }
-      end
-    end
-
-    def range_presenters
-      record.file_presenters.select do |presenter|
-        !presenter.try(:logical_order).nil?
-      end
+      @logical_order ||= LogicalOrder.new(SammelbandLogicalOrder.new(record, record.logical_order).to_h)
     end
 
     class SammelbandViewingHint < SimpleDelegator
