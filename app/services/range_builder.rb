@@ -16,7 +16,7 @@ class RangeBuilder
   end
 
   def apply(manifest)
-    manifest['structures'] = [to_h]
+    manifest['structures'] = [to_h] unless nodes.empty?
   end
 
   private
