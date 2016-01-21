@@ -281,7 +281,7 @@ describe CurationConcerns::ScannedResourcesController do
       reloaded = resource.reload
       expect(reloaded.file_sets.length).to eq 1
       expect(reloaded.file_sets.first.files.first.mime_type).to eq "image/tiff"
-      path = Rails.application.class.routes.url_helpers.curation_concerns_scanned_resource_path(resource)
+      path = Rails.application.class.routes.url_helpers.bulk_edit_curation_concerns_scanned_resource_path(resource)
       expect(response).to redirect_to path
       expect(reloaded.pending_uploads.length).to eq 0
     end
