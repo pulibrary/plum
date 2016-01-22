@@ -21,8 +21,9 @@
 
 en:
   hello: "Hello world"
-  headers:
-    bulk_edit: "Bulk Edit"
+  bulk_edit:
+    header: "File Manager"
+    link_text: "File Manager"
   simple_form:
     options:
       file_set:

@@ -1,6 +1,6 @@
 module BulkEditHelper
   def bulk_edit_page_header
-    h = content_tag(:h1, 'Bulk Edit')
+    h = content_tag(:h1, t('bulk_edit.header'))
     h += bulk_edit_breadcrumb
     h.html_safe
   end
