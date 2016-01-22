@@ -18,6 +18,7 @@ describe "curation_concerns/multi_volume_works/show.html.erb" do
   let(:resource_document) do
     SolrDocument.new(
       title_ssim: "test",
+      title_tesim: "test",
       thumbnail_path_ss: "/test/bla.jpg",
       has_model_ssim: ["ScannedResource"],
       active_fedora_model_ssi: 'ScannedResource',
@@ -25,15 +26,21 @@ describe "curation_concerns/multi_volume_works/show.html.erb" do
     )
   end
   let(:presenter) do
-    MultiVolumeWorkShowPresenter.new(solr_document, nil)
+    LinksToChild::Factory.new(MultiVolumeWorkShowPresenter).new(solr_document, nil)
   end
   let(:resource_presenter) do
     ScannedResourceShowPresenter.new(resource_document, nil)
   end
+  let(:file_presenter) do
+    f = FactoryGirl.build(:file_set)
+    allow(f).to receive(:persisted?).and_return(true)
+    allow(f).to receive(:id).and_return("2")
+    FileSetPresenter.new(SolrDocument.new(f.to_solr), nil)
+  end
   let(:blacklight_config) { CatalogController.new.blacklight_config }
 
   before do
-    allow(presenter).to receive(:file_presenters).and_return([resource_presenter])
+    allow(presenter).to receive(:file_presenters).and_return([resource_presenter, file_presenter])
     allow(view).to receive(:dom_class) { '' }
     allow(view).to receive(:blacklight_config).and_return(blacklight_config)
     allow(view).to receive(:search_session).and_return({})
@@ -53,6 +60,13 @@ describe "curation_concerns/multi_volume_works/show.html.erb" do
     end
     it "has thumbnails for its members" do
       expect(rendered).to have_selector("img[src='/test/bla.jpg']")
+    end
+    it "has a link to each edit page" do
+      expect(rendered).to have_link "test", href: "/concern/container/#{presenter.id}/scanned_resources/#{resource_presenter.id}"
+      expect(rendered).to have_link file_presenter.to_s, href: "/concern/file_sets/#{file_presenter.id}"
+    end
+    it "has a link to edit structure" do
+      expect(rendered).to have_link "Edit Structure", structure_curation_concerns_multi_volume_work_path(id: presenter.id)
     end
   end
 end

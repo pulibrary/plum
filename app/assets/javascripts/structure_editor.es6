@@ -68,7 +68,7 @@ jQuery(() => {
     event.preventDefault()
     let element = $(".sortable")
     let serializer = new window.StructureParser(element)
-    let url = `/concern/scanned_resources/${element.attr("data-id")}/structure`
+    let url = `/concern/${element.attr("data-class-name")}/${element.attr("data-id")}/structure`
     let button = $(this)
     button.text("Saving..")
     button.addClass("disabled")

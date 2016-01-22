@@ -75,4 +75,6 @@ describe CurationConcerns::MultiVolumeWorksController do
       end
     end
   end
+
+  include_examples "structure persister", :multi_volume_work, MultiVolumeWorkShowPresenter
 end
