@@ -61,7 +61,7 @@ RSpec.describe "curation_concerns/base/bulk_edit.html.erb" do
   end
 
   it "has a bulk edit header" do
-    expect(rendered).to include "<h1>Bulk Edit</h1>"
+    expect(rendered).to include "<h1>#{I18n.t('bulk_edit.link_text')}</h1>"
   end
 
   it "displays each file set's label" do
