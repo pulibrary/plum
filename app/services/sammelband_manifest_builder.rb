@@ -19,7 +19,7 @@ class SammelbandManifestBuilder < ManifestBuilder
 
     class SammelbandViewingHint < SimpleDelegator
       def viewing_hint
-        "individuals"
+        solr_document.viewing_hint || "individuals"
       end
     end
 end

@@ -7,7 +7,7 @@
       <% directions.each do |val| %>
         <div class="radio">
           <%= content_tag :label do %>
-            <%= tag :input, name: "scanned_resource[viewing_direction]", id: "scanned_resource_viewing_direction_#{val}", type: :radio, value: val, checked: (val == selected_direction), class: 'resource-radio-button' %>
+            <%= tag :input, name: "#{f.object.model_name.singular}[viewing_direction]", id: "#{f.object.model_name.singular}_viewing_direction_#{val}", type: :radio, value: val, checked: (val == selected_direction), class: 'resource-radio-button' %>
             <%= val %>
           <% end %>
         </div>
@@ -21,7 +21,7 @@
       <% hints.each do |val| %>
         <div class="radio">
           <%= content_tag :label do %>
-            <%= tag :input, name: "scanned_resource[viewing_hint]", id: "scanned_resource_viewing_hint_#{val}", type: :radio, value: val, checked: (val == selected_hint), class: 'resource-radio-button' %>
+            <%= tag :input, name: "#{f.object.model_name.singular}[viewing_hint]", id: "#{f.object.model_name.singular}_hint_#{val}", type: :radio, value: val, checked: (val == selected_hint), class: 'resource-radio-button' %>
             <%= val %>
           <% end %>
         </div>
