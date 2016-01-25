@@ -5,6 +5,7 @@ class MultiVolumeWork < ActiveFedora::Base
   include ::CommonMetadata
   include ::NoidBehaviors
   include ::StructuralMetadata
+  include ::HasPendingUploads
 
   def to_solr(solr_doc = {})
     super.tap do |doc|
