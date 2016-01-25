@@ -31,10 +31,6 @@ class CurationConcerns::ScannedResourcesController < CurationConcerns::CurationC
 
   private
 
-    def selected_files_params
-      params[:selected_files]
-    end
-
     def pdf_path
       PairtreeDerivativePath.derivative_path_for_reference(presenter, 'pdf')
     end

@@ -76,5 +76,37 @@ describe CurationConcerns::MultiVolumeWorksController do
     end
   end
 
+  describe "#browse_everything_files" do
+    let(:resource) { FactoryGirl.create(:multi_volume_work, user: user) }
+    let(:file) { File.open(Rails.root.join("spec", "fixtures", "files", "color.tif")) }
+    let(:user) { FactoryGirl.create(:admin) }
+    let(:params) do
+      {
+        "selected_files" => {
+          "0" => {
+            "url" => "file://#{file.path}",
+            "file_name" => File.basename(file.path),
+            "file_size" => file.size
+          }
+        }
+      }
+    end
+    let(:stub) {}
+    before do
+      sign_in user
+      allow(CharacterizeJob).to receive(:perform_later).once
+      allow(BrowseEverythingIngestJob).to receive(:perform_later).and_return(true) if stub
+      post :browse_everything_files, id: resource.id, selected_files: params["selected_files"]
+    end
+    it "appends a new file set" do
+      reloaded = resource.reload
+      expect(reloaded.file_sets.length).to eq 1
+      expect(reloaded.file_sets.first.files.first.mime_type).to eq "image/tiff"
+      path = Rails.application.class.routes.url_helpers.bulk_edit_curation_concerns_multi_volume_work_path(resource)
+      expect(response).to redirect_to path
+      expect(reloaded.pending_uploads.length).to eq 0
+    end
+  end
+
   include_examples "structure persister", :multi_volume_work, MultiVolumeWorkShowPresenter
 end
