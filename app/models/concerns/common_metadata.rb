@@ -12,8 +12,10 @@ module CommonMetadata
     property :portion_note, predicate: ::RDF::Vocab::SKOS.scopeNote, multiple: false
     property :description, predicate: ::RDF::DC.abstract, multiple: false
     property :identifier, predicate: ::RDF::DC.identifier, multiple: false
+    property :rights_statement, predicate: ::RDF::Vocab::EDM.rights, multiple: false do |index|
+      index.as :stored_searchable, :facetable
+    end
     property :access_policy, predicate: ::RDF::DC.accessRights, multiple: false
-    property :use_and_reproduction, predicate: ::RDF::DC.rights, multiple: false
     property :source_metadata_identifier, predicate: ::PULTerms.metadata_id, multiple: false do |index|
       index.as :stored_searchable, :symbol
     end
@@ -32,7 +34,7 @@ module CommonMetadata
 
     validate :source_metadata_identifier_or_title
     validates :access_policy, presence: { message: 'You must choose an Access Policy statement.' }
-    validates :use_and_reproduction, presence: { message: 'You must provide a use statement.' }
+    validates_with RightsStatementValidator
     validates_with StateValidator
     validates_with ViewingDirectionValidator
     validates_with ViewingHintValidator

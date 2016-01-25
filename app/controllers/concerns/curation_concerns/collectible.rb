@@ -29,9 +29,9 @@ module CurationConcerns::Collectible
 
     def actor_create
       return actor.create
-    rescue StandardError
+    rescue StandardError => err
       curation_concern.errors.add :source_metadata_identifier, "Error retrieving metadata"
-      logger.debug "Error retrieving metadata: #{params[curation_concern_name]['source_metadata_identifier']}"
+      logger.debug "Error retrieving metadata: #{params[curation_concern_name]['source_metadata_identifier']}: #{err}"
       return false
     end
   end

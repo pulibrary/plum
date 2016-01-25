@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe "curation_concerns/base/_attributes.html.erb" do
   let(:creator) { 'Bilbo' }
   let(:date_created) { "2015-09-08" }
-  let(:rights) { "No touching" }
+  let(:rights_statement) { "http://rightsstatements.org/vocab/NKC/1.0/" }
   let(:workflow_note) { ["First", "Second"] }
 
   let(:solr_document) do
@@ -11,7 +11,7 @@ RSpec.describe "curation_concerns/base/_attributes.html.erb" do
       active_fedora_model_ssi: 'ScannedResource',
       creator_tesim: creator,
       date_created_tesim: date_created,
-      rights_tesim: rights,
+      rights_statement_tesim: rights_statement,
       workflow_note_tesim: workflow_note
     )
   end
@@ -33,8 +33,8 @@ RSpec.describe "curation_concerns/base/_attributes.html.erb" do
     assert_catalog_link('creator', creator)
   end
 
-  it "displays rights" do
-    expect(rendered).to have_content rights
+  it "displays the label for the rights URI" do
+    expect(rendered).to have_content "No Known Copyright"
   end
 
   it "displays date created" do

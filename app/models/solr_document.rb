@@ -65,4 +65,8 @@ class SolrDocument
   def exhibit_id
     self[Solrizer.solr_name('exhibit_id')]
   end
+
+  def rights_statement
+    self[Solrizer.solr_name('rights_statement')]
+  end
 end

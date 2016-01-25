@@ -37,7 +37,7 @@ RSpec.feature "MultiVolumeWorksController", type: :feature do
     click_link 'Attach a Scanned Resource'
     fill_in 'scanned_resource_title', with: 'Volume 1'
     select 'Marquand', from: 'scanned_resource_access_policy'
-    select 'Marquand', from: 'scanned_resource_use_and_reproduction'
+    select 'No Known Copyright', from: 'scanned_resource_rights_statement'
     click_button 'Create Scanned resource'
     expect(current_path).to start_with "/concern/container/#{multi_volume_work.id}/scanned_resources/"
 
