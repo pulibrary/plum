@@ -25,6 +25,7 @@ RSpec.describe FileSet do
 
   describe "#create_derivatives" do
     let(:path) { Pathname.new(PairtreeDerivativePath.derivative_path_for_reference(subject, 'intermediate_file')) }
+    let(:ocr_path) { Pathname.new(PairtreeDerivativePath.derivative_path_for_reference(subject, 'ocr')) }
     it "creates a JP2" do
       allow_any_instance_of(described_class).to receive(:warn) # suppress virus check warnings
       file = File.open(Rails.root.join("spec", "fixtures", "files", "color.tif"))
@@ -34,8 +35,19 @@ RSpec.describe FileSet do
 
       expect(path).to exist
     end
+    it "creates full text" do
+      allow_any_instance_of(described_class).to receive(:warn) # suppress virus check warnings
+      allow(Hydra::Derivatives::Jpeg2kImageDerivatives).to receive(:create).and_return(true)
+      file = File.open(Rails.root.join("spec", "fixtures", "files", "page18.tif"))
+      Hydra::Works::UploadFileToFileSet.call(subject, file)
+
+      subject.create_derivatives(file.path)
+
+      expect(ocr_path).to exist
+    end
     after do
       FileUtils.rm_rf(path.parent) if path.exist?
+      FileUtils.rm_rf(ocr_path.parent) if ocr_path.exist?
     end
   end
 end

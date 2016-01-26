@@ -27,6 +27,13 @@ class FileSet < ActiveFedora::Base
           url: derivative_url('intermediate_file')
         ]
       )
+      OCRCreator.create(
+        filename,
+        outputs: [
+          label: 'ocr',
+          url: derivative_url('ocr')
+        ]
+      )
     end
     super
   end

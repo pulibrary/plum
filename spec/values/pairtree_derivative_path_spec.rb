@@ -22,6 +22,11 @@ describe PairtreeDerivativePath do
 
       it { is_expected.to eq 'tmp/08/61/2n/57/q-unrecognized.unrecognized' }
     end
+    context "when given ocr" do
+      let(:destination_name) { 'ocr' }
+
+      it { is_expected.to eq 'tmp/08/61/2n/57/q-ocr.hocr' }
+    end
     context "when given a PDF" do
       let(:destination_name) { 'pdf' }
       it "returns a unique PDF path based on the resource identifier" do
