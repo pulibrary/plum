@@ -22,7 +22,9 @@
   <% end %>
   <%= @presenter.attribute_to_html(:embargo_release_date) %>
   <%= @presenter.attribute_to_html(:lease_expiration_date) %>
-  <%= @presenter.attribute_to_html(:rights) %>
+  <% if @presenter.respond_to? :rights_statement %>
+    <%= @presenter.rights_statement %>
+  <% end %>
   <%= @presenter.attribute_to_html(:identifier) %>
   <%= render partial: '/curation_concerns/base/collection_list' %>
   <% if can? :edit, @presenter.id %>

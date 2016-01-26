@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 describe ScannedResource do
-  let(:scanned_resource) { FactoryGirl.build(:scanned_resource, source_metadata_identifier: '12345', access_policy: 'Policy', use_and_reproduction: 'Statement', workflow_note: ['Note 1']) }
+  let(:scanned_resource) { FactoryGirl.build(:scanned_resource, source_metadata_identifier: '12345', access_policy: 'Policy', rights_statement: 'http://rightsstatements.org/vocab/NKC/1.0/', workflow_note: ['Note 1']) }
   let(:reloaded)         { described_class.find(scanned_resource.id) }
   subject { scanned_resource }
 
@@ -68,20 +68,31 @@ describe ScannedResource do
     end
   end
 
-  describe 'has policy fields' do
-    # TODO: Set by policy key and test by value
-    [:access_policy, :use_and_reproduction].each do |policy_type|
-      it "should let me set a #{policy_type}" do
-        policy = 'This is a policy'
-        subject.send("#{policy_type}=", policy)
-        expect { subject.save }.to_not raise_error
-        expect(reloaded.send(policy_type)).to eq policy
-      end
+  describe '#access_policy' do
+    it "sets an access_policy" do
+      policy = 'This is a policy'
+      subject.access_policy = policy
+      expect { subject.save }.to_not raise_error
+      expect(reloaded.access_policy).to eq policy
+    end
 
-      it "should require me to set a #{policy_type}" do
-        subject.send("#{policy_type}=", nil)
-        expect(subject.valid?).to be_falsey
-      end
+    it "requires an access_policy" do
+      subject.access_policy = nil
+      expect(subject.valid?).to be_falsey
+    end
+  end
+
+  describe '#rights_statement' do
+    it "sets rights_statement" do
+      nkc = 'http://rightsstatements.org/vocab/NKC/1.0/'
+      subject.rights_statement = nkc
+      expect { subject.save }.to_not raise_error
+      expect(reloaded.rights_statement).to eq nkc
+    end
+
+    it "requires rights_statement" do
+      subject.rights_statement = nil
+      expect(subject.valid?).to be_falsey
     end
   end
 
@@ -189,7 +200,7 @@ describe ScannedResource do
   end
 
   describe "#check_state" do
-    subject { FactoryGirl.build(:scanned_resource, source_metadata_identifier: '12345', access_policy: 'Policy', use_and_reproduction: 'Statement', state: 'final_review') }
+    subject { FactoryGirl.build(:scanned_resource, source_metadata_identifier: '12345', access_policy: 'Policy', rights_statement: 'http://rightsstatements.org/vocab/NKC/1.0/', state: 'final_review') }
     let(:complete_reviewer) { FactoryGirl.create(:complete_reviewer) }
     before do
       complete_reviewer.save

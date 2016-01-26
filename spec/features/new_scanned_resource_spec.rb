@@ -14,12 +14,12 @@ RSpec.feature "ScannedResourcesController", type: :feature do
 
       fill_in 'scanned_resource_title', with: 'Test Title'
       select 'Marquand', from: 'scanned_resource_access_policy'
-      select 'Marquand', from: 'scanned_resource_use_and_reproduction'
+      select 'No Known Copyright', from: 'scanned_resource_rights_statement'
       click_button 'Create Scanned resource'
 
       expect(page).to have_selector("h1", "Test Title")
       expect(page).to have_selector("span.label-default", "Pending")
-      expect(page).to have_text("Jamie, remind me to give you a lesson in tying knots, sometime")
+      expect(page).to have_text("No Known Copyright")
     end
   end
 

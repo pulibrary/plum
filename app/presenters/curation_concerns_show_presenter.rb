@@ -20,6 +20,10 @@ class CurationConcernsShowPresenter < CurationConcerns::WorkShowPresenter
     @pending_uploads ||= PendingUpload.where(curation_concern_id: id)
   end
 
+  def rights_statement
+    RightsStatementRenderer.new(solr_document.rights_statement).render
+  end
+
   private
 
     def logical_order_factory

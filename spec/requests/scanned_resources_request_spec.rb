@@ -17,7 +17,7 @@ RSpec.describe 'ScannedResourcesController', type: :request do
       title: ['My Resource'],
       source_metadata_identifier: '2028405',
       access_policy: 'something',
-      use_and_reproduction: 'something else'
+      rights_statement: 'http://rightsstatements.org/vocab/NKC/1.0/'
     }
 
     post '/concern/scanned_resources', scanned_resource: valid_params
