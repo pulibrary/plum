@@ -122,4 +122,15 @@ RSpec.describe "curation_concerns/base/bulk_edit.html.erb" do
   it "displays pending uploads" do
     expect(rendered).to have_content pending_upload.file_name
   end
+
+  it "has inputs to edit the viewing hint" do
+    expect(rendered).to have_selector("input[name='scanned_resource[viewing_hint]']")
+  end
+
+  context "when it's a MVW" do
+    let(:parent) { FactoryGirl.build(:multi_volume_work) }
+    it "has a correct input to edit the viewing hint" do
+      expect(rendered).to have_selector("input[name='multi_volume_work[viewing_hint]']")
+    end
+  end
 end

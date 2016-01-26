@@ -15,8 +15,9 @@ RSpec.describe PolymorphicManifestBuilder, vcr: { cassette_name: "iiif_manifest"
   context "when given a MVW with Children" do
     subject { described_class.new(mvw_document) }
     let(:mvw_document) { MultiVolumeWorkShowPresenter.new(SolrDocument.new(mvw_record.to_solr), nil) }
-    let(:mvw_record) { FactoryGirl.build(:multi_volume_work) }
+    let(:mvw_record) { FactoryGirl.build(:multi_volume_work, viewing_hint: viewing_hint) }
     let(:manifest) { JSON.parse(subject.manifest.to_json) }
+    let(:viewing_hint) { "individuals" }
     before do
       allow(mvw_record).to receive(:persisted?).and_return(true)
       allow(mvw_record).to receive(:id).and_return("2")
@@ -90,6 +91,12 @@ RSpec.describe PolymorphicManifestBuilder, vcr: { cassette_name: "iiif_manifest"
       it "renders them all as canvases" do
         expect(manifest['manifests']).to eq nil
         expect(manifest['sequences'].first['canvases'].length).to eq 3
+      end
+      context "and there's a viewing hint" do
+        let(:viewing_hint) { "paged" }
+        it "can render it" do
+          expect(manifest['viewingHint']).to eq "paged"
+        end
       end
       it "renders ranges" do
         expect(manifest["structures"].length).to eq 1
