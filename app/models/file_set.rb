@@ -31,14 +31,35 @@ class FileSet < ActiveFedora::Base
         filename,
         outputs: [
           label: 'ocr',
-          url: derivative_url('ocr')
+          url: ocr_file
         ]
       )
     end
     super
   end
 
+  def to_solr(solr_doc = {})
+    super.tap do |doc|
+      doc["full_text_tesim"] = ocr_text if ocr_text.present?
+    end
+  end
+
   private
+
+    def ocr_file
+      derivative_url('ocr')
+    end
+
+    def ocr_text
+      @ocr_text ||=
+        begin
+          if persisted? && File.exist?(ocr_file.gsub("file:", ""))
+            file = File.open(ocr_file.gsub("file:", ""))
+            ocr_doc = HOCRDocument.new(file)
+            ocr_doc.text.strip
+          end
+        end
+    end
 
     # The destination_name parameter has to match up with the file parameter
     # passed to the DownloadsController
