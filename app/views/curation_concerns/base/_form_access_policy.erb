@@ -14,6 +14,9 @@
   <%= f.input :rights_statement,
               as: :select,
               collection: RightsService.select_options,
-              input_html: { class: 'form-control' },
+              input_html: { class: 'form-control rights-statement' },
               label: 'Rights Statement' %>
+
+  <%= f.input :rights_note, as: :text, label: 'Rights Note',
+      input_html: { class: 'rights-note', readonly: !@form.notable_rights_statement? }  %>
 </fieldset>

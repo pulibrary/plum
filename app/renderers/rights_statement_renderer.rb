@@ -1,6 +1,11 @@
 class RightsStatementRenderer < CurationConcerns::AttributeRenderer
-  def initialize(values, options = {})
-    super(:rights, values, options)
+  def initialize(rights_statement, rights_note, options = {})
+    super(:rights, rights_statement, options)
+    if !rights_note.nil? && RightsStatementService.notable?(rights_statement)
+      @rights_note = rights_note
+    else
+      @rights_note = []
+    end
   end
 
   def render
@@ -14,6 +19,9 @@ class RightsStatementRenderer < CurationConcerns::AttributeRenderer
     end
     markup << %(</ul>)
     markup << simple_format(RightsStatementService.definition(values.first))
+    @rights_note.each do |note|
+      markup << %(<p>#{note}</p>) unless note.blank?
+    end
     markup << simple_format(I18n.t('rights.boilerplate'))
     markup << %(</td></tr>)
     markup.html_safe

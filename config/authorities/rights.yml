@@ -2,6 +2,7 @@
 terms:
   - id: http://rightsstatements.org/vocab/InC/1.0/
     term: In Copyright
+    notable: false
     scopeNote: |
       This Rights Statement can be used for an Item that is in copyright. Using
       this statement implies that the organization making this Item available
@@ -18,8 +19,8 @@ terms:
 
       For other uses you need to obtain permission from the rights-holder(s).
   - id: http://rightsstatements.org/vocab/InC-RUU/1.0/
-    term: In Copyright - Rights-holder(s) Unlocatable or
-      Unidentifiable
+    term: In Copyright - Rights-holder(s) Unlocatable or Unidentifiable
+    notable: true
     scopeNote: |
       This Rights Statement is intended for use with an Item that has been
       identified as in copyright but for which no rights-holder(s) has been
@@ -38,6 +39,7 @@ terms:
       copyright and related rights legislation that applies to your use.
   - id: http://rightsstatements.org/vocab/InC-EDU/1.0/
     term: In Copyright - Educational Use Permitted
+    notable: false
     scopeNote: |
       This Rights Statement can be used only for copyrighted Items for which
       the organization making the Item available is the rights-holder or has
@@ -55,6 +57,7 @@ terms:
       For other uses, you need to obtain permission from the rights-holder(s).
   - id: http://rightsstatements.org/vocab/InC-NC/1.0/
     term: In Copyright - NonCommercial Use Permitted
+    notable: false
     scopeNote: |
       This Rights Statement can be used only for copyrighted Items for which
       the organization making  the Item available is the rights-holder or has
@@ -72,6 +75,7 @@ terms:
       For other uses you need to obtain permission from the rightsholder(s).
   - id: http://rightsstatements.org/vocab/NoC-CR/1.0/
     term: No Copyright - Contractual Restrictions
+    notable: false
     scopeNote: |
       This Rights Statement can only be used for Items that are in the Public
       Domain but for which the data provider has entered into contractual
@@ -92,6 +96,7 @@ terms:
       more information.
   - id: http://rightsstatements.org/vocab/NoC-OKLR/1.0/
     term: No Copyright - Other Known Legal Restrictions
+    notable: false
     scopeNote: |
       This Rights Statement should be used for Items that are in the public
       domain but that cannot be freely re-used as the consequence of known
@@ -110,6 +115,7 @@ terms:
       more information.
   - id: http://rightsstatements.org/vocab/NKC/1.0/
     term: No Known Copyright
+    notable: false
     scopeNote: |
       This Rights Statement should be used for Items for which the copyright
       status has not been determined conclusively, but for which the data
