@@ -13,7 +13,7 @@ class SearchBuilder < CurationConcerns::SearchBuilder
 
   def join_from_parent(solr_params)
     return if show_action?
-    solr_params[:q] = "(#{child_to_parent_query}{!dismax}#{solr_params[:q]}) OR ({!dismax}#{solr_params[:q]}) OR (#{file_set_to_resource_query}{!dismax}#{solr_params[:q]}) OR (#{child_to_parent_query}#{file_set_to_resource_query}{!dismax}#{solr_params[:q]})"
+    solr_params[:q] = JoinChildrenQuery.new(solr_params[:q]).to_s
   end
 
   def show_action?
@@ -23,14 +23,4 @@ class SearchBuilder < CurationConcerns::SearchBuilder
   def bulk_edit?
     blacklight_params["action"].to_sym == :bulk_edit
   end
-
-  private
-
-    def child_to_parent_query
-      "{!join from=ordered_by_ssim to=id}"
-    end
-
-    def file_set_to_resource_query
-      "{!join from=generic_work_ids_ssim to=id}"
-    end
 end
