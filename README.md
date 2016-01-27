@@ -17,6 +17,10 @@
     * Start Redis with `redis-server` or if you're on certain Linuxes, you can do this via `sudo service redis-server start`.
 * [Kakadu](http://kakadusoftware.com/)
     * The installer doesn't work on MacOSX 10.11 (El Capitan), but the files `kdu_compress` and `libkdu_v77R.dylib` can be extracted from the download packages and used by manually installing them in `/usr/local/bin` and `/usr/local/lib` respectively.
+* [Tesseract](https://github.com/tesseract-ocr/tesseract)
+    * Version 3.04 is required. You can install it on Mac OSX with `brew install
+      tesseract --with-all-languages` For Ubuntu you'll have to
+      [compile](https://github.com/tesseract-ocr/tesseract/wiki/Compiling) it.
 
 ## Running the Code
 

@@ -6,8 +6,8 @@ class PairtreeDerivativePath < CurationConcerns::DerivativePath
         ".#{MIME::Types.type_for('jpg').first.extensions.first}"
       when "intermediate_file"
         ".jp2"
-      when "pdf"
-        ".pdf"
+      when "ocr"
+        ".hocr"
       else
         ".#{destination_name}"
       end

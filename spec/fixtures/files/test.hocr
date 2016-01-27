@@ -1,0 +1,8 @@
+  <div class='ocr_page' id='page_1' title='image ""; bbox 0 0 4958 7017; ppageno 0'>
+   <div class='ocr_carea' id='block_1_1' title="bbox 471 727 4490 6710">
+    <p class='ocr_par' dir='ltr' id='par_1_1' title="bbox 1390 727 3571 1035">
+     <span class='ocr_line' id='line_1_3' title="bbox 1390 960 3571 1035; baseline 0 -17"><span class='ocrx_word' id='word_1_6' title='bbox 1390 960 1600 1018; x_wconf 86' lang='eng' dir='ltr'>Studio</span> <span class='ocrx_word' id='word_1_7' title='bbox 1624 979 1731 1035; x_wconf 91' lang='eng' dir='ltr'>per</span> <span class='ocrx_word' id='word_1_8' title='bbox 1754 960 2226 1018; x_wconf 87' lang='eng' dir='ltr'>l’elaborazione</span> <span class='ocrx_word' id='word_1_9' title='bbox 2250 960 2632 1018; x_wconf 85' lang='eng' dir='ltr'>informatica</span> <span class='ocrx_word' id='word_1_10' title='bbox 2655 961 2813 1018; x_wconf 99' lang='eng' dir='ltr'>delle</span> <span class='ocrx_word' id='word_1_11' title='bbox 2838 960 2991 1018; x_wconf 85' lang='eng' dir='ltr'>fonti</span> <span class='ocrx_word' id='word_1_12' title='bbox 3018 960 3571 1018; x_wconf 86' lang='eng' dir='ltr'>storico—artistiche</span> 
+     </span>
+    </p>
+   </div>
+  </div>

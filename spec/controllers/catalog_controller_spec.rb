@@ -33,6 +33,21 @@ RSpec.describe CatalogController do
       expect(document_ids).to eq [work.id]
     end
 
+    it "finds parents with child fileset full text" do
+      work = FactoryGirl.build(:multi_volume_work, title: ["Alpha"])
+      file_set = FactoryGirl.build(:file_set, title: ["Screwdriver"])
+      allow(file_set).to receive(:ocr_text).and_return("informatica")
+      file_set.save!
+      resource = FactoryGirl.build(:scanned_resource, title: ["Beta"])
+      resource.ordered_members << file_set
+      resource.save!
+      work.ordered_members << resource
+      work.save
+
+      get :index, q: "informatica"
+      expect(document_ids).to eq [work.id]
+    end
+
     it "finds items by their identifier" do
       resource = FactoryGirl.create(:scanned_resource, source_metadata_identifier: "ab5")
 
@@ -48,6 +63,19 @@ RSpec.describe CatalogController do
       resource.save!
 
       get :index, q: "Screwdriver"
+
+      expect(document_ids).to eq [resource.id]
+    end
+
+    it "finds items by metadata in their fileset's full text" do
+      file_set = FactoryGirl.build(:file_set, title: ["Screwdriver"])
+      allow(file_set).to receive(:ocr_text).and_return("informatica")
+      file_set.save
+      resource = FactoryGirl.build(:scanned_resource, title: ["Sonic"])
+      resource.ordered_members << file_set
+      resource.save!
+
+      get :index, q: "informatica"
 
       expect(document_ids).to eq [resource.id]
     end
