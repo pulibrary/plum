@@ -1,14 +1,4 @@
 GIT
-  remote: git://github.com/ortutay/ruby-tesseract-ocr.git
-  revision: 74a4042a07da0f8bf54d06ff01a1647bbdeeac92
-  specs:
-    tesseract-ocr (0.1.8)
-      call-me
-      ffi-extra
-      ffi-inline
-      iso-639
-
-GIT
   remote: git://github.com/projecthydra-labs/activefedora-aggregation.git
   revision: e481a71c9e17f26e379fae60bf5a1a64550d6cc4
   branch: master
@@ -238,8 +228,6 @@ GEM
     builder (3.2.2)
     byebug (5.0.0)
       columnize (= 0.9.0)
-    call-me (0.0.2.3)
-      refining
     cancan (1.6.10)
     cancancan (1.13.1)
     capistrano (3.4.0)
@@ -337,10 +325,6 @@ GEM
     faraday (0.9.2)
       multipart-post (>= 1.2, < 3)
     ffi (1.9.10)
-    ffi-extra (0.1.0)
-      ffi
-    ffi-inline (0.0.4.3)
-      ffi (>= 0.4.0)
     font-awesome-rails (4.4.0.0)
       railties (>= 3.2, < 5.0)
     globalid (0.3.6)
@@ -417,7 +401,6 @@ GEM
       activesupport (>= 3.2.18)
       faraday (~> 0.9.0)
       json
-    iso-639 (0.2.5)
     jasmine-core (2.3.4)
     jasmine-jquery-rails (2.0.3)
     jasmine-rails (0.12.2)
@@ -653,7 +636,6 @@ GEM
       redis (~> 3.0, >= 3.0.4)
     redlock (0.1.5)
       redis (~> 3, >= 3.0.5)
-    refining (0.0.5.5)
     responders (2.1.0)
       railties (>= 4.2.0, < 5)
     resque (1.25.2)
@@ -873,7 +855,6 @@ DEPENDENCIES
   sprockets-es6
   sprockets-rails (~> 2.3.3)
   sqlite3
-  tesseract-ocr!
   uglifier (>= 1.3.0)
   vcr
   web-console (~> 2.0)

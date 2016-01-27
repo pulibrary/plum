@@ -31,7 +31,8 @@ class FileSet < ActiveFedora::Base
         filename,
         outputs: [
           label: 'ocr',
-          url: ocr_file
+          url: ocr_file,
+          format: :hocr
         ]
       )
     end

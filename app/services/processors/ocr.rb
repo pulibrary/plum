@@ -1,20 +1,22 @@
 module Processors
   class OCR < Hydra::Derivatives::Processors::Processor
-    def process
-      output_file_service.call(StringIO.new(hocr), directives)
+    include Hydra::Derivatives::Processors::ShellBasedProcessor
+    class << self
+      def encode(path, options, output_file)
+        execute "tesseract #{path} #{output_file.gsub('.hocr', '')} #{options[:options]} hocr"
+      end
+    end
+
+    def options_for(_format)
+      {
+        options: string_options
+      }
     end
 
     private
 
-      def hocr
-        @hocr ||= tesseract_engine.hocr_for(source_path)
-      end
-
-      def tesseract_engine
-        @tesseract_engine ||= Tesseract::Engine.new do |e|
-          e.language = language
-          e.page_segmentation_mode = page_segmentation_mode
-        end
+      def string_options
+        "-l #{language} -c tessedit_pageseg_mode=#{page_segmentation_mode}"
       end
 
       def language
@@ -22,7 +24,7 @@ module Processors
       end
 
       def page_segmentation_mode
-        directives.fetch(:page_segmentation_mode, :single_block)
+        directives.fetch(:page_segmentation_mode, 6)
       end
   end
 end

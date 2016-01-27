@@ -36,7 +36,7 @@ fi
 sudo make install
 sudo ldconfig
 
-mkdir -p /usr/share/tessdata
-cd /usr/share/tessdata
+mkdir -p /usr/local/share/tessdata
+cd /usr/local/share/tessdata
 wget https://github.com/tesseract-ocr/tessdata/raw/master/eng.traineddata
 wget https://github.com/tesseract-ocr/tessdata/raw/master/ita.traineddata
