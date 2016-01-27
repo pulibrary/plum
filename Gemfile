@@ -99,7 +99,6 @@ gem 'sprockets-es6'
 gem 'sprockets-rails', '~> 2.3.3'
 gem 'browse-everything', github: 'projecthydra-labs/browse-everything'
 gem 'aasm'
-gem 'tesseract-ocr', github: 'ortutay/ruby-tesseract-ocr'
 source 'https://rails-assets.org' do
   gem 'rails-assets-babel-polyfill'
 end

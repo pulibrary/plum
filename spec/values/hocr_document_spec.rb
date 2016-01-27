@@ -6,7 +6,7 @@ RSpec.describe HOCRDocument do
 
   describe "#text" do
     it "returns the combined text" do
-      expect(subject.text).to eq "\n   \n    \n     Studio per lâ\u0080\u0099elaborazione informatica delle fonti storicoâ\u0080\u0094artistiche \n     \n    \n   \n  \n"
+      expect(subject.text).to eq "\n \n  \n\n\n  \n  \n\n\n  \n   \n    \n     Studio per l’elaborazione informatica delle fonti storico—artistiche \n     \n    \n   \n  \n\n"
     end
   end
 
