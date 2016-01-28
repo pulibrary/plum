@@ -69,4 +69,8 @@ class SolrDocument
   def rights_statement
     self[Solrizer.solr_name('rights_statement')]
   end
+
+  def rights_note
+    self[Solrizer.solr_name('rights_note')]
+  end
 end

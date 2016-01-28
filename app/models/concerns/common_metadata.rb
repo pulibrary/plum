@@ -15,6 +15,9 @@ module CommonMetadata
     property :rights_statement, predicate: ::RDF::Vocab::EDM.rights, multiple: false do |index|
       index.as :stored_searchable, :facetable
     end
+    property :rights_note, predicate: ::RDF::Vocab::DC11.rights, multiple: false do |index|
+      index.as :stored_searchable
+    end
     property :access_policy, predicate: ::RDF::DC.accessRights, multiple: false
     property :source_metadata_identifier, predicate: ::PULTerms.metadata_id, multiple: false do |index|
       index.as :stored_searchable, :symbol

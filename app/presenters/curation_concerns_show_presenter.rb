@@ -21,7 +21,7 @@ class CurationConcernsShowPresenter < CurationConcerns::WorkShowPresenter
   end
 
   def rights_statement
-    RightsStatementRenderer.new(solr_document.rights_statement).render
+    RightsStatementRenderer.new(solr_document.rights_statement, solr_document.rights_note).render
   end
 
   private
