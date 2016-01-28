@@ -73,4 +73,8 @@ class SolrDocument
   def rights_note
     self[Solrizer.solr_name('rights_note')]
   end
+
+  def holding_location
+    self[Solrizer.solr_name('holding_location')]
+  end
 end

@@ -19,4 +19,10 @@
 
   <%= f.input :rights_note, as: :text, label: 'Rights Note',
       input_html: { class: 'rights-note', readonly: !@form.notable_rights_statement? }  %>
+
+  <%= f.input :holding_location,
+              as: :select,
+              collection: HoldingLocationService.select_options,
+              input_html: { class: 'form-control' },
+              label: 'Holding Location' %>
 </fieldset>

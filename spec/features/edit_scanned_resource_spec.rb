@@ -11,7 +11,7 @@ RSpec.feature "ScannedResourcesController", type: :feature do
     )
   end
 
-  context "an authorized user" do
+  context "an authorized user", vcr: { cassette_name: "locations" } do
     before(:each) do
       sign_in user
     end
