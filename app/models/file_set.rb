@@ -27,14 +27,7 @@ class FileSet < ActiveFedora::Base
           url: derivative_url('intermediate_file')
         ]
       )
-      OCRCreator.create(
-        filename,
-        outputs: [
-          label: 'ocr',
-          url: ocr_file,
-          format: :hocr
-        ]
-      )
+      OCRRunner.new(self).from_file(filename)
     end
     super
   end
@@ -52,14 +45,10 @@ class FileSet < ActiveFedora::Base
     end
 
     def ocr_text
-      @ocr_text ||=
-        begin
-          if persisted? && File.exist?(ocr_file.gsub("file:", ""))
-            file = File.open(ocr_file.gsub("file:", ""))
-            ocr_doc = HOCRDocument.new(file)
-            ocr_doc.text.strip
-          end
-        end
+      return unless persisted? && File.exist?(ocr_file.gsub("file:", ""))
+      file = File.open(ocr_file.gsub("file:", ""))
+      ocr_doc = HOCRDocument.new(file)
+      ocr_doc.text.strip
     end
 
     # The destination_name parameter has to match up with the file parameter

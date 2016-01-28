@@ -19,6 +19,7 @@
 //= require blacklight/blacklight
 //= require browse_everything
 //= require nestedSortable/jquery.mjs.nestedSortable
+//= require bootstrap-select
 
 //= require_tree .
 

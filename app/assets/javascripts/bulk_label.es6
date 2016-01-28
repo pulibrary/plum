@@ -55,7 +55,7 @@ class BulkLabeler {
   }
   track_resource_form() {
     let master = this
-    this.element.find("input.resource-radio-button").change(function() {
+    this.element.find(".resource-radio-button").change(function() {
       $("#resource-form").attr("changed", "true")
       master.check_save_button()
     })

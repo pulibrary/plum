@@ -1,24 +1,14 @@
 module CurationConcerns::RemoteMetadata
   extend ActiveSupport::Concern
 
-  included do
-    def curation_concern
-      if wants_to_update_remote_metadata?
-        decorated_concern
-      else
-        @curation_concern
-      end
-    end
-  end
-
   private
 
-    def decorated_concern
-      decorator.new(@curation_concern)
-    end
-
     def decorator
-      UpdatesMetadata
+      if wants_to_update_remote_metadata?
+        CompositeDecorator.new(UpdatesMetadata, super)
+      else
+        super
+      end
     end
 
     def wants_to_update_remote_metadata?

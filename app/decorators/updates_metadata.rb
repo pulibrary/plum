@@ -1,6 +1,4 @@
-class UpdatesMetadata < SimpleDelegator
-  delegate :class, to: :__getobj__
-
+class UpdatesMetadata < Decorator
   def save
     apply_remote_metadata
     super

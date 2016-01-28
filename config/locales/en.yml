@@ -30,7 +30,14 @@ en:
 
       Princeton users with copyright questions or concerns should refer to <a href="http://www.princeton.edu/copyright/">http://www.princeton.edu/copyright/</a>.
   simple_form:
+    labels:
+      defaults:
+        ocr_language: "OCR Language"
     options:
+      defaults:
+        ocr_language:
+          eng: "English"
+          ita: "Italian"
       file_set:
         viewing_hint:
           "": 'Single Page'

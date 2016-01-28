@@ -131,6 +131,12 @@ RSpec.describe "curation_concerns/base/bulk_edit.html.erb" do
     expect(rendered).to have_selector("input[name='scanned_resource[viewing_hint]']")
   end
 
+  it "has a multi-select input to edit the ocr language" do
+    expect(rendered).to have_selector("select[name='scanned_resource[ocr_language][]']")
+    expect(rendered).to have_selector("select[name='scanned_resource[ocr_language][]'] > option[value='eng']")
+    expect(rendered).to have_text "English"
+  end
+
   context "when it's a MVW" do
     let(:parent) { FactoryGirl.build(:multi_volume_work) }
     it "has a correct input to edit the viewing hint" do
