@@ -8,7 +8,7 @@ RSpec.describe 'ScannedResourcesController', type: :request do
     login_as(user, scope: :user)
   end
 
-  it 'User creates a new scanned resource', vcr: { cassette_name: 'bibdata', allow_playback_repeats: true }do
+  it 'User creates a new scanned resource', vcr: { cassette_name: 'bibdata', allow_playback_repeats: true } do
     get '/concern/scanned_resources/new'
 
     expect(response).to render_template('curation_concerns/scanned_resources/new')

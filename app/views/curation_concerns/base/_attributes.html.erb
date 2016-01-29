@@ -25,6 +25,9 @@
   <% if @presenter.respond_to? :rights_statement %>
     <%= @presenter.rights_statement %>
   <% end %>
+  <% if @presenter.respond_to? :holding_location %>
+    <%= @presenter.holding_location %>
+  <% end %>
   <%= @presenter.attribute_to_html(:identifier) %>
   <%= render partial: '/curation_concerns/base/collection_list' %>
   <% if can? :edit, @presenter.id %>

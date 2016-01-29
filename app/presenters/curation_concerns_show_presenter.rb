@@ -24,6 +24,10 @@ class CurationConcernsShowPresenter < CurationConcerns::WorkShowPresenter
     RightsStatementRenderer.new(solr_document.rights_statement, solr_document.rights_note).render
   end
 
+  def holding_location
+    HoldingLocationRenderer.new(solr_document.holding_location).render
+  end
+
   private
 
     def logical_order_factory
