@@ -1,7 +1,20 @@
 Rails.application.routes.draw do
   mount JasmineRails::Engine => '/specs' if defined?(JasmineRails)
   mount BrowseEverything::Engine => '/browse'
-  blacklight_for :catalog
+
+  mount Blacklight::Engine => '/'
+  concern :searchable, Blacklight::Routes::Searchable.new
+  concern :exportable, Blacklight::Routes::Exportable.new
+  resource :catalog, only: [:index], controller: 'catalog' do
+    concerns :searchable
+  end
+  resources :bookmarks do
+    concerns :exportable
+    collection do
+      delete 'clear'
+    end
+  end
+
   devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks" }, skip: [:passwords, :registration]
   devise_scope :user do
     get 'sign_out', to: 'devise/sessions#destroy', as: :destroy_user_session

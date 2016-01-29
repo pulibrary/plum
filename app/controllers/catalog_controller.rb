@@ -2,7 +2,6 @@ class CatalogController < ApplicationController
   before_action :admin_state_facet
 
   include CurationConcerns::CatalogController
-  self.search_params_logic += [:hide_parented_resources, :join_from_parent]
   def self.search_config
     {
       'qf' => %w(title_tesim name_tesim source_metadata_identifier_ssim logical_order_headings_tesim collection_slug_sim full_text_tesim),

@@ -58,6 +58,6 @@ RSpec.describe "curation_concerns/base/_attributes.html.erb" do
   end
 
   def assert_catalog_link(field, value)
-    expect(rendered).to have_link(value, href: catalog_index_path(search_field: field, q: value))
+    expect(rendered).to have_link(value, href: search_catalog_path(search_field: field, q: value))
   end
 end
