@@ -60,6 +60,10 @@ RSpec.describe "curation_concerns/base/bulk_edit.html.erb" do
     end
   end
 
+  it "displays helper text" do
+    expect(rendered).to include "Select files or directories to upload, or drag them here."
+  end
+
   it "has a bulk edit header" do
     expect(rendered).to include "<h1>#{I18n.t('bulk_edit.link_text')}</h1>"
   end
