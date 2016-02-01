@@ -97,9 +97,11 @@ gem "omniauth-cas"
 gem 'ezid-client'
 gem 'sprockets-es6'
 gem 'sprockets-rails', '~> 2.3.3'
-gem 'browse-everything', github: 'projecthydra-labs/browse-everything'
+gem 'browse-everything', github: 'projecthydra-labs/browse-everything', branch: 'bootstrap-sprockets'
 gem 'aasm'
 gem 'newrelic_rpm'
+gem 'iso-639'
 source 'https://rails-assets.org' do
   gem 'rails-assets-babel-polyfill'
+  gem 'rails-assets-bootstrap-select', '1.9.4'
 end

@@ -27,5 +27,9 @@
         </div>
       <% end %>
     </div>
+
+    <div>
+      <%= f.input :ocr_language, collection: Tesseract.languages.map(&:reverse), input_html: { name: "#{f.object.model_name.singular}[ocr_language][]", multiple: true, class: 'resource-radio-button' } %>
+    </div>
   <% end %>
 </div>

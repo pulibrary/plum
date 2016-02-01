@@ -3,6 +3,7 @@ class CurationConcerns::CurationConcernsController < ApplicationController
   include CurationConcerns::Collectible
   include CurationConcerns::Manifest
   include CurationConcerns::MemberManagement
+  include CurationConcerns::UpdateOCR
   include CurationConcerns::RemoteMetadata
 
   def curation_concern_name
@@ -10,7 +11,7 @@ class CurationConcerns::CurationConcernsController < ApplicationController
   end
 
   def update
-    authorize!(:complete, @curation_concern, message: 'Unable to mark resource complete') if @curation_concern.state != 'complete' && params[curation_concern_name][:state] == 'complete'
+    authorize!(:complete, curation_concern, message: 'Unable to mark resource complete') if curation_concern.state != 'complete' && params[curation_concern_name][:state] == 'complete'
     add_to_collections(params[curation_concern_name].delete(:collection_ids))
     super
   end
@@ -40,6 +41,17 @@ class CurationConcerns::CurationConcernsController < ApplicationController
   end
 
   private
+
+    def curation_concern
+      @decorated_concern ||=
+        begin
+          @curation_concern = decorator.new(@curation_concern)
+        end
+    end
+
+    def decorator
+      CompositeDecorator.new(super, NullDecorator)
+    end
 
     def selected_files_params
       params[:selected_files]

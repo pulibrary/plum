@@ -137,9 +137,33 @@ describe CurationConcerns::ScannedResourcesController do
         expect(reloaded.title).to eq ['The Giant Bible of Mainz; 500th anniversary, April fourth, fourteen fifty-two, April fourth, nineteen fifty-two.']
       end
     end
+    context "when ocr_language is set" do
+      let(:scanned_resource_attributes) do
+        {
+          ocr_language: ["eng"]
+        }
+      end
+
+      let(:scanned_resource) do
+        s = FactoryGirl.build(:scanned_resource, user: user, title: ['Dummy Title'])
+        s.ordered_members << file_set
+        s.save
+        s
+      end
+      let(:file_set) { FactoryGirl.create(:file_set) }
+      it "updates OCR on file sets" do
+        ocr_runner = instance_double(OCRRunner)
+        allow(OCRRunner).to receive(:new).and_return(ocr_runner)
+        allow(ocr_runner).to receive(:from_datastream)
+
+        post :update, id: scanned_resource, scanned_resource: scanned_resource_attributes
+
+        expect(OCRRunner).to have_received(:new).with(file_set)
+      end
+    end
     context "with collections" do
       let(:resource) { FactoryGirl.create(:scanned_resource_in_collection, user: user) }
-      let(:col2) { FactoryGirl.create(:collection, user: user, title: 'Col 2', exhibit_id: 'slug2') }
+      let(:col2) { FactoryGirl.create(:collection, user: user, title: 'Col 2') }
 
       before do
         col2.save
