@@ -13,11 +13,10 @@ module BulkEditHelper
 
   def bulk_edit_parent_work
     return '' unless @presenter
-    title = 'Back to Parent'
-    link = content_tag(:a, title,
+    link = content_tag(:a, @presenter.title,
                        title: @presenter.id,
                        href: bulk_edit_parent_path)
-    content_tag(:li, link)
+    content_tag(:li, ('Back to ' + link).html_safe)
   end
 
   def bulk_edit_parent_path
