@@ -38,10 +38,10 @@ RSpec.describe "curation_concerns/base/structure" do
     render
   end
   it "renders a li per node" do
-    expect(rendered).to have_selector("li", count: 3)
+    expect(rendered).to have_selector("li", count: 4)
   end
   it "renders a ul per order" do
-    expect(rendered).to have_selector("ul", count: 2)
+    expect(rendered).to have_selector("ul", count: 3)
   end
   it "renders labels of chapters" do
     expect(rendered).to have_selector("input[value='Chapter 1']")
@@ -55,7 +55,7 @@ RSpec.describe "curation_concerns/base/structure" do
   context "when given a multi volume work" do
     let(:scanned_resource) { MultiVolumeWork.new("test") }
     it "renders" do
-      expect(rendered).to have_selector("li", count: 3)
+      expect(rendered).to have_selector("li", count: 4)
       expect(rendered).to have_selector("*[data-class-name='multi_volume_works']")
     end
   end
