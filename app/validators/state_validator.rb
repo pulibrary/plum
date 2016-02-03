@@ -21,13 +21,6 @@ class StateValidator < ActiveModel::Validator
     end
 
     def valid_states
-      [
-        "pending",
-        "metadata_review",
-        "final_review",
-        "complete",
-        "flagged",
-        "takedown"
-      ]
+      StateWorkflow.aasm.states.map(&:to_s)
     end
 end
