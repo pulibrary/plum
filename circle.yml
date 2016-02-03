@@ -12,7 +12,8 @@ dependencies:
   pre:
     - npm install -g eslint
   post:
-    - sudo apt-get install libmagickwand-dev imagemagick
+    - sudo apt-get install libmagickwand-dev imagemagick redis-server
+    - sudo /etc/init.d/redis-server start
     - sudo sh bin/ci_kakadu_install.sh
     - sudo sh bin/tesseract_install.sh
     - tesseract --version
