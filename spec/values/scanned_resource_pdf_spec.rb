@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe ScannedResourcePDF, vcr: { cassette_name: "iiif_manifest" } do
   subject { described_class.new(presenter) }
   let(:resource) do
-    r = FactoryGirl.build(:scanned_resource, id: "test")
+    r = FactoryGirl.build(:scanned_resource, id: "test", holding_location: "https://bibdata.princeton.edu/locations/delivery_locations/3")
     r.ordered_members << file_set
     r.ordered_members << file_set2
     r.logical_order.order = order
@@ -35,7 +35,7 @@ RSpec.describe ScannedResourcePDF, vcr: { cassette_name: "iiif_manifest" } do
 
   describe "#pages" do
     it "returns the number of pages in the PDF representation" do
-      expect(subject.pages).to eq 2
+      expect(subject.pages).to eq 3 # Num. of canvases + cover page
     end
   end
 
@@ -49,7 +49,7 @@ RSpec.describe ScannedResourcePDF, vcr: { cassette_name: "iiif_manifest" } do
       expect(file).not_to eq false
       expect(file).to be_kind_of File
       pdf_reader = PDF::Reader.new(file.path)
-      expect(pdf_reader.page_count).to eq 2
+      expect(pdf_reader.page_count).to eq 3 # Including cover page
       expect(pdf_reader.pages.first.orientation).to eq "portrait"
       expect(pdf_reader.pages.last.orientation).to eq "landscape"
     end

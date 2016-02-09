@@ -5,7 +5,7 @@ class ScannedResourcePDF
   end
 
   def pages
-    manifest_builder.canvases.length
+    manifest_builder.canvases.length + 1 # Extra page is coverpage
   end
 
   def render(path, force: false)
