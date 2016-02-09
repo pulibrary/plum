@@ -3,6 +3,12 @@ class HoldingLocationRenderer < CurationConcerns::AttributeRenderer
     super(:location, value, options)
   end
 
+  def value_html
+    Array(values).map do |value|
+      attribute_value_to_html(value)
+    end.join("")
+  end
+
   private
 
     def attribute_value_to_html(value)
