@@ -13,7 +13,6 @@ RSpec.feature "ScannedResourcesController", type: :feature do
       expect(page).to_not have_selector("label.label-warning", "Pending")
 
       fill_in 'scanned_resource_title', with: 'Test Title'
-      select 'Marquand', from: 'scanned_resource_access_policy'
       select 'No Known Copyright', from: 'scanned_resource_rights_statement'
       click_button 'Create Scanned resource'
 

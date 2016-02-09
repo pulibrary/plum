@@ -4,9 +4,9 @@ require 'rails_helper'
 
 describe MultiVolumeWork do
   let(:nkc) { 'http://rightsstatements.org/vocab/NKC/1.0/' }
-  let(:multi_volume_work) { FactoryGirl.build(:multi_volume_work, source_metadata_identifier: '12345', access_policy: 'Policy', rights_statement: nkc) }
-  let(:scanned_resource1) { FactoryGirl.build(:scanned_resource, title: ['Volume 1'], access_policy: 'Policy', rights_statement: nkc) }
-  let(:scanned_resource2) { FactoryGirl.build(:scanned_resource, title: ['Volume 2'], access_policy: 'Policy', rights_statement: nkc) }
+  let(:multi_volume_work) { FactoryGirl.build(:multi_volume_work, source_metadata_identifier: '12345', rights_statement: nkc) }
+  let(:scanned_resource1) { FactoryGirl.build(:scanned_resource, title: ['Volume 1'], rights_statement: nkc) }
+  let(:scanned_resource2) { FactoryGirl.build(:scanned_resource, title: ['Volume 2'], rights_statement: nkc) }
   let(:reloaded)          { described_class.find(multi_volume_work.id) }
   subject { multi_volume_work }
 

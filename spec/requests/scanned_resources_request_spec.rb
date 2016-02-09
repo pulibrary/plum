@@ -16,7 +16,6 @@ RSpec.describe 'ScannedResourcesController', type: :request do
     valid_params = {
       title: ['My Resource'],
       source_metadata_identifier: '2028405',
-      access_policy: 'something',
       rights_statement: 'http://rightsstatements.org/vocab/NKC/1.0/'
     }
 

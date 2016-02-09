@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 describe ScannedResource do
-  let(:scanned_resource) { FactoryGirl.build(:scanned_resource, source_metadata_identifier: '12345', access_policy: 'Policy', rights_statement: 'http://rightsstatements.org/vocab/NKC/1.0/', workflow_note: ['Note 1']) }
+  let(:scanned_resource) { FactoryGirl.build(:scanned_resource, source_metadata_identifier: '12345', rights_statement: 'http://rightsstatements.org/vocab/NKC/1.0/', workflow_note: ['Note 1']) }
   let(:reloaded)         { described_class.find(scanned_resource.id) }
   subject { scanned_resource }
 
@@ -65,20 +65,6 @@ describe ScannedResource do
       it 'passes' do
         expect(subject.valid?).to eq true
       end
-    end
-  end
-
-  describe '#access_policy' do
-    it "sets an access_policy" do
-      policy = 'This is a policy'
-      subject.access_policy = policy
-      expect { subject.save }.to_not raise_error
-      expect(reloaded.access_policy).to eq policy
-    end
-
-    it "requires an access_policy" do
-      subject.access_policy = nil
-      expect(subject.valid?).to be_falsey
     end
   end
 
@@ -200,7 +186,7 @@ describe ScannedResource do
   end
 
   describe "#check_state" do
-    subject { FactoryGirl.build(:scanned_resource, source_metadata_identifier: '12345', access_policy: 'Policy', rights_statement: 'http://rightsstatements.org/vocab/NKC/1.0/', state: 'final_review') }
+    subject { FactoryGirl.build(:scanned_resource, source_metadata_identifier: '12345', rights_statement: 'http://rightsstatements.org/vocab/NKC/1.0/', state: 'final_review') }
     let(:complete_reviewer) { FactoryGirl.create(:complete_reviewer) }
     before do
       complete_reviewer.save
