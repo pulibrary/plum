@@ -5,12 +5,11 @@ terms:
     notable: false
     scopeNote: |
       This Rights Statement can be used for an Item that is in copyright. Using
-      this statement implies that the organization making this Item available
-      has determined that the Item is in copyright and either is the
-      rights­holder, has obtained permission from the rights­holder(s) to make
-      the Work available, or makes the Work available under an exception or
-      limitation to copyright (including Fair Use) that entitles it to make the
-      Work available.
+      this statement implies that Princeton University Library has determined
+      that the Item is in copyright and either is the rights­holder, has
+      obtained permission from the rights­holder(s) to make the Work available,
+      or makes the Work available under an exception or limitation to copyright
+      (including Fair Use) that entitles it to make the Work available.
     definition: >-
       This Item is protected by copyright and/or related rights.
 
@@ -42,10 +41,9 @@ terms:
     notable: false
     scopeNote: |
       This Rights Statement can be used only for copyrighted Items for which
-      the organization making the Item available is the rights-holder or has
-      been explicitly authorized by the rights-holder(s) to allow third parties
-      to use the Work for educational purposes without first obtaining
-      permission.
+      Princeton University Library is the rights-holder or has been explicitly
+      authorized by the rights-holder(s) to allow third parties to use the Work
+      for educational purposes without first obtaining permission.
     definition: >-
       This Item is protected by copyright and/or related rights.
 
@@ -60,10 +58,9 @@ terms:
     notable: false
     scopeNote: |
       This Rights Statement can be used only for copyrighted Items for which
-      the organization making  the Item available is the rights-holder or has
-      been explicitly authorized by the rights-holder(s) to allow third parties
-      to use the Work for non-commercial purposes without obtaining permission
-      first.
+      Princeton University Library is the rights-holder or has been explicitly
+      authorized by the rights-holder(s) to allow third parties to use the Work
+      for non-commercial purposes without obtaining permission first.
     definition: >-
       This Item is protected by copyright and/or related rights.
 
@@ -86,14 +83,10 @@ terms:
     definition: >-
       Use of this Item is not restricted by copyright and/or related rights.
 
-      As part of the acquisition or digitization of this Item, the organization
-      that has made the Item available is contractually required to limit the
-      use of this Item. Limitations may include, but are not limited to,
-      privacy issues, cultural protections, digitization agreements or donor
-      agreements.
-
-      Please refer to the organization that has made the Item available for
-      more information.
+      As part of the acquisition or digitization of this Item, Princeton
+      University Library is contractually required to limit the use of this
+      Item. Limitations may include, but are not limited to, privacy issues,
+      cultural protections, digitization agreements or donor agreements.
   - id: http://rightsstatements.org/vocab/NoC-OKLR/1.0/
     term: No Copyright - Other Known Legal Restrictions
     notable: false
@@ -110,9 +103,6 @@ terms:
 
       In one or more jurisdictions, laws other than copyright are known to
       impose restrictions on the use of this Item.
-
-      Please refer to the organization that has made the Item available for
-      more information.
   - id: http://rightsstatements.org/vocab/NKC/1.0/
     term: No Known Copyright
     notable: false
@@ -125,12 +115,9 @@ terms:
       where the data provider has not undertaken an effort to ascertain the
       copyright status of the Work.
     definition: >-
-      The organization that has made the Item available reasonably believes
-      that the Item is not restricted by copyright or related rights, but a
-      conclusive determination could not be made.
-
-      Please refer to the organization that has made the Item available for
-      more information.
+      Princeton University Library reasonably believes that the Item is not
+      restricted by copyright or related rights, but a conclusive determination
+      could not be made.
 
       You are free to use this Item in any way that is permitted by the
       copyright and related rights legislation that applies to your use.
