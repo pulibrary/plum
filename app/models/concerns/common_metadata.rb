@@ -18,7 +18,6 @@ module CommonMetadata
     property :rights_note, predicate: ::RDF::Vocab::DC11.rights, multiple: false do |index|
       index.as :stored_searchable
     end
-    property :access_policy, predicate: ::RDF::DC.accessRights, multiple: false
     property :source_metadata_identifier, predicate: ::PULTerms.metadata_id, multiple: false do |index|
       index.as :stored_searchable, :symbol
     end
@@ -40,7 +39,6 @@ module CommonMetadata
     )
 
     validate :source_metadata_identifier_or_title
-    validates :access_policy, presence: { message: 'You must choose an Access Policy statement.' }
     validates_with RightsStatementValidator
     validates_with StateValidator
     validates_with ViewingDirectionValidator

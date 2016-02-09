@@ -1,15 +1,5 @@
 <fieldset id="set-license">
-  <legend>Choose Access and Use Boilerplate</legend>
-  <%= f.input :access_policy,
-              as: :select,
-              collection: {
-                      'Marquand' => 'Do you want a jelly baby?',
-                      'Rare Books and Special Collections' => "Don't be sad Grace.",
-                      'Mendel Music Library' => "You'll do great things."
-              },
-              input_html: { class: 'form-control' },
-              label: 'Access Policy'
-  %>
+  <legend>Choose Rights and Holding Location</legend>
 
   <%= f.input :rights_statement,
               as: :select,
