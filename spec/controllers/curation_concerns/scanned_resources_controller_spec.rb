@@ -163,7 +163,7 @@ describe CurationConcerns::ScannedResourcesController do
     end
     context "with collections" do
       let(:resource) { FactoryGirl.create(:scanned_resource_in_collection, user: user) }
-      let(:col2) { FactoryGirl.create(:collection, user: user, title: 'Col 2') }
+      let(:col2) { FactoryGirl.create(:collection, user: user, title: ['Col 2']) }
 
       before do
         col2.save

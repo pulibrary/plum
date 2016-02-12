@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :collection do
-    title "Test Collection"
+    title ["Test Collection"]
     sequence(:exhibit_id) { |x| "slug#{x}" }
     visibility Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PUBLIC
 

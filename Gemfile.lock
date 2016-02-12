@@ -28,25 +28,25 @@ GIT
 
 GIT
   remote: git://github.com/projecthydra-labs/curation_concerns.git
-  revision: 9f28154a662aea4e67fceacea266885012b73d7b
+  revision: ce03da51dc7ce046024e2cd42b86c6f6806d397e
   branch: master
   specs:
-    curation_concerns (0.6.0)
+    curation_concerns (0.7.0)
       blacklight (~> 6.0)
       blacklight_advanced_search (~> 6.0)
       breadcrumbs_on_rails (~> 2.3)
-      curation_concerns-models (= 0.6.0)
+      curation_concerns-models (= 0.7.0)
       hydra-editor (~> 1.1)
       hydra-head (~> 9.6)
       jquery-ui-rails
       rails_autolink
       simple_form (~> 3.1)
-    curation_concerns-models (0.6.0)
+    curation_concerns-models (0.7.0)
       active_attr
       active_fedora-noid (~> 1.0)
       hydra-collections (~> 7.0)
       hydra-head (~> 9.3)
-      hydra-works (~> 0.6)
+      hydra-works (~> 0.7)
       qa (~> 0.5)
       redlock (~> 0.1.2)
       resque (~> 1.23)
@@ -54,30 +54,30 @@ GIT
 
 GIT
   remote: git://github.com/projecthydra-labs/hydra-pcdm.git
-  revision: 3111db7e9207c4adb17e12f519e3b2ae37a305a3
+  revision: e059c9311477572571ec9ee92a526c7631b91f8e
   branch: master
   specs:
-    hydra-pcdm (0.3.2)
+    hydra-pcdm (0.4.0)
       active-fedora (~> 9.6)
       activefedora-aggregation (~> 0.6)
       mime-types (>= 1)
 
 GIT
   remote: git://github.com/projecthydra-labs/hydra-works.git
-  revision: d9bde6cbebe29674ab10dafa3014c271f0a370b8
+  revision: 27cafe99e79a724e7933064c0bb16192e292072e
   branch: master
   specs:
-    hydra-works (0.6.0)
+    hydra-works (0.7.0)
       hydra-derivatives (~> 3.0)
       hydra-file_characterization (~> 0.3, >= 0.3.3)
-      hydra-pcdm (~> 0.3)
+      hydra-pcdm (~> 0.4)
 
 GIT
   remote: git://github.com/projecthydra/active_fedora.git
-  revision: a7e28a33930c31312a3acccfafc7c6e90f0edb24
+  revision: 0d87d05dd8487dc5852155ec66e83742be02feb3
   branch: master
   specs:
-    active-fedora (9.7.0)
+    active-fedora (9.8.2)
       active-triples (~> 0.7.1)
       activesupport (>= 4.1.0)
       deprecation
@@ -90,7 +90,7 @@ GIT
 
 GIT
   remote: git://github.com/projecthydra/hydra-collections.git
-  revision: 660abf70735516e088ffab56ca20a0ec27ecd9c4
+  revision: 825f79fb6909b113886181adac95c49aab1198f6
   branch: master
   specs:
     hydra-collections (7.0.0)
@@ -160,7 +160,7 @@ GEM
       erubis (~> 2.7.0)
       rails-dom-testing (~> 1.0, >= 1.0.5)
       rails-html-sanitizer (~> 1.0, >= 1.0.2)
-    active-triples (0.7.4)
+    active-triples (0.7.5)
       activemodel (>= 3.0.0)
       activesupport (>= 3.0.0)
       deprecation (~> 0.1)
@@ -224,8 +224,8 @@ GEM
     blacklight-access_controls (0.3.0)
       blacklight (~> 6.0)
       cancancan (~> 1.8)
-    blacklight_advanced_search (6.0.0)
-      blacklight (> 6.0.0.pre, < 7)
+    blacklight_advanced_search (6.0.1)
+      blacklight (~> 6.0.1)
       parslet
     blankslate (3.1.3)
     bootstrap-sass (3.3.6)
@@ -369,17 +369,16 @@ GEM
     httparty (0.13.7)
       json (~> 1.8)
       multi_xml (>= 0.5.2)
-    hydra-access-controls (9.6.0)
-      active-fedora (~> 9.0)
+    hydra-access-controls (9.7.1)
+      active-fedora (~> 9.8)
       activesupport (~> 4.0)
       blacklight (>= 5.16)
       blacklight-access_controls (~> 0.1)
       cancancan (~> 1.8)
       deprecation (~> 0.2)
-    hydra-core (9.6.0)
-      active-fedora (~> 9.1)
-      hydra-access-controls (= 9.6.0)
-      jettywrapper (>= 2.0.0)
+    hydra-core (9.7.1)
+      active-fedora (~> 9.8)
+      hydra-access-controls (= 9.7.1)
       rails (~> 4.0)
     hydra-editor (1.2.0)
       active-fedora (>= 9.0.0)
@@ -388,9 +387,9 @@ GEM
       simple_form (~> 3.1.0)
     hydra-file_characterization (0.3.3)
       activesupport (>= 3.0.0)
-    hydra-head (9.6.0)
-      hydra-access-controls (= 9.6.0)
-      hydra-core (= 9.6.0)
+    hydra-head (9.7.1)
+      hydra-access-controls (= 9.7.1)
+      hydra-core (= 9.7.1)
       rails (>= 3.2.6)
     hydra-role-management (0.2.2)
       blacklight
@@ -472,7 +471,7 @@ GEM
     method_source (0.8.2)
     mime-types (2.99)
     mimemagic (0.3.1)
-    mini_magick (4.3.6)
+    mini_magick (4.4.0)
     mini_portile (0.6.2)
     minitest (5.8.4)
     modernizr-rails (2.7.1)
@@ -783,7 +782,7 @@ GEM
       json (>= 1.8.0)
     unf (0.1.4)
       unf_ext
-    unf_ext (0.0.7.1)
+    unf_ext (0.0.7.2)
     uuidtools (2.1.5)
     vcr (2.9.3)
     vegas (0.1.11)

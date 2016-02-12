@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Collection do
-  subject { described_class.new title: 'Exhibit 1', exhibit_id: 'foo' }
+  subject { described_class.new title: ['Exhibit 1'], exhibit_id: 'foo' }
 
   describe "#exhibit_id" do
     it "has an exhbit id" do
