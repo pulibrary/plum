@@ -10,11 +10,7 @@ RSpec.describe "curation_concerns/base/_related_files.html.erb" do
   let(:page_presenter) { FileSetPresenter.new(page_document, nil) }
 
   before do
-    allow(view).to receive(:dom_class) { '' }
-    allow(view).to receive(:can?).and_return(true)
-    allow(view).to receive(:blacklight_config).and_return(CatalogController.new.blacklight_config)
-    allow(view).to receive(:search_session).and_return({})
-    allow(view).to receive(:current_search_session).and_return(nil)
+    stub_blacklight_views
     allow_message_expectations_on_nil
     allow_any_instance_of(NilClass).to receive(:can?).and_return(true)
 

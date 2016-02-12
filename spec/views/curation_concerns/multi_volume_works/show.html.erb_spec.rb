@@ -41,11 +41,7 @@ describe "curation_concerns/multi_volume_works/show.html.erb" do
 
   before do
     allow(presenter).to receive(:file_presenters).and_return([resource_presenter, file_presenter])
-    allow(view).to receive(:dom_class) { '' }
-    allow(view).to receive(:blacklight_config).and_return(blacklight_config)
-    allow(view).to receive(:search_session).and_return({})
-    allow(view).to receive(:current_search_session).and_return(nil)
-    allow(view).to receive(:can?).and_return(true)
+    stub_blacklight_views
     allow(presenter).to receive(:in_collections).and_return([])
     allow(resource_presenter).to receive(:in_collections).and_return([])
     assign(:presenter, presenter)

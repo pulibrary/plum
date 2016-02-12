@@ -1,6 +1,8 @@
 class SearchBuilder < CurationConcerns::SearchBuilder
   include Blacklight::Solr::SearchBuilderBehavior
 
+  self.default_processor_chain += [:hide_parented_resources, :join_from_parent]
+
   def self.show_actions
     [:show, :manifest, :structure, :pdf]
   end

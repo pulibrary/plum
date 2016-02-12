@@ -11,7 +11,7 @@ RSpec.feature "CatalogController", type: :feature do
     end
 
     scenario "Admin users see collection, language, and state facets" do
-      visit catalog_index_path q: ""
+      visit search_catalog_path q: ""
       expect(page).to have_text "Test title"
       expect(page).to have_selector "div.blacklight-collection_sim", text: "Collection"
       expect(page).to have_selector "div.blacklight-language_sim", text: "Language"
@@ -29,7 +29,7 @@ RSpec.feature "CatalogController", type: :feature do
     end
 
     scenario "CurationConcerns creators see a state facet" do
-      visit catalog_index_path q: ""
+      visit search_catalog_path q: ""
       expect(page).to have_text "Test title"
       expect(page).to have_selector "div.blacklight-state_sim", text: "State"
     end
@@ -44,7 +44,7 @@ RSpec.feature "CatalogController", type: :feature do
     end
 
     scenario "Anonymous users do not see a state facet" do
-      visit catalog_index_path q: ""
+      visit search_catalog_path q: ""
       expect(page).to have_text "Test title"
       expect(page).not_to have_selector "div.blacklight-state_sim", text: "State"
     end

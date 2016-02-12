@@ -27,15 +27,12 @@ RSpec.describe "curation_concerns/base/bulk_edit.html.erb" do
   end
 
   let(:blacklight_config) { CatalogController.new.blacklight_config }
+  let(:context) { Blacklight::Configuration::Context.new double }
 
   before do
     assign(:members, members)
     assign(:presenter, parent_presenter)
-    # Blacklight nonsense
-    allow(view).to receive(:dom_class) { '' }
-    allow(view).to receive(:blacklight_config).and_return(blacklight_config)
-    allow(view).to receive(:search_session).and_return({})
-    allow(view).to receive(:current_search_session).and_return(nil)
+    stub_blacklight_views
     allow(view).to receive(:curation_concern).and_return(parent)
     render
   end

@@ -35,7 +35,7 @@ gem 'modernizr-rails'
 
 gem 'curation_concerns', github:'projecthydra-labs/curation_concerns', branch: 'master'
 gem 'pul_metadata_services', github:'pulibrary/pul_metadata_services', branch: :master
-gem 'hydra-role-management', '0.1.0'
+gem 'hydra-role-management', '~> 0.2.0'
 gem 'rsolr', '~> 1.0.6'
 gem 'devise'
 gem 'devise-guests', '~> 0.3'
