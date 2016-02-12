@@ -47,8 +47,6 @@ Rails.application.routes.draw do
       member do
         get :manifest, defaults: { format: :json }
         post :flag
-        get :bulk_edit
-        post :reorder, action: :save_order
         post :browse_everything_files
         get :structure
         post :structure, action: :save_structure
@@ -56,12 +54,10 @@ Rails.application.routes.draw do
     end
     resources :scanned_resources, only: [] do
       member do
-        get :bulk_edit
         get :pdf
         get :structure
         post :structure, action: :save_structure
         get :manifest, defaults: { format: :json }
-        post :reorder, action: :save_order
         post :browse_everything_files
         post :flag
       end

@@ -58,10 +58,6 @@ class SolrDocument
       end
   end
 
-  def file_label
-    Array(self[Solrizer.solr_name('label')]).first
-  end
-
   def exhibit_id
     self[Solrizer.solr_name('exhibit_id')]
   end
@@ -76,5 +72,9 @@ class SolrDocument
 
   def holding_location
     self[Solrizer.solr_name('holding_location')]
+  end
+
+  def ocr_language
+    self[Solrizer.solr_name('ocr_language')]
   end
 end

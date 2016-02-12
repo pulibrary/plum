@@ -1,5 +1,5 @@
 class CurationConcernsShowPresenter < CurationConcerns::WorkShowPresenter
-  delegate :date_created, :viewing_hint, :viewing_direction, :state, :type, :identifier, :workflow_note, :logical_order, :logical_order_object, to: :solr_document
+  delegate :date_created, :viewing_hint, :viewing_direction, :state, :type, :identifier, :workflow_note, :logical_order, :logical_order_object, :ocr_language, to: :solr_document
   delegate :flaggable?, to: :state_badge_instance
 
   def state_badge

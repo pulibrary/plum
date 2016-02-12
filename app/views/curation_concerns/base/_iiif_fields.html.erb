@@ -1,7 +1,7 @@
 <div class="well">
-  <%= simple_form_for [main_app, curation_concern], remote: true, html: { id: 'resource-form' } do |f| %>
+  <%= simple_form_for [main_app, @presenter], remote: true, html: { id: 'resource-form' } do |f| %>
     <% directions = ['left-to-right', 'right-to-left', 'top-to-bottom', 'bottom-to-top'] %>
-    <% selected_direction = curation_concern.viewing_direction || directions.first %>
+    <% selected_direction = @presenter.viewing_direction || directions.first %>
     <div>
       <label>Viewing Direction:</label>
       <% directions.each do |val| %>
@@ -15,7 +15,7 @@
     </div>
 
     <% hints = ['individuals', 'paged', 'continuous'] %>
-    <% selected_hint = curation_concern.viewing_hint || hints.first %>
+    <% selected_hint = @presenter.viewing_hint || hints.first %>
     <div>
       <label>Viewing Hint:</label>
       <% hints.each do |val| %>

@@ -37,7 +37,7 @@ class CurationConcerns::CurationConcernsController < ApplicationController
     upload_set_id = ActiveFedora::Noid::Service.new.mint
     CompositePendingUpload.create(selected_files_params, curation_concern.id, upload_set_id)
     BrowseEverythingIngestJob.perform_later(curation_concern.id, upload_set_id, current_user, selected_files_params)
-    redirect_to polymorphic_path([main_app, :bulk_edit, curation_concern])
+    redirect_to polymorphic_path([main_app, :file_manager, curation_concern])
   end
 
   private

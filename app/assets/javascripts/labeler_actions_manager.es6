@@ -3,8 +3,7 @@ class LabelerActionsManager {
   constructor(element) {
     this.element = element
     this.apply_button.disable()
-    this.save_button.disable()
-    this.inputs.prop("disabled", true)
+    this.inputs.disable()
     this.element.find("input[name=method]").change(function() {
       var element = $(this)
       if(element.val() == "foliate") {
@@ -17,10 +16,6 @@ class LabelerActionsManager {
 
   on_apply(func) {
     return this.apply_button.click(func)
-  }
-
-  on_save(func) {
-    return this.save_button.click(func)
   }
 
   get generator() {
@@ -80,12 +75,8 @@ class LabelerActionsManager {
     return new ActionsButton(this.element.find("*[data-action=apply-labels]"))
   }
 
-  get save_button() {
-    return new ActionsButton(this.element.find("*[data-action=save-labels]"))
-  }
-
   get inputs() {
-    return this.element.find("input")
+    return new ActionsButton(this.element.find("input"))
   }
 }
 
