@@ -101,6 +101,7 @@ gem 'browse-everything', github: 'projecthydra-labs/browse-everything', branch: 
 gem 'aasm'
 gem 'newrelic_rpm'
 gem 'iso-639'
+gem 'jettywrapper'
 source 'https://rails-assets.org' do
   gem 'rails-assets-babel-polyfill'
   gem 'rails-assets-bootstrap-select', '1.9.4'
