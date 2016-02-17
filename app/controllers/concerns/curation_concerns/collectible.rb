@@ -18,8 +18,7 @@ module CurationConcerns::Collectible
         (add_to_collections(collection_ids) && curation_concern.save) if collection_ids.any?
         after_create_response
       else
-        setup_collections
-        setup_form
+        build_form
         respond_to do |wants|
           wants.html { render 'new', status: :unprocessable_entity }
           wants.json { render_json_response(response_type: :unprocessable_entity, options: { errors: curation_concern.errors }) }
