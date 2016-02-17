@@ -31,7 +31,9 @@ module CommonMetadata
     property :holding_location, predicate: ::RDF::Vocab::Bibframe.heldBy, multiple: false do |index|
       index.as :stored_searchable
     end
-    property :ocr_language, predicate: ::PULTerms.ocr_language
+    property :ocr_language, predicate: ::PULTerms.ocr_language do |index|
+      index.as :stored_searchable
+    end
 
     # IIIF
     apply_schema IIIFBookSchema, ActiveFedora::SchemaIndexingStrategy.new(

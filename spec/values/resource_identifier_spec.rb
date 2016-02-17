@@ -23,10 +23,8 @@ RSpec.describe ResourceIdentifier do
       scanned_resource.save
       old_id = subject.to_s
 
-      form = ReorderForm.new(scanned_resource)
-      form.order = [file_set2.id, file_set1.id]
-      result = form.save
-      expect(result).to eq true
+      actor = CurationConcerns::ScannedResourceActor.new(scanned_resource, FactoryGirl.build(:user), "ordered_member_ids" => [file_set2.id, file_set1.id])
+      actor.update
 
       expect(subject.reload.to_s).not_to eq old_id
     end

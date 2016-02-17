@@ -102,7 +102,7 @@ describe Ability do
     it { should be_able_to(:read, takedown_scanned_resource) }
     it { should be_able_to(:read, flagged_scanned_resource) }
     it { should be_able_to(:download, image_editor_file) }
-    it { should be_able_to(:bulk_edit, open_scanned_resource) }
+    it { should be_able_to(:file_manager, open_scanned_resource) }
     it { should be_able_to(:save_structure, open_scanned_resource) }
     it { should be_able_to(:update, open_scanned_resource) }
     it { should be_able_to(:create, ScannedResource.new) }
@@ -132,7 +132,7 @@ describe Ability do
     it { should be_able_to(:read, complete_scanned_resource) }
     it { should be_able_to(:read, takedown_scanned_resource) }
     it { should be_able_to(:read, flagged_scanned_resource) }
-    it { should be_able_to(:bulk_edit, open_scanned_resource) }
+    it { should be_able_to(:file_manager, open_scanned_resource) }
     it { should be_able_to(:save_structure, open_scanned_resource) }
     it { should be_able_to(:update, open_scanned_resource) }
 
@@ -165,7 +165,7 @@ describe Ability do
     it { should be_able_to(:read, flagged_scanned_resource) }
     it { should be_able_to(:download, image_editor_file) }
 
-    it { should_not be_able_to(:bulk_edit, open_scanned_resource) }
+    it { should_not be_able_to(:file_manager, open_scanned_resource) }
     it { should_not be_able_to(:save_structure, open_scanned_resource) }
     it { should_not be_able_to(:update, open_scanned_resource) }
     it { should_not be_able_to(:create, ScannedResource.new) }
@@ -196,7 +196,7 @@ describe Ability do
 
     it { should_not be_able_to(:read, pending_scanned_resource) }
     it { should_not be_able_to(:download, image_editor_file) }
-    it { should_not be_able_to(:bulk_edit, open_scanned_resource) }
+    it { should_not be_able_to(:file_manager, open_scanned_resource) }
     it { should_not be_able_to(:save_structure, open_scanned_resource) }
     it { should_not be_able_to(:update, open_scanned_resource) }
     it { should_not be_able_to(:create, ScannedResource.new) }
@@ -227,7 +227,7 @@ describe Ability do
     it { should_not be_able_to(:read, final_review_scanned_resource) }
     it { should_not be_able_to(:read, takedown_scanned_resource) }
     it { should_not be_able_to(:download, image_editor_file) }
-    it { should_not be_able_to(:bulk_edit, open_scanned_resource) }
+    it { should_not be_able_to(:file_manager, open_scanned_resource) }
     it { should_not be_able_to(:save_structure, open_scanned_resource) }
     it { should_not be_able_to(:update, open_scanned_resource) }
     it { should_not be_able_to(:create, ScannedResource.new) }
@@ -258,7 +258,7 @@ describe Ability do
     it { should_not be_able_to(:read, final_review_scanned_resource) }
     it { should_not be_able_to(:read, takedown_scanned_resource) }
     it { should_not be_able_to(:download, image_editor_file) }
-    it { should_not be_able_to(:bulk_edit, open_scanned_resource) }
+    it { should_not be_able_to(:file_manager, open_scanned_resource) }
     it { should_not be_able_to(:save_structure, open_scanned_resource) }
     it { should_not be_able_to(:update, open_scanned_resource) }
     it { should_not be_able_to(:create, ScannedResource.new) }

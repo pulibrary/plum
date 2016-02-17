@@ -21,7 +21,7 @@
 
 en:
   hello: "Hello world"
-  bulk_edit:
+  file_manager:
     header: "File Manager"
     link_text: "File Manager"
   rights:

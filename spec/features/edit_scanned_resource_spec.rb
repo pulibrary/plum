@@ -57,8 +57,8 @@ RSpec.feature "ScannedResourcesController", type: :feature do
 
     scenario "User can follow link to bulk edit scanned resource" do
       visit polymorphic_path [scanned_resource]
-      click_link I18n.t('bulk_edit.link_text')
-      expect(page).to have_text(I18n.t('bulk_edit.link_text'))
+      click_link I18n.t('file_manager.link_text')
+      expect(page).to have_text(I18n.t('file_manager.link_text'))
     end
   end
 

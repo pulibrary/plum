@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "curation_concerns/base/bulk_edit.html.erb" do
+RSpec.describe "curation_concerns/base/file_manager.html.erb" do
   let(:members) { [file_set] }
   let(:file_set) { FileSetPresenter.new(solr_doc, nil) }
   let(:solr_doc) do
@@ -30,8 +30,8 @@ RSpec.describe "curation_concerns/base/bulk_edit.html.erb" do
   let(:context) { Blacklight::Configuration::Context.new double }
 
   before do
-    assign(:members, members)
     assign(:presenter, parent_presenter)
+    allow(parent_presenter).to receive(:file_presenters).and_return(members)
     stub_blacklight_views
     allow(view).to receive(:curation_concern).and_return(parent)
     render
@@ -61,8 +61,8 @@ RSpec.describe "curation_concerns/base/bulk_edit.html.erb" do
     expect(rendered).to include "Select files or directories to upload, or drag them here."
   end
 
-  it "has a bulk edit header" do
-    expect(rendered).to include "<h1>#{I18n.t('bulk_edit.link_text')}</h1>"
+  it "has a file manager header" do
+    expect(rendered).to include "<h1>#{I18n.t('file_manager.link_text')}</h1>"
   end
 
   it "displays each file set's label" do
@@ -89,7 +89,7 @@ RSpec.describe "curation_concerns/base/bulk_edit.html.erb" do
     expect(rendered).to have_selector("input[name=front_label]")
     expect(rendered).to have_selector("input[name=back_label]")
     expect(rendered).to have_selector("input[name=foliate_start_with]")
-    expect(response).to have_selector("*[data-action=bulk-label]")
+    expect(response).to have_selector("*[data-action=file-manager]")
   end
 
   it "has thumbnails for each resource" do

@@ -8,7 +8,7 @@ class SearchBuilder < CurationConcerns::SearchBuilder
   end
 
   def hide_parented_resources(solr_params)
-    return if show_action? || bulk_edit?
+    return if show_action? || file_manager?
     solr_params[:fq] ||= []
     solr_params[:fq] << "!#{ActiveFedora::SolrQueryBuilder.solr_name('ordered_by', :symbol)}:['' TO *]"
   end
@@ -22,7 +22,7 @@ class SearchBuilder < CurationConcerns::SearchBuilder
     self.class.show_actions.include? blacklight_params["action"].to_sym
   end
 
-  def bulk_edit?
-    blacklight_params["action"].to_sym == :bulk_edit
+  def file_manager?
+    blacklight_params["action"].to_sym == :file_manager
   end
 end
