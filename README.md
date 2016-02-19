@@ -24,15 +24,19 @@
 
 ## Running the Code
 
+    Setup dependencies and run the test servers in one window:
+
     $ bundle install
-    $ rake jetty:clean
-    $ rake curation_concerns:jetty:config
-    $ rake jetty:start
     $ rake db:migrate
+    $ rake server:test
+
+    Run the test suite in another window:
+
     $ rake spec
 
 ## Adding an Admin user
 
+1. Run the development servers with `rake server:development`
 1. Run Plum with `rails s`
 1. Go to http://localhost:3000/users/auth/cas and login with CAS
 1. $ rake add_admin_role
