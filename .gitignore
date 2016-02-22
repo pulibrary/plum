@@ -17,7 +17,8 @@
 /tmp
 noid-minter-state
 
-/jetty
+/fcrepo4-development-data
+/fcrepo4-test-data
 /fits
 /coverage
 /staged_files

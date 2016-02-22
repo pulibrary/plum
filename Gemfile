@@ -62,7 +62,8 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'pry-byebug'
   gem 'rspec-rails'
-  gem 'jettywrapper'
+  gem 'solr_wrapper', '~> 0.4'
+  gem 'fcrepo_wrapper', '~> 0.2'
   gem "factory_girl_rails"
   gem 'jasmine-rails'
   gem 'jasmine-jquery-rails'

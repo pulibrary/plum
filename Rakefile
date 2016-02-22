@@ -2,7 +2,8 @@
 # for example lib/tasks/capistrano.rake, and they will automatically be available to Rake.
 require 'bundler/setup'
 require 'rubocop/rake_task'
-require 'jettywrapper'
+require 'solr_wrapper'
+require 'fcrepo_wrapper'
 
 require File.expand_path('../config/application', __FILE__)
 
@@ -28,6 +29,35 @@ task ci: ['jetty:clean'] do
     Rake::Task['spec'].invoke
   end
   fail "test failures: #{error}" if error
+end
+
+namespace :server do
+  desc 'Run Fedora and Solr for development environment'
+  task :development do
+    run_server 'development', solr_port: 8983, fcrepo_port: 8984
+  end
+
+  desc 'Run Fedora and Solr for test environment'
+  task :test do
+    run_server 'test', solr_port: 8985, fcrepo_port: 8986
+  end
+end
+
+def run_server(environment, solr_port: nil, fcrepo_port: nil)
+  solr_params = { port: solr_port, verbose: true, managed: true }
+  fcrepo_params = { port: fcrepo_port, verbose: true, managed: true,
+                    enable_jms: false, fcrepo_home_dir: "fcrepo4-#{environment}-data" }
+  SolrWrapper.wrap(solr_params) do |solr|
+    solr.with_collection(name: environment, dir: File.join(File.expand_path('.', File.dirname(__FILE__)), 'solr_conf', 'conf')) do
+      FcrepoWrapper.wrap(fcrepo_params) do
+        puts "\n#{environment.titlecase} servers running:\n"
+        puts "    Fedora..: http://localhost:#{fcrepo_port}/rest/"
+        puts "    Solr....: http://localhost:#{solr_port}/solr/#{environment}/"
+        puts "\n^C to stop"
+        sleep
+      end
+    end
+  end
 end
 
 task default: :ci
