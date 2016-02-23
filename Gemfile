@@ -62,14 +62,15 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'pry-byebug'
   gem 'rspec-rails'
-  gem 'solr_wrapper', '~> 0.4'
-  gem 'fcrepo_wrapper', '~> 0.2'
   gem "factory_girl_rails"
   gem 'jasmine-rails'
   gem 'jasmine-jquery-rails'
   gem 'pdf-reader', github: 'yob/pdf-reader'
   gem 'pry-rails'
 end
+
+gem 'solr_wrapper', '~> 0.4'
+gem 'fcrepo_wrapper', '~> 0.2'
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
