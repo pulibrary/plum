@@ -21,5 +21,11 @@ module CurationConcerns
       file_attributes = ::FileSetEditForm.model_attributes(attributes)
       actor.update_metadata(file_attributes)
     end
+
+    protected
+
+      def actor
+        @actor ||= ::FileSetActor.new(@file_set, current_user)
+      end
   end
 end

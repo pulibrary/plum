@@ -16,6 +16,11 @@ class CurationConcerns::CurationConcernsController < ApplicationController
     super
   end
 
+  def destroy
+    messenger.record_deleted(curation_concern)
+    super
+  end
+
   def flag
     curation_concern.state = 'flagged'
     note = params[curation_concern_name][:workflow_note]
@@ -40,7 +45,20 @@ class CurationConcerns::CurationConcernsController < ApplicationController
     redirect_to polymorphic_path([main_app, :file_manager, curation_concern])
   end
 
+  def after_create_response
+    send_record_created
+    super
+  end
+
+  def send_record_created
+    messenger.record_created(curation_concern)
+  end
+
   private
+
+    def messenger
+      @messenger ||= ManifestEventGenerator.new(Plum.messaging_client)
+    end
 
     def curation_concern
       @decorated_concern ||=

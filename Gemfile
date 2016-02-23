@@ -103,6 +103,7 @@ gem 'aasm'
 gem 'newrelic_rpm'
 gem 'iso-639'
 gem 'jettywrapper'
+gem 'bunny'
 source 'https://rails-assets.org' do
   gem 'rails-assets-babel-polyfill'
   gem 'rails-assets-bootstrap-select', '1.9.4'

@@ -5,6 +5,30 @@ describe CurationConcerns::ScannedResourcesController do
   let(:scanned_resource) { FactoryGirl.create(:scanned_resource, user: user, title: ['Dummy Title']) }
   let(:reloaded) { scanned_resource.reload }
 
+  describe "delete" do
+    let(:user) { FactoryGirl.create(:admin) }
+    before do
+      sign_in user
+    end
+
+    it "deletes a record" do
+      s = FactoryGirl.create(:scanned_resource)
+
+      delete :destroy, id: s.id
+
+      expect(ScannedResource.all.length).to eq 0
+    end
+
+    it "fires a delete event" do
+      s = FactoryGirl.create(:scanned_resource)
+      manifest_generator = instance_double(ManifestEventGenerator, record_deleted: true)
+      allow(ManifestEventGenerator).to receive(:new).and_return(manifest_generator)
+
+      delete :destroy, id: s.id
+
+      expect(manifest_generator).to have_received(:record_deleted)
+    end
+  end
   describe "create" do
     let(:user) { FactoryGirl.create(:admin) }
     before do
@@ -21,6 +45,14 @@ describe CurationConcerns::ScannedResourcesController do
         s = ScannedResource.last
         expect(s.title).to eq ['The Giant Bible of Mainz; 500th anniversary, April fourth, fourteen fifty-two, April fourth, nineteen fifty-two.']
       end
+      it "posts a creation event to the queue" do
+        manifest_generator = instance_double(ManifestEventGenerator, record_created: true, record_updated: true)
+        allow(ManifestEventGenerator).to receive(:new).and_return(manifest_generator)
+
+        post :create, scanned_resource: scanned_resource_attributes
+
+        expect(manifest_generator).to have_received(:record_created).with(ScannedResource.last)
+      end
     end
     context "when given a non-existent bib id", vcr: { cassette_name: 'bibdata_not_found', allow_playback_repeats: true } do
       let(:scanned_resource_attributes) do
@@ -33,6 +65,14 @@ describe CurationConcerns::ScannedResourcesController do
           post :create, scanned_resource: scanned_resource_attributes
         end.not_to change { ScannedResource.count }
         expect(response.status).to be 422
+      end
+      it "doesn't post a creation event" do
+        manifest_generator = instance_double(ManifestEventGenerator, record_created: true)
+        allow(ManifestEventGenerator).to receive(:new).and_return(manifest_generator)
+
+        post :create, scanned_resource: scanned_resource_attributes
+
+        expect(manifest_generator).not_to have_received(:record_created)
       end
     end
 
@@ -60,6 +100,24 @@ describe CurationConcerns::ScannedResourcesController do
         post :create, scanned_resource: scanned_resource_attributes
         s = ScannedResource.last
         expect(s.in_collections).to eq [collection]
+      end
+      it "posts the collection slugs to the event endpoint" do
+        messaging_client = instance_double(MessagingClient, publish: true)
+        manifest_generator = ManifestEventGenerator.new(messaging_client)
+        allow(ManifestEventGenerator).to receive(:new).and_return(manifest_generator)
+
+        post :create, scanned_resource: scanned_resource_attributes
+
+        s = ScannedResource.last
+
+        expect(messaging_client).to have_received(:publish).with(
+          {
+            "id" => s.id,
+            "event" => "CREATED",
+            "manifest_url" => "http://plum.com/concern/scanned_resources/#{s.id}/manifest",
+            "collection_slugs" => s.in_collections.map(&:exhibit_id)
+          }.to_json
+        )
       end
     end
   end
@@ -129,6 +187,14 @@ describe CurationConcerns::ScannedResourcesController do
         expect(reloaded.portion_note).to eq 'Section 2'
         expect(reloaded.title).to eq ['Dummy Title']
         expect(reloaded.description).to eq 'a description'
+      end
+      it "posts an update event" do
+        manifest_generator = instance_double(ManifestEventGenerator, record_updated: true)
+        allow(ManifestEventGenerator).to receive(:new).and_return(manifest_generator)
+
+        post :update, id: scanned_resource, scanned_resource: scanned_resource_attributes
+
+        expect(manifest_generator).to have_received(:record_updated).with(scanned_resource)
       end
     end
     context 'when :refresh_remote_metadata is set', vcr: { cassette_name: 'bibdata', allow_playback_repeats: true } do

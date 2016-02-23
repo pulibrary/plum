@@ -33,6 +33,9 @@ defaults: &defaults
       ORGgen_plt=yes 
       ORGtparts=R 
       Stiles=\{1024,1024\}
+  events:
+    server: 'amqp://localhost:5672'
+    exchange: 'plum_events'
 
 development:
   <<: *defaults
