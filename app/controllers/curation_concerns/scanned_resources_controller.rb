@@ -36,6 +36,7 @@ class CurationConcerns::ScannedResourcesController < CurationConcerns::CurationC
     end
 
     def after_create_response
+      send_record_created
       dest = parent_id.nil? ? polymorphic_path([main_app, curation_concern]) : main_app.curation_concerns_member_scanned_resource_path(parent_id, curation_concern)
       respond_to do |wants|
         wants.html { redirect_to dest }

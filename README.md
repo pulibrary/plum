@@ -21,6 +21,10 @@
     * Version 3.04 is required. You can install it on Mac OSX with `brew install
       tesseract --with-all-languages` For Ubuntu you'll have to
       [compile](https://github.com/tesseract-ocr/tesseract/wiki/Compiling) it.
+* [RabbitMQ](https://www.rabbitmq.com/) (Optional)
+    * Start with rabbitmq-server
+    * Used for publishing create/update/delete events for systems such as 
+      [Pomegranate](https://github.com/pulibrary/pomegranate)
 
 ## Running the Code
 
