@@ -23,6 +23,14 @@ class AllCollectionsManifestBuilder < ManifestBuilder
       ChildCollectionManifest
     end
 
+    def record_property_builder
+      ManifestBuilder::CollectionRecordPropertyBuilder.new(record, root_path)
+    end
+
+    def sequence_builder
+      nil
+    end
+
     def helper
       @helper ||= ManifestBuilder::ManifestHelper.new
     end

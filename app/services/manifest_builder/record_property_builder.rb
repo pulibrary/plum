@@ -10,8 +10,8 @@ class ManifestBuilder
       manifest['@id'] = path.to_s
       manifest.label = record.to_s
       manifest.description = record.description
-      manifest.viewing_hint = viewing_hint
-      manifest.try(:viewing_direction=, viewing_direction)
+      manifest.viewing_hint = viewing_hint if viewing_hint
+      manifest.try(:viewing_direction=, viewing_direction) if viewing_direction
     end
 
     private

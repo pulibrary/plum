@@ -27,6 +27,7 @@ RSpec.describe PolymorphicManifestBuilder, vcr: { cassette_name: "iiif_manifest"
       expect(manifest['@type']).to eq "sc:Collection"
       expect(manifest['@id']).to eq "http://plum.com/concern/multi_volume_works/2/manifest"
       expect(manifest['viewingHint']).to eq "multi-part"
+      expect(manifest['viewingDirection']).to be_nil
     end
     it "renders a manifest for every child scanned resource" do
       expect(subject.manifests.length).to eq 1
