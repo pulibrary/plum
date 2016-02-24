@@ -15,6 +15,10 @@ RSpec.describe AllCollectionsManifestBuilder do
 
       expect(manifest_json["manifests"]).to be_nil
     end
+    it "doesn't generate a viewingHint or viewingDirection" do
+      expect(manifest_json["viewingHint"]).to be_nil
+      expect(manifest_json["viewingDirection"]).to be_nil
+    end
     it "has an ID" do
       expect(manifest_json["@id"]).to eq "http://plum.com/collections/manifest"
     end
