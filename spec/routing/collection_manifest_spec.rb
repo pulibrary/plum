@@ -9,6 +9,6 @@ RSpec.describe "Collection Manifest Routes" do
   end
 
   it "can route an index manifest" do
-    expect(get "/collections/manifest").to route_to controller: "collections", action: "index_manifest", format: :json
+    expect(get "/iiif/collections").to route_to controller: "collections", action: "index_manifest", format: :json
   end
 end
