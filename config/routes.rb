@@ -32,15 +32,14 @@ Rails.application.routes.draw do
     member do
       get :manifest, defaults: { format: :json }
     end
-    collection do
-      get :manifest, defaults: { format: :json }, action: :index_manifest
-    end
   end
   mount Hydra::Collections::Engine => '/'
   mount CurationConcerns::Engine, at: '/'
   curation_concerns_collections
   curation_concerns_basic_routes
   curation_concerns_embargo_management
+
+  get "/iiif/collections", defaults: { format: :json }, controller: :collections, action: :index_manifest
 
   namespace :curation_concerns, path: :concern do
     resources :multi_volume_works, only: [] do
