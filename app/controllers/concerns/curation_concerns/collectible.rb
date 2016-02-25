@@ -12,10 +12,8 @@ module CurationConcerns::Collectible
     end
 
     def create
-      collection_ids = params[curation_concern_name].delete(:collection_ids) || []
-
       if actor_create
-        (add_to_collections(collection_ids) && curation_concern.save) if collection_ids.any?
+        (add_to_collections(collection_id_params) && curation_concern.save) if collection_id_params.any?
         after_create_response
       else
         build_form

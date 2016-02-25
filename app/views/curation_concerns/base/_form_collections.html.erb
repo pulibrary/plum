@@ -1,7 +1,4 @@
 <div class="row with-headroom">
   <legend>Collections</legend>
-  <select name="<%= @curation_concern.class.to_s.underscore %>[collection_ids][]" multiple="true" class="form-control">
-  <% selected = @curation_concern.persisted? ? @curation_concern.in_collections.map(&:id) : [] %>
-    <%= options_for_select(@collections.map {|c| [c.title, c.id]}, selected) %>
-  </select>
+  <%= f.input :collection_ids, collection: @collections, input_html: { multiple: true } %>
 </div>

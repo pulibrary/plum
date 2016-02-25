@@ -12,7 +12,7 @@ class CurationConcerns::CurationConcernsController < ApplicationController
 
   def update
     authorize!(:complete, curation_concern, message: 'Unable to mark resource complete') if curation_concern.state != 'complete' && params[curation_concern_name][:state] == 'complete'
-    add_to_collections(params[curation_concern_name].delete(:collection_ids))
+    add_to_collections(collection_id_params)
     super
   end
 
@@ -55,6 +55,10 @@ class CurationConcerns::CurationConcernsController < ApplicationController
   end
 
   private
+
+    def collection_id_params
+      @collection_id_params ||= (params[curation_concern_name].delete(:collection_ids) || []).select(&:present?)
+    end
 
     def messenger
       @messenger ||= ManifestEventGenerator.new(Plum.messaging_client)
