@@ -12,7 +12,7 @@ en:
     institution:
       name: "Princeton University Library"
       homepage_url: "#"
-    product_name: "Plum: A Repository"
+    product_name: "Digital PUL"
   simple_form:
     hints:
       defaults:
