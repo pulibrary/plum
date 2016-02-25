@@ -50,11 +50,7 @@ class ManifestBuilder
 
           def hash_values
             return values unless values.respond_to?(:each)
-            values.map do |value|
-              {
-                "@value" => value.to_s
-              }
-            end
+            values.map(&:to_s)
           end
 
           def renderer
