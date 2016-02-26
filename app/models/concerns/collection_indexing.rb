@@ -8,4 +8,12 @@ module CollectionIndexing
       end
     end
   end
+
+  def collection_ids
+    if persisted?
+      in_collections.map(&:id)
+    else
+      []
+    end
+  end
 end

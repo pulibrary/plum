@@ -55,24 +55,36 @@ RSpec.feature 'Collections', type: :feature do
     end
   end
 
-  describe 'adding resources to collections' do
-    let(:collection1) { FactoryGirl.create(:collection, title: 'Col 1') }
-    let(:collection2) { FactoryGirl.create(:collection, title: 'Col 2') }
+  describe 'adding resources to collections', vcr: { cassette_name: 'locations', allow_playback_repeats: true } do
+    let(:collection1) { FactoryGirl.create(:collection, title: ['Col 1']) }
+    let(:collection2) { FactoryGirl.create(:collection, title: ['Col 2']) }
     let(:resource) { FactoryGirl.create(:scanned_resource) }
+    let(:user) { FactoryGirl.create(:image_editor) }
     before(:each) do
+      collection1
+      collection2
+      resource
       sign_in user
+    end
+    it "works" do
+      visit edit_polymorphic_path [resource]
+      select 'Col 1', from: 'scanned_resource[collection_ids][]'
+      click_button 'Update Scanned resource'
+      expect(page).to have_selector 'a.collection-link', text: 'Col 1'
+      expect(page).not_to have_selector 'a.collection-link', text: 'Col 2'
 
       visit edit_polymorphic_path [resource]
-      select 'Col 1', from: 'scanned_resource_collection_ids'
+      select 'Col 2', from: 'scanned_resource[collection_ids][]'
+      unselect 'Col 1', from: 'scanned_resource[collection_ids][]'
       click_button 'Update Scanned resource'
-      expect(page).to have_selector 'a.collection-link', 'Col 1'
-      expect(page).not_to have_selector 'a.collection-link', 'Col 2'
+      expect(page).not_to have_selector 'a.collection-link', text: 'Col 1'
+      expect(page).to have_selector 'a.collection-link', text: 'Col 2'
 
       visit edit_polymorphic_path [resource]
-      select 'Col 2', from: 'scanned_resource_collection_ids'
+      unselect 'Col 2', from: 'scanned_resource[collection_ids][]'
       click_button 'Update Scanned resource'
-      expect(page).not_to have_selector 'a.collection-link', 'Col 1'
-      expect(page).to have_selector 'a.collection-link', 'Col 2'
+      expect(page).not_to have_selector 'a.collection-link', text: 'Col 1'
+      expect(page).not_to have_selector 'a.collection-link', text: 'Col 2'
     end
   end
 end
