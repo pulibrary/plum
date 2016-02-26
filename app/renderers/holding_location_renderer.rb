@@ -5,7 +5,7 @@ class HoldingLocationRenderer < CurationConcerns::AttributeRenderer
 
   def value_html
     Array(values).map do |value|
-      attribute_value_to_html(value)
+      location_string(HoldingLocationService.find(value))
     end.join("")
   end
 
@@ -13,7 +13,11 @@ class HoldingLocationRenderer < CurationConcerns::AttributeRenderer
 
     def attribute_value_to_html(value)
       loc = HoldingLocationService.find(value)
-      li_value %(#{loc.label}<br/>Contact at <a href="mailto:#{loc.email}">#{loc.email}</a>,
-                 <a href="tel:#{loc.phone}">#{loc.phone}</a>)
+      li_value location_string(loc)
+    end
+
+    def location_string(loc)
+      "#{loc.label}<br/>Contact at <a href=\"mailto:#{loc.email}\">#{loc.email}</a>,
+                 <a href=\"tel:#{loc.phone}\">#{loc.phone}</a>"
     end
 end
