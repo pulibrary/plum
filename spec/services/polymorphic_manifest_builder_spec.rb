@@ -246,9 +246,7 @@ RSpec.describe PolymorphicManifestBuilder, vcr: { cassette_name: "iiif_manifest"
         expect(result.metadata.first).to eql(
           "label" => "Creator",
           "value" => [
-            {
-              "@value" => "Test Author"
-            }
+            "Test Author"
           ]
         )
       end
