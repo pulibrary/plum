@@ -7,25 +7,39 @@ class ScannedResourcePDF
       @scanned_resource_pdf = scanned_resource_pdf
     end
 
+    def header(prawn_document, header, size: 24)
+      prawn_document.text header, size: size, styles: [:bold]
+      prawn_document.stroke do
+        prawn_document.horizontal_rule
+      end
+      prawn_document.move_down 20
+    end
+
     def apply(prawn_document)
       prawn_document.bounding_box([15, Canvas::LETTER_HEIGHT - 15], width: Canvas::LETTER_WIDTH - 30, height: Canvas::LETTER_HEIGHT - 30) do
-        prawn_document.text scanned_resource.to_s, size: 24, align: :center
-        prawn_document.move_down 5
-        prawn_document.text "(<a href='#{helper.polymorphic_url(scanned_resource)}'>#{helper.polymorphic_url(scanned_resource)}</a>)", align: :center, inline_format: true, size: 10
-        prawn_document.move_down 16
-        prawn_document.text "Rights", size: 16, align: :center
-        prawn_document.move_down 16
+        prawn_document.image Rails.root.join("app/assets/images/pul_logo_long.png").to_s, position: :center, width: Canvas::LETTER_WIDTH - 30
+        prawn_document.stroke_color "000000"
+        prawn_document.move_down(20)
+        header(prawn_document, scanned_resource.to_s, size: 30)
         solr_document.rights_statement.each do |statement|
-          prawn_document.text RightsService.label(statement), size: 16, align: :center
-          prawn_document.move_down 16
           prawn_document.text RightsStatementService.definition(statement), align: :justify
         end
-        prawn_document.move_down 16
-        prawn_document.text I18n.t('rights.boilerplate'), inline_format: true
-        prawn_document.move_down 16
-        prawn_document.text "Holding Location", size: 16, align: :center
-        prawn_document.move_down 16
-        prawn_document.text HoldingLocationRenderer.new(solr_document.holding_location).value_html, inline_format: true, align: :justify
+        prawn_document.move_down 20
+
+        header(prawn_document, "Princeton University Library Disclaimer")
+        prawn_document.text I18n.t('rights.pdf_boilerplate'), inline_format: true
+        prawn_document.move_down 20
+
+        header(prawn_document, "Citation Information")
+
+        header(prawn_document, "Contact Information")
+        text = HoldingLocationRenderer.new(solr_document.holding_location).value_html
+        prawn_document.text text, inline_format: true
+        prawn_document.move_down 20
+
+        header(prawn_document, "Download Information")
+        prawn_document.text "Date Rendered: #{Time.current.strftime('%Y-%m-%d %I:%M:%S %p %Z')}"
+        prawn_document.text "Available Online at: <a href='#{helper.polymorphic_url(scanned_resource)}'>#{helper.polymorphic_url(scanned_resource)}</a>", inline_format: true
       end
     end
 
