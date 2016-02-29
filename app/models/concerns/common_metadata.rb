@@ -64,7 +64,11 @@ module CommonMetadata
     end
 
     def remote_metadata_factory
-      RemoteRecord
+      if RemoteRecord.bibdata?(source_metadata_identifier) == 0
+        JSONLDRecord::Factory.new(self.class)
+      else
+        RemoteRecord
+      end
     end
 
     # Validate that either the source_metadata_identifier or the title is set.

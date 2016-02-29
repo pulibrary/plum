@@ -108,8 +108,6 @@ describe ScannedResource do
         expect(subject.source_metadata).to eq(fixture('pulfa-AC123_c00004.xml').read)
       end
 
-      # FIXME: Save currently raises a worthwhile dependency error for
-      # Curate::DateFormatter
       it 'Saves a record with extacted ead metadata' do
         subject.apply_remote_metadata
         subject.save
@@ -118,7 +116,7 @@ describe ScannedResource do
       end
     end
 
-    context 'With a Voyager ID', vcr: { cassette_name: "bibdata" }do
+    context 'With a Voyager ID', vcr: { cassette_name: "bibdata", record: :new_episodes }do
       before do
         subject.source_metadata_identifier = '2028405'
       end
@@ -126,11 +124,9 @@ describe ScannedResource do
       it 'Extracts Voyager Metadata' do
         subject.apply_remote_metadata
         expect(subject.title).to eq(['The Giant Bible of Mainz; 500th anniversary, April fourth, fourteen fifty-two, April fourth, nineteen fifty-two.'])
-        expect(subject.sort_title).to eq('Giant Bible of Mainz; 500th anniversary, April fourth, fourteen fifty-two, April fourth, nineteen fifty-two.')
-        expect(subject.creator).to eq(['Miner, Dorothy Eugenia.'])
-        expect(subject.date_created).to eq(['1952'])
-        expect(subject.publisher).to eq(['Fake Publisher'])
-        expect(subject.source_metadata).to eq(fixture('voyager-2028405.xml').read)
+        expect(subject.creator).to eq(['Miner, Dorothy Eugenia'])
+        expect(subject.date_created).to eq(['1952-01-01T00:00:00Z'])
+        expect(subject.publisher).to eq(['[Philadelphia, 1952]'])
       end
 
       it 'Saves a record with extacted Voyager metadata' do

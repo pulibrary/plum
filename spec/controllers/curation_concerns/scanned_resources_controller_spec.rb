@@ -34,7 +34,7 @@ describe CurationConcerns::ScannedResourcesController do
     before do
       sign_in user
     end
-    context "when given a bib id", vcr: { cassette_name: 'bibdata', allow_playback_repeats: true } do
+    context "when given a bib id", vcr: { cassette_name: 'bibdata', record: :new_episodes } do
       let(:scanned_resource_attributes) do
         FactoryGirl.attributes_for(:scanned_resource).merge(
           source_metadata_identifier: "2028405"

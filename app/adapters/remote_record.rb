@@ -11,6 +11,10 @@ class RemoteRecord < SimpleDelegator
         Null.retrieve(id)
       end
     end
+
+    def bibdata?(source_metadata_identifier)
+      PulMetadataServices::Client.bibdata?(source_metadata_identifier)
+    end
   end
 
   def attributes
