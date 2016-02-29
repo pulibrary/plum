@@ -33,13 +33,13 @@ class ScannedResourcePDF
         header(prawn_document, "Citation Information")
 
         header(prawn_document, "Contact Information")
-        text = HoldingLocationRenderer.new(solr_document.holding_location).value_html
+        text = HoldingLocationRenderer.new(solr_document.holding_location).value_html.gsub("<a", "<u><a").gsub("</a>", "</a></u>")
         prawn_document.text text, inline_format: true
         prawn_document.move_down 20
 
         header(prawn_document, "Download Information")
         prawn_document.text "Date Rendered: #{Time.current.strftime('%Y-%m-%d %I:%M:%S %p %Z')}"
-        prawn_document.text "Available Online at: <a href='#{helper.polymorphic_url(scanned_resource)}'>#{helper.polymorphic_url(scanned_resource)}</a>", inline_format: true
+        prawn_document.text "Available Online at: <u><a href='#{helper.polymorphic_url(scanned_resource)}'>#{helper.polymorphic_url(scanned_resource)}</a></u>", inline_format: true
       end
     end
 
