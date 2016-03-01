@@ -3,68 +3,8 @@ CurationConcerns.configure do |config|
   config.register_curation_concern :multi_volume_work
   # Injected via `rails g curation_concerns:work ScannedResource`
   config.register_curation_concern :scanned_resource
-  config.fits_to_desc_mapping = {
-    file_title: :title,
-    file_author: :creator
-  }
 
   config.max_days_between_audits = 7
-
-  config.resource_types = {
-    'Article' => 'Article',
-    'Audio' => 'Audio',
-    'Book' => 'Book',
-    'Capstone Project' => 'Capstone Project',
-    'Conference Proceeding' => 'Conference Proceeding',
-    'Dataset' => 'Dataset',
-    'Dissertation' => 'Dissertation',
-    'Image' => 'Image',
-    'Journal' => 'Journal',
-    'Map or Cartographic Material' => 'Map or Cartographic Material',
-    'Masters Thesis' => 'Masters Thesis',
-    'Part of Book' => 'Part of Book',
-    'Poster' => 'Poster',
-    'Presentation' => 'Presentation',
-    'Project' => 'Project',
-    'Report' => 'Report',
-    'Research Paper' => 'Research Paper',
-    'Software or Program Code' => 'Software or Program Code',
-    'Video' => 'Video',
-    'Other' => 'Other'
-  }
-
-  config.resource_types_to_schema = {
-    'Article' => 'http://schema.org/Article',
-    'Audio' => 'http://schema.org/AudioObject',
-    'Book' => 'http://schema.org/Book',
-    'Capstone Project' => 'http://schema.org/CreativeWork',
-    'Conference Proceeding' => 'http://schema.org/ScholarlyArticle',
-    'Dataset' => 'http://schema.org/Dataset',
-    'Dissertation' => 'http://schema.org/ScholarlyArticle',
-    'Image' => 'http://schema.org/ImageObject',
-    'Journal' => 'http://schema.org/CreativeWork',
-    'Map or Cartographic Material' => 'http://schema.org/Map',
-    'Masters Thesis' => 'http://schema.org/ScholarlyArticle',
-    'Part of Book' => 'http://schema.org/Book',
-    'Poster' => 'http://schema.org/CreativeWork',
-    'Presentation' => 'http://schema.org/CreativeWork',
-    'Project' => 'http://schema.org/CreativeWork',
-    'Report' => 'http://schema.org/CreativeWork',
-    'Research Paper' => 'http://schema.org/ScholarlyArticle',
-    'Software or Program Code' => 'http://schema.org/Code',
-    'Video' => 'http://schema.org/VideoObject',
-    'Other' => 'http://schema.org/CreativeWork'
-  }
-
-  config.permission_levels = {
-    'Choose Access' => 'none',
-    'View/Download' => 'read',
-    'Edit' => 'edit'
-  }
-
-  config.owner_permission_levels = {
-    'Edit' => 'edit'
-  }
 
   # Enable displaying usage statistics in the UI
   # Defaults to FALSE

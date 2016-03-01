@@ -13,4 +13,8 @@ class Collection < ActiveFedora::Base
 
   validates :exhibit_id, presence: true
   validates_with ExhibitIdValidator
+
+  def first_title
+    title.first
+  end
 end

@@ -28,24 +28,24 @@ GIT
 
 GIT
   remote: git://github.com/projecthydra-labs/curation_concerns.git
-  revision: 5fe690e6b9d839527b6ba30e026572b667fefcfe
+  revision: f21f2e2071824850fddcc6aedd65c5fb1646e03a
   branch: master
   specs:
-    curation_concerns (0.8.0)
+    curation_concerns (0.9.0)
       blacklight (~> 6.0)
       blacklight_advanced_search (~> 6.0)
       breadcrumbs_on_rails (~> 2.3)
-      curation_concerns-models (= 0.8.0)
+      curation_concerns-models (= 0.9.0)
       hydra-editor (~> 1.1)
       hydra-head (~> 9.6)
       jquery-ui-rails
       rails_autolink
       simple_form (~> 3.1)
       sprockets-es6
-    curation_concerns-models (0.8.0)
+    curation_concerns-models (0.9.0)
       active_attr
       active_fedora-noid (~> 1.0)
-      hydra-collections (~> 7.0)
+      hydra-collections (~> 8.0)
       hydra-head (~> 9.3)
       hydra-works (~> 0.7)
       qa (~> 0.5)
@@ -65,10 +65,10 @@ GIT
 
 GIT
   remote: git://github.com/projecthydra-labs/hydra-works.git
-  revision: 27cafe99e79a724e7933064c0bb16192e292072e
+  revision: 4ff756f94154128c3ee3024faa0eaa63aaa3e44f
   branch: master
   specs:
-    hydra-works (0.7.0)
+    hydra-works (0.7.1)
       hydra-derivatives (~> 3.0)
       hydra-file_characterization (~> 0.3, >= 0.3.3)
       hydra-pcdm (~> 0.4)
@@ -91,10 +91,11 @@ GIT
 
 GIT
   remote: git://github.com/projecthydra/hydra-collections.git
-  revision: 825f79fb6909b113886181adac95c49aab1198f6
+  revision: e3a2dc2189eb672681de8fa6947fb35de969fd38
   branch: master
   specs:
-    hydra-collections (7.0.0)
+    hydra-collections (8.0.0)
+      active-fedora (~> 9.9)
       blacklight (~> 6.0)
       deprecation (~> 0.1)
       hydra-head (~> 9.1)
@@ -183,7 +184,7 @@ GEM
       activemodel (= 4.2.4)
       activesupport (= 4.2.4)
       arel (~> 6.0)
-    activerecord-import (0.11.0)
+    activerecord-import (0.12.0)
       activerecord (>= 3.0)
     activesupport (4.2.4)
       i18n (~> 0.7)
@@ -202,9 +203,8 @@ GEM
       addressable (>= 2.3.1)
       extlib (>= 0.9.15)
       multi_json (>= 1.0.0)
-    autoprefixer-rails (6.3.3)
+    autoprefixer-rails (6.3.3.1)
       execjs
-      json
     babel-source (5.8.35)
     babel-transpiler (0.7.0)
       babel-source (>= 4.0, < 6)
@@ -214,13 +214,13 @@ GEM
     bcrypt (3.1.10)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
-    blacklight (6.0.1)
+    blacklight (6.0.2)
       bootstrap-sass (~> 3.2)
       deprecation
       globalid
       kaminari (>= 0.15)
       nokogiri (~> 1.6)
-      rails (>= 4.1, < 5)
+      rails (>= 4.2, < 6)
       rsolr (~> 1.0.11)
       twitter-typeahead-rails (~> 0.11)
     blacklight-access_controls (0.3.0)
@@ -290,7 +290,7 @@ GEM
     coffee-script-source (1.9.1.1)
     colorize (0.7.7)
     columnize (0.9.0)
-    concurrent-ruby (1.0.0)
+    concurrent-ruby (1.0.1)
     connection_pool (2.2.0)
     coveralls (0.8.3)
       json (~> 1.8)
@@ -375,16 +375,16 @@ GEM
     httparty (0.13.7)
       json (~> 1.8)
       multi_xml (>= 0.5.2)
-    hydra-access-controls (9.8.0)
+    hydra-access-controls (9.8.1)
       active-fedora (~> 9.9)
       activesupport (~> 4.0)
       blacklight (>= 5.16)
       blacklight-access_controls (~> 0.1)
       cancancan (~> 1.8)
       deprecation (~> 0.2)
-    hydra-core (9.8.0)
+    hydra-core (9.8.1)
       active-fedora (~> 9.8)
-      hydra-access-controls (= 9.8.0)
+      hydra-access-controls (= 9.8.1)
       rails (~> 4.0)
     hydra-editor (1.2.0)
       active-fedora (>= 9.0.0)
@@ -393,9 +393,9 @@ GEM
       simple_form (~> 3.1.0)
     hydra-file_characterization (0.3.3)
       activesupport (>= 3.0.0)
-    hydra-head (9.8.0)
-      hydra-access-controls (= 9.8.0)
-      hydra-core (= 9.8.0)
+    hydra-head (9.8.1)
+      hydra-access-controls (= 9.8.1)
+      hydra-core (= 9.8.1)
       rails (>= 3.2.6)
     hydra-role-management (0.2.2)
       blacklight
@@ -475,7 +475,7 @@ GEM
       scrub_rb (>= 1.0.1, < 2)
       unf
     method_source (0.8.2)
-    mime-types (2.99)
+    mime-types (2.99.1)
     mimemagic (0.3.1)
     mini_magick (4.4.0)
     mini_portile (0.6.2)

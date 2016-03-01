@@ -8,7 +8,7 @@ http_interactions:
       string: ''
     headers:
       User-Agent:
-      - Faraday v0.9.1
+      - Faraday v0.9.2
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
@@ -19,7 +19,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Fri, 04 Sep 2015 14:20:06 GMT
+      - Fri, 26 Feb 2016 21:35:27 GMT
       Server:
       - Apache/2.4.7 (Ubuntu)
       Access-Control-Allow-Origin:
@@ -31,19 +31,19 @@ http_interactions:
       Cache-Control:
       - max-age=0, private, must-revalidate
       X-Request-Id:
-      - b32585bc-2866-405c-8664-8e0eba8eb000
+      - 313c2e85-9315-4832-a2d1-b57d26a31971
       X-Runtime:
-      - '0.152457'
+      - '0.054817'
       X-Powered-By:
       - Phusion Passenger 4.0.59
       Etag:
-      - W/"c61b5f7e2f36057100405d30b859fd18-gzip"
+      - W/"5e9964ecee0bf5a5443426087368d492-gzip"
       Status:
       - 200 OK
       Vary:
       - Accept-Encoding
       Content-Length:
-      - '638'
+      - '653'
       Content-Type:
       - application/xml; charset=utf-8
     body:
@@ -62,22 +62,298 @@ http_interactions:
         ind1='1' ind2='4' tag='245'><subfield code='a'>The Giant Bible of Mainz;</subfield><subfield
         code='b'>500th anniversary, April fourth, fourteen fifty-two, April fourth,
         nineteen fifty-two.</subfield></datafield><datafield ind1=' ' ind2=' ' tag='260'><subfield
-        code='a'>[Philadelphia,</subfield><subfield code='b'>Fake Publisher</subfield><subfield
-        code='c'>1952]</subfield></datafield><datafield ind1=' ' ind2=' ' tag='300'><subfield
-        code='a'>31 p.</subfield><subfield code='c'>21 cm.</subfield></datafield><datafield
-        ind1=' ' ind2=' ' tag='500'><subfield code='a'>Seal of the Library of Congress
-        on t.p.</subfield></datafield><datafield ind1='0' ind2='0' tag='630'><subfield
-        code='a'>Giant Bible of Mainz.</subfield></datafield><datafield ind1=' ' ind2='
-        ' tag='945'><subfield code='a'>SA</subfield><subfield code='b'>1</subfield><subfield
+        code='a'>[Philadelphia,</subfield><subfield code='c'>1952]</subfield></datafield><datafield
+        ind1=' ' ind2=' ' tag='300'><subfield code='a'>31 p.</subfield><subfield code='c'>21
+        cm.</subfield></datafield><datafield ind1=' ' ind2=' ' tag='500'><subfield
+        code='a'>Seal of the Library of Congress on t.p.</subfield></datafield><datafield
+        ind1='0' ind2='0' tag='630'><subfield code='a'>Giant Bible of Mainz.</subfield></datafield><datafield
+        ind1=' ' ind2=' ' tag='945'><subfield code='a'>SA</subfield><subfield code='b'>1</subfield><subfield
         code='c'>ND3355.A1</subfield><subfield code='d'>M35</subfield></datafield><datafield
         ind1=' ' ind2=' ' tag='911'><subfield code='a'>19981222</subfield></datafield><datafield
-        ind1='0' ind2='0' tag='852'><subfield code='b'>rcppj</subfield><subfield code='t'>1</subfield><subfield
-        code='h'>ND3355.A1</subfield><subfield code='i'>M35</subfield><subfield code='x'>tr
-        fr sa</subfield><subfield code='x'>tr fr sax</subfield></datafield><datafield
-        ind1='8' ind2=' ' tag='852'><subfield code='b'>rcpxg</subfield><subfield code='h'>RCPXG-6025540</subfield><subfield
-        code='x'>Adler Ref 1250</subfield></datafield></record>"
+        ind1='0' ind2='0' tag='852'><subfield code='0'>2309579</subfield><subfield
+        code='b'>rcppj</subfield><subfield code='t'>1</subfield><subfield code='h'>ND3355.A1</subfield><subfield
+        code='i'>M35</subfield><subfield code='x'>tr fr sa</subfield><subfield code='x'>tr
+        fr sax</subfield></datafield><datafield ind1='8' ind2=' ' tag='852'><subfield
+        code='0'>6025540</subfield><subfield code='b'>rcpxg</subfield><subfield code='h'>RCPXG-6025540</subfield><subfield
+        code='x'>Adler Ref 1250</subfield></datafield><datafield ind1=' ' ind2=' '
+        tag='959'><subfield code='a'>2009-04-26 20:36:22 -0500</subfield></datafield></record>"
     http_version: 
-  recorded_at: Fri, 04 Sep 2015 14:20:14 GMT
+  recorded_at: Fri, 26 Feb 2016 21:35:25 GMT
+- request:
+    method: get
+    uri: https://bibdata.princeton.edu/bibliographic/2028405/jsonld
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/n-triples, text/plain;q=0.5, application/n-quads, text/x-nquads,
+        application/ld+json, application/x-ld+json, application/rdf+json, text/html;q=0.5,
+        application/xhtml+xml;q=0.7, image/svg+xml, text/n3, text/rdf+n3, application/rdf+n3,
+        application/rdf+xml, text/csv, text/tab-separated-values, application/csvm+json,
+        text/turtle, text/rdf+turtle, application/turtle, application/x-turtle, application/trig,
+        application/x-trig, application/trix, */*;q=0.1
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 26 Feb 2016 21:50:51 GMT
+      Server:
+      - Apache/2.4.7 (Ubuntu)
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Request-Method:
+      - GET
+      Access-Control-Allow-Headers:
+      - Origin, Content-Type, Accept, Authorization, Token
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      X-Request-Id:
+      - 38c7ba80-5f29-4f01-8d2a-faade2922b74
+      X-Runtime:
+      - '7.193757'
+      X-Powered-By:
+      - Phusion Passenger 4.0.59
+      Etag:
+      - W/"7b2cec82e9248f31b764e03742643881"
+      Status:
+      - 200 OK
+      Transfer-Encoding:
+      - chunked
+      Content-Type:
+      - application/ld+json; charset=utf-8
+    body:
+      encoding: UTF-8
+      string: '{"@context":"http://bibdata.princeton.edu/context.json","@id":"http://bibdata.princeton.edu/bibliographic/2028405","title":{"@value":"The
+        Giant Bible of Mainz; 500th anniversary, April fourth, fourteen fifty-two,
+        April fourth, nineteen fifty-two.","@language":"eng"},"description":"31 p.
+        21 cm.","language":"eng","creator":"Miner, Dorothy Eugenia","format":"Book","note":"Seal
+        of the Library of Congress on t.p.","publisher":"[Philadelphia, 1952]","subject":"Giant
+        Bible of Mainz","created":"1952-01-01T00:00:00Z","date":"1952"}'
+    http_version: 
+  recorded_at: Fri, 26 Feb 2016 21:50:57 GMT
+- request:
+    method: get
+    uri: http://bibdata.princeton.edu/context.json
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/ld+json, application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 302
+      message: Found
+    headers:
+      Date:
+      - Fri, 26 Feb 2016 21:50:59 GMT
+      Server:
+      - Apache/2.4.7 (Ubuntu)
+      Location:
+      - https://bibdata.princeton.edu/context.json
+      Content-Length:
+      - '312'
+      Content-Type:
+      - text/html; charset=iso-8859-1
+    body:
+      encoding: UTF-8
+      string: |
+        <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+        <html><head>
+        <title>302 Found</title>
+        </head><body>
+        <h1>Found</h1>
+        <p>The document has moved <a href="https://bibdata.princeton.edu/context.json">here</a>.</p>
+        <hr>
+        <address>Apache/2.4.7 (Ubuntu) Server at bibdata.princeton.edu Port 80</address>
+        </body></html>
+    http_version: 
+  recorded_at: Fri, 26 Feb 2016 21:50:57 GMT
+- request:
+    method: get
+    uri: https://bibdata.princeton.edu/context.json
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/ld+json, application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 26 Feb 2016 21:50:59 GMT
+      Server:
+      - Apache/2.4.7 (Ubuntu)
+      Last-Modified:
+      - Fri, 26 Feb 2016 21:17:40 GMT
+      Etag:
+      - '"3b9-52cb2d43b2500"'
+      Accept-Ranges:
+      - bytes
+      Content-Length:
+      - '953'
+      Content-Type:
+      - application/json
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "@context": {
+            "id" : "@id",
+            "dc": "http://purl.org/dc/elements/1.1/",
+            "dcterms": "http://purl.org/dc/terms/",
+            "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+            "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+
+            "contributor": {"@id": "dc:contributor"},
+            "coverage": {"@id": "dc:coverage"},
+            "creator": {"@id": "dc:creator"},
+            "date": {"@id": "dc:date"},
+            "description": {"@id": "dc:description"},
+            "format": {"@id": "dc:format"},
+            "identifier": {"@id": "dc:identifier"},
+            "language": {"@id": "dc:language"},
+            "publisher": {"@id": "dc:publisher"},
+            "relation": {"@id": "dc:relation"},
+            "rights": {"@id": "dc:rights"},
+            "source": {"@id": "dc:source"},
+            "subject": {"@id": "dc:subject"},
+            "title": {"@id": "dcterms:title"},
+            "type": {"@id": "dc:type"},
+
+            "created": {"@id": "dcterms:created"},
+            "extent": {"@id": "dcterms:extent"},
+            "modified": {"@id": "dcterms:modified"}
+          }
+        }
+    http_version: 
+  recorded_at: Fri, 26 Feb 2016 21:50:58 GMT
+- request:
+    method: get
+    uri: http://bibdata.princeton.edu/context.json
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/ld+json, application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 302
+      message: Found
+    headers:
+      Date:
+      - Fri, 26 Feb 2016 21:51:00 GMT
+      Server:
+      - Apache/2.4.7 (Ubuntu)
+      Location:
+      - https://bibdata.princeton.edu/context.json
+      Content-Length:
+      - '312'
+      Content-Type:
+      - text/html; charset=iso-8859-1
+    body:
+      encoding: UTF-8
+      string: |
+        <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+        <html><head>
+        <title>302 Found</title>
+        </head><body>
+        <h1>Found</h1>
+        <p>The document has moved <a href="https://bibdata.princeton.edu/context.json">here</a>.</p>
+        <hr>
+        <address>Apache/2.4.7 (Ubuntu) Server at bibdata.princeton.edu Port 80</address>
+        </body></html>
+    http_version: 
+  recorded_at: Fri, 26 Feb 2016 21:50:58 GMT
+- request:
+    method: get
+    uri: https://bibdata.princeton.edu/context.json
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/ld+json, application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 26 Feb 2016 21:51:00 GMT
+      Server:
+      - Apache/2.4.7 (Ubuntu)
+      Last-Modified:
+      - Fri, 26 Feb 2016 21:17:40 GMT
+      Etag:
+      - '"3b9-52cb2d43b2500"'
+      Accept-Ranges:
+      - bytes
+      Content-Length:
+      - '953'
+      Content-Type:
+      - application/json
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "@context": {
+            "id" : "@id",
+            "dc": "http://purl.org/dc/elements/1.1/",
+            "dcterms": "http://purl.org/dc/terms/",
+            "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+            "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+
+            "contributor": {"@id": "dc:contributor"},
+            "coverage": {"@id": "dc:coverage"},
+            "creator": {"@id": "dc:creator"},
+            "date": {"@id": "dc:date"},
+            "description": {"@id": "dc:description"},
+            "format": {"@id": "dc:format"},
+            "identifier": {"@id": "dc:identifier"},
+            "language": {"@id": "dc:language"},
+            "publisher": {"@id": "dc:publisher"},
+            "relation": {"@id": "dc:relation"},
+            "rights": {"@id": "dc:rights"},
+            "source": {"@id": "dc:source"},
+            "subject": {"@id": "dc:subject"},
+            "title": {"@id": "dcterms:title"},
+            "type": {"@id": "dc:type"},
+
+            "created": {"@id": "dcterms:created"},
+            "extent": {"@id": "dcterms:extent"},
+            "modified": {"@id": "dcterms:modified"}
+          }
+        }
+    http_version: 
+  recorded_at: Fri, 26 Feb 2016 21:50:59 GMT
 - request:
     method: get
     uri: https://bibdata.princeton.edu/locations/digital_locations.json
@@ -97,7 +373,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 28 Jan 2016 16:54:26 GMT
+      - Fri, 26 Feb 2016 22:11:44 GMT
       Server:
       - Apache/2.4.7 (Ubuntu)
       Access-Control-Allow-Origin:
@@ -109,9 +385,9 @@ http_interactions:
       Cache-Control:
       - max-age=0, private, must-revalidate
       X-Request-Id:
-      - 2572efe8-8e5b-4abb-aaef-3427c19445c0
+      - 7cbd7098-7bce-4053-bcb4-6288f422d367
       X-Runtime:
-      - '0.061688'
+      - '0.077154'
       X-Powered-By:
       - Phusion Passenger 4.0.59
       Etag:
@@ -145,5 +421,5 @@ http_interactions:
         Rd. Princeton, NJ 08544","phone_number":"609-258-1470","contact_email":"fstcirc@princeton.edu","gfa_pickup":"PA","staff_only":false,"pickup_location":true,"digital_location":true,"url":"https://bibdata.princeton.edu/locations/delivery_locations/15.json","library":{"label":"Firestone
         Library","code":"firestone"}}]'
     http_version: 
-  recorded_at: Thu, 28 Jan 2016 16:54:26 GMT
+  recorded_at: Fri, 26 Feb 2016 22:11:42 GMT
 recorded_with: VCR 2.9.3
