@@ -4,6 +4,9 @@ require 'bundler/setup'
 require 'rubocop/rake_task'
 require 'solr_wrapper'
 require 'fcrepo_wrapper'
+require 'coveralls/rake/task'
+
+Coveralls::RakeTask.new
 
 require File.expand_path('../config/application', __FILE__)
 
@@ -29,6 +32,8 @@ task ci: ['jetty:clean'] do
     Rake::Task['spec'].invoke
   end
   fail "test failures: #{error}" if error
+
+  Rake::Task['coveralls:push'].invoke
 end
 
 namespace :server do
