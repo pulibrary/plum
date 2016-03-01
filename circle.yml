@@ -25,3 +25,9 @@ test:
     - bundle exec rake rubocop
     - eslint app/assets/javascripts/*.es6
     - bundle exec rake spec:javascript
+  post:
+    - COVERALLS_PARALLEL=true bundle exec rake coveralls:push:
+        parallel: true
+notify:
+  webhooks:
+    - url: https://coveralls.io/webhook?repo_token=f3M44ADHo6l6kkYHFESbY8rfhUtEjxUlN
