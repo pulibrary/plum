@@ -5,13 +5,13 @@ staging:
 production:
   :concurrency: 20
 :queues:
+  - permissions
+  - ingest
   - default
-  - [permissions, 2]
-  - [characterize, 2]
-  - [audit, 2]
-  - [id_based, 2]
-  - [derivatives, 2]
-  - [import_url, 2]
-  - [ingest, 2]
-  - [resolrize, 2]
-  - [upload_set_update, 2]
+  - characterize
+  - derivatives
+  - audit
+  - id_based
+  - import_url
+  - resolrize
+  - upload_set_update
