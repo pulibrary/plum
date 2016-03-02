@@ -58,7 +58,6 @@ gem 'rubocop-rspec', require: false
 
 group :development, :test do
   gem 'simplecov', '~> 0.9', require: false
-  gem 'coveralls', require: false
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'pry-byebug'
   gem 'rspec-rails'
@@ -71,6 +70,7 @@ end
 
 gem 'solr_wrapper', '~> 0.4'
 gem 'fcrepo_wrapper', '~> 0.2'
+gem 'coveralls', require: false
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
