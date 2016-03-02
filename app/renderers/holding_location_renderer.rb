@@ -18,6 +18,6 @@ class HoldingLocationRenderer < CurationConcerns::AttributeRenderer
 
     def location_string(loc)
       "#{loc.label}<br/>Contact at <a href=\"mailto:#{loc.email}\">#{loc.email}</a>,
-                 <a href=\"tel:#{loc.phone}\">#{loc.phone}</a>"
+                 <a href=\"tel:#{loc.phone}\">#{loc.phone}</a>".html_safe
     end
 end
