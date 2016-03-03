@@ -13,7 +13,7 @@ RSpec.feature "ScannedResourcesController", type: :feature do
       expect(page).to_not have_selector("label.label-warning", "Pending")
 
       fill_in 'scanned_resource_title', with: 'Test Title'
-      select 'No Known Copyright', from: 'scanned_resource_rights_statement'
+      expect(page).to have_select 'scanned_resource_rights_statement', selected: 'No Known Copyright'
       click_button 'Create Scanned resource'
 
       expect(page).to have_selector("h1", "Test Title")
