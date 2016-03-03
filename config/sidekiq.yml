@@ -15,3 +15,4 @@ production:
   - import_url
   - resolrize
   - upload_set_update
+  - lowest
