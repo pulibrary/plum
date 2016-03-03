@@ -28,6 +28,10 @@ class CurationConcernsShowPresenter < CurationConcerns::WorkShowPresenter
     HoldingLocationRenderer.new(solr_document.holding_location).render
   end
 
+  def thumbnail_id
+    ordered_ids.first
+  end
+
   private
 
     def logical_order_factory

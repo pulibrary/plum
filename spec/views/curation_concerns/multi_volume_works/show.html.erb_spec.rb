@@ -55,7 +55,7 @@ describe "curation_concerns/multi_volume_works/show.html.erb" do
       expect(rendered).not_to have_selector 'a.btn', text: 'Attach a File'
     end
     it "has thumbnails for its members" do
-      expect(rendered).to have_selector("img[src='/test/bla.jpg']")
+      expect(rendered).to have_selector("img[src='#{IIIFPath.new(file_presenter.id)}/full/!200,150/0/default.jpg']")
     end
     it "has a link to each edit page" do
       expect(rendered).to have_link "test", href: "/concern/container/#{presenter.id}/scanned_resources/#{resource_presenter.id}"

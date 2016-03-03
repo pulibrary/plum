@@ -9,6 +9,10 @@ class IIIFPath
     "#{iiif_url}/#{escaped_path}"
   end
 
+  def thumbnail
+    "#{self}/full/!200,150/0/default.jpg"
+  end
+
   private
 
     def escaped_path

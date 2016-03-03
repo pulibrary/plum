@@ -26,8 +26,8 @@ RSpec.describe "curation_concerns/base/structure" do
   end
 
   def build_file_set(id:, to_s:)
-    i = instance_double(FileSetPresenter, id: id, to_s: to_s)
-    allow(i).to receive(:has?).with("thumbnail_path_ss").and_return(false)
+    i = instance_double(FileSetPresenter, id: id, thumbnail_id: id, to_s: to_s, collection?: false)
+    allow(IIIFPath).to receive(:new).with(id).and_return(double(thumbnail: nil))
     i
   end
   let(:scanned_resource) { ScannedResource.new("test") }
