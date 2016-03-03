@@ -8,32 +8,10 @@ module CommonMetadata
   included do
     before_update :check_state
 
-    property :sort_title, predicate: ::OpaqueMods.titleForSort, multiple: false
-    property :portion_note, predicate: ::RDF::Vocab::SKOS.scopeNote, multiple: false
-    property :description, predicate: ::RDF::DC.abstract, multiple: false
-    property :identifier, predicate: ::RDF::DC.identifier, multiple: false
-    property :rights_statement, predicate: ::RDF::Vocab::EDM.rights, multiple: false do |index|
-      index.as :stored_searchable, :facetable
-    end
-    property :rights_note, predicate: ::RDF::Vocab::DC11.rights, multiple: false do |index|
-      index.as :stored_searchable
-    end
-    property :source_metadata_identifier, predicate: ::PULTerms.metadata_id, multiple: false do |index|
-      index.as :stored_searchable, :symbol
-    end
-    property :source_metadata, predicate: ::PULTerms.source_metadata, multiple: false
-    property :state, predicate: ::F3Access.objState, multiple: false do |index|
-      index.as :stored_searchable, :facetable
-    end
-    property :workflow_note, predicate: ::RDF::Vocab::MODS.note do |index|
-      index.as :stored_searchable, :symbol
-    end
-    property :holding_location, predicate: ::RDF::Vocab::Bibframe.heldBy, multiple: false do |index|
-      index.as :stored_searchable
-    end
-    property :ocr_language, predicate: ::PULTerms.ocr_language do |index|
-      index.as :stored_searchable
-    end
+    # Plum
+    apply_schema PlumSchema, ActiveFedora::SchemaIndexingStrategy.new(
+      ActiveFedora::Indexers::GlobalIndexer.new([:stored_searchable, :facetable, :symbol])
+    )
 
     # IIIF
     apply_schema IIIFBookSchema, ActiveFedora::SchemaIndexingStrategy.new(
