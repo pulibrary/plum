@@ -1,5 +1,5 @@
 class RunOCRJob < ActiveJob::Base
-  queue_as :default
+  queue_as :lowest
 
   def perform(file_set_id)
     file_set = FileSet.find(file_set_id)
