@@ -250,6 +250,15 @@ RSpec.describe PolymorphicManifestBuilder, vcr: { cassette_name: "iiif_manifest"
           ]
         )
       end
+      it "can do authors" do
+        record.author = ["Test Author"]
+        expect(result.metadata.first).to eql(
+          "label" => "Author",
+          "value" => [
+            "Test Author"
+          ]
+        )
+      end
       it "is empty with no metadata" do
         expect(result.metadata).to be_empty
       end

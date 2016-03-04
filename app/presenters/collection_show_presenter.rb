@@ -1,6 +1,10 @@
 class CollectionShowPresenter < CurationConcerns::CollectionPresenter
   include CurationConcerns::Serializers
-  delegate :id, :title, :exhibit_id, to: :solr_document
+  delegate :id, :title, :exhibit_id, to: :solr_document, allow_nil: true
+
+  delegate :title, :description, :creator, :contributor, :subject, :publisher, :language,
+           :embargo_release_date, :lease_expiration_date, :rights, to: :solr_document,
+                                                                   allow_nil: true
 
   def file_presenters
     @file_sets ||= CurationConcerns::PresenterFactory.build_presenters(ordered_ids,
