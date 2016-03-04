@@ -29,7 +29,7 @@ class ManifestBuilder
       end
 
       def thumbnail_size
-        "100,"
+        "!200,150"
       end
   end
 end

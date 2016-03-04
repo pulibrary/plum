@@ -93,7 +93,7 @@ RSpec.describe "curation_concerns/base/file_manager.html.erb" do
   end
 
   it "has thumbnails for each resource" do
-    expect(rendered).to have_selector("img[src='/test/image/path.jpg']")
+    expect(rendered).to have_selector("img[src='#{IIIFPath.new(file_set.id)}/full/!200,150/0/default.jpg']")
   end
 
   it "renders a form for each member" do

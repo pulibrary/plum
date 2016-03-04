@@ -5,4 +5,8 @@ class FileSetPresenter < CurationConcerns::FileSetPresenter
   def label
     nil
   end
+
+  def thumbnail_id
+    id
+  end
 end
