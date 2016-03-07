@@ -5,6 +5,9 @@
   </thead>
   <tbody>
   <%= @presenter.attribute_to_html(:creator, catalog_search_link: true ) %>
+  <% (PlumSchema.display_fields - [:creator]).each do |display_field| %>
+    <%= @presenter.attribute_to_html(display_field) %>
+  <% end %>
   <%= @presenter.attribute_to_html(:date_created) %>
   <tr>
     <th>Access Rights</th>

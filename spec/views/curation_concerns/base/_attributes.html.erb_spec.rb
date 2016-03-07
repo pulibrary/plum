@@ -10,6 +10,7 @@ RSpec.describe "curation_concerns/base/_attributes.html.erb" do
     SolrDocument.new(
       active_fedora_model_ssi: 'ScannedResource',
       creator_tesim: creator,
+      author_tesim: 'Baggins',
       date_created_tesim: date_created,
       rights_statement_tesim: rights_statement,
       workflow_note_tesim: workflow_note
@@ -31,6 +32,10 @@ RSpec.describe "curation_concerns/base/_attributes.html.erb" do
 
   it "displays creator" do
     assert_catalog_link('creator', creator)
+  end
+
+  it "displays metadata in plum schema" do
+    expect(rendered).to have_content 'Baggins'
   end
 
   it "displays the label for the rights URI" do

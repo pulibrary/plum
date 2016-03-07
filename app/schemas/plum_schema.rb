@@ -282,5 +282,12 @@ class PlumSchema < ActiveTriples::Schema
   property :writer_of_supplementary_textual_content, predicate: RDF::Vocab::MARCRelators.wst
   property :writer_of_introduction, predicate: RDF::Vocab::MARCRelators.win
   property :writer_of_preface, predicate: RDF::Vocab::MARCRelators.wpr
+
+  # All of the fields to display when looping through Plum's schema.
+  # Ignore things like admin data (workflow note), title, description, etc, as
+  # those have custom display logic.
+  def self.display_fields
+    ScannedResource.properties.values.map(&:term) - [:description, :state, :rights_statement, :holding_location, :title, :depositor, :source_metadata_identifier, :source_metadata, :date_modified, :date_uploaded, :workflow_note] - IIIFBookSchema.properties.map(&:name)
+  end
 end
 # rubocop:enable Metrics/ClassLength
