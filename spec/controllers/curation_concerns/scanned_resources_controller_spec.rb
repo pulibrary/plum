@@ -330,11 +330,10 @@ describe CurationConcerns::ScannedResourcesController do
     let(:stub) {}
     before do
       sign_in user
-      allow(CharacterizeJob).to receive(:perform_later).once
-      allow(BrowseEverythingIngestJob).to receive(:perform_later).and_return(true) if stub
-      post :browse_everything_files, id: resource.id, selected_files: params["selected_files"]
+      allow(CharacterizeJob).to receive(:perform_later)
     end
     it "appends a new file set" do
+      post :browse_everything_files, id: resource.id, selected_files: params["selected_files"]
       reloaded = resource.reload
       expect(reloaded.file_sets.length).to eq 1
       expect(reloaded.file_sets.first.files.first.mime_type).to eq "image/tiff"
@@ -343,13 +342,19 @@ describe CurationConcerns::ScannedResourcesController do
       expect(reloaded.pending_uploads.length).to eq 0
     end
     context "when the job hasn't run yet" do
-      let(:stub) { true }
       it "creates pending uploads" do
+        allow(BrowseEverythingIngestJob).to receive(:perform_later).and_return(true)
+        post :browse_everything_files, id: resource.id, selected_files: params["selected_files"]
         expect(resource.pending_uploads.length).to eq 1
         pending_upload = resource.pending_uploads.first
         expect(pending_upload.file_name).to eq File.basename(file.path)
         expect(pending_upload.file_path).to eq file.path
         expect(pending_upload.upload_set_id).not_to be_blank
+      end
+      it "doesn't delete the pending upload until after file is in Fedora" do
+        allow(IngestFileJob).to receive(:perform_later).and_return(true)
+        post :browse_everything_files, id: resource.id, selected_files: params["selected_files"]
+        expect(resource.pending_uploads.length).to eq 1
       end
     end
   end

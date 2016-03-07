@@ -10,7 +10,7 @@ class BrowseEverythingIngester
 
   def save
     actor.create_metadata(curation_concern, {})
-    delete_pending_uploads if actor.create_content(decorated_file)
+    actor.create_content(decorated_file)
     cleanup_download
   end
 
@@ -30,10 +30,6 @@ class BrowseEverythingIngester
 
     def downloaded_file_path
       @downloaded_file_path ||= retriever.download(file_info)
-    end
-
-    def delete_pending_uploads
-      curation_concern.pending_uploads.where(file_path: file_path.clean).destroy_all
     end
 
     def cleanup_download
