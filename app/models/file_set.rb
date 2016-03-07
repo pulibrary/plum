@@ -9,6 +9,10 @@ class FileSet < ActiveFedora::Base
 
   validates_with ViewingHintValidator
 
+  def self.image_mime_types
+    []
+  end
+
   def iiif_path
     IIIFPath.new(id).to_s
   end
