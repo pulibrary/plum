@@ -26,17 +26,27 @@
     * Used for publishing create/update/delete events for systems such as 
       [Pomegranate](https://github.com/pulibrary/pomegranate)
 
-## Running the Code
+## Running the Tests
 
-    Setup dependencies and run the test servers in one window:
+Setup dependencies and run the test suite:
 
-    $ bundle install
-    $ rake db:migrate
-    $ rake server:test
+   ```sh
+   $ bundle install
+   $ rake db:migrate
+   $ rake ci
+   ```
 
-    Run the test suite in another window:
+You may also want to run the Fedora and Solr servers in one window with:
 
-    $ rake spec
+   ```sh
+   $ rake server:test
+   ```
+
+And run the test suite in another window:
+
+   ```sh
+   $ rake spec
+   ```
 
 ## Adding an Admin user
 
