@@ -7,6 +7,7 @@ class ManifestBuilder
 
     def apply(manifest)
       manifest.metadata = metadata_objects
+      manifest
     end
 
     private

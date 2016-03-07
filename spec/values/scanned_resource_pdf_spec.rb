@@ -7,6 +7,9 @@ RSpec.describe ScannedResourcePDF, vcr: { cassette_name: "iiif_manifest" } do
     r.ordered_members << file_set
     r.ordered_members << file_set2
     r.logical_order.order = order
+    r.title = ["Leonardo's Book"]
+    r.description = "All about Leonardo."
+    r.author = ["Leonardo"]
     solr.add r.to_solr
     solr.add r.list_source.to_solr
     solr.commit
@@ -52,6 +55,9 @@ RSpec.describe ScannedResourcePDF, vcr: { cassette_name: "iiif_manifest" } do
       expect(pdf_reader.page_count).to eq 3 # Including cover page
       expect(pdf_reader.pages.first.orientation).to eq "portrait"
       expect(pdf_reader.pages.last.orientation).to eq "landscape"
+      expect(pdf_reader.info[:Author]).to eq "Leonardo"
+      expect(pdf_reader.info[:Title]).to eq "Leonardo's Book"
+      expect(pdf_reader.info[:Description]).to eq "All about Leonardo."
     end
     it "doesn't re-render if it exists already" do
       allow(File).to receive(:exist?).and_call_original
