@@ -52,7 +52,27 @@ class ScannedResourcePDF
         if canvas_downloaders.first
           default_options[:page_layout] = canvas_downloaders.first.layout
         end
-        default_options
+        default_options.merge(metadata)
+      end
+
+      def metadata
+        {
+          info: metadata_hash
+        }
+      end
+
+      def metadata_hash
+        result =
+          manifest_metadata.each_with_object({}) do |entry, hsh|
+            hsh[entry["label"].to_sym] = Array(entry["value"]).join(", ")
+          end
+        result[:Title] = Array(scanned_resource.title).join(", ") if scanned_resource.title
+        result[:Description] = Array(scanned_resource.description).join(", ") if scanned_resource.description
+        result
+      end
+
+      def manifest_metadata
+        @manifest_metadata ||= ManifestBuilder::MetadataBuilder.new(scanned_resource).apply(IIIF::Presentation::Manifest.new).metadata
       end
   end
 end
