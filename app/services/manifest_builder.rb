@@ -42,7 +42,8 @@ class ManifestBuilder
           manifest_builders,
           pdf_link_builder,
           metadata_builder,
-          thumbnail_builder
+          thumbnail_builder,
+          see_also_builder
         )
     end
 
@@ -64,6 +65,10 @@ class ManifestBuilder
 
     def sequence_builder
       SequenceBuilder.new(root_path, canvas_builders)
+    end
+
+    def see_also_builder
+      SeeAlsoBuilder.new(record)
     end
 
     def manifest_builder_class

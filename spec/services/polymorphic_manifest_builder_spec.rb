@@ -229,6 +229,7 @@ RSpec.describe PolymorphicManifestBuilder, vcr: { cassette_name: "iiif_manifest"
 
   describe "#manifest" do
     let(:result) { subject.manifest }
+    let(:json_result) { JSON.parse(result.to_json) }
     xit "should have a good JSON-LD result" do
     end
     it "has a label" do
@@ -239,6 +240,18 @@ RSpec.describe PolymorphicManifestBuilder, vcr: { cassette_name: "iiif_manifest"
     end
     it "has a description" do
       expect(result.description).to eq record.description
+    end
+    context "when it has a bibdata ID" do
+      it "links to seeAlso" do
+        expect(json_result["seeAlso"]["@id"]).to eq "https://bibdata.princeton.edu/bibliographic/1234567/jsonld"
+        expect(json_result["seeAlso"]["format"]).to eq "application/ld+json"
+      end
+    end
+    context "when it has no bibdata id" do
+      let(:record) { FactoryGirl.build(:scanned_resource, source_metadata_identifier: nil) }
+      it "doesn't do seeAlso" do
+        expect(json_result["seeAlso"]).to be_blank
+      end
     end
     describe "metadata" do
       it "has a creator" do
