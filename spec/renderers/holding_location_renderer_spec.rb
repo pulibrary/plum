@@ -8,7 +8,8 @@ RSpec.describe HoldingLocationRenderer do
       phone_number: "123-456-7890",
       contact_email: "ex@example.org",
       url: "https://bibdata.princeton.edu/locations/delivery_locations/1.json",
-      id: "https://bibdata.princeton.edu/locations/delivery_locations/1"
+      id: "https://bibdata.princeton.edu/locations/delivery_locations/1",
+      address: "Forrestal Campus Princeton, NJ 08544"
     }
   }
   let(:rendered) { described_class.new(uri).render }
@@ -22,6 +23,7 @@ RSpec.describe HoldingLocationRenderer do
       expect(rendered).to include('Sample')
       expect(rendered).to include('ex@example.org')
       expect(rendered).to include('123-456-7890')
+      expect(rendered).to include('Forrestal Campus')
     end
   end
 end

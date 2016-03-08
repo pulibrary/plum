@@ -26,5 +26,9 @@ module HoldingLocationService
     def phone
       @holding_location['phone_number']
     end
+
+    def address
+      @holding_location['address']
+    end
   end
 end
