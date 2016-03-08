@@ -68,7 +68,7 @@ group :development, :test do
   gem 'pry-rails'
 end
 
-gem 'solr_wrapper', '~> 0.4'
+gem 'solr_wrapper', '~> 0.5.1'
 gem 'fcrepo_wrapper', '~> 0.2'
 gem 'coveralls', require: false
 
@@ -103,7 +103,6 @@ gem 'browse-everything', github: 'projecthydra-labs/browse-everything', branch: 
 gem 'aasm'
 gem 'newrelic_rpm'
 gem 'iso-639'
-gem 'jettywrapper'
 gem 'bunny'
 source 'https://rails-assets.org' do
   gem 'rails-assets-babel-polyfill'
