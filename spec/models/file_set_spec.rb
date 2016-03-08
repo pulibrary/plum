@@ -25,7 +25,17 @@ RSpec.describe FileSet do
 
   describe "#create_derivatives" do
     let(:path) { Pathname.new(PairtreeDerivativePath.derivative_path_for_reference(subject, 'intermediate_file')) }
+    let(:thumbnail_path) { Pathname.new(PairtreeDerivativePath.derivative_path_for_reference(subject, 'thumbnail')) }
     let(:ocr_path) { Pathname.new(PairtreeDerivativePath.derivative_path_for_reference(subject, 'ocr')) }
+    it "doesn't create a thumbnail" do
+      subject.mime_type = "image/tiff"
+      allow_any_instance_of(described_class).to receive(:warn) # suppress virus check warnings
+      file = File.open(Rails.root.join("spec", "fixtures", "files", "color.tif"))
+      Hydra::Works::UploadFileToFileSet.call(subject, file)
+      subject.create_derivatives(file.path)
+
+      expect(thumbnail_path).not_to exist
+    end
     it "creates a JP2" do
       allow_any_instance_of(described_class).to receive(:warn) # suppress virus check warnings
       file = File.open(Rails.root.join("spec", "fixtures", "files", "color.tif"))
