@@ -6,7 +6,8 @@ RSpec.describe SolrDocument do
   let(:date_created) { "2015-09-02" }
   let(:document_hash) do
     {
-      date_created_tesim: date_created
+      date_created_tesim: date_created,
+      language_tesim: ['eng']
     }
   end
 
@@ -19,6 +20,14 @@ RSpec.describe SolrDocument do
   describe "#logical_order" do
     it "is an empty hash by default" do
       expect(subject.logical_order).to eq({})
+    end
+  end
+
+  describe '#ocr_langage' do
+    it 'defaults to language if not present' do
+      expect(subject['ocr_language_tesim']).to be nil
+      expect(subject.language).to eq(['eng'])
+      expect(subject.ocr_language).to eq(['eng'])
     end
   end
 end

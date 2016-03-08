@@ -74,8 +74,14 @@ class SolrDocument
     self[Solrizer.solr_name('holding_location')]
   end
 
+  def language
+    self[Solrizer.solr_name('language')]
+  end
+
   def ocr_language
-    self[Solrizer.solr_name('ocr_language')]
+    ocr_lang = self[Solrizer.solr_name('ocr_language')]
+    return ocr_lang unless ocr_lang.nil?
+    return language if language && Tesseract.languages.keys.include?(language.first.to_sym)
   end
 
   def thumbnail_id
