@@ -55,12 +55,12 @@ gem 'active-fedora', github: 'projecthydra/active_fedora', branch: 'master'
 
 gem 'rubocop', require: false
 gem 'rubocop-rspec', require: false
+gem 'rspec-rails'
 
 group :development, :test do
   gem 'simplecov', '~> 0.9', require: false
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'pry-byebug'
-  gem 'rspec-rails'
   gem "factory_girl_rails"
   gem 'jasmine-rails'
   gem 'jasmine-jquery-rails'
