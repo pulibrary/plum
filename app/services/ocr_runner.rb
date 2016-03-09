@@ -34,8 +34,10 @@ class OCRRunner
     end
 
     def language
-      if parent.try(:ocr_language).blank?
+      if parent.try(:ocr_language).blank? && parent.try(:language).blank?
         "eng"
+      elsif parent.try(:ocr_language).blank?
+        parent.try(:language).join("+")
       else
         parent.try(:ocr_language).join("+")
       end
