@@ -78,6 +78,10 @@ class SolrDocument
     self[Solrizer.solr_name('ocr_language')]
   end
 
+  def thumbnail_id
+    Array(self[Solrizer.solr_name('hasRelatedImage', :symbol)]).first
+  end
+
   def method_missing(meth_name, *args, &block)
     if ScannedResource.properties.values.map(&:term).include?(meth_name)
       self[Solrizer.solr_name(meth_name.to_s)]

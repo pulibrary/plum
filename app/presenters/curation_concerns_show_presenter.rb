@@ -1,5 +1,5 @@
 class CurationConcernsShowPresenter < CurationConcerns::WorkShowPresenter
-  delegate :date_created, :viewing_hint, :viewing_direction, :state, :type, :identifier, :workflow_note, :logical_order, :logical_order_object, :ocr_language, to: :solr_document
+  delegate :date_created, :viewing_hint, :viewing_direction, :state, :type, :identifier, :workflow_note, :logical_order, :logical_order_object, :ocr_language, :thumbnail_id, to: :solr_document
   delegate :flaggable?, to: :state_badge_instance
   delegate(*ScannedResource.properties.values.map(&:term), to: :solr_document, allow_nil: true)
 
@@ -27,10 +27,6 @@ class CurationConcernsShowPresenter < CurationConcerns::WorkShowPresenter
 
   def holding_location
     HoldingLocationRenderer.new(solr_document.holding_location).render
-  end
-
-  def thumbnail_id
-    ordered_ids.first
   end
 
   private
