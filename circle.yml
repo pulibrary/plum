@@ -11,6 +11,8 @@ dependencies:
     - tesseract
   pre:
     - npm install -g eslint
+    - bundle install --without development test --path vendor/staging && bundle exec rake rubocop
+    - bundle install --without development --deployment
   post:
     - sudo apt-get install libmagickwand-dev imagemagick redis-server
     - sudo /etc/init.d/redis-server start

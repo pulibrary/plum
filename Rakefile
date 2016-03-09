@@ -5,7 +5,6 @@ require 'rubocop/rake_task'
 require 'solr_wrapper'
 require 'fcrepo_wrapper'
 require 'coveralls/rake/task'
-require 'rspec/core/rake_task'
 
 Coveralls::RakeTask.new
 
