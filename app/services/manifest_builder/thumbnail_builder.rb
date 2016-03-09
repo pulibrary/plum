@@ -7,25 +7,30 @@ class ManifestBuilder
     end
 
     def apply(manifest)
-      return unless first_canvas
+      return unless thumbnail_canvas
       manifest["thumbnail"] = {
         "@id" => thumbnail_id,
-        "service" => image_service
+        "service" => thumbnail_service
       }
     end
 
     private
 
-      def image_service
-        @image_service ||= first_canvas.images.first["resource"]["service"]
+      def thumbnail_service
+        @thumbnail_service ||= thumbnail_canvas.images.first["resource"]["service"]
       end
 
-      def first_canvas
-        canvas_builders.canvas.first
+      def thumbnail_canvas
+        selected_thumbnail_canvas || canvas_builders.canvas.first
+      end
+
+      def selected_thumbnail_canvas
+        return nil unless record.try(:thumbnail_id)
+        canvas_builders.canvas.find { |c| c['@id'].ends_with?(record.thumbnail_id) }
       end
 
       def thumbnail_id
-        "#{image_service['@id']}/full/#{thumbnail_size}/0/default.jpg"
+        "#{thumbnail_service['@id']}/full/#{thumbnail_size}/0/default.jpg"
       end
 
       def thumbnail_size

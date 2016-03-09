@@ -132,6 +132,7 @@ RSpec.describe PolymorphicManifestBuilder, vcr: { cassette_name: "iiif_manifest"
       before do
         record.ordered_members << file_set2
         record.ordered_member_proxies.insert_target_at(0, file_set)
+        record.thumbnail = file_set2
         record.logical_order.order = {
           "nodes": [
             {
@@ -165,12 +166,12 @@ RSpec.describe PolymorphicManifestBuilder, vcr: { cassette_name: "iiif_manifest"
       it "has a label" do
         expect(first_canvas.label).to eq file_set.to_s
       end
-      it "uses the first one as a thumbnail" do
+      it "uses the selected fileset as a thumbnail" do
         expect(manifest_json["thumbnail"]).to eq(
-          "@id" => "http://192.168.99.100:5004/x6%2F33%2Ff1%2F04%2Fm-intermediate_file.jp2/full/!200,150/0/default.jpg",
+          "@id" => "http://192.168.99.100:5004/x6%2F33%2Ff1%2F04%2Fn-intermediate_file.jp2/full/!200,150/0/default.jpg",
           "service" => {
             "@context" => "http://iiif.io/api/image/2/context.json",
-            "@id" => "http://192.168.99.100:5004/x6%2F33%2Ff1%2F04%2Fm-intermediate_file.jp2",
+            "@id" => "http://192.168.99.100:5004/x6%2F33%2Ff1%2F04%2Fn-intermediate_file.jp2",
             "profile" => "http://iiif.io/api/image/2/level2.json"
           }
         )
