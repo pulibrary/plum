@@ -107,4 +107,5 @@ gem 'bunny'
 source 'https://rails-assets.org' do
   gem 'rails-assets-babel-polyfill'
   gem 'rails-assets-bootstrap-select', '1.9.4'
+  gem 'rails-assets-jqueryui-timepicker-addon'
 end

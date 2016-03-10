@@ -15,6 +15,9 @@
 //= require jquery_ujs
 //= require jquery-ui/sortable
 //= require jquery-ui/selectable
+//= require jquery-ui/slider
+//= require jquery-ui/datepicker
+//= require jqueryui-timepicker-addon
 // Required by Blacklight
 //= require blacklight/blacklight
 //= require browse_everything

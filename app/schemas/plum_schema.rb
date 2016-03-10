@@ -12,6 +12,7 @@ class PlumSchema < ActiveTriples::Schema
   property :workflow_note, predicate: ::RDF::Vocab::MODS.note
   property :holding_location, predicate: ::RDF::Vocab::Bibframe.heldBy, multiple: false
   property :ocr_language, predicate: ::PULTerms.ocr_language
+  property :nav_date, predicate: ::RDF::URI("http://iiif.io/api/presentation/2#navDate"), multiple: false
 
   # Generated from Context
   property :coverage, predicate: RDF::DC11.coverage
@@ -287,7 +288,7 @@ class PlumSchema < ActiveTriples::Schema
   # Ignore things like admin data (workflow note), title, description, etc, as
   # those have custom display logic.
   def self.display_fields
-    ScannedResource.properties.values.map(&:term) - [:description, :state, :rights_statement, :holding_location, :title, :depositor, :source_metadata_identifier, :source_metadata, :date_modified, :date_uploaded, :workflow_note] - IIIFBookSchema.properties.map(&:name)
+    ScannedResource.properties.values.map(&:term) - [:description, :state, :rights_statement, :holding_location, :title, :depositor, :source_metadata_identifier, :source_metadata, :date_modified, :date_uploaded, :workflow_note, :nav_date] - IIIFBookSchema.properties.map(&:name)
   end
 end
 # rubocop:enable Metrics/ClassLength

@@ -13,6 +13,9 @@
  *= require normalize
  *= require iiifOsdViewer
  *= require openseadragon
+ *= require jquery-ui/datepicker
+ *= require jquery-ui/slider
+ *= require jqueryui-timepicker-addon
  *= require_self
  */
 
@@ -38,6 +41,7 @@
 @import "components/sorting";
 @import "components/plum_file_manager";
 @import "components/fileupload";
+@import "components/datepicker";
 @import "jquery-ui/sortable";
 @import "jquery-ui/selectable";
 @import "browse_everything";
