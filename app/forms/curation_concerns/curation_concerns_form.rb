@@ -1,6 +1,6 @@
 module CurationConcerns
   class CurationConcernsForm < CurationConcerns::Forms::WorkForm
-    self.terms += [:holding_location, :rights_statement, :rights_note, :source_metadata_identifier, :portion_note, :description, :state, :workflow_note, :collection_ids, :ocr_language]
+    self.terms += [:holding_location, :rights_statement, :rights_note, :source_metadata_identifier, :portion_note, :description, :state, :workflow_note, :collection_ids, :ocr_language, :nav_date]
 
     def notable_rights_statement?
       RightsStatementService.notable?(model.rights_statement)

@@ -557,6 +557,7 @@ GEM
     rails-assets-bootstrap-select (1.9.4)
       rails-assets-jquery (>= 1.8)
     rails-assets-jquery (2.2.0)
+    rails-assets-jqueryui-timepicker-addon (1.6.1)
     rails-deprecated_sanitizer (1.0.3)
       activesupport (>= 4.2.0.alpha)
     rails-dom-testing (1.0.7)
@@ -849,6 +850,7 @@ DEPENDENCIES
   rails (= 4.2.4)
   rails-assets-babel-polyfill!
   rails-assets-bootstrap-select (= 1.9.4)!
+  rails-assets-jqueryui-timepicker-addon!
   rsolr (~> 1.0.6)
   rspec-rails
   rubocop
