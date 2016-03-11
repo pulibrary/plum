@@ -1,0 +1,2 @@
+module VoyagerUpdater
+end
