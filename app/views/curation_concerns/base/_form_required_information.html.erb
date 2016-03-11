@@ -1,6 +1,6 @@
 <fieldset class="required">
   <legend>Required Information</legend>
-  <%= f.input :source_metadata_identifier, label: 'Source Metadata ID', input_html: { class: 'mutex' } %>
+  <%= f.input :source_metadata_identifier, label: 'Source Metadata ID', input_html: { class: 'mutex detect_duplicates' } %>
   <%= check_box_tag :refresh_remote_metadata, 1, false %>
   <label for="refresh_metadata">Refresh metadata from PULFA/Voyager</label>
 </fieldset>
