@@ -17,7 +17,7 @@ class Ability
 
   # Abilities that should be granted to technicians
   def image_editor_permissions
-    can [:create, :read, :edit, :update, :publish], curation_concerns
+    can [:create, :read, :edit, :update, :publish, :token], curation_concerns
     can [:file_manager, :save_structure], ScannedResource
     can [:file_manager, :save_structure], MultiVolumeWork
     can [:create, :read, :edit, :update, :publish, :download], FileSet
@@ -35,7 +35,7 @@ class Ability
   end
 
   def editor_permissions
-    can [:read, :edit, :update], curation_concerns
+    can [:read, :edit, :update, :token], curation_concerns
     can [:file_manager, :save_structure], ScannedResource
     can [:read, :edit, :update], FileSet
     can [:read, :edit, :update], Collection
@@ -45,13 +45,13 @@ class Ability
   end
 
   def fulfiller_permissions
-    can [:read], curation_concerns
+    can [:read, :token], curation_concerns
     can [:read, :download], FileSet
     can [:read], Collection
   end
 
   def curator_permissions
-    can [:read], curation_concerns
+    can [:read, :token], curation_concerns
     can [:read], FileSet
     can [:read], Collection
 
@@ -62,7 +62,7 @@ class Ability
   # Abilities that should be granted to patron
   def campus_patron_permissions
     anonymous_permissions
-    can [:flag], curation_concerns
+    can [:flag, :token], curation_concerns
   end
 
   def anonymous_permissions

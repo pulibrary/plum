@@ -19,9 +19,23 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
+  def current_user
+    return super unless super.nil?
+    return nil unless authorization_header.start_with?('Bearer')
+    TokenService.user_from_token(decryption_key, authorization_header.gsub(/Bearer /, ''))
+  end
+
   private
 
     def vary_header
       response.headers["Vary"] = "Accept"
+    end
+
+    def decryption_key
+      @description_key ||= Rails.application.secrets.secret_key_base
+    end
+
+    def authorization_header
+      request.headers['Authorization'] || ''
     end
 end

@@ -36,6 +36,7 @@ defaults: &defaults
   events:
     server: 'amqp://localhost:5672'
     exchange: 'plum_events'
+  token_expiration: 3600
 
 development:
   <<: *defaults
