@@ -1,5 +1,12 @@
 *[data-action='file-manager'] {
   @extend .clearfix;
+  ul {
+    &.grid li {
+      .edit_scanned_resource {
+        margin-bottom: 114px;
+      }
+    }
+  }
 }
 #file-manager-extra-tools {
   @extend .clearfix;
