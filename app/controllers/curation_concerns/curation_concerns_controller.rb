@@ -5,7 +5,6 @@ class CurationConcerns::CurationConcernsController < ApplicationController
   include CurationConcerns::MemberManagement
   include CurationConcerns::UpdateOCR
   include CurationConcerns::RemoteMetadata
-  include CurationConcerns::DefaultFormValues
 
   def curation_concern_name
     curation_concern.class.name.underscore

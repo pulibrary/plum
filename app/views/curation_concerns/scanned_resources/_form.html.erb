@@ -1,6 +1,6 @@
 <% options = { wrapper_mappings: { multifile: :horizontal_file_input } }
    options[:url] = main_app.curation_concerns_member_scanned_resource_index_path(parent_id: params[:parent_id]) if params[:parent_id] %>
-<%= simple_form_for [main_app, curation_concern], options do |f| %>
+<%= simple_form_for [main_app, @form], options do |f| %>
   <% if f.error_notification -%>
     <div class="alert alert-danger fade in">
       <strong>Wait don't go!</strong> There was a problem with your submission. Please review the errors below:
