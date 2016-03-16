@@ -21,5 +21,16 @@ RSpec.describe VoyagerUpdater::EventStream, vcr: { cassette_name: 'voyager_dump'
       expect(s.reload.title).to eq ["Coda"]
       expect(manifest_event_generator).to have_received(:record_updated).with(s)
     end
+
+    it "logs errors" do
+      logger = spy('logger')
+      allow(Rails).to receive(:logger).and_return(logger)
+      s = FactoryGirl.create(:scanned_resource, source_metadata_identifier: "359850")
+      allow(ManifestEventGenerator).to receive(:new).and_return(nil)
+      subject.process!
+
+      expect(logger).to have_received(:info).with("Processing updates for IDs: #{s.id}")
+      expect(logger).to have_received(:info).with("Unable to process changed Voyager record #{s.id}")
+    end
   end
 end
