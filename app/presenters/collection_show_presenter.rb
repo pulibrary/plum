@@ -1,6 +1,6 @@
 class CollectionShowPresenter < CurationConcerns::CollectionPresenter
   include CurationConcerns::Serializers
-  delegate :id, :title, :exhibit_id, to: :solr_document, allow_nil: true
+  delegate :id, :title, :exhibit_id, :date_created, to: :solr_document, allow_nil: true
 
   delegate :title, :description, :creator, :contributor, :subject, :publisher, :language,
            :embargo_release_date, :lease_expiration_date, :rights, to: :solr_document,
