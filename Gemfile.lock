@@ -28,30 +28,32 @@ GIT
 
 GIT
   remote: git://github.com/projecthydra-labs/curation_concerns.git
-  revision: f21f2e2071824850fddcc6aedd65c5fb1646e03a
+  revision: 2357ad4f43db1aa987e59fc787b2fbbd76fedc7d
   branch: master
   specs:
-    curation_concerns (0.9.0)
+    curation_concerns (0.10.0)
       blacklight (~> 6.0)
       blacklight_advanced_search (~> 6.0)
       breadcrumbs_on_rails (~> 2.3)
-      curation_concerns-models (= 0.9.0)
+      curation_concerns-models (= 0.10.0)
       hydra-editor (~> 1.1)
       hydra-head (~> 9.6)
       jquery-ui-rails
+      kaminari_route_prefix (~> 0.0.1)
       rails_autolink
       simple_form (~> 3.1)
       sprockets-es6
-    curation_concerns-models (0.9.0)
+    curation_concerns-models (0.10.0)
       active_attr
       active_fedora-noid (~> 1.0)
-      hydra-collections (~> 8.0)
+      hydra-collections (~> 8.1)
       hydra-head (~> 9.3)
       hydra-works (~> 0.7)
       qa (~> 0.5)
       redlock (~> 0.1.2)
       resque (~> 1.23)
       resque-pool (~> 0.3)
+      solrizer (~> 3.4)
 
 GIT
   remote: git://github.com/projecthydra-labs/hydra-pcdm.git
@@ -91,10 +93,10 @@ GIT
 
 GIT
   remote: git://github.com/projecthydra/hydra-collections.git
-  revision: e3a2dc2189eb672681de8fa6947fb35de969fd38
+  revision: bb1b1647e38ae65047d991a27017cd31d714fdcc
   branch: master
   specs:
-    hydra-collections (8.0.0)
+    hydra-collections (8.1.1)
       active-fedora (~> 9.9)
       blacklight (~> 6.0)
       deprecation (~> 0.1)
@@ -428,6 +430,8 @@ GEM
     kaminari (0.16.3)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
+    kaminari_route_prefix (0.0.1)
+      kaminari (>= 0.16, < 2)
     launchy (2.4.3)
       addressable (~> 2.3)
     ldp (0.4.1)
@@ -634,7 +638,7 @@ GEM
       redis (~> 3, >= 3.0.5)
     responders (2.1.0)
       railties (>= 4.2.0, < 5)
-    resque (1.25.2)
+    resque (1.26.0)
       mono_logger (~> 1.0)
       multi_json (~> 1.0)
       redis-namespace (~> 1.3)
@@ -726,7 +730,7 @@ GEM
     solr_wrapper (0.5.1)
       ruby-progressbar
       rubyzip
-    solrizer (3.3.0)
+    solrizer (3.4.0)
       activesupport
       daemons
       nokogiri
@@ -760,7 +764,7 @@ GEM
       colorize (>= 0.7.0)
       net-scp (>= 1.1.2)
       net-ssh (>= 2.8.0)
-    stomp (1.3.4)
+    stomp (1.3.5)
     sxp (0.1.5)
     term-ansicolor (1.3.2)
       tins (~> 1.0)
