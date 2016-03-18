@@ -4,6 +4,7 @@ class PlumSchema < ActiveTriples::Schema
   property :portion_note, predicate: ::RDF::Vocab::SKOS.scopeNote, multiple: false
   property :description, predicate: ::RDF::DC.abstract, multiple: false
   property :identifier, predicate: ::RDF::DC.identifier, multiple: false
+  property :replaces, predicate: ::RDF::DC.replaces, multiple: false
   property :rights_statement, predicate: ::RDF::Vocab::EDM.rights, multiple: false
   property :rights_note, predicate: ::RDF::Vocab::DC11.rights, multiple: false
   property :source_metadata_identifier, predicate: ::PULTerms.metadata_id, multiple: false
