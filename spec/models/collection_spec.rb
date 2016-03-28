@@ -16,8 +16,14 @@ RSpec.describe Collection do
       subject.apply_depositor_metadata 'bar'
       subject.save!
 
-      described_class.create exhibit_id: 'foo'
-      expect(subject.valid?).to be false
+      result = described_class.create exhibit_id: 'foo'
+      expect(result.valid?).to be false
+    end
+
+    it "can be saved twice" do
+      subject.apply_depositor_metadata 'bar'
+      subject.save!
+      subject.save!
     end
 
     it "must not be nil" do

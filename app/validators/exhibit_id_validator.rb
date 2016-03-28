@@ -1,5 +1,11 @@
 class ExhibitIdValidator < ActiveModel::Validator
-  delegate :validate, to: :exclusion_validator
+  def validate(record)
+    if record.exhibit_id_changed?
+      exclusion_validator.validate(record)
+    else
+      true
+    end
+  end
 
   private
 
@@ -11,8 +17,8 @@ class ExhibitIdValidator < ActiveModel::Validator
     end
 
     def existing_exhibit_ids
-      opts = { raw: true, rows: 0, facet: true, 'facet.field': 'exhibit_id_tesim' }
-      response = ActiveFedora::SolrService.query '*:*', opts
+      opts = { rows: 0, facet: true, 'facet.field': 'exhibit_id_tesim' }
+      response = ActiveFedora::SolrService.get '*:*', opts
       exhibit_counts = response['facet_counts']['facet_fields']['exhibit_id_tesim']
       exhibit_counts.select.with_index { |_value, index| index.even? }
     end
