@@ -51,7 +51,7 @@ gem 'hydra-works', github: 'projecthydra-labs/hydra-works', branch: 'master'
 gem 'hydra-pcdm', github: 'projecthydra-labs/hydra-pcdm', branch: 'master'
 gem 'activefedora-aggregation', github: 'projecthydra-labs/activefedora-aggregation', branch: 'master'
 gem 'hydra-derivatives', github: 'projecthydra/hydra-derivatives', branch: 'master'
-gem 'active-fedora', github: 'projecthydra/active_fedora', branch: 'master'
+gem 'active-fedora'
 
 gem 'rubocop', require: false
 gem 'rubocop-rspec', require: false
@@ -99,7 +99,7 @@ gem "omniauth-cas"
 gem 'ezid-client'
 gem 'sprockets-es6'
 gem 'sprockets-rails', '~> 2.3.3'
-gem 'browse-everything', github: 'projecthydra-labs/browse-everything', branch: 'bootstrap-sprockets'
+gem 'browse-everything', github: 'projecthydra-labs/browse-everything'
 gem 'aasm'
 gem 'newrelic_rpm'
 gem 'iso-639'
