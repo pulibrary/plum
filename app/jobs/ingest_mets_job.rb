@@ -5,30 +5,64 @@ class IngestMETSJob < ActiveJob::Base
   # @param [String] user User to ingest as
   def perform(mets_file, user)
     logger.info "Ingesting METS #{mets_file}"
-    mets = METSDocument.new mets_file
+    @mets = METSDocument.new mets_file
+    @user = user
 
-    r = ScannedResource.new
-    r.identifier = mets.ark_id
-    r.replaces = mets.pudl_id
-    r.source_metadata_identifier = mets.bib_id
-    r.apply_depositor_metadata user
-    r.rights_statement = 'http://rightsstatements.org/vocab/NKC/1.0/'
-    r.viewing_direction = mets.viewing_direction
-    r.apply_remote_metadata
-    r.save!
-    logger.info "Created ScannedResource: #{r.id}"
+    ingest
+  end
 
-    mets.files.each do |f|
-      logger.info "Ingesting file #{f[:path]}"
-      file_set = FileSet.new
-      actor = ::CurationConcerns::FileSetActor.new(file_set, user)
-      actor.create_metadata(r, mets.file_opts(f))
-      actor.create_content(mets.decorated_file(f))
+  private
 
-      if f[:path] == mets.thumbnail_path
-        r.thumbnail_id = file_set.id
-        r.save!
+    def ingest
+      resource = minimal_record(@mets.multi_volume? ? MultiVolumeWork : ScannedResource)
+      resource.identifier = @mets.ark_id
+      resource.replaces = @mets.pudl_id
+      resource.source_metadata_identifier = @mets.bib_id
+      resource.apply_remote_metadata
+      resource.save!
+      logger.info "Created #{resource.class}: #{resource.id}"
+
+      if @mets.multi_volume?
+        ingest_volumes(resource)
+      else
+        ingest_files(resource: resource, files: @mets.files)
       end
     end
-  end
+
+    def ingest_files(parent: nil, resource: nil, files: [])
+      files.each do |f|
+        logger.info "Ingesting file #{f[:path]}"
+        file_set = FileSet.new
+        actor = ::CurationConcerns::FileSetActor.new(file_set, @user)
+        actor.create_metadata(resource, @mets.file_opts(f))
+        actor.create_content(@mets.decorated_file(f))
+
+        next unless f[:path] == @mets.thumbnail_path
+        resource.thumbnail_id = file_set.id
+        resource.save!
+        parent.thumbnail_id = file_set.id if parent
+      end
+    end
+
+    def ingest_volumes(parent)
+      @mets.volume_ids.each do |volume_id|
+        r = minimal_record(ScannedResource)
+        r.title = [@mets.label_for_volume(volume_id)]
+        r.save!
+        logger.info "Created ScannedResource: #{r.id}"
+
+        ingest_files(parent: parent, resource: r, files: @mets.files_for_volume(volume_id))
+
+        parent.ordered_members << r
+        parent.save!
+      end
+    end
+
+    def minimal_record(klass)
+      resource = klass.new
+      resource.viewing_direction = @mets.viewing_direction
+      resource.rights_statement = 'http://rightsstatements.org/vocab/NKC/1.0/'
+      resource.apply_depositor_metadata @user
+      resource
+    end
 end
