@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe METSDocument do
   let(:mets_file) { Rails.root.join("spec", "fixtures", "pudl0001-4612596.mets") }
   let(:mets_file_rtl) { Rails.root.join("spec", "fixtures", "pudl0032-ns73.mets") }
+  let(:mets_file_multi) { Rails.root.join("spec", "fixtures", "pudl0001-4609321-s42.mets") }
   let(:tiff_file) { Rails.root.join("spec", "fixtures", "files", "color.tif") }
 
   describe "identifiers" do
@@ -67,6 +68,40 @@ RSpec.describe METSDocument do
       end
       it "has a right-to-left viewing direction" do
         expect(subject.viewing_direction).to eq('right-to-left')
+      end
+    end
+  end
+
+  describe "multi-volume" do
+    context "a single-volume mets file" do
+      subject { described_class.new mets_file }
+
+      it "is not multi-volume" do
+        expect(subject.multi_volume?).to be false
+      end
+
+      it "has no volume ids" do
+        expect(subject.volume_ids).to eq []
+      end
+    end
+
+    context "a multi-volume mets file" do
+      subject { described_class.new mets_file_multi }
+
+      it "is multi-volume" do
+        expect(subject.multi_volume?).to be true
+      end
+
+      it "has volume ids" do
+        expect(subject.volume_ids).to eq ['phys1', 'phys2']
+      end
+
+      it "has volume labels" do
+        expect(subject.label_for_volume('phys1')).to eq 'first volume'
+      end
+
+      it "has volume file lists" do
+        expect(subject.files_for_volume('phys1').length).to eq 3
       end
     end
   end
