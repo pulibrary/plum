@@ -12,4 +12,3 @@ task ingest_mets: :environment do
     IngestMETSJob.perform_now(file, user)
   end
 end
-

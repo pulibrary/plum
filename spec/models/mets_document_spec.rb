@@ -5,6 +5,22 @@ RSpec.describe METSDocument do
   let(:mets_file_rtl) { Rails.root.join("spec", "fixtures", "pudl0032-ns73.mets") }
   let(:mets_file_multi) { Rails.root.join("spec", "fixtures", "pudl0001-4609321-s42.mets") }
   let(:tiff_file) { Rails.root.join("spec", "fixtures", "files", "color.tif") }
+  let(:structure) { { nodes: [{ label: 'recto', proxy: 'pkc90' }] } }
+  let(:structure_phys1) { {
+    nodes: [{
+      label: "upper cover", nodes: [{
+        label: "upper cover. cover", proxy: "gylme"
+      }, {
+        label: "upper cover. pastedown", proxy: "l898s"
+      }]
+    }, {
+      label: "gathering 1", nodes: [{
+        label: "leaf 1, gathering 1/1", nodes: [{
+          label: "gathering 1. leaf 1, gathering 1/1. recto", proxy: "itc6o"
+        }]
+      }]
+    }]
+  }}
 
   describe "identifiers" do
     subject { described_class.new mets_file }
@@ -19,6 +35,10 @@ RSpec.describe METSDocument do
 
     it "has a pudl id" do
       expect(subject.pudl_id).to eq('pudl0001/4612596')
+    end
+
+    it "has structure" do
+      expect(subject.structure).to eq(structure)
     end
   end
 
@@ -102,6 +122,10 @@ RSpec.describe METSDocument do
 
       it "has volume file lists" do
         expect(subject.files_for_volume('phys1').length).to eq 3
+      end
+
+      it "has volume structure" do
+        expect(subject.structure_for_volume('phys1')).to eq(structure_phys1)
       end
     end
   end
