@@ -38,7 +38,10 @@ class CanvasBuilder
       iiif_path = IIIFPath.new(record.id)
       image = IIIF::Presentation::ImageResource.create_image_api_image_resource(
         service_id: iiif_path.to_s,
-        format: 'image/jpeg'
+        format: 'image/jpeg',
+        profile: 'http://iiif.io/api/image/2/level2.json',
+        width: record.width,
+        height: record.height
       )
       annotation = IIIF::Presentation::Annotation.new
       annotation.resource = image

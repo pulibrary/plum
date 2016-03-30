@@ -7,13 +7,27 @@ RSpec.describe SolrDocument do
   let(:document_hash) do
     {
       date_created_tesim: date_created,
-      language_tesim: ['eng']
+      language_tesim: ['eng'],
+      width_is: 200,
+      height_is: 400
     }
   end
 
   describe "#date_created" do
     it "returns date_created_tesim" do
       expect(subject.date_created).to eq date_created
+    end
+  end
+
+  describe "#height" do
+    it "returns the height_is" do
+      expect(subject.height).to eq 400
+    end
+  end
+
+  describe "#width" do
+    it "returns the width_is" do
+      expect(subject.width).to eq 200
     end
   end
 

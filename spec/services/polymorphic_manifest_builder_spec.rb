@@ -116,6 +116,8 @@ RSpec.describe PolymorphicManifestBuilder, vcr: { cassette_name: "iiif_manifest"
       allow(g).to receive(:persisted?).and_return(true)
       allow(g).to receive(:id).and_return(id)
       g.title = ["Test"]
+      g.width = [487]
+      g.height = [400]
     end
   end
 
@@ -162,6 +164,8 @@ RSpec.describe PolymorphicManifestBuilder, vcr: { cassette_name: "iiif_manifest"
       let(:manifest_json) { JSON.parse(subject.to_json) }
       it "has two" do
         expect(manifest_json["sequences"].first["canvases"].length).to eq 2
+        expect(manifest_json["sequences"].first["canvases"].first["width"]).to eq 487
+        expect(manifest_json["sequences"].first["canvases"].first["height"]).to eq 400
       end
       it "has a label" do
         expect(first_canvas.label).to eq file_set.to_s
