@@ -3,7 +3,7 @@
 
 class CurationConcerns::ScannedResourcesController < CurationConcerns::CurationConcernsController
   include CurationConcerns::ParentContainer
-  set_curation_concern_type ScannedResource
+  self.curation_concern_type = ScannedResource
   skip_load_and_authorize_resource only: SearchBuilder.show_actions
 
   def create
