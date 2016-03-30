@@ -10,7 +10,7 @@ class SearchBuilder < CurationConcerns::SearchBuilder
   def hide_parented_resources(solr_params)
     return if show_action? || file_manager?
     solr_params[:fq] ||= []
-    solr_params[:fq] << "!#{ActiveFedora::SolrQueryBuilder.solr_name('ordered_by', :symbol)}:['' TO *]"
+    solr_params[:fq] << "!#{ActiveFedora.index_field_mapper.solr_name('ordered_by', :symbol)}:['' TO *]"
   end
 
   def join_from_parent(solr_params)
