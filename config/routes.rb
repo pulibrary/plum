@@ -40,6 +40,7 @@ Rails.application.routes.draw do
   curation_concerns_embargo_management
 
   get "/iiif/collections", defaults: { format: :json }, controller: :collections, action: :index_manifest
+  get "/iiif/token", defaults: { format: :json }, to: 'tokens#index', as: 'get_token'
 
   namespace :curation_concerns, path: :concern do
     resources :multi_volume_works, only: [] do
