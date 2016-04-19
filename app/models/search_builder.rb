@@ -1,7 +1,11 @@
 class SearchBuilder < CurationConcerns::SearchBuilder
   include Blacklight::Solr::SearchBuilderBehavior
+  delegate :unreadable_states, to: :current_ability
 
-  self.default_processor_chain += [:hide_parented_resources, :join_from_parent]
+  self.default_processor_chain += [
+    :hide_parented_resources, :join_from_parent,
+    :hide_incomplete
+  ]
 
   def self.show_actions
     [:show, :manifest, :structure, :pdf]
@@ -16,6 +20,18 @@ class SearchBuilder < CurationConcerns::SearchBuilder
   def join_from_parent(solr_params)
     return if show_action?
     solr_params[:q] = JoinChildrenQuery.new(solr_params[:q]).to_s
+  end
+
+  def hide_incomplete(solr_params)
+    return if unreadable_states.blank?
+    solr_params[:fq] ||= []
+    state_field = ActiveFedora.index_field_mapper.solr_name('state', :symbol)
+    state_string = readable_states.map { |state| "#{state_field}:#{state}" }.join(" OR ")
+    solr_params[:fq] << state_string
+  end
+
+  def readable_states
+    StateWorkflow.aasm.states.map(&:name).map(&:to_s) - unreadable_states
   end
 
   def show_action?

@@ -95,6 +95,14 @@ RSpec.describe CatalogController do
 
       expect(document_ids).to eq [resource.id]
     end
+
+    it "hides items the user can't read" do
+      FactoryGirl.create(:scanned_resource, state: 'pending')
+
+      get :index, q: ""
+
+      expect(document_ids).to eq []
+    end
   end
 
   describe "resources in collections" do

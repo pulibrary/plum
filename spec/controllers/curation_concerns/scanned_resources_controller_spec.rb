@@ -263,7 +263,37 @@ describe CurationConcerns::ScannedResourcesController do
 
   describe "show" do
     before do
-      sign_in user
+      sign_in user if user
+    end
+    context "when the user is anonymous" do
+      let(:user) { nil }
+      context "and the work's incomplete" do
+        it "redirects for auth" do
+          resource = FactoryGirl.create(:scanned_resource, state: 'pending')
+
+          get :show, id: resource.id
+
+          expect(response).to be_redirect
+        end
+      end
+      context "and the work's flagged" do
+        it "works" do
+          resource = FactoryGirl.create(:open_scanned_resource, state: 'flagged')
+
+          get :show, id: resource.id
+
+          expect(response).to be_success
+        end
+      end
+      context "and the work's complete" do
+        it "works" do
+          resource = FactoryGirl.create(:open_scanned_resource, state: 'complete')
+
+          get :show, id: resource.id
+
+          expect(response).to be_success
+        end
+      end
     end
     context "when there's a parent" do
       it "is a success" do

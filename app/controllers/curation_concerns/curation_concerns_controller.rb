@@ -56,6 +56,10 @@ class CurationConcerns::CurationConcernsController < ApplicationController
 
   private
 
+    def search_builder_class
+      ::WorkSearchBuilder
+    end
+
     def collection_id_params
       @collection_id_params ||= (params[curation_concern_name].delete(:collection_ids) || []).select(&:present?)
     end
