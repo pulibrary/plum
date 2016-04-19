@@ -1,4 +1,6 @@
 class METSDocument
+  include MetsStructure
+
   def initialize(mets_file)
     @mets = File.open(mets_file) { |f| Nokogiri::XML(f) }
   end

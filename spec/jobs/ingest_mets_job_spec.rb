@@ -15,6 +15,8 @@ RSpec.describe IngestMETSJob do
     let(:file_path) { '/tmp/pudl0001/4612596/00000001.tif' }
     let(:mime_type) { 'image/tiff' }
     let(:file) { IoDecorator.new(tiff_file, mime_type, File.basename(file_path)) }
+    let(:logical_order) { double('logical_order') }
+    let(:order_object) { double('order_object') }
 
     before do
       allow(CurationConcerns::FileSetActor).to receive(:new).and_return(actor)
@@ -46,8 +48,41 @@ RSpec.describe IngestMETSJob do
     it "ingests a multi-volume mets file", vcr: { cassette_name: 'bibdata-4609321' } do
       allow(actor).to receive(:create_metadata)
       allow(actor).to receive(:create_content)
+      expect(resource1).to receive(:logical_order).at_least(:once).and_return(logical_order)
+      expect(resource2).to receive(:logical_order).at_least(:once).and_return(logical_order)
+      expect(logical_order).to receive(:order=).at_least(:once)
+      allow(logical_order).to receive(:order).and_return(nil)
+      allow(logical_order).to receive(:object).and_return(order_object)
+      allow(order_object).to receive(:each_section).and_return([])
       described_class.perform_now(mets_file_multi, user)
       expect(work.ordered_member_ids).to eq(['resource1', 'resource2'])
+    end
+  end
+
+  describe "integration test" do
+    let(:user) { FactoryGirl.build(:admin) }
+    let(:mets_file) { Rails.root.join("spec", "fixtures", "pudl0001-4612596.mets") }
+    let(:tiff_file) { Rails.root.join("spec", "fixtures", "files", "color.tif") }
+    let(:mime_type) { 'image/tiff' }
+    let(:file) { IoDecorator.new(tiff_file, mime_type, File.basename(tiff_file)) }
+    let(:resource) { ScannedResource.new }
+    let(:fileset) { FileSet.new }
+    let(:order) { { nodes: [{ label: 'recto', proxy: fileset.id }] }.deep_stringify_keys }
+
+    before do
+      allow_any_instance_of(METSDocument).to receive(:decorated_file).and_return(file)
+      allow(ScannedResource).to receive(:new).and_return(resource)
+      allow(FileSet).to receive(:new).and_return(fileset)
+
+      allow(IngestFileJob).to receive(:perform_later).and_return(true)
+      allow(CharacterizeJob).to receive(:perform_later).and_return(true)
+    end
+
+    it "ingests a mets file", vcr: { cassette_name: 'bibdata-4612596' } do
+      described_class.perform_now(mets_file, user)
+      expect(resource.persisted?).to be true
+      expect(resource.file_sets.length).to eq 1
+      expect(resource.reload.logical_order.order).to eq(order)
     end
   end
 end
