@@ -17,7 +17,7 @@ class Ability
 
   # Abilities that should be granted to technicians
   def image_editor_permissions
-    can [:create, :read, :edit, :update, :publish], curation_concerns
+    can [:read, :create, :edit, :update, :publish], curation_concerns
     can [:file_manager, :save_structure], ScannedResource
     can [:file_manager, :save_structure], MultiVolumeWork
     can [:create, :read, :edit, :update, :publish, :download], FileSet
@@ -42,12 +42,15 @@ class Ability
 
     # do not allow completing resources
     cannot [:complete], curation_concerns
+
+    curation_concern_read_permissions
   end
 
   def fulfiller_permissions
     can [:read], curation_concerns
     can [:read, :download], FileSet
     can [:read], Collection
+    curation_concern_read_permissions
   end
 
   def curator_permissions
@@ -56,7 +59,7 @@ class Ability
     can [:read], Collection
 
     # do not allow viewing pending resources
-    cannot [:read], curation_concerns, state: 'pending'
+    curation_concern_read_permissions
   end
 
   # Abilities that should be granted to patron
@@ -67,13 +70,34 @@ class Ability
 
   def anonymous_permissions
     # do not allow viewing incomplete resources
-    cannot [:read], curation_concerns, state: 'pending'
-    cannot [:read], curation_concerns, state: 'metadata_review'
-    cannot [:read], curation_concerns, state: 'final_review'
-    cannot [:read], curation_concerns, state: 'takedown'
+    curation_concern_read_permissions
+  end
+
+  def curation_concern_read_permissions
+    cannot [:read], curation_concerns do |curation_concern|
+      !readable_concern?(curation_concern)
+    end
+  end
+
+  def readable_concern?(curation_concern)
+    !unreadable_states.include?(curation_concern.state)
+  end
+
+  def unreadable_states
+    if current_user.curator?
+      %w(pending)
+    elsif universal_reader?
+      []
+    else
+      %w(pending metadata_review final_review takedown)
+    end
   end
 
   private
+
+    def universal_reader?
+      current_user.curator? || current_user.image_editor? || current_user.fulfiller? || current_user.editor?
+    end
 
     def curation_concerns
       CurationConcerns.config.curation_concerns

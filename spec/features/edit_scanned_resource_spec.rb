@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.feature "ScannedResourcesController", type: :feature do
   let(:user) { FactoryGirl.create(:image_editor) }
-  let(:scanned_resource) { FactoryGirl.create(:scanned_resource_with_multi_volume_work, user: user) }
+  let(:scanned_resource) { FactoryGirl.create(:scanned_resource_with_multi_volume_work, user: user, state: 'metadata_review') }
   let(:parent_presenter) do
     ScannedResourceShowPresenter.new(
       SolrDocument.new(
@@ -64,6 +64,7 @@ RSpec.feature "ScannedResourcesController", type: :feature do
   end
 
   context "an anonymous user" do
+    let(:scanned_resource) { FactoryGirl.create(:scanned_resource_with_multi_volume_work, user: user, state: 'complete') }
     scenario "User can't edit a scanned resource" do
       visit edit_polymorphic_path [scanned_resource]
       expect(page).to have_selector("div.alert-info", "You are not authorized to access this page")

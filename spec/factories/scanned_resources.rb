@@ -5,7 +5,7 @@ FactoryGirl.define do
     rights_statement "http://rightsstatements.org/vocab/NKC/1.0/"
     description "900 years of time and space, and I’ve never been slapped by someone’s mother."
     visibility Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PUBLIC
-    state "metadata_review"
+    state "complete"
 
     transient do
       user { FactoryGirl.create(:user) }
