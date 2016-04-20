@@ -295,6 +295,18 @@ describe CurationConcerns::ScannedResourcesController do
         end
       end
     end
+    context "when the user's an admin" do
+      let(:user) { FactoryGirl.create(:admin) }
+      context "and the work's incomplete" do
+        it "works" do
+          resource = FactoryGirl.create(:open_scanned_resource, state: 'pending')
+
+          get :show, id: resource.id
+
+          expect(response).to be_success
+        end
+      end
+    end
     context "when there's a parent" do
       it "is a success" do
         resource = FactoryGirl.create(:scanned_resource)

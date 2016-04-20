@@ -96,7 +96,7 @@ class Ability
   private
 
     def universal_reader?
-      current_user.curator? || current_user.image_editor? || current_user.fulfiller? || current_user.editor?
+      current_user.curator? || current_user.image_editor? || current_user.fulfiller? || current_user.editor? || current_user.admin?
     end
 
     def curation_concerns
