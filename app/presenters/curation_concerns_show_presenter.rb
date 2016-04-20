@@ -29,6 +29,14 @@ class CurationConcernsShowPresenter < CurationConcerns::WorkShowPresenter
     HoldingLocationRenderer.new(solr_document.holding_location).render
   end
 
+  def attribute_to_html(field, options = {})
+    unless respond_to?(field)
+      Rails.logger.warn("#{self.class} attempted to render #{field}, but no method exists with that name.")
+      return
+    end
+    AttributeRenderer.new(field, send(field), options).render
+  end
+
   private
 
     def logical_order_factory

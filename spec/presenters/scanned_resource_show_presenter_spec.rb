@@ -39,4 +39,22 @@ RSpec.describe ScannedResourceShowPresenter do
       expect(subject.logical_order_object.nodes.first).to respond_to :proxy_for_object
     end
   end
+
+  describe "attribute_to_html" do
+    context "when given an arabic string" do
+      let(:date_created) { "حكاية" }
+      it "marks it as rtl" do
+        expect(subject.attribute_to_html(:date_created)).to include "dir=rtl"
+      end
+    end
+    context "when given a bad field" do
+      it "logs it" do
+        allow(Rails.logger).to receive(:warn)
+
+        expect(subject.attribute_to_html(:bad_field)).to eq nil
+
+        expect(Rails.logger).to have_received :warn
+      end
+    end
+  end
 end
