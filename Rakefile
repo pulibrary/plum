@@ -34,11 +34,7 @@ namespace :server do
   desc 'Run Fedora and Solr for development environment'
   task :development do
     run_server 'development', solr_port: 8983, fcrepo_port: 8984 do
-      IO.popen('rails server') do |io|
-        io.each do |line|
-          puts line
-        end
-      end
+      sleep
     end
   end
 
