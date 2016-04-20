@@ -10,7 +10,7 @@
 <div class="row">
   <ul class="classify-work">
     <% if can? :create, Collection %>
-      <li class="work-type">
+      <li class="work-type work-type-Collection">
         <h3 class="title">Collection</h3>
         <p class="short-description" id="collection_short_description">
           <%= Collection.human_readable_short_description %>
@@ -20,7 +20,7 @@
     <% end %>
     <% @curation_concerns.each do |klass| %>
       <% if can? :create, klass %>
-        <li class="work-type">
+        <li class="work-type work-type-<%= klass %>">
           <h3 class="title"><%= klass.human_readable_type %></h3>
           <p class="short-description" id="<%= dom_class(klass, 'short_description') %>">
             <%= klass.human_readable_short_description %>
@@ -32,8 +32,5 @@
         </li>
       <% end %>
     <% end %>
-    <li class="work-type placeholder" aria-hidden="true"></li>
-    <li class="work-type placeholder" aria-hidden="true"></li>
-    <li class="work-type placeholder" aria-hidden="true"></li>
   </ul>
 </div>

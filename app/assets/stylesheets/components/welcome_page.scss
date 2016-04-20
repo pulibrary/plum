@@ -1,0 +1,12 @@
+.row > .classify-work {
+  & > .work-type {
+  min-height: 190px;
+  float: left;
+  display: block;
+  }
+  & > .work-type-Collection {
+    .short-description {
+      height: 6.1em;
+    }
+  }
+}
