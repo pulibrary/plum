@@ -104,6 +104,7 @@ gem 'aasm'
 gem 'newrelic_rpm'
 gem 'iso-639'
 gem 'bunny'
+gem 'string_rtl'
 source 'https://rails-assets.org' do
   gem 'rails-assets-babel-polyfill'
   gem 'rails-assets-bootstrap-select', '1.9.4'
