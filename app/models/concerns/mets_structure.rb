@@ -1,6 +1,6 @@
 module MetsStructure
   def structure
-    structure_type('Logical') || structure_type('Physical') || structure_type('RelatedObjects')
+    structure_type('Physical') || structure_type('RelatedObjects')
   end
 
   def structure_for_volume(volume_id)
@@ -8,10 +8,21 @@ module MetsStructure
     { nodes: structure_for_nodeset(volume.element_children) }
   end
 
+  def file_label(file_id)
+    struct = structure_map('Physical')
+    node = struct.xpath(".//mets:fptr[@FILEID='#{file_id}']").first
+    (label_from_hierarchy(node.parent) if node) || label_from_related_objects(file_id)
+  end
+
   private
 
+    def structure_map(type)
+      @mets.xpath("/mets:mets/mets:structMap[@TYPE='#{type}']").first
+    end
+
     def structure_type(type)
-      top = @mets.xpath("/mets:mets/mets:structMap[@TYPE='#{type}']/mets:div/mets:div")
+      return nil unless structure_map(type)
+      top = structure_map(type).xpath("mets:div/mets:div")
       return nil unless top.length > 0
       { nodes: structure_for_nodeset(top) }
     end
@@ -49,15 +60,15 @@ module MetsStructure
       return nil unless node['LABEL']
       current = node
       label = current['LABEL']
-      while current.parent['LABEL'] && allow_type(current.parent)
+      while current.parent['LABEL'] && in_scope(current.parent)
         label = "#{current.parent['LABEL']}. #{label}"
         current = current.parent
       end
       label
     end
 
-    def allow_type(node)
-      !['BoundVolume', 'Work'].include? node['TYPE']
+    def in_scope(node)
+      multi_volume? ? node.parent.parent.name == 'div' : node.parent.name == 'div'
     end
 
     def label_from_related_objects(id)
