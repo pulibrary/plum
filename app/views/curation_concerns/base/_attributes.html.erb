@@ -32,6 +32,7 @@
     <%= @presenter.holding_location %>
   <% end %>
   <%= @presenter.attribute_to_html(:identifier) %>
+  <%= @presenter.attribute_to_html(:source_metadata_identifier) %>
   <%= render partial: '/curation_concerns/base/collection_list' %>
   <% if can? :edit, @presenter.id %>
     <%= @presenter.attribute_to_html(:workflow_note) %>

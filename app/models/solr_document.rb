@@ -78,6 +78,10 @@ class SolrDocument
     self[Solrizer.solr_name('language')]
   end
 
+  def source_metadata_identifier
+    self[Solrizer.solr_name('source_metadata_identifier')]
+  end
+
   def ocr_language
     ocr_lang = self[Solrizer.solr_name('ocr_language')]
     return ocr_lang unless ocr_lang.nil?

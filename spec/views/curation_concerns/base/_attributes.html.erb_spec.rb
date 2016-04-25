@@ -11,6 +11,7 @@ RSpec.describe "curation_concerns/base/_attributes.html.erb" do
       active_fedora_model_ssi: 'ScannedResource',
       creator_tesim: creator,
       author_tesim: 'Baggins',
+      source_metadata_identifier_tesim: '8675309',
       date_created_tesim: date_created,
       rights_statement_tesim: rights_statement,
       workflow_note_tesim: workflow_note
@@ -36,6 +37,10 @@ RSpec.describe "curation_concerns/base/_attributes.html.erb" do
 
   it "displays metadata in plum schema" do
     expect(rendered).to have_content 'Baggins'
+  end
+
+  it "displays the metadata source id" do
+    expect(rendered).to have_content '8675309'
   end
 
   it "displays the label for the rights URI" do
