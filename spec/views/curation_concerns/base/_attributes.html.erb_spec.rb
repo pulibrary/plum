@@ -12,6 +12,7 @@ RSpec.describe "curation_concerns/base/_attributes.html.erb" do
       creator_tesim: creator,
       author_tesim: 'Baggins',
       date_created_tesim: date_created,
+      language_tesim: 'ara',
       rights_statement_tesim: rights_statement,
       workflow_note_tesim: workflow_note
     )
@@ -44,6 +45,10 @@ RSpec.describe "curation_concerns/base/_attributes.html.erb" do
 
   it "displays date created" do
     expect(rendered).to have_content date_created
+  end
+
+  it "displays language name" do
+    expect(rendered).to have_content 'Arabic'
   end
 
   context "when they can edit" do
