@@ -29,6 +29,10 @@ class CurationConcernsShowPresenter < CurationConcerns::WorkShowPresenter
     HoldingLocationRenderer.new(solr_document.holding_location).render
   end
 
+  def language
+    LanguageRenderer.new(solr_document.language).render
+  end
+
   def attribute_to_html(field, options = {})
     unless respond_to?(field)
       Rails.logger.warn("#{self.class} attempted to render #{field}, but no method exists with that name.")
