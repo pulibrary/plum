@@ -20,7 +20,11 @@ class ManifestBuilder
     private
 
       def path
-        helper.polymorphic_url([:pdf, record], pdf_quality: "gray", protocol: protocol)
+        if record.pdf_type == ["color"]
+          helper.polymorphic_url([:pdf, record], pdf_quality: "color", protocol: protocol)
+        else
+          helper.polymorphic_url([:pdf, record], pdf_quality: "gray", protocol: protocol)
+        end
       rescue
         nil
       end

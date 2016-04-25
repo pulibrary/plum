@@ -340,6 +340,18 @@ describe CurationConcerns::ScannedResourcesController do
         context "when not given permission" do
           let(:user) { FactoryGirl.create(:campus_patron) }
           let(:sign_in_user) { user }
+          context "and color PDF is enabled" do
+            let(:scanned_resource) { FactoryGirl.create(:scanned_resource, user: user, title: ['Dummy Title'], pdf_type: ['color']) }
+            it "works" do
+              pdf = double("Actor")
+              allow(ScannedResourcePDF).to receive(:new).with(anything, quality: "color").and_return(pdf)
+              allow(pdf).to receive(:render).and_return(true)
+
+              get :pdf, id: scanned_resource, pdf_quality: "color"
+
+              expect(response).to redirect_to(Rails.application.class.routes.url_helpers.download_path(scanned_resource, file: 'color-pdf'))
+            end
+          end
           it "doesn't work" do
             get :pdf, id: scanned_resource, pdf_quality: "color"
 
@@ -357,6 +369,15 @@ describe CurationConcerns::ScannedResourcesController do
           allow(pdf).to receive(:render).and_return(true)
           get :pdf, id: scanned_resource, pdf_quality: "gray"
           expect(response).to redirect_to(Rails.application.class.routes.url_helpers.download_path(scanned_resource, file: 'gray-pdf'))
+        end
+      end
+      context "when the resource has no pdf type set" do
+        let(:sign_in_user) { FactoryGirl.create(:user) }
+        let(:scanned_resource) { FactoryGirl.create(:scanned_resource, user: user, title: ['Dummy Title'], pdf_type: []) }
+        it "redirects to root" do
+          get :pdf, id: scanned_resource, pdf_quality: "gray"
+
+          expect(response).to redirect_to Rails.application.class.routes.url_helpers.root_path
         end
       end
       context "when not given permission" do

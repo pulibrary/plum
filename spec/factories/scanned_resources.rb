@@ -6,6 +6,7 @@ FactoryGirl.define do
     description "900 years of time and space, and I’ve never been slapped by someone’s mother."
     visibility Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PUBLIC
     state "complete"
+    pdf_type ["gray"]
 
     transient do
       user { FactoryGirl.create(:user) }
