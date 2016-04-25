@@ -24,6 +24,7 @@ RSpec.describe IngestMETSJob do
       allow(MultiVolumeWork).to receive(:new).and_return(work)
       allow(ScannedResource).to receive(:new).and_return(resource1, resource2)
       allow(fileset).to receive(:id).and_return('file1')
+      allow(fileset).to receive(:title=)
       allow_any_instance_of(METSDocument).to receive(:decorated_file).and_return(file)
       allow_any_instance_of(METSDocument).to receive(:thumbnail_path).and_return(file_path)
       allow_any_instance_of(ScannedResource).to receive(:save!)
@@ -67,7 +68,13 @@ RSpec.describe IngestMETSJob do
     let(:file) { IoDecorator.new(tiff_file, mime_type, File.basename(tiff_file)) }
     let(:resource) { ScannedResource.new }
     let(:fileset) { FileSet.new }
-    let(:order) { { nodes: [{ label: 'recto', proxy: fileset.id }] }.deep_stringify_keys }
+    let(:order) { {
+      nodes: [{
+        label: 'leaf 1', nodes: [{
+          label: 'leaf 1. recto', proxy: fileset.id
+        }]
+      }]
+    }}
 
     before do
       allow_any_instance_of(METSDocument).to receive(:decorated_file).and_return(file)
@@ -82,7 +89,8 @@ RSpec.describe IngestMETSJob do
       described_class.perform_now(mets_file, user)
       expect(resource.persisted?).to be true
       expect(resource.file_sets.length).to eq 1
-      expect(resource.reload.logical_order.order).to eq(order)
+      expect(resource.reload.logical_order.order).to eq(order.deep_stringify_keys)
+      expect(fileset.reload.title).to eq(['leaf 1. recto'])
     end
   end
 end

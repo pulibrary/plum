@@ -5,7 +5,13 @@ RSpec.describe METSDocument do
   let(:mets_file_rtl) { Rails.root.join("spec", "fixtures", "pudl0032-ns73.mets") }
   let(:mets_file_multi) { Rails.root.join("spec", "fixtures", "pudl0001-4609321-s42.mets") }
   let(:tiff_file) { Rails.root.join("spec", "fixtures", "files", "color.tif") }
-  let(:structure) { { nodes: [{ label: 'recto', proxy: 'pkc90' }] } }
+  let(:structure) { {
+    nodes: [{
+      label: "leaf 1", nodes: [{
+        label: "leaf 1. recto", proxy: "pkc90"
+      }]
+    }]
+  }}
   let(:structure_phys1) { {
     nodes: [{
       label: "upper cover", nodes: [{
@@ -65,6 +71,10 @@ RSpec.describe METSDocument do
       decorated = subject.decorated_file(path: tiff_file, mime_type: 'image/tiff')
       expect(decorated.mime_type).to eq('image/tiff')
       expect(decorated.original_filename).to eq('color.tif')
+    end
+
+    it 'finds labels for files' do
+      expect(subject.file_label('gjpt0')).to eq('Upper cover. outside')
     end
   end
 
@@ -126,6 +136,10 @@ RSpec.describe METSDocument do
 
       it "has volume structure" do
         expect(subject.structure_for_volume('phys1')).to eq(structure_phys1)
+      end
+
+      it "builds a label for a file from hierarchy (but does not include volume label)" do
+        expect(subject.file_label('l898s')).to eq('upper cover. pastedown')
       end
     end
   end

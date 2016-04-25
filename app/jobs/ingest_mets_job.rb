@@ -35,6 +35,7 @@ class IngestMETSJob < ActiveJob::Base
       files.each do |f|
         logger.info "Ingesting file #{f[:path]}"
         file_set = FileSet.new
+        file_set.title = [@mets.file_label(f[:id])]
         actor = ::CurationConcerns::FileSetActor.new(file_set, @user)
         actor.create_metadata(resource, @mets.file_opts(f))
         actor.create_content(@mets.decorated_file(f))
