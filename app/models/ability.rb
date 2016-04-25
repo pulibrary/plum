@@ -5,6 +5,7 @@ class Ability
   # Define any customized permissions here.
   def custom_permissions
     alias_action :pdf, :show, :manifest, to: :read
+    alias_action :color_pdf, :edit, to: :modify
     roles.each do |role|
       send "#{role}_permissions" if current_user.send "#{role}?"
     end
@@ -17,7 +18,7 @@ class Ability
 
   # Abilities that should be granted to technicians
   def image_editor_permissions
-    can [:read, :create, :edit, :update, :publish], curation_concerns
+    can [:read, :create, :modify, :update, :publish], curation_concerns
     can [:file_manager, :save_structure], ScannedResource
     can [:file_manager, :save_structure], MultiVolumeWork
     can [:create, :read, :edit, :update, :publish, :download], FileSet
@@ -35,7 +36,7 @@ class Ability
   end
 
   def editor_permissions
-    can [:read, :edit, :update], curation_concerns
+    can [:read, :modify, :update], curation_concerns
     can [:file_manager, :save_structure], ScannedResource
     can [:read, :edit, :update], FileSet
     can [:read, :edit, :update], Collection

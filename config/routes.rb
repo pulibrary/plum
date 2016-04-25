@@ -53,7 +53,7 @@ Rails.application.routes.draw do
     end
     resources :scanned_resources, only: [] do
       member do
-        get :pdf
+        get "/pdf/:pdf_quality", action: :pdf, as: :pdf
         get :structure
         post :structure, action: :save_structure
         get :manifest, defaults: { format: :json }

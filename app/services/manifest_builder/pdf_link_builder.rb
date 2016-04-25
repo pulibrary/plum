@@ -20,7 +20,7 @@ class ManifestBuilder
     private
 
       def path
-        helper.polymorphic_url([:pdf, record], protocol: protocol)
+        helper.polymorphic_url([:pdf, record], pdf_quality: "gray", protocol: protocol)
       rescue
         nil
       end

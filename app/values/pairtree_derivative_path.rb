@@ -8,6 +8,10 @@ class PairtreeDerivativePath < CurationConcerns::DerivativePath
         ".jp2"
       when "ocr"
         ".hocr"
+      when "gray-pdf"
+        ".pdf"
+      when "color-pdf"
+        ".pdf"
       else
         ".#{destination_name}"
       end
@@ -18,7 +22,7 @@ class PairtreeDerivativePath < CurationConcerns::DerivativePath
       def derivative_path(object, extension, destination_name)
         file_name = destination_name + extension
         if extension == ".pdf"
-          file_name = "#{ResourceIdentifier.new(object.id)}-pdf.pdf"
+          file_name = "#{ResourceIdentifier.new(object.id)}-#{destination_name}.pdf"
         end
         "#{path_prefix(object)}-#{file_name}"
       end

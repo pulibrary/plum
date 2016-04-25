@@ -1,7 +1,8 @@
 class ScannedResourcePDF
-  attr_reader :scanned_resource
-  def initialize(scanned_resource)
+  attr_reader :scanned_resource, :quality
+  def initialize(scanned_resource, quality: "gray")
     @scanned_resource = scanned_resource
+    @quality = quality
   end
 
   def pages

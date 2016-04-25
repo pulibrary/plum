@@ -323,32 +323,58 @@ describe CurationConcerns::ScannedResourcesController do
   end
 
   describe 'pdf' do
-    context "when given permission" do
-      it 'generates the pdf then redirects to its download url' do
-        pdf = double("Actor")
-        allow(ScannedResourcePDF).to receive(:new).and_return(pdf)
-        allow(pdf).to receive(:render).and_return(true)
-        get :pdf, id: scanned_resource
-        expect(response).to redirect_to(Rails.application.class.routes.url_helpers.download_path(scanned_resource, file: 'pdf'))
+    before do
+      sign_in user if sign_in_user
+    end
+    context "when requesting color" do
+      context "and given permission" do
+        let(:user) { FactoryGirl.create(:admin) }
+        let(:sign_in_user) { user }
+        it "works" do
+          pdf = double("Actor")
+          allow(ScannedResourcePDF).to receive(:new).with(anything, quality: "color").and_return(pdf)
+          allow(pdf).to receive(:render).and_return(true)
+          get :pdf, id: scanned_resource, pdf_quality: "color"
+          expect(response).to redirect_to(Rails.application.class.routes.url_helpers.download_path(scanned_resource, file: 'color-pdf'))
+        end
+        context "when not given permission" do
+          let(:user) { FactoryGirl.create(:campus_patron) }
+          let(:sign_in_user) { user }
+          it "doesn't work" do
+            get :pdf, id: scanned_resource, pdf_quality: "color"
+
+            expect(response).to redirect_to "/"
+          end
+        end
       end
     end
-    context "when not given permission" do
-      let(:scanned_resource) { FactoryGirl.create(:private_scanned_resource, user: user, title: ['Dummy Title']) }
-      context "and not logged in" do
-        it "redirects for auth" do
-          get :pdf, id: scanned_resource
-
-          expect(response).to redirect_to "http://test.host/users/auth/cas"
+    context "when requesting gray" do
+      let(:sign_in_user) { nil }
+      context "when given permission" do
+        it 'generates the pdf then redirects to its download url' do
+          pdf = double("Actor")
+          allow(ScannedResourcePDF).to receive(:new).with(anything, quality: "gray").and_return(pdf)
+          allow(pdf).to receive(:render).and_return(true)
+          get :pdf, id: scanned_resource, pdf_quality: "gray"
+          expect(response).to redirect_to(Rails.application.class.routes.url_helpers.download_path(scanned_resource, file: 'gray-pdf'))
         end
       end
-      context "and logged in" do
-        before do
-          sign_in FactoryGirl.create(:user)
-        end
-        it "redirects to root" do
-          get :pdf, id: scanned_resource
+      context "when not given permission" do
+        let(:scanned_resource) { FactoryGirl.create(:private_scanned_resource, title: ['Dummy Title']) }
+        context "and not logged in" do
+          it "redirects for auth" do
+            get :pdf, id: scanned_resource, pdf_quality: "gray"
 
-          expect(response).to redirect_to Rails.application.class.routes.url_helpers.root_path
+            expect(response).to redirect_to "http://test.host/users/auth/cas"
+          end
+        end
+        context "and logged in" do
+          let(:sign_in_user) { FactoryGirl.create(:user) }
+          it "redirects to root" do
+            get :pdf, id: scanned_resource, pdf_quality: "gray"
+
+            expect(response).to redirect_to Rails.application.class.routes.url_helpers.root_path
+          end
         end
       end
     end
