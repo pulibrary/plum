@@ -1,9 +1,10 @@
 class ScannedResourcePDF
   class CanvasDownloader
-    attr_reader :canvas
+    attr_reader :canvas, :quality
     delegate :width, :height, to: :canvas
-    def initialize(canvas)
+    def initialize(canvas, quality: "gray")
       @canvas = canvas
+      @quality = quality
     end
 
     def download
@@ -34,10 +35,6 @@ class ScannedResourcePDF
 
       def max_height
         [(Canvas::LETTER_HEIGHT * scale_factor).round, canvas.height].min
-      end
-
-      def quality
-        "gray"
       end
 
       def scale_factor

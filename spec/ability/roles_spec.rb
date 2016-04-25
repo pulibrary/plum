@@ -78,6 +78,7 @@ describe Ability do
     it { should be_able_to(:create, FileSet.new) }
     it { should be_able_to(:read, open_scanned_resource) }
     it { should be_able_to(:pdf, open_scanned_resource) }
+    it { should be_able_to(:color_pdf, open_scanned_resource) }
     it { should be_able_to(:edit, open_scanned_resource) }
     it { should be_able_to(:edit, open_scanned_resource_presenter.id) }
     it { should be_able_to(:update, open_scanned_resource) }
@@ -92,6 +93,7 @@ describe Ability do
     it { should be_able_to(:read, open_scanned_resource) }
     it { should be_able_to(:manifest, open_scanned_resource) }
     it { should be_able_to(:pdf, open_scanned_resource) }
+    it { should be_able_to(:color_pdf, open_scanned_resource) }
     it { should be_able_to(:flag, open_scanned_resource) }
     it { should be_able_to(:read, campus_only_scanned_resource) }
     it { should be_able_to(:read, private_scanned_resource) }
@@ -123,6 +125,7 @@ describe Ability do
     it { should be_able_to(:read, open_scanned_resource) }
     it { should be_able_to(:manifest, open_scanned_resource) }
     it { should be_able_to(:pdf, open_scanned_resource) }
+    it { should be_able_to(:color_pdf, open_scanned_resource) }
     it { should be_able_to(:flag, open_scanned_resource) }
     it { should be_able_to(:read, campus_only_scanned_resource) }
     it { should be_able_to(:read, private_scanned_resource) }

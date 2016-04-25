@@ -31,7 +31,7 @@ class ScannedResourcePDF
 
       def canvas_downloaders
         @canvas_images ||= canvas_images.map do |image|
-          CanvasDownloader.new(image)
+          CanvasDownloader.new(image, quality: scanned_resource_pdf.quality)
         end
       end
 

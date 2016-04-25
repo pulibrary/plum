@@ -5,6 +5,7 @@ class CurationConcerns::ScannedResourcesController < CurationConcerns::CurationC
   include CurationConcerns::ParentContainer
   self.curation_concern_type = ScannedResource
   skip_load_and_authorize_resource only: SearchBuilder.show_actions
+  before_action :authorize_pdf, only: [:pdf]
 
   def create
     super
@@ -21,8 +22,8 @@ class CurationConcerns::ScannedResourcesController < CurationConcerns::CurationC
   end
 
   def pdf
-    ScannedResourcePDF.new(presenter).render(pdf_path)
-    redirect_to main_app.download_path(presenter, file: 'pdf')
+    ScannedResourcePDF.new(presenter, quality: params[:pdf_quality]).render(pdf_path)
+    redirect_to main_app.download_path(presenter, file: pdf_type)
   end
 
   def form_class
@@ -31,8 +32,18 @@ class CurationConcerns::ScannedResourcesController < CurationConcerns::CurationC
 
   private
 
+    def authorize_pdf
+      return unless params[:pdf_quality] == "color"
+      return if can?(:color_pdf, ScannedResource)
+      raise CanCan::AccessDenied.new(nil, params[:action].to_sym)
+    end
+
     def pdf_path
-      PairtreeDerivativePath.derivative_path_for_reference(presenter, 'pdf')
+      PairtreeDerivativePath.derivative_path_for_reference(presenter, pdf_type)
+    end
+
+    def pdf_type
+      "#{params[:pdf_quality]}-pdf"
     end
 
     def after_create_response

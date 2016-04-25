@@ -4,7 +4,14 @@ class DownloadsController < ApplicationController
   protected
 
     def authorize_download!
-      authorize! :download, asset
+      case params[:file]
+      when "gray-pdf"
+        authorize! :pdf, asset
+      when "color-pdf"
+        authorize! :color_pdf, asset
+      else
+        authorize! :download, asset
+      end
     end
 
   private
