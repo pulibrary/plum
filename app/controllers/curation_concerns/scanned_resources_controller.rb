@@ -33,8 +33,20 @@ class CurationConcerns::ScannedResourcesController < CurationConcerns::CurationC
   private
 
     def authorize_pdf
-      return unless params[:pdf_quality] == "color"
-      return if can?(:color_pdf, ScannedResource)
+      if params[:pdf_quality] == "color"
+        authorize_color_pdf
+      else
+        authorize_gray_pdf
+      end
+    end
+
+    def authorize_color_pdf
+      return if can?(:color_pdf, presenter)
+      raise CanCan::AccessDenied.new(nil, params[:action].to_sym)
+    end
+
+    def authorize_gray_pdf
+      return if can?(:pdf, presenter)
       raise CanCan::AccessDenied.new(nil, params[:action].to_sym)
     end
 

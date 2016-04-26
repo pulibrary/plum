@@ -5,6 +5,11 @@
 <%= render "form_collections", f: f %>
 
 <div class="row with-headroom">
+  <legend>PDF Type</legend>
+  <%= f.input :pdf_type, collection: {"Color PDF" => "color", "Grayscale PDF" => "gray"}.to_a %>
+</div>
+
+<div class="row with-headroom">
   <div class="col-md-12">
     <%= render "form_permission", curation_concern: curation_concern, f: f %>
   </div>

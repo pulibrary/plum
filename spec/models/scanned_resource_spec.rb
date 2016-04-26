@@ -252,4 +252,15 @@ describe ScannedResource do
       expect(solr_doc['collection_slug_sim']).to eq(scanned_resource.in_collections.first.exhibit_id)
     end
   end
+
+  describe "#pdf_type" do
+    it "is empty by default" do
+      expect(described_class.new.pdf_type).to eq []
+    end
+    it "can be set" do
+      subject.pdf_type = ["color"]
+
+      expect(subject.pdf_type).to eq ["color"]
+    end
+  end
 end

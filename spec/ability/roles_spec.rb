@@ -247,12 +247,20 @@ describe Ability do
   describe 'as an anonymous user' do
     let(:creating_user) { FactoryGirl.create(:image_editor) }
     let(:current_user) { nil }
+    let(:color_enabled_resource) {
+      FactoryGirl.build(:open_scanned_resource, user: creating_user, state: 'complete', pdf_type: ['color'])
+    }
+    let(:no_pdf_scanned_resource) {
+      FactoryGirl.build(:open_scanned_resource, user: creating_user, state: 'complete', pdf_type: [])
+    }
     it { should be_able_to(:read, open_scanned_resource) }
     it { should be_able_to(:manifest, open_scanned_resource) }
     it { should be_able_to(:pdf, open_scanned_resource) }
     it { should be_able_to(:read, complete_scanned_resource) }
     it { should be_able_to(:read, flagged_scanned_resource) }
+    it { should be_able_to(:color_pdf, color_enabled_resource) }
 
+    it { should_not be_able_to(:pdf, no_pdf_scanned_resource) }
     it { should_not be_able_to(:flag, open_scanned_resource) }
     it { should_not be_able_to(:read, campus_only_scanned_resource) }
     it { should_not be_able_to(:read, private_scanned_resource) }
