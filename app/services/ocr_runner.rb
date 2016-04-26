@@ -34,13 +34,13 @@ class OCRRunner
     end
 
     def language
-      if parent.try(:ocr_language).blank? && parent.try(:language).blank?
-        "eng"
-      elsif parent.try(:ocr_language).blank?
-        parent.try(:language).join("+")
-      else
-        parent.try(:ocr_language).join("+")
-      end
+      return try_language(:ocr_language).join("+") unless try_language(:ocr_language).blank?
+      return try_language(:language).join("+") unless try_language(:language).blank?
+      "eng"
+    end
+
+    def try_language(field)
+      (parent.try(field) || []).select { |lang| !Tesseract.languages[lang.to_sym].nil? }
     end
 
     def parent
