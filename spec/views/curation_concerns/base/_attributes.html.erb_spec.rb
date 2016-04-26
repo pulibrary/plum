@@ -49,7 +49,7 @@ RSpec.describe "curation_concerns/base/_attributes.html.erb" do
   end
 
   it "displays date created" do
-    expect(rendered).to have_content date_created
+    expect(rendered).to have_content "09/08/2015"
   end
 
   it "displays language name" do

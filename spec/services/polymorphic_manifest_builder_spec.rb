@@ -287,7 +287,7 @@ RSpec.describe PolymorphicManifestBuilder, vcr: { cassette_name: "iiif_manifest"
         expect(result.metadata).to be_empty
       end
       it "has a date created" do
-        record.date_created = ["1981"]
+        record.date_created = ["1981-01-31"]
         expect(result.metadata).not_to be_empty
       end
     end
