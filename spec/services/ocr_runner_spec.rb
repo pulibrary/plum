@@ -6,6 +6,7 @@ RSpec.describe OCRRunner do
 
   before do
     allow(file_set).to receive(:generic_works).and_return([parent])
+    allow(Tesseract).to receive(:languages).and_return(eng: ["English"], ita: ["Italian"], spa: ["Spanish"])
   end
 
   describe "#language" do
@@ -27,6 +28,20 @@ RSpec.describe OCRRunner do
       let(:parent) { FactoryGirl.build(:scanned_resource) }
       it "defaults to english" do
         expect(subject.send(:language)).to eq('eng')
+      end
+    end
+
+    context "when ocr_language is an unsupported language" do
+      let(:parent) { FactoryGirl.build(:scanned_resource, ocr_language: ['xxx']) }
+      it "defaults to english" do
+        expect(subject.send(:language)).to eq('eng')
+      end
+    end
+
+    context "when ocr_language is an unsupported language, but language is supported" do
+      let(:parent) { FactoryGirl.build(:scanned_resource, language: ['spa'], ocr_language: ['xxx']) }
+      it "uses the supported language value" do
+        expect(subject.send(:language)).to eq('spa')
       end
     end
   end
