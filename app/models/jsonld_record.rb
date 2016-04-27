@@ -6,9 +6,13 @@ class JSONLDRecord
     end
 
     def retrieve(bib_id)
-      JSONLDRecord.new(bib_id, PulMetadataServices::Client.retrieve(bib_id).source, factory: factory)
+      marc = PulMetadataServices::Client.retrieve(bib_id)
+      raise MissingRemoteRecordError if marc.source.end_with?("not found or suppressed")
+      JSONLDRecord.new(bib_id, marc.source, factory: factory)
     end
   end
+
+  class MissingRemoteRecordError < StandardError; end
 
   attr_reader :bib_id, :marc, :factory
   def initialize(bib_id, marc, factory: ScannedResource)

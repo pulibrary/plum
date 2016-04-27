@@ -12,7 +12,7 @@ module CurationConcerns::Collectible
     end
 
     def create
-      if actor_create
+      if actor.create
         (add_to_collections(collection_id_params) && curation_concern.save) if collection_id_params.any?
         after_create_response
       else
@@ -22,14 +22,6 @@ module CurationConcerns::Collectible
           wants.json { render_json_response(response_type: :unprocessable_entity, options: { errors: curation_concern.errors }) }
         end
       end
-    end
-
-    def actor_create
-      return actor.create
-    rescue StandardError => err
-      curation_concern.errors.add :source_metadata_identifier, "Error retrieving metadata"
-      logger.debug "Error retrieving metadata: #{params[curation_concern_name]['source_metadata_identifier']}: #{err}"
-      return false
     end
   end
 

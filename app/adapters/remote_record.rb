@@ -6,7 +6,9 @@ class RemoteRecord < SimpleDelegator
   class << self
     def retrieve(id)
       if id.present?
-        new(PulMetadataServices::Client.retrieve(id))
+        result = new(PulMetadataServices::Client.retrieve(id))
+        raise JSONLDRecord::MissingRemoteRecordError if result.source.blank?
+        result
       else
         Null.retrieve(id)
       end

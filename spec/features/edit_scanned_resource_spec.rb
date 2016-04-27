@@ -11,7 +11,7 @@ RSpec.feature "ScannedResourcesController", type: :feature do
     )
   end
 
-  context "an authorized user", vcr: { cassette_name: "locations" } do
+  context "an authorized user", vcr: { cassette_name: "locations", allow_playback_repeats: :multiple } do
     before(:each) do
       sign_in user
     end
@@ -34,6 +34,15 @@ RSpec.feature "ScannedResourcesController", type: :feature do
       click_button 'Update Scanned resource'
       expect(page).to have_text("Test title")
       expect(page).to have_selector("span.label-primary", "Final Review")
+    end
+
+    scenario "User gets an error for bad metadata identifier change" do
+      visit edit_polymorphic_path [scanned_resource]
+      fill_in 'scanned_resource_source_metadata_identifier', with: 'badid'
+      check "refresh_remote_metadata"
+
+      click_button 'Update Scanned resource'
+      expect(page).to have_text("Error retrieving metadata")
     end
 
     scenario "User can add a new file" do
