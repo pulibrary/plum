@@ -1,3 +1,7 @@
+.idea
+build
+lib
+!dist/uv-*/lib
 src
 examples
 tasks
@@ -8,7 +12,8 @@ tests
 .travis.yml
 bower.json
 *.js
+!dist/uv-*/**/*.js
 favicon.ico
 *.ts
-
-
+dist/*.tar
+dist/*.zip
