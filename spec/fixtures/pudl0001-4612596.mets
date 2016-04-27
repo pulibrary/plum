@@ -130,4 +130,13 @@
       </mets:div>
     </mets:div>
   </mets:structMap>
+  <mets:structMap TYPE="Logical">
+    <mets:div DMDID="p7p3g mfyt6" ID="pfgqm" TYPE="BoundVolume">
+      <mets:div ID="h8ib6" LABEL="leaf 1" TYPE="Leaf">
+        <mets:div ID="nhbtw" LABEL="recto" ORDER="1" TYPE="Page">
+          <mets:fptr FILEID="pkc90"/>
+        </mets:div>
+      </mets:div>
+    </mets:div>
+  </mets:structMap>
 </mets:mets>

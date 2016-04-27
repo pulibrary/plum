@@ -26,7 +26,9 @@ class IngestMETSJob < ActiveJob::Base
         ingest_volumes(resource)
       else
         ingest_files(resource: resource, files: @mets.files)
-        resource.logical_order.order = map_fileids(@mets.structure)
+        if @mets.structure.present?
+          resource.logical_order.order = map_fileids(@mets.structure)
+        end
         resource.save!
       end
     end
