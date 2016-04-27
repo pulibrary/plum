@@ -286,6 +286,10 @@ RSpec.describe PolymorphicManifestBuilder, vcr: { cassette_name: "iiif_manifest"
       it "is empty with no metadata" do
         expect(result.metadata).to be_empty
       end
+      it "doesn't render ocr_language" do
+        record.ocr_language = ["test"]
+        expect(result.metadata.first).to be_nil
+      end
       it "has a date created" do
         record.date_created = ["1981-01-31"]
         expect(result.metadata).not_to be_empty
