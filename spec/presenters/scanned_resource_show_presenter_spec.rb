@@ -5,14 +5,15 @@ RSpec.describe ScannedResourceShowPresenter do
 
   let(:date_created) { "2015-09-02" }
   let(:state) { "pending" }
+  let(:title) { "test title" }
   let(:solr_document) do
-    instance_double(SolrDocument, date_created: date_created, state: state, id: "test")
+    instance_double(SolrDocument, date_created: date_created, state: state, id: "test", title: title)
   end
   let(:ability) { nil }
 
   describe "#date_created" do
     it "delegates to solr document" do
-      expect(subject.date_created).to eq date_created
+      expect(subject.date_created).to eq ["09/02/2015"]
     end
   end
   describe "#state" do
@@ -42,9 +43,9 @@ RSpec.describe ScannedResourceShowPresenter do
 
   describe "attribute_to_html" do
     context "when given an arabic string" do
-      let(:date_created) { "حكاية" }
+      let(:title) { "حكاية" }
       it "marks it as rtl" do
-        expect(subject.attribute_to_html(:date_created)).to include "dir=rtl"
+        expect(subject.attribute_to_html(:title)).to include "dir=rtl"
       end
     end
     context "when given a bad field" do
