@@ -1,6 +1,6 @@
 <% if presenter.respond_to?(:file_presenters) && presenter.file_presenters.present? %>
+  <div class="uv viewer" data-config="/uv_config.json" data-uri="<%= main_app.polymorphic_path([main_app,:manifest,presenter]) %>" ></div>
   <%= UniversalViewer.script_tag %>
-  <div class="uv viewer" data-uri="<%= main_app.polymorphic_path([main_app,:manifest,presenter]) %>"></div>
 <% else %>
   <%= image_tag 'nope.png', class: "canonical-image" %>
 <% end %>

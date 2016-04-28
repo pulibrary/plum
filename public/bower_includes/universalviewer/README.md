@@ -2,9 +2,13 @@
 
 [![Build Status](https://travis-ci.org/UniversalViewer/universalviewer.svg?branch=master)](https://travis-ci.org/UniversalViewer/universalviewer) [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/UniversalViewer/universalviewer?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
+    npm install universalviewer
+
+or
+
     bower install uv
 
-http://universalviewer.github.io/examples/
+[Examples](http://universalviewer.io/examples/)
 
 [Google group](https://groups.google.com/forum/#!forum/universalviewer)
 
@@ -16,6 +20,7 @@ http://universalviewer.github.io/examples/
 ![British Library](https://raw.githubusercontent.com/UniversalViewer/assets/master/bl_logo.png "British Library")
 ![National Library of Wales](https://raw.githubusercontent.com/UniversalViewer/assets/master/nlw_logo.png "National Library of Wales")
 ![Villanova University, Falvey Memorial Library](https://raw.githubusercontent.com/UniversalViewer/assets/master/vufalvey_logo.png "Villanova University, Falvey Memorial Library")
+![Riksarkivet](https://raw.githubusercontent.com/Riksarkivet/assets/master/logo-en.png "Riksarkivet, The Swedish National Archives")
 
 ## About
 
@@ -25,11 +30,13 @@ Features:
 
 - [OpenSeadragon](https://openseadragon.github.io/) image zooming using the [IIIF image API](http://iiif.io/api/image/2.0/).
 - YouTube-style embedding with deep links to specific pages/zoom regions.
-- [Themable](https://stackedit.io/viewer#!provider=gist&gistId=5411c4576c2ec7387bba&filename=uv-theming-tutorial.md), fork the [UV theme](https://github.com/UniversalViewer/uv-en-GB-theme) on github to create your own.
+- [Themable](https://universalviewer.gitbooks.io/custom-themes/content/), fork the [UV theme](https://github.com/UniversalViewer/uv-en-GB-theme) on github to create your own.
 - Highly [configurable](https://github.com/UniversalViewer/universalviewer/wiki/Configuration) and [extensible](http://universalviewer.gitbooks.io/custom-extensions/content/).
-- Supports "IxIF" out of the box, allowing [audio](http://universalviewer.github.io/examples/?manifest=http://wellcomelibrary.org/iiif/b17307922/manifest), [video](http://universalviewer.github.io/examples/?manifest=http://wellcomelibrary.org/iiif/b16659090/manifest), and [pdf](http://universalviewer.github.io/examples/?manifest=http://wellcomelibrary.org/iiif/b17502792/manifest) viewing experiences.
+- Supports "IxIF" out of the box, allowing [3D](http://universalviewer.io/examples/?manifest=http://files.universalviewer.io/manifests/nelis/ecorche.json), [audio](http://universalviewer.io/examples/?manifest=http://wellcomelibrary.org/iiif/b17307922/manifest), [video](http://universalviewer.io/examples/?manifest=http://wellcomelibrary.org/iiif/b16659090/manifest), and [pdf](http://universalviewer.io/examples/?manifest=http://wellcomelibrary.org/iiif/b17502792/manifest) viewing experiences.
 - Supports search and autocomplete service integration with overlayed search results.
 - Internationalised UI using [transifex.com](https://www.transifex.com/) (currently supports English and Welsh. Volunteers for more translations gratefully accepted!)
+
+[More about the Universal Viewer](https://github.com/UniversalViewer/universalviewer/wiki/About)
 
 ## Stable Builds
 
@@ -55,18 +62,15 @@ All command-line operations for building the UV are scripted using [Grunt](http:
 
 1. Clone the `universalviewer` repository and sub modules:
 
-	    git clone git@github.com:UniversalViewer/universalviewer.git --recursive
+	    git clone https://github.com/UniversalViewer/universalviewer.git --recursive
 
 1. On the command line, go in to the `universalviewer` folder
 
 1. Run
 
         npm install
-
-1. Then run
-
         bower install
-
+        grunt sync
 
 ### Debug Builds
 

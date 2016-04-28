@@ -17,23 +17,23 @@
   "dependencies": {},
   "devDependencies": {
     "es6-promise": "~2.2.0",
-    "extensions": "edsilv/extensions#~0.1.5",
-    "http-status-codes": "edsilv/http-status-codes#~0.0.2",
-    "jquery-plugins": "edsilv/jquery-plugins#~0.0.14",
+    "extensions": "edsilv/extensions",
+    "http-status-codes": "edsilv/http-status-codes",
+    "jquery-plugins": "edsilv/jquery-plugins",
+    "key-codes": "edsilv/key-codes",
     "lodash-compat": "~3.10.0",
-    "manifesto": "universalviewer/manifesto#dev",
     "r.js": "~2.1.18",
-    "utils": "edsilv/utils#~0.0.28",
+    "utils": "edsilv/utils",
     "uv-cy-GB-theme": "universalviewer/uv-cy-GB-theme",
     "uv-en-GB-theme": "universalviewer/uv-en-GB-theme",
     "exjs": "~0.3.0"
   },
   "homepage": "https://github.com/UniversalViewer/universalviewer",
-  "_release": "702414f970",
+  "_release": "7f9f736e6d",
   "_resolution": {
     "type": "branch",
     "branch": "master",
-    "commit": "702414f970d0bc3a6a5083d30bac6c55bf9f22b7"
+    "commit": "7f9f736e6da88ac9e569a013978ae15b9622684e"
   },
   "_source": "git://github.com/UniversalViewer/universalviewer.git",
   "_target": "master",
