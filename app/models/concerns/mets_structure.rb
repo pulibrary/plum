@@ -1,6 +1,6 @@
 module MetsStructure
   def structure
-    structure_type('Physical') || structure_type('RelatedObjects')
+    structure_type('Logical')
   end
 
   def structure_for_volume(volume_id)
@@ -37,13 +37,21 @@ module MetsStructure
 
     def structure_recurse(node)
       children = node.element_children
-      return single_file_object(children.first) if single_file(children)
+      return single_file_object(children.first) if !section(node) && single_file(children)
 
       child_nodes = []
-      children.each do |child|
-        child_nodes << structure_recurse(child)
+      if single_file(children)
+        child_nodes = [single_file_object(children.first)]
+      else
+        children.each do |child|
+          child_nodes << structure_recurse(child)
+        end
       end
       { label: node['LABEL'], nodes: child_nodes }
+    end
+
+    def section(node)
+      node.attributes["TYPE"].try(:value) == "Section"
     end
 
     def single_file(nodeset)
