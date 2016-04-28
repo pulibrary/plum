@@ -3,7 +3,7 @@ module OsdModalHelper
     if !id
       block.call
     else
-      content_tag :span, class: 'ignore-select', data: { modal_manifest: IIIFPath.new(id).to_s }, &block
+      content_tag :span, class: 'ignore-select', data: { modal_manifest: "#{IIIFPath.new(id)}/info.json" }, &block
     end
   end
 end
