@@ -112,7 +112,7 @@ RSpec.describe "curation_concerns/base/file_manager.html.erb" do
   end
 
   it "renders an OSD link for each member" do
-    expect(rendered).to have_selector("*[data-modal-manifest='#{IIIFPath.new(file_set.id)}']")
+    expect(rendered).to have_selector("*[data-modal-manifest='#{IIIFPath.new(file_set.id)}/info.json']")
   end
 
   it "renders a server upload form" do
