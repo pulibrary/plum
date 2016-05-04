@@ -66,4 +66,9 @@ Rails.application.routes.draw do
   namespace :curation_concerns, path: :concern do
     resources :scanned_resources, only: [:new, :create, :show], path: 'container/:parent_id/scanned_resources', as: 'member_scanned_resource'
   end
+
+  require 'sidekiq/web'
+  authenticate :user do
+    mount Sidekiq::Web => '/sidekiq'
+  end
 end

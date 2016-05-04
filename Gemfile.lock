@@ -860,6 +860,7 @@ DEPENDENCIES
   sdoc (~> 0.4.0)
   sidekiq
   simplecov (~> 0.9)
+  sinatra
   solr_wrapper (~> 0.5.1)
   spring
   sprockets-es6
