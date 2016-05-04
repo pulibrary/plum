@@ -45,6 +45,10 @@ test:
 
 production:
   <<: *defaults
+  events:
+    server: <%= ENV['PLUM_RABBIT_SERVER'] || 'amqp://localhost:5672' %>
 
 staging:
   <<: *defaults
+  events:
+    server: <%= ENV['PLUM_RABBIT_SERVER'] || 'amqp://localhost:5672' %>

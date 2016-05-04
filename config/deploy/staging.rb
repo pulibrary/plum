@@ -7,6 +7,7 @@
 # server 'example.com', user: 'deploy', roles: %w{app web}, other_property: :other_value
 # server 'db.example.com', user: 'deploy', roles: %w{db}
 server 'hydra-dev', user: 'deploy', roles: %w(app db web)
+server 'lib-proc3', user: 'deploy', roles: %w(worker)
 
 # role-based syntax
 # ==================

@@ -24,6 +24,9 @@ production: &production
   <<: *default
   adapter: postgresql
   database: <%= ENV["PLUM_DB"] %>
+  host: <%= ENV["PLUM_DB_HOST"] %>
+  username: <%= ENV["PLUM_DB_USERNAME"] %>
+  password: <%= ENV["PLUM_DB_PASSWORD"] %>
 
 staging:
   <<: *production
