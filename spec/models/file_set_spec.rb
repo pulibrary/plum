@@ -37,6 +37,7 @@ RSpec.describe FileSet do
       expect(thumbnail_path).not_to exist
     end
     it "creates a JP2" do
+      subject.mime_type = "image/tiff"
       allow_any_instance_of(described_class).to receive(:warn) # suppress virus check warnings
       file = File.open(Rails.root.join("spec", "fixtures", "files", "color.tif"))
       Hydra::Works::UploadFileToFileSet.call(subject, file)
@@ -46,6 +47,7 @@ RSpec.describe FileSet do
       expect(path).to exist
     end
     it "creates full text and indexes it" do
+      subject.mime_type = "image/tiff"
       allow_any_instance_of(described_class).to receive(:warn) # suppress virus check warnings
       allow(Hydra::Derivatives::Jpeg2kImageDerivatives).to receive(:create).and_return(true)
       file = File.open(Rails.root.join("spec", "fixtures", "files", "page18.tif"))
