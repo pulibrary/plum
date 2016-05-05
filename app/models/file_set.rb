@@ -18,7 +18,7 @@ class FileSet < ActiveFedora::Base
   end
 
   def create_derivatives(filename)
-    case original_file.mime_type
+    case mime_type
     when 'image/tiff'
       Hydra::Derivatives::Jpeg2kImageDerivatives.create(
         filename,
