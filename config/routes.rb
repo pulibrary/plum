@@ -71,4 +71,7 @@ Rails.application.routes.draw do
   authenticate :user do
     mount Sidekiq::Web => '/sidekiq'
   end
+
+  # Dynamic robots.txt
+  get '/robots.:format' => 'pages#robots'
 end
