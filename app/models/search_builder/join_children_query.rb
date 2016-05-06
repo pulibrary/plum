@@ -6,6 +6,10 @@ class SearchBuilder
     end
 
     def to_s
+      "{!lucene}#{joined_queries}"
+    end
+
+    def joined_queries
       queries.map do |query|
         "(#{dismax_join(send(query))})"
       end.join(" OR ")
