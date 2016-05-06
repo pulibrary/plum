@@ -3,8 +3,16 @@ class CollectionEditForm < CurationConcerns::Forms::CollectionEditForm
   delegate :exhibit_id, to: :model
 
   def self.model_attributes(attrs)
-    attrs[:title] = Array(attrs[:title]).first if attrs[:title]
-    attrs[:description] = Array(attrs[:description]).first if attrs[:description]
+    attrs[:title] = Array(attrs[:title]) if attrs[:title]
+    attrs[:description] = Array(attrs[:description]) if attrs[:description]
     super(attrs)
+  end
+
+  def initialize_fields
+    super
+  end
+
+  def description
+    self[:description].first
   end
 end

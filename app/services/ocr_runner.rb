@@ -44,7 +44,7 @@ class OCRRunner
     end
 
     def parent
-      resource.generic_works.first
+      resource.in_works.first
     end
 
     def ocr_file

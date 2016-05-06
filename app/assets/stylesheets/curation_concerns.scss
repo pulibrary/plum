@@ -5,7 +5,9 @@ $navbar-default-bg: $light-gray;
 
 $font-family-sans-serif: $font-sans;
 $font-family-serif: $font-serif;
-
+$bootstrap-sass-asset-helper: true;
+@import 'bootstrap/variables';
+@import 'bootstrap/mixins';
 @import 'curation_concerns/curation_concerns';
 
 body {

@@ -44,4 +44,8 @@ class CollectionsController < ApplicationController
     def logout_url
       current_user.nil? ? nil : main_app.destroy_user_session_url
     end
+
+    def collection_search_builder_class
+      WorkSearchBuilder
+    end
 end

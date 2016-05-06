@@ -12,7 +12,7 @@ module CurationConcerns::Collectible
     end
 
     def create
-      if actor.create
+      if actor.create(attributes_for_actor)
         (add_to_collections(collection_id_params) && curation_concern.save) if collection_id_params.any?
         after_create_response
       else
