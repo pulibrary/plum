@@ -2,7 +2,7 @@ module StructuralMetadata
   extend ActiveSupport::Concern
 
   included do
-    contains :logical_order, class_name: "LogicalOrderBase"
+    has_subresource :logical_order, class_name: "LogicalOrderBase"
   end
 
   def to_solr(solr_doc = {})

@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe "curation_concerns/base/_representative_media.html.erb" do
-  let(:presenter) { instance_double(ScannedResourceShowPresenter, file_presenters: file_presenters, id: "1", persisted?: true, model_name: ScannedResource.model_name) }
-  let(:file_presenters) { [] }
+  let(:presenter) { instance_double(ScannedResourceShowPresenter, member_presenters: member_presenters, id: "1", persisted?: true, model_name: ScannedResource.model_name) }
+  let(:member_presenters) { [] }
   before do
     allow(presenter).to receive(:to_model).and_return(presenter)
     render partial: "curation_concerns/base/representative_media", locals: { presenter: presenter }
@@ -13,7 +13,7 @@ RSpec.describe "curation_concerns/base/_representative_media.html.erb" do
     end
   end
   context "when there are generic files" do
-    let(:file_presenters) { [1] }
+    let(:member_presenters) { [1] }
     it "renders the viewer" do
       expect(response).to have_selector ".viewer[data-uri]"
     end
