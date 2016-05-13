@@ -78,6 +78,7 @@ group :development do
   gem 'capistrano-rails'
   gem 'capistrano-passenger'
   gem 'capistrano-rails-console'
+  gem 'capistrano', '3.4.0'
 end
 
 group :test do
@@ -105,6 +106,7 @@ gem 'iso-639'
 gem 'bunny'
 gem 'string_rtl'
 gem 'sinatra'
+gem 'redis-namespace'
 source 'https://rails-assets.org' do
   gem 'rails-assets-babel-polyfill'
   gem 'rails-assets-bootstrap-select', '1.9.4'
