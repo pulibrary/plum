@@ -33,7 +33,6 @@ Rails.application.routes.draw do
       get :manifest, defaults: { format: :json }
     end
   end
-  mount Hydra::Collections::Engine => '/'
   mount CurationConcerns::Engine, at: '/'
   curation_concerns_collections
   curation_concerns_basic_routes

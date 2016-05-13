@@ -31,6 +31,10 @@ module CurationConcerns
       super
     end
 
+    def description
+      Array.wrap(super).first
+    end
+
     def pdf_type
       if self["pdf_type"].blank?
         "gray"

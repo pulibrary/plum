@@ -27,6 +27,7 @@ class SearchBuilder < CurationConcerns::SearchBuilder
     solr_params[:fq] ||= []
     state_field = ActiveFedora.index_field_mapper.solr_name('state', :symbol)
     state_string = readable_states.map { |state| "#{state_field}:#{state}" }.join(" OR ")
+    state_string += " OR active_fedora_model_ssi:Collection"
     solr_params[:fq] << state_string
   end
 
@@ -35,10 +36,10 @@ class SearchBuilder < CurationConcerns::SearchBuilder
   end
 
   def show_action?
-    self.class.show_actions.include? blacklight_params["action"].to_sym
+    self.class.show_actions.include? blacklight_params[:action].to_sym
   end
 
   def file_manager?
-    blacklight_params["action"].to_sym == :file_manager
+    blacklight_params[:action].to_sym == :file_manager
   end
 end

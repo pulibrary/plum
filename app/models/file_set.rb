@@ -6,6 +6,7 @@ class FileSet < ActiveFedora::Base
   apply_schema IIIFPageSchema, ActiveFedora::SchemaIndexingStrategy.new(
     ActiveFedora::Indexers::GlobalIndexer.new([:stored_searchable, :symbol])
   )
+  after_save :touch_parent_works
 
   validates_with ViewingHintValidator
 
@@ -39,10 +40,15 @@ class FileSet < ActiveFedora::Base
   def to_solr(solr_doc = {})
     super.tap do |doc|
       doc["full_text_tesim"] = ocr_text if ocr_text.present?
+      doc["ordered_by_ssim"] = ordered_by.map(&:id).to_a
     end
   end
 
   private
+
+    def touch_parent_works
+      in_works.each(&:update_index)
+    end
 
     def ocr_file
       derivative_url('ocr')

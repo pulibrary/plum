@@ -37,7 +37,7 @@ gem 'curation_concerns', github:'projecthydra-labs/curation_concerns', branch: :
 gem 'pul_metadata_services', github:'pulibrary/pul_metadata_services', branch: :master
 gem 'hydra-role-management', '~> 0.2.0'
 gem 'rsolr', '~> 1.0.6'
-gem 'devise'
+gem 'devise', '~> 3.0'
 gem 'devise-guests', '~> 0.3'
 gem 'iiif-presentation'
 
@@ -46,15 +46,13 @@ gem 'prawn'
 # gem 'pdf-inspector', '~> 1.2.0', group: [:test]
 
 # Copied from curation_concerns Gemfile.extra
-gem 'hydra-collections', github: 'projecthydra/hydra-collections', branch: 'master'
 gem 'hydra-works', github: 'projecthydra-labs/hydra-works', branch: 'master'
 gem 'hydra-pcdm', github: 'projecthydra-labs/hydra-pcdm', branch: 'master'
-gem 'activefedora-aggregation', github: 'projecthydra-labs/activefedora-aggregation', branch: 'master'
 gem 'hydra-derivatives', github: 'projecthydra/hydra-derivatives', branch: 'master'
-gem 'active-fedora'
+gem 'active-fedora', github: 'projecthydra/active_fedora', branch: 'master'
 
-gem 'rubocop', require: false
-gem 'rubocop-rspec', require: false
+gem 'rubocop', '~> 0.34.0', require: false
+gem 'rubocop-rspec', '~> 1.3.0', require: false
 
 group :development, :test do
   gem 'simplecov', '~> 0.9', require: false
@@ -70,7 +68,7 @@ end
 
 gem 'solr_wrapper', '~> 0.5.1'
 gem 'fcrepo_wrapper', '~> 0.2'
-gem 'coveralls', require: false
+gem 'coveralls', '0.8.3', require: false
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
@@ -85,8 +83,8 @@ end
 group :test do
   gem "capybara"
   gem "launchy"
-  gem "vcr"
-  gem "webmock", require: false
+  gem "vcr", '~> 2.9'
+  gem "webmock", '~> 1.0', require: false
 end
 
 group :production do
@@ -99,6 +97,7 @@ gem "omniauth-cas"
 gem 'ezid-client'
 gem 'sprockets-es6'
 gem 'sprockets-rails', '~> 2.3.3'
+gem 'sprockets', '~> 3.5.0'
 gem 'browse-everything', github: 'projecthydra-labs/browse-everything'
 gem 'aasm'
 gem 'newrelic_rpm'

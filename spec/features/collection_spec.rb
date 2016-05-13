@@ -8,7 +8,7 @@ RSpec.feature 'Collections', type: :feature do
     end
 
     scenario 'attempting to create a collection fails' do
-      visit collections.new_collection_path
+      visit new_collection_path
       expect(page).to have_selector 'div.alert', 'You need to sign in or sign up before continuing'
     end
   end

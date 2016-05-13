@@ -15,7 +15,7 @@
         <p class="short-description" id="collection_short_description">
           <%= Collection.human_readable_short_description %>
         </p>
-        <%= link_to 'Add New', collections.new_collection_path, class: "add-button btn btn-primary collection_add_new" %>
+        <%= link_to 'Add New', main_app.new_collection_path, class: "add-button btn btn-primary collection_add_new" %>
       </li>
     <% end %>
     <% @curation_concerns.each do |klass| %>

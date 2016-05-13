@@ -1,7 +1,7 @@
 module CurationConcerns
   class PlumActor < CurationConcerns::BaseActor
     include ::CurationConcerns::WorkActorBehavior
-    def update
+    def update(attributes)
       super.tap do |result|
         messenger.record_updated(curation_concern) if result
       end
@@ -9,7 +9,7 @@ module CurationConcerns
       bad_record_id(err)
     end
 
-    def create
+    def create(attributes)
       super
     rescue JSONLDRecord::MissingRemoteRecordError => err
       bad_record_id(err)

@@ -35,7 +35,7 @@ class SearchBuilder
       end
 
       def query_file_sets
-        "{!join from=generic_work_ids_ssim to=id}"
+        "{!join from=ordered_by_ssim to=id}"
       end
 
       def query_child_file_sets

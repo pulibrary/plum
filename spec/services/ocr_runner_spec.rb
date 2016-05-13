@@ -5,7 +5,7 @@ RSpec.describe OCRRunner do
   subject { described_class.new(file_set) }
 
   before do
-    allow(file_set).to receive(:generic_works).and_return([parent])
+    allow(file_set).to receive(:in_works).and_return([parent])
     allow(Tesseract).to receive(:languages).and_return(eng: ["English"], ita: ["Italian"], spa: ["Spanish"])
   end
 
