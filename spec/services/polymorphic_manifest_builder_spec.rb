@@ -21,7 +21,7 @@ RSpec.describe PolymorphicManifestBuilder, vcr: { cassette_name: "iiif_manifest"
     before do
       allow(mvw_record).to receive(:persisted?).and_return(true)
       allow(mvw_record).to receive(:id).and_return("2")
-      allow(mvw_document).to receive(:file_presenters).and_return([solr_document])
+      allow(mvw_document).to receive(:member_presenters).and_return([solr_document])
     end
     it "renders as a collection" do
       expect(manifest['@type']).to eq "sc:Collection"
@@ -84,10 +84,10 @@ RSpec.describe PolymorphicManifestBuilder, vcr: { cassette_name: "iiif_manifest"
             }
           ]
         }
-        allow(mvw_document).to receive(:file_presenters).and_return([solr_document, file_set_presenter, sr_2])
-        allow(solr_document).to receive(:file_presenters).and_return([file_set2_presenter])
+        allow(mvw_document).to receive(:member_presenters).and_return([solr_document, file_set_presenter, sr_2])
+        allow(solr_document).to receive(:member_presenters).and_return([file_set2_presenter])
         allow(solr_document).to receive(:logical_order).and_return(record.logical_order.order)
-        allow(sr_2).to receive(:file_presenters).and_return([file_set3_presenter])
+        allow(sr_2).to receive(:member_presenters).and_return([file_set3_presenter])
       end
       it "renders them all as canvases" do
         expect(manifest['manifests']).to eq nil

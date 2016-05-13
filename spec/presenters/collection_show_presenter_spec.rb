@@ -18,9 +18,9 @@ RSpec.describe CollectionShowPresenter do
   end
   let(:solr) { ActiveFedora.solr.conn }
 
-  describe "#file_presenters" do
+  describe "#member_presenters" do
     it "returns presenters for each Scanned Resource" do
-      expect(subject.file_presenters.map(&:id)).to eq [scanned_resource.id]
+      expect(subject.member_presenters.map(&:id)).to eq [scanned_resource.id]
     end
   end
 

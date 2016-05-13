@@ -1,6 +1,6 @@
 class SammelbandLogicalOrder
   attr_reader :source_presenter, :source_structure
-  delegate :file_presenters, to: :source_presenter
+  delegate :member_presenters, to: :source_presenter
   def initialize(source_presenter, source_structure)
     @source_presenter = source_presenter
     @source_structure = source_structure
@@ -37,7 +37,7 @@ class SammelbandLogicalOrder
     end
 
     def canvas_ids(presenter)
-      presenter.file_presenters.map do |file_presenter|
+      presenter.member_presenters.map do |file_presenter|
         {
           "proxy" => file_presenter.id
         }
@@ -45,7 +45,7 @@ class SammelbandLogicalOrder
     end
 
     def child_presenters
-      @child_presenters ||= file_presenters.select do |presenter|
+      @child_presenters ||= member_presenters.select do |presenter|
         presenter.respond_to?(:logical_order)
       end
     end

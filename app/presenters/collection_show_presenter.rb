@@ -6,10 +6,10 @@ class CollectionShowPresenter < CurationConcerns::CollectionPresenter
            :embargo_release_date, :lease_expiration_date, :rights, to: :solr_document,
                                                                    allow_nil: true
 
-  def file_presenters
-    @file_sets ||= CurationConcerns::PresenterFactory.build_presenters(ordered_ids,
-                                                                       file_presenter_class,
-                                                                       current_ability)
+  def member_presenters
+    @member_presenters ||= CurationConcerns::PresenterFactory.build_presenters(ordered_ids,
+                                                                               file_presenter_class,
+                                                                               current_ability)
   end
 
   def viewing_hint
