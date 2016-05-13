@@ -19,9 +19,15 @@
  *= require_self
  */
 
+// Third-party / vendor styles
 @import 'curation_concerns';
 @import 'curation_concerns/fileupload';
+@import 'jquery-ui/sortable';
+@import 'jquery-ui/selectable';
+@import 'browse_everything';
+@import 'bootstrap-select';
 
+// PUL specific styles
 @import 'abstractions/mixins';
 
 @import 'variables/breaks';
@@ -30,23 +36,18 @@
 
 @import 'base/typography';
 
+@import 'components/breadcrumb';
+@import 'components/datepicker';
+@import 'components/fileupload';
+@import 'components/plum_file_manager';
+@import 'components/rtl';
+@import 'components/sorting';
+@import 'components/viewer';
+@import 'components/flash';
 @import 'components/font-face';
 @import 'components/footer';
 @import 'components/header';
 @import 'components/positioning';
 @import 'components/structure_editor';
-@import 'components/flash';
+@import 'components/tabs';
 @import 'components/welcome_page';
-
-@import "components/viewer";
-@import "components/sorting";
-@import "components/plum_file_manager";
-@import "components/fileupload";
-@import "components/datepicker";
-@import "components/rtl";
-@import "jquery-ui/sortable";
-@import "jquery-ui/selectable";
-@import "browse_everything";
-
-@import "components/breadcrumb";
-@import "bootstrap-select";
