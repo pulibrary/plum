@@ -23,7 +23,7 @@ RSpec.shared_examples "page header" do |header_method, page_title|
       let(:href) { Rails.application.routes.url_helpers
         .curation_concerns_scanned_resource_path(parent_id) }
 
-      it { is_expected.to have_selector('h1', page_title) }
+      it { is_expected.to have_selector('h1', text: page_title) }
       it { is_expected.to have_text('Back to Test Resource') }
       it { is_expected.to have_link('Test Resource', href: href) }
       it { is_expected.to have_selector('ul.breadcrumb') }

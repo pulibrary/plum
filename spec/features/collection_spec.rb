@@ -9,7 +9,7 @@ RSpec.feature 'Collections', type: :feature do
 
     scenario 'attempting to create a collection fails' do
       visit new_collection_path
-      expect(page).to have_selector 'div.alert', 'You need to sign in or sign up before continuing'
+      expect(page).to have_selector 'div.alert', text: 'You are not authorized to access this page'
     end
   end
 
@@ -25,13 +25,13 @@ RSpec.feature 'Collections', type: :feature do
       expect(page).to have_link 'Add a Collection'
 
       click_link 'Add a Collection'
-      expect(page).to have_selector 'h1', 'Create New Collection'
+      expect(page).to have_selector 'h1', text: 'Create New Collection'
 
       fill_in 'collection_title', with: 'Test Collection'
       fill_in 'collection_exhibit_id', with: 'slug1'
       click_button 'Create Collection'
-      expect(page).to have_selector 'h1', 'Test Collection'
-      expect(page).to have_selector 'li.exhibit_id', 'slug1'
+      expect(page).to have_selector 'h1', text: 'Test Collection'
+      expect(page).to have_selector 'li.exhibit_id', text: 'slug1'
     end
     scenario 'is edited' do
       c = FactoryGirl.create(:collection, user: user)
@@ -40,14 +40,14 @@ RSpec.feature 'Collections', type: :feature do
 
       fill_in 'collection_title', with: "Alfafa"
       click_button "Update Collection"
-      expect(page).to have_selector "h1", "Alfafa"
+      expect(page).to have_selector "h1", text: "Alfafa"
     end
     scenario 'fails to input exhibit ID' do
       visit root_path
       expect(page).to have_link 'Add a Collection'
 
       click_link 'Add a Collection'
-      expect(page).to have_selector 'h1', 'Create New Collection'
+      expect(page).to have_selector 'h1', text: 'Create New Collection'
 
       fill_in 'collection_title', with: 'Test Collection'
       click_button 'Create Collection'

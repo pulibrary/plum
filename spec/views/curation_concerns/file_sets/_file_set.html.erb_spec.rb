@@ -19,7 +19,7 @@ RSpec.describe "curation_concerns/base/_related_files.html.erb" do
   end
 
   it 'shows filename and title' do
-    expect(rendered).to have_selector 'td.filename', 'file1.jpg'
-    expect(rendered).to have_selector 'div.pagenumber', 'p. 1'
+    expect(rendered).to have_selector 'td.filename', text: 'file1.jpg'
+    expect(rendered).to have_selector 'div.pagenumber', text: 'p. 1'
   end
 end
