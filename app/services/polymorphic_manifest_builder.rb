@@ -1,7 +1,7 @@
 class PolymorphicManifestBuilder
   class << self
     def new(solr_document, *args)
-      if solr_document.file_presenters.map(&:class).uniq.length > 1
+      if solr_document.member_presenters.map(&:class).uniq.length > 1
         sammelband_manifest_builder.new(solr_document, *args)
       else
         manifest_builder.new(solr_document, *args)

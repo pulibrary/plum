@@ -48,7 +48,7 @@ class CurationConcernsShowPresenter < CurationConcerns::WorkShowPresenter
   private
 
     def logical_order_factory
-      @logical_order_factory ||= WithProxyForObject::Factory.new(file_presenters)
+      @logical_order_factory ||= WithProxyForObject::Factory.new(member_presenters)
     end
 
     def state_badge_instance

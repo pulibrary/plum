@@ -59,7 +59,7 @@ RSpec.feature "ScannedResourcesController", type: :feature do
         click_on("Attach to Scanned Resource")
       end
 
-      visit polymorphic_path [parent_presenter.file_presenters.first]
+      visit polymorphic_path [parent_presenter.member_presenters.first]
       expect(page).to have_content "image.png"
 
       visit edit_polymorphic_path [scanned_resource]

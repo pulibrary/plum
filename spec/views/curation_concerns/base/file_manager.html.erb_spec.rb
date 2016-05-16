@@ -31,7 +31,7 @@ RSpec.describe "curation_concerns/base/file_manager.html.erb" do
 
   before do
     assign(:presenter, parent_presenter)
-    allow(parent_presenter).to receive(:file_presenters).and_return(members)
+    allow(parent_presenter).to receive(:member_presenters).and_return(members)
     stub_blacklight_views
     allow(view).to receive(:curation_concern).and_return(parent)
     render

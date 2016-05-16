@@ -1,6 +1,5 @@
 module CurationConcerns
   class PlumActor < CurationConcerns::BaseActor
-    include ::CurationConcerns::WorkActorBehavior
     def update(attributes)
       super.tap do |result|
         messenger.record_updated(curation_concern) if result

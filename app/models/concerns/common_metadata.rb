@@ -57,7 +57,7 @@ module CommonMetadata
     end
 
     def complete_record
-      self.identifier = Ezid::Identifier.create.id unless identifier
+      self.identifier = Ezid::Identifier.mint.id unless identifier
     end
   end
 end

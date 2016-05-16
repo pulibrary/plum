@@ -3,7 +3,7 @@ module CurationConcerns::MemberManagement
 
   included do
     def structure
-      @members = presenter.file_presenters
+      @members = presenter.member_presenters
       @logical_order = presenter.logical_order_object
     end
 

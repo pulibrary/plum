@@ -19,8 +19,8 @@ class AllCollectionsPresenter < CollectionShowPresenter
     nil
   end
 
-  def file_presenters
-    @file_presenters ||= super.select do |presenter|
+  def member_presenters
+    @member_presenters ||= super.select do |presenter|
       if presenter.current_ability
         presenter.current_ability.can?(:read, presenter.solr_document)
       else

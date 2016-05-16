@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 describe CurationConcerns::MultiVolumeWorkActor do
-  it 'behaves like a GenericWorkActor' do
-    expect(described_class.included_modules).to include(::CurationConcerns::WorkActorBehavior)
+  it 'is a BaseActor' do
+    expect(described_class < ::CurationConcerns::BaseActor).to be true
   end
 end

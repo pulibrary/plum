@@ -16,7 +16,7 @@ class ManifestBuilder
     end
 
     def manifest_presenters
-      record.file_presenters.select do |x|
+      record.member_presenters.select do |x|
         x.model_name.name != "FileSet"
       end
     end

@@ -20,9 +20,9 @@ RSpec.describe SammelbandLogicalOrder do
       let(:file_2_presenter) { FileSetPresenter.new(file_2, nil) }
       let(:file_3_presenter) { FileSetPresenter.new(file_3, nil) }
       before do
-        allow(subject).to receive(:file_presenters).and_return([sr_1_presenter, sr_2_presenter, file_3_presenter])
-        allow(sr_1_presenter).to receive(:file_presenters).and_return([file_1_presenter])
-        allow(sr_2_presenter).to receive(:file_presenters).and_return([file_2_presenter])
+        allow(subject).to receive(:member_presenters).and_return([sr_1_presenter, sr_2_presenter, file_3_presenter])
+        allow(sr_1_presenter).to receive(:member_presenters).and_return([file_1_presenter])
+        allow(sr_2_presenter).to receive(:member_presenters).and_return([file_2_presenter])
         allow(sr_1_presenter).to receive(:logical_order).and_return({
           "nodes": [
             {
