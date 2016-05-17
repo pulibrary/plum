@@ -13,3 +13,10 @@ $bootstrap-sass-asset-helper: true;
 body {
     padding: 0;
 }
+
+li.attribute {
+    list-style-type: none;
+}
+ul.tabular {
+    padding-left: 0;
+}

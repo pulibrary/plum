@@ -30,7 +30,7 @@ class CurationConcernsShowPresenter < CurationConcerns::WorkShowPresenter
   end
 
   def language
-    LanguageRenderer.new(solr_document.language).render
+    Array.wrap(solr_document.language).map { |code| LanguageService.label(code) }
   end
 
   def date_created
