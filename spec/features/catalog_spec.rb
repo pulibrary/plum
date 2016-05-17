@@ -13,7 +13,7 @@ RSpec.feature "CatalogController", type: :feature do
     scenario "Admin users see collection, language, and state facets" do
       visit search_catalog_path q: ""
       expect(page).to have_text "Test title"
-      expect(page).to have_selector "div.blacklight-collection_sim", text: "Collection"
+      expect(page).to have_selector "div.blacklight-collection_ssim", text: "Collection"
       expect(page).to have_selector "div.blacklight-language_sim", text: "Language"
       expect(page).to have_selector "div.blacklight-state_sim", text: "State"
     end

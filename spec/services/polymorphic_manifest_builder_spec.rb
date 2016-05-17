@@ -295,6 +295,19 @@ RSpec.describe PolymorphicManifestBuilder, vcr: { cassette_name: "iiif_manifest"
         expect(result.metadata).not_to be_empty
       end
     end
+    describe "a record in a collection" do
+      let(:resource) { FactoryGirl.create(:scanned_resource_in_collection) }
+      let(:solr_document) { ScannedResourceShowPresenter.new(SolrDocument.new(resource.to_solr), nil) }
+
+      it "has collection title" do
+        expect(subject.manifest.metadata.first).to eql(
+          "label" => "Collection",
+          "value" => [
+            "Test Collection"
+          ]
+        )
+      end
+    end
     it "has a viewing hint" do
       record.viewing_hint = "paged"
       expect(result.viewing_hint).to eq "paged"

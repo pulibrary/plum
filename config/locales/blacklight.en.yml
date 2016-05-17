@@ -4,4 +4,4 @@ en:
     search:
       fields:
         facet:
-          collection_sim: Collection
+          collection_ssim: Collection
