@@ -62,7 +62,7 @@ describe "curation_concerns/multi_volume_works/show.html.erb" do
       expect(rendered).to have_link member_presenter.to_s, href: "/concern/file_sets/#{member_presenter.id}"
     end
     it "has a link to edit structure" do
-      expect(rendered).to have_link "Edit Structure", structure_curation_concerns_multi_volume_work_path(id: presenter.id)
+      expect(rendered).to have_link "Edit Structure", href: structure_curation_concerns_multi_volume_work_path(id: presenter.id)
     end
   end
 end

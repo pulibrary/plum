@@ -33,7 +33,7 @@ RSpec.feature "ScannedResourcesController", type: :feature do
 
       click_button 'Update Scanned resource'
       expect(page).to have_text("Test title")
-      expect(page).to have_selector("span.label-primary", "Final Review")
+      expect(page).to have_selector("span.label-primary", text: "Final Review")
     end
 
     scenario "User gets an error for bad metadata identifier change" do
@@ -77,7 +77,7 @@ RSpec.feature "ScannedResourcesController", type: :feature do
     let(:scanned_resource) { FactoryGirl.create(:scanned_resource_with_multi_volume_work, user: user, state: 'complete') }
     scenario "User can't edit a scanned resource" do
       visit edit_polymorphic_path [scanned_resource]
-      expect(page).to have_selector("div.alert-info", "You are not authorized to access this page")
+      expect(page).to have_selector("div.alert-info", text: "You are not authorized to access this page")
     end
 
     scenario "User can follow link to parent multi volume work" do

@@ -27,7 +27,7 @@ RSpec.feature "MultiVolumeWorksController", type: :feature do
     click_button 'Update Multi volume work'
     expect(page).to have_text("Test title")
     expect(page).to have_text("New note")
-    expect(page).to have_selector("span.label-info", "Metadata Review")
+    expect(page).to have_selector("span.label-info", text: "Metadata Review")
   end
 
   scenario "User can create a new scanned resource attached to the multi-volume work", vcr: { cassette_name: "locations" } do
