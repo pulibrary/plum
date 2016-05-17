@@ -3,10 +3,12 @@ class IngestMETSJob < ActiveJob::Base
 
   # @param [String] mets_file Filename of a METS file to ingest
   # @param [String] user User to ingest as
-  def perform(mets_file, user)
+  # @param [Array<String>] collections Collection IDs the resources should be members of
+  def perform(mets_file, user, collections = [])
     logger.info "Ingesting METS #{mets_file}"
     @mets = METSDocument.new mets_file
     @user = user
+    @collections = collections.map { |col_id| Collection.find(col_id) }
 
     ingest
   end
@@ -21,6 +23,12 @@ class IngestMETSJob < ActiveJob::Base
       resource.apply_remote_metadata
       resource.save!
       logger.info "Created #{resource.class}: #{resource.id}"
+
+      @collections.each do |col|
+        col.members << resource
+        col.save
+        logger.info "Added to Collection: #{col.title}"
+      end
 
       if @mets.multi_volume?
         ingest_volumes(resource)

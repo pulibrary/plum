@@ -68,6 +68,7 @@ RSpec.describe IngestMETSJob do
     let(:file) { IoDecorator.new(tiff_file, mime_type, File.basename(tiff_file)) }
     let(:resource) { ScannedResource.new }
     let(:fileset) { FileSet.new }
+    let(:collection) { FactoryGirl.create(:collection) }
     let(:order) { {
       nodes: [{
         label: 'leaf 1', nodes: [{
@@ -86,11 +87,12 @@ RSpec.describe IngestMETSJob do
     end
 
     it "ingests a mets file", vcr: { cassette_name: 'bibdata-4612596' } do
-      described_class.perform_now(mets_file, user)
+      described_class.perform_now(mets_file, user, [collection.id])
       expect(resource.persisted?).to be true
       expect(resource.file_sets.length).to eq 1
       expect(resource.reload.logical_order.order).to eq(order.deep_stringify_keys)
       expect(fileset.reload.title).to eq(['leaf 1. recto'])
+      expect(resource.in_collections).to eq([collection])
     end
   end
 end
