@@ -22,10 +22,22 @@ module CurationConcerns
       actor.update_metadata(file_attributes)
     end
 
+    def text
+      respond_to do |f|
+        f.json do
+          render json: annotation_builder
+        end
+      end
+    end
+
     protected
 
       def actor
         @actor ||= ::FileSetActor.new(@file_set, current_user)
+      end
+
+      def annotation_builder
+        AnnotationListBuilder.new(@file_set, main_app.text_curation_concerns_member_file_set_url(parent, @file_set), CanvasID.new(@file_set.id, polymorphic_url([main_app, :manifest, parent])).to_s)
       end
   end
 end

@@ -32,6 +32,7 @@ class CanvasBuilder
       canvas.label = record.to_s
       canvas.viewing_hint = record.viewing_hint if record.viewing_hint
       attach_image
+      attach_other_content
     end
 
     def attach_image
@@ -50,5 +51,15 @@ class CanvasBuilder
       canvas.images << annotation
       canvas.width = image.width
       canvas.height = image.height
+    end
+
+    def attach_other_content
+      id = parent_path.send(:helper).text_curation_concerns_member_file_set_url(parent_path.record, record)
+      resource = {
+        "@id" => id,
+        "@type" => "sc:AnnotationList",
+        "label" => "Text of this Page"
+      }
+      canvas["otherContent"] = [resource]
     end
 end

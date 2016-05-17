@@ -1,7 +1,7 @@
 class HOCRDocument
   class TitleValue
     def initialize(title_value)
-      @title_attrs = title_value.split(";").map(&:strip)
+      @title_attrs = title_value.to_s.split(";").map(&:strip)
     end
 
     def to_h

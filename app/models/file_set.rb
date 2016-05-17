@@ -44,6 +44,15 @@ class FileSet < ActiveFedora::Base
     end
   end
 
+  def ocr_document
+    return unless persisted? && File.exist?(ocr_file.gsub("file:", ""))
+    @ocr_document ||=
+      begin
+        file = File.open(ocr_file.gsub("file:", ""))
+        HOCRDocument.new(file)
+      end
+  end
+
   private
 
     def touch_parent_works
@@ -55,10 +64,7 @@ class FileSet < ActiveFedora::Base
     end
 
     def ocr_text
-      return unless persisted? && File.exist?(ocr_file.gsub("file:", ""))
-      file = File.open(ocr_file.gsub("file:", ""))
-      ocr_doc = HOCRDocument.new(file)
-      ocr_doc.text.strip
+      ocr_document.try(:text).try(:strip)
     end
 
     # The destination_name parameter has to match up with the file parameter
