@@ -232,6 +232,10 @@ RSpec.describe PolymorphicManifestBuilder, vcr: { cassette_name: "iiif_manifest"
           expect(manifest_json['sequences'][0]["rendering"]["@id"]).to eql "https://plum.com/concern/scanned_resources/1/pdf/gray"
         end
       end
+      it "has an otherContent" do
+        first_canvas = manifest_json["sequences"][0]["canvases"][0]
+        expect(first_canvas["otherContent"][0]["@id"]).to eq "http://plum.com/concern/container/1/file_sets/x633f104m/text"
+      end
     end
     it "has none" do
       expect(subject.canvases).to eq []

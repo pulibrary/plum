@@ -3,7 +3,7 @@ class HOCRDocument
     attr_reader :bbox_values
 
     def initialize(bbox_values)
-      @bbox_values = bbox_values.map(&:to_i)
+      @bbox_values = Array.wrap(bbox_values).map(&:to_i)
     end
 
     def top_left
@@ -12,6 +12,14 @@ class HOCRDocument
 
     def bottom_right
       Coordinate.new(bbox_values[2], bbox_values[3])
+    end
+
+    def width
+      bottom_right.x - top_left.x
+    end
+
+    def height
+      bottom_right.y - top_left.y
     end
 
     class Coordinate

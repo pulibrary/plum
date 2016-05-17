@@ -64,6 +64,11 @@ Rails.application.routes.draw do
 
   namespace :curation_concerns, path: :concern do
     resources :scanned_resources, only: [:new, :create, :show], path: 'container/:parent_id/scanned_resources', as: 'member_scanned_resource'
+    resources :file_sets, only: [], path: 'container/:parent_id/file_sets', as: 'member_file_set' do
+      member do
+        get :text, defaults: { format: :json }
+      end
+    end
   end
 
   require 'sidekiq/web'

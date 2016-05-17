@@ -40,4 +40,45 @@ RSpec.describe CurationConcerns::FileSetsController do
       expect(manifest_generator).to have_received(:record_updated).with(parent)
     end
   end
+
+  describe "#text" do
+    before do
+      sign_in user
+      file_set.save
+      parent.ordered_members << file_set
+      parent.save
+      allow_any_instance_of(FileSet).to receive(:ocr_document).and_return(ocr_document)
+    end
+    let(:document) { File.open(Rails.root.join("spec", "fixtures", "files", "test.hocr")) }
+    let(:ocr_document) { HOCRDocument.new(document) }
+    let(:parent_path) { "http://test.host/concern/container/#{parent.id}/file_sets/#{file_set.id}/text" }
+    let(:canvas_id) { "http://test.host/concern/scanned_resources/#{parent.id}/manifest/canvas/#{file_set.id}" }
+    let(:bounding_box) do
+      b = ocr_document.lines.first.bounding_box
+      "#{b.top_left.x},#{b.top_left.y},#{b.width},#{b.height}"
+    end
+    it "returns a manifest for the file set" do
+      get :text, parent_id: parent.id, id: file_set.id, format: :json
+
+      expect(JSON.parse(response.body)).to eq(
+        "@context" => "http://iiif.io/api/presentation/2/context.json",
+        "@id" => "#{parent_path}",
+        "@type" => "sc:AnnotationList",
+        "resources" => [
+          {
+            "@id" => "#{parent_path}/line_1_3",
+            "@type" => "oa:Annotation",
+            "motivation" => "sc:painting",
+            "resource" => {
+              "@id" => "#{parent_path}/line_1_3/1",
+              "@type" => "cnt:ContentAsText",
+              "format" => "text/plain",
+              "chars" => ocr_document.lines.first.text
+            },
+            "on" => "#{canvas_id}#xywh=#{bounding_box}"
+          }
+        ]
+      )
+    end
+  end
 end
