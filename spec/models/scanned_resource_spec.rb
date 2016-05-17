@@ -248,7 +248,7 @@ describe ScannedResource do
     let(:scanned_resource) { FactoryGirl.create(:scanned_resource_in_collection) }
     let(:solr_doc) { scanned_resource.to_solr }
     it "indexes collection" do
-      expect(solr_doc['collection_sim']).to eq(['Test Collection'])
+      expect(solr_doc['collection_ssim']).to eq(['Test Collection'])
       expect(solr_doc['collection_slug_sim']).to eq(scanned_resource.in_collections.first.exhibit_id)
     end
   end
