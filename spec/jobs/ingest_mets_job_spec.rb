@@ -25,6 +25,7 @@ RSpec.describe IngestMETSJob do
       allow(ScannedResource).to receive(:new).and_return(resource1, resource2)
       allow(fileset).to receive(:id).and_return('file1')
       allow(fileset).to receive(:title=)
+      allow(fileset).to receive(:replaces=)
       allow_any_instance_of(METSDocument).to receive(:decorated_file).and_return(file)
       allow_any_instance_of(METSDocument).to receive(:thumbnail_path).and_return(file_path)
       allow_any_instance_of(ScannedResource).to receive(:save!)
@@ -93,6 +94,8 @@ RSpec.describe IngestMETSJob do
       expect(resource.reload.logical_order.order).to eq(order.deep_stringify_keys)
       expect(fileset.reload.title).to eq(['leaf 1. recto'])
       expect(resource.in_collections).to eq([collection])
+      expect(resource.replaces).to eq('pudl0001/4612596')
+      expect(fileset.replaces).to eq('pudl0001/4612596/00000001')
     end
   end
 end
