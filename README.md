@@ -6,10 +6,17 @@
 [![Stories in Ready](https://badge.waffle.io/pulibrary/plum.png?label=ready&title=Ready)](https://waffle.io/pulibrary/plum)
 [![Apache 2.0 License](https://img.shields.io/badge/license-Apache%202.0-blue.svg?style=plastic)](./LICENSE)
 
+Plum is a Hydra head based on [CurationConcerns](http://github.com/projecthydra-labs/curation_concerns), with two types of works:
+* ScannedResource: a book or other resource composed of one or more scanned pages
+* MultiVolumeWork: a book set, sammelband or other resource composed of multiple ScannedResources
 
-## Work Types
-* ScannedResource
-* MultiVolumeWork
+## Features
+* Drag-and-drop tools for reordering FileSets and editing structure
+* Generating IIIF manifests for Collections and Works based on that structure
+* Building PDFs of Works based on their IIIF manifests
+* Performing OCR with Tesseract
+* Simple state-based workflow
+* Retrieving external metadata from our finding aids and catalog web services
 
 ## Dependencies
 
