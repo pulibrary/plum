@@ -3,6 +3,7 @@ class FileSet < ActiveFedora::Base
   include ::CurationConcerns::FileSetBehavior
   Hydra::Derivatives.output_file_service = PersistPairtreeDerivatives
 
+  property :replaces, predicate: ::RDF::DC.replaces, multiple: false
   apply_schema IIIFPageSchema, ActiveFedora::SchemaIndexingStrategy.new(
     ActiveFedora::Indexers::GlobalIndexer.new([:stored_searchable, :symbol])
   )

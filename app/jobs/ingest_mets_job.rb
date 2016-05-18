@@ -46,6 +46,7 @@ class IngestMETSJob < ActiveJob::Base
         logger.info "Ingesting file #{f[:path]}"
         file_set = FileSet.new
         file_set.title = [@mets.file_label(f[:id])]
+        file_set.replaces = "#{@mets.pudl_id}/#{File.basename(f[:path], File.extname(f[:path]))}"
         actor = ::CurationConcerns::FileSetActor.new(file_set, @user)
         actor.create_metadata(resource, @mets.file_opts(f))
         actor.create_content(@mets.decorated_file(f))
