@@ -1,6 +1,34 @@
 *[data-action='file-manager'] {
   @extend .clearfix;
   ul {
+    .alert-success, .alert-info, .alert-danger {
+      display: none;
+    }
+    &.success {
+      .alert-success {
+        display: block;
+      }
+    }
+    &.pending {
+      .alert-info {
+        display: block;
+      }
+    }
+    &.failure {
+      .alert-danger {
+        display: block;
+      }
+    }
+    li.pending {
+      .panel {
+        @extend .panel-info;
+      }
+    }
+    li.failure {
+      .panel {
+        @extend .panel-danger;
+      }
+    }
     &.grid li {
       .edit_scanned_resource {
         margin-bottom: 114px;
