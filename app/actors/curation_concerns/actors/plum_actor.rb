@@ -1,5 +1,5 @@
-module CurationConcerns
-  class PlumActor < CurationConcerns::BaseActor
+module CurationConcerns::Actors
+  class PlumActor < ::CurationConcerns::Actors::BaseActor
     def update(attributes)
       super.tap do |result|
         messenger.record_updated(curation_concern) if result

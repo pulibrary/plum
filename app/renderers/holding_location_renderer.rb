@@ -1,4 +1,4 @@
-class HoldingLocationRenderer < CurationConcerns::AttributeRenderer
+class HoldingLocationRenderer < CurationConcerns::Renderers::AttributeRenderer
   def initialize(value, options = {})
     super(:location, value, options)
   end

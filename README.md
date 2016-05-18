@@ -46,7 +46,7 @@ Setup dependencies and run the test suite:
 You may also want to run the Fedora and Solr servers in one window with:
 
    ```sh
-   $ rake server:test
+   $ rake hydra:test_server
    ```
 
 And run the test suite in another window:

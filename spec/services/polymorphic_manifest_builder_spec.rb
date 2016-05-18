@@ -115,9 +115,11 @@ RSpec.describe PolymorphicManifestBuilder, vcr: { cassette_name: "iiif_manifest"
     FileSet.new.tap do |g|
       allow(g).to receive(:persisted?).and_return(true)
       allow(g).to receive(:id).and_return(id)
+      original_file = Hydra::PCDM::File.new
+      allow(g).to receive(:original_file).and_return(original_file)
       g.title = ["Test"]
-      g.width = [487]
-      g.height = [400]
+      original_file.width = [487]
+      original_file.height = [400]
     end
   end
 
@@ -254,7 +256,7 @@ RSpec.describe PolymorphicManifestBuilder, vcr: { cassette_name: "iiif_manifest"
       expect(result['@id']).to eq "http://plum.com/concern/scanned_resources/1/manifest"
     end
     it "has a description" do
-      expect(result.description).to eq record.description
+      expect(result.description).to eq [record.description]
     end
     context "when it has a bibdata ID" do
       it "links to seeAlso" do
