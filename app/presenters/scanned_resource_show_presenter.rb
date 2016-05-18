@@ -3,4 +3,8 @@ class ScannedResourceShowPresenter < CurationConcernsShowPresenter
   def file_presenter_class
     ::FileSetPresenter
   end
+
+  def title
+    Array.wrap(super).first
+  end
 end

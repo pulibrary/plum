@@ -16,21 +16,20 @@ GIT
 
 GIT
   remote: git://github.com/projecthydra-labs/curation_concerns.git
-  revision: 2679eface843283f7b5b52f2bfb0d87bd2622365
+  revision: d0479c1d9b61bb48a031b395ca40696c6c221e06
   branch: master
   specs:
-    curation_concerns (0.14.0.pre4)
-      active-fedora (~> 9.9)
+    curation_concerns (1.0.0.beta2)
       active_attr
       active_fedora-noid (~> 1.0)
       awesome_nested_set (~> 3.0)
       blacklight (~> 6.1)
       blacklight_advanced_search (~> 6.0)
       breadcrumbs_on_rails (~> 2.3)
-      deprecation (~> 0.1)
+      deprecation (~> 1.0)
       hydra-editor (~> 2.0)
-      hydra-head (~> 9.9)
-      hydra-works (~> 0.8, >= 0.8.1)
+      hydra-head (>= 10.0.0.beta1, < 11)
+      hydra-works (>= 0.11.0)
       jquery-ui-rails
       kaminari_route_prefix (~> 0.0.1)
       qa (~> 0.5)
@@ -44,29 +43,29 @@ GIT
 
 GIT
   remote: git://github.com/projecthydra-labs/hydra-pcdm.git
-  revision: 85c830f675ea50b22bacedbf9f9b676a9f86f6b8
+  revision: c684320d7334ea00e09be501bf46570b7a0756bc
   branch: master
   specs:
-    hydra-pcdm (0.7.0)
-      active-fedora (~> 9.11)
+    hydra-pcdm (0.8.0)
+      active-fedora (~> 10.0.0.beta2)
       mime-types (>= 1)
 
 GIT
   remote: git://github.com/projecthydra-labs/hydra-works.git
-  revision: 7a89915a3fed4a1d1c0f9eb2c046a670848fc266
+  revision: ec151a577d50de2bcf4f1e524b2401f4fe662fc9
   branch: master
   specs:
-    hydra-works (0.9.0)
+    hydra-works (0.11.0)
       hydra-derivatives (~> 3.0)
       hydra-file_characterization (~> 0.3, >= 0.3.3)
-      hydra-pcdm (~> 0.6)
+      hydra-pcdm (>= 0.8)
 
 GIT
   remote: git://github.com/projecthydra/active_fedora.git
-  revision: 971e609850e9fe371df96afe329acf4c22d00cfd
+  revision: 29933f5ee03605ac48e797885484d807f501f654
   branch: master
   specs:
-    active-fedora (9.12.0)
+    active-fedora (10.0.0.beta2)
       active-triples (~> 0.7.1)
       activemodel (>= 4.2, < 6)
       activesupport (>= 4.2.4, < 6)
@@ -81,11 +80,11 @@ GIT
 
 GIT
   remote: git://github.com/projecthydra/hydra-derivatives.git
-  revision: 7f72a6568d19c5c445b852ba61841a8253654467
+  revision: fe35b290d0427b33d92e18d8a67a2ecd53b22602
   branch: master
   specs:
-    hydra-derivatives (3.0.2)
-      active-fedora (~> 9.0)
+    hydra-derivatives (3.1.0)
+      active-fedora (>= 9.0, < 11)
       activesupport (~> 4.0)
       deprecation
       mime-types (> 2.0, < 4.0)
@@ -138,17 +137,17 @@ GEM
       erubis (~> 2.7.0)
       rails-dom-testing (~> 1.0, >= 1.0.5)
       rails-html-sanitizer (~> 1.0, >= 1.0.2)
-    active-triples (0.7.5)
+    active-triples (0.7.6)
       activemodel (>= 3.0.0)
       activesupport (>= 3.0.0)
-      deprecation (~> 0.1)
+      deprecation (~> 1.0)
       linkeddata (~> 1.1)
       rdf (~> 1.1)
     active_attr (0.9.0)
       activemodel (>= 3.0.2, < 5.1)
       activesupport (>= 3.0.2, < 5.1)
-    active_fedora-noid (1.0.3)
-      active-fedora (~> 9.7)
+    active_fedora-noid (1.1.0)
+      active-fedora (>= 9.7, < 11)
       noid (~> 0.7)
     activejob (4.2.4)
       activesupport (= 4.2.4)
@@ -179,7 +178,7 @@ GEM
       addressable (>= 2.3.1)
       extlib (>= 0.9.15)
       multi_json (>= 1.0.0)
-    autoprefixer-rails (6.3.6)
+    autoprefixer-rails (6.3.6.1)
       execjs
     awesome_nested_set (3.0.3)
       activerecord (>= 4.0.0, < 5)
@@ -192,7 +191,7 @@ GEM
     bcrypt (3.1.11)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
-    blacklight (6.1.0)
+    blacklight (6.2.0)
       bootstrap-sass (~> 3.2)
       deprecation
       globalid
@@ -217,7 +216,7 @@ GEM
     bunny (2.3.1)
       amq-protocol (>= 2.0.1)
     byebug (8.2.5)
-    cancancan (1.13.1)
+    cancancan (1.14.0)
     capistrano (3.4.0)
       i18n
       rake (>= 10.0.0)
@@ -259,7 +258,7 @@ GEM
       safe_yaml (~> 1.0.0)
     daemons (1.2.3)
     debug_inspector (0.0.2)
-    deprecation (0.2.2)
+    deprecation (1.0.0)
       activesupport
     devise (3.5.9)
       bcrypt (~> 3.0)
@@ -339,15 +338,15 @@ GEM
     httparty (0.13.7)
       json (~> 1.8)
       multi_xml (>= 0.5.2)
-    hydra-access-controls (9.10.0)
-      active-fedora (~> 9.11)
+    hydra-access-controls (10.0.0.beta4)
+      active-fedora (>= 10.0.0.beta1, < 11)
       activesupport (~> 4.0)
       blacklight (>= 5.16)
       blacklight-access_controls (~> 0.1)
       cancancan (~> 1.8)
-      deprecation (~> 0.2)
-    hydra-core (9.10.0)
-      hydra-access-controls (= 9.10.0)
+      deprecation (~> 1.0)
+    hydra-core (10.0.0.beta4)
+      hydra-access-controls (= 10.0.0.beta4)
       rails (~> 4.0)
     hydra-editor (2.0.0)
       active-fedora (>= 9.0.0)
@@ -356,9 +355,9 @@ GEM
       simple_form (~> 3.1.0)
     hydra-file_characterization (0.3.3)
       activesupport (>= 3.0.0)
-    hydra-head (9.10.0)
-      hydra-access-controls (= 9.10.0)
-      hydra-core (= 9.10.0)
+    hydra-head (10.0.0.beta4)
+      hydra-access-controls (= 10.0.0.beta4)
+      hydra-core (= 10.0.0.beta4)
       rails (>= 3.2.6)
     hydra-role-management (0.2.2)
       blacklight
@@ -444,7 +443,7 @@ GEM
     mimemagic (0.3.1)
     mini_magick (4.5.1)
     mini_portile (0.6.2)
-    minitest (5.8.4)
+    minitest (5.9.0)
     modernizr-rails (2.7.1)
     multi_json (1.12.0)
     multi_xml (0.5.5)
@@ -606,8 +605,8 @@ GEM
     redis (3.3.0)
     redis-namespace (1.5.2)
       redis (~> 3.0, >= 3.0.4)
-    redlock (0.1.5)
-      redis (~> 3, >= 3.0.5)
+    redlock (0.1.6)
+      redis (~> 3, >= 3.3.0)
     responders (2.2.0)
       railties (>= 4.2.0, < 5.1)
     rest-client (1.8.0)
@@ -731,7 +730,7 @@ GEM
       tins (~> 1.0)
     thor (0.19.1)
     thread_safe (0.3.5)
-    tilt (2.0.2)
+    tilt (2.0.4)
     tins (1.10.1)
     ttfunk (1.4.0)
     twitter-typeahead-rails (0.11.1)

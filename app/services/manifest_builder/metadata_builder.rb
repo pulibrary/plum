@@ -51,7 +51,7 @@ class ManifestBuilder
           end
 
           def renderer
-            @renderer ||= CurationConcerns::AttributeRenderer.new(field_name, values)
+            @renderer ||= CurationConcerns::Renderers::AttributeRenderer.new(field_name, values)
           end
       end
   end

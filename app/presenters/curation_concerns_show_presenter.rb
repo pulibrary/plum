@@ -42,7 +42,11 @@ class CurationConcernsShowPresenter < CurationConcerns::WorkShowPresenter
       Rails.logger.warn("#{self.class} attempted to render #{field}, but no method exists with that name.")
       return
     end
-    AttributeRenderer.new(field, send(field), options).render
+    ::AttributeRenderer.new(field, send(field), options).render
+  end
+
+  def page_title
+    Array.wrap(title).first
   end
 
   private

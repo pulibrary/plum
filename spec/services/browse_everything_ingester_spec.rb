@@ -5,7 +5,7 @@ RSpec.describe BrowseEverythingIngester do
   let(:curation_concern) { FactoryGirl.create(:scanned_resource) }
   let(:upload_set_id) { "2" }
   let(:actor) do
-    ::CurationConcerns::FileSetActor.new(FileSet.new, current_user)
+    FileSetActor.new(FileSet.new, current_user)
   end
   let(:current_user) { FactoryGirl.create(:user) }
   let(:file) { File.open(Rails.root.join("spec", "fixtures", "files", "color.tif")) }

@@ -30,8 +30,8 @@ module ScannedResourceHelper
   def scanned_resource_parent_work
     return '' unless scanned_resource_parent_presenter
     title = scanned_resource_parent_presenter.title
-    link = content_tag(:a, truncate(title),
-                       title: title,
+    link = content_tag(:a, truncate(title.first),
+                       title: title.first,
                        href: scanned_resource_parent_path)
     content_tag(:li, link)
   end
