@@ -66,8 +66,8 @@ group :development, :test do
   gem 'pry-rails'
 end
 
-gem 'solr_wrapper', '~> 0.5.1'
-gem 'fcrepo_wrapper', '~> 0.2'
+gem 'solr_wrapper', '~> 0.12.0'
+gem 'fcrepo_wrapper', '~> 0.5.0'
 gem 'coveralls', '0.8.3', require: false
 
 group :development do

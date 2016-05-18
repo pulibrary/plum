@@ -16,7 +16,7 @@ dependencies:
     - sudo apt-get install libmagickwand-dev imagemagick redis-server tesseract-ocr tesseract-ocr-ita tesseract-ocr-eng
     - sudo /etc/init.d/redis-server start
     - sudo sh bin/ci_kakadu_install.sh
-    - bundle exec rake server:test:
+    - bundle exec rake hydra:test_server:
         background: true
     - bin/jetty_wait
 test:
