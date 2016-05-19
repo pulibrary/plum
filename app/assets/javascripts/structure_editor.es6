@@ -27,6 +27,7 @@ jQuery(() => {
     listType: "ul",
     placeholder: "placeholder",
     parentNodeFactory: new_node,
+    preventExpansion: true,
     helper: function(e, item) {
       if ( ! item.hasClass("ui-selected") ) {
         item.parent().children(".ui-selected").removeClass("ui-selected")

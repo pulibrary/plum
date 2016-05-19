@@ -59,7 +59,8 @@
       leafClass: "mjs-nestedSortable-leaf",
       disabledClass: "mjs-nestedSortable-disabled",
       temporaryNodeClass: "created-item",
-      parentNodeFactory: function() { return $("<li>").append($("<div>").text("Temporary")) }
+      parentNodeFactory: function() { return $("<li>").append($("<div>").text("Temporary")) },
+      preventExpansion: false
     },
 
     _create: function() {
@@ -470,7 +471,7 @@
       // tpendragon - if the previous item can't be nested under, create a node.
       if (
         (!parentItem || !parentItem.hasClass(o.temporaryNodeClass))
-          && (previousItem == null || previousItem.hasClass(o.disableNestingClass))
+          && (previousItem == null || previousItem.hasClass(o.disableNestingClass) || previousItem.hasClass(o.collapsedClass))
           && (
                (parentItem == null && this.positionAbs.left > $(this.element).offset().left + 100)
                || (parentItem != null && this.positionAbs.left > (parentItem.offset().left + 100))
@@ -842,7 +843,7 @@
       if (o.isTree) {
         replaceClass(item, o.branchClass, o.leafClass, doNotClear);
 
-        if (doNotClear && hasChildren) {
+        if (doNotClear && hasChildren && !o.preventExpansion) {
           replaceClass(item, o.collapsedClass, o.expandedClass);
         }
       }
