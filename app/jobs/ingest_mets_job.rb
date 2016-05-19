@@ -30,6 +30,8 @@ class IngestMETSJob < ActiveJob::Base
         logger.info "Added to Collection: #{col.title}"
       end
 
+      attach_mets resource
+
       if @mets.multi_volume?
         ingest_volumes(resource)
       else
@@ -39,6 +41,14 @@ class IngestMETSJob < ActiveJob::Base
         end
         resource.save!
       end
+    end
+
+    def attach_mets(resource)
+      mets_file_set = FileSet.new
+      mets_file_set.title = ['METS XML']
+      actor = FileSetActor.new(mets_file_set, @user)
+      actor.attach_related_object(resource)
+      actor.attach_content(File.open(@mets.source_file, 'r:UTF-8'))
     end
 
     def ingest_files(parent: nil, resource: nil, files: [])

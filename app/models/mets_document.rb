@@ -1,8 +1,10 @@
 class METSDocument
   include MetsStructure
+  attr_reader :source_file
 
   def initialize(mets_file)
-    @mets = File.open(mets_file) { |f| Nokogiri::XML(f) }
+    @source_file = mets_file
+    @mets = File.open(@source_file) { |f| Nokogiri::XML(f) }
   end
 
   def ark_id
