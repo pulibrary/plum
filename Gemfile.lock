@@ -16,10 +16,10 @@ GIT
 
 GIT
   remote: git://github.com/projecthydra-labs/curation_concerns.git
-  revision: d0479c1d9b61bb48a031b395ca40696c6c221e06
+  revision: 41ce741d4c6175c85cd42eabcf900f80269aef3b
   branch: master
   specs:
-    curation_concerns (1.0.0.beta2)
+    curation_concerns (1.0.0.beta3)
       active_attr
       active_fedora-noid (~> 1.0)
       awesome_nested_set (~> 3.0)
