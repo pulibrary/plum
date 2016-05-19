@@ -16,7 +16,7 @@ GIT
 
 GIT
   remote: git://github.com/projecthydra-labs/curation_concerns.git
-  revision: 41ce741d4c6175c85cd42eabcf900f80269aef3b
+  revision: 0b9ed14cd7f2e03ab13dbfa008f9389b81a799aa
   branch: master
   specs:
     curation_concerns (1.0.0.beta3)
@@ -80,10 +80,10 @@ GIT
 
 GIT
   remote: git://github.com/projecthydra/hydra-derivatives.git
-  revision: fe35b290d0427b33d92e18d8a67a2ecd53b22602
+  revision: 925fd162286288d9e77d113fd2003a6b4a20c225
   branch: master
   specs:
-    hydra-derivatives (3.1.0)
+    hydra-derivatives (3.1.1)
       active-fedora (>= 9.0, < 11)
       activesupport (~> 4.0)
       deprecation
@@ -440,12 +440,13 @@ GEM
     memoist (0.14.0)
     method_source (0.8.2)
     mime-types (2.99.1)
+    mime-types-data (3.2016.0221)
     mimemagic (0.3.1)
     mini_magick (4.5.1)
     mini_portile (0.6.2)
     minitest (5.9.0)
     modernizr-rails (2.7.1)
-    multi_json (1.12.0)
+    multi_json (1.12.1)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
     net-http-persistent (2.9.4)
