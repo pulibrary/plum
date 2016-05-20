@@ -32,6 +32,14 @@
   &, ul {
     list-style: none;
   }
+  li {
+    border-left: 1px dotted gray;
+    border-radius: 4px;
+    border-bottom-left-radius: 0px;
+    > div {
+      margin-left: -1px;
+    }
+  }
   .title {
     @extend .col-xs-8;
     input[type=text] {
