@@ -16,7 +16,7 @@ GIT
 
 GIT
   remote: git://github.com/projecthydra-labs/curation_concerns.git
-  revision: 0b9ed14cd7f2e03ab13dbfa008f9389b81a799aa
+  revision: f68c98d265d7ae229c3128301ba80665d4b31bd7
   branch: master
   specs:
     curation_concerns (1.0.0.beta3)
@@ -281,7 +281,7 @@ GEM
     equivalent-xml (0.6.0)
       nokogiri (>= 1.4.3)
     erubis (2.7.0)
-    execjs (2.6.0)
+    execjs (2.7.0)
     extlib (0.9.16)
     ezid-client (1.5.0)
       hashie (~> 3.4, >= 3.4.3)
@@ -606,7 +606,7 @@ GEM
     redis (3.3.0)
     redis-namespace (1.5.2)
       redis (~> 3.0, >= 3.0.4)
-    redlock (0.1.6)
+    redlock (0.1.7)
       redis (~> 3, >= 3.3.0)
     responders (2.2.0)
       railties (>= 4.2.0, < 5.1)
