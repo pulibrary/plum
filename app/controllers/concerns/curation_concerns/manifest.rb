@@ -12,7 +12,7 @@ module CurationConcerns::Manifest
 
     def deny_access(exception)
       if exception.action == :manifest && !current_user
-        render json: AuthManifestBuilder.auth_services(login_url, nil), status: 401
+        render json: {}, status: 401
       elsif !current_user
         session['user_return_to'.freeze] = request.url
         redirect_to login_url, alert: exception.message
@@ -35,7 +35,7 @@ module CurationConcerns::Manifest
     end
 
     def manifest_builder
-      PolymorphicManifestBuilder.new(presenter, ssl: request.ssl?, services: AuthManifestBuilder.auth_services(login_url, logout_url))
+      PolymorphicManifestBuilder.new(presenter, ssl: request.ssl?)
     end
 
     def login_url

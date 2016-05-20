@@ -9,16 +9,11 @@ RSpec.feature "ScannedResourcesController", type: :feature do
     scenario "views a public manifest" do
       visit manifest_curation_concerns_scanned_resource_path open_resource
       expect(page.status_code).to eq 200
-      expect(page).to have_content "http://plum.com/concern/scanned_resources/#{open_resource.id}/manifest"
-      expect(page).to have_content "http://www.example.com/users/auth/cas"
-      expect(page).not_to have_content "http://www.example.com/sign_out"
     end
 
     scenario "views a private manifest" do
       visit manifest_curation_concerns_scanned_resource_path private_resource
       expect(page.status_code).to eq 401
-      expect(page).to have_content "http://www.example.com/users/auth/cas"
-      expect(page).not_to have_content "http://www.example.com/sign_out"
     end
   end
 
@@ -30,17 +25,11 @@ RSpec.feature "ScannedResourcesController", type: :feature do
     scenario "views a public manifest" do
       visit manifest_curation_concerns_scanned_resource_path open_resource
       expect(page.status_code).to eq 200
-      expect(page).to have_content "http://plum.com/concern/scanned_resources/#{open_resource.id}/manifest"
-      expect(page).to have_content "http://www.example.com/users/auth/cas"
-      expect(page).to have_content "http://www.example.com/sign_out"
     end
 
     scenario "views a private manifest" do
       visit manifest_curation_concerns_scanned_resource_path private_resource
       expect(page.status_code).to eq 200
-      expect(page).to have_content "http://plum.com/concern/scanned_resources/#{private_resource.id}/manifest"
-      expect(page).to have_content "http://www.example.com/users/auth/cas"
-      expect(page).to have_content "http://www.example.com/sign_out"
     end
   end
 end
