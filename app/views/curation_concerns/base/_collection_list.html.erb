@@ -4,7 +4,7 @@
       <th>Collections</th>
       <td>
         <% @presenter.in_collections.each do |col| %>
-          <%= link_to col.title, main_app.collection_path(col), class: 'collection-link' %><br/>
+          <%= link_to col.title.first, main_app.collection_path(col), class: 'collection-link' %><br/>
         <% end %>
       </td>
     </tr>
