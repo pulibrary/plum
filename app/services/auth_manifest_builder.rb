@@ -34,5 +34,6 @@ class AuthManifestBuilder
 
   def apply(manifest)
     manifest['service'] = hsh if hsh.present?
+    manifest
   end
 end
