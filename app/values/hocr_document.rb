@@ -1,6 +1,6 @@
 class HOCRDocument
   attr_reader :document
-  delegate :text, to: :nokogiri_document
+  delegate :text, :to_s, to: :nokogiri_document
   def initialize(document)
     @document = document
   end

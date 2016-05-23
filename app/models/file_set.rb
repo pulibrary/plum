@@ -41,6 +41,7 @@ class FileSet < ActiveFedora::Base
   def to_solr(solr_doc = {})
     super.tap do |doc|
       doc["full_text_tesim"] = ocr_text if ocr_text.present?
+      doc["full_text_tesi_html"] = ocr_document.to_s if ocr_text.present?
       doc["ordered_by_ssim"] = ordered_by.map(&:id).to_a
     end
   end
