@@ -9,6 +9,21 @@ describe("frontBackLabeler", function() {
     expect(gen.next().value).toEqual("3");
   });
 
+  it("can be given a null number", function() {
+    var start = "",
+        method = "paginate",
+        frontLabel = "",
+        backLabel = "",
+        startWith = "",
+        unitLabel = "Page",
+        bracket = false;
+
+    var gen = lg.pageLabelGenerator(start, method, frontLabel, backLabel,
+      startWith, unitLabel, bracket)
+
+    expect(gen.next().value).toEqual("Page");
+  });
+
   it("brackets", function() {
     var start = 1,
         method = "paginate",
