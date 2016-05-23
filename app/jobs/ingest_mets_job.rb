@@ -88,8 +88,10 @@ class IngestMETSJob < ActiveJob::Base
 
     def minimal_record(klass)
       resource = klass.new
+      resource.state = 'final_review'
       resource.viewing_direction = @mets.viewing_direction
       resource.rights_statement = 'http://rightsstatements.org/vocab/NKC/1.0/'
+      resource.visibility = Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PUBLIC
       resource.apply_depositor_metadata @user
       resource
     end

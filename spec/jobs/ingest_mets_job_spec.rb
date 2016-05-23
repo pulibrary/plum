@@ -42,6 +42,8 @@ RSpec.describe IngestMETSJob do
       expect(resource1.title).to eq(["Ars minor [fragment]."])
       expect(resource1.thumbnail_id).to eq('file1')
       expect(resource1.viewing_direction).to eq('left-to-right')
+      expect(resource1.state).to eq('final_review')
+      expect(resource1.visibility).to eq(Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PUBLIC)
     end
 
     it "ingests a right-to-left mets file", vcr: { cassette_name: 'bibdata-4790889' } do
