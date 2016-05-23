@@ -38,9 +38,13 @@ var lg = {
     let roman = false,
       capital = false,
       counter = start,
-      changeFolio = false
+      changeFolio = false,
+      noCounter = false
 
-    if (!isInt(start)) {
+    if (start == "" || start == undefined) {
+      noCounter = true
+    }
+    if (!isInt(start) && !noCounter) {
       roman = true
       capital = start == start.toUpperCase()
       start.toLowerCase()
@@ -50,7 +54,9 @@ var lg = {
     if (startWith == "back") changeFolio = !changeFolio
 
     while(true) {
-      if (roman) {
+      if (noCounter) {
+        yield ""
+      } else if (roman) {
         let val = this.romanize(counter)
         if (capital) val = val.toUpperCase()
         yield val
