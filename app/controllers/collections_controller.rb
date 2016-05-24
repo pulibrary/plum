@@ -30,19 +30,11 @@ class CollectionsController < ApplicationController
   private
 
     def manifest_builder
-      PolymorphicManifestBuilder.new(presenter, ssl: request.ssl?, services: AuthManifestBuilder.auth_services(login_url, logout_url))
+      PolymorphicManifestBuilder.new(presenter, ssl: request.ssl?)
     end
 
     def all_manifests_builder
       AllCollectionsManifestBuilder.new(nil, ability: current_ability, ssl: request.ssl?)
-    end
-
-    def login_url
-      main_app.user_omniauth_authorize_url(:cas)
-    end
-
-    def logout_url
-      current_user.nil? ? nil : main_app.destroy_user_session_url
     end
 
     def collection_search_builder_class

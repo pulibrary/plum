@@ -41,8 +41,4 @@ module CurationConcerns::Manifest
     def login_url
       main_app.user_omniauth_authorize_url(:cas)
     end
-
-    def logout_url
-      current_user.nil? ? nil : main_app.destroy_user_session_url
-    end
 end
