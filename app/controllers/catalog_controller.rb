@@ -240,6 +240,7 @@ class CatalogController < ApplicationController
     # If there are more than this many search results, no spelling ("did you
     # mean") suggestion is offered.
     config.spell_max = 5
+    config.document_presenter_class = RTLPresenter
   end
   def admin_state_facet
     return unless can? :create, ScannedResource

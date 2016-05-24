@@ -1,3 +1,9 @@
 li[dir='rtl'] {
   text-align: right;
 }
+h4 li[dir] {
+  list-style: none;
+}
+.document-metadata {
+  margin-right: 15px;
+}
