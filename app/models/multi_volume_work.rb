@@ -7,4 +7,5 @@ class MultiVolumeWork < ActiveFedora::Base
   include ::StructuralMetadata
   include ::HasPendingUploads
   include ::CollectionIndexing
+  self.indexer = MultiVolumeWorkIndexer
 end

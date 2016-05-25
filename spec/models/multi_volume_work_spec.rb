@@ -65,6 +65,10 @@ describe MultiVolumeWork do
     it "has scanned resources" do
       expect(subject.ordered_members).to eq [scanned_resource1, scanned_resource2]
     end
+    it "can persist when it has a thumbnail set to scanned resource" do
+      subject.thumbnail = scanned_resource1
+      expect(subject.save).to eq true
+    end
   end
 
   describe "#pending_uploads" do
