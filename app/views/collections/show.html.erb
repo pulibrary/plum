@@ -9,8 +9,6 @@
     <h1 class="lower"><%= title %></h1>
   <% end %>
 
-  <%= render 'curation_concerns/base/representative_media', presenter: @presenter %>
-
   <% unless has_collection_search_parameters? %>
     <%= render 'collections/show_actions' %>
     <%= render 'attributes', presenter: @presenter %>
