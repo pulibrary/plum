@@ -33,7 +33,7 @@ class FileSet < ActiveFedora::Base
           url: derivative_url('intermediate_file')
         ]
       )
-      OCRRunner.new(self).from_file(filename)
+      RunOCRJob.perform_later(id)
     end
     super
   end
