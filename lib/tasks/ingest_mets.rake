@@ -11,6 +11,11 @@ task ingest_mets: :environment do
   logger.info "ingesting as: #{user.user_key} (override with USER=foo)"
   abort "usage: rake ingest_mets /path/to/mets/files" unless ARGV[1] && Dir.exist?(ARGV[1])
   Dir["#{ARGV[1]}/**/*.mets"].each do |file|
-    IngestMETSJob.perform_now(file, user, collections)
+    begin
+      IngestMETSJob.perform_now(file, user, collections)
+    rescue => e
+      puts "Error: #{e.message}"
+      puts e.backtrace
+    end
   end
 end
