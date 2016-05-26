@@ -24,7 +24,7 @@ RSpec.describe UpdatesOCR do
     end
 
     def stub_language(language, content)
-      allow(Processors::OCR).to receive(:encode).with(anything, { options: "-l #{language} -c tessedit_pageseg_mode=6" }, anything) do |*args|
+      allow(Processors::OCR).to receive(:encode).with(anything, { options: "-l #{language}" }, anything) do |*args|
         File.open(args.last, 'w') do |f|
           f.write content
         end
