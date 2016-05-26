@@ -18,7 +18,11 @@ class RTLPresenter < ::Blacklight::DocumentPresenter
   end
 
   def render_document_index_label(*args)
-    to_list(super)
+    if args.first == @configuration.view_config(:show).title_field
+      to_list(super)
+    else
+      super
+    end
   end
 
   private
