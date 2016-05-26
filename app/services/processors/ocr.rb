@@ -16,15 +16,11 @@ module Processors
     private
 
       def string_options
-        "-l #{language} -c tessedit_pageseg_mode=#{page_segmentation_mode}"
+        "-l #{language}"
       end
 
       def language
         directives.fetch(:language, :eng)
-      end
-
-      def page_segmentation_mode
-        directives.fetch(:page_segmentation_mode, 6)
       end
   end
 end
