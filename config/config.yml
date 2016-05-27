@@ -47,8 +47,10 @@ production:
   <<: *defaults
   events:
     server: <%= ENV['PLUM_RABBIT_SERVER'] || 'amqp://localhost:5672' %>
+    exchange: "plum_events"
 
 staging:
   <<: *defaults
   events:
     server: <%= ENV['PLUM_RABBIT_SERVER'] || 'amqp://localhost:5672' %>
+    exchange: "plum_events"
