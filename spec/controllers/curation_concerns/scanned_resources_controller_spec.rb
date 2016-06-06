@@ -76,19 +76,6 @@ describe CurationConcerns::ScannedResourcesController do
       end
     end
 
-    context "when given a parent" do
-      let(:parent) { FactoryGirl.create(:multi_volume_work, user: user) }
-      let(:scanned_resource_attributes) do
-        FactoryGirl.attributes_for(:scanned_resource).except(:source_metadata_identifier)
-      end
-      it "creates and indexes its parent" do
-        post :create, scanned_resource: scanned_resource_attributes, parent_id: parent.id
-        solr_document = ActiveFedora::SolrService.query("id:#{assigns[:curation_concern].id}").first
-
-        expect(solr_document["ordered_by_ssim"]).to eq [parent.id]
-      end
-    end
-
     context "when selecting a collection" do
       let(:collection) { FactoryGirl.create(:collection, user: user) }
       let(:scanned_resource_attributes) do

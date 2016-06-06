@@ -14,7 +14,7 @@ RSpec.shared_examples "page header" do |header_method, page_title|
     end
     before do
       assign(:presenter, presenter)
-      allow(presenter).to receive(:title).and_return('Test Resource')
+      allow(presenter).to receive(:page_title).and_return('Test Resource')
     end
 
     describe 'page_header' do

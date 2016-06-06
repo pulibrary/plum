@@ -7,5 +7,5 @@ class MultiVolumeWork < ActiveFedora::Base
   include ::StructuralMetadata
   include ::HasPendingUploads
   include ::CollectionIndexing
-  self.indexer = MultiVolumeWorkIndexer
+  self.valid_child_concerns = [ScannedResource]
 end

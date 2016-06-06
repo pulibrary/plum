@@ -16,20 +16,21 @@ GIT
 
 GIT
   remote: git://github.com/projecthydra-labs/curation_concerns.git
-  revision: f68c98d265d7ae229c3128301ba80665d4b31bd7
+  revision: e41c4117a47da17a312000aeda33d4fd006a1698
   branch: master
   specs:
-    curation_concerns (1.0.0.beta3)
+    curation_concerns (1.0.0.beta7)
       active_attr
       active_fedora-noid (~> 1.0)
       awesome_nested_set (~> 3.0)
       blacklight (~> 6.1)
       blacklight_advanced_search (~> 6.0)
       breadcrumbs_on_rails (~> 2.3)
+      browse-everything (~> 0.10)
       deprecation (~> 1.0)
       hydra-editor (~> 2.0)
       hydra-head (>= 10.0.0.beta1, < 11)
-      hydra-works (>= 0.11.0)
+      hydra-works (>= 0.12.0)
       jquery-ui-rails
       kaminari_route_prefix (~> 0.0.1)
       qa (~> 0.5)
@@ -52,10 +53,10 @@ GIT
 
 GIT
   remote: git://github.com/projecthydra-labs/hydra-works.git
-  revision: ec151a577d50de2bcf4f1e524b2401f4fe662fc9
+  revision: 969eaca67684f96c8f8a4c644144ee23f85fb568
   branch: master
   specs:
-    hydra-works (0.11.0)
+    hydra-works (0.12.0)
       hydra-derivatives (~> 3.0)
       hydra-file_characterization (~> 0.3, >= 0.3.3)
       hydra-pcdm (>= 0.8)
@@ -180,8 +181,8 @@ GEM
       multi_json (>= 1.0.0)
     autoprefixer-rails (6.3.6.1)
       execjs
-    awesome_nested_set (3.0.3)
-      activerecord (>= 4.0.0, < 5)
+    awesome_nested_set (3.1.1)
+      activerecord (>= 4.0.0, < 5.1)
     babel-source (5.8.35)
     babel-transpiler (0.7.0)
       babel-source (>= 4.0, < 6)
@@ -454,7 +455,7 @@ GEM
     net-ssh (3.1.1)
     netrc (0.11.0)
     newrelic_rpm (3.15.2.317)
-    noid (0.8.0)
+    noid (0.9.0)
     nokogiri (1.6.6.4)
       mini_portile (~> 0.6.0)
     nom-xml (0.5.4)
@@ -605,8 +606,8 @@ GEM
     redis (3.3.0)
     redis-namespace (1.5.2)
       redis (~> 3.0, >= 3.0.4)
-    redlock (0.1.7)
-      redis (~> 3, >= 3.3.0)
+    redlock (0.1.8)
+      redis (~> 3, >= 3.0.0)
     responders (2.2.0)
       railties (>= 4.2.0, < 5.1)
     rest-client (1.8.0)

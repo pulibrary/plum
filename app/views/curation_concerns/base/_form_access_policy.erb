@@ -3,7 +3,7 @@
 
   <%= f.input :rights_statement,
               as: :select,
-              collection: RightsService.select_options,
+              collection: RightsService.select_active_options,
               input_html: { class: 'form-control rights-statement' },
               label: 'Rights Statement' %>
 

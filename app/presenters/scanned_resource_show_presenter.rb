@@ -1,8 +1,7 @@
 class ScannedResourceShowPresenter < CurationConcernsShowPresenter
   delegate :has?, :first, to: :solr_document
-  def file_presenter_class
-    ::FileSetPresenter
-  end
+  self.file_presenter_class = ::FileSetPresenter
+  self.work_presenter_class = ::MultiVolumeWorkShowPresenter.work_presenter_class
 
   def title
     Array.wrap(super).first

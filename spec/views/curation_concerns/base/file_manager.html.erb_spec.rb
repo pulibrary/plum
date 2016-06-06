@@ -34,6 +34,9 @@ RSpec.describe "curation_concerns/base/file_manager.html.erb" do
     allow(parent_presenter).to receive(:member_presenters).and_return(members)
     stub_blacklight_views
     allow(view).to receive(:curation_concern).and_return(parent)
+    allow(view).to receive(:contextual_path).with(anything, anything) do |x, y|
+      CurationConcerns::ContextualPath.new(x, y).show
+    end
     render
   end
 

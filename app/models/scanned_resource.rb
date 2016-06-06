@@ -8,6 +8,7 @@ class ScannedResource < ActiveFedora::Base
   include ::StructuralMetadata
   include ::HasPendingUploads
   include ::CollectionIndexing
+  self.valid_child_concerns = []
 
   def to_solr(solr_doc = {})
     super.tap do |doc|

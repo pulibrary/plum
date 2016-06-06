@@ -26,16 +26,21 @@ describe "curation_concerns/multi_volume_works/show.html.erb" do
     )
   end
   let(:presenter) do
-    LinksToChild::Factory.new(MultiVolumeWorkShowPresenter).new(solr_document, nil)
+    MultiVolumeWorkShowPresenter.new(solr_document, ability)
   end
   let(:resource_presenter) do
-    ScannedResourceShowPresenter.new(resource_document, nil)
+    ScannedResourceShowPresenter.new(resource_document, ability)
+  end
+  let(:ability) do
+    a = double("ability")
+    allow(a).to receive(:can?).and_return(true)
+    a
   end
   let(:member_presenter) do
     f = FactoryGirl.build(:file_set)
     allow(f).to receive(:persisted?).and_return(true)
     allow(f).to receive(:id).and_return("2")
-    FileSetPresenter.new(SolrDocument.new(f.to_solr), nil)
+    FileSetPresenter.new(SolrDocument.new(f.to_solr), ability)
   end
   let(:blacklight_config) { CatalogController.new.blacklight_config }
 
@@ -45,6 +50,9 @@ describe "curation_concerns/multi_volume_works/show.html.erb" do
     allow(presenter).to receive(:in_collections).and_return([])
     allow(resource_presenter).to receive(:in_collections).and_return([])
     assign(:presenter, presenter)
+    allow(view).to receive(:contextual_path).with(anything, anything) do |x, y|
+      CurationConcerns::ContextualPath.new(x, y).show
+    end
     render
   end
 
@@ -58,7 +66,7 @@ describe "curation_concerns/multi_volume_works/show.html.erb" do
       expect(rendered).to have_selector("img[src='#{IIIFPath.new(member_presenter.id)}/full/!200,150/0/default.jpg']")
     end
     it "has a link to each edit page" do
-      expect(rendered).to have_link "test", href: "/concern/container/#{presenter.id}/scanned_resources/#{resource_presenter.id}"
+      expect(rendered).to have_link "test", href: "/concern/parent/#{presenter.id}/scanned_resources/#{resource_presenter.id}"
       expect(rendered).to have_link member_presenter.to_s, href: "/concern/file_sets/#{member_presenter.id}"
     end
     it "has a link to edit structure" do

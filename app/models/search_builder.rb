@@ -38,10 +38,12 @@ class SearchBuilder < Blacklight::SearchBuilder
   end
 
   def show_action?
+    return true unless blacklight_params[:action]
     self.class.show_actions.include? blacklight_params[:action].to_sym
   end
 
   def file_manager?
+    return true unless blacklight_params[:action]
     blacklight_params[:action].to_sym == :file_manager
   end
 end
