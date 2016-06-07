@@ -95,8 +95,9 @@ RSpec.describe "curation_concerns/base/file_manager.html.erb" do
     expect(response).to have_selector("*[data-action=file-manager]")
   end
 
-  it "has thumbnails for each resource" do
+  it "has thumbnails for each resource with fallback to default placeholder image" do
     expect(rendered).to have_selector("img[src='#{IIIFPath.new(file_set.id)}/full/!200,150/0/default.jpg']")
+    expect(rendered).to have_selector('img[onerror="this.src=\'/assets/default.png\'"]')
   end
 
   it "renders a form for each member" do

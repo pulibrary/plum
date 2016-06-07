@@ -1,6 +1,6 @@
 <tr class="<%= dom_class(file_set) %> attributes">
   <td class="thumbnail">
-    <%= render_thumbnail_tag file_set %>
+    <%= render_thumbnail_tag file_set, onerror: default_icon_fallback %>
   </td>
   <td class="attribute filename"><%= link_to(file_set.link_name, main_app.curation_concerns_file_set_path(file_set)) %>
     <% if file_set.title && file_set.title != file_set.link_name %>
