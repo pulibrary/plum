@@ -9,7 +9,8 @@ RSpec.describe "curation_concerns/file_sets/show.html.erb" do
     render partial: "curation_concerns/file_sets/media_display/image", locals: { file_set: file_set_presenter }
   end
 
-  it 'shows a thumbnail from the image server' do
+  it 'shows a thumbnail from the image server and falls back on default placeholder image' do
     expect(rendered).to have_selector("img[src='#{IIIFPath.new('p1')}/full/!200,150/0/default.jpg']")
+    expect(rendered).to have_selector('img[onerror="this.src=\'/assets/default.png\'"]')
   end
 end
