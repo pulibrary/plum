@@ -1,13 +1,22 @@
 <% provide :page_title, @presenter.page_title %>
 <% provide :page_header do %>
-  <%= scanned_resource_page_header %>
+  <h1><%= @presenter %> </h1>
+  <% if @parent_presenter %>
+    <ul class="breadcrumb">
+      <li><%= link_to @parent_presenter, polymorphic_path([main_app, @parent_presenter]) %></li>
+      <li class="active"><%= @presenter.human_readable_type %></li>
+    </ul>
+  <% else %>
+    <span class="human_readable_type">(<%= @presenter.human_readable_type %>)</span>
+  <% end %>
 <% end %>
 
 <% collector = can?(:collect, @presenter.id) %>
 <% editor    = can?(:edit,    @presenter.id) %>
 
 <%= render 'representative_media', presenter: @presenter %>
-<%= render 'attributes', curation_concern: @presenter %>
-
+<%= render "attributes", presenter: @presenter %>
+<%= render 'related_files', presenter: @presenter %>
 <%= render "show_actions", collector: collector, editor: editor%>
+
 <%= render '/curation_concerns/base/flag', curation_concern: @presenter %>

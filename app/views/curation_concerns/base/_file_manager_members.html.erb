@@ -8,7 +8,7 @@
   <div class="alert alert-danger" role="alert">
     Reordering Failed. Please save again.
   </div>
- <% @presenter.file_presenters.each do |member| %>
+ <% @presenter.member_presenters.each do |member| %>
    <%= render "file_manager_member", node: member %>
  <% end %>
 </ul>

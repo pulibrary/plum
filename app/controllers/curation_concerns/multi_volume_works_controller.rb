@@ -5,6 +5,6 @@ class CurationConcerns::MultiVolumeWorksController < CurationConcerns::CurationC
   skip_load_and_authorize_resource only: SearchBuilder.show_actions
 
   def show_presenter
-    LinksToChild::Factory.new(MultiVolumeWorkShowPresenter)
+    MultiVolumeWorkShowPresenter
   end
 end

@@ -37,14 +37,6 @@ class CurationConcernsShowPresenter < CurationConcerns::WorkShowPresenter
     DateValue.new(solr_document.date_created).to_a
   end
 
-  def attribute_to_html(field, options = {})
-    unless respond_to?(field)
-      Rails.logger.warn("#{self.class} attempted to render #{field}, but no method exists with that name.")
-      return
-    end
-    ::AttributeRenderer.new(field, send(field), options).render
-  end
-
   def page_title
     Array.wrap(title).first
   end
@@ -57,5 +49,13 @@ class CurationConcernsShowPresenter < CurationConcerns::WorkShowPresenter
 
     def state_badge_instance
       StateBadge.new(type, state)
+    end
+
+    def renderer_for(_field, options)
+      if options[:render_as]
+        find_renderer_class(options[:render_as])
+      else
+        ::AttributeRenderer
+      end
     end
 end

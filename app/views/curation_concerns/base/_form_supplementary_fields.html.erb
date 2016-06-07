@@ -4,6 +4,8 @@
 
 <%= render "form_collections", f: f %>
 
+<%= render "form_in_works", f: f %>
+
 <div class="row with-headroom">
   <legend>PDF Type</legend>
   <%= f.input :pdf_type, collection: {"Color PDF" => "color", "Grayscale PDF" => "gray"}.to_a %>

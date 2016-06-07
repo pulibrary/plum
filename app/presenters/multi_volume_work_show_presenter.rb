@@ -1,8 +1,4 @@
 class MultiVolumeWorkShowPresenter < CurationConcernsShowPresenter
-  def file_presenter_class
-    DynamicShowPresenter.new
-  end
-
   def viewing_hint
     'multi-part'
   end
@@ -19,4 +15,7 @@ class MultiVolumeWorkShowPresenter < CurationConcernsShowPresenter
       end
     end
   end
+
+  self.work_presenter_class = DynamicShowPresenter.new
+  self.file_presenter_class = FileSetPresenter
 end

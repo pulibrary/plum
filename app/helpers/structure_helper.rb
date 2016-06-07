@@ -15,7 +15,7 @@ module StructureHelper
 
     def bulk_edit_parent_work
       return '' unless @presenter
-      link = content_tag(:a, @presenter.title,
+      link = content_tag(:a, @presenter.page_title,
                          title: @presenter.id,
                          href: bulk_edit_parent_path)
       content_tag(:li, ('Back to ' + link).html_safe)
