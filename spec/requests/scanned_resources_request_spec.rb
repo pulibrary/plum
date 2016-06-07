@@ -27,6 +27,6 @@ RSpec.describe 'ScannedResourcesController', type: :request do
 
     expect(response).to render_template(:show)
     expect(response.status).to eq 200
-    expect(response.body).to include('<h1>The Giant Bible of Mainz; 500th anniversary, April fourth, fourteen fifty-two, April fourth, nineteen fifty-two.')
+    expect(response.body).to include('<h1 dir="ltr">The Giant Bible of Mainz; 500th anniversary, April fourth, fourteen fifty-two, April fourth, nineteen fifty-two.</h1>')
   end
 end
