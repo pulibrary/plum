@@ -14,10 +14,10 @@ terms:
     definition: >-
       This Item is protected by copyright and/or related rights.
 
-      You are free to use this Item in any way that is permitted by the
+      <br/>You are free to use this Item in any way that is permitted by the
       copyright and related rights legislation that applies to your use.
 
-      For other uses you need to obtain permission from the rights-holder(s).
+      <br/>For other uses you need to obtain permission from the rights-holder(s).
   - id: http://rightsstatements.org/vocab/InC-RUU/1.0/
     term: In Copyright - Rights-holder(s) Unlocatable or Unidentifiable
     notable: true
@@ -36,7 +36,7 @@ terms:
       this Item, either (a) no rights-holder(s) have been identified or (b) one
       or more rights-holder(s) have been identified but none have been located.
 
-      You are free to use this Item in any way that is permitted by the
+      <br/>You are free to use this Item in any way that is permitted by the
       copyright and related rights legislation that applies to your use.
   - id: http://rightsstatements.org/vocab/InC-EDU/1.0/
     term: In Copyright - Educational Use Permitted
@@ -50,12 +50,12 @@ terms:
     definition: >-
       This Item is protected by copyright and/or related rights.
 
-      You are free to use this Item in any way that is permitted by the
+      <br/>You are free to use this Item in any way that is permitted by the
       copyright and related rights legislation that applies to your use. In
       addition, no permission is required from the rights-holder(s) for
       educational uses.
 
-      For other uses, you need to obtain permission from the rights-holder(s).
+      <br/>For other uses, you need to obtain permission from the rights-holder(s).
   - id: http://rightsstatements.org/vocab/InC-NC/1.0/
     term: In Copyright - NonCommercial Use Permitted
     notable: false
@@ -68,12 +68,12 @@ terms:
     definition: >-
       This Item is protected by copyright and/or related rights.
 
-      You are free to use this Item in any way that is permitted by the
+      <br/>You are free to use this Item in any way that is permitted by the
       copyright and related rights legislation that applies to your use. In
       addition, no permission is required from the rights-holder(s) for
       non-commercial uses.
 
-      For other uses you need to obtain permission from the rightsholder(s).
+      <br/>For other uses you need to obtain permission from the rightsholder(s).
   - id: http://rightsstatements.org/vocab/NoC-CR/1.0/
     term: No Copyright - Contractual Restrictions
     notable: false
@@ -88,7 +88,7 @@ terms:
     definition: >-
       Use of this Item is not restricted by copyright and/or related rights.
 
-      As part of the acquisition or digitization of this Item, Princeton
+      <br/>As part of the acquisition or digitization of this Item, Princeton
       University Library is contractually required to limit the use of this
       Item. Limitations may include, but are not limited to, privacy issues,
       cultural protections, digitization agreements or donor agreements.
@@ -107,7 +107,7 @@ terms:
     definition: >-
       Use of this Item is not restricted by copyright and/or related rights.
 
-      In one or more jurisdictions, laws other than copyright are known to
+      <br/>In one or more jurisdictions, laws other than copyright are known to
       impose restrictions on the use of this Item.
   - id: http://rightsstatements.org/vocab/NKC/1.0/
     term: No Known Copyright
@@ -126,5 +126,5 @@ terms:
       restricted by copyright or related rights, but a conclusive determination
       could not be made.
 
-      You are free to use this Item in any way that is permitted by the
+      <br/>You are free to use this Item in any way that is permitted by the
       copyright and related rights legislation that applies to your use.

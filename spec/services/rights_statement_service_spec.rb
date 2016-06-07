@@ -18,6 +18,7 @@ RSpec.describe RightsStatementService do
   context "rights statements" do
     it "provides definitions of rights statements" do
       expect(described_class.definition(uri)).to include(desc)
+      expect(described_class.definition(uri)).to include('<br/>')
     end
 
     it "lists all valid rights statements" do
