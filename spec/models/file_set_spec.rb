@@ -44,7 +44,7 @@ RSpec.describe FileSet do
 
       expect(path).to exist
     end
-    it "creates full text and indexes it" do
+    it "creates full text, attaches it to the object, and indexes it" do
       allow_any_instance_of(described_class).to receive(:warn) # suppress virus check warnings
       allow(Hydra::Derivatives::Jpeg2kImageDerivatives).to receive(:create).and_return(true)
       file = File.open(Rails.root.join("spec", "fixtures", "files", "page18.tif"))
@@ -55,6 +55,11 @@ RSpec.describe FileSet do
 
       expect(ocr_path).to exist
       expect(subject.to_solr["full_text_tesim"]).to eq "yo"
+
+      # verify that ocr has been added to the FileSet
+      subject.reload
+      expect(subject.files.size).to eq(2)
+      expect(subject.files.last.content).to include "<div class='ocr_page'"
     end
     after do
       FileUtils.rm_rf(path.parent) if path.exist?
