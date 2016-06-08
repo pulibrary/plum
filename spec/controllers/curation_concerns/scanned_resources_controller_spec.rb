@@ -418,6 +418,14 @@ describe CurationConcerns::ScannedResourcesController do
       expect(response).to redirect_to path
       expect(reloaded.pending_uploads.length).to eq 0
     end
+    context "when there's a parent id" do
+      it "redirects to the parent path" do
+        allow(BrowseEverythingIngestJob).to receive(:perform_later).and_return(true)
+        post :browse_everything_files, id: resource.id, selected_files: params["selected_files"], parent_id: resource.id
+        path = Rails.application.class.routes.url_helpers.file_manager_curation_concerns_parent_scanned_resource_path(id: resource.id, parent_id: resource.id)
+        expect(response).to redirect_to path
+      end
+    end
     context "when the job hasn't run yet" do
       it "creates pending uploads" do
         allow(BrowseEverythingIngestJob).to receive(:perform_later).and_return(true)

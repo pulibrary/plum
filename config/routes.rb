@@ -41,6 +41,16 @@ Rails.application.routes.draw do
   get "/iiif/collections", defaults: { format: :json }, controller: :collections, action: :index_manifest
 
   namespace :curation_concerns, path: :concern do
+    resources :parent, only: [] do
+      [:multi_volume_works, :scanned_resources].each do |type|
+        resources type, only: [] do
+          member do
+            get :file_manager
+            get :structure
+          end
+        end
+      end
+    end
     resources :multi_volume_works, only: [] do
       member do
         get :manifest, defaults: { format: :json }

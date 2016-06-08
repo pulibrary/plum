@@ -21,6 +21,11 @@ class CurationConcerns::CurationConcernsController < ApplicationController
     super
   end
 
+  def file_manager
+    parent_presenter
+    super
+  end
+
   def flag
     curation_concern.state = 'flagged'
     note = params[curation_concern_name][:workflow_note]
@@ -42,7 +47,7 @@ class CurationConcerns::CurationConcernsController < ApplicationController
     upload_set_id = ActiveFedora::Noid::Service.new.mint
     CompositePendingUpload.create(selected_files_params, curation_concern.id, upload_set_id)
     BrowseEverythingIngestJob.perform_later(curation_concern.id, upload_set_id, current_user, selected_files_params)
-    redirect_to polymorphic_path([main_app, :file_manager, curation_concern])
+    redirect_to ::ContextualPath.new(curation_concern, parent_presenter).file_manager
   end
 
   def after_create_response
