@@ -9,7 +9,7 @@ module StructureHelper
 
     def bulk_edit_breadcrumb
       content_tag(:ul, class: 'breadcrumb') do
-        bulk_edit_parent_work
+        (bulk_edit_grandparent_work + bulk_edit_parent_work + header).html_safe
       end
     end
 
@@ -17,15 +17,23 @@ module StructureHelper
       return '' unless @presenter
       link = content_tag(:a, @presenter.page_title,
                          title: @presenter.id,
-                         href: bulk_edit_parent_path)
-      content_tag(:li, ('Back to ' + link).html_safe)
+                         href: bulk_edit_parent_path(@presenter, @parent_presenter))
+      content_tag(:li, link)
     end
 
-    def bulk_edit_parent_path
-      local_helper.polymorphic_path(@presenter)
+    def bulk_edit_grandparent_work
+      return '' unless @parent_presenter
+      link = content_tag(:a, @parent_presenter.page_title,
+                         title: @parent_presenter.id,
+                         href: bulk_edit_parent_path(@parent_presenter))
+      content_tag(:li, link)
     end
 
-    def local_helper
-      @local_helper ||= ManifestBuilder::ManifestHelper.new
+    def header
+      content_tag(:li, 'Edit Structure', class: :active)
+    end
+
+    def bulk_edit_parent_path(presenter, parent_presenter = nil)
+      ContextualPath.new(presenter, parent_presenter).show
     end
 end

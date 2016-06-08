@@ -38,7 +38,7 @@ RSpec.describe "curation_concerns/base/structure" do
     render
   end
   it "renders a li per node" do
-    expect(rendered).to have_selector("li", count: 4)
+    expect(rendered).to have_selector("li", count: 5)
   end
   it "renders a ul per order" do
     expect(rendered).to have_selector("ul", count: 3)
@@ -55,7 +55,7 @@ RSpec.describe "curation_concerns/base/structure" do
   context "when given a multi volume work" do
     let(:scanned_resource) { MultiVolumeWorkShowPresenter.new(SolrDocument.new(MultiVolumeWork.new("test").to_solr), nil) }
     it "renders" do
-      expect(rendered).to have_selector("li", count: 4)
+      expect(rendered).to have_selector("li", count: 5)
       expect(rendered).to have_selector("*[data-class-name='multi_volume_works']")
     end
   end

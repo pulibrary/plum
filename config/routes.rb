@@ -46,6 +46,7 @@ Rails.application.routes.draw do
         resources type, only: [] do
           member do
             get :file_manager
+            get :structure
           end
         end
       end
