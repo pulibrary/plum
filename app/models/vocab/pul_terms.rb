@@ -5,4 +5,5 @@ class PULTerms < RDF::StrictVocabulary('http://library.princeton.edu/terms/')
   term :source_metadata, label: 'Source Metadata'.freeze, type: 'rdf:Property'.freeze
   term :ocr_language, label: "OCR Language".freeze, type: 'rdf:Property'.freeze
   term :pdf_type, label: "PDF Type".freeze, type: 'rdf:Property'.freeze
+  term :call_number, label: "Call Number".freeze, type: 'rdf:Property'.freeze
 end
