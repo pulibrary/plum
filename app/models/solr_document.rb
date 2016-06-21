@@ -52,7 +52,7 @@ class SolrDocument
   def logical_order
     @logical_order ||=
       begin
-        JSON.parse(self[Solrizer.solr_name("logical_order", :symbol)].first)
+        JSON.parse(self[Solrizer.solr_name("logical_order", :stored_searchable)].first)
       rescue
         {}
       end
