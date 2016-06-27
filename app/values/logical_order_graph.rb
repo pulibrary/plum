@@ -40,7 +40,7 @@ class LogicalOrderGraph
   private
 
     def node
-      @node ||= Node.new(head_subject) << graph
+      @node ||= Node.new(head_subject, data: graph)
     end
 
     def ordered_list
