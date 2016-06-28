@@ -108,6 +108,9 @@ gem 'string_rtl'
 gem 'sinatra'
 gem 'redis-namespace'
 gem 'arabic-letter-connector'
+group :staging, :development do
+  gem 'ruby-prof'
+end
 source 'https://rails-assets.org' do
   gem 'rails-assets-babel-polyfill'
   gem 'rails-assets-bootstrap-select', '1.9.4'
