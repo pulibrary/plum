@@ -57,7 +57,7 @@ class FileSet < ActiveFedora::Base
   private
 
     def touch_parent_works
-      in_works.each(&:update_index)
+      TouchParentJob.perform_later(self)
     end
 
     def ocr_file
