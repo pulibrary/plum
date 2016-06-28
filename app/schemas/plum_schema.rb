@@ -21,6 +21,8 @@ class PlumSchema < ActiveTriples::Schema
   property :format, predicate: RDF::DC11.format
   property :source, predicate: RDF::DC11.source
   property :extent, predicate: RDF::DC.extent
+  property :edition, predicate: RDF::URI("http://id.loc.gov/ontologies/bibframe/editionStatement")
+  property :call_number, predicate: PULTerms.call_number
   property :abridger, predicate: RDF::Vocab::MARCRelators.abr
   property :actor, predicate: RDF::Vocab::MARCRelators.act
   property :adapter, predicate: RDF::Vocab::MARCRelators.adp
