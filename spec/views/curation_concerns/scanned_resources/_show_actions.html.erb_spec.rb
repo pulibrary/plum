@@ -28,4 +28,7 @@ RSpec.describe "curation_concerns/scanned_resources/_show_actions.html.erb" do
       expect(rendered).to have_link "File Manager", href: file_manager_curation_concerns_parent_scanned_resource_path(id: resource.id, parent_id: parent_presenter.id)
     end
   end
+  it "doesn't have an attach a file link" do
+    expect(rendered).not_to have_link "Attach a File"
+  end
 end
