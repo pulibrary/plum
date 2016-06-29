@@ -10,7 +10,7 @@ class ScannedResourcePDF
     def header(prawn_document, header, size: 16)
       Array(header).each do |text|
         prawn_document.move_down 10
-        prawn_document.text connect(text).join(" "), size: size, styles: [:bold]
+        display_text(prawn_document, text, size: size, styles: [:bold], inline_format: true)
       end
       prawn_document.stroke do
         prawn_document.horizontal_rule
@@ -20,24 +20,25 @@ class ScannedResourcePDF
 
     def text(prawn_document, text)
       Array(text).each do |value|
-        connect(value).each do |chunk|
-          prawn_document.text chunk
-        end
+        display_text(prawn_document, value)
       end
       prawn_document.move_down 5
     end
 
     def apply(prawn_document)
-      noto_b = Rails.root.join("app/assets/fonts/NotoSansCJK/NotoSansCJKtc-Bold.ttf")
-      noto_r = Rails.root.join("app/assets/fonts/NotoSansCJK/NotoSansCJKtc-Regular.ttf")
+      noto_cjk_b = Rails.root.join("app/assets/fonts/NotoSansCJK/NotoSansCJKtc-Bold.ttf")
+      noto_cjk_r = Rails.root.join("app/assets/fonts/NotoSansCJK/NotoSansCJKtc-Regular.ttf")
+      noto_ara_b = Rails.root.join("app/assets/fonts/NotoNaskhArabic/NotoNaskhArabic-Bold.ttf")
+      noto_ara_r = Rails.root.join("app/assets/fonts/NotoNaskhArabic/NotoNaskhArabic-Regular.ttf")
       amiri_b = Rails.root.join("app/assets/fonts/amiri/amiri-bold.ttf")
       amiri_r = Rails.root.join("app/assets/fonts/amiri/amiri-regular.ttf")
 
       prawn_document.font_families.update(
         "amiri" => { normal: amiri_r, italic: amiri_r, bold: amiri_b, bold_italic: amiri_b },
-        "noto" => { normal: noto_r, italic: noto_r, bold: noto_b, bold_italic: noto_b }
+        "noto_cjk" => { normal: noto_cjk_r, italic: noto_cjk_r, bold: noto_cjk_b, bold_italic: noto_cjk_b },
+        "noto_ara" => { normal: noto_ara_r, italic: noto_ara_r, bold: noto_ara_b, bold_italic: noto_ara_b }
       )
-      prawn_document.fallback_fonts(["amiri", "noto"])
+      prawn_document.fallback_fonts(["noto_cjk", "noto_ara", "amiri"])
 
       prawn_document.bounding_box([15, Canvas::LETTER_HEIGHT - 15], width: Canvas::LETTER_WIDTH - 30, height: Canvas::LETTER_HEIGHT - 30) do
         prawn_document.image Rails.root.join("app/assets/images/pul_logo_long.png").to_s, position: :center, width: Canvas::LETTER_WIDTH - 30
@@ -90,8 +91,13 @@ class ScannedResourcePDF
         RightsStatementService.definition(statement).gsub(/<br\/>/, "\n")
       end
 
-      def connect(text)
-        dir_split(text).map { |s| s.dir == 'rtl' && lang_is_arabic? ? s.connect_arabic_letters.reverse : s }
+      def display_text(prawn_document, text, options = {})
+        bidi_text = dir_split(text).map do |s|
+          s = s.connect_arabic_letters.gsub("\uFEDF\uFE8E", "\uFEFB") if s.dir == 'rtl' && lang_is_arabic?
+          s.dir == 'rtl' ? s.reverse : s
+        end.join(" ")
+        options = options.merge(align: :right, kerning: true) if bidi_text.dir == 'rtl'
+        prawn_document.text bidi_text, options
       end
 
       def lang_is_arabic?
