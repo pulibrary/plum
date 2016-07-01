@@ -12,6 +12,7 @@ RSpec.describe UpdatesOCR do
   context "when ocr_language is changed" do
     it "regenerates OCR derivatives" do
       stub_language("ita+eng", "Italian & English")
+      stub_language("eng+ita", "Italian & English")
       stub_language("eng", "English")
       file_set.create_derivatives(file.path)
       file_set.save

@@ -6,9 +6,9 @@ class MultiVolumeWorkShowPresenter < CurationConcernsShowPresenter
   class DynamicShowPresenter
     def new(*args)
       solr_doc = args.first
-      if solr_doc.fetch("active_fedora_model_ssi") == "ScannedResource"
+      if solr_doc.type == "ScannedResource"
         ScannedResourceShowPresenter.new(*args)
-      elsif solr_doc.fetch("active_fedora_model_ssi") == "MultiVolumeWork"
+      elsif solr_doc.type == "MultiVolumeWork"
         MultiVolumeWorkShowPresenter.new(*args)
       else
         FileSetPresenter.new(*args)

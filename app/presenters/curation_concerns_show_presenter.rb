@@ -8,7 +8,7 @@ class CurationConcernsShowPresenter < CurationConcerns::WorkShowPresenter
   end
 
   def in_collections
-    ActiveFedora::SolrService.query("active_fedora_model_ssi:Collection AND member_ids_ssim:#{id}")
+    ActiveFedora::SolrService.query("has_model_ssim:Collection AND member_ids_ssim:#{id}")
       .map { |c| CurationConcerns::CollectionPresenter.new(SolrDocument.new(c), current_ability) }
   end
 

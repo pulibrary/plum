@@ -35,7 +35,6 @@ RSpec.describe CurationConcerns::FileSetsController do
                           file_set: { files: [file],
                                       title: ['test title'],
                                       visibility: 'restricted' }
-
       expect(FileSet.all.length).to eq 1
       expect(manifest_generator).to have_received(:record_updated).with(parent)
     end

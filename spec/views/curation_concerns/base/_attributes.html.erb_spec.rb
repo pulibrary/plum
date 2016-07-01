@@ -8,7 +8,7 @@ RSpec.describe "curation_concerns/base/_attributes.html.erb" do
 
   let(:solr_document) do
     SolrDocument.new(
-      active_fedora_model_ssi: 'ScannedResource',
+      has_model_ssim: ['ScannedResource'],
       creator_tesim: creator,
       author_tesim: 'Baggins',
       source_metadata_identifier_tesim: '8675309',

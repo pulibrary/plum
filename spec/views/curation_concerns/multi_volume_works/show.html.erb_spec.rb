@@ -11,7 +11,6 @@ describe "curation_concerns/multi_volume_works/show.html.erb" do
       date_created_tesim: date_created,
       rights_tesim: rights,
       has_model_ssim: ["MultiVolumeWork"],
-      active_fedora_model_ssi: 'MultiVolumeWork',
       id: "2"
     )
   end
@@ -21,7 +20,6 @@ describe "curation_concerns/multi_volume_works/show.html.erb" do
       title_tesim: "test",
       thumbnail_path_ss: "/test/bla.jpg",
       has_model_ssim: ["ScannedResource"],
-      active_fedora_model_ssi: 'ScannedResource',
       id: "1"
     )
   end
