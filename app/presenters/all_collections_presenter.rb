@@ -41,6 +41,6 @@ class AllCollectionsPresenter < CollectionShowPresenter
     end
 
     def ordered_ids
-      ActiveFedora::SolrService.query("active_fedora_model_ssi:Collection", rows: 10_000, fl: "id").map { |x| x["id"] }
+      ActiveFedora::SolrService.query("has_model_ssim:Collection", rows: 10_000, fl: "id").map { |x| x["id"] }
     end
 end
