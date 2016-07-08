@@ -1,30 +1,23 @@
 class PairtreeDerivativePath < CurationConcerns::DerivativePath
-  class << self
-    def extension_for(destination_name)
-      case destination_name
-      when 'thumbnail'
-        ".#{MIME::Types.type_for('jpg').first.extensions.first}"
-      when "intermediate_file"
-        ".jp2"
-      when "ocr"
-        ".hocr"
-      when "gray-pdf"
-        ".pdf"
-      when "color-pdf"
-        ".pdf"
-      else
-        ".#{destination_name}"
-      end
+  def extension
+    case destination_name
+    when 'thumbnail'
+      ".#{MIME::Types.type_for('jpg').first.extensions.first}"
+    when "intermediate_file"
+      ".jp2"
+    when "ocr"
+      ".hocr"
+    when "gray-pdf"
+      ".pdf"
+    when "color-pdf"
+      ".pdf"
+    else
+      ".#{destination_name}"
     end
+  end
 
-    private
-
-      def derivative_path(object, extension, destination_name)
-        file_name = destination_name + extension
-        if extension == ".pdf"
-          file_name = "#{ResourceIdentifier.new(object.id)}-#{destination_name}.pdf"
-        end
-        "#{path_prefix(object)}-#{file_name}"
-      end
+  def file_name
+    return "#{ResourceIdentifier.new(@id)}-#{destination_name}.pdf" if extension == ".pdf"
+    super
   end
 end

@@ -30,7 +30,7 @@ class SolrDocument
   end
 
   def type
-    self['active_fedora_model_ssi']
+    Array(self['has_model_ssim']).first
   end
 
   def viewing_hint
