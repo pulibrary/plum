@@ -62,8 +62,8 @@ GIT
 
 GIT
   remote: git://github.com/projecthydra/active_fedora.git
-  revision: f6ac3fbe04d5c0fedb64b7c04a34ca207d29f7f7
-  branch: test_speed_updates
+  revision: f0c76dc9dd8fe5806a043467828058acc2f32d78
+  branch: master
   specs:
     active-fedora (11.0.0.alpha)
       active-triples (~> 0.10.0)
