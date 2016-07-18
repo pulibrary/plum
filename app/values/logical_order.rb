@@ -32,6 +32,7 @@ class LogicalOrder
   #   hash.
   def to_graph
     self_graph = ordered_list.to_graph
+    self_graph = ActiveTriples::Resource.new(rdf_subject, data: self_graph)
     self_graph << [rdf_subject, RDF::Vocab::RDFS.label, label] if label
     nodes.each do |node|
       self_graph << node.to_graph
@@ -76,7 +77,7 @@ class LogicalOrder
     def ordered_list
       @ordered_list ||=
         begin
-          o = ActiveFedora::Orders::OrderedList.new(::RDF::Graph.new, nil, nil)
+          o = ActiveFedora::Orders::OrderedList.new(::ActiveTriples::Resource.new, nil, nil)
           nodes.each do |node|
             o.insert_proxy_for_at(o.length, node.proxy_for)
             node.rdf_subject = o.last.rdf_subject

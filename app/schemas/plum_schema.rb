@@ -2,9 +2,9 @@
 class PlumSchema < ActiveTriples::Schema
   property :sort_title, predicate: ::OpaqueMods.titleForSort, multiple: false
   property :portion_note, predicate: ::RDF::Vocab::SKOS.scopeNote, multiple: false
-  property :description, predicate: ::RDF::DC.abstract, multiple: false
-  property :identifier, predicate: ::RDF::DC.identifier, multiple: false
-  property :replaces, predicate: ::RDF::DC.replaces, multiple: false
+  property :description, predicate: ::RDF::Vocab::DC.abstract, multiple: false
+  property :identifier, predicate: ::RDF::Vocab::DC.identifier, multiple: false
+  property :replaces, predicate: ::RDF::Vocab::DC.replaces, multiple: false
   property :rights_statement, predicate: ::RDF::Vocab::EDM.rights, multiple: false
   property :rights_note, predicate: ::RDF::Vocab::DC11.rights, multiple: false
   property :source_metadata_identifier, predicate: ::PULTerms.metadata_id, multiple: false
@@ -17,10 +17,10 @@ class PlumSchema < ActiveTriples::Schema
   property :pdf_type, predicate: ::PULTerms.pdf_type
 
   # Generated from Context
-  property :coverage, predicate: RDF::DC11.coverage
-  property :format, predicate: RDF::DC11.format
-  property :source, predicate: RDF::DC11.source
-  property :extent, predicate: RDF::DC.extent
+  property :coverage, predicate: RDF::Vocab::DC11.coverage
+  property :format, predicate: RDF::Vocab::DC11.format
+  property :source, predicate: RDF::Vocab::DC11.source
+  property :extent, predicate: RDF::Vocab::DC.extent
   property :edition, predicate: RDF::URI("http://id.loc.gov/ontologies/bibframe/editionStatement")
   property :call_number, predicate: PULTerms.call_number
   property :abridger, predicate: RDF::Vocab::MARCRelators.abr

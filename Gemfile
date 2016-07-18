@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.4'
+gem 'rails', '4.2.6'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 # Use SCSS for stylesheets
@@ -33,10 +33,10 @@ gem 'modernizr-rails'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-gem 'curation_concerns', github:'projecthydra-labs/curation_concerns', branch: :master
+gem 'curation_concerns', github:'projecthydra-labs/curation_concerns', branch: "update_at"
 gem 'pul_metadata_services', github:'pulibrary/pul_metadata_services', branch: :master
 gem 'hydra-role-management', '~> 0.2.0'
-gem 'rsolr', '~> 1.0.6'
+gem 'rsolr', '~> 1.1.0'
 gem 'devise', '~> 3.0'
 gem 'devise-guests', '~> 0.3'
 gem 'iiif-presentation'
@@ -49,7 +49,7 @@ gem 'prawn'
 gem 'hydra-works', github: 'projecthydra-labs/hydra-works', branch: 'master'
 gem 'hydra-pcdm', github: 'projecthydra-labs/hydra-pcdm', branch: 'master'
 gem 'hydra-derivatives', github: 'projecthydra/hydra-derivatives', branch: 'master'
-gem 'active-fedora', github: 'projecthydra/active_fedora', branch: 'master'
+gem 'active-fedora', github: 'projecthydra/active_fedora', branch: 'test_speed_updates'
 
 gem 'rubocop', '~> 0.34.0', require: false
 gem 'rubocop-rspec', '~> 1.3.0', require: false

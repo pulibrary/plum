@@ -59,7 +59,7 @@ RSpec.describe FileSet do
       # verify that ocr has been added to the FileSet
       subject.reload
       expect(subject.files.size).to eq(2)
-      expect(subject.files.last.content).to include "<div class='ocr_page'"
+      expect(subject.files.to_a.find { |x| x.mime_type != "image/tiff" }.content).to include "<div class='ocr_page'"
     end
     after do
       FileUtils.rm_rf(path.parent) if path.exist?

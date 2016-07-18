@@ -29,7 +29,7 @@ class SearchBuilder < Blacklight::SearchBuilder
     solr_params[:fq] ||= []
     state_field = ActiveFedora.index_field_mapper.solr_name('state', :symbol)
     state_string = readable_states.map { |state| "#{state_field}:#{state}" }.join(" OR ")
-    state_string += " OR active_fedora_model_ssi:Collection"
+    state_string += " OR has_model_ssim:Collection"
     solr_params[:fq] << state_string
   end
 

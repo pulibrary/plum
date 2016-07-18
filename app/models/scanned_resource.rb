@@ -16,4 +16,8 @@ class ScannedResource < ActiveFedora::Base
       doc[ActiveFedora.index_field_mapper.solr_name("ordered_by", :symbol)] += send(:ordered_by_ids)
     end
   end
+
+  def serializable_hash(*_args)
+    { id: id }
+  end
 end
