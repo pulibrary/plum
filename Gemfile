@@ -49,7 +49,7 @@ gem 'prawn'
 gem 'hydra-works', github: 'projecthydra-labs/hydra-works', branch: 'master'
 gem 'hydra-pcdm', github: 'projecthydra-labs/hydra-pcdm', branch: 'master'
 gem 'hydra-derivatives', github: 'projecthydra/hydra-derivatives', branch: 'master'
-gem 'active-fedora', github: 'projecthydra/active_fedora', branch: 'test_speed_updates'
+gem 'active-fedora', github: 'projecthydra/active_fedora', branch: 'master'
 
 gem 'rubocop', '~> 0.34.0', require: false
 gem 'rubocop-rspec', '~> 1.3.0', require: false
