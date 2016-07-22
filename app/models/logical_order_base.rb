@@ -27,7 +27,13 @@ class LogicalOrderBase < ActiveFedora::Base
     end
     resource << new_graph
     # Set nodes so that hash URIs get persisted to Fedora.
-    self.nodes = new_graph.subjects.select { |x| x != rdf_subject }
+    self.nodes = new_graph.subjects.select { |x| x != rdf_subject }.map do |subject|
+      if subject.kind_of?(::RDF::URI) && subject.to_s.start_with?("#")
+        ::RDF::URI("#{rdf_subject}#{subject}")
+      else
+        subject
+      end
+    end
     @order = nil
     @logical_order = nil
     order
