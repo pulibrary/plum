@@ -38,4 +38,57 @@ RSpec.describe HackyConnection do
     content = open("#{parent.rdf_subject}/list_source").read
     expect(content).to include child_2.uri.to_s.gsub("http://localhost:8986/rest/", "http://fake.com/")
   end
+
+  it "works for logical order" do
+    child = FactoryGirl.create(:scanned_resource)
+    child2 = FactoryGirl.create(:scanned_resource)
+    parent = FactoryGirl.build(:scanned_resource)
+    parent.ordered_members << child
+    parent.ordered_members << child2
+    parent.logical_order.order = {}
+    parent.save
+    parent.logical_order.order = 
+      {
+        "nodes": [
+          {
+            "label": "Chapter 1",
+            "nodes": [
+              {
+                "label": child.rdf_label.first,
+                "proxy": child.id
+              },
+              {
+                "label": child2.rdf_label.first,
+                "proxy": child2.id
+              }
+            ]
+          }
+        ]
+      }
+    parent.save
+    parent.logical_order.order = 
+      {
+        "nodes": [
+          {
+            "label": "Chapter 2",
+            "nodes": [
+              {
+                "label": child.rdf_label.first,
+                "proxy": child.id
+              },
+              {
+                "label": child2.rdf_label.first,
+                "proxy": child2.id
+              }
+            ]
+          }
+        ]
+      }
+    parent.save
+
+    content = open("#{parent.rdf_subject}/logical_order").read
+    expect(content).to include child.uri.to_s.gsub("http://localhost:8986/rest/", "http://fake.com/")
+    expect(content).not_to include child.uri.to_s
+    expect(content).not_to include child2.uri.to_s
+  end
 end
