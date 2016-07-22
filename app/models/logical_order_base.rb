@@ -18,14 +18,14 @@ class LogicalOrderBase < ActiveFedora::Base
     self.tail = nil
     new_graph = ::RDF::Graph.new.tap do |g|
       graph.statements.each do |statement|
-        if statement.object.kind_of?(::RDF::URI) && statement.object.to_s.start_with?("#")
+        if statement.object.is_a?(::RDF::URI) && statement.object.to_s.start_with?("#")
           g << [statement.subject, statement.predicate, ::RDF::URI("#{rdf_subject}#{statement.object}")]
         else
           g << statement
         end
       end
     end
-    self.resource << new_graph
+    resource << new_graph
     # Set nodes so that hash URIs get persisted to Fedora.
     self.nodes = new_graph.subjects.select { |x| x != rdf_subject }
     @order = nil

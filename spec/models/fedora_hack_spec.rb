@@ -47,7 +47,7 @@ RSpec.describe HackyConnection do
     parent.ordered_members << child2
     parent.logical_order.order = {}
     parent.save
-    parent.logical_order.order = 
+    parent.logical_order.order =
       {
         "nodes": [
           {
@@ -66,7 +66,7 @@ RSpec.describe HackyConnection do
         ]
       }
     parent.save
-    parent.logical_order.order = 
+    parent.logical_order.order =
       {
         "nodes": [
           {

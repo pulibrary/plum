@@ -74,13 +74,13 @@ class HackyConnection < SimpleDelegator
       def each_statement
         return to_enum(:each_statement) unless block_given?
         @each_statement ||= begin
-                              parent.each_statement do |statement|
-                                if statement.object.is_a?(::RDF::URI) && statement.object.to_s.include?("http://fake.com")
-                                  yield RDF::Statement.from([statement.subject, statement.predicate, ::RDF::URI(statement.object.to_s.gsub("http://fake.com", ActiveFedora.fedora.host))])
-                                else
-                                  yield statement
-                                end
-                            end
+          parent.each_statement do |statement|
+            if statement.object.is_a?(::RDF::URI) && statement.object.to_s.include?("http://fake.com")
+              yield RDF::Statement.from([statement.subject, statement.predicate, ::RDF::URI(statement.object.to_s.gsub("http://fake.com", ActiveFedora.fedora.host))])
+            else
+              yield statement
+            end
+          end
         end
       end
     end
