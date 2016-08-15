@@ -67,7 +67,7 @@ And run the test suite in another window:
 1. Install Docker Toolbox [https://www.docker.com/toolbox](https://www.docker.com/toolbox)
   * Only necessary for mac or windows machines. For unix boxes install via 
       `wget -qO- https://get.docker.com/ | sh`
-1. Start a docker VM: `docker machine start default`
+1. Start a docker VM: `docker-machine start default`
 1. Setup your docker environment: `eval "$(docker-machine env default)"`
 1. Retrieve the loris image: `docker pull lorisimageserver/loris`
 1. Start the container:
