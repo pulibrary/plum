@@ -36,7 +36,7 @@ class User < ActiveRecord::Base
       user.uid = access_token.uid
       user.provider = access_token.provider
       user.username = access_token.uid
-      user.email = "#{access_token.uid}@princeton.edu"
+      user.email = "#{access_token.uid}@iu.edu"
     end
   end
 end
