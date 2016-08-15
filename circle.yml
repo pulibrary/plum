@@ -1,6 +1,8 @@
 machine:
   ruby:
     version: 2.2.0
+  services:
+    - redis
 general:
   artifacts:
     - "tmp/capybara"
@@ -14,7 +16,6 @@ dependencies:
     - bundle install --without development --deployment
   post:
     - sudo apt-get install libmagickwand-dev imagemagick redis-server tesseract-ocr tesseract-ocr-ita tesseract-ocr-eng
-    - sudo /etc/init.d/redis-server start
     - sudo sh bin/ci_kakadu_install.sh
     - bundle exec rake hydra:test_server:
         background: true
