@@ -1,12 +1,11 @@
-# Plum. A Hydra head to support digitization workflows
+# Pumpkin. A Hydra head to support digitization workflows
 
-[![Circle CI](https://circleci.com/gh/pulibrary/plum.svg?style=svg)](https://circleci.com/gh/pulibrary/plum)
-[![Coverage Status](https://coveralls.io/repos/pulibrary/plum/badge.svg?branch=master)](https://coveralls.io/r/pulibrary/plum?branch=master)
-[![Code Climate](https://codeclimate.com/github/pulibrary/plum/badges/gpa.svg)](https://codeclimate.com/github/pulibrary/plum)
-[![Stories in Ready](https://badge.waffle.io/pulibrary/plum.png?label=ready&title=Ready)](https://waffle.io/pulibrary/plum)
+[![Build Status](https://travis-ci.org/IU-Libraries-Joint-Development/pumpkin.svg?branch=master)](https://travis-ci.org/IU-Libraries-Joint-Development/pumpkin)
+[![Coverage Status](https://coveralls.io/repos/github/IU-Libraries-Joint-Development/pumpkin/badge.svg?branch=master)](https://coveralls.io/github/IU-Libraries-Joint-Development/pumpkin?branch=master)
+[![Code Climate](https://codeclimate.com/github/IU-Libraries-Joint-Development/pumpkin/badges/gpa.svg)](https://codeclimate.com/github/IU-Libraries-Joint-Development/pumpkin)
 [![Apache 2.0 License](https://img.shields.io/badge/license-Apache%202.0-blue.svg?style=plastic)](./LICENSE)
 
-Plum is a Hydra head based on [CurationConcerns](http://github.com/projecthydra-labs/curation_concerns), with two types of works:
+Pumpkin is a Hydra head based on [Plum](https://github.com/pulibrary/plum) and  [CurationConcerns](http://github.com/projecthydra/curation_concerns), with two types of works:
 * ScannedResource: a book or other resource composed of one or more scanned pages
 * MultiVolumeWork: a book set, sammelband or other resource composed of multiple ScannedResources
 
