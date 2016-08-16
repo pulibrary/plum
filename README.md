@@ -1,6 +1,6 @@
 # Pumpkin. A Hydra head to support digitization workflows
 
-[![Build Status](https://travis-ci.org/IU-Libraries-Joint-Development/pumpkin.svg?branch=master)](https://travis-ci.org/IU-Libraries-Joint-Development/pumpkin)
+[![CircleCI](https://circleci.com/gh/IU-Libraries-Joint-Development/pumpkin.svg?style=svg)](https://circleci.com/gh/IU-Libraries-Joint-Development/pumpkin)
 [![Coverage Status](https://coveralls.io/repos/github/IU-Libraries-Joint-Development/pumpkin/badge.svg?branch=master)](https://coveralls.io/github/IU-Libraries-Joint-Development/pumpkin?branch=master)
 [![Code Climate](https://codeclimate.com/github/IU-Libraries-Joint-Development/pumpkin/badges/gpa.svg)](https://codeclimate.com/github/IU-Libraries-Joint-Development/pumpkin)
 [![Apache 2.0 License](https://img.shields.io/badge/license-Apache%202.0-blue.svg?style=plastic)](./LICENSE)
@@ -66,7 +66,7 @@ And run the test suite in another window:
 1. Install Docker Toolbox [https://www.docker.com/toolbox](https://www.docker.com/toolbox)
   * Only necessary for mac or windows machines. For unix boxes install via 
       `wget -qO- https://get.docker.com/ | sh`
-1. Start a docker VM: `docker machine start default`
+1. Start a docker VM: `docker-machine start default`
 1. Setup your docker environment: `eval "$(docker-machine env default)"`
 1. Retrieve the loris image: `docker pull lorisimageserver/loris`
 1. Start the container:
