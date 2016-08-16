@@ -1,6 +1,6 @@
 # Pumpkin. A Hydra head to support digitization workflows
 
-[![Build Status](https://travis-ci.org/IU-Libraries-Joint-Development/pumpkin.svg?branch=master)](https://travis-ci.org/IU-Libraries-Joint-Development/pumpkin)
+[![CircleCI](https://circleci.com/gh/IU-Libraries-Joint-Development/pumpkin.svg?style=svg)](https://circleci.com/gh/IU-Libraries-Joint-Development/pumpkin)
 [![Coverage Status](https://coveralls.io/repos/github/IU-Libraries-Joint-Development/pumpkin/badge.svg?branch=master)](https://coveralls.io/github/IU-Libraries-Joint-Development/pumpkin?branch=master)
 [![Code Climate](https://codeclimate.com/github/IU-Libraries-Joint-Development/pumpkin/badges/gpa.svg)](https://codeclimate.com/github/IU-Libraries-Joint-Development/pumpkin)
 [![Apache 2.0 License](https://img.shields.io/badge/license-Apache%202.0-blue.svg?style=plastic)](./LICENSE)
