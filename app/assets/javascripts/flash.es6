@@ -1,5 +1,4 @@
-/* exported Flash */
-class Flash {
+export default class Flash {
   constructor() {
     this.element = $(".alert-js")
     this.element.children(".close").click(

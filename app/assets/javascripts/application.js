@@ -24,7 +24,13 @@
 //= require nestedSortable/jquery.mjs.nestedSortable
 //= require bootstrap-select
 
+//= require curation_concerns/application
 //= require_tree .
 
 //= require modernizr
 //= require jquery.iiifOsdViewer
+
+Blacklight.onLoad(function() {
+  Initializer = require('boot')
+  window.plum = new Initializer()
+})
