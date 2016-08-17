@@ -111,4 +111,35 @@ class SolrDocument
       super
     end
   end
+
+  def to_model
+    @to_model ||= DummyModel.new(self['has_model_ssim'].first, id)
+  end
+
+  class DummyModel
+    attr_reader :class_name, :id
+    delegate :model_name, to: :klass
+    def initialize(class_name, id)
+      @class_name = class_name
+      @id = id
+    end
+
+    def to_partial_path
+      klass._to_partial_path
+    end
+
+    def persisted?
+      true
+    end
+
+    def to_param
+      id
+    end
+
+    private
+
+      def klass
+        @klass ||= class_name.constantize
+      end
+  end
 end

@@ -1,3 +1,4 @@
+SelectTracker = require("file_manager/select_tracker")
 describe "SelectTracker", ->
   select_tracker = null
   parent_persister = {

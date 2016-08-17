@@ -1,5 +1,5 @@
-/* exported LabelerActionsManager */
-class LabelerActionsManager {
+import lg from "bulk_labeler/label_generator"
+export default class LabelerActionsManager {
   constructor(element) {
     this.element = element
     this.apply_button.disable()
@@ -19,7 +19,7 @@ class LabelerActionsManager {
   }
 
   get generator() {
-    return window.lg.pageLabelGenerator(this.first,
+    return lg.pageLabelGenerator(this.first,
                                         this.method,
                                         this.frontLabel,
                                         this.backLabel,

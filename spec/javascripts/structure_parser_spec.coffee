@@ -1,3 +1,5 @@
+StructureParser = require("structure_parser").StructureParser
+StructureNode = require("structure_parser").StructureNode
 describe "StructureParser", () ->
   structure = null
   describe "serialize", () ->

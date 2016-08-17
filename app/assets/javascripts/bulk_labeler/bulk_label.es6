@@ -1,8 +1,7 @@
-window.Blacklight.onLoad(function() {
-  window.bulk_labeler = new BulkLabeler
-})
-/* exported BulkLabeler */
-class BulkLabeler {
+import Flash from "flash"
+import LabelerActionsManager from "bulk_labeler/labeler_actions_manager"
+import shift_enabled_selecting from "shift_selecting"
+export default class BulkLabeler {
   constructor() {
     this.element = $("*[data-action=file-manager]")
     $("#foliate-settings").hide()
@@ -10,15 +9,15 @@ class BulkLabeler {
       {
         filter: ".panel",
         stop: this.stopped_label_select,
-        selecting: window.shift_enabled_selecting(),
+        selecting: shift_enabled_selecting(),
         cancel: "a,input,option,label,button,.ignore-select"
       }
     )
-    this.actions_manager = new window.LabelerActionsManager($("#file-manager-tools .actions"))
+    this.actions_manager = new LabelerActionsManager($("#file-manager-tools .actions"))
     this.apply_button.disable()
     this.apply_button.click(this.apply_labels)
     this.initialize_radio_buttons()
-    this.flash = new window.Flash
+    this.flash = new Flash
   }
 
   initialize_radio_buttons() {

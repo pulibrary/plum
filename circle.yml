@@ -1,6 +1,6 @@
 machine:
   ruby:
-    version: 2.3.1
+    version: 2.2.5
   services:
     - redis
 general:
@@ -12,8 +12,8 @@ dependencies:
     - leptonica
   pre:
     - npm install -g eslint
-    - bundle install --without development test --path vendor/staging && bundle exec rake rubocop
-    - bundle install --without development  --with test --deployment
+    - bundle install --without development --path vendor/staging && bundle exec rake rubocop
+    - bundle install --without development --deployment
   post:
     - sudo apt-get install libmagickwand-dev imagemagick redis-server tesseract-ocr tesseract-ocr-ita tesseract-ocr-eng
     - sudo sh bin/ci_kakadu_install.sh

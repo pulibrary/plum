@@ -1,3 +1,4 @@
+RadioTracker = require("file_manager/radio_tracker")
 describe "RadioTracker", ->
   radio_tracker = null
   parent_persister = {

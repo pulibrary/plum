@@ -23,8 +23,15 @@
 //= require browse_everything
 //= require nestedSortable/jquery.mjs.nestedSortable
 //= require bootstrap-select
+//= require openseadragon
 
+// = require curation_concerns/application
 //= require_tree .
 
 //= require modernizr
 //= require jquery.iiifOsdViewer
+
+Blacklight.onLoad(function() {
+  Initializer = require('plum_boot')
+  window.plum = new Initializer()
+})

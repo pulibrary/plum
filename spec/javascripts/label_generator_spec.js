@@ -1,3 +1,4 @@
+var lg = require('bulk_labeler/label_generator')
 describe("frontBackLabeler", function() {
 
   it("just counts up from 1 by default", function() {
