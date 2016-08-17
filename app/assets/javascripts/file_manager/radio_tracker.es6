@@ -1,9 +1,4 @@
-Blacklight.onLoad(function() {
-  $("*[data-reorder-id] .file_set_viewing_hint").each((index, element) => {
-    new RadioTracker($(element), window.save_manager)
-  })
-})
-class RadioTracker {
+export default class RadioTracker {
   constructor(element) {
     this.element = element
     this.element.data("original-value", this.checked_element.val())

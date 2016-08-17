@@ -1,4 +1,4 @@
-class SelectTracker {
+export default class SelectTracker {
   constructor(element) {
     this.element = element
     this.element.data("original-value", this.element.val())

@@ -10,7 +10,7 @@ RSpec.describe "curation_concerns/base/_structure_node.html.erb" do
     }
   end
   let(:member) do
-    f = FileSet.new("a")
+    f = FileSet.new(id: "a")
     FileSetPresenter.new(SolrDocument.new(f.to_solr), nil)
   end
   before do
