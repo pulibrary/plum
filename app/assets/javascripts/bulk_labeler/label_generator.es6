@@ -1,5 +1,4 @@
-/* exported lg */
-var lg = {
+let lg = {
 
   /**
    * Generator for page labels.
@@ -139,3 +138,4 @@ function* cycle(arr) {
 function isInt(n){
   return Number(n) === n && n % 1 === 0
 }
+export default lg

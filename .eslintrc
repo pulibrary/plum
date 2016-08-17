@@ -17,4 +17,6 @@ env:
   es6: true
   browser: true
   jquery: true
+parserOptions:
+  sourceType: "module"
 extends: 'eslint:recommended'

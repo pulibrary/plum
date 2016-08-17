@@ -1,5 +1,4 @@
-/* exported StructureParser */
-class StructureParser {
+export class StructureParser {
   constructor(element) {
     this.element = element
   }
@@ -19,7 +18,7 @@ class StructureParser {
   }
 }
 
-class StructureNode {
+export class StructureNode {
   constructor(element) {
     this.element = element
   }

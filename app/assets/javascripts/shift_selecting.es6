@@ -1,5 +1,4 @@
-/* exported shift_enabled_selecting */
-function shift_enabled_selecting() {
+export default function shift_enabled_selecting() {
   let prev = -1
   return function(e, ui) { // on select
     let curr = $(ui.selecting.tagName, e.target).index(ui.selecting) // get selecting item index
