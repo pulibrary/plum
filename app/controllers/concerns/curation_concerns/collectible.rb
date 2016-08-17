@@ -13,7 +13,7 @@ module CurationConcerns::Collectible
 
     def create
       if actor.create(attributes_for_actor)
-        (add_to_collections(collection_id_params) && curation_concern.save) if collection_id_params.any?
+        (add_to_collections(collection_id_params) && curation_concern.save) if collection_id_params.try(:any?)
         after_create_response
       else
         build_form
@@ -28,7 +28,8 @@ module CurationConcerns::Collectible
   private
 
     def add_to_collections(new_collection_ids)
-      return true unless new_collection_ids
+      return true if new_collection_ids.nil?
+      new_collection_ids = Array(new_collection_ids).select(&:present?)
 
       previous_collections = []
       previous_collections = curation_concern.in_collections.map(&:id) unless curation_concern.in_collections.nil?
