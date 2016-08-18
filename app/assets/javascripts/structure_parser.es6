@@ -14,7 +14,17 @@ export class StructureParser {
     if(nodes.length > 0) {
       start_obj["nodes"] = nodes
     }
+    if(this.structure_label) {
+      start_obj["label"] = this.structure_label
+    }
     return start_obj
+  }
+
+  get structure_label() {
+    let structure_element = $("#structure_label")
+    if(structure_element.length > 0) {
+      return structure_element.val()
+    }
   }
 }
 

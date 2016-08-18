@@ -41,9 +41,9 @@ class WithProxyForObject < SimpleDelegator
         @members = members
       end
 
-      def new(order_hash = {}, rdf_subject = nil, node_class = nil)
+      def new(order_hash = {}, rdf_subject = nil, node_class = nil, top = true)
         ::WithProxyForObject.new(
-          LogicalOrder.new(order_hash, rdf_subject, node_class || self),
+          LogicalOrder.new(order_hash, rdf_subject, node_class || self, top),
           members
         )
       end

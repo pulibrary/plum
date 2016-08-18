@@ -4,6 +4,7 @@ RSpec.shared_examples "structural metadata" do
     # rubocop:enable RSpec/DescribeClass
     let(:params) do
       {
+        "label": "Top!",
         "nodes": [
           {
             "label": "Chapter 1",
@@ -63,7 +64,7 @@ RSpec.shared_examples "structural metadata" do
     it "can have an order assigned" do
       subject.logical_order.order = params
 
-      expect(subject.logical_order.resource.statements.to_a.length).to eq 19
+      expect(subject.logical_order.resource.statements.to_a.length).to eq 20
     end
     it "marshals logical order into solr" do
       subject.logical_order.order = params
