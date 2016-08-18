@@ -39,7 +39,7 @@ gem 'hydra-role-management', '~> 0.2.0'
 gem 'rsolr', '~> 1.1.0'
 gem 'devise', '~> 3.0'
 gem 'devise-guests', '~> 0.3'
-gem 'iiif-presentation', github: 'tpendragon/osullivan', branch: 'no_singleton_classes'
+gem 'iiif-presentation', github: 'iiif/osullivan', branch: 'development'
 
 # PDF generation
 gem 'prawn'

@@ -1,4 +1,14 @@
 GIT
+  remote: git://github.com/iiif/osullivan.git
+  revision: 0e0cdad125218c80207e626be4531436d72147c3
+  branch: development
+  specs:
+    iiif-presentation (0.0.6.pre.dev)
+      activesupport (>= 3.2.18)
+      faraday (~> 0.9.0)
+      json
+
+GIT
   remote: git://github.com/projecthydra-labs/browse-everything.git
   revision: 96dfa132d71c260c04b63120db3475413a041307
   specs:
@@ -100,16 +110,6 @@ GIT
       faraday (~> 0.9.1)
       marc (~> 1.0.0)
       nokogiri (~> 1.6.6.2)
-
-GIT
-  remote: git://github.com/tpendragon/osullivan.git
-  revision: 69af170831007913c7a6d4df586883368141e8cd
-  branch: no_singleton_classes
-  specs:
-    iiif-presentation (0.0.6.pre.dev)
-      activesupport (>= 3.2.18)
-      faraday (~> 0.9.0)
-      json
 
 GIT
   remote: git://github.com/yob/pdf-reader.git
