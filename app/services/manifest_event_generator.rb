@@ -34,7 +34,7 @@ class ManifestEventGenerator
 
     def message_with_collections(type, record)
       message(type, record).merge(
-        "collection_slugs" => record.in_collections.map(&:exhibit_id)
+        "collection_slugs" => record.member_of_collections.map(&:exhibit_id)
       )
     end
 

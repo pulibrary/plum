@@ -104,7 +104,7 @@ RSpec.describe IngestMETSJob do
       expect(resource.file_sets.length).to eq 1
       expect(resource.reload.logical_order.order).to eq(order.deep_stringify_keys)
       expect(fileset2.reload.title).to eq(['leaf 1. recto'])
-      expect(resource.in_collections).to eq([collection])
+      expect(resource.member_of_collections).to eq([collection])
       expect(resource.replaces).to eq('pudl0001/4612596')
       expect(fileset2.replaces).to eq('pudl0001/4612596/00000001')
 

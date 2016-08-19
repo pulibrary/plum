@@ -20,15 +20,10 @@ class IngestMETSJob < ActiveJob::Base
       resource.identifier = @mets.ark_id
       resource.replaces = @mets.pudl_id
       resource.source_metadata_identifier = @mets.bib_id
+      resource.member_of_collections = @collections
       resource.apply_remote_metadata
       resource.save!
       logger.info "Created #{resource.class}: #{resource.id}"
-
-      @collections.each do |col|
-        col.members << resource
-        col.save
-        logger.info "Added to Collection: #{col.title}"
-      end
 
       attach_mets resource
 
