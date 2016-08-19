@@ -24,6 +24,12 @@
         @extend .panel-info;
       }
     }
+    li .attributes .file_set_viewing_hint {
+      margin-bottom: 0px;
+    }
+    li .panel-body {
+      padding-bottom: 0px;
+    }
     li.failure {
       .panel {
         @extend .panel-danger;
@@ -31,8 +37,13 @@
     }
     &.grid li {
       .edit_scanned_resource {
-        margin-bottom: 114px;
+        margin-bottom: 100px;
       }
+    }
+    li .panel .member_resource_options {
+      padding-left: 30px;
+      margin-top: -10px;
+      float: none;
     }
   }
 }
