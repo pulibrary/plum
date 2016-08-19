@@ -176,6 +176,13 @@ describe CurationConcerns::ScannedResourcesController do
         expect(reloaded.title).to eq ['Dummy Title']
         expect(reloaded.description).to eq 'a description'
       end
+      context "when in a collection" do
+        let(:scanned_resource) { FactoryGirl.create(:scanned_resource_in_collection, user: user) }
+        it "doesn't remove the item from collections" do
+          patch :update, id: scanned_resource, scanned_resource: { ocr_language: [], viewing_hint: "individuals", viewing_direction: "left-to-right" }
+          expect(reloaded.collection_ids).not_to be_blank
+        end
+      end
       it "posts an update event" do
         manifest_generator = instance_double(ManifestEventGenerator, record_updated: true)
         allow(ManifestEventGenerator).to receive(:new).and_return(manifest_generator)

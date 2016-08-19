@@ -12,6 +12,10 @@ class CollectionEditForm < CurationConcerns::Forms::CollectionEditForm
     super
   end
 
+  def title
+    self[:title].first
+  end
+
   def description
     self[:description].first
   end

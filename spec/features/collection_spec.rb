@@ -38,6 +38,7 @@ RSpec.feature 'Collections', type: :feature do
       visit collection_path(c)
       click_link 'Edit'
 
+      expect(page).to have_field 'collection_title', with: c.title.first
       fill_in 'collection_title', with: "Alfafa"
       click_button "Update Collection"
       expect(page).to have_selector "h1", text: "Alfafa"

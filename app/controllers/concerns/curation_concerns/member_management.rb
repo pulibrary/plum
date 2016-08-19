@@ -9,7 +9,7 @@ module CurationConcerns::MemberManagement
     end
 
     def save_structure
-      curation_concern.logical_order.order = { "nodes": params["nodes"] }
+      curation_concern.logical_order.order = { "label": params["label"], "nodes": params["nodes"] }
       curation_concern.save
       head 200
     end
