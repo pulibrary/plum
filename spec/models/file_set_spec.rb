@@ -23,6 +23,10 @@ RSpec.describe FileSet do
     end
   end
 
+  it "can persist" do
+    expect { subject.save! }.not_to raise_error
+  end
+
   describe "#create_derivatives" do
     let(:path) { Pathname.new(PairtreeDerivativePath.derivative_path_for_reference(subject, 'intermediate_file')) }
     let(:thumbnail_path) { Pathname.new(PairtreeDerivativePath.derivative_path_for_reference(subject, 'thumbnail')) }
