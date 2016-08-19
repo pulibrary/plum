@@ -8,7 +8,7 @@ class RangeBuilder
   end
 
   def label
-    @label || node.label
+    @label || node.label || "Logical"
   end
 
   def to_h

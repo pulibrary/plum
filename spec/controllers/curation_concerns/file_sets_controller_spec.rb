@@ -15,6 +15,17 @@ RSpec.describe CurationConcerns::FileSetsController do
       patch :update, id: file_set.id, file_set: { viewing_hint: 'non-paged' }
       expect(file_set.reload.viewing_hint).to eq 'non-paged'
     end
+    context "when updating via json" do
+      render_views
+      it "can update title" do
+        allow_any_instance_of(described_class).to receive(:parent_id).and_return(nil)
+        patch :update, id: file_set.id, file_set: { viewing_hint: '', title: ["test"] }, format: :json
+        expect(response).to be_success
+        file_set.reload
+        expect(file_set.viewing_hint).to eq ""
+        expect(file_set.title).to eq ["test"]
+      end
+    end
     it "redirects to the containing scanned resource after editing" do
       allow_any_instance_of(described_class).to receive(:parent).and_return(parent)
       patch :update, id: file_set.id, file_set: { viewing_hint: 'non-paged' }

@@ -59,10 +59,10 @@ RSpec.shared_examples "structure persister" do |resource_symbol, presenter_facto
       ]
     end
     it "persists order" do
-      post :save_structure, nodes: nodes, id: resource.id
+      post :save_structure, nodes: nodes, id: resource.id, label: "TOP!"
 
       expect(response.status).to eq 200
-      expect(resource.reload.logical_order.order).to eq({ "nodes": nodes }.with_indifferent_access)
+      expect(resource.reload.logical_order.order).to eq({ "label": "TOP!", "nodes": nodes }.with_indifferent_access)
     end
   end
 end

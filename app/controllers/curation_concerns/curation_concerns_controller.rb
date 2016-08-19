@@ -66,7 +66,7 @@ class CurationConcerns::CurationConcernsController < ApplicationController
     end
 
     def collection_id_params
-      @collection_id_params ||= (params[curation_concern_name].delete(:collection_ids) || []).select(&:present?)
+      @collection_id_params ||= params[curation_concern_name].delete(:collection_ids)
     end
 
     def messenger
