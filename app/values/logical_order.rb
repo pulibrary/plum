@@ -2,7 +2,7 @@
 # Object responsible for iterating over a params representation of a logical
 # order.
 class LogicalOrder
-  attr_reader :order_hash, :node_class
+  attr_reader :order_hash, :node_class, :top
   attr_accessor :rdf_subject
   # @param [Hash] order_hash The params representation of the order.
   # @param [RDF::URI] rdf_subject The subject of the head node
@@ -10,22 +10,28 @@ class LogicalOrder
   # @example
   #   LogicalOrder.new({"nodes": [ { "proxy": "a" } ]},
   #     RDF::URI("http://test.com"), LogicalOrder)
-  def initialize(order_hash = {}, rdf_subject = nil, node_class = LogicalOrder)
+  def initialize(order_hash = {}, rdf_subject = nil, node_class = LogicalOrder, top = true)
     @order_hash = order_hash.with_indifferent_access
     @rdf_subject = RDF::URI(rdf_subject.to_s) if rdf_subject
     @node_class = node_class
+    @top = top
   end
 
   # @return [Array<node_class>] Child nodes of this resource.
   def nodes
     @nodes ||= order_hash.fetch("nodes", []).map do |values|
-      node_class.new(values)
+      node_class.new(values, nil, node_class, false)
     end
   end
 
   # @return [String] Label of the top level node.
   def label
     order_hash.fetch("label", nil)
+  end
+
+  # @return [String] Label for the form.
+  def form_label
+    label || default_label
   end
 
   # @return [::RDF::Graph] Ordered graph representation of the given ordered
@@ -84,5 +90,9 @@ class LogicalOrder
           end
           o
         end
+    end
+
+    def default_label
+      "Logical" if top
     end
 end

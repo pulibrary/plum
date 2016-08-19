@@ -138,6 +138,7 @@ RSpec.describe PolymorphicManifestBuilder, vcr: { cassette_name: "iiif_manifest"
         record.ordered_member_proxies.insert_target_at(0, file_set)
         record.thumbnail = file_set2
         record.logical_order.order = {
+          "label": "TOP!",
           "nodes": [
             {
               "label": "Chapter 1",
@@ -215,6 +216,7 @@ RSpec.describe PolymorphicManifestBuilder, vcr: { cassette_name: "iiif_manifest"
         expect(manifest_json["structures"].length).to eq 1
         first_structure = manifest_json["structures"].first
         expect(first_structure["viewingHint"]).to eq "top"
+        expect(first_structure["label"]).to eq "TOP!"
         expect(first_structure["ranges"].length).to eq 1
         expect(first_structure["ranges"].first["canvases"].length).to eq 2
         expect(first_structure["ranges"].first["canvases"].first).to eq manifest_json["sequences"].first["canvases"].first['@id']

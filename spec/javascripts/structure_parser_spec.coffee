@@ -16,6 +16,20 @@ describe "StructureParser", () ->
           ]
         }
         expect(structure.serialize).toEqual(expected_result)
+    describe "a label at the top", () ->
+      beforeEach () ->
+        loadFixtures('structure_basic_label.html')
+        structure = new StructureParser($(".sortable"))
+      it "returns a serialized form of the structure", ->
+        expected_result = {
+          'label': 'TOP!',
+          'nodes': [
+            {
+              'label': 'Chapter 1'
+            }
+          ]
+        }
+        expect(structure.serialize).toEqual(expected_result)
     describe "two sibling nodes", () ->
       beforeEach () ->
         loadFixtures('structure_siblings.html')

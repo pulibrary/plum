@@ -96,7 +96,7 @@ class ManifestBuilder
     end
 
     def range_builder
-      RangeBuilder.new(logical_order, root_path, top: true, label: "Logical")
+      RangeBuilder.new(logical_order, root_path, top: true)
     end
 
     def logical_order
