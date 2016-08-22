@@ -176,6 +176,10 @@ describe CurationConcerns::ScannedResourcesController do
         expect(reloaded.title).to eq ['Dummy Title']
         expect(reloaded.description).to eq 'a description'
       end
+      it "can update the start_canvas" do
+        post :update, id: scanned_resource, scanned_resource: { start_canvas: "1" }
+        expect(reloaded.start_canvas).to eq "1"
+      end
       context "when in a collection" do
         let(:scanned_resource) { FactoryGirl.create(:scanned_resource_in_collection, user: user) }
         it "doesn't remove the item from collections" do
