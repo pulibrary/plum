@@ -137,6 +137,7 @@ RSpec.describe PolymorphicManifestBuilder, vcr: { cassette_name: "iiif_manifest"
         record.ordered_members << file_set2
         record.ordered_member_proxies.insert_target_at(0, file_set)
         record.thumbnail = file_set2
+        record.start_canvas = file_set2.id
         record.logical_order.order = {
           "label": "TOP!",
           "nodes": [
@@ -182,6 +183,9 @@ RSpec.describe PolymorphicManifestBuilder, vcr: { cassette_name: "iiif_manifest"
             "profile" => "http://iiif.io/api/image/2/level2.json"
           }
         )
+      end
+      it "applies the startCanvas option for the start_canvas" do
+        expect(manifest_json["sequences"].first["startCanvas"]).to eq manifest_json["sequences"].first["canvases"].last["@id"]
       end
       it "has a viewing hint on the sequence" do
         expect(manifest_json["sequences"].first["viewingHint"]).to eq "individuals"

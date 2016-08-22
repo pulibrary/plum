@@ -41,6 +41,10 @@ class CurationConcernsShowPresenter < CurationConcerns::WorkShowPresenter
     Array.wrap(title).first
   end
 
+  def start_canvas
+    Array.wrap(solr_document.start_canvas).first
+  end
+
   private
 
     def logical_order_factory

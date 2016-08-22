@@ -64,7 +64,7 @@ class ManifestBuilder
     end
 
     def sequence_builder
-      SequenceBuilder.new(root_path, canvas_builders)
+      SequenceBuilder.new(root_path, canvas_builders, start_canvas_builder)
     end
 
     def see_also_builder
@@ -101,5 +101,9 @@ class ManifestBuilder
 
     def logical_order
       @logical_order ||= LogicalOrder.new(record.logical_order)
+    end
+
+    def start_canvas_builder
+      StartCanvasBuilder.new(record, canvas_builders)
     end
 end

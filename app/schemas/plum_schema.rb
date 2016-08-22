@@ -15,6 +15,7 @@ class PlumSchema < ActiveTriples::Schema
   property :ocr_language, predicate: ::PULTerms.ocr_language
   property :nav_date, predicate: ::RDF::URI("http://iiif.io/api/presentation/2#navDate"), multiple: false
   property :pdf_type, predicate: ::PULTerms.pdf_type
+  property :start_canvas, predicate: ::RDF::Vocab::IIIF.hasStartCanvas, multiple: false
 
   # Generated from Context
   property :coverage, predicate: RDF::Vocab::DC11.coverage

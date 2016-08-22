@@ -138,6 +138,14 @@ RSpec.describe "curation_concerns/base/file_manager.html.erb" do
     expect(rendered).to have_text "English"
   end
 
+  it "has a hidden field for start_canvas" do
+    expect(rendered).to have_selector("input[type=hidden][name='scanned_resource[start_canvas]']", visible: false)
+  end
+
+  it "has a shared radio button for start_canvas" do
+    expect(rendered).to have_selector("input[name='start_canvas']", count: members.length)
+  end
+
   context "when it's a MVW" do
     let(:parent) { FactoryGirl.build(:multi_volume_work) }
     it "has a correct input to edit the viewing hint" do
