@@ -31,5 +31,6 @@
     <div>
       <%= f.input :ocr_language, collection: Tesseract.languages.map(&:reverse).sort, input_html: { name: "#{f.object.model_name.singular}[ocr_language][]", multiple: true, class: 'resource-radio-button' } %>
     </div>
+    <%= f.input :thumbnail_id, as: :hidden, input_html: { data: {member_link: 'thumbnail_id'}} %>
   <% end %>
 </div>
