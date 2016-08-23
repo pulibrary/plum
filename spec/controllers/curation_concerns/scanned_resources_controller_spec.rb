@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe CurationConcerns::ScannedResourcesController do
   let(:user) { FactoryGirl.create(:user) }
-  let(:scanned_resource) { FactoryGirl.create(:scanned_resource, user: user, title: ['Dummy Title']) }
+  let(:scanned_resource) { FactoryGirl.create(:scanned_resource, user: user, title: ['Dummy Title'], state: 'complete', identifier: 'ark:/99999/fk4445wg45') }
   let(:reloaded) { scanned_resource.reload }
 
   describe "delete" do
@@ -198,8 +198,10 @@ describe CurationConcerns::ScannedResourcesController do
     end
     context 'when :refresh_remote_metadata is set', vcr: { cassette_name: 'bibdata', allow_playback_repeats: true } do
       it 'updates remote metadata' do
+        allow(Ezid::Identifier).to receive(:modify)
         post :update, id: scanned_resource, scanned_resource: scanned_resource_attributes, refresh_remote_metadata: true
         expect(reloaded.title).to eq ['The Giant Bible of Mainz; 500th anniversary, April fourth, fourteen fifty-two, April fourth, nineteen fifty-two.']
+        expect(Ezid::Identifier).to have_received(:modify)
       end
     end
     context "when ocr_language is set" do
@@ -513,6 +515,12 @@ describe CurationConcerns::ScannedResourcesController do
     let(:scanned_resource) { FactoryGirl.create(:scanned_resource, user: user, state: 'final_review') }
     let(:scanned_resource_attributes) { { state: 'complete' } }
     let(:reloaded) { ScannedResource.find scanned_resource.id }
+    let(:ezid_metadata) { {
+      dc_publisher: 'Princeton University Library',
+      dc_title: 'Test title',
+      dc_type: 'Text',
+      target: "http://plum.com/concern/scanned_resources/#{scanned_resource.id}"
+    } }
 
     context "as an admin" do
       let(:admin) { FactoryGirl.create(:admin) }
@@ -524,6 +532,8 @@ describe CurationConcerns::ScannedResourcesController do
       it "succeeds", vcr: { cassette_name: "ezid" } do
         post :update, id: scanned_resource.id, scanned_resource: scanned_resource_attributes
         expect(reloaded.state).to eq 'complete'
+        expect(reloaded.identifier).to eq 'ark:/99999/fk4445wg45'
+        expect(scanned_resource.send(:ezid_metadata)).to eq(ezid_metadata)
       end
     end
     context "as an image editor" do

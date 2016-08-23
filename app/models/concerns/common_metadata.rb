@@ -29,6 +29,7 @@ module CommonMetadata
         self.source_metadata = remote_data.source.dup.try(:force_encoding, 'utf-8')
       end
       self.attributes = remote_data.attributes
+      update_ezid if state == 'complete' && identifier
     end
 
     def check_state
@@ -59,7 +60,20 @@ module CommonMetadata
     end
 
     def complete_record
-      self.identifier = Ezid::Identifier.mint.id unless identifier
+      self.identifier = Ezid::Identifier.mint(ezid_metadata).id unless identifier
+    end
+
+    def ezid_metadata
+      {
+        dc_publisher: 'Princeton University Library',
+        dc_title: title.join('; '),
+        dc_type: 'Text',
+        target: ManifestBuilder::ManifestHelper.new.polymorphic_url(self)
+      }
+    end
+
+    def update_ezid
+      Ezid::Identifier.modify(identifier, ezid_metadata)
     end
   end
 end
