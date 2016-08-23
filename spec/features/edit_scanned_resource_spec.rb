@@ -45,18 +45,17 @@ RSpec.feature "ScannedResourcesController", type: :feature do
       expect(page).to have_text("Error retrieving metadata")
     end
 
-    scenario "User can add a new file" do
+    scenario "User can follow link to bulk edit scanned resource and add a new file" do
       allow(CharacterizeJob).to receive(:perform_later).once
       allow_any_instance_of(FileSet).to receive(:warn) # suppress virus warning messages
 
       visit polymorphic_path [scanned_resource]
-      click_link 'Attach a File'
-      expect(page).not_to have_text("A PDF is preferred")
+      click_link I18n.t('file_manager.link_text')
+      expect(page).to have_text(I18n.t('file_manager.link_text'))
 
       within("form.new_file_set") do
-        fill_in("Title", with: 'image.png')
-        attach_file("Upload a file", File.join(Rails.root, 'spec/fixtures/files/image.png'))
-        click_on("Attach to Scanned Resource")
+        attach_file("file_set[files][]", File.join(Rails.root, 'spec/fixtures/files/image.png'))
+        click_on("Start upload")
       end
 
       visit polymorphic_path [parent_presenter.member_presenters.first]
@@ -64,12 +63,6 @@ RSpec.feature "ScannedResourcesController", type: :feature do
 
       visit edit_polymorphic_path [scanned_resource]
       expect(page).not_to have_text('Representative Media')
-    end
-
-    scenario "User can follow link to bulk edit scanned resource" do
-      visit polymorphic_path [scanned_resource]
-      click_link I18n.t('file_manager.link_text')
-      expect(page).to have_text(I18n.t('file_manager.link_text'))
     end
   end
 
