@@ -20,7 +20,9 @@ class OCRRunner
   private
 
     def attach_ocr(filename)
-      Hydra::Works::AddFileToFileSet.call(resource, File.open(filename), :extracted_text)
+      basename = File.basename(filename) if filename
+      iodec = Hydra::Derivatives::IoDecorator.new(File.open(filename, 'rb'), 'text/html', basename)
+      Hydra::Works::AddFileToFileSet.call(resource, iodec, :extracted_text)
     end
 
     def ocr_filename(ocr_output)

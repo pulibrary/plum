@@ -101,7 +101,7 @@ class SolrDocument
   end
 
   def collection
-    self[Solrizer.solr_name('collection', :symbol)]
+    self[Solrizer.solr_name('member_of_collections', :symbol)]
   end
 
   def method_missing(meth_name, *args, &block)

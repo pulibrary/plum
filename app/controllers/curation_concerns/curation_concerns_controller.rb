@@ -1,6 +1,5 @@
 class CurationConcerns::CurationConcernsController < ApplicationController
   include CurationConcerns::CurationConcernController
-  include CurationConcerns::Collectible
   include CurationConcerns::Manifest
   include CurationConcerns::MemberManagement
   include CurationConcerns::UpdateOCR
@@ -12,7 +11,6 @@ class CurationConcerns::CurationConcernsController < ApplicationController
 
   def update
     authorize!(:complete, curation_concern, message: 'Unable to mark resource complete') if curation_concern.state != 'complete' && params[curation_concern_name][:state] == 'complete'
-    add_to_collections(collection_id_params)
     super
   end
 
@@ -63,10 +61,6 @@ class CurationConcerns::CurationConcernsController < ApplicationController
 
     def search_builder_class
       ::WorkSearchBuilder
-    end
-
-    def collection_id_params
-      @collection_id_params ||= params[curation_concern_name].delete(:collection_ids)
     end
 
     def messenger

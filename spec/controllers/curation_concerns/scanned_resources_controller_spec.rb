@@ -80,13 +80,13 @@ describe CurationConcerns::ScannedResourcesController do
       let(:collection) { FactoryGirl.create(:collection, user: user) }
       let(:scanned_resource_attributes) do
         FactoryGirl.attributes_for(:scanned_resource).except(:source_metadata_identifier).merge(
-          collection_ids: [collection.id]
+          member_of_collection_ids: [collection.id]
         )
       end
       it "successfully add the resource to the collection" do
         post :create, scanned_resource: scanned_resource_attributes
         s = ScannedResource.last
-        expect(s.in_collections).to eq [collection]
+        expect(s.member_of_collections).to eq [collection]
       end
       it "posts the collection slugs to the event endpoint" do
         messaging_client = instance_double(MessagingClient, publish: true)
@@ -102,7 +102,7 @@ describe CurationConcerns::ScannedResourcesController do
             "id" => s.id,
             "event" => "CREATED",
             "manifest_url" => "http://plum.com/concern/scanned_resources/#{s.id}/manifest",
-            "collection_slugs" => s.in_collections.map(&:exhibit_id)
+            "collection_slugs" => s.member_of_collections.map(&:exhibit_id)
           }.to_json
         )
       end
@@ -184,7 +184,7 @@ describe CurationConcerns::ScannedResourcesController do
         let(:scanned_resource) { FactoryGirl.create(:scanned_resource_in_collection, user: user) }
         it "doesn't remove the item from collections" do
           patch :update, id: scanned_resource, scanned_resource: { ocr_language: [], viewing_hint: "individuals", viewing_direction: "left-to-right" }
-          expect(reloaded.collection_ids).not_to be_blank
+          expect(reloaded.member_of_collections).not_to be_blank
         end
       end
       it "posts an update event" do
@@ -235,12 +235,12 @@ describe CurationConcerns::ScannedResourcesController do
       end
 
       it "updates collection membership" do
-        expect(resource.in_collections).to_not be_empty
+        expect(resource.member_of_collections).to_not be_empty
 
         updated_attributes = resource.attributes
-        updated_attributes[:collection_ids] = [col2.id]
+        updated_attributes[:member_of_collection_ids] = [col2.id]
         post :update, id: resource, scanned_resource: updated_attributes
-        expect(resource.reload.in_collections).to eq [col2]
+        expect(resource.reload.member_of_collections).to eq [col2]
       end
     end
   end

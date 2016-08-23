@@ -110,7 +110,7 @@ RSpec.describe CatalogController do
       resource = FactoryGirl.create(:scanned_resource_in_collection)
       resource.save
 
-      get :index, q: resource.in_collections.first.exhibit_id
+      get :index, q: resource.member_of_collections.first.exhibit_id
 
       expect(document_ids).to eq [resource.id]
     end

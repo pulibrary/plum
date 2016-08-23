@@ -45,8 +45,8 @@ describe "curation_concerns/multi_volume_works/show.html.erb" do
   before do
     allow(presenter).to receive(:member_presenters).and_return([resource_presenter, member_presenter])
     stub_blacklight_views
-    allow(presenter).to receive(:in_collections).and_return([])
-    allow(resource_presenter).to receive(:in_collections).and_return([])
+    allow(presenter).to receive(:member_of_collections).and_return([])
+    allow(resource_presenter).to receive(:member_of_collections).and_return([])
     assign(:presenter, presenter)
     allow(view).to receive(:contextual_path).with(anything, anything) do |x, y|
       CurationConcerns::ContextualPath.new(x, y).show
