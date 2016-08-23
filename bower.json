@@ -22,6 +22,6 @@
     "tests"
   ],
   "dependencies": {
-    "universalviewer": "UniversalViewer/universalviewer#master"
+    "universalviewer": "pulibrary/universalviewer#master"
   }
 }
