@@ -3,6 +3,7 @@ import BulkLabeler from "bulk_labeler/bulk_label"
 import ModalViewer from "modal_viewer"
 import PlumFileManager from "file_manager/plum"
 import StructureManager from "structure_manager"
+import UniversalViewer from "universal_viewer"
 export default class Initializer {
   constructor() {
     this.initialize_bootstrap_select()
@@ -12,6 +13,7 @@ export default class Initializer {
     this.initialize_timepicker()
     this.initialize_plum_file_manager()
     this.structure_manager = new StructureManager
+    this.universal_viewer = new UniversalViewer
   }
 
   initialize_bootstrap_select() {
