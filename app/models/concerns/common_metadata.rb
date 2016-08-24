@@ -60,7 +60,11 @@ module CommonMetadata
     end
 
     def complete_record
-      self.identifier = Ezid::Identifier.mint(ezid_metadata).id unless identifier
+      if identifier
+        update_ezid
+      else
+        self.identifier = Ezid::Identifier.mint(ezid_metadata).id
+      end
     end
 
     def ezid_metadata

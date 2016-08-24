@@ -187,6 +187,7 @@ describe ScannedResource do
     before do
       complete_reviewer.save
       subject.save
+      allow(Ezid::Identifier).to receive(:modify).and_return(true)
     end
     it "completes record when state changes to 'complete'", vcr: { cassette_name: "ezid" } do
       allow(subject).to receive("state_changed?").and_return true
