@@ -536,6 +536,21 @@ describe CurationConcerns::ScannedResourcesController do
         expect(scanned_resource.send(:ezid_metadata)).to eq(ezid_metadata)
       end
     end
+    context "when the item already has an ARK" do
+      let(:admin) { FactoryGirl.create(:admin) }
+      before do
+        sign_in admin
+        scanned_resource.identifier = 'ark:/99999/fk4c255165'
+        scanned_resource.save
+        allow(Ezid::Identifier).to receive(:modify)
+      end
+
+      it "updates EZID" do
+        post :update, id: scanned_resource.id, scanned_resource: scanned_resource_attributes
+        expect(reloaded.state).to eq 'complete'
+        expect(Ezid::Identifier).to have_received(:modify)
+      end
+    end
     context "as an image editor" do
       before do
         sign_in user
