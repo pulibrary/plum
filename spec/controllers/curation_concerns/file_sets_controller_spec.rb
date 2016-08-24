@@ -91,4 +91,17 @@ RSpec.describe CurationConcerns::FileSetsController do
       )
     end
   end
+
+  describe "#derivatives" do
+    before do
+      sign_in user
+      FileSetActor.new(file_set, user).attach_content(file)
+      allow(CreateDerivativesJob).to receive(:perform_later)
+      allow_any_instance_of(described_class).to receive(:parent_id).and_return(nil)
+    end
+    it "triggers regenerating derivatives" do
+      post :derivatives, id: file_set.id
+      expect(CreateDerivativesJob).to have_received(:perform_later)
+    end
+  end
 end
