@@ -70,6 +70,11 @@ Rails.application.routes.draw do
         post :flag
       end
     end
+    resources :file_sets, only: [] do
+      member do
+        post :derivatives
+      end
+    end
   end
 
   namespace :curation_concerns, path: :concern do
