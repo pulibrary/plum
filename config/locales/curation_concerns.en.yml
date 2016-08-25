@@ -10,9 +10,9 @@ en:
     document_language: "en"
     google_analytics_id: ""
     institution:
-      name: "Princeton University Library"
+      name: "Indiana University"
       homepage_url: "#"
-    product_name: "Digital PUL"
+    product_name: "IU Paged Media"
   simple_form:
     hints:
       defaults:

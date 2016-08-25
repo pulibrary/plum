@@ -3,40 +3,40 @@
 @import "variables/typography";
 @import "abstractions/mixins";
 
-.l-branding__pul {
-  background: $dark-gray;
-  border-top: 3px solid $orange;
-  min-height: 40px;
-  position: relative;
+//.l-branding__pul {
+//  background: $dark-gray;
+//  border-top: 3px solid $orange;
+//  min-height: 40px;
+//  position: relative;
+//
+//  .logo__pul {
+//    height: 40px;
+//    position: relative;
+//    z-index: 10;
+//    text-align: center;
+//  }
+//
+//  .logo__pul img {
+//    margin: 0;
+//
+//    @include vertical-align;
+//  }
+//}
 
-  .logo__pul {
-    height: 40px;
-    position: relative;
-    z-index: 10;
-    text-align: center;
-  }
-
-  .logo__pul img {
-    margin: 0;
-
-    @include vertical-align;
-  }
-}
-
-@media (min-width: $bp-medium) {
-  .l-branding__pul {
-    height: 43px;
-  }
-
-  .l-branding__pul .logo__pul {
-    text-align: left;
-  }
-}
-
-.l-branding__pul .logo__pul {
-  margin: 0;
-  padding: 0;
-}
+//@media (min-width: $bp-medium) {
+//  .l-branding__pul {
+//    height: 43px;
+//  }
+//
+//  .l-branding__pul .logo__pul {
+//    text-align: left;
+//  }
+//}
+//
+//.l-branding__pul .logo__pul {
+//  margin: 0;
+//  padding: 0;
+//}
 
 @media (max-width: $bp-medium) {
   .header__secondary .container .navbar-right {

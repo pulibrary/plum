@@ -41,7 +41,7 @@ class ScannedResourcePDF
       prawn_document.fallback_fonts(["noto_cjk", "noto_ara", "amiri"])
 
       prawn_document.bounding_box([15, Canvas::LETTER_HEIGHT - 15], width: Canvas::LETTER_WIDTH - 30, height: Canvas::LETTER_HEIGHT - 30) do
-        prawn_document.image Rails.root.join("app/assets/images/pul_logo_long.png").to_s, position: :center, width: Canvas::LETTER_WIDTH - 30
+        prawn_document.image Rails.root.join("app/assets/images/iu-sig-formal.2x.png").to_s, position: :center, width: Canvas::LETTER_WIDTH - 30
         prawn_document.stroke_color "000000"
         prawn_document.move_down(20)
         header(prawn_document, scanned_resource.title, size: 24)
@@ -53,7 +53,7 @@ class ScannedResourcePDF
         end
         prawn_document.move_down 20
 
-        header(prawn_document, "Princeton University Library Disclaimer")
+        header(prawn_document, "Indiana University Disclaimer")
         prawn_document.text I18n.t('rights.pdf_boilerplate'), inline_format: true
         prawn_document.move_down 20
 

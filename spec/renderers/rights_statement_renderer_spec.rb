@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe RightsStatementRenderer do
   let(:note) { 'This is a rights note' }
-  let(:boilerplate) { 'Princeton University Library claims no copyright governing this digital resource.' }
+  let(:boilerplate) { 'Indiana University claims no copyright governing this digital resource.' }
 
   context "with a rendered rights statement" do
     let(:uri) { 'http://rightsstatements.org/vocab/InC/1.0/' }

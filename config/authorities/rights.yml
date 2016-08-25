@@ -6,7 +6,7 @@ terms:
     active: true
     scopeNote: |
       This Rights Statement can be used for an Item that is in copyright. Using
-      this statement implies that Princeton University Library has determined
+      this statement implies that Indiana University has determined
       that the Item is in copyright and either is the rights­holder, has
       obtained permission from the rights­holder(s) to make the Work available,
       or makes the Work available under an exception or limitation to copyright
@@ -44,7 +44,7 @@ terms:
     active: true
     scopeNote: |
       This Rights Statement can be used only for copyrighted Items for which
-      Princeton University Library is the rights-holder or has been explicitly
+      Indiana University is the rights-holder or has been explicitly
       authorized by the rights-holder(s) to allow third parties to use the Work
       for educational purposes without first obtaining permission.
     definition: >-
@@ -62,7 +62,7 @@ terms:
     active: true
     scopeNote: |
       This Rights Statement can be used only for copyrighted Items for which
-      Princeton University Library is the rights-holder or has been explicitly
+      Indiana University is the rights-holder or has been explicitly
       authorized by the rights-holder(s) to allow third parties to use the Work
       for non-commercial purposes without obtaining permission first.
     definition: >-
@@ -88,8 +88,8 @@ terms:
     definition: >-
       Use of this Item is not restricted by copyright and/or related rights.
 
-      <br/>As part of the acquisition or digitization of this Item, Princeton
-      University Library is contractually required to limit the use of this
+      <br/>As part of the acquisition or digitization of this Item, Indiana
+      University is contractually required to limit the use of this
       Item. Limitations may include, but are not limited to, privacy issues,
       cultural protections, digitization agreements or donor agreements.
   - id: http://rightsstatements.org/vocab/NoC-OKLR/1.0/
@@ -122,7 +122,7 @@ terms:
       where the data provider has not undertaken an effort to ascertain the
       copyright status of the Work.
     definition: >-
-      Princeton University Library reasonably believes that the Item is not
+      Indiana University reasonably believes that the Item is not
       restricted by copyright or related rights, but a conclusive determination
       could not be made.
 
