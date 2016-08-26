@@ -265,4 +265,13 @@ describe ScannedResource do
       expect(subject.pdf_type).to eq ["color"]
     end
   end
+
+  describe "literal indexing" do
+    let(:scanned_resource) { FactoryGirl.create(:scanned_resource_in_collection, title: [::RDF::Literal.new("Test", language: :fr)]) }
+    let(:solr_doc) { scanned_resource.to_solr }
+    it "indexes literals with tags in a new field" do
+      expect(solr_doc['title_tesim']).to eq ['Test']
+      expect(solr_doc['title_literals_ssim']).to eq [JSON.dump("@value" => "Test", "@language" => "fr")]
+    end
+  end
 end

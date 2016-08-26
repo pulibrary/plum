@@ -2,6 +2,7 @@ class CurationConcernsShowPresenter < CurationConcerns::WorkShowPresenter
   delegate :viewing_hint, :viewing_direction, :state, :type, :identifier, :workflow_note, :logical_order, :logical_order_object, :ocr_language, :thumbnail_id, :source_metadata_identifier, :collection, to: :solr_document
   delegate :flaggable?, to: :state_badge_instance
   delegate(*ScannedResource.properties.values.map(&:term), to: :solr_document, allow_nil: true)
+  delegate(*ScannedResource.properties.values.map { |x| "#{x.term}_literals" }, to: :solr_document, allow_nil: true)
 
   def state_badge
     state_badge_instance.render

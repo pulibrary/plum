@@ -107,6 +107,14 @@ class SolrDocument
   def method_missing(meth_name, *args, &block)
     if ScannedResource.properties.values.map(&:term).include?(meth_name)
       self[Solrizer.solr_name(meth_name.to_s)]
+    elsif ScannedResource.properties.values.map { |x| "#{x.term}_literals".to_sym }.include?(meth_name)
+      Array(self[Solrizer.solr_name(meth_name.to_s, :symbol)]).map do |x|
+        if x.start_with?("{")
+          JSON.parse(x)
+        else
+          x
+        end
+      end
     else
       super
     end
