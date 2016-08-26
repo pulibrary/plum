@@ -295,6 +295,18 @@ RSpec.describe PolymorphicManifestBuilder, vcr: { cassette_name: "iiif_manifest"
           ]
         )
       end
+      it "can handle RDF literals" do
+        record.creator = [::RDF::Literal.new("Test Author", language: "fr")]
+        expect(result.metadata.first).to eql(
+          "label" => "Creator",
+          "value" => [
+            {
+              "@value" => "Test Author",
+              "@language" => "fr"
+            }
+          ]
+        )
+      end
       it "is empty with no metadata" do
         expect(result.metadata).to be_empty
       end
