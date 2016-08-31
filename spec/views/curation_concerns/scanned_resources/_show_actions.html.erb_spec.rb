@@ -22,6 +22,9 @@ RSpec.describe "curation_concerns/scanned_resources/_show_actions.html.erb" do
   it "renders an Edit Structure link" do
     expect(rendered).to have_link "Edit Structure", href: structure_curation_concerns_scanned_resource_path(id: resource.id)
   end
+  it "does not render an Attach a File link" do
+    expect(rendered).not_to have_selector 'a.btn', text: 'Attach a File'
+  end
   context "when there's a parent presenter" do
     let(:parent_presenter) { presenter }
     it "renders a link to the contextual file manager" do

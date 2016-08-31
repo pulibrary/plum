@@ -39,10 +39,8 @@ FactoryGirl.define do
 
     factory :scanned_resource_in_collection do
       after(:create) do |scanned_resource, evaluator|
-        col = FactoryGirl.create(:collection, user: evaluator.user)
-        col.members << scanned_resource
-        col.save
-        col.update_index
+        scanned_resource.member_of_collections = [FactoryGirl.create(:collection, user: evaluator.user)]
+        scanned_resource.save
       end
     end
 

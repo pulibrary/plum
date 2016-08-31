@@ -124,6 +124,7 @@ describe ScannedResource do
       it 'Extracts Voyager Metadata' do
         subject.apply_remote_metadata
         expect(subject.title).to eq(['The Giant Bible of Mainz; 500th anniversary, April fourth, fourteen fifty-two, April fourth, nineteen fifty-two.'])
+        expect(subject.resource.get_values(:title, literal: true)).to eq([RDF::Literal.new("The Giant Bible of Mainz; 500th anniversary, April fourth, fourteen fifty-two, April fourth, nineteen fifty-two.", language: :eng)])
         expect(subject.creator).to eq(['Miner, Dorothy Eugenia'])
         expect(subject.date_created).to eq(['1952-01-01T00:00:00Z'])
         expect(subject.publisher).to eq(['[Philadelphia, 1952]'])
@@ -187,6 +188,7 @@ describe ScannedResource do
     before do
       complete_reviewer.save
       subject.save
+      allow(Ezid::Identifier).to receive(:modify).and_return(true)
     end
     it "completes record when state changes to 'complete'", vcr: { cassette_name: "ezid" } do
       allow(subject).to receive("state_changed?").and_return true
@@ -248,8 +250,8 @@ describe ScannedResource do
     let(:scanned_resource) { FactoryGirl.create(:scanned_resource_in_collection) }
     let(:solr_doc) { scanned_resource.to_solr }
     it "indexes collection" do
-      expect(solr_doc['collection_ssim']).to eq(['Test Collection'])
-      expect(solr_doc['collection_slug_sim']).to eq(scanned_resource.in_collections.first.exhibit_id)
+      expect(solr_doc['member_of_collections_ssim']).to eq(['Test Collection'])
+      expect(solr_doc['member_of_collection_slugs_ssim']).to eq(scanned_resource.member_of_collections.first.exhibit_id)
     end
   end
 
@@ -261,6 +263,15 @@ describe ScannedResource do
       subject.pdf_type = ["color"]
 
       expect(subject.pdf_type).to eq ["color"]
+    end
+  end
+
+  describe "literal indexing" do
+    let(:scanned_resource) { FactoryGirl.create(:scanned_resource_in_collection, title: [::RDF::Literal.new("Test", language: :fr)]) }
+    let(:solr_doc) { scanned_resource.to_solr }
+    it "indexes literals with tags in a new field" do
+      expect(solr_doc['title_tesim']).to eq ['Test']
+      expect(solr_doc['title_literals_ssim']).to eq [JSON.dump("@value" => "Test", "@language" => "fr")]
     end
   end
 end

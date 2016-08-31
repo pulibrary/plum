@@ -2,14 +2,10 @@ class CurationConcernsShowPresenter < CurationConcerns::WorkShowPresenter
   delegate :viewing_hint, :viewing_direction, :state, :type, :identifier, :workflow_note, :logical_order, :logical_order_object, :ocr_language, :thumbnail_id, :source_metadata_identifier, :collection, to: :solr_document
   delegate :flaggable?, to: :state_badge_instance
   delegate(*ScannedResource.properties.values.map(&:term), to: :solr_document, allow_nil: true)
+  delegate(*ScannedResource.properties.values.map { |x| "#{x.term}_literals" }, to: :solr_document, allow_nil: true)
 
   def state_badge
     state_badge_instance.render
-  end
-
-  def in_collections
-    ActiveFedora::SolrService.query("has_model_ssim:Collection AND member_ids_ssim:#{id}")
-      .map { |c| CurationConcerns::CollectionPresenter.new(SolrDocument.new(c), current_ability) }
   end
 
   def logical_order_object
@@ -39,6 +35,10 @@ class CurationConcernsShowPresenter < CurationConcerns::WorkShowPresenter
 
   def page_title
     Array.wrap(title).first
+  end
+
+  def start_canvas
+    Array.wrap(solr_document.start_canvas).first
   end
 
   private

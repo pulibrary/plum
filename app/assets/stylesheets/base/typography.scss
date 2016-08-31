@@ -57,3 +57,8 @@ body .form-control {
     font-size: 1.3em;
   }
 }
+
+[dir='rtl'] {
+  font-family: verdana, arial;
+  font-size: 150%;
+}

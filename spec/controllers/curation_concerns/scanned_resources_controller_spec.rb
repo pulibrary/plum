@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe CurationConcerns::ScannedResourcesController do
   let(:user) { FactoryGirl.create(:user) }
-  let(:scanned_resource) { FactoryGirl.create(:scanned_resource, user: user, title: ['Dummy Title']) }
+  let(:scanned_resource) { FactoryGirl.create(:scanned_resource, user: user, title: ['Dummy Title'], state: 'complete', identifier: 'ark:/99999/fk4445wg45') }
   let(:reloaded) { scanned_resource.reload }
 
   describe "delete" do
@@ -80,13 +80,13 @@ describe CurationConcerns::ScannedResourcesController do
       let(:collection) { FactoryGirl.create(:collection, user: user) }
       let(:scanned_resource_attributes) do
         FactoryGirl.attributes_for(:scanned_resource).except(:source_metadata_identifier).merge(
-          collection_ids: [collection.id]
+          member_of_collection_ids: [collection.id]
         )
       end
       it "successfully add the resource to the collection" do
         post :create, scanned_resource: scanned_resource_attributes
         s = ScannedResource.last
-        expect(s.in_collections).to eq [collection]
+        expect(s.member_of_collections).to eq [collection]
       end
       it "posts the collection slugs to the event endpoint" do
         messaging_client = instance_double(MessagingClient, publish: true)
@@ -102,7 +102,7 @@ describe CurationConcerns::ScannedResourcesController do
             "id" => s.id,
             "event" => "CREATED",
             "manifest_url" => "http://plum.com/concern/scanned_resources/#{s.id}/manifest",
-            "collection_slugs" => s.in_collections.map(&:exhibit_id)
+            "collection_slugs" => s.member_of_collections.map(&:exhibit_id)
           }.to_json
         )
       end
@@ -176,11 +176,15 @@ describe CurationConcerns::ScannedResourcesController do
         expect(reloaded.title).to eq ['Dummy Title']
         expect(reloaded.description).to eq 'a description'
       end
+      it "can update the start_canvas" do
+        post :update, id: scanned_resource, scanned_resource: { start_canvas: "1" }
+        expect(reloaded.start_canvas).to eq "1"
+      end
       context "when in a collection" do
         let(:scanned_resource) { FactoryGirl.create(:scanned_resource_in_collection, user: user) }
         it "doesn't remove the item from collections" do
           patch :update, id: scanned_resource, scanned_resource: { ocr_language: [], viewing_hint: "individuals", viewing_direction: "left-to-right" }
-          expect(reloaded.collection_ids).not_to be_blank
+          expect(reloaded.member_of_collections).not_to be_blank
         end
       end
       it "posts an update event" do
@@ -194,8 +198,10 @@ describe CurationConcerns::ScannedResourcesController do
     end
     context 'when :refresh_remote_metadata is set', vcr: { cassette_name: 'bibdata', allow_playback_repeats: true } do
       it 'updates remote metadata' do
+        allow(Ezid::Identifier).to receive(:modify)
         post :update, id: scanned_resource, scanned_resource: scanned_resource_attributes, refresh_remote_metadata: true
         expect(reloaded.title).to eq ['The Giant Bible of Mainz; 500th anniversary, April fourth, fourteen fifty-two, April fourth, nineteen fifty-two.']
+        expect(Ezid::Identifier).to have_received(:modify)
       end
     end
     context "when ocr_language is set" do
@@ -231,12 +237,12 @@ describe CurationConcerns::ScannedResourcesController do
       end
 
       it "updates collection membership" do
-        expect(resource.in_collections).to_not be_empty
+        expect(resource.member_of_collections).to_not be_empty
 
         updated_attributes = resource.attributes
-        updated_attributes[:collection_ids] = [col2.id]
+        updated_attributes[:member_of_collection_ids] = [col2.id]
         post :update, id: resource, scanned_resource: updated_attributes
-        expect(resource.reload.in_collections).to eq [col2]
+        expect(resource.reload.member_of_collections).to eq [col2]
       end
     end
   end
@@ -509,6 +515,12 @@ describe CurationConcerns::ScannedResourcesController do
     let(:scanned_resource) { FactoryGirl.create(:scanned_resource, user: user, state: 'final_review') }
     let(:scanned_resource_attributes) { { state: 'complete' } }
     let(:reloaded) { ScannedResource.find scanned_resource.id }
+    let(:ezid_metadata) { {
+      dc_publisher: 'Princeton University Library',
+      dc_title: 'Test title',
+      dc_type: 'Text',
+      target: "http://plum.com/concern/scanned_resources/#{scanned_resource.id}"
+    } }
 
     context "as an admin" do
       let(:admin) { FactoryGirl.create(:admin) }
@@ -520,6 +532,23 @@ describe CurationConcerns::ScannedResourcesController do
       it "succeeds", vcr: { cassette_name: "ezid" } do
         post :update, id: scanned_resource.id, scanned_resource: scanned_resource_attributes
         expect(reloaded.state).to eq 'complete'
+        expect(reloaded.identifier).to eq 'ark:/99999/fk4445wg45'
+        expect(scanned_resource.send(:ezid_metadata)).to eq(ezid_metadata)
+      end
+    end
+    context "when the item already has an ARK" do
+      let(:admin) { FactoryGirl.create(:admin) }
+      before do
+        sign_in admin
+        scanned_resource.identifier = 'ark:/99999/fk4c255165'
+        scanned_resource.save
+        allow(Ezid::Identifier).to receive(:modify)
+      end
+
+      it "updates EZID" do
+        post :update, id: scanned_resource.id, scanned_resource: scanned_resource_attributes
+        expect(reloaded.state).to eq 'complete'
+        expect(Ezid::Identifier).to have_received(:modify)
       end
     end
     context "as an image editor" do

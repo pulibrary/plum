@@ -6,11 +6,12 @@ module CurationConcerns
       ::FileSetPresenter
     end
 
-    def after_update_response
+    def after_update_response(msg = nil)
       respond_to do |wants|
         wants.html do
+          msg = "The file #{view_context.link_to(@file_set, [main_app, @file_set])} has been updated." unless msg
           dest = parent.nil? ? [main_app, @file_set] : [main_app, :file_manager, parent]
-          redirect_to dest, notice: "The file #{view_context.link_to(@file_set, [main_app, @file_set])} has been updated."
+          redirect_to dest, notice: msg
         end
         wants.json do
           @presenter = show_presenter.new(curation_concern, current_ability)
@@ -31,6 +32,11 @@ module CurationConcerns
           render json: annotation_builder
         end
       end
+    end
+
+    def derivatives
+      CreateDerivativesJob.perform_later(file_set, file_set.send(:original_file).id)
+      after_update_response "Regenerating derivatives for #{view_context.link_to(@file_set, [main_app, @file_set])}"
     end
 
     protected

@@ -1,9 +1,10 @@
 class ManifestBuilder
   class SequenceBuilder
-    attr_reader :parent_path, :canvas_builder
-    def initialize(parent_path, canvas_builder)
+    attr_reader :parent_path, :canvas_builder, :start_canvas_builder
+    def initialize(parent_path, canvas_builder, start_canvas_builder = nil)
       @parent_path = parent_path
       @canvas_builder = canvas_builder
+      @start_canvas_builder = start_canvas_builder
     end
 
     def apply(manifest)
@@ -23,6 +24,7 @@ class ManifestBuilder
             sequence = IIIF::Presentation::Sequence.new
             sequence["@id"] ||= parent_path.to_s + "/sequence/normal"
             canvas_builder.apply(sequence)
+            start_canvas_builder.apply(sequence) if start_canvas_builder
             sequence
           end
       end

@@ -16,26 +16,24 @@
   ],
   "dependencies": {},
   "devDependencies": {
-    "es6-promise": "~2.2.0",
+    "exjs": "BSick7/exjs",
     "extensions": "edsilv/extensions",
     "http-status-codes": "edsilv/http-status-codes",
     "jquery-plugins": "edsilv/jquery-plugins",
+    "jquery-tiny-pubsub": "edsilv/jquery-tiny-pubsub",
     "key-codes": "edsilv/key-codes",
-    "lodash-compat": "~3.10.0",
-    "r.js": "~2.1.18",
     "utils": "edsilv/utils",
     "uv-cy-GB-theme": "universalviewer/uv-cy-GB-theme",
-    "uv-en-GB-theme": "universalviewer/uv-en-GB-theme",
-    "exjs": "~0.3.0"
+    "uv-en-GB-theme": "pulibrary/uv-en-GB-theme"
   },
-  "homepage": "https://github.com/UniversalViewer/universalviewer",
-  "_release": "7f9f736e6d",
+  "homepage": "https://github.com/pulibrary/universalviewer",
+  "_release": "687b57be92",
   "_resolution": {
     "type": "branch",
     "branch": "master",
-    "commit": "7f9f736e6da88ac9e569a013978ae15b9622684e"
+    "commit": "687b57be9221a198a0a72e373cf15d7cbd712835"
   },
-  "_source": "git://github.com/UniversalViewer/universalviewer.git",
+  "_source": "git://github.com/pulibrary/universalviewer.git",
   "_target": "master",
-  "_originalSource": "UniversalViewer/universalviewer"
+  "_originalSource": "pulibrary/universalviewer"
 }

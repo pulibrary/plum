@@ -4,7 +4,7 @@ class CatalogController < ApplicationController
   include CurationConcerns::CatalogController
   def self.search_config
     {
-      'qf' => %w(title_tesim name_tesim source_metadata_identifier_ssim logical_order_headings_tesim collection_slug_sim full_text_tesim),
+      'qf' => %w(title_tesim name_tesim source_metadata_identifier_ssim logical_order_headings_tesim member_of_collection_slugs_ssim full_text_tesim),
       'qt' => 'search',
       'rows' => 10
     }
@@ -40,7 +40,7 @@ class CatalogController < ApplicationController
     config.add_facet_field solr_name('based_near', :facetable), limit: 5
     config.add_facet_field solr_name('file_format', :facetable), limit: 5
     config.add_facet_field 'generic_type_sim', show: false, single: true
-    config.add_facet_field solr_name('collection', :symbol), limit: 5
+    config.add_facet_field solr_name('member_of_collections', :symbol), limit: 5, label: 'Collection'
 
     # Have BL send all facet field names to Solr, which has been the default
     # previously. Simply remove these lines if you'd rather use Solr request

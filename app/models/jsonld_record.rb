@@ -28,9 +28,11 @@ class JSONLDRecord
   def attributes
     @attributes ||=
       begin
-        proxy_record.attributes.select do |k, _v|
-          appropriate_fields.include?(k)
-        end
+        Hash[
+          cleaned_attributes.map do |k, _|
+            [k, proxy_record.get_values(k, literal: true)]
+          end
+        ]
       end
   end
 
@@ -49,6 +51,12 @@ class JSONLDRecord
         outbound_graph.each do |statement|
           resource.resource << RDF::Statement.new(resource.rdf_subject, statement.predicate, statement.object)
         end
+      end
+    end
+
+    def cleaned_attributes
+      proxy_record.attributes.select do |k, _v|
+        appropriate_fields.include?(k)
       end
     end
 
