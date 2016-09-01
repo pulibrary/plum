@@ -26,21 +26,22 @@ GIT
 
 GIT
   remote: git://github.com/projecthydra-labs/curation_concerns.git
-  revision: e18cb74c42af681fa3342c2d02de3a7121670499
+  revision: 4c3329d25bfee43107515c22074089c0e8975d72
   branch: member_of_replace
   specs:
-    curation_concerns (1.4.0)
+    curation_concerns (1.5.0)
       active-fedora (>= 10.3.0.rc1)
       active_attr
       active_fedora-noid (~> 2.0.0.beta1)
       awesome_nested_set (~> 3.0)
       blacklight (~> 6.3)
       blacklight_advanced_search (~> 6.0)
-      breadcrumbs_on_rails (>= 2.3, < 4)
+      breadcrumbs_on_rails (>= 3.0.1, < 4)
       browse-everything (~> 0.10)
       clipboard-rails (~> 1.5)
       hydra-editor (>= 2, < 4)
       hydra-head (>= 10.0.0, < 11)
+      hydra-pcdm (~> 0.9.0)
       hydra-works (>= 0.12.0)
       jquery-ui-rails
       kaminari_route_prefix (~> 0.0.1)
@@ -55,10 +56,10 @@ GIT
 
 GIT
   remote: git://github.com/projecthydra-labs/hydra-pcdm.git
-  revision: 57d18d0c42cb572412782546ae8795fd2cf7617f
+  revision: 854e13cc324e95fd329eb0a812815d2d78abf951
   branch: master
   specs:
-    hydra-pcdm (0.8.2)
+    hydra-pcdm (0.9.0)
       active-fedora (>= 10, < 12)
       mime-types (>= 1)
 
@@ -210,7 +211,7 @@ GEM
       rails (>= 4.2, < 6)
       rsolr (~> 1.0, >= 1.0.6)
       twitter-typeahead-rails (= 0.11.1.pre.corejavascript)
-    blacklight-access_controls (0.5.1)
+    blacklight-access_controls (0.6.0)
       blacklight (~> 6.0)
       cancancan (~> 1.8)
       deprecation (~> 1.0)
@@ -222,7 +223,7 @@ GEM
       autoprefixer-rails (>= 5.2.1)
       sass (>= 3.3.4)
     bootstrap_form (2.5.0)
-    breadcrumbs_on_rails (3.0.0)
+    breadcrumbs_on_rails (3.0.1)
     builder (3.2.2)
     bunny (2.5.1)
       amq-protocol (>= 2.0.1)
@@ -613,7 +614,7 @@ GEM
       faraday (~> 0.9)
       jwt (~> 1.5)
       multi_json (~> 1.10)
-    simple_form (3.2.1)
+    simple_form (3.3.1)
       actionpack (> 4, < 5.1)
       activemodel (> 4, < 5.1)
     simplecov (0.10.0)
