@@ -46,16 +46,16 @@ gem 'prawn'
 # gem 'pdf-inspector', '~> 1.2.0', group: [:test]
 
 # Copied from curation_concerns Gemfile.extra
-gem 'hydra-works', github: 'projecthydra-labs/hydra-works', branch: 'master'
-gem 'hydra-pcdm', github: 'projecthydra-labs/hydra-pcdm', branch: 'master'
-gem 'hydra-derivatives', github: 'projecthydra/hydra-derivatives', branch: 'master'
-gem 'active-fedora', github: 'projecthydra/active_fedora', branch: 'master'
+gem 'hydra-works'#, github: 'projecthydra-labs/hydra-works', branch: 'master'
+gem 'hydra-pcdm'#, github: 'projecthydra-labs/hydra-pcdm', branch: 'master'
+gem 'hydra-derivatives'#, github: 'projecthydra/hydra-derivatives', branch: 'master'
+gem 'active-fedora'#, github: 'projecthydra/active_fedora', branch: 'master'
 
 gem 'rubocop', '~> 0.34.0', require: false
 gem 'rubocop-rspec', '~> 1.3.0', require: false
 
 group :development, :test do
-  gem 'simplecov', '~> 0.9', require: false
+  gem 'simplecov', require: false
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'pry-byebug'
   gem 'rspec-rails'
@@ -66,9 +66,9 @@ group :development, :test do
   gem 'pry-rails'
 end
 
-gem 'solr_wrapper', '~> 0.13.0'
-gem 'fcrepo_wrapper', '~> 0.5.0'
-gem 'coveralls', '0.8.3', require: false
+gem 'solr_wrapper'
+gem 'fcrepo_wrapper'
+gem 'coveralls', require: false
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
