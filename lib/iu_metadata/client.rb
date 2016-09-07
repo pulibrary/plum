@@ -3,7 +3,7 @@ require 'nokogiri'
 module IuMetadata
   class Client
 
-    def self.retrieve(id, format=:mods)
+    def self.retrieve(id, format)
       raise ArgumentError, 'Invalid id argument' unless bibdata? id
       if format == :mods
         src = retrieve_mods(id)

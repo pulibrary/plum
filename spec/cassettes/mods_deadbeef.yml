@@ -1,0 +1,34 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://dlib.indiana.edu:9000/iucatextract?maximumRecords=1&operation=searchRetrieve&query=cql.serverChoice=missingrecorddeadbeef&recordSchema=mods&version=1.1
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.9.2
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Length:
+      - '188'
+      Server:
+      - YAZ/3.0.44
+      Content-Type:
+      - text/xml
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0"?>
+        <zs:searchRetrieveResponse xmlns:zs="http://www.loc.gov/zing/srw/"><zs:version>1.1</zs:version><zs:numberOfRecords>0</zs:numberOfRecords></zs:searchRetrieveResponse>
+    http_version: 
+  recorded_at: Wed, 07 Sep 2016 19:45:22 GMT
+recorded_with: VCR 2.9.3
