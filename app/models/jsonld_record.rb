@@ -6,23 +6,34 @@ class JSONLDRecord
     end
 
     def retrieve(bib_id)
-      marc = PulMetadataServices::Client.retrieve(bib_id)
-      raise MissingRemoteRecordError if marc.source.end_with?("not found or suppressed")
-      JSONLDRecord.new(bib_id, marc.source, factory: factory)
+      marc = IuMetadata::Client.retrieve(bib_id, format: :marc)
+      mods = IuMetadata::Client.retrieve(bib_id, format: :mods)
+      raise MissingRemoteRecordError, 'Missing MARC record' if marc.source.blank?
+      raise MissingRemoteRecordError, 'Missing MODS record' if mods.source.blank?
+      JSONLDRecord.new(bib_id, marc.source, mods.source, factory: factory)
     end
   end
 
   class MissingRemoteRecordError < StandardError; end
 
-  attr_reader :bib_id, :marc, :factory
-  def initialize(bib_id, marc, factory: ScannedResource)
+  attr_reader :bib_id, :marc, :mods, :factory
+  def initialize(bib_id, marc, mods, factory: ScannedResource)
     @bib_id = bib_id
     @marc = marc
+    @mods = mods
     @factory = factory
   end
 
   def source
+    marc_source
+  end
+
+  def marc_source
     marc
+  end
+
+  def mods_source
+    mods
   end
 
   def attributes
@@ -61,6 +72,7 @@ class JSONLDRecord
     end
 
     def outbound_graph
+      #TODO Convert MODS/MARC to JSON-LD instead of using json service
       @outbound_graph ||= RDF::Graph.load("https://bibdata.princeton.edu/bibliographic/#{bib_id}/jsonld") # FIXME: find IU equivalent link
     end
 end
