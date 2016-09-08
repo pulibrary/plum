@@ -2,49 +2,66 @@
 http_interactions:
 - request:
     method: get
-    uri: https://bibdata.princeton.edu/bibliographic/0000000
+    uri: http://dlib.indiana.edu:9000/iucatextract?maximumRecords=1&operation=searchRetrieve&query=cql.serverChoice=359850&recordSchema=marcxml&version=1.1
     body:
       encoding: US-ASCII
       string: ''
     headers:
       User-Agent:
-      - Faraday v0.9.1
+      - Faraday v0.9.2
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
       - "*/*"
   response:
     status:
-      code: 404
-      message: Not Found
+      code: 200
+      message: OK
     headers:
-      Date:
-      - Tue, 20 Oct 2015 19:44:47 GMT
+      Content-Length:
+      - '188'
       Server:
-      - Apache/2.4.7 (Ubuntu)
-      Access-Control-Allow-Origin:
-      - "*"
-      Access-Control-Request-Method:
-      - GET
-      Access-Control-Allow-Headers:
-      - Origin, Content-Type, Accept, Authorization, Token
-      Cache-Control:
-      - no-cache
-      X-Request-Id:
-      - 0d3be191-2d37-4843-b048-757461cfe74e
-      X-Runtime:
-      - '0.297523'
-      X-Powered-By:
-      - Phusion Passenger 4.0.59
-      Status:
-      - 404 Not Found
-      Transfer-Encoding:
-      - chunked
+      - YAZ/3.0.44
       Content-Type:
-      - text/plain; charset=utf-8
+      - text/xml
     body:
       encoding: UTF-8
-      string: Record 0000000 not found or suppressed
+      string: |
+        <?xml version="1.0"?>
+        <zs:searchRetrieveResponse xmlns:zs="http://www.loc.gov/zing/srw/"><zs:version>1.1</zs:version><zs:numberOfRecords>0</zs:numberOfRecords></zs:searchRetrieveResponse>
     http_version: 
-  recorded_at: Tue, 20 Oct 2015 19:45:06 GMT
+  recorded_at: Thu, 15 Sep 2016 19:39:00 GMT
+- request:
+    method: get
+    uri: http://dlib.indiana.edu:9000/iucatextract?maximumRecords=1&operation=searchRetrieve&query=cql.serverChoice=359850&recordSchema=mods&version=1.1
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.9.2
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Length:
+      - '188'
+      Server:
+      - YAZ/3.0.44
+      Content-Type:
+      - text/xml
+      Connection:
+      - Keep-Alive
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0"?>
+        <zs:searchRetrieveResponse xmlns:zs="http://www.loc.gov/zing/srw/"><zs:version>1.1</zs:version><zs:numberOfRecords>0</zs:numberOfRecords></zs:searchRetrieveResponse>
+    http_version: 
+  recorded_at: Thu, 15 Sep 2016 19:39:00 GMT
 recorded_with: VCR 2.9.3

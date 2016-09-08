@@ -1,8 +1,7 @@
 class HoldingLocationAuthority
-  include Qa::Authorities::WebServiceBase
 
   def all
-    get_json(url).each { |loc| loc['id'] = loc['url'].sub(/\.json$/, '') }
+    digital_locations
   end
 
   def find(id)
@@ -11,7 +10,7 @@ class HoldingLocationAuthority
 
   private
 
-    def url
-      Plum.config['locations_url']
+    def digital_locations
+      @digital_locations ||= YAML.load(File.read('config/digital_locations.yml'))
     end
 end

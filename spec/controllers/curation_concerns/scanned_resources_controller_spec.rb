@@ -43,7 +43,7 @@ describe CurationConcerns::ScannedResourcesController do
       it "updates the metadata" do
         post :create, scanned_resource: scanned_resource_attributes
         s = ScannedResource.last
-        expect(s.title).to eq ['The Giant Bible of Mainz; 500th anniversary, April fourth, fourteen fifty-two, April fourth, nineteen fifty-two.']
+        expect(s.title).to eq ["The last resort : a novel"]
       end
       it "posts a creation event to the queue" do
         manifest_generator = instance_double(ManifestEventGenerator, record_created: true, record_updated: true)
@@ -57,7 +57,7 @@ describe CurationConcerns::ScannedResourcesController do
     context "when given a non-existent bib id", vcr: { cassette_name: 'bibdata_not_found', allow_playback_repeats: true } do
       let(:scanned_resource_attributes) do
         FactoryGirl.attributes_for(:scanned_resource).merge(
-          source_metadata_identifier: "0000000"
+          source_metadata_identifier: "359850"
         )
       end
       it "receives an error" do
@@ -200,7 +200,7 @@ describe CurationConcerns::ScannedResourcesController do
       it 'updates remote metadata' do
         allow(Ezid::Identifier).to receive(:modify)
         post :update, id: scanned_resource, scanned_resource: scanned_resource_attributes, refresh_remote_metadata: true
-        expect(reloaded.title).to eq ['The Giant Bible of Mainz; 500th anniversary, April fourth, fourteen fifty-two, April fourth, nineteen fifty-two.']
+        expect(reloaded.title).to eq ["The last resort : a novel"]
         expect(Ezid::Identifier).to have_received(:modify)
       end
     end

@@ -5,13 +5,13 @@ module IuMetadata
     def self.retrieve(id, format)
       raise ArgumentError, 'Invalid id argument' unless bibdata? id
       if format == :mods
-        src = retrieve_mods(id)
+        url, src = retrieve_mods(id)
         data = strip_yaz(src)
-        record = IuMetadata::ModsRecord.new(data)
+        record = IuMetadata::ModsRecord.new(url, data)
       elsif format == :marc
-        src = retrieve_marc(id)
+        url, src = retrieve_marc(id)
         data = strip_yaz(src)
-        record = IuMetadata::MarcRecord.new(data)
+        record = IuMetadata::MarcRecord.new(url, data)
       else
         raise ArgumentError, 'Invalid format argument'
       end
@@ -42,7 +42,7 @@ module IuMetadata
         req.params['version'] = '1.1'
         req.params['maximumRecords'] = '1'
       end
-      response.body
+      [response.to_hash[:url].to_s, response.body]
     end
 
     private_class_method def self.retrieve_marc(id)
@@ -55,7 +55,7 @@ module IuMetadata
         req.params['version'] = '1.1'
         req.params['maximumRecords'] = '1'
       end
-      response.body
+      [response.to_hash[:url].to_s, response.body]
     end
   end
 end

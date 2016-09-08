@@ -1,4 +1,5 @@
 class JSONLDRecord
+  extend Forwardable
   class Factory
     attr_reader :factory
     def initialize(factory)
@@ -10,7 +11,7 @@ class JSONLDRecord
       mods = IuMetadata::Client.retrieve(bib_id, :mods)
       raise MissingRemoteRecordError, 'Missing MARC record' if marc.source.blank?
       raise MissingRemoteRecordError, 'Missing MODS record' if mods.source.blank?
-      JSONLDRecord.new(bib_id, marc.source, mods.source, factory: factory)
+      JSONLDRecord.new(bib_id, marc, mods, factory: factory)
     end
   end
 
@@ -28,13 +29,8 @@ class JSONLDRecord
     marc_source
   end
 
-  def marc_source
-    marc
-  end
-
-  def mods_source
-    mods
-  end
+  def_delegator :@marc, :source, :marc_source
+  def_delegator :@mods, :source, :mods_source
 
   def attributes
     @attributes ||=
@@ -72,7 +68,17 @@ class JSONLDRecord
     end
 
     def outbound_graph
-      # TODO: Convert MODS/MARC to JSON-LD instead of using json service
-      @outbound_graph ||= RDF::Graph.load("https://bibdata.princeton.edu/bibliographic/#{bib_id}/jsonld") # FIXME: find IU equivalent link
+      @outbound_graph ||= generate_outbound_graph
+    end
+
+    CONTEXT = YAML.load(File.read('config/context.yml'))
+
+    def generate_outbound_graph
+      jsonld_hash = {}
+      jsonld_hash['@context'] = CONTEXT["@context"]
+      jsonld_hash['@id'] = marc.id
+      jsonld_hash.merge!(marc.attributes.stringify_keys)
+      outbound_graph = RDF::Graph.new << JSON::LD::API.toRdf(jsonld_hash)
+      outbound_graph
     end
 end

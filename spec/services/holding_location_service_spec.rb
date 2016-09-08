@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe HoldingLocationService, vcr: { cassette_name: 'locations' } do
+RSpec.describe HoldingLocationService do
   let(:uri) { 'https://bibdata.princeton.edu/locations/delivery_locations/3' }
   let(:email) { 'ues@princeton.edu' }
   let(:label) { 'Architecture Library' }

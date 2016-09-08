@@ -92,30 +92,7 @@ describe ScannedResource do
         expect(subject.attributes).to eq(original_attributes)
       end
     end
-    context 'With a Pulfa ID', vcr: { cassette_name: 'pulfa' } do
-      before do
-        subject.source_metadata_identifier = 'AC123_c00004'
-      end
-
-      # Pending until
-      # https://github.com/pulibrary/pul_metadata_services/issues/5 is closed
-      xit 'Extracts Pulfa Metadata and full source' do
-        subject.apply_remote_metadata
-        expect(subject.title.first).to eq('Series 1: University Librarian Records - Subseries 1A, Frederic Vinton - Correspondence')
-        expect(subject.creator.first).to eq('Princeton University. Library. Dept. of Rare Books and Special Collections')
-        expect(subject.publisher.first).to eq('Princeton University. Library. Dept. of Rare Books and Special Collections')
-        expect(subject.date_created.first).to eq('1734-2012')
-        expect(subject.source_metadata).to eq(fixture('pulfa-AC123_c00004.xml').read)
-      end
-
-      it 'Saves a record with extacted ead metadata' do
-        subject.apply_remote_metadata
-        subject.save
-        expect { subject.save }.to_not raise_error
-        expect(subject.id).to be_truthy
-      end
-    end
-
+    # FIXME: relable this section
     context 'With a Voyager ID', vcr: { cassette_name: "bibdata", record: :new_episodes }do
       before do
         subject.source_metadata_identifier = '2028405'
@@ -123,11 +100,11 @@ describe ScannedResource do
 
       it 'Extracts Voyager Metadata' do
         subject.apply_remote_metadata
-        expect(subject.title).to eq(['The Giant Bible of Mainz; 500th anniversary, April fourth, fourteen fifty-two, April fourth, nineteen fifty-two.'])
-        expect(subject.resource.get_values(:title, literal: true)).to eq([RDF::Literal.new("The Giant Bible of Mainz; 500th anniversary, April fourth, fourteen fifty-two, April fourth, nineteen fifty-two.", language: :eng)])
-        expect(subject.creator).to eq(['Miner, Dorothy Eugenia'])
-        expect(subject.date_created).to eq(['1952-01-01T00:00:00Z'])
-        expect(subject.publisher).to eq(['[Philadelphia, 1952]'])
+        expect(subject.title).to eq(['The last resort : a novel'])
+        expect(subject.resource.get_values(:title, literal: true)).to eq([RDF::Literal.new('The last resort : a novel')])
+        expect(subject.creator).to eq(['Johnson, Pamela Hansford, 1912-1981'])
+        expect(subject.date_created).to eq([])
+        expect(subject.publisher).to eq(["Macmillan & co., ltd., ; St. Martin's Press,"])
       end
 
       it 'Saves a record with extacted Voyager metadata' do
