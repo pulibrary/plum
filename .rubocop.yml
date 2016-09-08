@@ -12,6 +12,10 @@ AllCops:
     - 'vendor/**/*'
     - 'bin/*'
     - 'config/deploy.rb'
+    - 'lib/iu_metadata/marc_record.rb'
+
+Rails:
+  Enabled: true
 
 Lint/UnusedBlockArgument:
   Exclude:

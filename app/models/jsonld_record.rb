@@ -6,8 +6,8 @@ class JSONLDRecord
     end
 
     def retrieve(bib_id)
-      marc = IuMetadata::Client.retrieve(bib_id, format: :marc)
-      mods = IuMetadata::Client.retrieve(bib_id, format: :mods)
+      marc = IuMetadata::Client.retrieve(bib_id, :marc)
+      mods = IuMetadata::Client.retrieve(bib_id, :mods)
       raise MissingRemoteRecordError, 'Missing MARC record' if marc.source.blank?
       raise MissingRemoteRecordError, 'Missing MODS record' if mods.source.blank?
       JSONLDRecord.new(bib_id, marc.source, mods.source, factory: factory)
@@ -72,7 +72,7 @@ class JSONLDRecord
     end
 
     def outbound_graph
-      #TODO Convert MODS/MARC to JSON-LD instead of using json service
+      # TODO: Convert MODS/MARC to JSON-LD instead of using json service
       @outbound_graph ||= RDF::Graph.load("https://bibdata.princeton.edu/bibliographic/#{bib_id}/jsonld") # FIXME: find IU equivalent link
     end
 end

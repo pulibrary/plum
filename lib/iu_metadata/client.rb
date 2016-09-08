@@ -2,7 +2,6 @@ require 'faraday'
 require 'nokogiri'
 module IuMetadata
   class Client
-
     def self.retrieve(id, format)
       raise ArgumentError, 'Invalid id argument' unless bibdata? id
       if format == :mods
@@ -24,10 +23,8 @@ module IuMetadata
       (source_metadata_id =~ /\A\w+\z/) == 0
     end
 
-    private
-
     # Extracts the data payload from a YAZ Proxy response
-    def self.strip_yaz(src)
+    private_class_method def self.strip_yaz(src)
       noko = Nokogiri::XML(src) do |config|
         config.strict.nonet.noblanks
       end
@@ -35,7 +32,7 @@ module IuMetadata
       data
     end
 
-    def self.retrieve_mods(id)
+    private_class_method def self.retrieve_mods(id)
       conn = Faraday.new(url: 'http://dlib.indiana.edu:9000')
       response = conn.get do |req|
         req.url '/iucatextract'
@@ -48,7 +45,7 @@ module IuMetadata
       response.body
     end
 
-    def self.retrieve_marc(id)
+    private_class_method def self.retrieve_marc(id)
       conn = Faraday.new(url: 'http://dlib.indiana.edu:9000')
       response = conn.get do |req|
         req.url '/iucatextract'
@@ -60,6 +57,5 @@ module IuMetadata
       end
       response.body
     end
-
   end
 end
