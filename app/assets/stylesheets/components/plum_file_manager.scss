@@ -50,3 +50,9 @@
 #file-manager-extra-tools {
   @extend .clearfix;
 }
+#bulk-actions {
+  h2 {
+    margin-top: 0;
+  }
+  display: none;
+}
