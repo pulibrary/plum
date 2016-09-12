@@ -15,6 +15,10 @@ class METSDocument
     @mets.xpath("/mets:mets/mets:dmdSec/mets:mdRef/@xlink:href").to_s.gsub(/.*\//, '')
   end
 
+  def collection_slugs
+    @mets.xpath("/mets:mets/mets:structMap[@TYPE='RelatedObjects']//mets:div[@TYPE='IsPartOf']/@CONTENTIDS").to_s
+  end
+
   def pudl_id
     @mets.xpath("/mets:mets/mets:metsHdr/mets:metsDocumentID").first.content.gsub(/\.mets/, '')
   end
