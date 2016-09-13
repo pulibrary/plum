@@ -38,6 +38,7 @@ class Ability
   def editor_permissions
     can [:read, :modify, :update], curation_concerns
     can [:file_manager, :save_structure], ScannedResource
+    can [:file_manager, :save_structure], MultiVolumeWork
     can [:read, :edit, :update], FileSet
     can [:read, :edit, :update], Collection
 
