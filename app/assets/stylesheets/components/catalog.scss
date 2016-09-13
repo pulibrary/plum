@@ -4,3 +4,14 @@ dl.document-metadata {
     padding-left: 0;
   }
 }
+#documents .document {
+  > .btn-group {
+    float: right;
+  }
+  > .document-metadata {
+    width: 60%;
+  }
+  > .document-thumbnail {
+    padding-left: 0;
+  }
+}
