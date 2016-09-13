@@ -46,6 +46,15 @@
       float: none;
     }
   }
+  .ui-selected {
+    background-color: #F39814;
+  }
+  .ui-selecting {
+    background-color: #FECA40;
+  }
+  .panel > form {
+    @extend .panel-default;
+  }
 }
 #file-manager-extra-tools {
   @extend .clearfix;
