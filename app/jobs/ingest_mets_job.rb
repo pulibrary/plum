@@ -3,12 +3,10 @@ class IngestMETSJob < ActiveJob::Base
 
   # @param [String] mets_file Filename of a METS file to ingest
   # @param [String] user User to ingest as
-  # @param [Array<String>] collections Collection IDs the resources should be members of
-  def perform(mets_file, user, collections = [])
+  def perform(mets_file, user)
     logger.info "Ingesting METS #{mets_file}"
     @mets = METSDocument.new mets_file
     @user = user
-    @collections = collections.map { |col_id| Collection.find(col_id) }
 
     ingest
   end
@@ -20,7 +18,7 @@ class IngestMETSJob < ActiveJob::Base
       resource.identifier = @mets.ark_id
       resource.replaces = @mets.pudl_id
       resource.source_metadata_identifier = @mets.bib_id
-      resource.member_of_collections = @collections
+      resource.member_of_collections = Array(@mets.collection_slugs).map { |slug| find_or_create_collection(slug) }
       resource.apply_remote_metadata
       resource.save!
       logger.info "Created #{resource.class}: #{resource.id}"
@@ -36,6 +34,25 @@ class IngestMETSJob < ActiveJob::Base
         end
         resource.save!
       end
+    end
+
+    def find_or_create_collection(slug)
+      existing = Collection.where exhibit_id_ssim: slug
+      return existing.first if existing.first
+      col = Collection.new metadata_for_collection(slug)
+      col.apply_depositor_metadata @user
+      col.save!
+      col
+    end
+
+    def metadata_for_collection(slug)
+      collection_metadata.each do |c|
+        return { exhibit_id: slug, title: [c['title']], description: [c['blurb']] } if c['slug'] == slug
+      end
+    end
+
+    def collection_metadata
+      @collection_metadata ||= JSON.parse(File.read(File.join(Rails.root, 'config', 'pudl_collections.json')))
     end
 
     def attach_mets(resource)
