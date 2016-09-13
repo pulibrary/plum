@@ -4,6 +4,10 @@ require "cancan/matchers"
 describe Ability do
   subject { described_class.new(current_user) }
 
+  let(:open_multi_volume_work) {
+    FactoryGirl.build(:multi_volume_work, user: creating_user, state: 'complete')
+  }
+
   let(:open_scanned_resource) {
     FactoryGirl.build(:open_scanned_resource, user: creating_user, state: 'complete')
   }
@@ -77,14 +81,28 @@ describe Ability do
     it { should be_able_to(:create, ScannedResource.new) }
     it { should be_able_to(:create, FileSet.new) }
     it { should be_able_to(:read, open_scanned_resource) }
+    it { should be_able_to(:read, private_scanned_resource) }
+    it { should be_able_to(:read, takedown_scanned_resource) }
+    it { should be_able_to(:read, flagged_scanned_resource) }
     it { should be_able_to(:pdf, open_scanned_resource) }
     it { should be_able_to(:color_pdf, open_scanned_resource) }
     it { should be_able_to(:edit, open_scanned_resource) }
     it { should be_able_to(:edit, open_scanned_resource_presenter.id) }
+    it { should be_able_to(:edit, private_scanned_resource) }
+    it { should be_able_to(:edit, takedown_scanned_resource) }
+    it { should be_able_to(:edit, flagged_scanned_resource) }
+    it { should be_able_to(:file_manager, open_scanned_resource) }
+    it { should be_able_to(:file_manager, open_multi_volume_work) }
     it { should be_able_to(:update, open_scanned_resource) }
+    it { should be_able_to(:update, private_scanned_resource) }
+    it { should be_able_to(:update, takedown_scanned_resource) }
+    it { should be_able_to(:update, flagged_scanned_resource) }
     it { should be_able_to(:destroy, open_scanned_resource) }
+    it { should be_able_to(:destroy, private_scanned_resource) }
+    it { should be_able_to(:destroy, takedown_scanned_resource) }
+    it { should be_able_to(:destroy, flagged_scanned_resource) }
     it { should be_able_to(:manifest, open_scanned_resource) }
-    it { should be_able_to(:read, private_scanned_resource) }
+    it { should be_able_to(:manifest, pending_scanned_resource) }
   end
 
   describe 'as an image editor' do
@@ -105,6 +123,7 @@ describe Ability do
     it { should be_able_to(:read, flagged_scanned_resource) }
     it { should be_able_to(:download, image_editor_file) }
     it { should be_able_to(:file_manager, open_scanned_resource) }
+    it { should be_able_to(:file_manager, open_multi_volume_work) }
     it { should be_able_to(:save_structure, open_scanned_resource) }
     it { should be_able_to(:update, open_scanned_resource) }
     it { should be_able_to(:create, ScannedResource.new) }
@@ -123,10 +142,6 @@ describe Ability do
     let(:creating_user) { image_editor }
     let(:current_user) { editor }
     it { should be_able_to(:read, open_scanned_resource) }
-    it { should be_able_to(:manifest, open_scanned_resource) }
-    it { should be_able_to(:pdf, open_scanned_resource) }
-    it { should be_able_to(:color_pdf, open_scanned_resource) }
-    it { should be_able_to(:flag, open_scanned_resource) }
     it { should be_able_to(:read, campus_only_scanned_resource) }
     it { should be_able_to(:read, private_scanned_resource) }
     it { should be_able_to(:read, pending_scanned_resource) }
@@ -135,7 +150,13 @@ describe Ability do
     it { should be_able_to(:read, complete_scanned_resource) }
     it { should be_able_to(:read, takedown_scanned_resource) }
     it { should be_able_to(:read, flagged_scanned_resource) }
+    it { should be_able_to(:manifest, open_scanned_resource) }
+    it { should be_able_to(:pdf, open_scanned_resource) }
+    it { should be_able_to(:color_pdf, open_scanned_resource) }
+    it { should be_able_to(:flag, open_scanned_resource) }
+    it { should be_able_to(:flag, private_scanned_resource) }
     it { should be_able_to(:file_manager, open_scanned_resource) }
+    it { should be_able_to(:file_manager, open_multi_volume_work) }
     it { should be_able_to(:save_structure, open_scanned_resource) }
     it { should be_able_to(:update, open_scanned_resource) }
 
@@ -155,9 +176,6 @@ describe Ability do
     let(:creating_user) { image_editor }
     let(:current_user) { fulfiller }
     it { should be_able_to(:read, open_scanned_resource) }
-    it { should be_able_to(:manifest, open_scanned_resource) }
-    it { should be_able_to(:pdf, open_scanned_resource) }
-    it { should be_able_to(:flag, open_scanned_resource) }
     it { should be_able_to(:read, campus_only_scanned_resource) }
     it { should be_able_to(:read, private_scanned_resource) }
     it { should be_able_to(:read, pending_scanned_resource) }
@@ -166,9 +184,14 @@ describe Ability do
     it { should be_able_to(:read, complete_scanned_resource) }
     it { should be_able_to(:read, takedown_scanned_resource) }
     it { should be_able_to(:read, flagged_scanned_resource) }
+    it { should be_able_to(:manifest, open_scanned_resource) }
+    it { should be_able_to(:pdf, open_scanned_resource) }
+    it { should be_able_to(:flag, open_scanned_resource) }
+    it { should be_able_to(:flag, private_scanned_resource) }
     it { should be_able_to(:download, image_editor_file) }
 
     it { should_not be_able_to(:file_manager, open_scanned_resource) }
+    it { should_not be_able_to(:file_manager, open_multi_volume_work) }
     it { should_not be_able_to(:save_structure, open_scanned_resource) }
     it { should_not be_able_to(:update, open_scanned_resource) }
     it { should_not be_able_to(:create, ScannedResource.new) }
@@ -186,9 +209,6 @@ describe Ability do
     let(:creating_user) { image_editor }
     let(:current_user) { curator }
     it { should be_able_to(:read, open_scanned_resource) }
-    it { should be_able_to(:manifest, open_scanned_resource) }
-    it { should be_able_to(:pdf, open_scanned_resource) }
-    it { should be_able_to(:flag, open_scanned_resource) }
     it { should be_able_to(:read, campus_only_scanned_resource) }
     it { should be_able_to(:read, private_scanned_resource) }
     it { should be_able_to(:read, metadata_review_scanned_resource) }
@@ -196,10 +216,14 @@ describe Ability do
     it { should be_able_to(:read, complete_scanned_resource) }
     it { should be_able_to(:read, takedown_scanned_resource) }
     it { should be_able_to(:read, flagged_scanned_resource) }
+    it { should be_able_to(:manifest, open_scanned_resource) }
+    it { should be_able_to(:pdf, open_scanned_resource) }
+    it { should be_able_to(:flag, open_scanned_resource) }
 
     it { should_not be_able_to(:read, pending_scanned_resource) }
     it { should_not be_able_to(:download, image_editor_file) }
     it { should_not be_able_to(:file_manager, open_scanned_resource) }
+    it { should_not be_able_to(:file_manager, open_multi_volume_work) }
     it { should_not be_able_to(:save_structure, open_scanned_resource) }
     it { should_not be_able_to(:update, open_scanned_resource) }
     it { should_not be_able_to(:create, ScannedResource.new) }
@@ -217,12 +241,20 @@ describe Ability do
     let(:creating_user) { FactoryGirl.create(:image_editor) }
     let(:current_user) { campus_user }
     it { should be_able_to(:read, open_scanned_resource) }
-    it { should be_able_to(:manifest, open_scanned_resource) }
-    it { should be_able_to(:pdf, open_scanned_resource) }
-    it { should be_able_to(:flag, open_scanned_resource) }
     it { should be_able_to(:read, campus_only_scanned_resource) }
     it { should be_able_to(:read, complete_scanned_resource) }
     it { should be_able_to(:read, flagged_scanned_resource) }
+    it { should be_able_to(:manifest, open_scanned_resource) }
+    it { should be_able_to(:manifest, campus_only_scanned_resource) }
+    it { should be_able_to(:manifest, complete_scanned_resource) }
+    it { should be_able_to(:manifest, flagged_scanned_resource) }
+    it { should be_able_to(:pdf, open_scanned_resource) }
+    it { should be_able_to(:pdf, campus_only_scanned_resource) }
+    it { should be_able_to(:pdf, complete_scanned_resource) }
+    it { should be_able_to(:pdf, flagged_scanned_resource) }
+    it { should be_able_to(:flag, open_scanned_resource) }
+    it { should be_able_to(:flag, campus_only_scanned_resource) }
+    it { should be_able_to(:flag, complete_scanned_resource) }
 
     it { should_not be_able_to(:read, private_scanned_resource) }
     it { should_not be_able_to(:read, pending_scanned_resource) }
@@ -231,6 +263,7 @@ describe Ability do
     it { should_not be_able_to(:read, takedown_scanned_resource) }
     it { should_not be_able_to(:download, image_editor_file) }
     it { should_not be_able_to(:file_manager, open_scanned_resource) }
+    it { should_not be_able_to(:file_manager, open_multi_volume_work) }
     it { should_not be_able_to(:save_structure, open_scanned_resource) }
     it { should_not be_able_to(:update, open_scanned_resource) }
     it { should_not be_able_to(:create, ScannedResource.new) }
@@ -257,7 +290,9 @@ describe Ability do
     it { should be_able_to(:manifest, open_scanned_resource) }
     it { should be_able_to(:pdf, open_scanned_resource) }
     it { should be_able_to(:read, complete_scanned_resource) }
+    it { should be_able_to(:manifest, complete_scanned_resource) }
     it { should be_able_to(:read, flagged_scanned_resource) }
+    it { should be_able_to(:manifest, flagged_scanned_resource) }
     it { should be_able_to(:color_pdf, color_enabled_resource) }
 
     it { should_not be_able_to(:pdf, no_pdf_scanned_resource) }
@@ -270,6 +305,7 @@ describe Ability do
     it { should_not be_able_to(:read, takedown_scanned_resource) }
     it { should_not be_able_to(:download, image_editor_file) }
     it { should_not be_able_to(:file_manager, open_scanned_resource) }
+    it { should_not be_able_to(:file_manager, open_multi_volume_work) }
     it { should_not be_able_to(:save_structure, open_scanned_resource) }
     it { should_not be_able_to(:update, open_scanned_resource) }
     it { should_not be_able_to(:create, ScannedResource.new) }
