@@ -10,7 +10,7 @@ GIT
 
 GIT
   remote: git://github.com/projecthydra-labs/browse-everything.git
-  revision: 96dfa132d71c260c04b63120db3475413a041307
+  revision: 344433d31bc6dd0f198a4930363b822d4d850b8b
   specs:
     browse-everything (0.10.4)
       bootstrap-sass
@@ -26,7 +26,7 @@ GIT
 
 GIT
   remote: git://github.com/projecthydra-labs/curation_concerns.git
-  revision: 4c3329d25bfee43107515c22074089c0e8975d72
+  revision: c2fca95e3a5146864543cd633ecf745c692e9fd7
   branch: member_of_replace
   specs:
     curation_concerns (1.5.0)
@@ -42,7 +42,7 @@ GIT
       hydra-editor (>= 2, < 4)
       hydra-head (>= 10.0.0, < 11)
       hydra-pcdm (~> 0.9.0)
-      hydra-works (>= 0.12.0)
+      hydra-works (>= 0.14.0)
       jquery-ui-rails
       kaminari_route_prefix (~> 0.0.1)
       qa (~> 0.5)
@@ -65,36 +65,22 @@ GIT
 
 GIT
   remote: git://github.com/projecthydra-labs/hydra-works.git
-  revision: 9790d224a713d60ae92849691b52e79689f6c3c7
+  revision: d41be82540eca9d3a76301df3dcea5b74c9d5937
   branch: master
   specs:
-    hydra-works (0.12.0)
+    hydra-works (0.14.0)
       hydra-derivatives (~> 3.0)
       hydra-file_characterization (~> 0.3, >= 0.3.3)
       hydra-pcdm (>= 0.8)
       om (~> 3.1)
 
 GIT
-  remote: git://github.com/projecthydra/active_fedora.git
-  revision: a7a5364b54e15a6eae20aa13a9b58175911bd126
-  branch: master
-  specs:
-    active-fedora (11.0.0.rc7)
-      active-triples (~> 0.10.0)
-      activemodel (>= 4.2, < 6)
-      activesupport (>= 4.2.4, < 6)
-      deprecation
-      ldp (~> 0.6.0)
-      rsolr (~> 1.1, >= 1.1.2)
-      solrizer (~> 3.4)
-
-GIT
   remote: git://github.com/projecthydra/hydra-derivatives.git
-  revision: 26d2a6f46d740da68f7ecab62c1010603451838d
+  revision: 8098a1b32144f692e47d99c36e48142c97254c3e
   branch: master
   specs:
-    hydra-derivatives (3.1.2)
-      active-fedora (>= 9.0, < 11)
+    hydra-derivatives (3.1.3)
+      active-fedora (>= 9.0, < 12)
       activesupport (>= 4.0, < 6)
       deprecation
       mime-types (> 2.0, < 4.0)
@@ -147,6 +133,14 @@ GEM
       erubis (~> 2.7.0)
       rails-dom-testing (~> 1.0, >= 1.0.5)
       rails-html-sanitizer (~> 1.0, >= 1.0.2)
+    active-fedora (11.0.0.rc7)
+      active-triples (~> 0.10.0)
+      activemodel (>= 4.2, < 6)
+      activesupport (>= 4.2.4, < 6)
+      deprecation
+      ldp (~> 0.6.0)
+      rsolr (~> 1.0, >= 1.0.10)
+      solrizer (~> 3.4)
     active-triples (0.10.2)
       activemodel (>= 3.0.0)
       activesupport (>= 3.0.0)
@@ -155,8 +149,8 @@ GEM
     active_attr (0.9.0)
       activemodel (>= 3.0.2, < 5.1)
       activesupport (>= 3.0.2, < 5.1)
-    active_fedora-noid (2.0.0.beta2)
-      active-fedora (>= 9.7, < 11)
+    active_fedora-noid (2.0.0.beta3)
+      active-fedora (>= 9.7, < 12)
       noid (~> 0.9)
       rails (>= 4.2.6, < 6)
     activejob (4.2.7.1)
@@ -191,7 +185,7 @@ GEM
       addressable (>= 2.3.1)
       extlib (>= 0.9.15)
       multi_json (>= 1.0.0)
-    autoprefixer-rails (6.4.0.3)
+    autoprefixer-rails (6.4.1.1)
       execjs
     awesome_nested_set (3.1.1)
       activerecord (>= 4.0.0, < 5.1)
@@ -202,7 +196,7 @@ GEM
     bcrypt (3.1.11)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
-    blacklight (6.5.0)
+    blacklight (6.6.1)
       bootstrap-sass (~> 3.2)
       deprecation
       globalid
@@ -238,12 +232,12 @@ GEM
       sshkit (~> 1.2)
     capistrano-passenger (0.2.0)
       capistrano (~> 3.0)
-    capistrano-rails (1.1.7)
+    capistrano-rails (1.1.8)
       capistrano (~> 3.1)
       capistrano-bundler (~> 1.1)
     capistrano-rails-console (1.0.2)
       capistrano (>= 3.1.0, < 4.0.0)
-    capybara (2.8.0)
+    capybara (2.8.1)
       addressable
       mime-types (>= 1.16)
       nokogiri (>= 1.3.3)
@@ -284,7 +278,7 @@ GEM
       devise
     diff-lcs (1.2.5)
     docile (1.1.5)
-    domain_name (0.5.20160615)
+    domain_name (0.5.20160826)
       unf (>= 0.0.5, < 1.0.0)
     dropbox-sdk (1.6.5)
       json
@@ -303,7 +297,7 @@ GEM
       railties (>= 3.0.0)
     faraday (0.9.2)
       multipart-post (>= 1.2, < 3)
-    fcrepo_wrapper (0.5.2)
+    fcrepo_wrapper (0.6.0)
       ruby-progressbar
     font-awesome-rails (4.6.3.1)
       railties (>= 3.2, < 5.1)
@@ -347,15 +341,15 @@ GEM
     http_logger (0.5.1)
     httparty (0.14.0)
       multi_xml (>= 0.5.2)
-    hydra-access-controls (10.2.0)
+    hydra-access-controls (10.3.0)
       active-fedora (>= 10.0.0, < 12)
       activesupport (>= 4, < 6)
       blacklight (>= 5.16)
-      blacklight-access_controls (~> 0.5)
+      blacklight-access_controls (~> 0.6)
       cancancan (~> 1.8)
       deprecation (~> 1.0)
-    hydra-core (10.2.0)
-      hydra-access-controls (= 10.2.0)
+    hydra-core (10.3.0)
+      hydra-access-controls (= 10.3.0)
       railties (>= 4.0.0, < 6)
     hydra-editor (3.1.0)
       active-fedora (>= 9.0.0)
@@ -366,9 +360,9 @@ GEM
       sprockets-es6
     hydra-file_characterization (0.3.3)
       activesupport (>= 3.0.0)
-    hydra-head (10.2.0)
-      hydra-access-controls (= 10.2.0)
-      hydra-core (= 10.2.0)
+    hydra-head (10.3.0)
+      hydra-access-controls (= 10.3.0)
+      hydra-core (= 10.3.0)
       rails (>= 3.2.6)
     hydra-role-management (0.2.2)
       blacklight
@@ -376,9 +370,9 @@ GEM
       cancancan
     i18n (0.7.0)
     iso-639 (0.2.8)
-    jasmine-core (2.4.1)
+    jasmine-core (2.5.1)
     jasmine-jquery-rails (2.0.3)
-    jasmine-rails (0.12.6)
+    jasmine-rails (0.13.0)
       jasmine-core (>= 1.3, < 3.0)
       phantomjs (>= 1.9)
       railties (>= 3.2.0)
@@ -426,9 +420,9 @@ GEM
     marc (1.0.0)
       scrub_rb (>= 1.0.1, < 2)
       unf
-    memoist (0.14.0)
+    memoist (0.15.0)
     method_source (0.8.2)
-    mime-types (2.99.2)
+    mime-types (2.99.3)
     mimemagic (0.3.2)
     mini_magick (4.5.1)
     mini_portile (0.6.2)
@@ -441,7 +435,7 @@ GEM
       net-ssh (>= 2.6.5)
     net-ssh (3.2.0)
     netrc (0.11.0)
-    newrelic_rpm (3.16.1.320)
+    newrelic_rpm (3.16.2.321)
     noid (0.9.0)
     nokogiri (1.6.6.4)
       mini_portile (~> 0.6.0)
@@ -559,7 +553,7 @@ GEM
     retriable (1.4.1)
     rsolr (1.1.2)
       builder (>= 2.1.2)
-    rspec-core (3.5.2)
+    rspec-core (3.5.3)
       rspec-support (~> 3.5.0)
     rspec-expectations (3.5.0)
       diff-lcs (>= 1.2.0, < 2.0)
@@ -567,7 +561,7 @@ GEM
     rspec-mocks (3.5.0)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.5.0)
-    rspec-rails (3.5.1)
+    rspec-rails (3.5.2)
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       railties (>= 3.0)
@@ -588,7 +582,7 @@ GEM
       json
       multipart-post
       oauth2
-    ruby-prof (0.15.9)
+    ruby-prof (0.16.2)
     ruby-progressbar (1.8.1)
     ruby-rc4 (0.1.5)
     rubyzip (1.2.0)
@@ -604,11 +598,11 @@ GEM
     sdoc (0.4.1)
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
-    sidekiq (4.1.4)
+    sidekiq (4.2.0)
       concurrent-ruby (~> 1.0)
       connection_pool (~> 2.2, >= 2.2.0)
+      rack-protection (~> 1.5)
       redis (~> 3.2, >= 3.2.1)
-      sinatra (>= 1.4.7)
     signet (0.7.3)
       addressable (~> 2.3)
       faraday (~> 0.9)
@@ -632,7 +626,7 @@ GEM
       httparty (>= 0.11.0)
       oauth2 (>= 0.9.2)
     slop (3.6.0)
-    solr_wrapper (0.13.2)
+    solr_wrapper (0.18.0)
       faraday
       ruby-progressbar
       rubyzip
@@ -675,7 +669,7 @@ GEM
       railties (>= 3.1)
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
-    uglifier (3.0.1)
+    uglifier (3.0.2)
       execjs (>= 0.3.0, < 3)
     unf (0.1.4)
       unf_ext
@@ -701,7 +695,8 @@ PLATFORMS
 
 DEPENDENCIES
   aasm
-  active-fedora!
+  active-fedora (= 11.0.0.rc7)
+  active-triples (~> 0.10.0)
   arabic-letter-connector
   browse-everything!
   bunny
@@ -717,7 +712,7 @@ DEPENDENCIES
   devise-guests (~> 0.3)
   ezid-client
   factory_girl_rails
-  fcrepo_wrapper (~> 0.5.0)
+  fcrepo_wrapper (~> 0.6.0)
   hydra-derivatives!
   hydra-pcdm!
   hydra-role-management (~> 0.2.0)
@@ -756,7 +751,7 @@ DEPENDENCIES
   sidekiq
   simplecov (~> 0.9)
   sinatra
-  solr_wrapper (~> 0.13.0)
+  solr_wrapper (~> 0.18.0)
   spring
   sprockets (~> 3.5.0)
   sprockets-es6
@@ -769,4 +764,4 @@ DEPENDENCIES
   webmock (~> 1.0)
 
 BUNDLED WITH
-   1.12.5
+   1.12.3
