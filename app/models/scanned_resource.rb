@@ -4,7 +4,6 @@ class ScannedResource < ActiveFedora::Base
   include ::CurationConcerns::WorkBehavior
   include ::CurationConcerns::BasicMetadata
   include ::CommonMetadata
-  include ::NoidBehaviors
   include ::StructuralMetadata
   include ::HasPendingUploads
   include ::CollectionIndexing

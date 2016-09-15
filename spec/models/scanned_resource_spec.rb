@@ -145,6 +145,10 @@ describe ScannedResource do
       noid_service = ActiveFedora::Noid::Service.new
       expect(noid_service.valid? subject.id).to be_truthy
     end
+    it "generates an ID which starts with the environment's first letter" do
+      expect { subject.save }.to_not raise_error
+      expect(subject.id.first).to eq "t"
+    end
   end
 
   describe "#viewing_direction" do
