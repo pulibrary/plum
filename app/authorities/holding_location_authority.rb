@@ -1,5 +1,4 @@
 class HoldingLocationAuthority
-
   def all
     digital_locations
   end
