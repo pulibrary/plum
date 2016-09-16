@@ -133,15 +133,15 @@ GEM
       erubis (~> 2.7.0)
       rails-dom-testing (~> 1.0, >= 1.0.5)
       rails-html-sanitizer (~> 1.0, >= 1.0.2)
-    active-fedora (11.0.0.rc7)
-      active-triples (~> 0.10.0)
+    active-fedora (11.0.1)
+      active-triples (~> 0.11.0)
       activemodel (>= 4.2, < 6)
       activesupport (>= 4.2.4, < 6)
       deprecation
       ldp (~> 0.6.0)
-      rsolr (~> 1.0, >= 1.0.10)
+      rsolr (~> 1.1, >= 1.1.2)
       solrizer (~> 3.4)
-    active-triples (0.10.2)
+    active-triples (0.11.0)
       activemodel (>= 3.0.0)
       activesupport (>= 3.0.0)
       rdf (~> 2.0, >= 2.0.2)
@@ -695,8 +695,8 @@ PLATFORMS
 
 DEPENDENCIES
   aasm
-  active-fedora (= 11.0.0.rc7)
-  active-triples (~> 0.10.0)
+  active-fedora (~> 11.0.1)
+  active-triples (~> 0.11.0)
   arabic-letter-connector
   browse-everything!
   bunny
@@ -764,4 +764,4 @@ DEPENDENCIES
   webmock (~> 1.0)
 
 BUNDLED WITH
-   1.12.3
+   1.12.5

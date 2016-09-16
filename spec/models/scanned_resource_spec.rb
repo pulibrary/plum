@@ -68,6 +68,13 @@ describe ScannedResource do
     end
   end
 
+  describe "language-tagged literals" do
+    it "can persist them" do
+      subject.title = [RDF::Literal.new("Test", language: :fr)]
+      expect { subject.save }.not_to raise_error
+    end
+  end
+
   describe '#rights_statement' do
     it "sets rights_statement" do
       nkc = 'http://rightsstatements.org/vocab/NKC/1.0/'
