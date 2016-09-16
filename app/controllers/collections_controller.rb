@@ -2,6 +2,7 @@ class CollectionsController < ApplicationController
   include CurationConcerns::CollectionsControllerBehavior
   skip_load_and_authorize_resource only: :index_manifest
   skip_action_callback :authenticate_user!, only: [:index_manifest, :manifest]
+  self.presenter_class = WorkSearchBuilder
 
   def form_class
     CollectionEditForm
@@ -35,9 +36,5 @@ class CollectionsController < ApplicationController
 
     def all_manifests_builder
       AllCollectionsManifestBuilder.new(nil, ability: current_ability, ssl: request.ssl?)
-    end
-
-    def collection_search_builder_class
-      WorkSearchBuilder
     end
 end

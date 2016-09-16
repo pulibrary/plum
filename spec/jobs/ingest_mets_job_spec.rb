@@ -76,7 +76,7 @@ RSpec.describe IngestMETSJob do
     let(:mets_file) { Rails.root.join("spec", "fixtures", "pudl0001-4612596.mets") }
     let(:tiff_file) { Rails.root.join("spec", "fixtures", "files", "color.tif") }
     let(:mime_type) { 'image/tiff' }
-    let(:file) { IoDecorator.new(tiff_file, mime_type, File.basename(tiff_file)) }
+    let(:file) { IoDecorator.new(File.new(tiff_file), mime_type, File.basename(tiff_file)) }
     let(:resource) { ScannedResource.new }
     let(:fileset1) { FileSet.new }
     let(:fileset2) { FileSet.new }
