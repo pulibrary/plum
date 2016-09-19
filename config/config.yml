@@ -1,5 +1,5 @@
 defaults: &defaults
-  locations_url: https://bibdata.princeton.edu/locations/digital_locations.json # FIXME: find IU equivalent link
+  locations_url: https://bibdata.princeton.edu/locations/digital_locations.json # FIXME: find IU equivalent link; currently replaced with config/digital_locations.yml
   notifier_email_address: pumpkin@iu.edu
   iiif_url: <%= ENV["PLUM_IIIF_URL"] || "http://192.168.99.100:5004" %>
   jp2_recipes:

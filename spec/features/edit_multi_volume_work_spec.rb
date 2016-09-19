@@ -8,7 +8,7 @@ RSpec.feature "MultiVolumeWorksController", type: :feature do
     sign_in user
   end
 
-  scenario "Logged in user can follow link to edit multi-volume work", vcr: { cassette_name: "locations" } do
+  scenario "Logged in user can follow link to edit multi-volume work" do
     visit polymorphic_path [multi_volume_work]
     click_link 'Edit This Multi Volume Work'
     expect(page).to have_text('Manage Your Work')
@@ -30,7 +30,7 @@ RSpec.feature "MultiVolumeWorksController", type: :feature do
     expect(page).to have_selector("span.label-info", text: "Metadata Review")
   end
 
-  scenario "User can create a new scanned resource attached to the multi-volume work", vcr: { cassette_name: "locations" } do
+  scenario "User can create a new scanned resource attached to the multi-volume work" do
     visit polymorphic_path [multi_volume_work]
     expect(page).to have_text('This Multi Volume Work has no members associated with it.')
 

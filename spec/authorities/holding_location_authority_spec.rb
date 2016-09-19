@@ -2,41 +2,29 @@ require 'rails_helper'
 
 RSpec.describe HoldingLocationAuthority do
   subject { described_class.new }
-  let(:json) {
-    '[{
-      "label":"Plasma Physics Library",
-      "phone_number":"609-243-3565",
-      "contact_email":"ppllib@princeton.edu",
-      "url":"https://bibdata.princeton.edu/locations/delivery_locations/1.json"
-    },{
-      "label":"Architecture Library",
-      "phone_number":"609-258-3256",
-      "contact_email":"ues@princeton.edu",
-      "url":"https://bibdata.princeton.edu/locations/delivery_locations/3.json"
-    }]'
-  }
   let(:id) { 'https://bibdata.princeton.edu/locations/delivery_locations/3' }
   let(:obj) {
     {
-      label: "Architecture Library",
-      phone_number: "609-258-3256",
-      contact_email: "ues@princeton.edu",
-      url: "https://bibdata.princeton.edu/locations/delivery_locations/3.json",
-      id: "https://bibdata.princeton.edu/locations/delivery_locations/3"
+      "label" => "Architecture Library",
+      "address" => "School of Architecture Building, Second Floor Princeton, NJ 08544",
+      "phone_number" => "609-258-3256",
+      "contact_email" => "ues@princeton.edu",
+      "gfa_pickup" => "PW",
+      "staff_only" => false,
+      "pickup_location" => true,
+      "digital_location" => true,
+      "url" => "https://bibdata.princeton.edu/locations/delivery_locations/3.json",
+      "library" => { "label" => "Architecture Library", "code" => "architecture" },
+      "id" => "https://bibdata.princeton.edu/locations/delivery_locations/3"
     }
   }
-
-  before do
-    allow(subject).to receive(:get_json).and_return(JSON.parse(json))
-  end
-
   context "with data" do
     it "finds a holding location by id" do
       expect(subject.find(id)).to eq(obj.stringify_keys)
     end
 
     it "lists all of the holding locations" do
-      expect(subject.all.length).to eq(2)
+      expect(subject.all.length).to eq(11)
       expect(subject.all).to include(obj.stringify_keys)
     end
   end

@@ -1,0 +1,151 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://dlib.indiana.edu:9000/iucatextract?maximumRecords=1&operation=searchRetrieve&query=cql.serverChoice=VAD5427&recordSchema=marcxml&version=1.1
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.9.2
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Length:
+      - '5067'
+      Server:
+      - YAZ/3.0.44
+      Content-Type:
+      - text/xml
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0"?>
+        <zs:searchRetrieveResponse xmlns:zs="http://www.loc.gov/zing/srw/"><zs:version>1.1</zs:version><zs:numberOfRecords>1</zs:numberOfRecords><zs:records><zs:record><zs:recordSchema>info:srw/schema/1/marcxml-v1.1</zs:recordSchema><zs:recordPacking>xml</zs:recordPacking><zs:recordData><record xmlns="http://www.loc.gov/MARC21/slim">
+        <!-- Length implementation at offset 22 should hold a digit. Assuming 0 -->
+          <leader>01340 cm a2200361I  4500</leader>
+          <controlfield tag="001">ocm05815912</controlfield>
+          <controlfield tag="003">OCoLC</controlfield>
+          <controlfield tag="005">20150409175040.8</controlfield>
+          <controlfield tag="008">791220nuuuuuuuunyuzza         n    ger d</controlfield>
+          <datafield tag="035" ind1=" " ind2=" ">
+            <subfield code="a">(OCoLC)ocm05815912</subfield>
+          </datafield>
+          <datafield tag="035" ind1=" " ind2=" ">
+            <subfield code="a">(OCoLC)5815912</subfield>
+          </datafield>
+          <datafield tag="040" ind1=" " ind2=" ">
+            <subfield code="a">ION</subfield>
+            <subfield code="b">eng</subfield>
+            <subfield code="c">ION</subfield>
+            <subfield code="d">OCL</subfield>
+            <subfield code="d">OCLCQ</subfield>
+            <subfield code="d">OCLCG</subfield>
+            <subfield code="d">TXJ</subfield>
+            <subfield code="d">RES</subfield>
+            <subfield code="d">OCLCQ</subfield>
+            <subfield code="d">OCLCA</subfield>
+            <subfield code="d">OCLCF</subfield>
+            <subfield code="d">OCLCO</subfield>
+            <subfield code="d">OCLCQ</subfield>
+          </datafield>
+          <datafield tag="041" ind1="1" ind2=" ">
+            <subfield code="a">ger</subfield>
+            <subfield code="h">eng</subfield>
+          </datafield>
+          <datafield tag="048" ind1=" " ind2=" ">
+            <subfield code="a">oa01</subfield>
+          </datafield>
+          <datafield tag="050" ind1="1" ind2="4">
+            <subfield code="a">M1510.M53</subfield>
+            <subfield code="b">S6</subfield>
+          </datafield>
+          <datafield tag="049" ind1=" " ind2=" ">
+            <subfield code="a">IULA</subfield>
+          </datafield>
+          <datafield tag="100" ind1="1" ind2=" ">
+            <subfield code="a">Mendelssohn-Bartholdy, Felix,</subfield>
+            <subfield code="d">1809-1847.</subfield>
+          </datafield>
+          <datafield tag="240" ind1="1" ind2="0">
+            <subfield code="a">Sommernachtstraum.</subfield>
+            <subfield code="l">English &amp; German</subfield>
+          </datafield>
+          <datafield tag="245" ind1="1" ind2="2">
+            <subfield code="a">A midsummer night's dream,</subfield>
+            <subfield code="b">op. 61.</subfield>
+          </datafield>
+          <datafield tag="260" ind1=" " ind2=" ">
+            <subfield code="a">New York,</subfield>
+            <subfield code="b">Kalmus,</subfield>
+            <subfield code="c">[date of publication not identified]</subfield>
+          </datafield>
+          <datafield tag="300" ind1=" " ind2=" ">
+            <subfield code="a">1 score (174 pages).</subfield>
+            <subfield code="c">33 cm.</subfield>
+          </datafield>
+          <datafield tag="336" ind1=" " ind2=" ">
+            <subfield code="a">notated music</subfield>
+            <subfield code="b">ntm</subfield>
+            <subfield code="2">rdacontent</subfield>
+          </datafield>
+          <datafield tag="337" ind1=" " ind2=" ">
+            <subfield code="a">unmediated</subfield>
+            <subfield code="b">n</subfield>
+            <subfield code="2">rdamedia</subfield>
+          </datafield>
+          <datafield tag="338" ind1=" " ind2=" ">
+            <subfield code="a">volume</subfield>
+            <subfield code="b">nc</subfield>
+            <subfield code="2">rdacarrier</subfield>
+          </datafield>
+          <datafield tag="490" ind1="0" ind2=" ">
+            <subfield code="a">Kalmus orchestra library</subfield>
+          </datafield>
+          <datafield tag="500" ind1=" " ind2=" ">
+            <subfield code="a">Incidental music to the play by William Shakespeare.</subfield>
+          </datafield>
+          <datafield tag="500" ind1=" " ind2=" ">
+            <subfield code="a">German words with English underlay.</subfield>
+          </datafield>
+          <datafield tag="650" ind1=" " ind2="0">
+            <subfield code="a">Incidental music</subfield>
+            <subfield code="v">Scores.</subfield>
+          </datafield>
+          <datafield tag="700" ind1="1" ind2=" ">
+            <subfield code="a">Shakespeare, William,</subfield>
+            <subfield code="d">1564-1616.</subfield>
+          </datafield>
+          <datafield tag="856" ind1="4" ind2="1">
+            <subfield code="a">Bloomington</subfield>
+            <subfield code="u">http://purl.dlib.indiana.edu/iudl/variations/score/VAD5427</subfield>
+            <subfield code="z">Available to authorized users of the Variations System</subfield>
+          </datafield>
+          <datafield tag="596" ind1=" " ind2=" ">
+            <subfield code="a">20</subfield>
+          </datafield>
+          <datafield tag="926" ind1=" " ind2=" ">
+            <subfield code="a">B-MUSIC</subfield>
+            <subfield code="b">STACKS</subfield>
+            <subfield code="c">M1510.M53 S6 K22</subfield>
+            <subfield code="d">NORMAL</subfield>
+            <subfield code="f">1</subfield>
+          </datafield>
+          <datafield tag="926" ind1=" " ind2=" ">
+            <subfield code="a">B-MUSIC</subfield>
+            <subfield code="b">_MUVARIA</subfield>
+            <subfield code="c"/>
+            <subfield code="d">NONCIRC</subfield>
+            <subfield code="f">1</subfield>
+          </datafield>
+        </record></zs:recordData><zs:recordPosition>1</zs:recordPosition></zs:record></zs:records></zs:searchRetrieveResponse>
+    http_version: 
+  recorded_at: Wed, 07 Sep 2016 19:08:01 GMT
+recorded_with: VCR 2.9.3

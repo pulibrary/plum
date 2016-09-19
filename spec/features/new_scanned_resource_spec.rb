@@ -8,7 +8,7 @@ RSpec.feature "ScannedResourcesController", type: :feature do
       sign_in user
     end
 
-    scenario "Logged in user can create a new scanned resource", vcr: { cassette_name: "locations" } do
+    scenario "Logged in user can create a new scanned resource" do
       visit new_polymorphic_path [ScannedResource]
       expect(page).to_not have_selector("label.label-warning", text: "Pending")
 

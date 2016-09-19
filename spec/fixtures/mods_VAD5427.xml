@@ -1,0 +1,68 @@
+<mods xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.loc.gov/mods/v3" version="3.2" xsi:schemaLocation="http://www.loc.gov/mods/v3 http://www.loc.gov/standards/mods/v3/mods-3-2.xsd">
+  <titleInfo>
+    <nonSort>A </nonSort>
+    <title>midsummer night's dream</title>
+    <subTitle>op. 61</subTitle>
+  </titleInfo>
+  <titleInfo type="uniform">
+    <title>Sommernachtstraum. English &amp; German</title>
+  </titleInfo>
+  <name type="personal">
+    <namePart>Mendelssohn-Bartholdy, Felix</namePart>
+    <namePart type="date">1809-1847</namePart>
+    <role>
+      <roleTerm authority="marcrelator" type="text">creator</roleTerm>
+    </role>
+  </name>
+  <name type="personal">
+    <namePart>Shakespeare, William</namePart>
+    <namePart type="date">1564-1616</namePart>
+  </name>
+  <typeOfResource>notated music</typeOfResource>
+  <originInfo>
+    <place>
+      <placeTerm type="code" authority="marccountry">nyu</placeTerm>
+    </place>
+    <place>
+      <placeTerm type="text">New York</placeTerm>
+    </place>
+    <publisher>Kalmus</publisher>
+    <dateIssued>[date of publication not identified]</dateIssued>
+    <issuance>monographic</issuance>
+  </originInfo>
+  <language>
+    <languageTerm authority="iso639-2b" type="code">ger</languageTerm>
+  </language>
+  <language objectPart="translation">
+    <languageTerm authority="iso639-2b" type="code">eng</languageTerm>
+  </language>
+  <physicalDescription>
+    <form authority="marcform">print</form>
+    <extent>1 score (174 pages). 33 cm.</extent>
+  </physicalDescription>
+  <note>Incidental music to the play by William Shakespeare.</note>
+  <note>German words with English underlay.</note>
+  <subject authority="lcsh">
+    <topic>Incidental music</topic>
+    <genre>Scores</genre>
+  </subject>
+  <classification authority="lcc">M1510.M53 S6</classification>
+  <relatedItem type="series">
+    <titleInfo>
+      <title>Kalmus orchestra library</title>
+    </titleInfo>
+  </relatedItem>
+  <identifier type="uri">http://purl.dlib.indiana.edu/iudl/variations/score/VAD5427</identifier>
+  <location>
+    <url usage="primary display" note="Available to authorized users of the Variations System">http://purl.dlib.indiana.edu/iudl/variations/score/VAD5427</url>
+  </location>
+  <recordInfo>
+    <recordContentSource authority="marcorg">ION</recordContentSource>
+    <recordCreationDate encoding="marc">791220</recordCreationDate>
+    <recordChangeDate encoding="iso8601">20150409175040.8</recordChangeDate>
+    <recordIdentifier source="OCoLC">ocm05815912</recordIdentifier>
+    <languageOfCataloging>
+      <languageTerm authority="iso639-2b" type="code">eng</languageTerm>
+    </languageOfCataloging>
+  </recordInfo>
+</mods>

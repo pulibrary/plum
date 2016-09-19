@@ -13,6 +13,9 @@ AllCops:
     - 'bin/*'
     - 'config/deploy.rb'
 
+Rails:
+  Enabled: true
+
 Lint/UnusedBlockArgument:
   Exclude:
     - 'config/initializers/hydra_config.rb'

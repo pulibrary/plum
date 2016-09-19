@@ -33,20 +33,20 @@ RSpec.describe IngestMETSJob do
       allow_any_instance_of(ScannedResource).to receive(:save!)
     end
 
-    it "ingests a mets file", vcr: { cassette_name: 'bibdata-4612596' } do
+    it "ingests a mets file", vcr: { cassette_name: 'bibdata-bhr9405' } do
       expect(actor1).to receive(:attach_related_object).with(resource1)
       expect(actor1).to receive(:attach_content).with(instance_of(File))
       expect(actor2).to receive(:create_metadata).with(resource1, {})
       expect(actor2).to receive(:create_content).with(file)
       described_class.perform_now(mets_file, user)
-      expect(resource1.title).to eq(["Ars minor [fragment]."])
+      expect(resource1.title).to eq(["Fontane di Roma ; poema sinfonico per orchestra"])
       expect(resource1.thumbnail_id).to eq('file1')
       expect(resource1.viewing_direction).to eq('left-to-right')
       expect(resource1.state).to eq('final_review')
       expect(resource1.visibility).to eq(Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PUBLIC)
     end
 
-    it "ingests a right-to-left mets file", vcr: { cassette_name: 'bibdata-4790889' } do
+    it "ingests a right-to-left mets file", vcr: { cassette_name: 'bibdata-bhr9405' } do
       allow(actor1).to receive(:attach_related_object)
       allow(actor1).to receive(:attach_content)
       allow(actor2).to receive(:create_metadata)
@@ -55,7 +55,7 @@ RSpec.describe IngestMETSJob do
       expect(resource1.viewing_direction).to eq('right-to-left')
     end
 
-    it "ingests a multi-volume mets file", vcr: { cassette_name: 'bibdata-4609321' } do
+    it "ingests a multi-volume mets file", vcr: { cassette_name: 'bibdata-bhr9405' } do
       allow(actor1).to receive(:attach_related_object)
       allow(actor1).to receive(:attach_content)
       allow(actor2).to receive(:create_metadata)
@@ -98,7 +98,7 @@ RSpec.describe IngestMETSJob do
       allow(CharacterizeJob).to receive(:perform_later).and_return(true)
     end
 
-    it "ingests a mets file", vcr: { cassette_name: 'bibdata-4612596' } do
+    it "ingests a mets file", vcr: { cassette_name: 'bibdata-bhr9405' } do
       described_class.perform_now(mets_file, user, [collection.id])
       expect(resource.persisted?).to be true
       expect(resource.file_sets.length).to eq 1

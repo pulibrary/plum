@@ -20,7 +20,7 @@ describe CurationConcerns::MultiVolumeWorksController do
       it "updates the metadata" do
         post :create, multi_volume_work: multi_volume_work_attributes
         s = MultiVolumeWork.last
-        expect(s.title).to eq ['The Giant Bible of Mainz; 500th anniversary, April fourth, fourteen fifty-two, April fourth, nineteen fifty-two.']
+        expect(s.title).to eq ["The last resort : a novel"]
       end
     end
   end

@@ -1,4 +1,5 @@
 class JSONLDRecord
+  extend Forwardable
   class Factory
     attr_reader :factory
     def initialize(factory)
@@ -6,24 +7,30 @@ class JSONLDRecord
     end
 
     def retrieve(bib_id)
-      marc = PulMetadataServices::Client.retrieve(bib_id)
-      raise MissingRemoteRecordError if marc.source.end_with?("not found or suppressed")
-      JSONLDRecord.new(bib_id, marc.source, factory: factory)
+      marc = IuMetadata::Client.retrieve(bib_id, :marc)
+      mods = IuMetadata::Client.retrieve(bib_id, :mods)
+      raise MissingRemoteRecordError, 'Missing MARC record' if marc.source.blank?
+      raise MissingRemoteRecordError, 'Missing MODS record' if mods.source.blank?
+      JSONLDRecord.new(bib_id, marc, mods, factory: factory)
     end
   end
 
   class MissingRemoteRecordError < StandardError; end
 
-  attr_reader :bib_id, :marc, :factory
-  def initialize(bib_id, marc, factory: ScannedResource)
+  attr_reader :bib_id, :marc, :mods, :factory
+  def initialize(bib_id, marc, mods, factory: ScannedResource)
     @bib_id = bib_id
     @marc = marc
+    @mods = mods
     @factory = factory
   end
 
   def source
-    marc
+    marc_source
   end
+
+  def_delegator :@marc, :source, :marc_source
+  def_delegator :@mods, :source, :mods_source
 
   def attributes
     @attributes ||=
@@ -61,6 +68,17 @@ class JSONLDRecord
     end
 
     def outbound_graph
-      @outbound_graph ||= RDF::Graph.load("https://bibdata.princeton.edu/bibliographic/#{bib_id}/jsonld") # FIXME: find IU equivalent link
+      @outbound_graph ||= generate_outbound_graph
+    end
+
+    CONTEXT = YAML.load(File.read('config/context.yml'))
+
+    def generate_outbound_graph
+      jsonld_hash = {}
+      jsonld_hash['@context'] = CONTEXT["@context"]
+      jsonld_hash['@id'] = marc.id
+      jsonld_hash.merge!(marc.attributes.stringify_keys)
+      outbound_graph = RDF::Graph.new << JSON::LD::API.toRdf(jsonld_hash)
+      outbound_graph
     end
 end

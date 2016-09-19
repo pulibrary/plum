@@ -56,7 +56,7 @@ RSpec.feature 'Collections', type: :feature do
     end
   end
 
-  describe 'adding resources to collections', vcr: { cassette_name: 'locations', allow_playback_repeats: true } do
+  describe 'adding resources to collections' do
     let(:collection1) { FactoryGirl.create(:collection, title: ['Col 1']) }
     let(:collection2) { FactoryGirl.create(:collection, title: ['Col 2']) }
     let(:resource) { FactoryGirl.create(:scanned_resource) }
