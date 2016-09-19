@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<mets:mets xmlns:mets="http://www.loc.gov/METS/" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" OBJID="ark:/88435/bv73c047c" TYPE="CompiledDigitalObject" xsi:schemaLocation="http://www.loc.gov/METS/ http://www.loc.gov/standards/mets/mets.xsd">
+  <mets:metsHdr CREATEDATE="2016-03-14T14:24:54.358-04:00" LASTMODDATE="2016-03-14T14:24:54.358-04:00">
+    <mets:metsDocumentID TYPE="PUDL">pudl0032/ns73.mets</mets:metsDocumentID>
+  </mets:metsHdr>
+  <mets:dmdSec ID="mlys4">
+    <mets:mdRef LOCTYPE="URL" MDTYPE="MARC" xlink:href="https://dlib.indiana.edu/bibliographic/1002"/>
+  </mets:dmdSec>
+  <mets:dmdSec ID="wvyxo">
+    <mets:mdWrap MDTYPE="MODS">
+      <mets:xmlData>
+      <mods xmlns="http://www.loc.gov/mods/v3" version="3.2"
+            schemaLocation="http://www.loc.gov/mods/v3 http://www.loc.gov/standards/mods/v3/mods-3-2.xsd">
+         <titleInfo>
+            <title>Fontane di Roma</title>
+            <subTitle>poema sinfonico per orchestra</subTitle>
+         </titleInfo>
+         <titleInfo type="uniform">
+            <title>Fontane di Roma</title>
+         </titleInfo>
+         <name type="personal">
+            <namePart>Respighi, Ottorino</namePart>
+            <namePart type="date">1879-1936</namePart>
+            <role>
+               <roleTerm authority="marcrelator" type="text">creator</roleTerm>
+            </role>
+         </name>
+         <typeOfResource>notated music</typeOfResource>
+         <originInfo>
+            <place>
+               <placeTerm type="code" authority="marccountry">it</placeTerm>
+            </place>
+            <place>
+               <placeTerm type="text">Milano</placeTerm>
+            </place>
+            <place>
+               <placeTerm type="text">New York</placeTerm>
+            </place>
+            <publisher>G. Ricordi</publisher>
+            <dateIssued>1947, c1918</dateIssued>
+            <dateIssued encoding="marc" keyDate="yes">1947</dateIssued>
+            <issuance>monographic</issuance>
+         </originInfo>
+         <language>
+            <languageTerm authority="iso639-2b" type="code">N/A</languageTerm>
+         </language>
+         <physicalDescription>
+            <form authority="marcform">print</form>
+            <extent>1 score (64 p.) ; 32 cm.</extent>
+         </physicalDescription>
+         <tableOfContents>La fontana di Valle Giulia all'alba -- La fontana del Tritone al mattino -- La fontana di Trevi al meriggio -- La fontana di Villa Medici al tramonto.</tableOfContents>
+         <note displayLabel="statement of responsibility">di Ottorino Respighi.</note>
+         <subject authority="lcsh">
+            <topic>Symphonic poems</topic>
+            <topic>Scores</topic>
+         </subject>
+         <identifier type="music plate">P.R.206 G. Ricordi</identifier>
+         <identifier type="uri">http://purl.dlib.indiana.edu/iudl/variations/score/BHR9405</identifier>
+         <location>
+            <url usage="primary display"
+                 note="Available to authorized users of the Variations System">http://purl.dlib.indiana.edu/iudl/variations/score/BHR9405</url>
+         </location>
+         <recordInfo>
+            <recordContentSource authority="marcorg">BOS</recordContentSource>
+            <recordCreationDate encoding="marc">830420</recordCreationDate>
+            <recordIdentifier>BHR9405BM</recordIdentifier>
+         </recordInfo>
+      </mods>
+      </mets:xmlData>
+    </mets:mdWrap>
+  </mets:dmdSec>
+  <mets:fileSec>
+    <mets:fileGrp USE="thumbnail">
+      <mets:file ID="jaie2" MIMETYPE="image/tiff">
+        <mets:FLocat LOCTYPE="URL" xlink:href="file:///home/userdir/MS-METS/bhr9405/bhr9405-1-1.tif"/>
+      </mets:file>
+    </mets:fileGrp>
+    <mets:fileGrp USE="masters">
+      <mets:file CHECKSUM="aa2c70843bbd652b0a8ba426b7bc9211c547f9de" CHECKSUMTYPE="SHA-1" ID="gjpt0" MIMETYPE="image/tiff">
+        <mets:FLocat LOCTYPE="URL" xlink:href="file:///home/userdir/MS-METS/bhr9405/bhr9405-1-1.tif"/>
+      </mets:file>
+      <mets:file CHECKSUM="fa82535e33a8dc15b0b24e3cbd6323e7c974a94a" CHECKSUMTYPE="SHA-1" ID="i6wt6" MIMETYPE="image/tiff">
+        <mets:FLocat LOCTYPE="URL" xlink:href="file:///home/userdir/MS-METS/bhr9405/bhr9405-1-2.tif"/>
+      </mets:file>
+      <mets:file CHECKSUM="1ffec33048911228b4a771ec41db7cbe394a75dd" CHECKSUMTYPE="SHA-1" ID="goszd" MIMETYPE="image/tiff">
+        <mets:FLocat LOCTYPE="URL" xlink:href="file:///home/userdir/MS-METS/bhr9405/bhr9405-1-3.tif"/>
+      </mets:file>
+      <mets:file CHECKSUM="75b9361cceb1f6e55e0aefe5ad1fe9502bed7a88" CHECKSUMTYPE="SHA-1" ID="v6huf" MIMETYPE="image/tiff">
+        <mets:FLocat LOCTYPE="URL" xlink:href="file:///home/userdir/MS-METS/bhr9405/bhr9405-1-4.tif"/>
+      </mets:file>
+      <mets:file CHECKSUM="8da4ab9cfbbc3667015cf5c8b8168fac6f96c95e" CHECKSUMTYPE="SHA-1" ID="x3mmf" MIMETYPE="image/tiff">
+        <mets:FLocat LOCTYPE="URL" xlink:href="file:///home/userdir/MS-METS/bhr9405/bhr9405-1-5.tif"/>
+      </mets:file>
+      <mets:file CHECKSUM="b4aeccba14d3940dc1bb139e90b2835dfbb90aa7" CHECKSUMTYPE="SHA-1" ID="jups6" MIMETYPE="image/tiff">
+        <mets:FLocat LOCTYPE="URL" xlink:href="file:///home/userdir/MS-METS/bhr9405/bhr9405-1-6.tif"/>
+      </mets:file>
+      <mets:file CHECKSUM="63169dc49949bc19bdcefa073b0f8d2c1362397" CHECKSUMTYPE="SHA-1" ID="vx5y2" MIMETYPE="image/tiff">
+        <mets:FLocat LOCTYPE="URL" xlink:href="file:///home/userdir/MS-METS/bhr9405/bhr9405-1-7.tif"/>
+      </mets:file>
+      <mets:file CHECKSUM="33882574c2d37194804162139d6bcac9f74eab5f" CHECKSUMTYPE="SHA-1" ID="lss1c" MIMETYPE="image/tiff">
+        <mets:FLocat LOCTYPE="URL" xlink:href="file:///home/userdir/MS-METS/bhr9405/bhr9405-1-8.tif"/>
+      </mets:file>
+      <mets:file CHECKSUM="14b969c4a613e5e00428eb37ba0401784f826076" CHECKSUMTYPE="SHA-1" ID="sv600" MIMETYPE="image/tiff">
+        <mets:FLocat LOCTYPE="URL" xlink:href="file:///home/userdir/MS-METS/bhr9405/bhr9405-1-9.tif"/>
+      </mets:file>
+      <mets:file CHECKSUM="49fa156b036e8c83519351e46ffcd3ded6852dc8" CHECKSUMTYPE="SHA-1" ID="vu4ez" MIMETYPE="image/tiff">
+        <mets:FLocat LOCTYPE="URL" xlink:href="file:///home/userdir/MS-METS/bhr9405/bhr9405-1-10.tif"/>
+      </mets:file>
+    </mets:fileGrp>
+  </mets:fileSec>
+  <mets:structMap LABEL="Foliation" TYPE="Physical">
+    <mets:div DMDID="mlys4 wvyxo" ID="cy0vu" LABEL="Fontane di Roma" TYPE="RTLBoundManuscript">
+      <mets:div ID="un5sd" LABEL="[i]" ORDER="1" TYPE="Folio">
+        <mets:fptr FILEID="gjpt0"/>
+      </mets:div>
+      <mets:div ID="gj73d" LABEL="[ii]" ORDER="2" TYPE="Folio">
+        <mets:fptr FILEID="i6wt6"/>
+      </mets:div>
+      <mets:div ID="eagn7" LABEL="[iii]" ORDER="3" TYPE="Folio">
+          <mets:fptr FILEID="goszd"/>
+      </mets:div>
+      <mets:div ID="fagn7" LABEL="[iv]" ORDER="4" TYPE="Folio">
+          <mets:fptr FILEID="v6huf"/>
+      </mets:div>
+      <mets:div ID="vr579" LABEL="[v]" ORDER="5" TYPE="Folio">
+        <mets:fptr FILEID="x3mmf"/>
+      </mets:div>
+      <mets:div ID="vr578" LABEL="[vi]" ORDER="6" TYPE="Folio">
+         <mets:fptr FILEID="jups6"/>
+      </mets:div>
+      <mets:div ID="vr577" LABEL="1" ORDER="7" TYPE="Folio">
+         <mets:fptr FILEID="vx5y2"/>
+      </mets:div>
+      <mets:div ID="vr576" LABEL="2" ORDER="8" TYPE="Folio">
+         <mets:fptr FILEID="lss1c"/>
+      </mets:div>
+      <mets:div ID="vr575" LABEL="3" ORDER="9" TYPE="Folio">
+         <mets:fptr FILEID="sv600"/>
+      </mets:div>
+      <mets:div ID="vr574" LABEL="4" ORDER="10" TYPE="Folio">
+         <mets:fptr FILEID="vu4ez"/>
+      </mets:div>
+    </mets:div>
+  </mets:structMap>
+  <mets:structMap LABEL="Contents" TYPE="Logical">
+    <mets:div DMDID="mlys4 wvyxo" ID="pmm7e" LABEL="Fontane di Roma" TYPE="Work">
+      <mets:div ID="s3io1" LABEL="[Title Page and Copyright Page]" ORDER="1" TYPE="Section">
+         <mets:div ID="yue10" ORDER="1" TYPE="LogicalMember">
+           <mets:fptr FILEID="gjpt0"/>
+         </mets:div>
+         <mets:div ID="yue11" ORDER="2" TYPE="LogicalMember">
+           <mets:fptr FILEID="i6wt6"/>
+         </mets:div>
+      </mets:div>
+      <mets:div ID="bccp5" LABEL="[Notes]" ORDER="2" TYPE="Section">
+         <mets:div ID="yue12" ORDER="1" TYPE="LogicalMember">
+           <mets:fptr FILEID="goszd"/>
+         </mets:div>
+         <mets:div ID="yue13" ORDER="2" TYPE="LogicalMember">
+           <mets:fptr FILEID="v6huf"/>
+         </mets:div>
+      </mets:div>
+      <mets:div ID="bcco5" LABEL="[Orchestration]" ORDER="3" TYPE="Section">
+         <mets:div ID="yue14" ORDER="1" TYPE="LogicalMember">
+           <mets:fptr FILEID="x3mmf"/>
+         </mets:div>
+         <mets:div ID="yue15" ORDER="2" TYPE="LogicalMember">
+           <mets:fptr FILEID="jups6"/>
+         </mets:div>
+      </mets:div>
+      <mets:div ID="bc105" LABEL="Fontane de Roma : Poema Sinfonico" ORDER="4" TYPE="Section">
+        <mets:div ID="yue2l" ORDER="1" LABEL="La fontana di Valle Giulia all alba" TYPE="Section">
+           <mets:div ID="yue2l" ORDER="1" TYPE="LogicalMember">
+             <mets:fptr FILEID="vx5y2"/>
+           </mets:div>
+           <mets:div ID="yue22" ORDER="2" TYPE="LogicalMember">
+             <mets:fptr FILEID="lss1c"/>
+           </mets:div>
+           <mets:div ID="yue23" ORDER="3" TYPE="LogicalMember">
+             <mets:fptr FILEID="sv600"/>
+           </mets:div>
+           <mets:div ID="yue24" ORDER="4" TYPE="LogicalMember">
+             <mets:fptr FILEID="vu4ez"/>
+           </mets:div>
+        </mets:div>
+      </mets:div>
+    </mets:div>
+  </mets:structMap>
+</mets:mets>
