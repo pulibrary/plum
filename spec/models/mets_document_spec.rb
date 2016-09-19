@@ -33,7 +33,7 @@ RSpec.describe METSDocument do
     end
 
     it "has a bib id" do
-      expect(subject.bib_id).to eq('4612596')
+      expect(subject.bib_id).to eq('bhr9405')
     end
 
     it "has a pudl id" do
