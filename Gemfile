@@ -2,8 +2,6 @@ source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.7.1'
-# Use sqlite3 as the database for Active Record
-gem 'sqlite3'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -49,7 +47,8 @@ gem 'prawn'
 gem 'hydra-works'#, github: 'projecthydra-labs/hydra-works', branch: 'master'
 gem 'hydra-pcdm'#, github: 'projecthydra-labs/hydra-pcdm', branch: 'master'
 gem 'hydra-derivatives'#, github: 'projecthydra/hydra-derivatives', branch: 'master'
-gem 'active-fedora'#, github: 'projecthydra/active_fedora', branch: 'master'
+gem 'active-fedora', '11.0.0.rc7'
+gem 'active-triples', '~> 0.10.0'
 
 gem 'rubocop', '~> 0.34.0', require: false
 gem 'rubocop-rspec', '~> 1.3.0', require: false
@@ -64,10 +63,12 @@ group :development, :test do
   gem 'jasmine-jquery-rails'
   gem 'pdf-reader', github: 'yob/pdf-reader'
   gem 'pry-rails'
+  # Use sqlite3 as the database for Active Record
+  gem 'sqlite3'
 end
 
-gem 'solr_wrapper'
-gem 'fcrepo_wrapper'
+gem 'solr_wrapper', '~> 0.18.0'
+gem 'fcrepo_wrapper', '~> 0.6.0'
 gem 'coveralls', require: false
 
 group :development do
