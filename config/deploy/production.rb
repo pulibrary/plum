@@ -6,7 +6,10 @@
 # server 'example.com', user: 'deploy', roles: %w{app db web}, my_property: :my_value
 # server 'example.com', user: 'deploy', roles: %w{app web}, other_property: :other_value
 # server 'db.example.com', user: 'deploy', roles: %w{db}
-server 'hydra-dev', user: 'deploy', roles: %w(app db web worker)
+server 'lib-plum1', user: 'deploy', roles: %w(app db web)
+server 'lib-proc3', user: 'deploy', roles: %w(worker)
+
+set :deploy_to, '/opt/rails_app'
 
 # role-based syntax
 # ==================

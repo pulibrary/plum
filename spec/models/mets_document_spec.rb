@@ -39,6 +39,10 @@ RSpec.describe METSDocument do
     it "has a pudl id" do
       expect(subject.pudl_id).to eq('pudl0001/4612596')
     end
+
+    it "has a collection slug" do
+      expect(subject.collection_slugs).to eq('pudl0001')
+    end
   end
 
   describe "files" do

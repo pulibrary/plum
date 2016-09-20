@@ -12,6 +12,8 @@ module CurationConcerns
         false
       elsif field.to_sym == :pdf_type
         false
+      elsif field.to_sym == :rights_statement
+        false
       else
         super
       end
@@ -44,7 +46,7 @@ module CurationConcerns
     end
 
     def rights_statement
-      if self["rights_statement"].blank?
+      if Array(self["rights_statement"]).first.blank?
         "http://rightsstatements.org/vocab/NKC/1.0/"
       else
         self["rights_statement"]

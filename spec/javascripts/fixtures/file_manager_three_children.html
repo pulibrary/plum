@@ -1,0 +1,397 @@
+<div data-action="file-manager">
+    <div class="col-md-3 affix-bottom" id="file-manager-tools" style="top: -202.188px;">
+      <h2>Toolbar</h2>
+        <div class="actions form-horizontal panel panel-default">
+    <div class="form-group">
+      <label class="col-sm-4 control-label" for="start_with">Start With:</label>
+      <div class="col-sm-8">
+        <input type="text" name="start_with" id="start_with" value="1" class="form-control" disabled="">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-4 control-label" for="unit_label">Unit Label:</label>
+      <div class="col-sm-8">
+        <input type="text" name="unit_label" id="unit_label" class="form-control" disabled="">
+      </div>
+    </div>
+    <div class="form-group col-xs-12">
+      <div class="radio col-xs-6">
+        <label>
+          <input type="radio" name="method" id="method_paginate" value="paginate" checked="checked" disabled="">
+          Paginate
+        </label>
+      </div>
+      <div class="radio col-xs-6">
+        <label>
+          <input type="radio" name="method" id="method_foliate" value="foliate" disabled="">
+          Foliate
+        </label>
+      </div>
+    </div>
+    <div id="foliate-settings" style="display: none;">
+      <div class="form-group">
+        <label class="col-sm-4 control-label" for="front_label">Front Label:</label>
+        <div class="col-sm-8">
+          <input type="text" name="front_label" id="front_label" class="form-control" disabled="">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-4 control-label" for="back_label">Back Label:</label>
+        <div class="col-sm-8">
+          <input type="text" name="back_label" id="back_label" class="form-control" disabled="">
+        </div>
+      </div>
+      <div class="form-group col-xs-12">
+        <div class="radio col-xs-6">
+          <label>
+            <input type="radio" name="foliate_start_with" id="foliate_start_with_front" value="front" checked="checked" disabled="">
+            Front First
+          </label>
+        </div>
+        <div class="radio col-xs-6">
+          <label>
+            <input type="radio" name="foliate_start_with" id="foliate_start_with_back" value="back" disabled="">
+            Back First
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="form-group col-xs-12">
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" name="bracket" id="bracket" value="1" disabled=""> Bracket
+        </label>
+      </div>
+    </div>
+    <button name="button" type="submit" class="btn btn-default" data-action="apply-labels" disabled="">Apply</button>
+    <button name="button" type="submit" class="btn btn-primary disabled" data-action="save-actions">Save</button>
+  </div>
+
+<div id="bulk-actions" class="well">
+  <h2>Bulk Actions</h2>
+  <label>Mark As:</label>
+    <div class="radio">
+      <label>
+        <input name="bulk_hint" id="bulk_hint_" type="radio" value="" class="resource-radio-button">
+        Single Page
+</label>    </div>
+    <div class="radio">
+      <label>
+        <input name="bulk_hint" id="bulk_hint_non-paged" type="radio" value="non-paged" class="resource-radio-button">
+        Non-Paged
+</label>    </div>
+    <div class="radio">
+      <label>
+        <input name="bulk_hint" id="bulk_hint_facing-pages" type="radio" value="facing-pages" class="resource-radio-button">
+        Facing pages
+</label>    </div>
+</div>
+
+<div class="well">
+  <form id="resource-form" data-type="json" class="simple_form edit_scanned_resource" action="/concern/scanned_resources/zs25x8738" accept-charset="UTF-8" data-remote="true" method="post"><input name="utf8" type="hidden" value="✓"><input type="hidden" name="_method" value="patch">
+    <div>
+      <label>Viewing Direction:</label>
+        <div class="radio">
+          <label>
+            <input name="scanned_resource[viewing_direction]" id="scanned_resource_viewing_direction_left-to-right" type="radio" value="left-to-right" checked="checked" class="resource-radio-button">
+            left-to-right
+</label>        </div>
+        <div class="radio">
+          <label>
+            <input name="scanned_resource[viewing_direction]" id="scanned_resource_viewing_direction_right-to-left" type="radio" value="right-to-left" class="resource-radio-button">
+            right-to-left
+</label>        </div>
+        <div class="radio">
+          <label>
+            <input name="scanned_resource[viewing_direction]" id="scanned_resource_viewing_direction_top-to-bottom" type="radio" value="top-to-bottom" class="resource-radio-button">
+            top-to-bottom
+</label>        </div>
+        <div class="radio">
+          <label>
+            <input name="scanned_resource[viewing_direction]" id="scanned_resource_viewing_direction_bottom-to-top" type="radio" value="bottom-to-top" class="resource-radio-button">
+            bottom-to-top
+</label>        </div>
+    </div>
+
+    <div>
+      <label>Viewing Hint:</label>
+        <div class="radio">
+          <label>
+            <input name="scanned_resource[viewing_hint]" id="scanned_resource_hint_individuals" type="radio" value="individuals" checked="checked" class="resource-radio-button">
+            individuals
+</label>        </div>
+        <div class="radio">
+          <label>
+            <input name="scanned_resource[viewing_hint]" id="scanned_resource_hint_paged" type="radio" value="paged" class="resource-radio-button">
+            paged
+</label>        </div>
+        <div class="radio">
+          <label>
+            <input name="scanned_resource[viewing_hint]" id="scanned_resource_hint_continuous" type="radio" value="continuous" class="resource-radio-button">
+            continuous
+</label>        </div>
+    </div>
+
+    <div>
+      <div class="form-group select required scanned_resource_ocr_language"><label class="control-label select required" for="scanned_resource_ocr_language"><span class="label label-info required-tag">required</span> OCR Language</label><div><input name="scanned_resource[ocr_language][]" type="hidden" value=""><div class="btn-group bootstrap-select show-tick form-control select required resource-radio-button"><button type="button" class="btn dropdown-toggle btn-default" data-toggle="dropdown" data-id="scanned_resource_ocr_language" title="Nothing selected"><span class="filter-option pull-left">Nothing selected</span>&nbsp;<span class="bs-caret"><span class="caret"></span></span></button><div class="dropdown-menu open"><ul class="dropdown-menu inner" role="menu"><li data-original-index="0"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">Afrikaans</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="1"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">Albanian</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="2"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">Amharic</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="3"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">Arabic</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="4"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">Assamese</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="5"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">Azerbaijani</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="6"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">Basque</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="7"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">Belarusian</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="8"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">Bengali</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="9"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">Bosnian</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="10"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">Bulgarian</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="11"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">Burmese</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="12"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">Catalan; Valencian</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="13"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">Cebuano</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="14"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">Central Khmer</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="15"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">Cherokee</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="16"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">Croatian</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="17"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">Czech</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="18"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">Danish</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="19"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">Dutch; Flemish</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="20"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">Dzongkha</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="21"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">English</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="22"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">English, Middle (1100-1500)</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="23"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">Esperanto</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="24"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">Estonian</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="25"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">Finnish</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="26"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">French</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="27"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">French, Middle (ca.1400-1600)</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="28"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">Galician</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="29"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">Georgian</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="30"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">German</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="31"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">Greek, Ancient (to 1453)</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="32"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">Greek, Modern (1453-)</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="33"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">Gujarati</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="34"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">Haitian; Haitian Creole</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="35"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">Hebrew</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="36"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">Hindi</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="37"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">Hungarian</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="38"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">Icelandic</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="39"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">Indonesian</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="40"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">Inuktitut</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="41"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">Irish</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="42"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">Italian</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="43"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">Japanese</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="44"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">Javanese</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="45"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">Kannada</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="46"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">Kazakh</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="47"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">Kirghiz; Kyrgyz</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="48"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">Korean</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="49"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">Kurdish</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="50"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">Lao</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="51"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">Latin</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="52"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">Latvian</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="53"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">Lithuanian</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="54"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">Macedonian</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="55"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">Malay</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="56"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">Malayalam</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="57"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">Maltese</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="58"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">Marathi</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="59"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">Nepali</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="60"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">Norwegian</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="61"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">Oriya</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="62"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">Panjabi; Punjabi</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="63"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">Persian</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="64"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">Polish</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="65"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">Portuguese</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="66"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">Pushto; Pashto</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="67"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">Romanian; Moldavian; Moldovan</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="68"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">Russian</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="69"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">Sanskrit</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="70"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">Serbian</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="71"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">Sinhala; Sinhalese</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="72"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">Slovak</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="73"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">Slovenian</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="74"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">Spanish; Castilian</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="75"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">Swahili</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="76"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">Swedish</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="77"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">Syriac</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="78"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">Tagalog</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="79"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">Tajik</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="80"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">Tamil</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="81"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">Telugu</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="82"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">Thai</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="83"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">Tibetan</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="84"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">Tigrinya</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="85"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">Turkish</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="86"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">Uighur; Uyghur</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="87"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">Ukrainian</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="88"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">Urdu</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="89"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">Uzbek</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="90"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">Vietnamese</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="91"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">Welsh</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="92"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">Yiddish</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="93"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">aze_cyrl</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="94"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">chi_sim</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="95"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">chi_tra</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="96"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">dan_frak</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="97"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">deu_frak</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="98"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">equ</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="99"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">frk</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="100"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">ita_old</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="101"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">kat_old</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="102"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">osd</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="103"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">slk_frak</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="104"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">spa_old</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="105"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">srp_latn</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="106"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">uzb_cyrl</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li></ul></div><select class="form-control select required resource-radio-button" name="scanned_resource[ocr_language][]" multiple="multiple" required="required" aria-required="true" id="scanned_resource_ocr_language" tabindex="-98"><option value="afr">Afrikaans</option>
+<option value="sqi">Albanian</option>
+<option value="amh">Amharic</option>
+<option value="ara">Arabic</option>
+<option value="asm">Assamese</option>
+<option value="aze">Azerbaijani</option>
+<option value="eus">Basque</option>
+<option value="bel">Belarusian</option>
+<option value="ben">Bengali</option>
+<option value="bos">Bosnian</option>
+<option value="bul">Bulgarian</option>
+<option value="mya">Burmese</option>
+<option value="cat">Catalan; Valencian</option>
+<option value="ceb">Cebuano</option>
+<option value="khm">Central Khmer</option>
+<option value="chr">Cherokee</option>
+<option value="hrv">Croatian</option>
+<option value="ces">Czech</option>
+<option value="dan">Danish</option>
+<option value="nld">Dutch; Flemish</option>
+<option value="dzo">Dzongkha</option>
+<option value="eng">English</option>
+<option value="enm">English, Middle (1100-1500)</option>
+<option value="epo">Esperanto</option>
+<option value="est">Estonian</option>
+<option value="fin">Finnish</option>
+<option value="fra">French</option>
+<option value="frm">French, Middle (ca.1400-1600)</option>
+<option value="glg">Galician</option>
+<option value="kat">Georgian</option>
+<option value="deu">German</option>
+<option value="grc">Greek, Ancient (to 1453)</option>
+<option value="ell">Greek, Modern (1453-)</option>
+<option value="guj">Gujarati</option>
+<option value="hat">Haitian; Haitian Creole</option>
+<option value="heb">Hebrew</option>
+<option value="hin">Hindi</option>
+<option value="hun">Hungarian</option>
+<option value="isl">Icelandic</option>
+<option value="ind">Indonesian</option>
+<option value="iku">Inuktitut</option>
+<option value="gle">Irish</option>
+<option value="ita">Italian</option>
+<option value="jpn">Japanese</option>
+<option value="jav">Javanese</option>
+<option value="kan">Kannada</option>
+<option value="kaz">Kazakh</option>
+<option value="kir">Kirghiz; Kyrgyz</option>
+<option value="kor">Korean</option>
+<option value="kur">Kurdish</option>
+<option value="lao">Lao</option>
+<option value="lat">Latin</option>
+<option value="lav">Latvian</option>
+<option value="lit">Lithuanian</option>
+<option value="mkd">Macedonian</option>
+<option value="msa">Malay</option>
+<option value="mal">Malayalam</option>
+<option value="mlt">Maltese</option>
+<option value="mar">Marathi</option>
+<option value="nep">Nepali</option>
+<option value="nor">Norwegian</option>
+<option value="ori">Oriya</option>
+<option value="pan">Panjabi; Punjabi</option>
+<option value="fas">Persian</option>
+<option value="pol">Polish</option>
+<option value="por">Portuguese</option>
+<option value="pus">Pushto; Pashto</option>
+<option value="ron">Romanian; Moldavian; Moldovan</option>
+<option value="rus">Russian</option>
+<option value="san">Sanskrit</option>
+<option value="srp">Serbian</option>
+<option value="sin">Sinhala; Sinhalese</option>
+<option value="slk">Slovak</option>
+<option value="slv">Slovenian</option>
+<option value="spa">Spanish; Castilian</option>
+<option value="swa">Swahili</option>
+<option value="swe">Swedish</option>
+<option value="syr">Syriac</option>
+<option value="tgl">Tagalog</option>
+<option value="tgk">Tajik</option>
+<option value="tam">Tamil</option>
+<option value="tel">Telugu</option>
+<option value="tha">Thai</option>
+<option value="bod">Tibetan</option>
+<option value="tir">Tigrinya</option>
+<option value="tur">Turkish</option>
+<option value="uig">Uighur; Uyghur</option>
+<option value="ukr">Ukrainian</option>
+<option value="urd">Urdu</option>
+<option value="uzb">Uzbek</option>
+<option value="vie">Vietnamese</option>
+<option value="cym">Welsh</option>
+<option value="yid">Yiddish</option>
+<option value="aze_cyrl">aze_cyrl</option>
+<option value="chi_sim">chi_sim</option>
+<option value="chi_tra">chi_tra</option>
+<option value="dan_frak">dan_frak</option>
+<option value="deu_frak">deu_frak</option>
+<option value="equ">equ</option>
+<option value="frk">frk</option>
+<option value="ita_old">ita_old</option>
+<option value="kat_old">kat_old</option>
+<option value="osd">osd</option>
+<option value="slk_frak">slk_frak</option>
+<option value="spa_old">spa_old</option>
+<option value="srp_latn">srp_latn</option>
+<option value="uzb_cyrl">uzb_cyrl</option></select></div></div></div>
+    </div>
+    <div class="form-group hidden scanned_resource_thumbnail_id"><div><input class="form-control hidden" data-member-link="thumbnail_id" type="hidden" value="gm80hv51s" name="scanned_resource[thumbnail_id]" id="scanned_resource_thumbnail_id"></div></div>
+    <div class="form-group hidden scanned_resource_start_canvas"><div><input class="form-control hidden" data-member-link="start_canvas" type="hidden" name="scanned_resource[start_canvas]" id="scanned_resource_start_canvas"></div></div>
+</form></div>
+
+
+    </div>
+    <div class="col-md-3" id="label-tools-spacer"></div>
+    <div class="col-md-9 ui-selectable" id="order-grid">
+      <ul id="sortable" data-id="zs25x8738" data-class-name="scanned_resources" data-singular-class-name="scanned_resource" class="list-unstyled grid clearfix ui-sortable">
+  <div class="alert alert-success" role="alert">
+    Reordered Successfully
+  </div>
+  <div class="alert alert-info" role="alert">
+    Reordering...
+  </div>
+  <div class="alert alert-danger" role="alert">
+    Reordering Failed. Please save again.
+  </div>
+   <li data-reorder-id="gm80hv51s">
+    <div class="panel panel-default ui-selectee">
+      <form data-type="json" class="simple_form edit_file_set" id="edit_file_set_gm80hv51s" action="/concern/file_sets/gm80hv51s" accept-charset="UTF-8" data-remote="true" method="post"><input name="utf8" type="hidden" value="✓"><input type="hidden" name="_method" value="patch">
+        <div class="panel-heading ui-sortable-handle">
+          <div class="order-title">
+            <div class="form-group string required file_set_title"><div><input class="form-control string required title" name="file_set[title][]" required="required" aria-required="true" type="text" value="color-landscape.tif" id="file_set_title"></div></div>
+          </div>
+          <div class="file-set-link pull-right">
+            <a title="Edit file" href="/concern/parent/zs25x8738/file_sets/gm80hv51s">
+              <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+</a>          </div>
+            <div class="order-filename">
+              <em title="color-landscape.tif">(color-landscape.tif)</em>
+            </div>
+        </div>
+        <div class="panel-body">
+          <div class="text-center thumbnail">
+            <span class="ignore-select" data-modal-manifest="https://libimages1.princeton.edu/loris/plum/gm%2F80%2Fhv%2F51%2Fs-intermediate_file.jp2/info.json">
+  <a data-context-href="/catalog/gm80hv51s/track?search_id=15953" href="/concern/file_sets/gm80hv51s"><img class="thumbnail-inner" onerror="this.src='/assets/default-c6018ff301250c55bcc663293e1816c7daece4159cbc93fc03d9b35dbc3db30d.png'" src="https://libimages1.princeton.edu/loris/plum/gm%2F80%2Fhv%2F51%2Fs-intermediate_file.jp2/full/!200,150/0/default.jpg" alt="Default"></a>
+</span>
+          </div>
+          <div class="attributes">
+              <div class="form-group radio_buttons required file_set_viewing_hint"><div data-first-value=""><span class="radio radio radio"><input class="form-control radio_buttons required" required="required" aria-required="true" type="radio" value="" checked="checked" name="file_set[viewing_hint]" id="file_set_viewing_hint__gm80hv51s"><label class="collection_radio_buttons" for="file_set_viewing_hint__gm80hv51s">Single Page</label></span><span class="radio radio radio"><input class="form-control radio_buttons required" required="required" aria-required="true" type="radio" value="non-paged" name="file_set[viewing_hint]" id="file_set_viewing_hint_non-paged_gm80hv51s"><label class="collection_radio_buttons" for="file_set_viewing_hint_non-paged_gm80hv51s">Non-Paged</label></span><span class="radio radio radio"><input class="form-control radio_buttons required" required="required" aria-required="true" type="radio" value="facing-pages" name="file_set[viewing_hint]" id="file_set_viewing_hint_facing-pages_gm80hv51s"><label class="collection_radio_buttons" for="file_set_viewing_hint_facing-pages_gm80hv51s">Facing pages</label></span></div></div>
+
+          </div>
+          <div class="spacer">
+          </div>
+        </div>
+</form>            <div class="form-group radio_buttons member_resource_options" data-first-value="gm80hv51s">
+        <span class="radio">
+          <input type="radio" name="thumbnail_id" id="thumbnail_id_gm80hv51s_gm80hv51s" value="gm80hv51s" class="radio_buttons" checked="checked">
+          <label for="thumbnail_id_gm80hv51s_gm80hv51s">Thumbnail</label>
+        </span>
+      </div>
+      <div class="form-group radio_buttons member_resource_options">
+        <span class="radio">
+          <input type="radio" name="start_canvas" id="start_canvas_gm80hv51s_gm80hv51s" value="gm80hv51s" class="radio_buttons">
+          <label for="start_canvas_gm80hv51s_gm80hv51s">Starting Page</label>
+        </span>
+      </div>
+
+    </div>
+</li>
+
+   <li data-reorder-id="08612n76x">
+    <div class="panel panel-default ui-selectee">
+      <form data-type="json" class="simple_form edit_file_set" id="edit_file_set_08612n76x" action="/concern/file_sets/08612n76x" accept-charset="UTF-8" data-remote="true" method="post"><input name="utf8" type="hidden" value="✓"><input type="hidden" name="_method" value="patch">
+        <div class="panel-heading ui-sortable-handle">
+          <div class="order-title">
+            <div class="form-group string required file_set_title"><div><input class="form-control string required title" name="file_set[title][]" required="required" aria-required="true" type="text" value="color.tif" id="file_set_title"></div></div>
+          </div>
+          <div class="file-set-link pull-right">
+            <a title="Edit file" href="/concern/parent/zs25x8738/file_sets/08612n76x">
+              <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+</a>          </div>
+            <div class="order-filename">
+              <em title="color.tif">(color.tif)</em>
+            </div>
+        </div>
+        <div class="panel-body">
+          <div class="text-center thumbnail">
+            <span class="ignore-select" data-modal-manifest="https://libimages1.princeton.edu/loris/plum/08%2F61%2F2n%2F76%2Fx-intermediate_file.jp2/info.json">
+  <a data-context-href="/catalog/08612n76x/track?search_id=15953" href="/concern/file_sets/08612n76x"><img class="thumbnail-inner" onerror="this.src='/assets/default-c6018ff301250c55bcc663293e1816c7daece4159cbc93fc03d9b35dbc3db30d.png'" src="https://libimages1.princeton.edu/loris/plum/08%2F61%2F2n%2F76%2Fx-intermediate_file.jp2/full/!200,150/0/default.jpg" alt="Default"></a>
+</span>
+          </div>
+          <div class="attributes">
+              <div class="form-group radio_buttons required file_set_viewing_hint"><div data-first-value=""><span class="radio radio radio"><input class="form-control radio_buttons required" required="required" aria-required="true" type="radio" value="" checked="checked" name="file_set[viewing_hint]" id="file_set_viewing_hint__08612n76x"><label class="collection_radio_buttons" for="file_set_viewing_hint__08612n76x">Single Page</label></span><span class="radio radio radio"><input class="form-control radio_buttons required" required="required" aria-required="true" type="radio" value="non-paged" name="file_set[viewing_hint]" id="file_set_viewing_hint_non-paged_08612n76x"><label class="collection_radio_buttons" for="file_set_viewing_hint_non-paged_08612n76x">Non-Paged</label></span><span class="radio radio radio"><input class="form-control radio_buttons required" required="required" aria-required="true" type="radio" value="facing-pages" name="file_set[viewing_hint]" id="file_set_viewing_hint_facing-pages_08612n76x"><label class="collection_radio_buttons" for="file_set_viewing_hint_facing-pages_08612n76x">Facing pages</label></span></div></div>
+
+          </div>
+          <div class="spacer">
+          </div>
+        </div>
+</form>            <div class="form-group radio_buttons member_resource_options">
+        <span class="radio">
+          <input type="radio" name="thumbnail_id" id="thumbnail_id_08612n76x_08612n76x" value="08612n76x" class="radio_buttons">
+          <label for="thumbnail_id_08612n76x_08612n76x">Thumbnail</label>
+        </span>
+      </div>
+      <div class="form-group radio_buttons member_resource_options">
+        <span class="radio">
+          <input type="radio" name="start_canvas" id="start_canvas_08612n76x_08612n76x" value="08612n76x" class="radio_buttons">
+          <label for="start_canvas_08612n76x_08612n76x">Starting Page</label>
+        </span>
+      </div>
+
+    </div>
+</li>
+
+   <li data-reorder-id="kp78gg60j">
+    <div class="panel panel-default ui-selectee">
+      <form data-type="json" class="simple_form edit_file_set" id="edit_file_set_kp78gg60j" action="/concern/file_sets/kp78gg60j" accept-charset="UTF-8" data-remote="true" method="post"><input name="utf8" type="hidden" value="✓"><input type="hidden" name="_method" value="patch">
+        <div class="panel-heading ui-sortable-handle">
+          <div class="order-title">
+            <div class="form-group string required file_set_title"><div><input class="form-control string required title" name="file_set[title][]" required="required" aria-required="true" type="text" value="gray.tif" id="file_set_title"></div></div>
+          </div>
+          <div class="file-set-link pull-right">
+            <a title="Edit file" href="/concern/parent/zs25x8738/file_sets/kp78gg60j">
+              <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+</a>          </div>
+            <div class="order-filename">
+              <em title="gray.tif">(gray.tif)</em>
+            </div>
+        </div>
+        <div class="panel-body">
+          <div class="text-center thumbnail">
+            <span class="ignore-select" data-modal-manifest="https://libimages1.princeton.edu/loris/plum/kp%2F78%2Fgg%2F60%2Fj-intermediate_file.jp2/info.json">
+  <a data-context-href="/catalog/kp78gg60j/track?search_id=15953" href="/concern/file_sets/kp78gg60j"><img class="thumbnail-inner" onerror="this.src='/assets/default-c6018ff301250c55bcc663293e1816c7daece4159cbc93fc03d9b35dbc3db30d.png'" src="https://libimages1.princeton.edu/loris/plum/kp%2F78%2Fgg%2F60%2Fj-intermediate_file.jp2/full/!200,150/0/default.jpg" alt="Default"></a>
+</span>
+          </div>
+          <div class="attributes">
+              <div class="form-group radio_buttons required file_set_viewing_hint"><div data-first-value=""><span class="radio radio radio"><input class="form-control radio_buttons required" required="required" aria-required="true" type="radio" value="" checked="checked" name="file_set[viewing_hint]" id="file_set_viewing_hint__kp78gg60j"><label class="collection_radio_buttons" for="file_set_viewing_hint__kp78gg60j">Single Page</label></span><span class="radio radio radio"><input class="form-control radio_buttons required" required="required" aria-required="true" type="radio" value="non-paged" name="file_set[viewing_hint]" id="file_set_viewing_hint_non-paged_kp78gg60j"><label class="collection_radio_buttons" for="file_set_viewing_hint_non-paged_kp78gg60j">Non-Paged</label></span><span class="radio radio radio"><input class="form-control radio_buttons required" required="required" aria-required="true" type="radio" value="facing-pages" name="file_set[viewing_hint]" id="file_set_viewing_hint_facing-pages_kp78gg60j"><label class="collection_radio_buttons" for="file_set_viewing_hint_facing-pages_kp78gg60j">Facing pages</label></span></div></div>
+
+          </div>
+          <div class="spacer">
+          </div>
+        </div>
+</form>            <div class="form-group radio_buttons member_resource_options">
+        <span class="radio">
+          <input type="radio" name="thumbnail_id" id="thumbnail_id_kp78gg60j_kp78gg60j" value="kp78gg60j" class="radio_buttons">
+          <label for="thumbnail_id_kp78gg60j_kp78gg60j">Thumbnail</label>
+        </span>
+      </div>
+      <div class="form-group radio_buttons member_resource_options">
+        <span class="radio">
+          <input type="radio" name="start_canvas" id="start_canvas_kp78gg60j_kp78gg60j" value="kp78gg60j" class="radio_buttons">
+          <label for="start_canvas_kp78gg60j_kp78gg60j">Starting Page</label>
+        </span>
+      </div>
+
+    </div>
+</li>
+
+</ul>
+
+    </div>
+  </div>

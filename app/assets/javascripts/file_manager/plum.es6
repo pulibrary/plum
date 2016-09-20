@@ -1,12 +1,14 @@
 import RadioTracker from "file_manager/radio_tracker"
 import SelectTracker from "file_manager/select_tracker"
 import {InputTracker, FileManagerMember} from "curation_concerns/file_manager/member"
+import BulkActionManager from "file_manager/bulk_actions"
 export default class PlumFileManager {
   constructor() {
     this.initialize_radio_buttons()
     this.sortable_placeholder()
     this.manage_iiif_fields()
     this.starting_page()
+    this.bulk_actions()
   }
 
   initialize_radio_buttons() {
@@ -44,5 +46,9 @@ export default class PlumFileManager {
       $("*[data-member-link=start_canvas]").val(val)
       $("*[data-member-link=start_canvas]").change()
     })
+  }
+
+  bulk_actions() {
+    this.bulk_action_manager = new BulkActionManager($("#bulk-actions"))
   }
 }

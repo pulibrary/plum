@@ -76,11 +76,10 @@ RSpec.describe IngestMETSJob do
     let(:mets_file) { Rails.root.join("spec", "fixtures", "pudl0001-4612596.mets") }
     let(:tiff_file) { Rails.root.join("spec", "fixtures", "files", "color.tif") }
     let(:mime_type) { 'image/tiff' }
-    let(:file) { IoDecorator.new(tiff_file, mime_type, File.basename(tiff_file)) }
+    let(:file) { IoDecorator.new(File.new(tiff_file), mime_type, File.basename(tiff_file)) }
     let(:resource) { ScannedResource.new }
     let(:fileset1) { FileSet.new }
     let(:fileset2) { FileSet.new }
-    let(:collection) { FactoryGirl.create(:collection) }
     let(:order) { {
       nodes: [{
         label: 'leaf 1', nodes: [{
@@ -99,12 +98,12 @@ RSpec.describe IngestMETSJob do
     end
 
     it "ingests a mets file", vcr: { cassette_name: 'bibdata-bhr9405' } do
-      described_class.perform_now(mets_file, user, [collection.id])
+      described_class.perform_now(mets_file, user)
       expect(resource.persisted?).to be true
       expect(resource.file_sets.length).to eq 1
       expect(resource.reload.logical_order.order).to eq(order.deep_stringify_keys)
       expect(fileset2.reload.title).to eq(['leaf 1. recto'])
-      expect(resource.member_of_collections).to eq([collection])
+      expect(resource.member_of_collections.first.title).to eq(['Scheide Library : Fifteenth-Century Printing'])
       expect(resource.replaces).to eq('pudl0001/4612596')
       expect(fileset2.replaces).to eq('pudl0001/4612596/00000001')
 
