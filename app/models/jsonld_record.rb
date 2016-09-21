@@ -71,7 +71,7 @@ class JSONLDRecord
       @outbound_graph ||= generate_outbound_graph
     end
 
-    CONTEXT = YAML.load(File.read('config/context.yml'))
+    CONTEXT = YAML.load(File.read(Rails.root.join('config/context.yml')))
 
     def generate_outbound_graph
       jsonld_hash = {}

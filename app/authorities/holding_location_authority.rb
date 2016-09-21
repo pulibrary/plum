@@ -10,6 +10,6 @@ class HoldingLocationAuthority
   private
 
     def digital_locations
-      @digital_locations ||= YAML.load(File.read('config/digital_locations.yml'))
+      @digital_locations ||= YAML.load(File.read(Rails.root.join('config/digital_locations.yml')))
     end
 end
