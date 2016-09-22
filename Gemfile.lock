@@ -55,38 +55,6 @@ GIT
       sprockets-es6
 
 GIT
-  remote: git://github.com/projecthydra-labs/hydra-pcdm.git
-  revision: 854e13cc324e95fd329eb0a812815d2d78abf951
-  branch: master
-  specs:
-    hydra-pcdm (0.9.0)
-      active-fedora (>= 10, < 12)
-      mime-types (>= 1)
-
-GIT
-  remote: git://github.com/projecthydra-labs/hydra-works.git
-  revision: d41be82540eca9d3a76301df3dcea5b74c9d5937
-  branch: master
-  specs:
-    hydra-works (0.14.0)
-      hydra-derivatives (~> 3.0)
-      hydra-file_characterization (~> 0.3, >= 0.3.3)
-      hydra-pcdm (>= 0.8)
-      om (~> 3.1)
-
-GIT
-  remote: git://github.com/projecthydra/hydra-derivatives.git
-  revision: 8098a1b32144f692e47d99c36e48142c97254c3e
-  branch: master
-  specs:
-    hydra-derivatives (3.1.3)
-      active-fedora (>= 9.0, < 12)
-      activesupport (>= 4.0, < 6)
-      deprecation
-      mime-types (> 2.0, < 4.0)
-      mini_magick (>= 3.2, < 5)
-
-GIT
   remote: git://github.com/pulibrary/pul_metadata_services.git
   revision: c485eeff36d56c12255a95e5449727370820d53e
   branch: master
@@ -351,6 +319,12 @@ GEM
     hydra-core (10.3.0)
       hydra-access-controls (= 10.3.0)
       railties (>= 4.0.0, < 6)
+    hydra-derivatives (3.1.3)
+      active-fedora (>= 9.0, < 12)
+      activesupport (>= 4.0, < 6)
+      deprecation
+      mime-types (> 2.0, < 4.0)
+      mini_magick (>= 3.2, < 5)
     hydra-editor (3.1.0)
       active-fedora (>= 9.0.0)
       almond-rails (~> 0.0.3)
@@ -364,10 +338,18 @@ GEM
       hydra-access-controls (= 10.3.0)
       hydra-core (= 10.3.0)
       rails (>= 3.2.6)
+    hydra-pcdm (0.9.0)
+      active-fedora (>= 10, < 12)
+      mime-types (>= 1)
     hydra-role-management (0.2.2)
       blacklight
       bootstrap_form
       cancancan
+    hydra-works (0.14.0)
+      hydra-derivatives (~> 3.0)
+      hydra-file_characterization (~> 0.3, >= 0.3.3)
+      hydra-pcdm (>= 0.8)
+      om (~> 3.1)
     i18n (0.7.0)
     iso-639 (0.2.8)
     jasmine-core (2.5.1)
@@ -706,17 +688,17 @@ DEPENDENCIES
   capistrano-rails-console
   capybara
   coffee-rails (~> 4.1.0)
-  coveralls (= 0.8.3)
+  coveralls
   curation_concerns!
   devise (~> 3.0)
   devise-guests (~> 0.3)
   ezid-client
   factory_girl_rails
   fcrepo_wrapper (~> 0.6.0)
-  hydra-derivatives!
-  hydra-pcdm!
+  hydra-derivatives
+  hydra-pcdm
   hydra-role-management (~> 0.2.0)
-  hydra-works!
+  hydra-works
   iiif-presentation!
   iso-639
   jasmine-jquery-rails
@@ -749,7 +731,7 @@ DEPENDENCIES
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
   sidekiq
-  simplecov (~> 0.9)
+  simplecov
   sinatra
   solr_wrapper (~> 0.18.0)
   spring
@@ -764,4 +746,4 @@ DEPENDENCIES
   webmock (~> 1.0)
 
 BUNDLED WITH
-   1.12.3
+   1.12.5
