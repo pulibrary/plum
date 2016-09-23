@@ -1,9 +1,9 @@
 ---
 :concurrency: 5
 staging:
-  :concurrency: 10
+  :concurrency: 2
 production:
-  :concurrency: 20
+  :concurrency: 5
 :queues:
   - high
   - ingest
