@@ -109,7 +109,7 @@ module IuMetadata
       codes << from_fixed unless ['   ', 'mul'].include? from_fixed
 
       data.fields('041').each do |df|
-        df.select! { |sf| ['a', 'd', 'e', 'g'].include? sf.code }
+        df = df.select { |sf| ['a', 'd', 'e', 'g'].include? sf.code }
         df.map(&:value).each do |c|
           if c.length == 3
             codes << c
