@@ -55,6 +55,22 @@ And run the test suite in another window:
    $ rake spec
    ```
 
+### Javascript tests
+
+To run the Javascript test suite, run:
+
+   ```sh
+   $ rake spec:javascript
+   ```
+
+You can then open the file `tmp/jasmine/runner.html` in a browser to run the tests in that browser.
+You may need to pass options to allow access to local files, e.g., on MacOSX, you can quit Chrome
+and then open it with the Javascript tests:
+
+   ```sh
+   $ open -a "Google Chrome" tmp/jasmine/runner.html --args --allow-file-access-from-files
+   ```
+
 ## Adding an Admin user
 
 1. Run the development servers with `rake server:development`
