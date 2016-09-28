@@ -1,10 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe HoldingLocationService do
-  let(:uri) { 'https://bibdata.princeton.edu/locations/delivery_locations/3' }
-  let(:email) { 'ues@princeton.edu' }
-  let(:label) { 'Architecture Library' }
-  let(:phone) { '609-258-3256' }
+  let(:uri) { 'https://libraries.indiana.edu/music' }
+  let(:email) { 'libmus@indiana.edu' }
+  let(:label) { 'William & Gayle Cook Music Library' }
+  let(:phone) { '(812) 855-2970' }
 
   subject { described_class.find(uri) }
 
