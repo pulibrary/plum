@@ -10,7 +10,7 @@ module MetsStructure
 
   def file_label(file_id)
     struct = structure_map('Physical')
-    node = struct.xpath(".//mets:fptr[@FILEID='#{file_id}']").first
+    node = struct.xpath(".//mets:fptr[@FILEID='#{file_id}']").first if struct
     (label_from_hierarchy(node.parent) if node) || label_from_related_objects(file_id)
   end
 
