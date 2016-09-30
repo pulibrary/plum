@@ -10,7 +10,7 @@ task ingest_mets: :environment do
   abort "usage: rake ingest_mets /path/to/mets/files" unless ARGV[1] && Dir.exist?(ARGV[1])
   Dir["#{ARGV[1]}/**/*.mets"].each do |file|
     begin
-      IngestMETSJob.perform_now(file, user)
+      IngestMETSJob.perform_later(file, user)
     rescue => e
       puts "Error: #{e.message}"
       puts e.backtrace
