@@ -1,5 +1,6 @@
 en:
   curation_concerns:
+    institution_name: &INSTITUTION_NAME 'Indiana University'
     catalog:
       index:
         type_tabs:
@@ -10,9 +11,12 @@ en:
     document_language: "en"
     google_analytics_id: ""
     institution:
-      name: "Indiana University"
+      name: *INSTITUTION_NAME
       homepage_url: "#"
     product_name: "IU Paged Media"
+    visibility:
+      authenticated:
+        text: *INSTITUTION_NAME
   simple_form:
     hints:
       defaults:
