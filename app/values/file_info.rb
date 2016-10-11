@@ -1,6 +1,6 @@
 class FileInfo
   attr_reader :file_info
-  delegate :[], :has_key?, to: :file_info
+  delegate :[], :has_key?, :key?, to: :file_info
   def initialize(file_info)
     @file_info = file_info
   end
