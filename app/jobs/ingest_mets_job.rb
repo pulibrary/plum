@@ -33,6 +33,9 @@ class IngestMETSJob < ActiveJob::Base
           resource.logical_order.order = map_fileids(@mets.structure)
         end
         resource.save!
+        if @mets.files.length != resource.member_ids.length
+          logger.info "Incorrect number of files ingested for #{resource.id}: #{resource.member_ids.length} of expected #{@mets.files.length}"
+        end
       end
     end
 
