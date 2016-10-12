@@ -34,6 +34,7 @@ RSpec.describe IngestMETSJob do
     end
 
     it "ingests a mets file", vcr: { cassette_name: 'bibdata-4612596' } do
+      allow(resource1).to receive(:member_ids).and_return([1])
       expect(actor1).to receive(:attach_related_object).with(resource1)
       expect(actor1).to receive(:attach_content).with(instance_of(File))
       expect(actor2).to receive(:create_metadata).with(resource1, {})
@@ -46,7 +47,21 @@ RSpec.describe IngestMETSJob do
       expect(resource1.visibility).to eq(Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PUBLIC)
     end
 
+    context "when it fails to ingest a file" do
+      it "logs a message", vcr: { cassette_name: 'bibdata-4612596' } do
+        allow(resource1).to receive(:member_ids).and_return([])
+        expect(actor1).to receive(:attach_related_object).with(resource1)
+        expect(actor1).to receive(:attach_content).with(instance_of(File))
+        expect(actor2).to receive(:create_metadata).with(resource1, {})
+        expect(actor2).to receive(:create_content).with(file)
+        allow(described_class.logger).to receive(:info).and_call_original
+        expect(described_class.logger).to receive(:info).with("Incorrect number of files ingested for #{resource1.id}: 0 of expected 1").and_call_original
+        described_class.perform_now(mets_file, user)
+      end
+    end
+
     it "ingests a right-to-left mets file", vcr: { cassette_name: 'bibdata-4790889' } do
+      allow(resource1).to receive(:member_ids).and_return((0..188).to_a)
       allow(actor1).to receive(:attach_related_object)
       allow(actor1).to receive(:attach_content)
       allow(actor2).to receive(:create_metadata)
