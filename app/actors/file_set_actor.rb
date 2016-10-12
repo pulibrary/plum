@@ -20,4 +20,8 @@ class FileSetActor < ::CurationConcerns::Actors::FileSetActor
     def messenger
       @messenger ||= ManifestEventGenerator.new(Plum.messaging_client)
     end
+
+    def file_actor_class
+      ::FileActor
+    end
 end
