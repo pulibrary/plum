@@ -28,7 +28,9 @@ class CollectionShowPresenter < CurationConcerns::CollectionPresenter
 
     # TODO: Extract this to ActiveFedora::Aggregations::ListSource
     def ordered_ids
-      Array(solr_document["member_ids_ssim"])
+      ActiveFedora::SolrService.query("member_of_collection_ids_ssim:#{id}", fl: "id", rows: 10_000).map do |x|
+        x["id"]
+      end
     end
 
     def file_presenter_class
