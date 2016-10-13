@@ -278,4 +278,16 @@ describe ScannedResource do
       expect(solr_doc['title_literals_ssim']).to eq [JSON.dump("@value" => "Test", "@language" => "fr")]
     end
   end
+
+  describe "sort title indexing" do
+    let(:scanned_resource) do
+      FactoryGirl.create(:scanned_resource_in_collection,
+                         title: [::RDF::Literal.new("Test", language: :fr), ::RDF::Literal.new("Me", language: :en)]
+                        )
+    end
+    let(:solr_doc) { scanned_resource.to_solr }
+    it "combines multiple titles into string" do
+      expect(solr_doc['title_ssort']).to eq solr_doc['title_tesim'].to_sentence
+    end
+  end
 end
