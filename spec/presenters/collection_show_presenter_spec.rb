@@ -3,20 +3,24 @@ require 'rails_helper'
 RSpec.describe CollectionShowPresenter do
   subject { described_class.new(solr_doc, nil) }
   let(:solr_doc) { SolrDocument.new(doc) }
+  let(:collection) { FactoryGirl.build(:collection, id: "collection") }
   let(:doc) do
-    c = FactoryGirl.build(:collection, id: "collection")
-    c.members << scanned_resource
-    allow(c).to receive(:new_record?).and_return(false)
-    c.to_solr
+    allow(collection).to receive(:new_record?).and_return(false)
+    collection.to_solr
   end
   let(:scanned_resource) do
     s = FactoryGirl.build(:scanned_resource)
+    s.member_of_collections = [collection]
     allow(s).to receive(:id).and_return("resource")
     solr.add(s.to_solr)
-    solr.commit
     s
   end
   let(:solr) { ActiveFedora.solr.conn }
+  before do
+    doc
+    scanned_resource
+    solr.commit
+  end
 
   describe "#member_presenters" do
     it "returns presenters for each Scanned Resource" do

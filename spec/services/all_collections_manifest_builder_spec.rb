@@ -11,8 +11,11 @@ RSpec.describe AllCollectionsManifestBuilder do
       expect(manifest_json["collections"].first["metadata"]).not_to be_blank
     end
     it "embeds manifests" do
+      c = FactoryGirl.create(:collection)
       s = FactoryGirl.create(:scanned_resource_with_multi_volume_work)
-      FactoryGirl.create(:collection, members: [s.in_works.first])
+      mvw = s.in_works.first
+      mvw.member_of_collections = [c]
+      mvw.save!
 
       expect(manifest_json["collections"].length).to eq 1
       expect(manifest_json["collections"].first["manifests"]).not_to be_blank
