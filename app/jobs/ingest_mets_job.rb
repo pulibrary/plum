@@ -34,10 +34,13 @@ class IngestMETSJob < ActiveJob::Base
           resource.logical_order.order = map_fileids(@mets.structure)
         end
         resource.save!
-        if @mets.files.length != resource.member_ids.length
-          logger.info "Incorrect number of files ingested for #{resource.id}: #{resource.member_ids.length} of expected #{@mets.files.length}"
-        end
+        validate!(resource)
       end
+    end
+
+    def validate!(resource)
+      return if @mets.files.length == resource.member_ids.length
+      logger.info "Incorrect number of files ingested for #{resource.id}: #{resource.member_ids.length} of expected #{@mets.files.length}"
     end
 
     def delete_duplicates!
@@ -49,7 +52,7 @@ class IngestMETSJob < ActiveJob::Base
     end
 
     def old_resource_ids
-      ActiveFedora::SolrService.query("identifier_tesim:#{RSolr.solr_escape(@mets.ark_id)}", fl: "id").map { |x| x["id"] }
+      ActiveFedora::SolrService.query("identifier_ssim:#{RSolr.solr_escape(@mets.ark_id)}", fl: "id").map { |x| x["id"] }
     end
 
     def find_or_create_collection(slug)
