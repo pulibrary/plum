@@ -199,6 +199,7 @@ describe CurationConcerns::ScannedResourcesController do
     context 'when :refresh_remote_metadata is set', vcr: { cassette_name: 'bibdata', allow_playback_repeats: true } do
       it 'updates remote metadata' do
         allow(Ezid::Identifier).to receive(:modify)
+        allow(Ezid::Client.config).to receive(:user).and_return("test")
         post :update, id: scanned_resource, scanned_resource: scanned_resource_attributes, refresh_remote_metadata: true
         expect(reloaded.title).to eq ['The Giant Bible of Mainz; 500th anniversary, April fourth, fourteen fifty-two, April fourth, nineteen fifty-two.']
         expect(Ezid::Identifier).to have_received(:modify)
@@ -543,6 +544,7 @@ describe CurationConcerns::ScannedResourcesController do
         scanned_resource.identifier = 'ark:/99999/fk4c255165'
         scanned_resource.save
         allow(Ezid::Identifier).to receive(:modify)
+        allow(Ezid::Client.config).to receive(:user).and_return("test")
       end
 
       it "updates EZID" do
