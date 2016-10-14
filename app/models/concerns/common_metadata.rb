@@ -77,6 +77,7 @@ module CommonMetadata
     end
 
     def update_ezid
+      return if Ezid::Client.config.user == "apitest"
       Ezid::Identifier.modify(identifier, ezid_metadata)
     end
   end
