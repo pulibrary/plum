@@ -14,6 +14,7 @@ class IngestMETSJob < ActiveJob::Base
   private
 
     def ingest
+      delete_duplicates!
       resource = minimal_record(@mets.multi_volume? ? MultiVolumeWork : ScannedResource)
       resource.identifier = @mets.ark_id
       resource.replaces = @mets.pudl_id
@@ -37,6 +38,18 @@ class IngestMETSJob < ActiveJob::Base
           logger.info "Incorrect number of files ingested for #{resource.id}: #{resource.member_ids.length} of expected #{@mets.files.length}"
         end
       end
+    end
+
+    def delete_duplicates!
+      old_resources = old_resource_ids.map { |x| ActiveFedora::Base.find(x) }
+      old_resources.each do |resource|
+        logger.info "Deleting existing resource with ID of #{resource.id} which had ARK #{@mets.ark_id}"
+        resource.destroy
+      end
+    end
+
+    def old_resource_ids
+      ActiveFedora::SolrService.query("identifier_tesim:#{RSolr.solr_escape(@mets.ark_id)}", fl: "id").map { |x| x["id"] }
     end
 
     def find_or_create_collection(slug)

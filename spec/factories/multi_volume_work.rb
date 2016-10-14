@@ -22,6 +22,15 @@ FactoryGirl.define do
       end
     end
 
+    factory :multi_volume_work_with_file do
+      after(:create) do |scanned_resource, evaluator|
+        file = FactoryGirl.create(:file_set, user: evaluator.user)
+        scanned_resource.ordered_members << file
+        scanned_resource.save
+        file.update_index
+      end
+    end
+
     # https://github.com/projecthydra/hydra-head/blob/master/hydra-access-controls/app/models/concerns/hydra/access_controls/access_right.rb
     factory :campus_only_multi_volume_work do
       visibility Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_AUTHENTICATED
