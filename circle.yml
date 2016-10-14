@@ -22,6 +22,8 @@ test:
   pre:
     - eslint app/assets/javascripts/*.es6
     - bundle exec rake spec:javascript
+  override:
+    - RAILS_ENV=test bundle exec rspec -r rspec_junit_formatter --format progress --format RspecJunitFormatter -o $CIRCLE_TEST_REPORTS/rspec/junit.xml
   post:
     - COVERALLS_PARALLEL=true bundle exec rake coveralls:push:
         parallel: true
