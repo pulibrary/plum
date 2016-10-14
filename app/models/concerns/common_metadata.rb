@@ -10,7 +10,7 @@ module CommonMetadata
 
     # Plum
     apply_schema PlumSchema, ActiveFedora::SchemaIndexingStrategy.new(
-      ActiveFedora::Indexers::GlobalIndexer.new([:stored_searchable, :facetable, :symbol])
+      ActiveFedora::Indexers::GlobalIndexer.new([:symbol, :stored_searchable, :facetable])
     )
 
     # IIIF

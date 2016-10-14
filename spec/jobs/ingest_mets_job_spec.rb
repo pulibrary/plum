@@ -138,5 +138,14 @@ RSpec.describe IngestMETSJob do
         expect(described_class.logger).to have_received(:info).with("Deleting existing resource with ID of #{mvw.id} which had ARK #{mvw.identifier}")
       end
     end
+    context "when there's another resource with a different ark", vcr: { cassette_name: 'bibdata-4612596' } do
+      it "doesn't delete it" do
+        FactoryGirl.create(:multi_volume_work_with_file, identifier: "ark:/88435/5m60qr98r")
+
+        described_class.perform_now(mets_file, user)
+
+        expect(ActiveFedora::SolrService.query("identifier_tesim:#{RSolr.solr_escape(resource.identifier)}", fl: "id").length).to eq 2
+      end
+    end
   end
 end

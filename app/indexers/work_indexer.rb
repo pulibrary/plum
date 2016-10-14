@@ -21,6 +21,7 @@ class WorkIndexer < CurationConcerns::WorkIndexer
         end
         solr_doc[Solrizer.solr_name("#{field}_literals", :symbol)] = output
       end
+      solr_doc[Solrizer.solr_name("identifier", :symbol)] = object.identifier
     end
   end
 end
