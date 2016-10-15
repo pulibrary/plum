@@ -34,7 +34,7 @@ CurationConcerns.configure do |config|
   # config.enable_noids = true
 
   # Specify a different template for your repository's NOID IDs
-  config.noid_template = "#{Rails.env.first.downcase}.zeeddeeddk"
+  config.noid_template = "#{Rails.env.first.downcase}.reeddeeddk"
 
   # Specify the minter statefile
   config.minter_statefile = "log/minter-state-#{Rails.env}"
