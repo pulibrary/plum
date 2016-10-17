@@ -6,6 +6,10 @@ describe CurationConcerns::MultiVolumeWorksController do
   let(:user) { FactoryGirl.create(:user) }
   let(:multi_volume_work) { FactoryGirl.create(:multi_volume_work, user: user, title: ['Dummy Title']) }
 
+  include_examples "alphabetize_members" do
+    let(:curation_concern) { multi_volume_work }
+  end
+
   describe "create" do
     let(:user) { FactoryGirl.create(:admin) }
     before do
