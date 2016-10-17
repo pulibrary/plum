@@ -84,21 +84,30 @@ class IngestMETSJob < ActiveJob::Base
 
     def ingest_files(parent: nil, resource: nil, files: [])
       files.each do |f|
-        logger.info "Ingesting file #{f[:path]}"
-        file_set = FileSet.new
-        file_set.title = [@mets.file_label(f[:id])]
-        file_set.replaces = "#{@mets.pudl_id}/#{File.basename(f[:path], File.extname(f[:path]))}"
-        actor = FileSetActor.new(file_set, @user)
-        actor.create_metadata(resource, @mets.file_opts(f))
-        actor.create_content(@mets.decorated_file(f))
-
-        mets_to_repo_map[f[:id]] = file_set.id
-
-        next unless f[:path] == @mets.thumbnail_path
-        resource.thumbnail_id = file_set.id
-        resource.save!
-        parent.thumbnail_id = file_set.id if parent
+        ingest_file(parent: parent, resource: resource, f: f)
       end
+    end
+
+    def ingest_file(parent: nil, resource: nil, f: nil, count: 0)
+      logger.info "Ingesting file #{f[:path]}"
+      file_set = FileSet.new
+      file_set.title = [@mets.file_label(f[:id])]
+      file_set.replaces = "#{@mets.pudl_id}/#{File.basename(f[:path], File.extname(f[:path]))}"
+      actor = FileSetActor.new(file_set, @user)
+      actor.create_metadata(resource, @mets.file_opts(f))
+      actor.create_content(@mets.decorated_file(f))
+
+      mets_to_repo_map[f[:id]] = file_set.id
+
+      return unless f[:path] == @mets.thumbnail_path
+      resource.thumbnail_id = file_set.id
+      resource.save!
+      parent.thumbnail_id = file_set.id if parent
+    rescue StandardError => e
+      raise e if count > 4
+      count += 1
+      logger.info "Failed ingesting #{f[:path]} #{count} times, retrying. Error: #{e.message}"
+      ingest_file(parent: parent, resource: resource, f: f, count: count)
     end
 
     def ingest_volumes(parent)
