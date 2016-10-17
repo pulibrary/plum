@@ -1,0 +1,328 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://dlib.indiana.edu:9000/iucatextract?maximumRecords=1&operation=searchRetrieve&query=cql.serverChoice=ABE9721&recordSchema=marcxml&version=1.1
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.9.2
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Length:
+      - '8786'
+      Server:
+      - YAZ/3.0.44
+      Content-Type:
+      - text/xml
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0"?>
+        <zs:searchRetrieveResponse xmlns:zs="http://www.loc.gov/zing/srw/"><zs:version>1.1</zs:version><zs:numberOfRecords>1</zs:numberOfRecords><zs:records><zs:record><zs:recordSchema>info:srw/schema/1/marcxml-v1.1</zs:recordSchema><zs:recordPacking>xml</zs:recordPacking><zs:recordData><record xmlns="http://www.loc.gov/MARC21/slim">
+        <!-- Length implementation at offset 22 should hold a digit. Assuming 0 -->
+          <leader>03532mcm a2200529 a 4500</leader>
+          <controlfield tag="001">ABE9721BM</controlfield>
+          <controlfield tag="008">911028s19909999pl mum         n  0 pol d</controlfield>
+          <datafield tag="035" ind1=" " ind2=" ">
+            <subfield code="a">(InU)ABE9721BM</subfield>
+          </datafield>
+          <datafield tag="035" ind1=" " ind2=" ">
+            <subfield code="a">(OCoLC)ocm24634242</subfield>
+          </datafield>
+          <datafield tag="040" ind1=" " ind2=" ">
+            <subfield code="a">IUL</subfield>
+            <subfield code="c">IUL</subfield>
+          </datafield>
+          <datafield tag="047" ind1=" " ind2=" ">
+            <subfield code="a">mz</subfield>
+            <subfield code="a">st</subfield>
+            <subfield code="a">po</subfield>
+            <subfield code="a">ft</subfield>
+            <subfield code="a">sg</subfield>
+            <subfield code="a">sn</subfield>
+          </datafield>
+          <datafield tag="048" ind1=" " ind2=" ">
+            <subfield code="a">ka01</subfield>
+          </datafield>
+          <datafield tag="048" ind1=" " ind2=" ">
+            <subfield code="a">ka01</subfield>
+            <subfield code="a">sa01</subfield>
+            <subfield code="a">sc01</subfield>
+          </datafield>
+          <datafield tag="048" ind1=" " ind2=" ">
+            <subfield code="a">vn01</subfield>
+            <subfield code="a">ka01</subfield>
+          </datafield>
+          <datafield tag="048" ind1=" " ind2=" ">
+            <subfield code="a">sc01</subfield>
+            <subfield code="a">ka01</subfield>
+          </datafield>
+          <datafield tag="049" ind1=" " ind2=" ">
+            <subfield code="a">IULA</subfield>
+          </datafield>
+          <datafield tag="090" ind1=" " ind2=" ">
+            <subfield code="a">ML96.4</subfield>
+            <subfield code="b">.C5</subfield>
+          </datafield>
+          <datafield tag="100" ind1="1" ind2="0">
+            <subfield code="a">Chopin, Fr&#xE9;d&#xE9;ric,</subfield>
+            <subfield code="d">1810-1849.</subfield>
+          </datafield>
+          <datafield tag="240" ind1="1" ind2="0">
+            <subfield code="a">Selections.</subfield>
+            <subfield code="f">1990</subfield>
+          </datafield>
+          <datafield tag="245" ind1="0" ind2="4">
+            <subfield code="a">The facsimil[e] edition of the autograph of Fryderyk Chopin's works :</subfield>
+            <subfield code="b">from the Collection Fryderyk Chopin Society in Warsaw.</subfield>
+          </datafield>
+          <datafield tag="260" ind1="0" ind2=" ">
+            <subfield code="a">Warsaw :</subfield>
+            <subfield code="b">Fryderyk Chopin Society ;</subfield>
+            <subfield code="a">Tokyo :</subfield>
+            <subfield code="b">Green Peace Publishers,</subfield>
+            <subfield code="c">c1990-</subfield>
+          </datafield>
+          <datafield tag="300" ind1=" " ind2=" ">
+            <subfield code="a">   v. of music :</subfield>
+            <subfield code="b">facsims. ;</subfield>
+            <subfield code="c">36 x 44 cm.</subfield>
+          </datafield>
+          <datafield tag="500" ind1=" " ind2=" ">
+            <subfield code="a">Reproductions of holographs and 1st editions.</subfield>
+          </datafield>
+          <datafield tag="500" ind1=" " ind2=" ">
+            <subfield code="a">Title from container.</subfield>
+          </datafield>
+          <datafield tag="500" ind1=" " ind2=" ">
+            <subfield code="a">Vol. 1-2 in portfolios; consisting of sheets in wrappers.</subfield>
+          </datafield>
+          <datafield tag="505" ind1="1" ind2=" ">
+            <subfield code="a">1. Mazurka in F minor, op. 7-3 -- Torio [sic] in G-minor, for pianoforte, violin and cello, op. 8 -- Study in E major, op. 10-3 -- Study in G-flat major, op. 10-5 -- Study in E-flat-minor, op. 10-6 -- Study in F-major, op. 10-8 -- Study in F-minor, op. 10-9 -- Study in A-flat-major, op. 10-10 -- Study in C-major, op. 10-1 -- Study in A-minor, op. 10-2 -- Study in C-sharp minor, op. 10-4 -- Study in C-major, op. 10-7 -- Study in E-flat-major, op. 10- 11 -- Study in C minor, op. 10-12 -- Impromptu in A-flat-major, op. 29 -- Barcarolle in F-sharp-major, op. 60 -- Polonaise-Fantasie in A-flat major, op. 61 -- Polonaise in F-minor, op. 71-3 -- Song for voice and pianoforte in A-flat major, op. 74-10 : "Wojak" = The warrior.</subfield>
+          </datafield>
+          <datafield tag="505" ind1="1" ind2=" ">
+            <subfield code="a">2. Berceuse in D-flat-major, op. 57 -- Sonata no. 3 in B-minor, op. 58 -- Barcarolle in F-sharp-major, op. 60 -- Polonaise-Fantasie in A-flat- major, op. 61 -- Sonata in G-minor, for pianoforte and cello, op. 65 -- Mazurka in F-minor, op. 68-4 -- Song for voice and pianoforte, op. 74-6 : "Precz z moich oczu" = Out of my sight! -- Song for voice and pianoforte, op. 74-14 : "Pierscien" = The ring -- Song in F-major : "Dawniej polak" -- Refrain of "Dabrowski's mazurka" -- Nocturne in C-minor -- Sonata no. 2 in B-flat-minor, op. 35 -- Impromptu in F-sharp major, op. 36 -- Mazurka in G-major, op. 50-1 -- Sonata in B-flat minor, op. 35 (1st ed.).</subfield>
+          </datafield>
+          <datafield tag="505" ind1="1" ind2=" ">
+            <subfield code="a">3. Polonaise in G minor, 1817 (1st ed.).</subfield>
+          </datafield>
+          <datafield tag="505" ind1="0" ind2=" ">
+            <subfield code="a">[5.] A commentary on the facsimile edition of the autograph Fryderyk Chopin's works from the Collection Fryderyk Chopin Society in Warsaw.</subfield>
+          </datafield>
+          <datafield tag="650" ind1=" " ind2="0">
+            <subfield code="a">Piano music.</subfield>
+          </datafield>
+          <datafield tag="650" ind1=" " ind2="0">
+            <subfield code="a">Piano trios</subfield>
+            <subfield code="x">Scores.</subfield>
+          </datafield>
+          <datafield tag="650" ind1=" " ind2="0">
+            <subfield code="a">Songs with piano.</subfield>
+          </datafield>
+          <datafield tag="650" ind1=" " ind2="0">
+            <subfield code="a">Sonatas (Cello and piano)</subfield>
+            <subfield code="x">Scores.</subfield>
+          </datafield>
+          <datafield tag="650" ind1=" " ind2="0">
+            <subfield code="a">Music</subfield>
+            <subfield code="x">Manuscripts</subfield>
+            <subfield code="x">Facsimiles.</subfield>
+          </datafield>
+          <datafield tag="600" ind1="1" ind2="0">
+            <subfield code="a">Chopin, Fr&#xE9;d&#xE9;ric,</subfield>
+            <subfield code="d">1810-1849</subfield>
+            <subfield code="x">Manuscripts</subfield>
+            <subfield code="x">facsimiles.</subfield>
+          </datafield>
+          <datafield tag="710" ind1="2" ind2="0">
+            <subfield code="a">Towarzystwo im. Fryderyka Chopina.</subfield>
+          </datafield>
+          <datafield tag="740" ind1="0" ind2="1">
+            <subfield code="a">Facsimil edition of the autograph of Fryderyk Chopin's works.</subfield>
+          </datafield>
+          <datafield tag="856" ind1="4" ind2="1">
+            <subfield code="a">Bloomington</subfield>
+            <subfield code="u">http://purl.dlib.indiana.edu/iudl/variations/score/ABE9721</subfield>
+            <subfield code="z">Available to authorized users of the Variations System</subfield>
+          </datafield>
+          <datafield tag="998" ind1=" " ind2=" ">
+            <subfield code="a">1/30/1991</subfield>
+            <subfield code="b">4/18/1994</subfield>
+            <subfield code="c">1/30/1991</subfield>
+          </datafield>
+          <datafield tag="596" ind1=" " ind2=" ">
+            <subfield code="a">20</subfield>
+          </datafield>
+          <datafield tag="926" ind1=" " ind2=" ">
+            <subfield code="a">B-MUSIC</subfield>
+            <subfield code="b">VAULT</subfield>
+            <subfield code="c">ML96.4 .C5 v. 1</subfield>
+            <subfield code="d">NONCIRC</subfield>
+            <subfield code="f">1</subfield>
+          </datafield>
+          <datafield tag="926" ind1=" " ind2=" ">
+            <subfield code="a">B-MUSIC</subfield>
+            <subfield code="b">VAULT</subfield>
+            <subfield code="c">ML96.4 .C5 v. 2</subfield>
+            <subfield code="d">NONCIRC</subfield>
+            <subfield code="f">1</subfield>
+          </datafield>
+          <datafield tag="926" ind1=" " ind2=" ">
+            <subfield code="a">B-MUSIC</subfield>
+            <subfield code="b">VAULT</subfield>
+            <subfield code="c">ML96.4 .C5 v. 3</subfield>
+            <subfield code="d">NONCIRC</subfield>
+            <subfield code="f">1</subfield>
+          </datafield>
+          <datafield tag="926" ind1=" " ind2=" ">
+            <subfield code="a">B-MUSIC</subfield>
+            <subfield code="b">VAULT</subfield>
+            <subfield code="c">ML96.4 .C5 v. 5 Commentary</subfield>
+            <subfield code="d">NONCIRC</subfield>
+            <subfield code="f">1</subfield>
+          </datafield>
+          <datafield tag="927" ind1=" " ind2=" ">
+            <subfield code="a">B-MUSIC</subfield>
+          </datafield>
+          <datafield tag="927" ind1=" " ind2=" ">
+            <subfield code="b">Location</subfield>
+            <subfield code="c">VAULT-- ML96.4 .C5    </subfield>
+          </datafield>
+          <datafield tag="927" ind1=" " ind2=" ">
+            <subfield code="b">Holdings</subfield>
+            <subfield code="c">v. 1-3, 5</subfield>
+          </datafield>
+        </record></zs:recordData><zs:recordPosition>1</zs:recordPosition></zs:record></zs:records></zs:searchRetrieveResponse>
+    http_version: 
+  recorded_at: Mon, 10 Oct 2016 20:18:20 GMT
+- request:
+    method: get
+    uri: http://dlib.indiana.edu:9000/iucatextract?maximumRecords=1&operation=searchRetrieve&query=cql.serverChoice=ABE9721&recordSchema=mods&version=1.1
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.9.2
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Length:
+      - '5300'
+      Server:
+      - YAZ/3.0.44
+      Content-Type:
+      - text/xml
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0"?>
+        <zs:searchRetrieveResponse xmlns:zs="http://www.loc.gov/zing/srw/"><zs:version>1.1</zs:version><zs:numberOfRecords>1</zs:numberOfRecords><zs:records><zs:record><zs:recordSchema>info:srw/schema/1/mods-v3.2</zs:recordSchema><zs:recordPacking>xml</zs:recordPacking><zs:recordData><mods xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.loc.gov/mods/v3" version="3.2" xsi:schemaLocation="http://www.loc.gov/mods/v3 http://www.loc.gov/standards/mods/v3/mods-3-2.xsd">
+          <titleInfo>
+            <nonSort>The </nonSort>
+            <title>facsimil[e] edition of the autograph of Fryderyk Chopin's works</title>
+            <subTitle>from the Collection Fryderyk Chopin Society in Warsaw</subTitle>
+          </titleInfo>
+          <titleInfo type="uniform">
+            <title>Selections. 1990</title>
+          </titleInfo>
+          <titleInfo type="alternative">
+            <title>Facsimil edition of the autograph of Fryderyk Chopin's works</title>
+          </titleInfo>
+          <name type="personal">
+            <namePart>Chopin, Fr&#xE9;d&#xE9;ric</namePart>
+            <namePart type="date">1810-1849</namePart>
+            <role>
+              <roleTerm authority="marcrelator" type="text">creator</roleTerm>
+            </role>
+          </name>
+          <name type="corporate">
+            <namePart>Towarzystwo im. Fryderyka Chopina</namePart>
+          </name>
+          <typeOfResource>notated music</typeOfResource>
+          <originInfo>
+            <place>
+              <placeTerm type="code" authority="marccountry">pl</placeTerm>
+            </place>
+            <place>
+              <placeTerm type="text">Warsaw</placeTerm>
+            </place>
+            <place>
+              <placeTerm type="text">Tokyo</placeTerm>
+            </place>
+            <publisher>Fryderyk Chopin Society</publisher>
+            <publisher>Green Peace Publishers</publisher>
+            <dateIssued>c1990-</dateIssued>
+            <dateIssued encoding="marc" keyDate="yes">1990</dateIssued>
+            <issuance>monographic</issuance>
+          </originInfo>
+          <language>
+            <languageTerm authority="iso639-2b" type="code">pol</languageTerm>
+          </language>
+          <physicalDescription>
+            <form authority="marcform">print</form>
+            <extent>   v. of music : facsims. ; 36 x 44 cm.</extent>
+          </physicalDescription>
+          <tableOfContents>1. Mazurka in F minor, op. 7-3 -- Torio [sic] in G-minor, for pianoforte, violin and cello, op. 8 -- Study in E major, op. 10-3 -- Study in G-flat major, op. 10-5 -- Study in E-flat-minor, op. 10-6 -- Study in F-major, op. 10-8 -- Study in F-minor, op. 10-9 -- Study in A-flat-major, op. 10-10 -- Study in C-major, op. 10-1 -- Study in A-minor, op. 10-2 -- Study in C-sharp minor, op. 10-4 -- Study in C-major, op. 10-7 -- Study in E-flat-major, op. 10- 11 -- Study in C minor, op. 10-12 -- Impromptu in A-flat-major, op. 29 -- Barcarolle in F-sharp-major, op. 60 -- Polonaise-Fantasie in A-flat major, op. 61 -- Polonaise in F-minor, op. 71-3 -- Song for voice and pianoforte in A-flat major, op. 74-10 : "Wojak" = The warrior.</tableOfContents>
+          <tableOfContents>2. Berceuse in D-flat-major, op. 57 -- Sonata no. 3 in B-minor, op. 58 -- Barcarolle in F-sharp-major, op. 60 -- Polonaise-Fantasie in A-flat- major, op. 61 -- Sonata in G-minor, for pianoforte and cello, op. 65 -- Mazurka in F-minor, op. 68-4 -- Song for voice and pianoforte, op. 74-6 : "Precz z moich oczu" = Out of my sight! -- Song for voice and pianoforte, op. 74-14 : "Pierscien" = The ring -- Song in F-major : "Dawniej polak" -- Refrain of "Dabrowski's mazurka" -- Nocturne in C-minor -- Sonata no. 2 in B-flat-minor, op. 35 -- Impromptu in F-sharp major, op. 36 -- Mazurka in G-major, op. 50-1 -- Sonata in B-flat minor, op. 35 (1st ed.).</tableOfContents>
+          <tableOfContents>3. Polonaise in G minor, 1817 (1st ed.).</tableOfContents>
+          <tableOfContents>[5.] A commentary on the facsimile edition of the autograph Fryderyk Chopin's works from the Collection Fryderyk Chopin Society in Warsaw.</tableOfContents>
+          <note>Reproductions of holographs and 1st editions.</note>
+          <note>Title from container.</note>
+          <note>Vol. 1-2 in portfolios; consisting of sheets in wrappers.</note>
+          <subject authority="lcsh">
+            <topic>Piano music</topic>
+          </subject>
+          <subject authority="lcsh">
+            <topic>Piano trios</topic>
+            <topic>Scores</topic>
+          </subject>
+          <subject authority="lcsh">
+            <topic>Songs with piano</topic>
+          </subject>
+          <subject authority="lcsh">
+            <topic>Sonatas (Cello and piano)</topic>
+            <topic>Scores</topic>
+          </subject>
+          <subject authority="lcsh">
+            <topic>Music</topic>
+            <topic>Manuscripts</topic>
+            <topic>Facsimiles</topic>
+          </subject>
+          <subject authority="lcsh">
+            <name type="personal">
+              <namePart>Chopin, Fr&#xE9;d&#xE9;ric</namePart>
+              <namePart type="date">1810-1849</namePart>
+            </name>
+            <topic>Manuscripts</topic>
+            <topic>facsimiles</topic>
+          </subject>
+          <identifier type="uri">http://purl.dlib.indiana.edu/iudl/variations/score/ABE9721</identifier>
+          <location>
+            <url usage="primary display" note="Available to authorized users of the Variations System">http://purl.dlib.indiana.edu/iudl/variations/score/ABE9721</url>
+          </location>
+          <recordInfo>
+            <recordContentSource authority="marcorg">IUL</recordContentSource>
+            <recordCreationDate encoding="marc">911028</recordCreationDate>
+            <recordIdentifier>ABE9721BM</recordIdentifier>
+          </recordInfo>
+        </mods></zs:recordData><zs:recordPosition>1</zs:recordPosition></zs:record></zs:records></zs:searchRetrieveResponse>
+    http_version: 
+  recorded_at: Mon, 10 Oct 2016 20:18:20 GMT
+recorded_with: VCR 2.9.3
