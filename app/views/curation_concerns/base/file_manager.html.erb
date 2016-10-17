@@ -6,7 +6,11 @@
   <li><%= link_to @presenter, ContextualPath.new(@presenter, @parent_presenter).show %></li>
   <li class="active">File Manager</li>
 </ul>
-
+<% if @presenter.logical_order.empty? %>
+<div>
+  <%= link_to 'Sort files alphabetically', polymorphic_path([main_app, :alphabetize_members, @presenter]), method: :patch, class: "btn btn-primary" %>
+</div>
+<% end %>
 <% if !@presenter.member_presenters.empty? %>
   <div data-action="file-manager">
     <div class="col-md-3" id="file-manager-tools">

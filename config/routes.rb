@@ -56,6 +56,7 @@ Rails.application.routes.draw do
         get :manifest, defaults: { format: :json }
         post :flag
         post :browse_everything_files
+        patch :alphabetize_members
         get :structure
         post :structure, action: :save_structure
       end
@@ -63,6 +64,7 @@ Rails.application.routes.draw do
     resources :scanned_resources, only: [] do
       member do
         get "/pdf/:pdf_quality", action: :pdf, as: :pdf
+        patch :alphabetize_members
         get :structure
         post :structure, action: :save_structure
         get :manifest, defaults: { format: :json }
