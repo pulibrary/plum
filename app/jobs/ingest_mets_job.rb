@@ -108,12 +108,12 @@ class IngestMETSJob < ActiveJob::Base
         r.save!
         logger.info "Created ScannedResource: #{r.id}"
 
+        parent.ordered_members << r
+        parent.save!
+
         ingest_files(parent: parent, resource: r, files: @mets.files_for_volume(volume_id))
         r.logical_order.order = map_fileids(@mets.structure_for_volume(volume_id))
         r.save!
-
-        parent.ordered_members << r
-        parent.save!
       end
     end
 
