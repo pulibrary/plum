@@ -299,6 +299,7 @@ GEM
       multipart-post (>= 1.2, < 3)
     fcrepo_wrapper (0.6.0)
       ruby-progressbar
+    ffi (1.9.14)
     font-awesome-rails (4.6.3.1)
       railties (>= 3.2, < 5.1)
     globalid (0.3.7)
@@ -428,6 +429,7 @@ GEM
     mini_portile (0.6.2)
     minitest (5.9.0)
     modernizr-rails (2.7.1)
+    msgpack (1.0.2)
     multi_json (1.12.1)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
@@ -527,6 +529,10 @@ GEM
       thor (>= 0.18.1, < 2.0)
     rainbow (2.1.0)
     rake (11.2.2)
+    rbtrace (0.4.8)
+      ffi (>= 1.0.6)
+      msgpack (>= 0.4.3)
+      trollop (>= 1.16.2)
     rdf (2.1.0)
       hamster (~> 3.0)
       link_header (~> 0.0, >= 0.0.8)
@@ -662,6 +668,7 @@ GEM
     thread_safe (0.3.5)
     tilt (2.0.5)
     tins (1.12.0)
+    trollop (2.1.2)
     ttfunk (1.4.0)
     twitter-typeahead-rails (0.11.1.pre.corejavascript)
       actionpack (>= 3.1)
@@ -740,6 +747,7 @@ DEPENDENCIES
   rails-assets-babel-polyfill!
   rails-assets-bootstrap-select (= 1.9.4)!
   rails-assets-jqueryui-timepicker-addon!
+  rbtrace
   redis-namespace
   rsolr (~> 1.1.0)
   rspec-rails
@@ -764,4 +772,4 @@ DEPENDENCIES
   webmock (~> 1.0)
 
 BUNDLED WITH
-   1.12.3
+   1.12.5
