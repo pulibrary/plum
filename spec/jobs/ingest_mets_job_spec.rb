@@ -20,7 +20,7 @@ RSpec.describe IngestMETSJob do
     let(:order_object) { double('order_object') }
 
     before do
-      allow(FileSetActor).to receive(:new).and_return(actor1, actor2)
+      allow(BatchFileSetActor).to receive(:new).and_return(actor1, actor2)
       allow(FileSet).to receive(:new).and_return(fileset)
       allow(MultiVolumeWork).to receive(:new).and_return(work)
       allow(ScannedResource).to receive(:new).and_return(resource1, resource2)

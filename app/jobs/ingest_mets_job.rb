@@ -77,15 +77,19 @@ class IngestMETSJob < ActiveJob::Base
     def attach_mets(resource)
       mets_file_set = FileSet.new
       mets_file_set.title = ['METS XML']
-      actor = FileSetActor.new(mets_file_set, @user)
+      actor = BatchFileSetActor.new(mets_file_set, @user)
       actor.attach_related_object(resource)
       actor.attach_content(File.open(@mets.source_file, 'r:UTF-8'))
     end
 
     def ingest_files(parent: nil, resource: nil, files: [])
+      ordered_members = []
       files.each do |f|
-        ingest_file(parent: parent, resource: resource, f: f)
+        file_set = ingest_file(parent: parent, resource: resource, f: f)
+        ordered_members << file_set if file_set
       end
+
+      resource.ordered_members = ordered_members
     end
 
     def ingest_file(parent: nil, resource: nil, f: nil, count: 0)
@@ -93,7 +97,7 @@ class IngestMETSJob < ActiveJob::Base
       file_set = FileSet.new
       file_set.title = [@mets.file_label(f[:id])]
       file_set.replaces = "#{@mets.pudl_id}/#{File.basename(f[:path], File.extname(f[:path]))}"
-      actor = FileSetActor.new(file_set, @user)
+      actor = BatchFileSetActor.new(file_set, @user)
       actor.create_metadata(resource, @mets.file_opts(f))
       actor.create_content(@mets.decorated_file(f))
 
@@ -103,6 +107,8 @@ class IngestMETSJob < ActiveJob::Base
       resource.thumbnail_id = file_set.id
       resource.save!
       parent.thumbnail_id = file_set.id if parent
+
+      return file_set
     rescue StandardError => e
       raise e if count > 4
       count += 1
