@@ -112,6 +112,7 @@ gem 'arabic-letter-connector'
 group :staging, :development do
   gem 'ruby-prof'
 end
+gem 'rbtrace', require: false
 source 'https://rails-assets.org' do
   gem 'rails-assets-babel-polyfill'
   gem 'rails-assets-bootstrap-select', '1.9.4'
