@@ -22,3 +22,5 @@ noid-minter-state
 /fits
 /coverage
 /staged_files
+
+/.byebug_history

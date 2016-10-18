@@ -31,4 +31,10 @@ RSpec.describe Collection do
       expect(subject.valid?).to be false
     end
   end
+
+  describe "title sort field" do
+    it "indexes sort field" do
+      expect(subject.to_solr['title_ssort']).to eq 'Exhibit 1'
+    end
+  end
 end

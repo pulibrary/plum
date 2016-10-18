@@ -19,6 +19,8 @@ class WorkIndexer < CurationConcerns::WorkIndexer
             object.to_json
           end
         end
+        titles = solr_doc[Solrizer.solr_name('title', :stored_searchable)] || []
+        solr_doc['title_ssort'] = titles.to_sentence
         solr_doc[Solrizer.solr_name("#{field}_literals", :symbol)] = output
       end
       solr_doc[Solrizer.solr_name("identifier", :symbol)] = object.identifier

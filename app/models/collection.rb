@@ -4,6 +4,7 @@ require 'vocab/pul_terms'
 class Collection < ActiveFedora::Base
   include ::CurationConcerns::CollectionBehavior
   include CurationConcerns::BasicMetadata
+  include ::CollectionTitleIndexing
 
   def self.human_readable_short_description
   end
