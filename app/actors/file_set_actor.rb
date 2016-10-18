@@ -5,12 +5,6 @@ class FileSetActor < ::CurationConcerns::Actors::FileSetActor
     end
   end
 
-  def attach_related_object(resource)
-    file_set.apply_depositor_metadata(user)
-    resource.related_objects << file_set
-    resource.save
-  end
-
   def attach_content(file, relation = 'original_file')
     Hydra::Works::AddFileToFileSet.call(file_set, file, relation.to_sym, versioning: false)
   end
