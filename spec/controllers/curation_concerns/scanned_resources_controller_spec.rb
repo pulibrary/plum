@@ -5,6 +5,10 @@ describe CurationConcerns::ScannedResourcesController do
   let(:scanned_resource) { FactoryGirl.create(:scanned_resource, user: user, title: ['Dummy Title'], state: 'complete', identifier: 'ark:/99999/fk4445wg45') }
   let(:reloaded) { scanned_resource.reload }
 
+  include_examples "alphabetize_members" do
+    let(:curation_concern) { scanned_resource }
+  end
+
   describe "delete" do
     let(:user) { FactoryGirl.create(:admin) }
     before do

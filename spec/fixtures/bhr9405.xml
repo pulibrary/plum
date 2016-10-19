@@ -1,0 +1,261 @@
+<ScoreAccessPage>
+  <HtmlPageStatus>None</HtmlPageStatus>
+  <Bibinfo>
+    <StmtResponsibility>di Ottorino Respighi</StmtResponsibility>
+    <Author>Respighi, Ottorino, 1879-1936</Author>
+  </Bibinfo>
+
+<RecordSet version="trunk">
+   <Container>
+      <DisplayTitle offset="0">Fontane di Roma ; poema sinfonico per orchestra</DisplayTitle>
+      <AdditionalTitles/>
+      <SeriesTitles/>
+      <Publisher>G. Ricordi</Publisher>
+      <Edition/>
+      <PublisherNumbers>
+         <PublisherNumber>G. Ricordi:P.R.206</PublisherNumber>
+      </PublisherNumbers>
+      <DocumentInfos>
+         <DocumentInfo>
+            <Type>Score</Type>
+            <Format>Full Score</Format>
+            <Description>1 score (64 p.) ; 32 cm</Description>
+         </DocumentInfo>
+      </DocumentInfos>
+      <Languages>
+         <Language>
+            <Context>Notes</Context>
+            <Language>English</Language>
+         </Language>
+         <Language>
+            <Context>Notes</Context>
+            <Language>German</Language>
+         </Language>
+         <Language>
+            <Context>Notes</Context>
+            <Language>German</Language>
+         </Language>
+         <Language>
+            <Context>Notes</Context>
+            <Language>French</Language>
+         </Language>
+      </Languages>
+      <PublicationDate>1947, c1918</PublicationDate>
+      <CopyrightDate/>
+      <PublicationPlace>Milano ; New York</PublicationPlace>
+      <BibliographicNotes>
+         <BibliographicNote>
+            <Type>Descriptive</Type>
+            <Text>BM: 900615</Text>
+         </BibliographicNote>
+         <BibliographicNote>
+            <Type>Descriptive</Type>
+            <Text>BM: 900615</Text>
+         </BibliographicNote>
+      </BibliographicNotes>
+      <Structure label="Fontane di Roma ; poema sinfonico per orchestra">
+         <Item label="Fontane di Roma ; poema sinfonico per orchestra">
+            <Div label="[Title Page and Copyright Page]">
+               <Chunk label="[i]">
+                  <ContentInterval begin="0" end="1" mediaRef="IU/MediaObject/404811"/>
+               </Chunk>
+               <Chunk label="[ii]">
+                  <ContentInterval begin="1" end="2" mediaRef="IU/MediaObject/404811"/>
+               </Chunk>
+            </Div>
+            <Div label="[Notes]">
+               <Chunk label="[iii]">
+                  <ContentInterval begin="2" end="3" mediaRef="IU/MediaObject/404811"/>
+               </Chunk>
+               <Chunk label="[iv]">
+                  <ContentInterval begin="3" end="4" mediaRef="IU/MediaObject/404811"/>
+               </Chunk>
+            </Div>
+            <Div label="[Orchestration]">
+               <Chunk label="[v]">
+                  <ContentInterval begin="4" end="5" mediaRef="IU/MediaObject/404811"/>
+               </Chunk>
+               <Chunk label="[vi]">
+                  <ContentInterval begin="5" end="6" mediaRef="IU/MediaObject/404811"/>
+               </Chunk>
+            </Div>
+            <Div label="Fontane de Roma : Poema Sinfonico">
+               <Div label="La fontana di Valle Giulia all'alba">
+                  <Chunk label="1">
+                     <ContentInterval begin="6" end="7" mediaRef="IU/MediaObject/404811"/>
+                  </Chunk>
+                  <Chunk label="2">
+                     <ContentInterval begin="7" end="8" mediaRef="IU/MediaObject/404811"/>
+                  </Chunk>
+                  <Chunk label="3">
+                     <ContentInterval begin="8" end="9" mediaRef="IU/MediaObject/404811"/>
+                  </Chunk>
+                  <Chunk label="4">
+                     <ContentInterval begin="9" end="10" mediaRef="IU/MediaObject/404811"/>
+                  </Chunk>
+               </Div>
+            </Div>
+         </Item>
+      </Structure>
+      <Contributions/>
+      <InstantiationRefs>
+         <InstantiationRef>IU/Instantiation/432532</InstantiationRef>
+      </InstantiationRefs>
+      <MediaObjectRefs>
+         <MediaObjectRef>IU/MediaObject/404811</MediaObjectRef>
+      </MediaObjectRefs>
+      <PhysicalID>
+         <Location>IU Music Library</Location>
+         <CallNumber>M1002.R434 F6 R5 1947</CallNumber>
+         <CopyNumber>1</CopyNumber>
+      </PhysicalID>
+      <PhysicalCondition/>
+      <HoldingStatus>Publicly available</HoldingStatus>
+      <Isbn/>
+      <Upc/>
+      <Ismn/>
+      <CopyrightDecls>
+         <CopyrightDecl>
+            <Owner>G. Ricordi &amp; Co.</Owner>
+            <Domain>Container</Domain>
+            <Date>1918</Date>
+         </CopyrightDecl>
+      </CopyrightDecls>
+      <PublicDomain>Unknown</PublicDomain>
+      <OtherSystemIds>
+         <OtherSystemId>(Variations)bhr9405</OtherSystemId>
+         <OtherSystemId>(InU)BHR9405BM</OtherSystemId>
+         <OtherSystemId>(OCoLC)ocm09430539</OtherSystemId>
+      </OtherSystemIds>
+      <Id>IU/Container/404807</Id>
+      <CreationInfo>
+         <User>epeebles@IU.EDU</User>
+         <Timestamp>2007-11-14 15:46:00.0</Timestamp>
+      </CreationInfo>
+      <UpdateInfo>
+         <User>schmiecs@IU.EDU</User>
+         <Timestamp>2012-06-25 15:30:20.869</Timestamp>
+      </UpdateInfo>
+      <Status>Minimal</Status>
+   </Container>
+   <MediaObject>
+      <Label>BHR9405</Label>
+      <FileFormat>image/tiff</FileFormat>
+      <Compression/>
+      <BitDepth/>
+      <Resolution/>
+      <ChannelCount>0</ChannelCount>
+      <SampleSize>0</SampleSize>
+      <SampleRate>0</SampleRate>
+      <Environment>Fujitsu Model fi4750C</Environment>
+      <DigitizationDate>2007-11-14</DigitizationDate>
+      <DigitizedBy>epeebles@IU.EDU</DigitizedBy>
+      <AccessCount>0</AccessCount>
+      <FileInfos>
+         <FileInfo>
+            <Extent>1</Extent>
+            <Size>0</Size>
+            <FileName>bhr9405-1-1.tif</FileName>
+            <Checksum>FXJcA+AOLEWfKLZgr/g/Lw==</Checksum>
+            <Creation>2008-08-29 12:09:46.0</Creation>
+            <Update>2008-08-29 12:09:46.0</Update>
+         </FileInfo>
+         <FileInfo>
+            <Extent>1</Extent>
+            <Size>0</Size>
+            <FileName>bhr9405-1-2.tif</FileName>
+            <Checksum>o/mDr11aicH0dTlGK7yeNA==</Checksum>
+            <Creation>2008-08-29 12:09:46.0</Creation>
+            <Update>2008-08-29 12:09:46.0</Update>
+         </FileInfo>
+         <FileInfo>
+            <Extent>1</Extent>
+            <Size>0</Size>
+            <FileName>bhr9405-1-3.tif</FileName>
+            <Checksum>grASE1rVo1Dh+XZw7HcQzw==</Checksum>
+            <Creation>2008-08-29 12:09:46.0</Creation>
+            <Update>2008-08-29 12:09:46.0</Update>
+         </FileInfo>
+         <FileInfo>
+            <Extent>1</Extent>
+            <Size>0</Size>
+            <FileName>bhr9405-1-4.tif</FileName>
+            <Checksum>n4b9UqMsf+lXANkkCM9/hw==</Checksum>
+            <Creation>2008-08-29 12:09:46.0</Creation>
+            <Update>2008-08-29 12:09:46.0</Update>
+         </FileInfo>
+         <FileInfo>
+            <Extent>1</Extent>
+            <Size>0</Size>
+            <FileName>bhr9405-1-5.tif</FileName>
+            <Checksum>ruFuWxuwMzf66fdIvoqbkg==</Checksum>
+            <Creation>2008-08-29 12:09:46.0</Creation>
+            <Update>2008-08-29 12:09:46.0</Update>
+         </FileInfo>
+         <FileInfo>
+            <Extent>1</Extent>
+            <Size>0</Size>
+            <FileName>bhr9405-1-6.tif</FileName>
+            <Checksum>HPW1qrX4MyWlYSZ3TDtGXA==</Checksum>
+            <Creation>2008-08-29 12:09:46.0</Creation>
+            <Update>2008-08-29 12:09:46.0</Update>
+         </FileInfo>
+         <FileInfo>
+            <Extent>1</Extent>
+            <Size>0</Size>
+            <FileName>bhr9405-1-7.tif</FileName>
+            <Checksum>OcBMJjWQsheavWqDSHvx5Q==</Checksum>
+            <Creation>2008-08-29 12:09:46.0</Creation>
+            <Update>2008-08-29 12:09:46.0</Update>
+         </FileInfo>
+         <FileInfo>
+            <Extent>1</Extent>
+            <Size>0</Size>
+            <FileName>bhr9405-1-8.tif</FileName>
+            <Checksum>x68xNkVnDbojZn788OFDyg==</Checksum>
+            <Creation>2008-08-29 12:09:46.0</Creation>
+            <Update>2008-08-29 12:09:46.0</Update>
+         </FileInfo>
+         <FileInfo>
+            <Extent>1</Extent>
+            <Size>0</Size>
+            <FileName>bhr9405-1-9.tif</FileName>
+            <Checksum>/BrnLNGlEQx59yEA+fe6dQ==</Checksum>
+            <Creation>2008-08-29 12:09:46.0</Creation>
+            <Update>2008-08-29 12:09:46.0</Update>
+         </FileInfo>
+         <FileInfo>
+            <Extent>1</Extent>
+            <Size>0</Size>
+            <FileName>bhr9405-1-10.tif</FileName>
+            <Checksum>u7NBZSu1bN36Hdg4cfBhTg==</Checksum>
+            <Creation>2008-08-29 12:09:46.0</Creation>
+            <Update>2008-08-29 12:09:46.0</Update>
+         </FileInfo>
+      </FileInfos>
+      <Id>IU/MediaObject/404811</Id>
+      <CreationInfo>
+         <User>epeebles@IU.EDU</User>
+         <Timestamp>2007-11-14 15:56:16.0</Timestamp>
+      </CreationInfo>
+      <UpdateInfo>
+         <User>schmiecs@IU.EDU</User>
+         <Timestamp>2012-06-25 15:30:20.0</Timestamp>
+      </UpdateInfo>
+      <Status>Complete</Status>
+   </MediaObject>
+   <SetInfo>
+      <TextMatches/>
+      <ThemeBaseURL>http://variations-prod-web.dlib.indiana.edu/variations/themes/</ThemeBaseURL>
+      <AvailableMediaItems>
+         <AllItemsAvailable>true</AllItemsAvailable>
+      </AvailableMediaItems>
+   </SetInfo>
+</RecordSet>
+
+<AccompanyingMaterials>
+
+</AccompanyingMaterials>
+
+
+</ScoreAccessPage>

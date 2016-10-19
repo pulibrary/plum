@@ -1,0 +1,132 @@
+---
+:resource: ScannedResource
+:attributes:
+  :default:
+    :state: final_review
+    :viewing_direction: left-to-right
+    :rights_statement: http://rightsstatements.org/vocab/NKC/1.0/
+    :visibility: open
+  :local:
+    :identifier: ark:/88435/5m60qr98h
+    :replaces: pudl0001/4612596
+    :source_metadata_identifier: bhr9405
+    :viewing_direction: left-to-right
+  :remote:
+    title:
+    - Fontane di Roma ; poema sinfonico per orchestra
+    creator:
+    - Respighi, Ottorino, 1879-1936.
+    publisher:
+    - G. Ricordi,
+:source_metadata: |-
+  <record xmlns="http://www.loc.gov/MARC21/slim">
+    <!-- Length implementation at offset 22 should hold a digit. Assuming 0 -->
+    <leader>01161ncm a2200301 a 4500</leader>
+    <controlfield tag="001">BHR9405BM</controlfield>
+    <controlfield tag="008">830420r19471918it spb         n 1  N/A d</controlfield>
+    <datafield tag="028" ind1="2" ind2="2">
+      <subfield code="a">P.R.206</subfield>
+      <subfield code="b">G. Ricordi</subfield>
+    </datafield>
+    <datafield tag="035" ind1=" " ind2=" ">
+      <subfield code="a">(InU)BHR9405BM</subfield>
+    </datafield>
+    <datafield tag="035" ind1=" " ind2=" ">
+      <subfield code="a">(OCoLC)ocm09430539</subfield>
+    </datafield>
+    <datafield tag="040" ind1=" " ind2=" ">
+      <subfield code="a">BOS</subfield>
+      <subfield code="c">BOS</subfield>
+      <subfield code="d">m/c</subfield>
+      <subfield code="d">IUG</subfield>
+    </datafield>
+    <datafield tag="045" ind1=" " ind2=" ">
+      <subfield code="a">x1x1</subfield>
+    </datafield>
+    <datafield tag="048" ind1=" " ind2=" ">
+      <subfield code="a">oa</subfield>
+    </datafield>
+    <datafield tag="049" ind1=" " ind2=" ">
+      <subfield code="a">IUGA</subfield>
+    </datafield>
+    <datafield tag="090" ind1=" " ind2=" ">
+      <subfield code="a">M1002.R434</subfield>
+      <subfield code="b">F6, R5, 1947</subfield>
+      <subfield code="m">IUL9</subfield>
+    </datafield>
+    <datafield tag="100" ind1="1" ind2="0">
+      <subfield code="a">Respighi, Ottorino,</subfield>
+      <subfield code="d">1879-1936.</subfield>
+    </datafield>
+    <datafield tag="240" ind1="1" ind2="0">
+      <subfield code="a">Fontane di Roma</subfield>
+    </datafield>
+    <datafield tag="245" ind1="1" ind2="0">
+      <subfield code="a">Fontane di Roma ;</subfield>
+      <subfield code="b">poema sinfonico per orchestra /</subfield>
+      <subfield code="c">di Ottorino Respighi.</subfield>
+    </datafield>
+    <datafield tag="254" ind1=" " ind2=" ">
+      <subfield code="a">Partitura.</subfield>
+    </datafield>
+    <datafield tag="260" ind1="0" ind2=" ">
+      <subfield code="a">Milano ;</subfield>
+      <subfield code="a">New York :</subfield>
+      <subfield code="b">G. Ricordi,</subfield>
+      <subfield code="c">1947, c1918.</subfield>
+    </datafield>
+    <datafield tag="300" ind1=" " ind2=" ">
+      <subfield code="a">1 score (64 p.) ;</subfield>
+      <subfield code="c">32 cm.</subfield>
+    </datafield>
+    <datafield tag="505" ind1="0" ind2=" ">
+      <subfield code="a">La fontana di Valle Giulia all'alba -- La fontana del Tritone al mattino -- La fontana di Trevi al meriggio -- La fontana di Villa Medici al tramonto.</subfield>
+    </datafield>
+    <datafield tag="591" ind1=" " ind2=" ">
+      <subfield code="a">BM: 900615</subfield>
+    </datafield>
+    <datafield tag="650" ind1=" " ind2="0">
+      <subfield code="a">Symphonic poems</subfield>
+      <subfield code="x">Scores.</subfield>
+    </datafield>
+    <datafield tag="856" ind1="4" ind2="1">
+      <subfield code="a">Bloomington</subfield>
+      <subfield code="u">http://purl.dlib.indiana.edu/iudl/variations/score/BHR9405</subfield>
+      <subfield code="z">Available to authorized users of the Variations System</subfield>
+    </datafield>
+    <datafield tag="998" ind1=" " ind2=" ">
+      <subfield code="a">6/15/1990</subfield>
+      <subfield code="b">9/1/1988</subfield>
+      <subfield code="c">9/1/1988</subfield>
+    </datafield>
+    <datafield tag="596" ind1=" " ind2=" ">
+      <subfield code="a">20</subfield>
+    </datafield>
+    <datafield tag="926" ind1=" " ind2=" ">
+      <subfield code="a">B-MUSIC</subfield>
+      <subfield code="b">STACKS</subfield>
+      <subfield code="c">M1002.R434 F6, R5, 1947</subfield>
+      <subfield code="d">NORMAL</subfield>
+      <subfield code="f">1</subfield>
+    </datafield>
+  </record>
+:thumbnail_path: "/tmp/pudl0001/4612596/00000001.tif"
+:structure:
+  :nodes:
+  - :label: leaf 1
+    :nodes:
+    - :label: leaf 1. recto
+      :proxy: pkc90
+:files:
+- :id: pkc90
+  :checksum: 5b0ed4a62f96a19c5267fa8a9e1caf876c87e8d0
+  :mime_type: image/tiff
+  :path: "/tmp/pudl0001/4612596/00000001.tif"
+  :title:
+  - leaf 1. recto
+  :replaces: pudl0001/4612596/00000001
+  :file_opts: {}
+:sources:
+- :title:
+  - METS XML
+  :file: spec/fixtures/pudl0001-4612596.mets

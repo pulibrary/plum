@@ -8,7 +8,7 @@ require 'rdf/vocab'
 Bundler.require(*Rails.groups)
 require 'iiif/presentation'
 
-module Aardvark
+module Pumpkin
   class Application < Rails::Application
     config.generators do |g|
       g.test_framework :rspec, spec: true

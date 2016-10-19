@@ -14,6 +14,13 @@ class CurationConcerns::CurationConcernsController < ApplicationController
     super
   end
 
+  def alphabetize_members
+    @sorted = curation_concern.members.sort { |x, y| x.label <=> y.label }
+    flash[:notice] = "Files have been ordered alphabetically, by filename."
+    curation_concern.update_attributes(ordered_members: @sorted)
+    redirect_to :back
+  end
+
   def destroy
     messenger.record_deleted(curation_concern)
     super
