@@ -90,6 +90,7 @@ RSpec.describe IngestMETSJob do
       allow(actor2).to receive(:create_content)
       described_class.perform_now(mets_file_rtl, user)
       expect(resource1.viewing_direction).to eq('right-to-left')
+      expect(resource1.ordered_members.to_a.length).to eq 189
     end
 
     it "ingests a multi-volume mets file", vcr: { cassette_name: 'bibdata-4609321' } do
@@ -103,6 +104,8 @@ RSpec.describe IngestMETSJob do
       allow(logical_order).to receive(:order).and_return(nil)
       allow(logical_order).to receive(:object).and_return(order_object)
       allow(order_object).to receive(:each_section).and_return([])
+      expect(resource1).to receive(:ordered_members=)
+      expect(resource2).to receive(:ordered_members=)
       described_class.perform_now(mets_file_multi, user)
       expect(work.ordered_member_ids).to eq(['resource1', 'resource2'])
     end

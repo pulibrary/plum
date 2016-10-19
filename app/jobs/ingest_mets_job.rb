@@ -103,17 +103,18 @@ class IngestMETSJob < ActiveJob::Base
 
       mets_to_repo_map[f[:id]] = file_set.id
 
-      return unless f[:path] == @mets.thumbnail_path
-      resource.thumbnail_id = file_set.id
-      resource.save!
-      parent.thumbnail_id = file_set.id if parent
+      if f[:path] == @mets.thumbnail_path
+        resource.thumbnail_id = file_set.id
+        resource.save!
+        parent.thumbnail_id = file_set.id if parent
+      end
 
       return file_set
     rescue StandardError => e
       raise e if count > 4
       count += 1
       logger.info "Failed ingesting #{f[:path]} #{count} times, retrying. Error: #{e.message}"
-      ingest_file(parent: parent, resource: resource, f: f, count: count)
+      return ingest_file(parent: parent, resource: resource, f: f, count: count)
     end
 
     def ingest_volumes(parent)
