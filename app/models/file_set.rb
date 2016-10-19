@@ -34,6 +34,9 @@ class FileSet < ActiveFedora::Base
         ]
       )
       RunOCRJob.perform_later(id)
+    when 'image/jp2'
+      puts "Got me a JPEG 2000!!!!"
+      puts derivative_url('intermediate_file')
     end
     super
   end
