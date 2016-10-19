@@ -63,6 +63,7 @@ RSpec.feature "ScannedResourcesController", type: :feature do
 
       visit edit_polymorphic_path [scanned_resource]
       expect(page).not_to have_text('Representative Media')
+      expect(page).not_to have_text('Thumbnail')
     end
   end
 
