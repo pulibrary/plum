@@ -35,8 +35,9 @@ class FileSet < ActiveFedora::Base
       )
       RunOCRJob.perform_later(id)
     when 'image/jp2'
-      puts "Got me a JPEG 2000!!!!"
-      puts derivative_url('intermediate_file')
+      dst = derivative_path('intermediate_file')
+      FileUtils.mkdir_p(File.dirname(dst))
+      FileUtils.cp(filename, dst)
     end
     super
   end
@@ -76,5 +77,9 @@ class FileSet < ActiveFedora::Base
     def derivative_url(destination_name)
       path = PairtreeDerivativePath.derivative_path_for_reference(self, destination_name)
       URI("file://#{path}").to_s
+    end
+
+    def derivative_path(destination_name)
+      PairtreeDerivativePath.derivative_path_for_reference(self, destination_name).to_s
     end
 end
