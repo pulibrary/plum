@@ -1,4 +1,6 @@
+require 'new_relic/agent/method_tracer'
 class IngestMETSJob < ActiveJob::Base
+  include ::NewRelic::Agent::MethodTracer
   queue_as :ingest
 
   # @param [String] mets_file Filename of a METS file to ingest
@@ -116,6 +118,8 @@ class IngestMETSJob < ActiveJob::Base
       logger.info "Failed ingesting #{f[:path]} #{count} times, retrying. Error: #{e.message}"
       return ingest_file(parent: parent, resource: resource, f: f, count: count)
     end
+
+    add_method_tracer :ingest_file, 'IngestMETSJob/ingest_file'
 
     def ingest_volumes(parent)
       @mets.volume_ids.each do |volume_id|
