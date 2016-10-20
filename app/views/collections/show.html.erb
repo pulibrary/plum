@@ -4,6 +4,8 @@
   <%= render 'search_sidebar' %>
 <% end %>
 
+<%= render 'shared/back_to_search' %>
+
 <div id="content">
   <% @presenter.title.each do |title| %>
     <h1 class="lower"><%= title %></h1>
