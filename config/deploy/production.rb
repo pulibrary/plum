@@ -8,6 +8,7 @@
 # server 'db.example.com', user: 'deploy', roles: %w{db}
 server 'lib-plum1', user: 'deploy', roles: %w(app db web)
 server 'lib-proc4', user: 'deploy', roles: %w(worker)
+server 'lib-proc5', user: 'deploy', roles: %w(worker)
 
 set :deploy_to, '/opt/rails_app'
 
