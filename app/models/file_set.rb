@@ -42,6 +42,7 @@ class FileSet < ActiveFedora::Base
     super.tap do |doc|
       doc["full_text_tesim"] = ocr_text if ocr_text.present?
       doc["ordered_by_ssim"] = ordered_by.map(&:id).to_a
+      doc["replaces_ssim"] = replaces
     end
   end
 
