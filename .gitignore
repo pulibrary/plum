@@ -27,3 +27,6 @@ noid-minter-state
 # /.rvmrc
 /.ruby-*
 /.java-*
+
+# Ignore Redis dump file
+dump.rdb
