@@ -56,10 +56,14 @@ class CatalogController < ApplicationController
     config.add_index_field solr_name('contributor', :stored_searchable)
     config.add_index_field solr_name('publisher', :stored_searchable)
     config.add_index_field solr_name('based_near', :stored_searchable)
-    config.add_index_field solr_name('language', :stored_searchable)
+    config.add_index_field solr_name('language', :stored_searchable) do |field|
+      field.accessor = :language_display
+    end
     config.add_index_field solr_name('date_uploaded', :stored_sortable)
     config.add_index_field solr_name('date_modified', :stored_sortable)
-    config.add_index_field solr_name('date_created', :stored_searchable)
+    config.add_index_field solr_name('date_created', :stored_searchable) do |field|
+      field.accessor = :date_created_display
+    end
     config.add_index_field solr_name('human_readable_type', :stored_searchable)
     config.add_index_field solr_name('format', :stored_searchable)
     config.add_index_field solr_name('identifier', :stored_searchable)
@@ -242,8 +246,8 @@ class CatalogController < ApplicationController
     # If there are more than this many search results, no spelling ("did you
     # mean") suggestion is offered.
     config.spell_max = 5
-    config.index_presenter_class = RTLIndexPresenter
-    config.show_presenter_class = RTLShowPresenter
+    config.index.document_presenter_class = RTLIndexPresenter
+    config.show.document_presenter_class = RTLShowPresenter
   end
   def admin_state_facet
     return unless can? :create, ScannedResource

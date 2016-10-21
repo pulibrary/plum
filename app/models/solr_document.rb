@@ -25,6 +25,10 @@ class SolrDocument
     self[Solrizer.solr_name('date_created')]
   end
 
+  def date_created_display
+    DateValue.new(date_created).to_a
+  end
+
   def state
     Array(self[Solrizer.solr_name("state")]).first
   end
@@ -76,6 +80,10 @@ class SolrDocument
 
   def language
     self[Solrizer.solr_name('language')]
+  end
+
+  def language_display
+    (language || []).map { |code| LanguageService.label(code) }
   end
 
   def source_metadata_identifier
