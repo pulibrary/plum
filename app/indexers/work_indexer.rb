@@ -24,6 +24,9 @@ class WorkIndexer < CurationConcerns::WorkIndexer
         solr_doc[Solrizer.solr_name("#{field}_literals", :symbol)] = output
       end
       solr_doc[Solrizer.solr_name("identifier", :symbol)] = object.identifier
+      solr_doc[Solrizer.solr_name("language", :facetable)] = object.language.map do |code|
+        LanguageService.label(code)
+      end
     end
   end
 end

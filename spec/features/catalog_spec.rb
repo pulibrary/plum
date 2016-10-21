@@ -49,4 +49,22 @@ RSpec.feature "CatalogController", type: :feature do
       expect(page).not_to have_selector "div.blacklight-state_sim", text: "State"
     end
   end
+
+  describe "language and date formatting" do
+    let(:user) { FactoryGirl.create(:admin) }
+    let(:scanned_resource) { FactoryGirl.create(:scanned_resource, user: user, language: ['deu'], date_created: ['1941-10-23T00:00:00Z']) }
+
+    before(:each) do
+      sign_in user
+      scanned_resource.update_index
+    end
+
+    scenario "formatted versions are displayed" do
+      visit search_catalog_path q: ""
+      expect(page).to have_text 'German'
+      expect(page).to_not have_text 'deu'
+      expect(page).to have_text '10/23/1941'
+      expect(page).to_not have_text '1941-10-23'
+    end
+  end
 end
