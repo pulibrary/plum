@@ -1,8 +1,6 @@
 module LanguageService
-  mattr_accessor :authority
-  self.authority = Qa::Authorities::Local.subauthority_for('iso639')
 
   def self.label(id)
-    authority.find(id).fetch('term', id)
+    lang = ISO_639.find_by_code(id).try(:english_name) || id
   end
 end
