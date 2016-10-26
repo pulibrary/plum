@@ -85,6 +85,12 @@ class METSDocument
 
     def volume_nodes
       xp = "/mets:mets/mets:structMap[@TYPE='Physical']/mets:div[@TYPE='MultiVolumeSet']/mets:div"
-      @volume_nodes ||= @mets.xpath(xp)
+      @volume_nodes ||= logical_volumes || @mets.xpath(xp)
+    end
+
+    def logical_volumes
+      xp = "/mets:mets/mets:structMap[@TYPE='Logical']/mets:div/mets:div[starts-with(@TYPE, 'Bound')]"
+      log = @mets.xpath(xp)
+      log if log && !log.empty?
     end
 end
