@@ -4,6 +4,7 @@ RSpec.describe METSDocument do
   let(:mets_file) { Rails.root.join("spec", "fixtures", "pudl0001-4612596.mets") }
   let(:mets_file_rtl) { Rails.root.join("spec", "fixtures", "pudl0032-ns73.mets") }
   let(:mets_file_multi) { Rails.root.join("spec", "fixtures", "pudl0001-4609321-s42.mets") }
+  let(:mets_file_multi2) { Rails.root.join("spec", "fixtures", "pudl0058-616086.mets") }
   let(:tiff_file) { Rails.root.join("spec", "fixtures", "files", "color.tif") }
   let(:structure) { {
     nodes: [{
@@ -140,6 +141,14 @@ RSpec.describe METSDocument do
       subject { described_class.new mets_file_rtl }
       it "has structure" do
         expect(subject.structure).to eq structure
+      end
+    end
+
+    context "a multi-volume item with logical structure" do
+      subject { described_class.new mets_file_multi2 }
+
+      it "uses the logical structure" do
+        expect(subject.volume_ids).to eq ['v1log', 'v2log', 'v3log', 'v4log', 'v5log', 'v6log', 'v7log']
       end
     end
   end
