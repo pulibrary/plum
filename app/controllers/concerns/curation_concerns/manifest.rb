@@ -35,7 +35,9 @@ module CurationConcerns::Manifest
     end
 
     def manifest_builder
-      PolymorphicManifestBuilder.new(presenter, ssl: request.ssl?)
+      Rails.cache.fetch("manifest/#{presenter.id}/#{ResourceIdentifier.new(presenter.id)}") do
+        PolymorphicManifestBuilder.new(presenter, ssl: request.ssl?).to_json
+      end
     end
 
     def login_url
