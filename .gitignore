@@ -22,3 +22,11 @@ noid-minter-state
 /fits
 /coverage
 /staged_files
+
+# Ignore Ruby Version Management stuff
+# /.rvmrc
+/.ruby-*
+/.java-*
+
+# Ignore Redis dump file
+dump.rdb

@@ -48,6 +48,15 @@ RSpec.describe FileSet do
 
       expect(path).to exist
     end
+    it "copies a JP2" do
+      allow_any_instance_of(described_class).to receive(:warn) # suppress virus check warnings
+      file = File.open(Rails.root.join("spec", "fixtures", "files", "image.jp2"))
+      Hydra::Works::UploadFileToFileSet.call(subject, file)
+
+      subject.create_derivatives(file.path)
+
+      expect(path).to exist
+    end
     it "creates full text, attaches it to the object, and indexes it" do
       allow_any_instance_of(described_class).to receive(:warn) # suppress virus check warnings
       allow(Hydra::Derivatives::Jpeg2kImageDerivatives).to receive(:create).and_return(true)
