@@ -4,7 +4,7 @@ module CurationConcerns
     delegate :collection_ids, to: :model
 
     def notable_rights_statement?
-      RightsStatementService.notable?(rights_statement)
+      RightsStatementService.new.notable?(rights_statement)
     end
 
     def self.multiple?(field)

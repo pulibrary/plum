@@ -17,12 +17,16 @@ RSpec.describe RightsStatementService do
 
   context "rights statements" do
     it "provides definitions of rights statements" do
-      expect(described_class.definition(uri)).to include(desc)
-      expect(described_class.definition(uri)).to include('<br/>')
+      expect(described_class.new.definition(uri)).to include(desc)
+      expect(described_class.new.definition(uri)).to include('<br/>')
     end
 
     it "lists all valid rights statements" do
-      expect(described_class.valid_statements).to eq(valid_statements)
+      expect(described_class.new.valid_statements).to eq(valid_statements)
+    end
+
+    it "lists select options" do
+      expect(described_class.new.select_options).to include ['No Known Copyright', 'http://rightsstatements.org/vocab/NKC/1.0/']
     end
   end
 end

@@ -76,18 +76,6 @@ GIT
       om (~> 3.1)
 
 GIT
-  remote: git://github.com/projecthydra/hydra-derivatives.git
-  revision: b79aefd88cd76b11a2c00c0463ce618dd4d04bfd
-  branch: master
-  specs:
-    hydra-derivatives (3.1.4)
-      active-fedora (>= 9.0, < 12)
-      activesupport (>= 4.0, < 6)
-      deprecation
-      mime-types (> 2.0, < 4.0)
-      mini_magick (>= 3.2, < 5)
-
-GIT
   remote: git://github.com/pulibrary/pul_metadata_services.git
   revision: c485eeff36d56c12255a95e5449727370820d53e
   branch: master
@@ -345,6 +333,12 @@ GEM
     hydra-core (10.3.2)
       hydra-access-controls (= 10.3.2)
       railties (>= 4.0.0, < 6)
+    hydra-derivatives (3.1.3)
+      active-fedora (>= 9.0, < 12)
+      activesupport (>= 4.0, < 6)
+      deprecation
+      mime-types (> 2.0, < 4.0)
+      mini_magick (>= 3.2, < 5)
     hydra-editor (3.1.2)
       active-fedora (>= 9.0.0)
       almond-rails (~> 0.0.3)
@@ -714,7 +708,7 @@ DEPENDENCIES
   ezid-client
   factory_girl_rails
   fcrepo_wrapper (~> 0.6.0)
-  hydra-derivatives!
+  hydra-derivatives (= 3.1.3)
   hydra-pcdm!
   hydra-role-management (~> 0.2.0)
   hydra-works!

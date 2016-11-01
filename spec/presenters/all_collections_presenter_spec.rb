@@ -8,7 +8,7 @@ RSpec.describe AllCollectionsPresenter do
   end
 
   it "has a title" do
-    expect(subject.title).to eq "Plum Collections"
+    expect(subject.title).to eq ["Plum Collections"]
   end
 
   it "has a description" do

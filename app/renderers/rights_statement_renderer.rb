@@ -1,7 +1,7 @@
 class RightsStatementRenderer < CurationConcerns::Renderers::RightsAttributeRenderer
   def initialize(rights_statement, rights_note, options = {})
     super(:rights, rights_statement, options)
-    if !rights_note.nil? && RightsStatementService.notable?(rights_statement)
+    if !rights_note.nil? && RightsStatementService.new.notable?(rights_statement)
       @rights_note = rights_note
     else
       @rights_note = []
@@ -15,15 +15,19 @@ class RightsStatementRenderer < CurationConcerns::Renderers::RightsAttributeRend
     markup << %(<tr><th>#{label}</th>\n<td><ul class='tabular'>)
     attributes = microdata_object_attributes(field).merge(class: "attribute #{field}")
     Array(values).each do |value|
-      markup << "<li#{html_attributes(attributes)}>#{attribute_value_to_html(value.to_s)}</li>"
+      markup << "<li#{html_attributes(attributes)}>#{rights_attribute_to_html(value.to_s)}</li>"
     end
     markup << %(</ul>)
-    markup << simple_format(RightsStatementService.definition(values.first))
+    markup << simple_format(RightsStatementService.new.definition(values.first))
     @rights_note.each do |note|
       markup << %(<p>#{note}</p>) unless note.blank?
     end
     markup << simple_format(I18n.t('rights.boilerplate'))
     markup << %(</td></tr>)
     markup.html_safe
+  end
+
+  def rights_attribute_to_html(value)
+    %(<a href=#{ERB::Util.h(value)} target="_blank">#{RightsStatementService.new.label(value)}</a>)
   end
 end

@@ -84,11 +84,11 @@ class ScannedResourcePDF
       end
 
       def rights_statement_label(statement)
-        RightsService.label(statement)
+        RightsStatementService.new.label(statement)
       end
 
       def rights_statement_text(statement)
-        RightsStatementService.definition(statement).gsub(/<br\/>/, "\n")
+        RightsStatementService.new.definition(statement).gsub(/<br\/>/, "\n")
       end
 
       def display_text(prawn_document, text, options = {})

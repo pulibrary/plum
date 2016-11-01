@@ -18,3 +18,6 @@ RSpec.configure do |config|
     mocks.verify_partial_doubles = true
   end
 end
+
+# prevent logging during specs
+Prawn::Font::AFM.hide_m17n_warning = true

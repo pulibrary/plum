@@ -44,4 +44,10 @@ RSpec.describe SolrDocument do
       expect(subject.ocr_language).to eq(['eng'])
     end
   end
+
+  describe '#method_missing' do
+    it 'passes through to super' do
+      expect { subject.send :foo }.to raise_error NoMethodError, /undefined method/
+    end
+  end
 end
