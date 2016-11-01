@@ -94,4 +94,7 @@ Rails.application.routes.draw do
 
   # Dynamic robots.txt
   get '/robots.:format' => 'pages#robots'
+
+  # Purl redirects
+  get '/purl/:id', to: 'purl#default', as: 'default_purl'
 end
