@@ -1,4 +1,6 @@
 require 'simplecov'
+require 'active_fedora/noid/rspec'
+
 if ENV['CI']
   require 'coveralls'
   SimpleCov.formatter = Coveralls::SimpleCov::Formatter
