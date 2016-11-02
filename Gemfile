@@ -1,5 +1,8 @@
 source 'https://rubygems.org'
 
+# Complain if developer not using the common Ruby version
+ruby '2.3.1'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.7.1'
 # Use SCSS for stylesheets
