@@ -1,4 +1,6 @@
 require 'simplecov'
+require 'active_fedora/noid/rspec'
+
 if ENV['CI']
   require 'coveralls'
   SimpleCov.formatter = Coveralls::SimpleCov::Formatter
@@ -16,3 +18,6 @@ RSpec.configure do |config|
     mocks.verify_partial_doubles = true
   end
 end
+
+# prevent logging during specs
+Prawn::Font::AFM.hide_m17n_warning = true

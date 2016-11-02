@@ -4,7 +4,7 @@ class AllCollectionsPresenter < CollectionShowPresenter
   end
 
   def title
-    "Plum Collections"
+    ["Plum Collections"]
   end
 
   def description

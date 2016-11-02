@@ -12,6 +12,6 @@ class RightsStatementValidator < ActiveModel::Validator
     end
 
     def valid_rights_statements
-      RightsStatementService.valid_statements
+      RightsStatementService.new.valid_statements
     end
 end

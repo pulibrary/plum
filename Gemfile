@@ -46,7 +46,7 @@ gem 'prawn'
 # Copied from curation_concerns Gemfile.extra
 gem 'hydra-works', github: 'projecthydra-labs/hydra-works', branch: 'master'
 gem 'hydra-pcdm', github: 'projecthydra-labs/hydra-pcdm', branch: 'master'
-gem 'hydra-derivatives', github: 'projecthydra/hydra-derivatives', branch: 'master'
+gem 'hydra-derivatives', '3.1.3'
 gem 'active-fedora', '11.0.0.rc7'
 gem 'active-triples', '~> 0.10.0'
 gem 'active_fedora-noid', '2.0.0.beta6'
