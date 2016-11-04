@@ -36,6 +36,12 @@ class METSDocument
     @mets.xpath("/mets:mets/mets:structMap[@TYPE='Physical']/mets:div/@TYPE").to_s.start_with? 'RTL'
   end
 
+  def viewing_hint
+    type = @mets.xpath("/mets:mets/mets:structMap[@TYPE='Physical']/mets:div/@TYPE").to_s
+    return if ['TightBoundManuscript', 'ScrollSet', 'BoundArt'].any? { |w| type.include?(w) }
+    'paged'
+  end
+
   def multi_volume?
     volume_nodes.length > 1
   end

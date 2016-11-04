@@ -31,6 +31,7 @@ class IngestMETSJob < ActiveJob::Base
       if @mets.multi_volume?
         ingest_volumes(resource)
       else
+        resource.viewing_hint = @mets.viewing_hint
         ingest_files(resource: resource, files: @mets.files)
         if @mets.structure.present?
           resource.logical_order.order = map_fileids(@mets.structure)
@@ -125,6 +126,7 @@ class IngestMETSJob < ActiveJob::Base
       @mets.volume_ids.each do |volume_id|
         r = minimal_record(ScannedResource)
         r.title = [@mets.label_for_volume(volume_id)]
+        r.viewing_hint = @mets.viewing_hint
         r.save!
         logger.info "Created ScannedResource: #{r.id}"
 
