@@ -150,6 +150,7 @@ RSpec.describe IngestMETSJob do
       expect(resource.related_objects).to eq([fileset1])
       expect(fileset1.title).to eq(['METS XML'])
       expect(fileset1.files.first.content).to start_with("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>\n<mets:mets")
+      expect(resource.viewing_hint).to eq('paged')
     end
     context "when the file is already ingested", vcr: { cassette_name: 'bibdata-4612596' } do
       it "deletes the old version" do

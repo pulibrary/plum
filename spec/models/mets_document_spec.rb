@@ -5,6 +5,7 @@ RSpec.describe METSDocument do
   let(:mets_file_rtl) { Rails.root.join("spec", "fixtures", "pudl0032-ns73.mets") }
   let(:mets_file_multi) { Rails.root.join("spec", "fixtures", "pudl0001-4609321-s42.mets") }
   let(:mets_file_multi2) { Rails.root.join("spec", "fixtures", "pudl0058-616086.mets") }
+  let(:tight_bound_mets_file) { Rails.root.join("spec", "fixtures", "pudl0075-6971526.mets") }
   let(:tiff_file) { Rails.root.join("spec", "fixtures", "files", "color.tif") }
   let(:structure) { {
     nodes: [{
@@ -96,6 +97,24 @@ RSpec.describe METSDocument do
       end
       it "has a right-to-left viewing direction" do
         expect(subject.viewing_direction).to eq('right-to-left')
+      end
+    end
+  end
+
+  describe "viewing hint" do
+    context "by default" do
+      subject { described_class.new mets_file }
+
+      it "is paged" do
+        expect(subject.viewing_hint).to eq('paged')
+      end
+    end
+
+    context "for tight bound manuscripts" do
+      subject { described_class.new tight_bound_mets_file }
+
+      it "is blank" do
+        expect(subject.viewing_hint).to eq nil
       end
     end
   end
