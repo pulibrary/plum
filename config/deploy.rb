@@ -49,15 +49,19 @@ namespace :deploy do
 end
 namespace :sidekiq do
   task :quiet do
+    # Horrible hack to get PID without having to use terrible PID files
     on roles(:worker) do
-      # Horrible hack to get PID without having to use terrible PID files
       puts capture("kill -USR1 $(sudo initctl status plum-workers | grep /running | awk '{print $NF}') || :")
+    end
+    on roles(:worker2) do
       puts capture("kill -USR1 $(sudo initctl status plum-derivatives | grep /running | awk '{print $NF}') || :")
     end
   end
   task :restart do
     on roles(:worker) do
       execute :sudo, :initctl, :restart, "plum-workers"
+    end
+    on roles(:worker2) do
       execute :sudo, :initctl, :restart, "plum-derivatives"
     end
   end
