@@ -1,6 +1,7 @@
 require: rubocop-rspec
 
 AllCops:
+  TargetRubyVersion: 2.3
   RunRailsCops: true
   DisplayCopNames: true
   Include:
