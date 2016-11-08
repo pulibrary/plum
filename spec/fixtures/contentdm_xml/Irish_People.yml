@@ -1,0 +1,719 @@
+---
+:resource: MultiVolumeWork
+:attributes:
+  :default:
+    :state: final_review
+    :viewing_direction: left-to-right
+    :rights_statement: http://rightsstatements.org/vocab/NKC/1.0/
+    :visibility: open
+  :local:
+    :source_metadata_identifier: Irish People &lt;br&gt; http://indiamond6.ulib.iupui.edu/cdm/search/collection/IP
+    :viewing_direction: left-to-right
+  :remote: {}
+:source_metadata: 
+:thumbnail_path: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/thumbnail.exe?CISOROOT=/IP&CISOPTR=5044
+:volumes:
+- :title:
+  - 1974-11-16 Irish People
+  :structure:
+    :nodes:
+    - :label: page1
+      :proxy: page1
+    - :label: page2
+      :proxy: page2
+    - :label: page3
+      :proxy: page3
+    - :label: page4
+      :proxy: page4
+    - :label: page5
+      :proxy: page5
+    - :label: page6
+      :proxy: page6
+    - :label: page7
+      :proxy: page7
+    - :label: page8
+      :proxy: page8
+    - :label: page9
+      :proxy: page9
+    - :label: page10-11
+      :proxy: page10-11
+    - :label: page12
+      :proxy: page12
+    - :label: page13
+      :proxy: page13
+    - :label: page14
+      :proxy: page14
+    - :label: page15
+      :proxy: page15
+    - :label: page16
+      :proxy: page16
+    - :label: page17
+      :proxy: page17
+    - :label: page18
+      :proxy: page18
+    - :label: page19
+      :proxy: page19
+    - :label: page20
+      :proxy: page20
+  :files:
+  - :id: page1
+    :mime_type: image/jp2
+    :title:
+    - page1
+    :thumbnail: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/thumbnail.exe?CISOROOT=/IP&CISOPTR=5044
+    :path: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/showfile.exe?CISOROOT=/IP&CISOPTR=5044
+    :file_opts: {}
+  - :id: page2
+    :mime_type: image/jp2
+    :title:
+    - page2
+    :thumbnail: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/thumbnail.exe?CISOROOT=/IP&CISOPTR=5045
+    :path: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/showfile.exe?CISOROOT=/IP&CISOPTR=5045
+    :file_opts: {}
+  - :id: page3
+    :mime_type: image/jp2
+    :title:
+    - page3
+    :thumbnail: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/thumbnail.exe?CISOROOT=/IP&CISOPTR=5046
+    :path: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/showfile.exe?CISOROOT=/IP&CISOPTR=5046
+    :file_opts: {}
+  - :id: page4
+    :mime_type: image/jp2
+    :title:
+    - page4
+    :thumbnail: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/thumbnail.exe?CISOROOT=/IP&CISOPTR=5047
+    :path: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/showfile.exe?CISOROOT=/IP&CISOPTR=5047
+    :file_opts: {}
+  - :id: page5
+    :mime_type: image/jp2
+    :title:
+    - page5
+    :thumbnail: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/thumbnail.exe?CISOROOT=/IP&CISOPTR=5048
+    :path: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/showfile.exe?CISOROOT=/IP&CISOPTR=5048
+    :file_opts: {}
+  - :id: page6
+    :mime_type: image/jp2
+    :title:
+    - page6
+    :thumbnail: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/thumbnail.exe?CISOROOT=/IP&CISOPTR=5049
+    :path: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/showfile.exe?CISOROOT=/IP&CISOPTR=5049
+    :file_opts: {}
+  - :id: page7
+    :mime_type: image/jp2
+    :title:
+    - page7
+    :thumbnail: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/thumbnail.exe?CISOROOT=/IP&CISOPTR=5050
+    :path: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/showfile.exe?CISOROOT=/IP&CISOPTR=5050
+    :file_opts: {}
+  - :id: page8
+    :mime_type: image/jp2
+    :title:
+    - page8
+    :thumbnail: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/thumbnail.exe?CISOROOT=/IP&CISOPTR=5051
+    :path: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/showfile.exe?CISOROOT=/IP&CISOPTR=5051
+    :file_opts: {}
+  - :id: page9
+    :mime_type: image/jp2
+    :title:
+    - page9
+    :thumbnail: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/thumbnail.exe?CISOROOT=/IP&CISOPTR=5052
+    :path: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/showfile.exe?CISOROOT=/IP&CISOPTR=5052
+    :file_opts: {}
+  - :id: page10-11
+    :mime_type: image/jp2
+    :title:
+    - page10-11
+    :thumbnail: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/thumbnail.exe?CISOROOT=/IP&CISOPTR=5053
+    :path: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/showfile.exe?CISOROOT=/IP&CISOPTR=5053
+    :file_opts: {}
+  - :id: page12
+    :mime_type: image/jp2
+    :title:
+    - page12
+    :thumbnail: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/thumbnail.exe?CISOROOT=/IP&CISOPTR=5054
+    :path: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/showfile.exe?CISOROOT=/IP&CISOPTR=5054
+    :file_opts: {}
+  - :id: page13
+    :mime_type: image/jp2
+    :title:
+    - page13
+    :thumbnail: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/thumbnail.exe?CISOROOT=/IP&CISOPTR=5055
+    :path: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/showfile.exe?CISOROOT=/IP&CISOPTR=5055
+    :file_opts: {}
+  - :id: page14
+    :mime_type: image/jp2
+    :title:
+    - page14
+    :thumbnail: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/thumbnail.exe?CISOROOT=/IP&CISOPTR=5056
+    :path: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/showfile.exe?CISOROOT=/IP&CISOPTR=5056
+    :file_opts: {}
+  - :id: page15
+    :mime_type: image/jp2
+    :title:
+    - page15
+    :thumbnail: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/thumbnail.exe?CISOROOT=/IP&CISOPTR=5057
+    :path: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/showfile.exe?CISOROOT=/IP&CISOPTR=5057
+    :file_opts: {}
+  - :id: page16
+    :mime_type: image/jp2
+    :title:
+    - page16
+    :thumbnail: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/thumbnail.exe?CISOROOT=/IP&CISOPTR=5058
+    :path: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/showfile.exe?CISOROOT=/IP&CISOPTR=5058
+    :file_opts: {}
+  - :id: page17
+    :mime_type: image/jp2
+    :title:
+    - page17
+    :thumbnail: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/thumbnail.exe?CISOROOT=/IP&CISOPTR=5059
+    :path: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/showfile.exe?CISOROOT=/IP&CISOPTR=5059
+    :file_opts: {}
+  - :id: page18
+    :mime_type: image/jp2
+    :title:
+    - page18
+    :thumbnail: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/thumbnail.exe?CISOROOT=/IP&CISOPTR=5060
+    :path: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/showfile.exe?CISOROOT=/IP&CISOPTR=5060
+    :file_opts: {}
+  - :id: page19
+    :mime_type: image/jp2
+    :title:
+    - page19
+    :thumbnail: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/thumbnail.exe?CISOROOT=/IP&CISOPTR=5061
+    :path: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/showfile.exe?CISOROOT=/IP&CISOPTR=5061
+    :file_opts: {}
+  - :id: page20
+    :mime_type: image/jp2
+    :title:
+    - page20
+    :thumbnail: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/thumbnail.exe?CISOROOT=/IP&CISOPTR=5062
+    :path: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/showfile.exe?CISOROOT=/IP&CISOPTR=5062
+    :file_opts: {}
+- :title:
+  - 1982-03-27 Irish People
+  :structure:
+    :nodes:
+    - :label: page1
+      :proxy: page1
+    - :label: page2
+      :proxy: page2
+    - :label: page3
+      :proxy: page3
+    - :label: page4
+      :proxy: page4
+    - :label: page5
+      :proxy: page5
+    - :label: page6
+      :proxy: page6
+    - :label: page7
+      :proxy: page7
+    - :label: page8-9
+      :proxy: page8-9
+    - :label: page10
+      :proxy: page10
+    - :label: page11
+      :proxy: page11
+    - :label: page12
+      :proxy: page12
+    - :label: page13
+      :proxy: page13
+    - :label: page14
+      :proxy: page14
+    - :label: page15
+      :proxy: page15
+    - :label: page16
+      :proxy: page16
+  :files:
+  - :id: page1
+    :mime_type: image/jp2
+    :title:
+    - page1
+    :thumbnail: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/thumbnail.exe?CISOROOT=/IP&CISOPTR=8153
+    :path: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/showfile.exe?CISOROOT=/IP&CISOPTR=8153
+    :file_opts: {}
+  - :id: page2
+    :mime_type: image/jp2
+    :title:
+    - page2
+    :thumbnail: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/thumbnail.exe?CISOROOT=/IP&CISOPTR=8154
+    :path: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/showfile.exe?CISOROOT=/IP&CISOPTR=8154
+    :file_opts: {}
+  - :id: page3
+    :mime_type: image/jp2
+    :title:
+    - page3
+    :thumbnail: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/thumbnail.exe?CISOROOT=/IP&CISOPTR=8155
+    :path: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/showfile.exe?CISOROOT=/IP&CISOPTR=8155
+    :file_opts: {}
+  - :id: page4
+    :mime_type: image/jp2
+    :title:
+    - page4
+    :thumbnail: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/thumbnail.exe?CISOROOT=/IP&CISOPTR=8156
+    :path: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/showfile.exe?CISOROOT=/IP&CISOPTR=8156
+    :file_opts: {}
+  - :id: page5
+    :mime_type: image/jp2
+    :title:
+    - page5
+    :thumbnail: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/thumbnail.exe?CISOROOT=/IP&CISOPTR=8157
+    :path: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/showfile.exe?CISOROOT=/IP&CISOPTR=8157
+    :file_opts: {}
+  - :id: page6
+    :mime_type: image/jp2
+    :title:
+    - page6
+    :thumbnail: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/thumbnail.exe?CISOROOT=/IP&CISOPTR=8158
+    :path: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/showfile.exe?CISOROOT=/IP&CISOPTR=8158
+    :file_opts: {}
+  - :id: page7
+    :mime_type: image/jp2
+    :title:
+    - page7
+    :thumbnail: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/thumbnail.exe?CISOROOT=/IP&CISOPTR=8159
+    :path: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/showfile.exe?CISOROOT=/IP&CISOPTR=8159
+    :file_opts: {}
+  - :id: page8-9
+    :mime_type: image/jp2
+    :title:
+    - page8-9
+    :thumbnail: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/thumbnail.exe?CISOROOT=/IP&CISOPTR=8160
+    :path: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/showfile.exe?CISOROOT=/IP&CISOPTR=8160
+    :file_opts: {}
+  - :id: page10
+    :mime_type: image/jp2
+    :title:
+    - page10
+    :thumbnail: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/thumbnail.exe?CISOROOT=/IP&CISOPTR=8161
+    :path: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/showfile.exe?CISOROOT=/IP&CISOPTR=8161
+    :file_opts: {}
+  - :id: page11
+    :mime_type: image/jp2
+    :title:
+    - page11
+    :thumbnail: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/thumbnail.exe?CISOROOT=/IP&CISOPTR=8162
+    :path: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/showfile.exe?CISOROOT=/IP&CISOPTR=8162
+    :file_opts: {}
+  - :id: page12
+    :mime_type: image/jp2
+    :title:
+    - page12
+    :thumbnail: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/thumbnail.exe?CISOROOT=/IP&CISOPTR=8163
+    :path: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/showfile.exe?CISOROOT=/IP&CISOPTR=8163
+    :file_opts: {}
+  - :id: page13
+    :mime_type: image/jp2
+    :title:
+    - page13
+    :thumbnail: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/thumbnail.exe?CISOROOT=/IP&CISOPTR=8164
+    :path: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/showfile.exe?CISOROOT=/IP&CISOPTR=8164
+    :file_opts: {}
+  - :id: page14
+    :mime_type: image/jp2
+    :title:
+    - page14
+    :thumbnail: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/thumbnail.exe?CISOROOT=/IP&CISOPTR=8165
+    :path: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/showfile.exe?CISOROOT=/IP&CISOPTR=8165
+    :file_opts: {}
+  - :id: page15
+    :mime_type: image/jp2
+    :title:
+    - page15
+    :thumbnail: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/thumbnail.exe?CISOROOT=/IP&CISOPTR=8166
+    :path: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/showfile.exe?CISOROOT=/IP&CISOPTR=8166
+    :file_opts: {}
+  - :id: page16
+    :mime_type: image/jp2
+    :title:
+    - page16
+    :thumbnail: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/thumbnail.exe?CISOROOT=/IP&CISOPTR=8167
+    :path: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/showfile.exe?CISOROOT=/IP&CISOPTR=8167
+    :file_opts: {}
+- :title:
+  - 1988-04-02 Irish People, Easter Rising
+  :structure:
+    :nodes:
+    - :label: page1
+      :proxy: page1
+    - :label: page2
+      :proxy: page2
+    - :label: page3
+      :proxy: page3
+    - :label: page4
+      :proxy: page4
+    - :label: page5
+      :proxy: page5
+    - :label: page6-7
+      :proxy: page6-7
+    - :label: page8
+      :proxy: page8
+    - :label: page9
+      :proxy: page9
+    - :label: page10
+      :proxy: page10
+    - :label: page11
+      :proxy: page11
+    - :label: page12
+      :proxy: page12
+  :files:
+  - :id: page1
+    :mime_type: image/jp2
+    :title:
+    - page1
+    :thumbnail: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/thumbnail.exe?CISOROOT=/IP&CISOPTR=23671
+    :path: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/showfile.exe?CISOROOT=/IP&CISOPTR=23671
+    :file_opts: {}
+  - :id: page2
+    :mime_type: image/jp2
+    :title:
+    - page2
+    :thumbnail: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/thumbnail.exe?CISOROOT=/IP&CISOPTR=23672
+    :path: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/showfile.exe?CISOROOT=/IP&CISOPTR=23672
+    :file_opts: {}
+  - :id: page3
+    :mime_type: image/jp2
+    :title:
+    - page3
+    :thumbnail: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/thumbnail.exe?CISOROOT=/IP&CISOPTR=23673
+    :path: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/showfile.exe?CISOROOT=/IP&CISOPTR=23673
+    :file_opts: {}
+  - :id: page4
+    :mime_type: image/jp2
+    :title:
+    - page4
+    :thumbnail: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/thumbnail.exe?CISOROOT=/IP&CISOPTR=23674
+    :path: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/showfile.exe?CISOROOT=/IP&CISOPTR=23674
+    :file_opts: {}
+  - :id: page5
+    :mime_type: image/jp2
+    :title:
+    - page5
+    :thumbnail: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/thumbnail.exe?CISOROOT=/IP&CISOPTR=23675
+    :path: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/showfile.exe?CISOROOT=/IP&CISOPTR=23675
+    :file_opts: {}
+  - :id: page6-7
+    :mime_type: image/jp2
+    :title:
+    - page6-7
+    :thumbnail: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/thumbnail.exe?CISOROOT=/IP&CISOPTR=23676
+    :path: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/showfile.exe?CISOROOT=/IP&CISOPTR=23676
+    :file_opts: {}
+  - :id: page8
+    :mime_type: image/jp2
+    :title:
+    - page8
+    :thumbnail: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/thumbnail.exe?CISOROOT=/IP&CISOPTR=23677
+    :path: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/showfile.exe?CISOROOT=/IP&CISOPTR=23677
+    :file_opts: {}
+  - :id: page9
+    :mime_type: image/jp2
+    :title:
+    - page9
+    :thumbnail: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/thumbnail.exe?CISOROOT=/IP&CISOPTR=23678
+    :path: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/showfile.exe?CISOROOT=/IP&CISOPTR=23678
+    :file_opts: {}
+  - :id: page10
+    :mime_type: image/jp2
+    :title:
+    - page10
+    :thumbnail: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/thumbnail.exe?CISOROOT=/IP&CISOPTR=23679
+    :path: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/showfile.exe?CISOROOT=/IP&CISOPTR=23679
+    :file_opts: {}
+  - :id: page11
+    :mime_type: image/jp2
+    :title:
+    - page11
+    :thumbnail: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/thumbnail.exe?CISOROOT=/IP&CISOPTR=23680
+    :path: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/showfile.exe?CISOROOT=/IP&CISOPTR=23680
+    :file_opts: {}
+  - :id: page12
+    :mime_type: image/jp2
+    :title:
+    - page12
+    :thumbnail: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/thumbnail.exe?CISOROOT=/IP&CISOPTR=23681
+    :path: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/showfile.exe?CISOROOT=/IP&CISOPTR=23681
+    :file_opts: {}
+- :title:
+  - 1992-10-31 Irish People
+  :structure:
+    :nodes:
+    - :label: page1
+      :proxy: page1
+    - :label: page2
+      :proxy: page2
+    - :label: page3
+      :proxy: page3
+    - :label: page4
+      :proxy: page4
+    - :label: page5
+      :proxy: page5
+    - :label: page6
+      :proxy: page6
+    - :label: page7
+      :proxy: page7
+    - :label: page8-9
+      :proxy: page8-9
+    - :label: page10
+      :proxy: page10
+    - :label: page11
+      :proxy: page11
+    - :label: page12
+      :proxy: page12
+    - :label: page13
+      :proxy: page13
+    - :label: page14
+      :proxy: page14
+    - :label: page15
+      :proxy: page15
+    - :label: page16
+      :proxy: page16
+  :files:
+  - :id: page1
+    :mime_type: image/jp2
+    :title:
+    - page1
+    :thumbnail: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/thumbnail.exe?CISOROOT=/IP&CISOPTR=19977
+    :path: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/showfile.exe?CISOROOT=/IP&CISOPTR=19977
+    :file_opts: {}
+  - :id: page2
+    :mime_type: image/jp2
+    :title:
+    - page2
+    :thumbnail: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/thumbnail.exe?CISOROOT=/IP&CISOPTR=19978
+    :path: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/showfile.exe?CISOROOT=/IP&CISOPTR=19978
+    :file_opts: {}
+  - :id: page3
+    :mime_type: image/jp2
+    :title:
+    - page3
+    :thumbnail: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/thumbnail.exe?CISOROOT=/IP&CISOPTR=19979
+    :path: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/showfile.exe?CISOROOT=/IP&CISOPTR=19979
+    :file_opts: {}
+  - :id: page4
+    :mime_type: image/jp2
+    :title:
+    - page4
+    :thumbnail: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/thumbnail.exe?CISOROOT=/IP&CISOPTR=19980
+    :path: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/showfile.exe?CISOROOT=/IP&CISOPTR=19980
+    :file_opts: {}
+  - :id: page5
+    :mime_type: image/jp2
+    :title:
+    - page5
+    :thumbnail: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/thumbnail.exe?CISOROOT=/IP&CISOPTR=19981
+    :path: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/showfile.exe?CISOROOT=/IP&CISOPTR=19981
+    :file_opts: {}
+  - :id: page6
+    :mime_type: image/jp2
+    :title:
+    - page6
+    :thumbnail: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/thumbnail.exe?CISOROOT=/IP&CISOPTR=19982
+    :path: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/showfile.exe?CISOROOT=/IP&CISOPTR=19982
+    :file_opts: {}
+  - :id: page7
+    :mime_type: image/jp2
+    :title:
+    - page7
+    :thumbnail: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/thumbnail.exe?CISOROOT=/IP&CISOPTR=19983
+    :path: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/showfile.exe?CISOROOT=/IP&CISOPTR=19983
+    :file_opts: {}
+  - :id: page8-9
+    :mime_type: image/jp2
+    :title:
+    - page8-9
+    :thumbnail: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/thumbnail.exe?CISOROOT=/IP&CISOPTR=19984
+    :path: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/showfile.exe?CISOROOT=/IP&CISOPTR=19984
+    :file_opts: {}
+  - :id: page10
+    :mime_type: image/jp2
+    :title:
+    - page10
+    :thumbnail: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/thumbnail.exe?CISOROOT=/IP&CISOPTR=19985
+    :path: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/showfile.exe?CISOROOT=/IP&CISOPTR=19985
+    :file_opts: {}
+  - :id: page11
+    :mime_type: image/jp2
+    :title:
+    - page11
+    :thumbnail: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/thumbnail.exe?CISOROOT=/IP&CISOPTR=19986
+    :path: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/showfile.exe?CISOROOT=/IP&CISOPTR=19986
+    :file_opts: {}
+  - :id: page12
+    :mime_type: image/jp2
+    :title:
+    - page12
+    :thumbnail: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/thumbnail.exe?CISOROOT=/IP&CISOPTR=19987
+    :path: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/showfile.exe?CISOROOT=/IP&CISOPTR=19987
+    :file_opts: {}
+  - :id: page13
+    :mime_type: image/jp2
+    :title:
+    - page13
+    :thumbnail: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/thumbnail.exe?CISOROOT=/IP&CISOPTR=19988
+    :path: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/showfile.exe?CISOROOT=/IP&CISOPTR=19988
+    :file_opts: {}
+  - :id: page14
+    :mime_type: image/jp2
+    :title:
+    - page14
+    :thumbnail: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/thumbnail.exe?CISOROOT=/IP&CISOPTR=19989
+    :path: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/showfile.exe?CISOROOT=/IP&CISOPTR=19989
+    :file_opts: {}
+  - :id: page15
+    :mime_type: image/jp2
+    :title:
+    - page15
+    :thumbnail: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/thumbnail.exe?CISOROOT=/IP&CISOPTR=19990
+    :path: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/showfile.exe?CISOROOT=/IP&CISOPTR=19990
+    :file_opts: {}
+  - :id: page16
+    :mime_type: image/jp2
+    :title:
+    - page16
+    :thumbnail: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/thumbnail.exe?CISOROOT=/IP&CISOPTR=19991
+    :path: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/showfile.exe?CISOROOT=/IP&CISOPTR=19991
+    :file_opts: {}
+- :title:
+  - 2003-08-09 Irish People
+  :structure:
+    :nodes:
+    - :label: page1
+      :proxy: page1
+    - :label: page2
+      :proxy: page2
+    - :label: page3
+      :proxy: page3
+    - :label: page4
+      :proxy: page4
+    - :label: page5
+      :proxy: page5
+    - :label: page6
+      :proxy: page6
+    - :label: page7
+      :proxy: page7
+    - :label: page8-9
+      :proxy: page8-9
+    - :label: page10
+      :proxy: page10
+    - :label: page11
+      :proxy: page11
+    - :label: page12
+      :proxy: page12
+    - :label: page13
+      :proxy: page13
+    - :label: page14
+      :proxy: page14
+    - :label: page15
+      :proxy: page15
+    - :label: page16
+      :proxy: page16
+  :files:
+  - :id: page1
+    :mime_type: image/jp2
+    :title:
+    - page1
+    :thumbnail: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/thumbnail.exe?CISOROOT=/IP&CISOPTR=0
+    :path: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/showfile.exe?CISOROOT=/IP&CISOPTR=0
+    :file_opts: {}
+  - :id: page2
+    :mime_type: image/jp2
+    :title:
+    - page2
+    :thumbnail: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/thumbnail.exe?CISOROOT=/IP&CISOPTR=1
+    :path: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/showfile.exe?CISOROOT=/IP&CISOPTR=1
+    :file_opts: {}
+  - :id: page3
+    :mime_type: image/jp2
+    :title:
+    - page3
+    :thumbnail: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/thumbnail.exe?CISOROOT=/IP&CISOPTR=2
+    :path: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/showfile.exe?CISOROOT=/IP&CISOPTR=2
+    :file_opts: {}
+  - :id: page4
+    :mime_type: image/jp2
+    :title:
+    - page4
+    :thumbnail: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/thumbnail.exe?CISOROOT=/IP&CISOPTR=3
+    :path: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/showfile.exe?CISOROOT=/IP&CISOPTR=3
+    :file_opts: {}
+  - :id: page5
+    :mime_type: image/jp2
+    :title:
+    - page5
+    :thumbnail: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/thumbnail.exe?CISOROOT=/IP&CISOPTR=4
+    :path: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/showfile.exe?CISOROOT=/IP&CISOPTR=4
+    :file_opts: {}
+  - :id: page6
+    :mime_type: image/jp2
+    :title:
+    - page6
+    :thumbnail: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/thumbnail.exe?CISOROOT=/IP&CISOPTR=5
+    :path: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/showfile.exe?CISOROOT=/IP&CISOPTR=5
+    :file_opts: {}
+  - :id: page7
+    :mime_type: image/jp2
+    :title:
+    - page7
+    :thumbnail: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/thumbnail.exe?CISOROOT=/IP&CISOPTR=6
+    :path: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/showfile.exe?CISOROOT=/IP&CISOPTR=6
+    :file_opts: {}
+  - :id: page8-9
+    :mime_type: image/jp2
+    :title:
+    - page8-9
+    :thumbnail: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/thumbnail.exe?CISOROOT=/IP&CISOPTR=7
+    :path: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/showfile.exe?CISOROOT=/IP&CISOPTR=7
+    :file_opts: {}
+  - :id: page10
+    :mime_type: image/jp2
+    :title:
+    - page10
+    :thumbnail: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/thumbnail.exe?CISOROOT=/IP&CISOPTR=8
+    :path: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/showfile.exe?CISOROOT=/IP&CISOPTR=8
+    :file_opts: {}
+  - :id: page11
+    :mime_type: image/jp2
+    :title:
+    - page11
+    :thumbnail: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/thumbnail.exe?CISOROOT=/IP&CISOPTR=9
+    :path: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/showfile.exe?CISOROOT=/IP&CISOPTR=9
+    :file_opts: {}
+  - :id: page12
+    :mime_type: image/jp2
+    :title:
+    - page12
+    :thumbnail: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/thumbnail.exe?CISOROOT=/IP&CISOPTR=10
+    :path: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/showfile.exe?CISOROOT=/IP&CISOPTR=10
+    :file_opts: {}
+  - :id: page13
+    :mime_type: image/jp2
+    :title:
+    - page13
+    :thumbnail: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/thumbnail.exe?CISOROOT=/IP&CISOPTR=11
+    :path: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/showfile.exe?CISOROOT=/IP&CISOPTR=11
+    :file_opts: {}
+  - :id: page14
+    :mime_type: image/jp2
+    :title:
+    - page14
+    :thumbnail: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/thumbnail.exe?CISOROOT=/IP&CISOPTR=12
+    :path: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/showfile.exe?CISOROOT=/IP&CISOPTR=12
+    :file_opts: {}
+  - :id: page15
+    :mime_type: image/jp2
+    :title:
+    - page15
+    :thumbnail: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/thumbnail.exe?CISOROOT=/IP&CISOPTR=13
+    :path: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/showfile.exe?CISOROOT=/IP&CISOPTR=13
+    :file_opts: {}
+  - :id: page16
+    :mime_type: image/jp2
+    :title:
+    - page16
+    :thumbnail: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/thumbnail.exe?CISOROOT=/IP&CISOPTR=14
+    :path: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/showfile.exe?CISOROOT=/IP&CISOPTR=14
+    :file_opts: {}
+:sources:
+- :title:
+  - Contentdm XML
+  :file: spec/fixtures/contentdm_xml/Irish_People.xml

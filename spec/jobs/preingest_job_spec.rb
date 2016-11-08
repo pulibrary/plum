@@ -47,4 +47,14 @@ RSpec.describe PreingestJob do
       include_examples "successfully preingests"
     end
   end
+  describe "preingest a contentDM file" do
+    let(:cdm_file_multiple) { Rails.root.join("spec", "fixtures", "contentdm_xml", "Irish_People.xml").to_s }
+    let(:yaml_file) { preingest_file.sub(/\.xml$/, '.yml') }
+    let(:document_class) { ContentdmExport }
+
+    context "with a multi-volume CDM XML export file" do
+      let(:preingest_file) { cdm_file_multiple }
+      include_examples "successfully preingests"
+    end
+  end
 end

@@ -96,7 +96,7 @@ class IngestYAMLJob < ActiveJob::Base
     end
 
     def decorated_file(f)
-      IoDecorator.new(File.open(f[:path]), f[:mime_type], File.basename(f[:path]))
+      IoDecorator.new(open(f[:path]), f[:mime_type], File.basename(f[:path]))
     end
 
     def map_fileids(hsh)
