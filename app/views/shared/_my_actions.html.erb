@@ -24,6 +24,8 @@
       <li class="divider"></li>
     <% end %>
     <li><%= link_to 'Log Out', main_app.destroy_user_session_path, class: 'log-out', role: 'menuitem' %></li>
+    <li><%= link_to 'CAS Log Out', main_app.destroy_global_session_path,
+        class: 'log-out', role: 'menuitem' %></li>
   </ul>
 </div>
 
