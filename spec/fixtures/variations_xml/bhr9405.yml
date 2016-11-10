@@ -145,64 +145,84 @@
 - :id: bhr9405-1-1.tif
   :mime_type: image/tiff
   :path: "/tmp/ingest/bhr9405-1-1.tif"
-  :title:
-  - "[i]"
   :file_opts: {}
+  :attributes:
+    :title:
+    - "[i]"
+    :source_metadata_identifier: BHR9405-1-1
 - :id: bhr9405-1-2.tif
   :mime_type: image/tiff
   :path: "/tmp/ingest/bhr9405-1-2.tif"
-  :title:
-  - "[ii]"
   :file_opts: {}
+  :attributes:
+    :title:
+    - "[ii]"
+    :source_metadata_identifier: BHR9405-1-2
 - :id: bhr9405-1-3.tif
   :mime_type: image/tiff
   :path: "/tmp/ingest/bhr9405-1-3.tif"
-  :title:
-  - "[iii]"
   :file_opts: {}
+  :attributes:
+    :title:
+    - "[iii]"
+    :source_metadata_identifier: BHR9405-1-3
 - :id: bhr9405-1-4.tif
   :mime_type: image/tiff
   :path: "/tmp/ingest/bhr9405-1-4.tif"
-  :title:
-  - "[iv]"
   :file_opts: {}
+  :attributes:
+    :title:
+    - "[iv]"
+    :source_metadata_identifier: BHR9405-1-4
 - :id: bhr9405-1-5.tif
   :mime_type: image/tiff
   :path: "/tmp/ingest/bhr9405-1-5.tif"
-  :title:
-  - "[v]"
   :file_opts: {}
+  :attributes:
+    :title:
+    - "[v]"
+    :source_metadata_identifier: BHR9405-1-5
 - :id: bhr9405-1-6.tif
   :mime_type: image/tiff
   :path: "/tmp/ingest/bhr9405-1-6.tif"
-  :title:
-  - "[vi]"
   :file_opts: {}
+  :attributes:
+    :title:
+    - "[vi]"
+    :source_metadata_identifier: BHR9405-1-6
 - :id: bhr9405-1-7.tif
   :mime_type: image/tiff
   :path: "/tmp/ingest/bhr9405-1-7.tif"
-  :title:
-  - '1'
   :file_opts: {}
+  :attributes:
+    :title:
+    - '1'
+    :source_metadata_identifier: BHR9405-1-7
 - :id: bhr9405-1-8.tif
   :mime_type: image/tiff
   :path: "/tmp/ingest/bhr9405-1-8.tif"
-  :title:
-  - '2'
   :file_opts: {}
+  :attributes:
+    :title:
+    - '2'
+    :source_metadata_identifier: BHR9405-1-8
 - :id: bhr9405-1-9.tif
   :mime_type: image/tiff
   :path: "/tmp/ingest/bhr9405-1-9.tif"
-  :title:
-  - '3'
   :file_opts: {}
+  :attributes:
+    :title:
+    - '3'
+    :source_metadata_identifier: BHR9405-1-9
 - :id: bhr9405-1-10.tif
   :mime_type: image/tiff
   :path: "/tmp/ingest/bhr9405-1-10.tif"
-  :title:
-  - '4'
   :file_opts: {}
+  :attributes:
+    :title:
+    - '4'
+    :source_metadata_identifier: BHR9405-1-10
 :sources:
 - :title:
   - Variations XML
-  :file: spec/fixtures/bhr9405.xml
+  :file: spec/fixtures/variations_xml/bhr9405.xml

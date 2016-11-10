@@ -80,13 +80,12 @@ class IngestYAMLJob < ActiveJob::Base
       files.each do |f|
         logger.info "Ingesting file #{f[:path]}"
         file_set = FileSet.new
-        file_set.title = f[:title]
-        file_set.replaces = f[:replaces]
+        file_set.attributes = f[:attributes]
         actor = FileSetActor.new(file_set, @user)
         actor.create_metadata(resource, f[:file_opts])
         actor.create_content(decorated_file(f))
 
-        mets_to_repo_map[f[:id]] = file_set.id
+        yaml_to_repo_map[f[:id]] = file_set.id
 
         next unless f[:path] == thumbnail_path
         resource.thumbnail_id = file_set.id
@@ -102,12 +101,12 @@ class IngestYAMLJob < ActiveJob::Base
     def map_fileids(hsh)
       hsh.each do |k, v|
         hsh[k] = v.each { |node| map_fileids(node) } if k == :nodes
-        hsh[k] = mets_to_repo_map[v] if k == :proxy
+        hsh[k] = yaml_to_repo_map[v] if k == :proxy
       end
     end
 
-    def mets_to_repo_map
-      @mets_to_repo_map ||= {}
+    def yaml_to_repo_map
+      @yaml_to_repo_map ||= {}
     end
 
     def thumbnail_path

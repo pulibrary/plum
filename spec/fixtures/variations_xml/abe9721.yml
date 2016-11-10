@@ -509,783 +509,1043 @@
   - :id: abe9721-1-1.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-1-1.djvu"
-    :title:
-    - "[1:1]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[1:1]"
+      :source_metadata_identifier: ABE9721-1-1
   - :id: abe9721-1-2.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-1-2.djvu"
-    :title:
-    - "[1:2]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[1:2]"
+      :source_metadata_identifier: ABE9721-1-2
   - :id: abe9721-1-3.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-1-3.djvu"
-    :title:
-    - "[1:3]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[1:3]"
+      :source_metadata_identifier: ABE9721-1-3
   - :id: abe9721-1-4.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-1-4.djvu"
-    :title:
-    - "[1:4]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[1:4]"
+      :source_metadata_identifier: ABE9721-1-4
   - :id: abe9721-1-5.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-1-5.djvu"
-    :title:
-    - "[1:5]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[1:5]"
+      :source_metadata_identifier: ABE9721-1-5
   - :id: abe9721-1-6.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-1-6.djvu"
-    :title:
-    - "[1:6]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[1:6]"
+      :source_metadata_identifier: ABE9721-1-6
   - :id: abe9721-1-7.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-1-7.djvu"
-    :title:
-    - "[1:7]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[1:7]"
+      :source_metadata_identifier: ABE9721-1-7
   - :id: abe9721-1-8.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-1-8.djvu"
-    :title:
-    - "[1:8]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[1:8]"
+      :source_metadata_identifier: ABE9721-1-8
   - :id: abe9721-1-9.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-1-9.djvu"
-    :title:
-    - "[1:9]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[1:9]"
+      :source_metadata_identifier: ABE9721-1-9
   - :id: abe9721-1-10.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-1-10.djvu"
-    :title:
-    - "[1:10]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[1:10]"
+      :source_metadata_identifier: ABE9721-1-10
   - :id: abe9721-1-11.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-1-11.djvu"
-    :title:
-    - "[1:11]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[1:11]"
+      :source_metadata_identifier: ABE9721-1-11
   - :id: abe9721-1-12.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-1-12.djvu"
-    :title:
-    - "[1:12]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[1:12]"
+      :source_metadata_identifier: ABE9721-1-12
   - :id: abe9721-1-13.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-1-13.djvu"
-    :title:
-    - "[1:13]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[1:13]"
+      :source_metadata_identifier: ABE9721-1-13
   - :id: abe9721-1-14.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-1-14.djvu"
-    :title:
-    - "[1:14]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[1:14]"
+      :source_metadata_identifier: ABE9721-1-14
   - :id: abe9721-1-15.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-1-15.djvu"
-    :title:
-    - "[1:15]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[1:15]"
+      :source_metadata_identifier: ABE9721-1-15
   - :id: abe9721-1-16.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-1-16.djvu"
-    :title:
-    - "[1:16]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[1:16]"
+      :source_metadata_identifier: ABE9721-1-16
   - :id: abe9721-1-17.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-1-17.djvu"
-    :title:
-    - "[1:17]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[1:17]"
+      :source_metadata_identifier: ABE9721-1-17
   - :id: abe9721-1-18.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-1-18.djvu"
-    :title:
-    - "[1:18]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[1:18]"
+      :source_metadata_identifier: ABE9721-1-18
   - :id: abe9721-1-19.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-1-19.djvu"
-    :title:
-    - "[1:19]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[1:19]"
+      :source_metadata_identifier: ABE9721-1-19
   - :id: abe9721-1-20.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-1-20.djvu"
-    :title:
-    - "[1:20]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[1:20]"
+      :source_metadata_identifier: ABE9721-1-20
   - :id: abe9721-1-21.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-1-21.djvu"
-    :title:
-    - "[1:21]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[1:21]"
+      :source_metadata_identifier: ABE9721-1-21
   - :id: abe9721-1-22.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-1-22.djvu"
-    :title:
-    - "[1:22]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[1:22]"
+      :source_metadata_identifier: ABE9721-1-22
   - :id: abe9721-1-23.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-1-23.djvu"
-    :title:
-    - "[1:23]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[1:23]"
+      :source_metadata_identifier: ABE9721-1-23
   - :id: abe9721-1-24.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-1-24.djvu"
-    :title:
-    - "[1:24]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[1:24]"
+      :source_metadata_identifier: ABE9721-1-24
   - :id: abe9721-1-25.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-1-25.djvu"
-    :title:
-    - "[1:25]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[1:25]"
+      :source_metadata_identifier: ABE9721-1-25
   - :id: abe9721-1-26.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-1-26.djvu"
-    :title:
-    - "[1:26]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[1:26]"
+      :source_metadata_identifier: ABE9721-1-26
   - :id: abe9721-1-27.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-1-27.djvu"
-    :title:
-    - "[1:27]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[1:27]"
+      :source_metadata_identifier: ABE9721-1-27
   - :id: abe9721-1-28.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-1-28.djvu"
-    :title:
-    - "[1:28]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[1:28]"
+      :source_metadata_identifier: ABE9721-1-28
   - :id: abe9721-1-29.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-1-29.djvu"
-    :title:
-    - "[1:29]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[1:29]"
+      :source_metadata_identifier: ABE9721-1-29
   - :id: abe9721-1-30.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-1-30.djvu"
-    :title:
-    - "[1:30]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[1:30]"
+      :source_metadata_identifier: ABE9721-1-30
   - :id: abe9721-1-31.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-1-31.djvu"
-    :title:
-    - "[1:31]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[1:31]"
+      :source_metadata_identifier: ABE9721-1-31
   - :id: abe9721-1-32.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-1-32.djvu"
-    :title:
-    - "[1:32]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[1:32]"
+      :source_metadata_identifier: ABE9721-1-32
   - :id: abe9721-1-33.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-1-33.djvu"
-    :title:
-    - "[1:33]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[1:33]"
+      :source_metadata_identifier: ABE9721-1-33
   - :id: abe9721-1-34.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-1-34.djvu"
-    :title:
-    - "[1:34]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[1:34]"
+      :source_metadata_identifier: ABE9721-1-34
   - :id: abe9721-1-35.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-1-35.djvu"
-    :title:
-    - "[1:35]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[1:35]"
+      :source_metadata_identifier: ABE9721-1-35
   - :id: abe9721-1-36.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-1-36.djvu"
-    :title:
-    - "[1:36]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[1:36]"
+      :source_metadata_identifier: ABE9721-1-36
   - :id: abe9721-1-37.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-1-37.djvu"
-    :title:
-    - "[1:37]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[1:37]"
+      :source_metadata_identifier: ABE9721-1-37
   - :id: abe9721-1-38.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-1-38.djvu"
-    :title:
-    - "[1:38]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[1:38]"
+      :source_metadata_identifier: ABE9721-1-38
   - :id: abe9721-1-39.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-1-39.djvu"
-    :title:
-    - "[1:39]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[1:39]"
+      :source_metadata_identifier: ABE9721-1-39
   - :id: abe9721-1-40.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-1-40.djvu"
-    :title:
-    - "[1:40]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[1:40]"
+      :source_metadata_identifier: ABE9721-1-40
   - :id: abe9721-1-41.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-1-41.djvu"
-    :title:
-    - "[1:41]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[1:41]"
+      :source_metadata_identifier: ABE9721-1-41
   - :id: abe9721-1-42.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-1-42.djvu"
-    :title:
-    - "[1:42]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[1:42]"
+      :source_metadata_identifier: ABE9721-1-42
   - :id: abe9721-1-43.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-1-43.djvu"
-    :title:
-    - "[1:43]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[1:43]"
+      :source_metadata_identifier: ABE9721-1-43
   - :id: abe9721-1-44.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-1-44.djvu"
-    :title:
-    - "[1:44]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[1:44]"
+      :source_metadata_identifier: ABE9721-1-44
   - :id: abe9721-1-45.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-1-45.djvu"
-    :title:
-    - "[1:45]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[1:45]"
+      :source_metadata_identifier: ABE9721-1-45
   - :id: abe9721-1-46.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-1-46.djvu"
-    :title:
-    - "[1:46]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[1:46]"
+      :source_metadata_identifier: ABE9721-1-46
   - :id: abe9721-1-47.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-1-47.djvu"
-    :title:
-    - "[1:47]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[1:47]"
+      :source_metadata_identifier: ABE9721-1-47
   - :id: abe9721-1-48.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-1-48.djvu"
-    :title:
-    - "[1:48]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[1:48]"
+      :source_metadata_identifier: ABE9721-1-48
   - :id: abe9721-1-49.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-1-49.djvu"
-    :title:
-    - "[1:49]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[1:49]"
+      :source_metadata_identifier: ABE9721-1-49
   - :id: abe9721-1-50.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-1-50.djvu"
-    :title:
-    - "[1:50]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[1:50]"
+      :source_metadata_identifier: ABE9721-1-50
   - :id: abe9721-1-51.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-1-51.djvu"
-    :title:
-    - "[1:51]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[1:51]"
+      :source_metadata_identifier: ABE9721-1-51
   - :id: abe9721-1-52.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-1-52.djvu"
-    :title:
-    - "[1:52]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[1:52]"
+      :source_metadata_identifier: ABE9721-1-52
   - :id: abe9721-1-53.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-1-53.djvu"
-    :title:
-    - "[1:53]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[1:53]"
+      :source_metadata_identifier: ABE9721-1-53
   - :id: abe9721-1-54.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-1-54.djvu"
-    :title:
-    - "[1:54]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[1:54]"
+      :source_metadata_identifier: ABE9721-1-54
   - :id: abe9721-1-55.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-1-55.djvu"
-    :title:
-    - "[1:55]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[1:55]"
+      :source_metadata_identifier: ABE9721-1-55
   - :id: abe9721-1-56.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-1-56.djvu"
-    :title:
-    - "[1:56]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[1:56]"
+      :source_metadata_identifier: ABE9721-1-56
   - :id: abe9721-1-57.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-1-57.djvu"
-    :title:
-    - "[1:57]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[1:57]"
+      :source_metadata_identifier: ABE9721-1-57
   - :id: abe9721-1-58.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-1-58.djvu"
-    :title:
-    - "[1:58]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[1:58]"
+      :source_metadata_identifier: ABE9721-1-58
   - :id: abe9721-1-59.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-1-59.djvu"
-    :title:
-    - "[1:59]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[1:59]"
+      :source_metadata_identifier: ABE9721-1-59
   - :id: abe9721-1-60.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-1-60.djvu"
-    :title:
-    - "[1:60]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[1:60]"
+      :source_metadata_identifier: ABE9721-1-60
   - :id: abe9721-1-61.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-1-61.djvu"
-    :title:
-    - "[1:61]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[1:61]"
+      :source_metadata_identifier: ABE9721-1-61
   - :id: abe9721-1-62.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-1-62.djvu"
-    :title:
-    - "[1:62]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[1:62]"
+      :source_metadata_identifier: ABE9721-1-62
   - :id: abe9721-1-63.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-1-63.djvu"
-    :title:
-    - "[1:63]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[1:63]"
+      :source_metadata_identifier: ABE9721-1-63
   - :id: abe9721-1-64.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-1-64.djvu"
-    :title:
-    - "[1:64]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[1:64]"
+      :source_metadata_identifier: ABE9721-1-64
   - :id: abe9721-1-65.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-1-65.djvu"
-    :title:
-    - "[1:65]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[1:65]"
+      :source_metadata_identifier: ABE9721-1-65
   - :id: abe9721-1-66.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-1-66.djvu"
-    :title:
-    - "[1:66]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[1:66]"
+      :source_metadata_identifier: ABE9721-1-66
   - :id: abe9721-1-67.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-1-67.djvu"
-    :title:
-    - "[1:67]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[1:67]"
+      :source_metadata_identifier: ABE9721-1-67
   - :id: abe9721-1-68.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-1-68.djvu"
-    :title:
-    - "[1:68]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[1:68]"
+      :source_metadata_identifier: ABE9721-1-68
   - :id: abe9721-1-69.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-1-69.djvu"
-    :title:
-    - "[1:69]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[1:69]"
+      :source_metadata_identifier: ABE9721-1-69
   - :id: abe9721-1-70.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-1-70.djvu"
-    :title:
-    - "[1:70]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[1:70]"
+      :source_metadata_identifier: ABE9721-1-70
   - :id: abe9721-1-71.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-1-71.djvu"
-    :title:
-    - "[1:71]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[1:71]"
+      :source_metadata_identifier: ABE9721-1-71
   - :id: abe9721-1-72.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-1-72.djvu"
-    :title:
-    - "[1:72]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[1:72]"
+      :source_metadata_identifier: ABE9721-1-72
   - :id: abe9721-1-73.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-1-73.djvu"
-    :title:
-    - "[1:73]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[1:73]"
+      :source_metadata_identifier: ABE9721-1-73
   - :id: abe9721-1-74.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-1-74.djvu"
-    :title:
-    - "[1:74]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[1:74]"
+      :source_metadata_identifier: ABE9721-1-74
   - :id: abe9721-1-75.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-1-75.djvu"
-    :title:
-    - "[1:75]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[1:75]"
+      :source_metadata_identifier: ABE9721-1-75
   - :id: abe9721-1-76.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-1-76.djvu"
-    :title:
-    - "[1:76]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[1:76]"
+      :source_metadata_identifier: ABE9721-1-76
   - :id: abe9721-1-77.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-1-77.djvu"
-    :title:
-    - "[1:77]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[1:77]"
+      :source_metadata_identifier: ABE9721-1-77
   - :id: abe9721-1-78.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-1-78.djvu"
-    :title:
-    - "[1:78]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[1:78]"
+      :source_metadata_identifier: ABE9721-1-78
   - :id: abe9721-1-79.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-1-79.djvu"
-    :title:
-    - "[1:79]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[1:79]"
+      :source_metadata_identifier: ABE9721-1-79
   - :id: abe9721-1-80.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-1-80.djvu"
-    :title:
-    - "[1:80]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[1:80]"
+      :source_metadata_identifier: ABE9721-1-80
   - :id: abe9721-1-81.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-1-81.djvu"
-    :title:
-    - "[1:81]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[1:81]"
+      :source_metadata_identifier: ABE9721-1-81
   - :id: abe9721-1-82.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-1-82.djvu"
-    :title:
-    - "[1:82]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[1:82]"
+      :source_metadata_identifier: ABE9721-1-82
   - :id: abe9721-1-83.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-1-83.djvu"
-    :title:
-    - "[1:83]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[1:83]"
+      :source_metadata_identifier: ABE9721-1-83
   - :id: abe9721-1-84.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-1-84.djvu"
-    :title:
-    - "[1:84]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[1:84]"
+      :source_metadata_identifier: ABE9721-1-84
   - :id: abe9721-1-85.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-1-85.djvu"
-    :title:
-    - "[1:85]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[1:85]"
+      :source_metadata_identifier: ABE9721-1-85
   - :id: abe9721-1-86.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-1-86.djvu"
-    :title:
-    - "[1:86]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[1:86]"
+      :source_metadata_identifier: ABE9721-1-86
   - :id: abe9721-1-87.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-1-87.djvu"
-    :title:
-    - "[1:87]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[1:87]"
+      :source_metadata_identifier: ABE9721-1-87
   - :id: abe9721-1-88.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-1-88.djvu"
-    :title:
-    - "[1:88]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[1:88]"
+      :source_metadata_identifier: ABE9721-1-88
   - :id: abe9721-1-89.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-1-89.djvu"
-    :title:
-    - "[1:89]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[1:89]"
+      :source_metadata_identifier: ABE9721-1-89
   - :id: abe9721-1-90.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-1-90.djvu"
-    :title:
-    - "[1:90]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[1:90]"
+      :source_metadata_identifier: ABE9721-1-90
   - :id: abe9721-1-91.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-1-91.djvu"
-    :title:
-    - "[1:91]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[1:91]"
+      :source_metadata_identifier: ABE9721-1-91
   - :id: abe9721-1-92.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-1-92.djvu"
-    :title:
-    - "[1:92]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[1:92]"
+      :source_metadata_identifier: ABE9721-1-92
   - :id: abe9721-1-93.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-1-93.djvu"
-    :title:
-    - "[1:93]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[1:93]"
+      :source_metadata_identifier: ABE9721-1-93
   - :id: abe9721-1-94.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-1-94.djvu"
-    :title:
-    - "[1:94]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[1:94]"
+      :source_metadata_identifier: ABE9721-1-94
   - :id: abe9721-1-95.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-1-95.djvu"
-    :title:
-    - "[1:95]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[1:95]"
+      :source_metadata_identifier: ABE9721-1-95
   - :id: abe9721-1-96.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-1-96.djvu"
-    :title:
-    - "[1:96]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[1:96]"
+      :source_metadata_identifier: ABE9721-1-96
   - :id: abe9721-1-97.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-1-97.djvu"
-    :title:
-    - "[1:97]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[1:97]"
+      :source_metadata_identifier: ABE9721-1-97
   - :id: abe9721-1-98.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-1-98.djvu"
-    :title:
-    - "[1:98]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[1:98]"
+      :source_metadata_identifier: ABE9721-1-98
   - :id: abe9721-1-99.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-1-99.djvu"
-    :title:
-    - "[1:99]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[1:99]"
+      :source_metadata_identifier: ABE9721-1-99
   - :id: abe9721-1-100.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-1-100.djvu"
-    :title:
-    - "[1:100]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[1:100]"
+      :source_metadata_identifier: ABE9721-1-100
   - :id: abe9721-1-101.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-1-101.djvu"
-    :title:
-    - "[1:101]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[1:101]"
+      :source_metadata_identifier: ABE9721-1-101
   - :id: abe9721-1-102.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-1-102.djvu"
-    :title:
-    - "[1:102]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[1:102]"
+      :source_metadata_identifier: ABE9721-1-102
   - :id: abe9721-1-103.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-1-103.djvu"
-    :title:
-    - "[1:103]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[1:103]"
+      :source_metadata_identifier: ABE9721-1-103
   - :id: abe9721-1-104.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-1-104.djvu"
-    :title:
-    - "[1:104]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[1:104]"
+      :source_metadata_identifier: ABE9721-1-104
   - :id: abe9721-1-105.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-1-105.djvu"
-    :title:
-    - "[1:105]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[1:105]"
+      :source_metadata_identifier: ABE9721-1-105
   - :id: abe9721-1-106.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-1-106.djvu"
-    :title:
-    - "[1:106]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[1:106]"
+      :source_metadata_identifier: ABE9721-1-106
   - :id: abe9721-1-107.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-1-107.djvu"
-    :title:
-    - "[1:107]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[1:107]"
+      :source_metadata_identifier: ABE9721-1-107
   - :id: abe9721-1-108.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-1-108.djvu"
-    :title:
-    - "[1:108]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[1:108]"
+      :source_metadata_identifier: ABE9721-1-108
   - :id: abe9721-1-109.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-1-109.djvu"
-    :title:
-    - "[1:109]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[1:109]"
+      :source_metadata_identifier: ABE9721-1-109
   - :id: abe9721-1-110.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-1-110.djvu"
-    :title:
-    - "[1:110]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[1:110]"
+      :source_metadata_identifier: ABE9721-1-110
   - :id: abe9721-1-111.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-1-111.djvu"
-    :title:
-    - "[1:111]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[1:111]"
+      :source_metadata_identifier: ABE9721-1-111
   - :id: abe9721-1-112.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-1-112.djvu"
-    :title:
-    - "[1:112]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[1:112]"
+      :source_metadata_identifier: ABE9721-1-112
   - :id: abe9721-1-113.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-1-113.djvu"
-    :title:
-    - "[1:113]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[1:113]"
+      :source_metadata_identifier: ABE9721-1-113
   - :id: abe9721-1-114.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-1-114.djvu"
-    :title:
-    - "[1:114]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[1:114]"
+      :source_metadata_identifier: ABE9721-1-114
   - :id: abe9721-1-115.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-1-115.djvu"
-    :title:
-    - "[1:115]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[1:115]"
+      :source_metadata_identifier: ABE9721-1-115
   - :id: abe9721-1-116.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-1-116.djvu"
-    :title:
-    - "[1:116]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[1:116]"
+      :source_metadata_identifier: ABE9721-1-116
   - :id: abe9721-1-117.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-1-117.djvu"
-    :title:
-    - "[1:117]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[1:117]"
+      :source_metadata_identifier: ABE9721-1-117
   - :id: abe9721-1-118.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-1-118.djvu"
-    :title:
-    - "[1:118]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[1:118]"
+      :source_metadata_identifier: ABE9721-1-118
   - :id: abe9721-1-119.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-1-119.djvu"
-    :title:
-    - "[1:119]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[1:119]"
+      :source_metadata_identifier: ABE9721-1-119
   - :id: abe9721-1-120.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-1-120.djvu"
-    :title:
-    - "[1:120]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[1:120]"
+      :source_metadata_identifier: ABE9721-1-120
   - :id: abe9721-1-121.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-1-121.djvu"
-    :title:
-    - "[1:121]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[1:121]"
+      :source_metadata_identifier: ABE9721-1-121
   - :id: abe9721-1-122.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-1-122.djvu"
-    :title:
-    - "[1:122]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[1:122]"
+      :source_metadata_identifier: ABE9721-1-122
   - :id: abe9721-1-123.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-1-123.djvu"
-    :title:
-    - "[1:123]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[1:123]"
+      :source_metadata_identifier: ABE9721-1-123
   - :id: abe9721-1-124.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-1-124.djvu"
-    :title:
-    - "[1:124]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[1:124]"
+      :source_metadata_identifier: ABE9721-1-124
   - :id: abe9721-1-125.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-1-125.djvu"
-    :title:
-    - "[1:125]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[1:125]"
+      :source_metadata_identifier: ABE9721-1-125
   - :id: abe9721-1-126.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-1-126.djvu"
-    :title:
-    - "[1:126]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[1:126]"
+      :source_metadata_identifier: ABE9721-1-126
   - :id: abe9721-1-127.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-1-127.djvu"
-    :title:
-    - "[1:127]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[1:127]"
+      :source_metadata_identifier: ABE9721-1-127
   - :id: abe9721-1-128.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-1-128.djvu"
-    :title:
-    - "[1:128]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[1:128]"
+      :source_metadata_identifier: ABE9721-1-128
   - :id: abe9721-1-129.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-1-129.djvu"
-    :title:
-    - "[1:129]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[1:129]"
+      :source_metadata_identifier: ABE9721-1-129
   - :id: abe9721-1-130.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-1-130.djvu"
-    :title:
-    - "[1:130]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[1:130]"
+      :source_metadata_identifier: ABE9721-1-130
 - :title:
   - 'The facsimil[e] edition of the autograph of Fryderyk Chopin''s works : from the
     Collection Fryderyk Chopin Society in Warsaw, volume 2'
@@ -1575,735 +1835,979 @@
   - :id: abe9721-2-1.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-2-1.djvu"
-    :title:
-    - "[2:1]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[2:1]"
+      :source_metadata_identifier: ABE9721-2-1
   - :id: abe9721-2-2.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-2-2.djvu"
-    :title:
-    - "[2:2]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[2:2]"
+      :source_metadata_identifier: ABE9721-2-2
   - :id: abe9721-2-3.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-2-3.djvu"
-    :title:
-    - "[2:3]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[2:3]"
+      :source_metadata_identifier: ABE9721-2-3
   - :id: abe9721-2-4.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-2-4.djvu"
-    :title:
-    - "[2:4]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[2:4]"
+      :source_metadata_identifier: ABE9721-2-4
   - :id: abe9721-2-5.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-2-5.djvu"
-    :title:
-    - "[2:5]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[2:5]"
+      :source_metadata_identifier: ABE9721-2-5
   - :id: abe9721-2-6.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-2-6.djvu"
-    :title:
-    - "[2:6]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[2:6]"
+      :source_metadata_identifier: ABE9721-2-6
   - :id: abe9721-2-7.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-2-7.djvu"
-    :title:
-    - "[2:7]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[2:7]"
+      :source_metadata_identifier: ABE9721-2-7
   - :id: abe9721-2-8.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-2-8.djvu"
-    :title:
-    - "[2:8]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[2:8]"
+      :source_metadata_identifier: ABE9721-2-8
   - :id: abe9721-2-9.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-2-9.djvu"
-    :title:
-    - "[2:9]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[2:9]"
+      :source_metadata_identifier: ABE9721-2-9
   - :id: abe9721-2-10.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-2-10.djvu"
-    :title:
-    - "[2:10]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[2:10]"
+      :source_metadata_identifier: ABE9721-2-10
   - :id: abe9721-2-11.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-2-11.djvu"
-    :title:
-    - "[2:11]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[2:11]"
+      :source_metadata_identifier: ABE9721-2-11
   - :id: abe9721-2-12.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-2-12.djvu"
-    :title:
-    - "[2:12]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[2:12]"
+      :source_metadata_identifier: ABE9721-2-12
   - :id: abe9721-2-13.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-2-13.djvu"
-    :title:
-    - "[2:13]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[2:13]"
+      :source_metadata_identifier: ABE9721-2-13
   - :id: abe9721-2-14.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-2-14.djvu"
-    :title:
-    - "[2:14]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[2:14]"
+      :source_metadata_identifier: ABE9721-2-14
   - :id: abe9721-2-15.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-2-15.djvu"
-    :title:
-    - "[2:15]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[2:15]"
+      :source_metadata_identifier: ABE9721-2-15
   - :id: abe9721-2-16.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-2-16.djvu"
-    :title:
-    - "[2:16]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[2:16]"
+      :source_metadata_identifier: ABE9721-2-16
   - :id: abe9721-2-17.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-2-17.djvu"
-    :title:
-    - "[2:17]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[2:17]"
+      :source_metadata_identifier: ABE9721-2-17
   - :id: abe9721-2-18.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-2-18.djvu"
-    :title:
-    - "[2:18]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[2:18]"
+      :source_metadata_identifier: ABE9721-2-18
   - :id: abe9721-2-19.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-2-19.djvu"
-    :title:
-    - "[2:19]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[2:19]"
+      :source_metadata_identifier: ABE9721-2-19
   - :id: abe9721-2-20.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-2-20.djvu"
-    :title:
-    - "[2:20]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[2:20]"
+      :source_metadata_identifier: ABE9721-2-20
   - :id: abe9721-2-21.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-2-21.djvu"
-    :title:
-    - "[2:21]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[2:21]"
+      :source_metadata_identifier: ABE9721-2-21
   - :id: abe9721-2-22.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-2-22.djvu"
-    :title:
-    - "[2:22]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[2:22]"
+      :source_metadata_identifier: ABE9721-2-22
   - :id: abe9721-2-23.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-2-23.djvu"
-    :title:
-    - "[2:23]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[2:23]"
+      :source_metadata_identifier: ABE9721-2-23
   - :id: abe9721-2-24.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-2-24.djvu"
-    :title:
-    - "[2:24]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[2:24]"
+      :source_metadata_identifier: ABE9721-2-24
   - :id: abe9721-2-25.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-2-25.djvu"
-    :title:
-    - "[2:25]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[2:25]"
+      :source_metadata_identifier: ABE9721-2-25
   - :id: abe9721-2-26.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-2-26.djvu"
-    :title:
-    - "[2:26]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[2:26]"
+      :source_metadata_identifier: ABE9721-2-26
   - :id: abe9721-2-27.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-2-27.djvu"
-    :title:
-    - "[2:27]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[2:27]"
+      :source_metadata_identifier: ABE9721-2-27
   - :id: abe9721-2-28.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-2-28.djvu"
-    :title:
-    - "[2:28]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[2:28]"
+      :source_metadata_identifier: ABE9721-2-28
   - :id: abe9721-2-29.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-2-29.djvu"
-    :title:
-    - "[2:29]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[2:29]"
+      :source_metadata_identifier: ABE9721-2-29
   - :id: abe9721-2-30.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-2-30.djvu"
-    :title:
-    - "[2:30]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[2:30]"
+      :source_metadata_identifier: ABE9721-2-30
   - :id: abe9721-2-31.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-2-31.djvu"
-    :title:
-    - "[2:31]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[2:31]"
+      :source_metadata_identifier: ABE9721-2-31
   - :id: abe9721-2-32.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-2-32.djvu"
-    :title:
-    - "[2:32]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[2:32]"
+      :source_metadata_identifier: ABE9721-2-32
   - :id: abe9721-2-33.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-2-33.djvu"
-    :title:
-    - "[2:33]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[2:33]"
+      :source_metadata_identifier: ABE9721-2-33
   - :id: abe9721-2-34.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-2-34.djvu"
-    :title:
-    - "[2:34]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[2:34]"
+      :source_metadata_identifier: ABE9721-2-34
   - :id: abe9721-2-35.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-2-35.djvu"
-    :title:
-    - "[2:35]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[2:35]"
+      :source_metadata_identifier: ABE9721-2-35
   - :id: abe9721-2-36.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-2-36.djvu"
-    :title:
-    - "[2:36]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[2:36]"
+      :source_metadata_identifier: ABE9721-2-36
   - :id: abe9721-2-37.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-2-37.djvu"
-    :title:
-    - "[2:37]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[2:37]"
+      :source_metadata_identifier: ABE9721-2-37
   - :id: abe9721-2-38.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-2-38.djvu"
-    :title:
-    - "[2:38]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[2:38]"
+      :source_metadata_identifier: ABE9721-2-38
   - :id: abe9721-2-39.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-2-39.djvu"
-    :title:
-    - "[2:39]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[2:39]"
+      :source_metadata_identifier: ABE9721-2-39
   - :id: abe9721-2-40.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-2-40.djvu"
-    :title:
-    - "[2:40]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[2:40]"
+      :source_metadata_identifier: ABE9721-2-40
   - :id: abe9721-2-41.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-2-41.djvu"
-    :title:
-    - "[2:41]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[2:41]"
+      :source_metadata_identifier: ABE9721-2-41
   - :id: abe9721-2-42.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-2-42.djvu"
-    :title:
-    - "[2:42]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[2:42]"
+      :source_metadata_identifier: ABE9721-2-42
   - :id: abe9721-2-43.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-2-43.djvu"
-    :title:
-    - "[2:43]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[2:43]"
+      :source_metadata_identifier: ABE9721-2-43
   - :id: abe9721-2-44.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-2-44.djvu"
-    :title:
-    - "[2:44]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[2:44]"
+      :source_metadata_identifier: ABE9721-2-44
   - :id: abe9721-2-45.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-2-45.djvu"
-    :title:
-    - "[2:45]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[2:45]"
+      :source_metadata_identifier: ABE9721-2-45
   - :id: abe9721-2-46.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-2-46.djvu"
-    :title:
-    - "[2:46]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[2:46]"
+      :source_metadata_identifier: ABE9721-2-46
   - :id: abe9721-2-47.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-2-47.djvu"
-    :title:
-    - "[2:47]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[2:47]"
+      :source_metadata_identifier: ABE9721-2-47
   - :id: abe9721-2-48.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-2-48.djvu"
-    :title:
-    - "[2:48]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[2:48]"
+      :source_metadata_identifier: ABE9721-2-48
   - :id: abe9721-2-49.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-2-49.djvu"
-    :title:
-    - "[2:49]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[2:49]"
+      :source_metadata_identifier: ABE9721-2-49
   - :id: abe9721-2-50.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-2-50.djvu"
-    :title:
-    - "[2:50]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[2:50]"
+      :source_metadata_identifier: ABE9721-2-50
   - :id: abe9721-2-51.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-2-51.djvu"
-    :title:
-    - "[2:51]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[2:51]"
+      :source_metadata_identifier: ABE9721-2-51
   - :id: abe9721-2-52.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-2-52.djvu"
-    :title:
-    - "[2:52]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[2:52]"
+      :source_metadata_identifier: ABE9721-2-52
   - :id: abe9721-2-53.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-2-53.djvu"
-    :title:
-    - "[2:53]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[2:53]"
+      :source_metadata_identifier: ABE9721-2-53
   - :id: abe9721-2-54.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-2-54.djvu"
-    :title:
-    - "[2:54]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[2:54]"
+      :source_metadata_identifier: ABE9721-2-54
   - :id: abe9721-2-55.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-2-55.djvu"
-    :title:
-    - "[2:55]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[2:55]"
+      :source_metadata_identifier: ABE9721-2-55
   - :id: abe9721-2-56.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-2-56.djvu"
-    :title:
-    - "[2:56]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[2:56]"
+      :source_metadata_identifier: ABE9721-2-56
   - :id: abe9721-2-57.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-2-57.djvu"
-    :title:
-    - "[2:57]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[2:57]"
+      :source_metadata_identifier: ABE9721-2-57
   - :id: abe9721-2-58.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-2-58.djvu"
-    :title:
-    - "[2:58]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[2:58]"
+      :source_metadata_identifier: ABE9721-2-58
   - :id: abe9721-2-59.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-2-59.djvu"
-    :title:
-    - "[2:59]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[2:59]"
+      :source_metadata_identifier: ABE9721-2-59
   - :id: abe9721-2-60.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-2-60.djvu"
-    :title:
-    - "[2:60]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[2:60]"
+      :source_metadata_identifier: ABE9721-2-60
   - :id: abe9721-2-61.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-2-61.djvu"
-    :title:
-    - "[2:61]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[2:61]"
+      :source_metadata_identifier: ABE9721-2-61
   - :id: abe9721-2-62.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-2-62.djvu"
-    :title:
-    - "[2:62]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[2:62]"
+      :source_metadata_identifier: ABE9721-2-62
   - :id: abe9721-2-63.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-2-63.djvu"
-    :title:
-    - "[2:63]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[2:63]"
+      :source_metadata_identifier: ABE9721-2-63
   - :id: abe9721-2-64.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-2-64.djvu"
-    :title:
-    - "[2:64]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[2:64]"
+      :source_metadata_identifier: ABE9721-2-64
   - :id: abe9721-2-65.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-2-65.djvu"
-    :title:
-    - "[2:65]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[2:65]"
+      :source_metadata_identifier: ABE9721-2-65
   - :id: abe9721-2-66.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-2-66.djvu"
-    :title:
-    - "[2:66]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[2:66]"
+      :source_metadata_identifier: ABE9721-2-66
   - :id: abe9721-2-67.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-2-67.djvu"
-    :title:
-    - "[2:67]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[2:67]"
+      :source_metadata_identifier: ABE9721-2-67
   - :id: abe9721-2-68.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-2-68.djvu"
-    :title:
-    - "[2:68]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[2:68]"
+      :source_metadata_identifier: ABE9721-2-68
   - :id: abe9721-2-69.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-2-69.djvu"
-    :title:
-    - "[2:69]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[2:69]"
+      :source_metadata_identifier: ABE9721-2-69
   - :id: abe9721-2-70.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-2-70.djvu"
-    :title:
-    - "[2:70]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[2:70]"
+      :source_metadata_identifier: ABE9721-2-70
   - :id: abe9721-2-71.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-2-71.djvu"
-    :title:
-    - "[2:71]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[2:71]"
+      :source_metadata_identifier: ABE9721-2-71
   - :id: abe9721-2-72.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-2-72.djvu"
-    :title:
-    - "[2:72]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[2:72]"
+      :source_metadata_identifier: ABE9721-2-72
   - :id: abe9721-2-73.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-2-73.djvu"
-    :title:
-    - "[2:73]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[2:73]"
+      :source_metadata_identifier: ABE9721-2-73
   - :id: abe9721-2-74.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-2-74.djvu"
-    :title:
-    - "[2:74]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[2:74]"
+      :source_metadata_identifier: ABE9721-2-74
   - :id: abe9721-2-75.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-2-75.djvu"
-    :title:
-    - "[2:75]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[2:75]"
+      :source_metadata_identifier: ABE9721-2-75
   - :id: abe9721-2-76.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-2-76.djvu"
-    :title:
-    - "[2:76]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[2:76]"
+      :source_metadata_identifier: ABE9721-2-76
   - :id: abe9721-2-77.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-2-77.djvu"
-    :title:
-    - "[2:77]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[2:77]"
+      :source_metadata_identifier: ABE9721-2-77
   - :id: abe9721-2-78.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-2-78.djvu"
-    :title:
-    - "[2:78]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[2:78]"
+      :source_metadata_identifier: ABE9721-2-78
   - :id: abe9721-2-79.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-2-79.djvu"
-    :title:
-    - "[2:79]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[2:79]"
+      :source_metadata_identifier: ABE9721-2-79
   - :id: abe9721-2-80.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-2-80.djvu"
-    :title:
-    - "[2:80]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[2:80]"
+      :source_metadata_identifier: ABE9721-2-80
   - :id: abe9721-2-81.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-2-81.djvu"
-    :title:
-    - "[2:81]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[2:81]"
+      :source_metadata_identifier: ABE9721-2-81
   - :id: abe9721-2-82.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-2-82.djvu"
-    :title:
-    - "[2:82]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[2:82]"
+      :source_metadata_identifier: ABE9721-2-82
   - :id: abe9721-2-83.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-2-83.djvu"
-    :title:
-    - "[2:83]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[2:83]"
+      :source_metadata_identifier: ABE9721-2-83
   - :id: abe9721-2-84.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-2-84.djvu"
-    :title:
-    - "[2:84]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[2:84]"
+      :source_metadata_identifier: ABE9721-2-84
   - :id: abe9721-2-85.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-2-85.djvu"
-    :title:
-    - "[2:85]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[2:85]"
+      :source_metadata_identifier: ABE9721-2-85
   - :id: abe9721-2-86.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-2-86.djvu"
-    :title:
-    - "[2:86]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[2:86]"
+      :source_metadata_identifier: ABE9721-2-86
   - :id: abe9721-2-87.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-2-87.djvu"
-    :title:
-    - "[2:87]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[2:87]"
+      :source_metadata_identifier: ABE9721-2-87
   - :id: abe9721-2-88.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-2-88.djvu"
-    :title:
-    - "[2:88]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[2:88]"
+      :source_metadata_identifier: ABE9721-2-88
   - :id: abe9721-2-89.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-2-89.djvu"
-    :title:
-    - "[2:89]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[2:89]"
+      :source_metadata_identifier: ABE9721-2-89
   - :id: abe9721-2-90.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-2-90.djvu"
-    :title:
-    - "[2:90]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[2:90]"
+      :source_metadata_identifier: ABE9721-2-90
   - :id: abe9721-2-91.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-2-91.djvu"
-    :title:
-    - "[2:91]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[2:91]"
+      :source_metadata_identifier: ABE9721-2-91
   - :id: abe9721-2-92.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-2-92.djvu"
-    :title:
-    - "[2:92]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[2:92]"
+      :source_metadata_identifier: ABE9721-2-92
   - :id: abe9721-2-93.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-2-93.djvu"
-    :title:
-    - "[2:93]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[2:93]"
+      :source_metadata_identifier: ABE9721-2-93
   - :id: abe9721-2-94.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-2-94.djvu"
-    :title:
-    - "[2:94]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[2:94]"
+      :source_metadata_identifier: ABE9721-2-94
   - :id: abe9721-2-95.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-2-95.djvu"
-    :title:
-    - "[2:95]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[2:95]"
+      :source_metadata_identifier: ABE9721-2-95
   - :id: abe9721-2-96.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-2-96.djvu"
-    :title:
-    - "[2:96]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[2:96]"
+      :source_metadata_identifier: ABE9721-2-96
   - :id: abe9721-2-97.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-2-97.djvu"
-    :title:
-    - "[2:97]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[2:97]"
+      :source_metadata_identifier: ABE9721-2-97
   - :id: abe9721-2-98.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-2-98.djvu"
-    :title:
-    - "[2:98]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[2:98]"
+      :source_metadata_identifier: ABE9721-2-98
   - :id: abe9721-2-99.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-2-99.djvu"
-    :title:
-    - "[2:99]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[2:99]"
+      :source_metadata_identifier: ABE9721-2-99
   - :id: abe9721-2-100.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-2-100.djvu"
-    :title:
-    - "[2:100]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[2:100]"
+      :source_metadata_identifier: ABE9721-2-100
   - :id: abe9721-2-101.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-2-101.djvu"
-    :title:
-    - "[2:101]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[2:101]"
+      :source_metadata_identifier: ABE9721-2-101
   - :id: abe9721-2-102.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-2-102.djvu"
-    :title:
-    - "[2:102]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[2:102]"
+      :source_metadata_identifier: ABE9721-2-102
   - :id: abe9721-2-103.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-2-103.djvu"
-    :title:
-    - "[2:103]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[2:103]"
+      :source_metadata_identifier: ABE9721-2-103
   - :id: abe9721-2-104.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-2-104.djvu"
-    :title:
-    - "[2:104]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[2:104]"
+      :source_metadata_identifier: ABE9721-2-104
   - :id: abe9721-2-105.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-2-105.djvu"
-    :title:
-    - "[2:105]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[2:105]"
+      :source_metadata_identifier: ABE9721-2-105
   - :id: abe9721-2-106.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-2-106.djvu"
-    :title:
-    - "[2:106]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[2:106]"
+      :source_metadata_identifier: ABE9721-2-106
   - :id: abe9721-2-107.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-2-107.djvu"
-    :title:
-    - "[2:107]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[2:107]"
+      :source_metadata_identifier: ABE9721-2-107
   - :id: abe9721-2-108.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-2-108.djvu"
-    :title:
-    - "[2:108]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[2:108]"
+      :source_metadata_identifier: ABE9721-2-108
   - :id: abe9721-2-109.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-2-109.djvu"
-    :title:
-    - "[2:109]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[2:109]"
+      :source_metadata_identifier: ABE9721-2-109
   - :id: abe9721-2-110.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-2-110.djvu"
-    :title:
-    - "[2:110]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[2:110]"
+      :source_metadata_identifier: ABE9721-2-110
   - :id: abe9721-2-111.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-2-111.djvu"
-    :title:
-    - "[2:111]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[2:111]"
+      :source_metadata_identifier: ABE9721-2-111
   - :id: abe9721-2-112.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-2-112.djvu"
-    :title:
-    - "[2:112]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[2:112]"
+      :source_metadata_identifier: ABE9721-2-112
   - :id: abe9721-2-113.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-2-113.djvu"
-    :title:
-    - "[2:113]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[2:113]"
+      :source_metadata_identifier: ABE9721-2-113
   - :id: abe9721-2-114.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-2-114.djvu"
-    :title:
-    - "[2:114]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[2:114]"
+      :source_metadata_identifier: ABE9721-2-114
   - :id: abe9721-2-115.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-2-115.djvu"
-    :title:
-    - "[2:115]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[2:115]"
+      :source_metadata_identifier: ABE9721-2-115
   - :id: abe9721-2-116.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-2-116.djvu"
-    :title:
-    - "[2:116]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[2:116]"
+      :source_metadata_identifier: ABE9721-2-116
   - :id: abe9721-2-117.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-2-117.djvu"
-    :title:
-    - "[2:117]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[2:117]"
+      :source_metadata_identifier: ABE9721-2-117
   - :id: abe9721-2-118.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-2-118.djvu"
-    :title:
-    - "[2:118]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[2:118]"
+      :source_metadata_identifier: ABE9721-2-118
   - :id: abe9721-2-119.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-2-119.djvu"
-    :title:
-    - "[2:119]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[2:119]"
+      :source_metadata_identifier: ABE9721-2-119
   - :id: abe9721-2-120.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-2-120.djvu"
-    :title:
-    - "[2:120]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[2:120]"
+      :source_metadata_identifier: ABE9721-2-120
   - :id: abe9721-2-121.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-2-121.djvu"
-    :title:
-    - "[2:121]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[2:121]"
+      :source_metadata_identifier: ABE9721-2-121
   - :id: abe9721-2-122.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-2-122.djvu"
-    :title:
-    - "[2:122]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[2:122]"
+      :source_metadata_identifier: ABE9721-2-122
 - :title:
   - 'The facsimil[e] edition of the autograph of Fryderyk Chopin''s works : from the
     Collection Fryderyk Chopin Society in Warsaw, volume 3'
@@ -2407,201 +2911,267 @@
   - :id: abe9721-3-1.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-3-1.djvu"
-    :title:
-    - "[3:1]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[3:1]"
+      :source_metadata_identifier: ABE9721-3-1
   - :id: abe9721-3-2.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-3-2.djvu"
-    :title:
-    - "[3:2]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[3:2]"
+      :source_metadata_identifier: ABE9721-3-2
   - :id: abe9721-3-3.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-3-3.djvu"
-    :title:
-    - "[3:3]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[3:3]"
+      :source_metadata_identifier: ABE9721-3-3
   - :id: abe9721-3-4.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-3-4.djvu"
-    :title:
-    - "[3:4]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[3:4]"
+      :source_metadata_identifier: ABE9721-3-4
   - :id: abe9721-3-5.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-3-5.djvu"
-    :title:
-    - "[3:5]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[3:5]"
+      :source_metadata_identifier: ABE9721-3-5
   - :id: abe9721-3-6.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-3-6.djvu"
-    :title:
-    - "[3:6]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[3:6]"
+      :source_metadata_identifier: ABE9721-3-6
   - :id: abe9721-3-7.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-3-7.djvu"
-    :title:
-    - "[3:7]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[3:7]"
+      :source_metadata_identifier: ABE9721-3-7
   - :id: abe9721-3-8.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-3-8.djvu"
-    :title:
-    - "[3:8]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[3:8]"
+      :source_metadata_identifier: ABE9721-3-8
   - :id: abe9721-3-9.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-3-9.djvu"
-    :title:
-    - "[3:9]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[3:9]"
+      :source_metadata_identifier: ABE9721-3-9
   - :id: abe9721-3-10.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-3-10.djvu"
-    :title:
-    - "[3:10]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[3:10]"
+      :source_metadata_identifier: ABE9721-3-10
   - :id: abe9721-3-11.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-3-11.djvu"
-    :title:
-    - "[3:11]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[3:11]"
+      :source_metadata_identifier: ABE9721-3-11
   - :id: abe9721-3-12.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-3-12.djvu"
-    :title:
-    - "[3:12]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[3:12]"
+      :source_metadata_identifier: ABE9721-3-12
   - :id: abe9721-3-13.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-3-13.djvu"
-    :title:
-    - "[3:13]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[3:13]"
+      :source_metadata_identifier: ABE9721-3-13
   - :id: abe9721-3-14.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-3-14.djvu"
-    :title:
-    - "[3:14]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[3:14]"
+      :source_metadata_identifier: ABE9721-3-14
   - :id: abe9721-3-15.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-3-15.djvu"
-    :title:
-    - "[3:15]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[3:15]"
+      :source_metadata_identifier: ABE9721-3-15
   - :id: abe9721-3-16.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-3-16.djvu"
-    :title:
-    - "[3:16]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[3:16]"
+      :source_metadata_identifier: ABE9721-3-16
   - :id: abe9721-3-17.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-3-17.djvu"
-    :title:
-    - "[3:17]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[3:17]"
+      :source_metadata_identifier: ABE9721-3-17
   - :id: abe9721-3-18.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-3-18.djvu"
-    :title:
-    - "[3:18]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[3:18]"
+      :source_metadata_identifier: ABE9721-3-18
   - :id: abe9721-3-19.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-3-19.djvu"
-    :title:
-    - "[3:19]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[3:19]"
+      :source_metadata_identifier: ABE9721-3-19
   - :id: abe9721-3-20.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-3-20.djvu"
-    :title:
-    - "[3:20]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[3:20]"
+      :source_metadata_identifier: ABE9721-3-20
   - :id: abe9721-3-21.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-3-21.djvu"
-    :title:
-    - "[3:21]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[3:21]"
+      :source_metadata_identifier: ABE9721-3-21
   - :id: abe9721-3-22.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-3-22.djvu"
-    :title:
-    - "[3:22]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[3:22]"
+      :source_metadata_identifier: ABE9721-3-22
   - :id: abe9721-3-23.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-3-23.djvu"
-    :title:
-    - "[3:23]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[3:23]"
+      :source_metadata_identifier: ABE9721-3-23
   - :id: abe9721-3-24.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-3-24.djvu"
-    :title:
-    - "[3:24]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[3:24]"
+      :source_metadata_identifier: ABE9721-3-24
   - :id: abe9721-3-25.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-3-25.djvu"
-    :title:
-    - "[3:25]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[3:25]"
+      :source_metadata_identifier: ABE9721-3-25
   - :id: abe9721-3-26.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-3-26.djvu"
-    :title:
-    - "[3:26]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[3:26]"
+      :source_metadata_identifier: ABE9721-3-26
   - :id: abe9721-3-27.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-3-27.djvu"
-    :title:
-    - "[3:27]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[3:27]"
+      :source_metadata_identifier: ABE9721-3-27
   - :id: abe9721-3-28.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-3-28.djvu"
-    :title:
-    - "[3:28]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[3:28]"
+      :source_metadata_identifier: ABE9721-3-28
   - :id: abe9721-3-29.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-3-29.djvu"
-    :title:
-    - "[3:29]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[3:29]"
+      :source_metadata_identifier: ABE9721-3-29
   - :id: abe9721-3-30.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-3-30.djvu"
-    :title:
-    - "[3:30]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[3:30]"
+      :source_metadata_identifier: ABE9721-3-30
   - :id: abe9721-3-31.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-3-31.djvu"
-    :title:
-    - "[3:31]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[3:31]"
+      :source_metadata_identifier: ABE9721-3-31
   - :id: abe9721-3-32.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-3-32.djvu"
-    :title:
-    - "[3:32]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[3:32]"
+      :source_metadata_identifier: ABE9721-3-32
   - :id: abe9721-3-33.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-3-33.djvu"
-    :title:
-    - "[3:33]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[3:33]"
+      :source_metadata_identifier: ABE9721-3-33
 - :title:
   - 'A commentary on the facsimil[e] edition of the autograph of Fryderyk Chopin''s
     works : from the Collection Fryderyk Chopin Society in Warsaw, volume 5'
@@ -2981,892 +3551,1188 @@
   - :id: abe9721-5-1.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-5-1.djvu"
-    :title:
-    - "[5:1]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[5:1]"
+      :source_metadata_identifier: ABE9721-5-1
   - :id: abe9721-5-2.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-5-2.djvu"
-    :title:
-    - "[5:2]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[5:2]"
+      :source_metadata_identifier: ABE9721-5-2
   - :id: abe9721-5-3.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-5-3.djvu"
-    :title:
-    - "[5:3]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[5:3]"
+      :source_metadata_identifier: ABE9721-5-3
   - :id: abe9721-5-4.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-5-4.djvu"
-    :title:
-    - "[5:4]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[5:4]"
+      :source_metadata_identifier: ABE9721-5-4
   - :id: abe9721-5-5.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-5-5.djvu"
-    :title:
-    - "[5:5]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[5:5]"
+      :source_metadata_identifier: ABE9721-5-5
   - :id: abe9721-5-6.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-5-6.djvu"
-    :title:
-    - "[5:6]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[5:6]"
+      :source_metadata_identifier: ABE9721-5-6
   - :id: abe9721-5-7.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-5-7.djvu"
-    :title:
-    - "[5:7]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[5:7]"
+      :source_metadata_identifier: ABE9721-5-7
   - :id: abe9721-5-8.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-5-8.djvu"
-    :title:
-    - "[5:8]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[5:8]"
+      :source_metadata_identifier: ABE9721-5-8
   - :id: abe9721-5-9.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-5-9.djvu"
-    :title:
-    - "[5:9]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[5:9]"
+      :source_metadata_identifier: ABE9721-5-9
   - :id: abe9721-5-10.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-5-10.djvu"
-    :title:
-    - "[5:10]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[5:10]"
+      :source_metadata_identifier: ABE9721-5-10
   - :id: abe9721-5-11.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-5-11.djvu"
-    :title:
-    - "[5:11]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[5:11]"
+      :source_metadata_identifier: ABE9721-5-11
   - :id: abe9721-5-12.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-5-12.djvu"
-    :title:
-    - "[5:12]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[5:12]"
+      :source_metadata_identifier: ABE9721-5-12
   - :id: abe9721-5-13.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-5-13.djvu"
-    :title:
-    - "[5:13]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[5:13]"
+      :source_metadata_identifier: ABE9721-5-13
   - :id: abe9721-5-14.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-5-14.djvu"
-    :title:
-    - '5:14'
     :file_opts: {}
+    :attributes:
+      :title:
+      - '5:14'
+      :source_metadata_identifier: ABE9721-5-14
   - :id: abe9721-5-15.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-5-15.djvu"
-    :title:
-    - '5:15'
     :file_opts: {}
+    :attributes:
+      :title:
+      - '5:15'
+      :source_metadata_identifier: ABE9721-5-15
   - :id: abe9721-5-16.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-5-16.djvu"
-    :title:
-    - '5:16'
     :file_opts: {}
+    :attributes:
+      :title:
+      - '5:16'
+      :source_metadata_identifier: ABE9721-5-16
   - :id: abe9721-5-17.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-5-17.djvu"
-    :title:
-    - '5:17'
     :file_opts: {}
+    :attributes:
+      :title:
+      - '5:17'
+      :source_metadata_identifier: ABE9721-5-17
   - :id: abe9721-5-18.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-5-18.djvu"
-    :title:
-    - '5:18'
     :file_opts: {}
+    :attributes:
+      :title:
+      - '5:18'
+      :source_metadata_identifier: ABE9721-5-18
   - :id: abe9721-5-19.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-5-19.djvu"
-    :title:
-    - "[5:19]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[5:19]"
+      :source_metadata_identifier: ABE9721-5-19
   - :id: abe9721-5-20.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-5-20.djvu"
-    :title:
-    - '5:20'
     :file_opts: {}
+    :attributes:
+      :title:
+      - '5:20'
+      :source_metadata_identifier: ABE9721-5-20
   - :id: abe9721-5-21.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-5-21.djvu"
-    :title:
-    - '5:21'
     :file_opts: {}
+    :attributes:
+      :title:
+      - '5:21'
+      :source_metadata_identifier: ABE9721-5-21
   - :id: abe9721-5-22.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-5-22.djvu"
-    :title:
-    - '5:22'
     :file_opts: {}
+    :attributes:
+      :title:
+      - '5:22'
+      :source_metadata_identifier: ABE9721-5-22
   - :id: abe9721-5-23.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-5-23.djvu"
-    :title:
-    - '5:23'
     :file_opts: {}
+    :attributes:
+      :title:
+      - '5:23'
+      :source_metadata_identifier: ABE9721-5-23
   - :id: abe9721-5-24.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-5-24.djvu"
-    :title:
-    - '5:24'
     :file_opts: {}
+    :attributes:
+      :title:
+      - '5:24'
+      :source_metadata_identifier: ABE9721-5-24
   - :id: abe9721-5-25.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-5-25.djvu"
-    :title:
-    - '5:25'
     :file_opts: {}
+    :attributes:
+      :title:
+      - '5:25'
+      :source_metadata_identifier: ABE9721-5-25
   - :id: abe9721-5-26.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-5-26.djvu"
-    :title:
-    - '5:26'
     :file_opts: {}
+    :attributes:
+      :title:
+      - '5:26'
+      :source_metadata_identifier: ABE9721-5-26
   - :id: abe9721-5-27.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-5-27.djvu"
-    :title:
-    - '5:27'
     :file_opts: {}
+    :attributes:
+      :title:
+      - '5:27'
+      :source_metadata_identifier: ABE9721-5-27
   - :id: abe9721-5-28.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-5-28.djvu"
-    :title:
-    - '5:28'
     :file_opts: {}
+    :attributes:
+      :title:
+      - '5:28'
+      :source_metadata_identifier: ABE9721-5-28
   - :id: abe9721-5-29.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-5-29.djvu"
-    :title:
-    - '5:29'
     :file_opts: {}
+    :attributes:
+      :title:
+      - '5:29'
+      :source_metadata_identifier: ABE9721-5-29
   - :id: abe9721-5-30.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-5-30.djvu"
-    :title:
-    - '5:30'
     :file_opts: {}
+    :attributes:
+      :title:
+      - '5:30'
+      :source_metadata_identifier: ABE9721-5-30
   - :id: abe9721-5-31.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-5-31.djvu"
-    :title:
-    - '5:31'
     :file_opts: {}
+    :attributes:
+      :title:
+      - '5:31'
+      :source_metadata_identifier: ABE9721-5-31
   - :id: abe9721-5-32.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-5-32.djvu"
-    :title:
-    - '5:32'
     :file_opts: {}
+    :attributes:
+      :title:
+      - '5:32'
+      :source_metadata_identifier: ABE9721-5-32
   - :id: abe9721-5-33.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-5-33.djvu"
-    :title:
-    - '5:33'
     :file_opts: {}
+    :attributes:
+      :title:
+      - '5:33'
+      :source_metadata_identifier: ABE9721-5-33
   - :id: abe9721-5-34.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-5-34.djvu"
-    :title:
-    - '5:34'
     :file_opts: {}
+    :attributes:
+      :title:
+      - '5:34'
+      :source_metadata_identifier: ABE9721-5-34
   - :id: abe9721-5-35.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-5-35.djvu"
-    :title:
-    - '5:35'
     :file_opts: {}
+    :attributes:
+      :title:
+      - '5:35'
+      :source_metadata_identifier: ABE9721-5-35
   - :id: abe9721-5-36.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-5-36.djvu"
-    :title:
-    - '5:36'
     :file_opts: {}
+    :attributes:
+      :title:
+      - '5:36'
+      :source_metadata_identifier: ABE9721-5-36
   - :id: abe9721-5-37.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-5-37.djvu"
-    :title:
-    - '5:37'
     :file_opts: {}
+    :attributes:
+      :title:
+      - '5:37'
+      :source_metadata_identifier: ABE9721-5-37
   - :id: abe9721-5-38.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-5-38.djvu"
-    :title:
-    - '5:38'
     :file_opts: {}
+    :attributes:
+      :title:
+      - '5:38'
+      :source_metadata_identifier: ABE9721-5-38
   - :id: abe9721-5-39.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-5-39.djvu"
-    :title:
-    - '5:39'
     :file_opts: {}
+    :attributes:
+      :title:
+      - '5:39'
+      :source_metadata_identifier: ABE9721-5-39
   - :id: abe9721-5-40.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-5-40.djvu"
-    :title:
-    - '5:40'
     :file_opts: {}
+    :attributes:
+      :title:
+      - '5:40'
+      :source_metadata_identifier: ABE9721-5-40
   - :id: abe9721-5-41.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-5-41.djvu"
-    :title:
-    - '5:41'
     :file_opts: {}
+    :attributes:
+      :title:
+      - '5:41'
+      :source_metadata_identifier: ABE9721-5-41
   - :id: abe9721-5-42.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-5-42.djvu"
-    :title:
-    - '5:42'
     :file_opts: {}
+    :attributes:
+      :title:
+      - '5:42'
+      :source_metadata_identifier: ABE9721-5-42
   - :id: abe9721-5-43.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-5-43.djvu"
-    :title:
-    - '5:43'
     :file_opts: {}
+    :attributes:
+      :title:
+      - '5:43'
+      :source_metadata_identifier: ABE9721-5-43
   - :id: abe9721-5-44.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-5-44.djvu"
-    :title:
-    - '5:44'
     :file_opts: {}
+    :attributes:
+      :title:
+      - '5:44'
+      :source_metadata_identifier: ABE9721-5-44
   - :id: abe9721-5-45.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-5-45.djvu"
-    :title:
-    - '5:45'
     :file_opts: {}
+    :attributes:
+      :title:
+      - '5:45'
+      :source_metadata_identifier: ABE9721-5-45
   - :id: abe9721-5-46.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-5-46.djvu"
-    :title:
-    - '5:46'
     :file_opts: {}
+    :attributes:
+      :title:
+      - '5:46'
+      :source_metadata_identifier: ABE9721-5-46
   - :id: abe9721-5-47.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-5-47.djvu"
-    :title:
-    - '5:47'
     :file_opts: {}
+    :attributes:
+      :title:
+      - '5:47'
+      :source_metadata_identifier: ABE9721-5-47
   - :id: abe9721-5-48.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-5-48.djvu"
-    :title:
-    - '5:48'
     :file_opts: {}
+    :attributes:
+      :title:
+      - '5:48'
+      :source_metadata_identifier: ABE9721-5-48
   - :id: abe9721-5-49.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-5-49.djvu"
-    :title:
-    - '5:49'
     :file_opts: {}
+    :attributes:
+      :title:
+      - '5:49'
+      :source_metadata_identifier: ABE9721-5-49
   - :id: abe9721-5-50.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-5-50.djvu"
-    :title:
-    - '5:50'
     :file_opts: {}
+    :attributes:
+      :title:
+      - '5:50'
+      :source_metadata_identifier: ABE9721-5-50
   - :id: abe9721-5-51.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-5-51.djvu"
-    :title:
-    - '5:51'
     :file_opts: {}
+    :attributes:
+      :title:
+      - '5:51'
+      :source_metadata_identifier: ABE9721-5-51
   - :id: abe9721-5-52.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-5-52.djvu"
-    :title:
-    - '5:52'
     :file_opts: {}
+    :attributes:
+      :title:
+      - '5:52'
+      :source_metadata_identifier: ABE9721-5-52
   - :id: abe9721-5-53.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-5-53.djvu"
-    :title:
-    - '5:53'
     :file_opts: {}
+    :attributes:
+      :title:
+      - '5:53'
+      :source_metadata_identifier: ABE9721-5-53
   - :id: abe9721-5-54.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-5-54.djvu"
-    :title:
-    - '5:54'
     :file_opts: {}
+    :attributes:
+      :title:
+      - '5:54'
+      :source_metadata_identifier: ABE9721-5-54
   - :id: abe9721-5-55.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-5-55.djvu"
-    :title:
-    - '5:55'
     :file_opts: {}
+    :attributes:
+      :title:
+      - '5:55'
+      :source_metadata_identifier: ABE9721-5-55
   - :id: abe9721-5-56.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-5-56.djvu"
-    :title:
-    - '5:56'
     :file_opts: {}
+    :attributes:
+      :title:
+      - '5:56'
+      :source_metadata_identifier: ABE9721-5-56
   - :id: abe9721-5-57.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-5-57.djvu"
-    :title:
-    - '5:57'
     :file_opts: {}
+    :attributes:
+      :title:
+      - '5:57'
+      :source_metadata_identifier: ABE9721-5-57
   - :id: abe9721-5-58.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-5-58.djvu"
-    :title:
-    - '5:58'
     :file_opts: {}
+    :attributes:
+      :title:
+      - '5:58'
+      :source_metadata_identifier: ABE9721-5-58
   - :id: abe9721-5-59.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-5-59.djvu"
-    :title:
-    - "[5:59]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[5:59]"
+      :source_metadata_identifier: ABE9721-5-59
   - :id: abe9721-5-60.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-5-60.djvu"
-    :title:
-    - 5:60
     :file_opts: {}
+    :attributes:
+      :title:
+      - 5:60
+      :source_metadata_identifier: ABE9721-5-60
   - :id: abe9721-5-61.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-5-61.djvu"
-    :title:
-    - 5:61
     :file_opts: {}
+    :attributes:
+      :title:
+      - 5:61
+      :source_metadata_identifier: ABE9721-5-61
   - :id: abe9721-5-62.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-5-62.djvu"
-    :title:
-    - 5:62
     :file_opts: {}
+    :attributes:
+      :title:
+      - 5:62
+      :source_metadata_identifier: ABE9721-5-62
   - :id: abe9721-5-63.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-5-63.djvu"
-    :title:
-    - 5:63
     :file_opts: {}
+    :attributes:
+      :title:
+      - 5:63
+      :source_metadata_identifier: ABE9721-5-63
   - :id: abe9721-5-64.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-5-64.djvu"
-    :title:
-    - 5:64
     :file_opts: {}
+    :attributes:
+      :title:
+      - 5:64
+      :source_metadata_identifier: ABE9721-5-64
   - :id: abe9721-5-65.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-5-65.djvu"
-    :title:
-    - 5:65
     :file_opts: {}
+    :attributes:
+      :title:
+      - 5:65
+      :source_metadata_identifier: ABE9721-5-65
   - :id: abe9721-5-66.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-5-66.djvu"
-    :title:
-    - 5:66
     :file_opts: {}
+    :attributes:
+      :title:
+      - 5:66
+      :source_metadata_identifier: ABE9721-5-66
   - :id: abe9721-5-67.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-5-67.djvu"
-    :title:
-    - 5:67
     :file_opts: {}
+    :attributes:
+      :title:
+      - 5:67
+      :source_metadata_identifier: ABE9721-5-67
   - :id: abe9721-5-68.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-5-68.djvu"
-    :title:
-    - 5:68
     :file_opts: {}
+    :attributes:
+      :title:
+      - 5:68
+      :source_metadata_identifier: ABE9721-5-68
   - :id: abe9721-5-69.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-5-69.djvu"
-    :title:
-    - 5:69
     :file_opts: {}
+    :attributes:
+      :title:
+      - 5:69
+      :source_metadata_identifier: ABE9721-5-69
   - :id: abe9721-5-70.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-5-70.djvu"
-    :title:
-    - 5:70
     :file_opts: {}
+    :attributes:
+      :title:
+      - 5:70
+      :source_metadata_identifier: ABE9721-5-70
   - :id: abe9721-5-71.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-5-71.djvu"
-    :title:
-    - 5:71
     :file_opts: {}
+    :attributes:
+      :title:
+      - 5:71
+      :source_metadata_identifier: ABE9721-5-71
   - :id: abe9721-5-72.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-5-72.djvu"
-    :title:
-    - 5:72
     :file_opts: {}
+    :attributes:
+      :title:
+      - 5:72
+      :source_metadata_identifier: ABE9721-5-72
   - :id: abe9721-5-73.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-5-73.djvu"
-    :title:
-    - 5:73
     :file_opts: {}
+    :attributes:
+      :title:
+      - 5:73
+      :source_metadata_identifier: ABE9721-5-73
   - :id: abe9721-5-74.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-5-74.djvu"
-    :title:
-    - 5:74
     :file_opts: {}
+    :attributes:
+      :title:
+      - 5:74
+      :source_metadata_identifier: ABE9721-5-74
   - :id: abe9721-5-75.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-5-75.djvu"
-    :title:
-    - 5:75
     :file_opts: {}
+    :attributes:
+      :title:
+      - 5:75
+      :source_metadata_identifier: ABE9721-5-75
   - :id: abe9721-5-76.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-5-76.djvu"
-    :title:
-    - "[5:76]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[5:76]"
+      :source_metadata_identifier: ABE9721-5-76
   - :id: abe9721-5-77.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-5-77.djvu"
-    :title:
-    - "[5:77]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[5:77]"
+      :source_metadata_identifier: ABE9721-5-77
   - :id: abe9721-5-78.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-5-78.djvu"
-    :title:
-    - 5:78
     :file_opts: {}
+    :attributes:
+      :title:
+      - 5:78
+      :source_metadata_identifier: ABE9721-5-78
   - :id: abe9721-5-79.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-5-79.djvu"
-    :title:
-    - 5:79
     :file_opts: {}
+    :attributes:
+      :title:
+      - 5:79
+      :source_metadata_identifier: ABE9721-5-79
   - :id: abe9721-5-80.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-5-80.djvu"
-    :title:
-    - 5:80
     :file_opts: {}
+    :attributes:
+      :title:
+      - 5:80
+      :source_metadata_identifier: ABE9721-5-80
   - :id: abe9721-5-81.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-5-81.djvu"
-    :title:
-    - 5:81
     :file_opts: {}
+    :attributes:
+      :title:
+      - 5:81
+      :source_metadata_identifier: ABE9721-5-81
   - :id: abe9721-5-82.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-5-82.djvu"
-    :title:
-    - 5:82
     :file_opts: {}
+    :attributes:
+      :title:
+      - 5:82
+      :source_metadata_identifier: ABE9721-5-82
   - :id: abe9721-5-83.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-5-83.djvu"
-    :title:
-    - 5:83
     :file_opts: {}
+    :attributes:
+      :title:
+      - 5:83
+      :source_metadata_identifier: ABE9721-5-83
   - :id: abe9721-5-84.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-5-84.djvu"
-    :title:
-    - 5:84
     :file_opts: {}
+    :attributes:
+      :title:
+      - 5:84
+      :source_metadata_identifier: ABE9721-5-84
   - :id: abe9721-5-85.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-5-85.djvu"
-    :title:
-    - 5:85
     :file_opts: {}
+    :attributes:
+      :title:
+      - 5:85
+      :source_metadata_identifier: ABE9721-5-85
   - :id: abe9721-5-86.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-5-86.djvu"
-    :title:
-    - 5:86
     :file_opts: {}
+    :attributes:
+      :title:
+      - 5:86
+      :source_metadata_identifier: ABE9721-5-86
   - :id: abe9721-5-87.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-5-87.djvu"
-    :title:
-    - 5:87
     :file_opts: {}
+    :attributes:
+      :title:
+      - 5:87
+      :source_metadata_identifier: ABE9721-5-87
   - :id: abe9721-5-88.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-5-88.djvu"
-    :title:
-    - 5:88
     :file_opts: {}
+    :attributes:
+      :title:
+      - 5:88
+      :source_metadata_identifier: ABE9721-5-88
   - :id: abe9721-5-89.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-5-89.djvu"
-    :title:
-    - 5:89
     :file_opts: {}
+    :attributes:
+      :title:
+      - 5:89
+      :source_metadata_identifier: ABE9721-5-89
   - :id: abe9721-5-90.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-5-90.djvu"
-    :title:
-    - 5:90
     :file_opts: {}
+    :attributes:
+      :title:
+      - 5:90
+      :source_metadata_identifier: ABE9721-5-90
   - :id: abe9721-5-91.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-5-91.djvu"
-    :title:
-    - 5:91
     :file_opts: {}
+    :attributes:
+      :title:
+      - 5:91
+      :source_metadata_identifier: ABE9721-5-91
   - :id: abe9721-5-92.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-5-92.djvu"
-    :title:
-    - 5:92
     :file_opts: {}
+    :attributes:
+      :title:
+      - 5:92
+      :source_metadata_identifier: ABE9721-5-92
   - :id: abe9721-5-93.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-5-93.djvu"
-    :title:
-    - 5:93
     :file_opts: {}
+    :attributes:
+      :title:
+      - 5:93
+      :source_metadata_identifier: ABE9721-5-93
   - :id: abe9721-5-94.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-5-94.djvu"
-    :title:
-    - 5:94
     :file_opts: {}
+    :attributes:
+      :title:
+      - 5:94
+      :source_metadata_identifier: ABE9721-5-94
   - :id: abe9721-5-95.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-5-95.djvu"
-    :title:
-    - 5:95
     :file_opts: {}
+    :attributes:
+      :title:
+      - 5:95
+      :source_metadata_identifier: ABE9721-5-95
   - :id: abe9721-5-96.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-5-96.djvu"
-    :title:
-    - 5:96
     :file_opts: {}
+    :attributes:
+      :title:
+      - 5:96
+      :source_metadata_identifier: ABE9721-5-96
   - :id: abe9721-5-97.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-5-97.djvu"
-    :title:
-    - 5:97
     :file_opts: {}
+    :attributes:
+      :title:
+      - 5:97
+      :source_metadata_identifier: ABE9721-5-97
   - :id: abe9721-5-98.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-5-98.djvu"
-    :title:
-    - 5:98
     :file_opts: {}
+    :attributes:
+      :title:
+      - 5:98
+      :source_metadata_identifier: ABE9721-5-98
   - :id: abe9721-5-99.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-5-99.djvu"
-    :title:
-    - 5:99
     :file_opts: {}
+    :attributes:
+      :title:
+      - 5:99
+      :source_metadata_identifier: ABE9721-5-99
   - :id: abe9721-5-100.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-5-100.djvu"
-    :title:
-    - 5:100
     :file_opts: {}
+    :attributes:
+      :title:
+      - 5:100
+      :source_metadata_identifier: ABE9721-5-100
   - :id: abe9721-5-101.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-5-101.djvu"
-    :title:
-    - 5:101
     :file_opts: {}
+    :attributes:
+      :title:
+      - 5:101
+      :source_metadata_identifier: ABE9721-5-101
   - :id: abe9721-5-102.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-5-102.djvu"
-    :title:
-    - 5:102
     :file_opts: {}
+    :attributes:
+      :title:
+      - 5:102
+      :source_metadata_identifier: ABE9721-5-102
   - :id: abe9721-5-103.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-5-103.djvu"
-    :title:
-    - 5:103
     :file_opts: {}
+    :attributes:
+      :title:
+      - 5:103
+      :source_metadata_identifier: ABE9721-5-103
   - :id: abe9721-5-104.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-5-104.djvu"
-    :title:
-    - 5:104
     :file_opts: {}
+    :attributes:
+      :title:
+      - 5:104
+      :source_metadata_identifier: ABE9721-5-104
   - :id: abe9721-5-105.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-5-105.djvu"
-    :title:
-    - 5:105
     :file_opts: {}
+    :attributes:
+      :title:
+      - 5:105
+      :source_metadata_identifier: ABE9721-5-105
   - :id: abe9721-5-106.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-5-106.djvu"
-    :title:
-    - 5:106
     :file_opts: {}
+    :attributes:
+      :title:
+      - 5:106
+      :source_metadata_identifier: ABE9721-5-106
   - :id: abe9721-5-107.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-5-107.djvu"
-    :title:
-    - 5:107
     :file_opts: {}
+    :attributes:
+      :title:
+      - 5:107
+      :source_metadata_identifier: ABE9721-5-107
   - :id: abe9721-5-108.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-5-108.djvu"
-    :title:
-    - 5:108
     :file_opts: {}
+    :attributes:
+      :title:
+      - 5:108
+      :source_metadata_identifier: ABE9721-5-108
   - :id: abe9721-5-109.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-5-109.djvu"
-    :title:
-    - 5:109
     :file_opts: {}
+    :attributes:
+      :title:
+      - 5:109
+      :source_metadata_identifier: ABE9721-5-109
   - :id: abe9721-5-110.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-5-110.djvu"
-    :title:
-    - 5:110
     :file_opts: {}
+    :attributes:
+      :title:
+      - 5:110
+      :source_metadata_identifier: ABE9721-5-110
   - :id: abe9721-5-111.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-5-111.djvu"
-    :title:
-    - 5:111
     :file_opts: {}
+    :attributes:
+      :title:
+      - 5:111
+      :source_metadata_identifier: ABE9721-5-111
   - :id: abe9721-5-112.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-5-112.djvu"
-    :title:
-    - 5:112
     :file_opts: {}
+    :attributes:
+      :title:
+      - 5:112
+      :source_metadata_identifier: ABE9721-5-112
   - :id: abe9721-5-113.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-5-113.djvu"
-    :title:
-    - 5:113
     :file_opts: {}
+    :attributes:
+      :title:
+      - 5:113
+      :source_metadata_identifier: ABE9721-5-113
   - :id: abe9721-5-114.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-5-114.djvu"
-    :title:
-    - 5:114
     :file_opts: {}
+    :attributes:
+      :title:
+      - 5:114
+      :source_metadata_identifier: ABE9721-5-114
   - :id: abe9721-5-115.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-5-115.djvu"
-    :title:
-    - 5:115
     :file_opts: {}
+    :attributes:
+      :title:
+      - 5:115
+      :source_metadata_identifier: ABE9721-5-115
   - :id: abe9721-5-116.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-5-116.djvu"
-    :title:
-    - 5:116
     :file_opts: {}
+    :attributes:
+      :title:
+      - 5:116
+      :source_metadata_identifier: ABE9721-5-116
   - :id: abe9721-5-117.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-5-117.djvu"
-    :title:
-    - 5:117
     :file_opts: {}
+    :attributes:
+      :title:
+      - 5:117
+      :source_metadata_identifier: ABE9721-5-117
   - :id: abe9721-5-118.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-5-118.djvu"
-    :title:
-    - 5:118
     :file_opts: {}
+    :attributes:
+      :title:
+      - 5:118
+      :source_metadata_identifier: ABE9721-5-118
   - :id: abe9721-5-119.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-5-119.djvu"
-    :title:
-    - 5:119
     :file_opts: {}
+    :attributes:
+      :title:
+      - 5:119
+      :source_metadata_identifier: ABE9721-5-119
   - :id: abe9721-5-120.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-5-120.djvu"
-    :title:
-    - 5:120
     :file_opts: {}
+    :attributes:
+      :title:
+      - 5:120
+      :source_metadata_identifier: ABE9721-5-120
   - :id: abe9721-5-121.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-5-121.djvu"
-    :title:
-    - 5:121
     :file_opts: {}
+    :attributes:
+      :title:
+      - 5:121
+      :source_metadata_identifier: ABE9721-5-121
   - :id: abe9721-5-122.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-5-122.djvu"
-    :title:
-    - 5:122
     :file_opts: {}
+    :attributes:
+      :title:
+      - 5:122
+      :source_metadata_identifier: ABE9721-5-122
   - :id: abe9721-5-123.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-5-123.djvu"
-    :title:
-    - 5:123
     :file_opts: {}
+    :attributes:
+      :title:
+      - 5:123
+      :source_metadata_identifier: ABE9721-5-123
   - :id: abe9721-5-124.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-5-124.djvu"
-    :title:
-    - 5:124
     :file_opts: {}
+    :attributes:
+      :title:
+      - 5:124
+      :source_metadata_identifier: ABE9721-5-124
   - :id: abe9721-5-125.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-5-125.djvu"
-    :title:
-    - 5:125
     :file_opts: {}
+    :attributes:
+      :title:
+      - 5:125
+      :source_metadata_identifier: ABE9721-5-125
   - :id: abe9721-5-126.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-5-126.djvu"
-    :title:
-    - 5:126
     :file_opts: {}
+    :attributes:
+      :title:
+      - 5:126
+      :source_metadata_identifier: ABE9721-5-126
   - :id: abe9721-5-127.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-5-127.djvu"
-    :title:
-    - 5:127
     :file_opts: {}
+    :attributes:
+      :title:
+      - 5:127
+      :source_metadata_identifier: ABE9721-5-127
   - :id: abe9721-5-128.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-5-128.djvu"
-    :title:
-    - 5:128
     :file_opts: {}
+    :attributes:
+      :title:
+      - 5:128
+      :source_metadata_identifier: ABE9721-5-128
   - :id: abe9721-5-129.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-5-129.djvu"
-    :title:
-    - 5:129
     :file_opts: {}
+    :attributes:
+      :title:
+      - 5:129
+      :source_metadata_identifier: ABE9721-5-129
   - :id: abe9721-5-130.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-5-130.djvu"
-    :title:
-    - 5:130
     :file_opts: {}
+    :attributes:
+      :title:
+      - 5:130
+      :source_metadata_identifier: ABE9721-5-130
   - :id: abe9721-5-131.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-5-131.djvu"
-    :title:
-    - 5:131
     :file_opts: {}
+    :attributes:
+      :title:
+      - 5:131
+      :source_metadata_identifier: ABE9721-5-131
   - :id: abe9721-5-132.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-5-132.djvu"
-    :title:
-    - 5:132
     :file_opts: {}
+    :attributes:
+      :title:
+      - 5:132
+      :source_metadata_identifier: ABE9721-5-132
   - :id: abe9721-5-133.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-5-133.djvu"
-    :title:
-    - 5:133
     :file_opts: {}
+    :attributes:
+      :title:
+      - 5:133
+      :source_metadata_identifier: ABE9721-5-133
   - :id: abe9721-5-134.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-5-134.djvu"
-    :title:
-    - 5:134
     :file_opts: {}
+    :attributes:
+      :title:
+      - 5:134
+      :source_metadata_identifier: ABE9721-5-134
   - :id: abe9721-5-135.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-5-135.djvu"
-    :title:
-    - 5:135
     :file_opts: {}
+    :attributes:
+      :title:
+      - 5:135
+      :source_metadata_identifier: ABE9721-5-135
   - :id: abe9721-5-136.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-5-136.djvu"
-    :title:
-    - 5:136
     :file_opts: {}
+    :attributes:
+      :title:
+      - 5:136
+      :source_metadata_identifier: ABE9721-5-136
   - :id: abe9721-5-137.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-5-137.djvu"
-    :title:
-    - 5:137
     :file_opts: {}
+    :attributes:
+      :title:
+      - 5:137
+      :source_metadata_identifier: ABE9721-5-137
   - :id: abe9721-5-138.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-5-138.djvu"
-    :title:
-    - 5:138
     :file_opts: {}
+    :attributes:
+      :title:
+      - 5:138
+      :source_metadata_identifier: ABE9721-5-138
   - :id: abe9721-5-139.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-5-139.djvu"
-    :title:
-    - 5:139
     :file_opts: {}
+    :attributes:
+      :title:
+      - 5:139
+      :source_metadata_identifier: ABE9721-5-139
   - :id: abe9721-5-140.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-5-140.djvu"
-    :title:
-    - 5:140
     :file_opts: {}
+    :attributes:
+      :title:
+      - 5:140
+      :source_metadata_identifier: ABE9721-5-140
   - :id: abe9721-5-141.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-5-141.djvu"
-    :title:
-    - 5:141
     :file_opts: {}
+    :attributes:
+      :title:
+      - 5:141
+      :source_metadata_identifier: ABE9721-5-141
   - :id: abe9721-5-142.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-5-142.djvu"
-    :title:
-    - 5:142
     :file_opts: {}
+    :attributes:
+      :title:
+      - 5:142
+      :source_metadata_identifier: ABE9721-5-142
   - :id: abe9721-5-143.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-5-143.djvu"
-    :title:
-    - 5:143
     :file_opts: {}
+    :attributes:
+      :title:
+      - 5:143
+      :source_metadata_identifier: ABE9721-5-143
   - :id: abe9721-5-144.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-5-144.djvu"
-    :title:
-    - "[5:144]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[5:144]"
+      :source_metadata_identifier: ABE9721-5-144
   - :id: abe9721-5-145.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-5-145.djvu"
-    :title:
-    - 5:145
     :file_opts: {}
+    :attributes:
+      :title:
+      - 5:145
+      :source_metadata_identifier: ABE9721-5-145
   - :id: abe9721-5-146.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-5-146.djvu"
-    :title:
-    - 5:146
     :file_opts: {}
+    :attributes:
+      :title:
+      - 5:146
+      :source_metadata_identifier: ABE9721-5-146
   - :id: abe9721-5-147.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-5-147.djvu"
-    :title:
-    - 5:147
     :file_opts: {}
+    :attributes:
+      :title:
+      - 5:147
+      :source_metadata_identifier: ABE9721-5-147
   - :id: abe9721-5-148.djvu
     :mime_type: image/tiff
     :path: "/tmp/ingest/abe9721-5-148.djvu"
-    :title:
-    - "[5:148]"
     :file_opts: {}
+    :attributes:
+      :title:
+      - "[5:148]"
+      :source_metadata_identifier: ABE9721-5-148
 :sources:
 - :title:
   - Variations XML
-  :file: spec/fixtures/abe9721.xml
+  :file: spec/fixtures/variations_xml/abe9721.xml

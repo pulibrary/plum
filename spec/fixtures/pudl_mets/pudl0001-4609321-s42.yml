@@ -1,5 +1,5 @@
 ---
-:resource: ScannedResource
+:resource: MultiVolumeWork
 :attributes:
   :default:
     :state: final_review
@@ -7,8 +7,8 @@
     :rights_statement: http://rightsstatements.org/vocab/NKC/1.0/
     :visibility: open
   :local:
-    :identifier: ark:/88435/5m60qr98h
-    :replaces: pudl0001/4612596
+    :identifier: ark:/88435/7d278t10z
+    :replaces: pudl0001/4609321/s42
     :source_metadata_identifier: bhr9405
     :viewing_direction: left-to-right
   :remote:
@@ -110,23 +110,97 @@
       <subfield code="f">1</subfield>
     </datafield>
   </record>
-:thumbnail_path: "/tmp/pudl0001/4612596/00000001.tif"
-:structure:
-  :nodes:
-  - :label: leaf 1
+:thumbnail_path: "/users/escowles/downloads/tmp/00000001.tif"
+:volumes:
+- :title:
+  - first volume
+  :structure:
     :nodes:
-    - :label: leaf 1. recto
-      :proxy: pkc90
-:files:
-- :id: pkc90
-  :checksum: 5b0ed4a62f96a19c5267fa8a9e1caf876c87e8d0
-  :mime_type: image/tiff
-  :path: "/tmp/pudl0001/4612596/00000001.tif"
-  :title:
-  - leaf 1. recto
-  :replaces: pudl0001/4612596/00000001
-  :file_opts: {}
+    - :label: upper cover
+      :nodes:
+      - :label: upper cover. cover
+        :proxy: gylme
+      - :label: upper cover. pastedown
+        :proxy: l898s
+    - :label: gathering 1
+      :nodes:
+      - :label: leaf 1, gathering 1/1
+        :nodes:
+        - :label: gathering 1. leaf 1, gathering 1/1. recto
+          :proxy: itc6o
+  :files:
+  - :id: gylme
+    :checksum: 33a5b539e3d1f9abbda59776149d57740d9e7788
+    :mime_type: image/tiff
+    :path: "/users/escowles/downloads/tmp/00000001.tif"
+    :file_opts: {}
+    :attributes:
+      :title:
+      - upper cover. cover
+      :replaces: pudl0001/4609321/s42/00000001
+  - :id: l898s
+    :checksum: 94b8bb21d88a05519be035077ca8e2fcf24b62ce
+    :mime_type: image/tiff
+    :path: "/users/escowles/downloads/tmp/00000002.tif"
+    :file_opts: {}
+    :attributes:
+      :title:
+      - upper cover. pastedown
+      :replaces: pudl0001/4609321/s42/00000002
+  - :id: itc6o
+    :checksum: 5ff6c95e931d3b71cbaff41c3d1b994390ba44c1
+    :mime_type: image/tiff
+    :path: "/users/escowles/downloads/tmp/00000003.tif"
+    :file_opts: {}
+    :attributes:
+      :title:
+      - gathering 1. leaf 1, gathering 1/1. recto
+      :replaces: pudl0001/4609321/s42/00000003
+- :title:
+  - second volume
+  :structure:
+    :nodes:
+    - :label: upper cover
+      :nodes:
+      - :label: upper cover. pastedown
+        :proxy: tp8n6
+    - :label: gathering 1
+      :nodes:
+      - :label: leaf 1, gathering 1/1
+        :nodes:
+        - :label: gathering 1. leaf 1, gathering 1/1. recto
+          :proxy: l4e90
+        - :label: gathering 1. leaf 1, gathering 1/1. verso
+          :proxy: ivg04
+  :files:
+  - :id: tp8n6
+    :checksum: adc66d858b1efe8cb376ad9c021ff9af4dfb7475
+    :mime_type: image/tiff
+    :path: "/users/escowles/downloads/tmp/00000657.tif"
+    :file_opts: {}
+    :attributes:
+      :title:
+      - upper cover. pastedown
+      :replaces: pudl0001/4609321/s42/00000657
+  - :id: l4e90
+    :checksum: ce773c29f10ad4c08dabe85c69ac0f385b65f0a8
+    :mime_type: image/tiff
+    :path: "/users/escowles/downloads/tmp/00000658.tif"
+    :file_opts: {}
+    :attributes:
+      :title:
+      - gathering 1. leaf 1, gathering 1/1. recto
+      :replaces: pudl0001/4609321/s42/00000658
+  - :id: ivg04
+    :checksum: 4e3003e04f6ddba5f1a31064085e6a1a0b18a559
+    :mime_type: image/tiff
+    :path: "/users/escowles/downloads/tmp/00000659.tif"
+    :file_opts: {}
+    :attributes:
+      :title:
+      - gathering 1. leaf 1, gathering 1/1. verso
+      :replaces: pudl0001/4609321/s42/00000659
 :sources:
 - :title:
   - METS XML
-  :file: spec/fixtures/pudl0001-4612596.mets
+  :file: spec/fixtures/pudl_mets/pudl0001-4609321-s42.mets

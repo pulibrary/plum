@@ -2,9 +2,9 @@ require 'rails_helper'
 
 RSpec.describe IngestMETSJob do
   describe "ingesting a mets file" do
-    let(:mets_file) { Rails.root.join("spec", "fixtures", "pudl0001-4612596.mets") }
-    let(:mets_file_rtl) { Rails.root.join("spec", "fixtures", "pudl0032-ns73.mets") }
-    let(:mets_file_multi) { Rails.root.join("spec", "fixtures", "pudl0001-4609321-s42.mets") }
+    let(:mets_file) { Rails.root.join("spec", "fixtures", "pudl_mets", "pudl0001-4612596.mets") }
+    let(:mets_file_rtl) { Rails.root.join("spec", "fixtures", "pudl_mets", "pudl0032-ns73.mets") }
+    let(:mets_file_multi) { Rails.root.join("spec", "fixtures", "pudl_mets", "pudl0001-4609321-s42.mets") }
     let(:tiff_file) { Rails.root.join("spec", "fixtures", "files", "color.tif") }
     let(:user) { FactoryGirl.build(:admin) }
     let(:actor1) { double('actor1') }
@@ -73,7 +73,7 @@ RSpec.describe IngestMETSJob do
 
   describe "integration test" do
     let(:user) { FactoryGirl.build(:admin) }
-    let(:mets_file) { Rails.root.join("spec", "fixtures", "pudl0001-4612596.mets") }
+    let(:mets_file) { Rails.root.join("spec", "fixtures", "pudl_mets", "pudl0001-4612596.mets") }
     let(:tiff_file) { Rails.root.join("spec", "fixtures", "files", "color.tif") }
     let(:mime_type) { 'image/tiff' }
     let(:file) { IoDecorator.new(File.new(tiff_file), mime_type, File.basename(tiff_file)) }

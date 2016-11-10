@@ -12,9 +12,9 @@ RSpec.describe PreingestJob do
   end
 
   describe "preingesting a METS file" do
-    let(:mets_file_single) { Rails.root.join("spec", "fixtures", "pudl0001-4612596.mets").to_s }
-    let(:mets_file_rtl) { Rails.root.join("spec", "fixtures", "pudl0032-ns73.mets").to_s }
-    let(:mets_file_multi) { Rails.root.join("spec", "fixtures", "pudl0001-4609321-s42.mets").to_s }
+    let(:mets_file_single) { Rails.root.join("spec", "fixtures", "pudl_mets", "pudl0001-4612596.mets").to_s }
+    let(:mets_file_rtl) { Rails.root.join("spec", "fixtures", "pudl_mets", "pudl0032-ns73.mets").to_s }
+    let(:mets_file_multi) { Rails.root.join("spec", "fixtures", "pudl_mets", "pudl0001-4609321-s42.mets").to_s }
     let(:yaml_file) { preingest_file.sub(/\.mets$/, '.yml') }
     let(:document_class) { PreingestableMETS }
 
@@ -32,8 +32,8 @@ RSpec.describe PreingestJob do
     end
   end
   describe "preingesting a Variations file" do
-    let(:variations_file_single) { Rails.root.join("spec", "fixtures", "bhr9405.xml").to_s }
-    let(:variations_file_multi) { Rails.root.join("spec", "fixtures", "abe9721.xml").to_s }
+    let(:variations_file_single) { Rails.root.join("spec", "fixtures", "variations_xml", "bhr9405.xml").to_s }
+    let(:variations_file_multi) { Rails.root.join("spec", "fixtures", "variations_xml", "abe9721.xml").to_s }
     let(:yaml_file) { preingest_file.sub(/\.xml$/, '.yml') }
     let(:document_class) { VariationsDocument }
 

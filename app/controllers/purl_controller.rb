@@ -24,14 +24,14 @@ class PurlController < ApplicationController
   private
 
     OBJECT_LOOKUPS = {
-      FileSet => { match_pattern: /^\w{3}\d{4}-\d{1}-\d{4}$/, search_attribute: :label_tesim },
-      ScannedResource => { match_pattern: /^\w{3}\d{4}$/, search_attribute: :source_metadata_identifier_tesim },
-      MultiVolumeWork => { match_pattern: /^\w{3}\d{4}$/, search_attribute: :source_metadata_identifier_tesim }
+      FileSet => /^\w{3}\d{4}-\d{1}-\d{4}$/,
+      ScannedResource => /^\w{3}\d{4}$/,
+      MultiVolumeWork => /^\w{3}\d{4}$/
     }
     def set_object
-      OBJECT_LOOKUPS.each do |klass, values|
-        if params[:id].match values[:match_pattern]
-          @solr_hit = klass.search_with_conditions(values[:search_attribute] => params[:id]).first
+      OBJECT_LOOKUPS.each do |klass, match_pattern|
+        if params[:id].match match_pattern
+          @solr_hit = klass.search_with_conditions({ source_metadata_identifier_tesim: params[:id] }, rows: 1).first
           @subfolder = klass.to_s.pluralize.underscore
         end
         break if @solr_hit

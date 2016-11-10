@@ -4,7 +4,7 @@ describe PurlController do
   let(:user) { FactoryGirl.create(:user) }
   let(:scanned_resource) { FactoryGirl.create(:scanned_resource, user: user, title: ['Dummy Title'], state: 'complete', source_metadata_identifier: 'BHR9405') }
   let(:multi_volume_work) { FactoryGirl.create(:multi_volume_work, user: user, title: ['Dummy Title'], state: 'complete', source_metadata_identifier: 'ABE9721') }
-  let(:file_set) { FactoryGirl.create(:file_set, user: user, label: 'BHR9405-1-0001.tif') }
+  let(:file_set) { FactoryGirl.create(:file_set, user: user, label: 'BHR9405-1-0001.tif', source_metadata_identifier: 'BHR9405-1-0001') }
 
   describe "default" do
     let(:user) { FactoryGirl.create(:admin) }
@@ -43,7 +43,7 @@ describe PurlController do
         include_examples "responses for matches"
       end
       context "for a FileSet" do
-        let(:id) { file_set.label.sub('.tif', '') }
+        let(:id) { file_set.source_metadata_identifier }
         let(:target_path) { curation_concerns_file_set_path(file_set) }
         include_examples "responses for matches"
       end
