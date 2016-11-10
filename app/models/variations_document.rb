@@ -47,8 +47,9 @@ class VariationsDocument
         file_hash[:id] = file.xpath('FileName').first&.content.to_s
         file_hash[:mime_type] = 'image/tiff'
         file_hash[:path] = '/tmp/ingest/' + file_hash[:id]
-        file_hash[:title] = ['TITLE MISSING'] # replaced later
         file_hash[:file_opts] = {}
+        file_hash[:attributes] = file_attributes(file, file_hash)
+
         @files << file_hash
       end
       @thumbnail_path = @files.first[:path]
@@ -83,11 +84,18 @@ class VariationsDocument
           c[:label] = child['label']
           c[:proxy] = @files[@file_index][:id]
 
-          @files[@file_index][:title] = [child['label']]
+          @files[@file_index][:attributes][:title] = [child['label']]
           @file_index += 1
         end
         array << c
       end
       array
+    end
+
+    def file_attributes(_file_node, file_hash)
+      att_hash = {}
+      att_hash[:title] = ['TITLE MISSING'] # replaced later
+      att_hash[:source_metadata_identifier] = file_hash[:id].gsub(/\.\w{3,4}$/, '').upcase
+      att_hash
     end
 end

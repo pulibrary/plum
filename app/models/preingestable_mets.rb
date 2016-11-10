@@ -42,9 +42,10 @@ class PreingestableMETS < METSDocument
 
     def add_file_attributes(file_hash_array)
       file_hash_array.each do |f|
-        f[:title] = [file_label(f[:id])]
-        f[:replaces] = "#{pudl_id}/#{File.basename(f[:path], File.extname(f[:path]))}"
         f[:file_opts] = file_opts(f)
+        f[:attributes] ||= {}
+        f[:attributes][:title] = [file_label(f[:id])]
+        f[:attributes][:replaces] = "#{pudl_id}/#{File.basename(f[:path], File.extname(f[:path]))}"
       end
       file_hash_array
     end

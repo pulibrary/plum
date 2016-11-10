@@ -1,9 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe METSDocument do
-  let(:mets_file) { Rails.root.join("spec", "fixtures", "pudl0001-4612596.mets") }
-  let(:mets_file_rtl) { Rails.root.join("spec", "fixtures", "pudl0032-ns73.mets") }
-  let(:mets_file_multi) { Rails.root.join("spec", "fixtures", "pudl0001-4609321-s42.mets") }
+  let(:mets_file) { Rails.root.join("spec", "fixtures", "pudl_mets", "pudl0001-4612596.mets") }
+  let(:mets_file_rtl) { Rails.root.join("spec", "fixtures", "pudl_mets", "pudl0032-ns73.mets") }
+  let(:mets_file_multi) { Rails.root.join("spec", "fixtures", "pudl_mets", "pudl0001-4609321-s42.mets") }
   let(:tiff_file) { Rails.root.join("spec", "fixtures", "files", "color.tif") }
   let(:structure) { {
     nodes: [{

@@ -3,9 +3,22 @@ require 'rails_helper'
 RSpec.describe FileSet do
   subject { described_class.new.tap { |x| x.apply_depositor_metadata("bob") } }
 
-  describe "#viewing_hint" do
-    it "has the right predicate" do
-      expect(described_class.properties["viewing_hint"].predicate).to eq ::RDF::Vocab::IIIF.viewingHint
+  describe "metadata" do
+    context "singular" do
+      { 'viewing_hint' => ::RDF::Vocab::IIIF.viewingHint,
+        'identifier' => ::RDF::Vocab::DC.identifier,
+        'source_metadata_identifier' => ::PULTerms.metadata_id,
+        'replaces' => ::RDF::Vocab::DC.replaces
+      }.each do |attribute, predicate|
+        describe "##{attribute}" do
+          it "has the right predicate" do
+            expect(described_class.properties[attribute].predicate).to eq predicate
+          end
+          it "disallows multiple values" do
+            expect(described_class.properties[attribute].multiple?).to eq false
+          end
+        end
+      end
     end
   end
 
