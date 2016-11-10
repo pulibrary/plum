@@ -70,11 +70,13 @@ class METSDocument
   end
 
   def file_info(file)
+    path = file.xpath('mets:FLocat/@xlink:href').to_s.gsub(/file:\/\//, '')
     {
       id: file.xpath('@ID').to_s,
       checksum: file.xpath('@CHECKSUM').to_s,
       mime_type: file.xpath('@MIMETYPE').to_s,
-      path: file.xpath('mets:FLocat/@xlink:href').to_s.gsub(/file:\/\//, '')
+      path: path,
+      replaces: "#{pudl_id}/#{File.basename(path, File.extname(path))}"
     }
   end
 

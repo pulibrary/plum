@@ -56,6 +56,11 @@ RSpec.describe METSDocument do
 
     it "has an array of files" do
       expect(subject.files.length).to eq(189)
+      file = subject.files.first
+      expect(file[:checksum]).to eq('aa2c70843bbd652b0a8ba426b7bc9211c547f9de')
+      expect(file[:mime_type]).to eq('image/tiff')
+      expect(file[:path]).to eq('/tmp/pudl0032/ns73/00000001.tif')
+      expect(file[:replaces]).to eq('pudl0032/ns73/00000001')
     end
 
     it "has no options for files present in the structMap" do
