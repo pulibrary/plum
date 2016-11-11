@@ -113,7 +113,7 @@
   </mets:fileSec>
   <mets:structMap TYPE="RelatedObjects">
     <mets:div DMDID="p7p3g mfyt6" ID="kxpde">
-      <mets:div CONTENTIDS="pudl0001" TYPE="IsPartOf"/>
+      <mets:div CONTENTIDS="libmus_personal" TYPE="IsPartOf"/>
       <mets:div ID="aggregates" TYPE="OrderedList">
         <mets:div ID="a6ubs" LABEL="recto" ORDER="1" TYPE="Static">
           <mets:fptr FILEID="pkc90"/>

@@ -41,7 +41,7 @@ RSpec.describe METSDocument do
     end
 
     it "has a collection slug" do
-      expect(subject.collection_slugs).to eq('pudl0001')
+      expect(subject.collection_slugs).to eq('libmus_personal')
     end
   end
 
