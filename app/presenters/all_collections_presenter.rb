@@ -40,7 +40,7 @@ class AllCollectionsPresenter < CollectionShowPresenter
       @current_ability ||= nil
     end
 
-    def ordered_ids
-      ActiveFedora::SolrService.query("has_model_ssim:Collection", rows: 10_000, fl: "id").map { |x| x["id"] }
+    def ordered_docs
+      @ordered_docs ||= ActiveFedora::SolrService.query("has_model_ssim:Collection", rows: 10_000).map { |x| SolrDocument.new(x) }
     end
 end

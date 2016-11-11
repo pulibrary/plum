@@ -20,7 +20,7 @@ class AllCollectionsManifestBuilder < ManifestBuilder
     end
 
     def child_manifest_factory
-      ChildCollectionManifest
+      SparseMemberCollectionManifest
     end
 
     def record_property_builder
