@@ -7,9 +7,12 @@ class CollectionShowPresenter < CurationConcerns::CollectionPresenter
                                                                    allow_nil: true
 
   def member_presenters
-    @member_presenters ||= CurationConcerns::PresenterFactory.build_presenters(ordered_ids,
-                                                                               file_presenter_class,
-                                                                               current_ability)
+    @member_presenters ||=
+      begin
+        ordered_docs.map do |doc|
+          file_presenter_class.new(doc, current_ability)
+        end
+      end
   end
 
   def viewing_hint
@@ -27,10 +30,8 @@ class CollectionShowPresenter < CurationConcerns::CollectionPresenter
   private
 
     # TODO: Extract this to ActiveFedora::Aggregations::ListSource
-    def ordered_ids
-      ActiveFedora::SolrService.query("member_of_collection_ids_ssim:#{id}", fl: "id", rows: 10_000).map do |x|
-        x["id"]
-      end
+    def ordered_docs
+      @ordered_docs ||= ActiveFedora::SolrService.query("member_of_collection_ids_ssim:#{id}", rows: 10_000).map { |x| SolrDocument.new(x) }
     end
 
     def file_presenter_class

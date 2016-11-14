@@ -31,10 +31,10 @@ class CollectionsController < ApplicationController
   private
 
     def manifest_builder
-      PolymorphicManifestBuilder.new(presenter, ssl: request.ssl?)
+      @manifest_builder ||= PolymorphicManifestBuilder.new(presenter, ssl: request.ssl?)
     end
 
     def all_manifests_builder
-      AllCollectionsManifestBuilder.new(nil, ability: current_ability, ssl: request.ssl?)
+      @all_manifests_builder ||= AllCollectionsManifestBuilder.new(nil, ability: current_ability, ssl: request.ssl?)
     end
 end
