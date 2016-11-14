@@ -108,121 +108,121 @@
       <subfield code="f">1</subfield>
     </datafield>
   </record>
-:thumbnail_path: "/tmp/ingest/bhr9405-1-1.tif"
+:thumbnail_path: "/tmp/ingest/bhr9405-1-0001.tif"
 :collections: []
 :structure:
   :nodes:
   - :label: "[Title Page and Copyright Page]"
     :nodes:
     - :label: "[i]"
-      :proxy: bhr9405-1-1.tif
+      :proxy: bhr9405-1-0001.tif
     - :label: "[ii]"
-      :proxy: bhr9405-1-2.tif
+      :proxy: bhr9405-1-0002.tif
   - :label: "[Notes]"
     :nodes:
     - :label: "[iii]"
-      :proxy: bhr9405-1-3.tif
+      :proxy: bhr9405-1-0003.tif
     - :label: "[iv]"
-      :proxy: bhr9405-1-4.tif
+      :proxy: bhr9405-1-0004.tif
   - :label: "[Orchestration]"
     :nodes:
     - :label: "[v]"
-      :proxy: bhr9405-1-5.tif
+      :proxy: bhr9405-1-0005.tif
     - :label: "[vi]"
-      :proxy: bhr9405-1-6.tif
+      :proxy: bhr9405-1-0006.tif
   - :label: 'Fontane de Roma : Poema Sinfonico'
     :nodes:
     - :label: La fontana di Valle Giulia all'alba
       :nodes:
       - :label: '1'
-        :proxy: bhr9405-1-7.tif
+        :proxy: bhr9405-1-0007.tif
       - :label: '2'
-        :proxy: bhr9405-1-8.tif
+        :proxy: bhr9405-1-0008.tif
       - :label: '3'
-        :proxy: bhr9405-1-9.tif
+        :proxy: bhr9405-1-0009.tif
       - :label: '4'
-        :proxy: bhr9405-1-10.tif
+        :proxy: bhr9405-1-0010.tif
 :files:
-- :id: bhr9405-1-1.tif
+- :id: bhr9405-1-0001.tif
   :mime_type: image/tiff
-  :path: "/tmp/ingest/bhr9405-1-1.tif"
+  :path: "/tmp/ingest/bhr9405-1-0001.tif"
   :file_opts: {}
   :attributes:
     :title:
     - "[i]"
-    :source_metadata_identifier: BHR9405-1-1
-- :id: bhr9405-1-2.tif
+    :source_metadata_identifier: BHR9405-1-0001
+- :id: bhr9405-1-0002.tif
   :mime_type: image/tiff
-  :path: "/tmp/ingest/bhr9405-1-2.tif"
+  :path: "/tmp/ingest/bhr9405-1-0002.tif"
   :file_opts: {}
   :attributes:
     :title:
     - "[ii]"
-    :source_metadata_identifier: BHR9405-1-2
-- :id: bhr9405-1-3.tif
+    :source_metadata_identifier: BHR9405-1-0002
+- :id: bhr9405-1-0003.tif
   :mime_type: image/tiff
-  :path: "/tmp/ingest/bhr9405-1-3.tif"
+  :path: "/tmp/ingest/bhr9405-1-0003.tif"
   :file_opts: {}
   :attributes:
     :title:
     - "[iii]"
-    :source_metadata_identifier: BHR9405-1-3
-- :id: bhr9405-1-4.tif
+    :source_metadata_identifier: BHR9405-1-0003
+- :id: bhr9405-1-0004.tif
   :mime_type: image/tiff
-  :path: "/tmp/ingest/bhr9405-1-4.tif"
+  :path: "/tmp/ingest/bhr9405-1-0004.tif"
   :file_opts: {}
   :attributes:
     :title:
     - "[iv]"
-    :source_metadata_identifier: BHR9405-1-4
-- :id: bhr9405-1-5.tif
+    :source_metadata_identifier: BHR9405-1-0004
+- :id: bhr9405-1-0005.tif
   :mime_type: image/tiff
-  :path: "/tmp/ingest/bhr9405-1-5.tif"
+  :path: "/tmp/ingest/bhr9405-1-0005.tif"
   :file_opts: {}
   :attributes:
     :title:
     - "[v]"
-    :source_metadata_identifier: BHR9405-1-5
-- :id: bhr9405-1-6.tif
+    :source_metadata_identifier: BHR9405-1-0005
+- :id: bhr9405-1-0006.tif
   :mime_type: image/tiff
-  :path: "/tmp/ingest/bhr9405-1-6.tif"
+  :path: "/tmp/ingest/bhr9405-1-0006.tif"
   :file_opts: {}
   :attributes:
     :title:
     - "[vi]"
-    :source_metadata_identifier: BHR9405-1-6
-- :id: bhr9405-1-7.tif
+    :source_metadata_identifier: BHR9405-1-0006
+- :id: bhr9405-1-0007.tif
   :mime_type: image/tiff
-  :path: "/tmp/ingest/bhr9405-1-7.tif"
+  :path: "/tmp/ingest/bhr9405-1-0007.tif"
   :file_opts: {}
   :attributes:
     :title:
     - '1'
-    :source_metadata_identifier: BHR9405-1-7
-- :id: bhr9405-1-8.tif
+    :source_metadata_identifier: BHR9405-1-0007
+- :id: bhr9405-1-0008.tif
   :mime_type: image/tiff
-  :path: "/tmp/ingest/bhr9405-1-8.tif"
+  :path: "/tmp/ingest/bhr9405-1-0008.tif"
   :file_opts: {}
   :attributes:
     :title:
     - '2'
-    :source_metadata_identifier: BHR9405-1-8
-- :id: bhr9405-1-9.tif
+    :source_metadata_identifier: BHR9405-1-0008
+- :id: bhr9405-1-0009.tif
   :mime_type: image/tiff
-  :path: "/tmp/ingest/bhr9405-1-9.tif"
+  :path: "/tmp/ingest/bhr9405-1-0009.tif"
   :file_opts: {}
   :attributes:
     :title:
     - '3'
-    :source_metadata_identifier: BHR9405-1-9
-- :id: bhr9405-1-10.tif
+    :source_metadata_identifier: BHR9405-1-0009
+- :id: bhr9405-1-0010.tif
   :mime_type: image/tiff
-  :path: "/tmp/ingest/bhr9405-1-10.tif"
+  :path: "/tmp/ingest/bhr9405-1-0010.tif"
   :file_opts: {}
   :attributes:
     :title:
     - '4'
-    :source_metadata_identifier: BHR9405-1-10
+    :source_metadata_identifier: BHR9405-1-0010
 :sources:
 - :title:
   - Variations XML
