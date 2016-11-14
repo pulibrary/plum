@@ -15,6 +15,7 @@ class FileSet < ActiveFedora::Base
   apply_schema IIIFPageSchema, ActiveFedora::SchemaIndexingStrategy.new(
     ActiveFedora::Indexers::GlobalIndexer.new([:stored_searchable, :symbol])
   )
+  before_save :normalize_identifiers
   after_save :touch_parent_works
 
   validates_with ViewingHintValidator
@@ -28,8 +29,8 @@ class FileSet < ActiveFedora::Base
   end
 
   def create_derivatives(filename)
-    case mime_type
-    when 'image/tiff'
+    case
+    when mime_type.include?('image/tiff'), mime_type.include?('external')
       Hydra::Derivatives::Jpeg2kImageDerivatives.create(
         filename,
         outputs: [
@@ -41,8 +42,8 @@ class FileSet < ActiveFedora::Base
           url: derivative_url('intermediate_file')
         ]
       )
-      RunOCRJob.perform_later(id)
-    when 'image/jp2'
+      RunOCRJob.perform_later(id) if Plum.config[:store_original_files]
+    when mime_type.include?('image/jp2')
       dst = derivative_path('intermediate_file')
       FileUtils.mkdir_p(File.dirname(dst))
       FileUtils.cp(filename, dst)
@@ -89,5 +90,9 @@ class FileSet < ActiveFedora::Base
 
     def derivative_path(destination_name)
       PairtreeDerivativePath.derivative_path_for_reference(self, destination_name).to_s
+    end
+
+    def normalize_identifiers
+      self.source_metadata_identifier = label.gsub(/\.\w{3,4}$/, '').upcase unless label.nil?
     end
 end

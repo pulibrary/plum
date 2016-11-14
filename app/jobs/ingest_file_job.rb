@@ -1,3 +1,5 @@
+require 'pumpkin/works/services/add_external_file_to_file_set'
+
 class IngestFileJob < ActiveJob::Base
   queue_as CurationConcerns.config.ingest_queue_name
 
@@ -15,10 +17,16 @@ class IngestFileJob < ActiveJob::Base
     local_file.original_name = opts.fetch(:filename, File.basename(filepath))
 
     # Tell AddFileToFileSet service to skip versioning because versions will be minted by VersionCommitter (called by save_characterize_and_record_committer) when necessary
-    Hydra::Works::AddFileToFileSet.call(file_set,
-                                        local_file,
-                                        relation,
-                                        versioning: false)
+    if store_files?
+      Hydra::Works::AddFileToFileSet.call(file_set,
+                                          local_file,
+                                          relation,
+                                          versioning: false)
+    else
+      Pumpkin::Works::AddExternalFileToFileSet.call(file_set,
+                                                    local_file.original_name,
+                                                    relation)
+    end
 
     # Persist changes to the file_set
     file_set.save!
@@ -31,8 +39,16 @@ class IngestFileJob < ActiveJob::Base
     # Do post file ingest actions
     CurationConcerns::VersioningService.create(repository_file, user)
 
-    # TODO: this is a problem, the file may not be available at this path on another machine.
-    # It may be local, or it may be in s3
-    CharacterizeJob.perform_later(file_set, repository_file.id)
+    # Uses the stored binary, so only run if we are storing files
+    CharacterizeJob.perform_later(file_set, repository_file.id) if store_files?
+
+    # Ensure that this runs for files that are external, before the master file is cleaned
+    CreateDerivativesJob.perform_later(file_set, repository_file.id, filepath) unless store_files?
   end
+
+  private
+
+    def store_files?
+      Plum.config[:store_original_files]
+    end
 end

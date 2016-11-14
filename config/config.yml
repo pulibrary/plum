@@ -2,6 +2,11 @@ defaults: &defaults
   locations_url: https://bibdata.princeton.edu/locations/digital_locations.json # FIXME: find IU equivalent link; currently replaced with config/digital_locations.yml
   notifier_email_address: pumpkin@iu.edu
   iiif_url: <%= ENV["PLUM_IIIF_URL"] || "http://192.168.99.100:5004" %>
+
+  store_original_files: true
+  master_file_service_url: <%= ENV["MASTER_FILE_SERVICE_URL"] || "http://purl.dlib.indiana.edu/iudl/variations/master" %>
+  access_file_service_url: <%= ENV["ACCESS_FILE_SERVICE_URL"] || "http://purl.dlib.indiana.edu/iudl/variations/access" %>
+
   jp2_recipes:
     default_color: >
       -rate 2.4,1.48331273,.91673033,.56657224,.35016049,.21641118,.13374944,.08266171 
