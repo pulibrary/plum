@@ -4,12 +4,10 @@ class PreingestJob < ActiveJob::Base
   # @param [Class] document_class Class of preingestable document wrapper
   # @param [String] preingest_file Filename of a preingest file to preingest
   # @param [String] user User to ingest as
-  # @param [Array<String>] collections Collection IDs the resources should be members of
-  def perform(document_class, preingest_file, user, collections = [])
+  def perform(document_class, preingest_file, user)
     logger.info "Preingesting #{document_class} #{preingest_file}"
     @document = document_class.new preingest_file
     @user = user
-    @collections = collections.map { |col_id| Collection.find(col_id) }
 
     preingest
   end
@@ -22,6 +20,7 @@ class PreingestJob < ActiveJob::Base
       yaml_hash[:attributes] = @document.attributes
       yaml_hash[:source_metadata] = @document.source_metadata
       yaml_hash[:thumbnail_path] = @document.thumbnail_path
+      yaml_hash[:collections] = @document.collections
 
       if @document.multi_volume?
         yaml_hash[:volumes] = @document.volumes

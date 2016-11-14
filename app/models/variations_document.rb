@@ -24,6 +24,22 @@ class VariationsDocument
     'left-to-right'
   end
 
+  def location
+    @variations.xpath('//Container/PhysicalID/Location').first&.content.to_s
+  end
+
+  def holding_location
+    case location
+    when 'IU Music Library'
+      'https://libraries.indiana.edu/music'
+    when 'Personal Collection'
+      ''
+    # FIXME: abstract to loop through digital_locations?
+    else
+      ''
+    end
+  end
+
   def local_attributes
     { source_metadata_identifier: source_metadata_identifier,
       viewing_direction: viewing_direction
@@ -32,6 +48,11 @@ class VariationsDocument
 
   def multi_volume?
     items.size > 1
+  end
+
+  def collections
+    return ['libmus_personal'] if location == 'Personal Collection'
+    []
   end
 
   private

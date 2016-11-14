@@ -139,7 +139,7 @@
   </mets:fileSec>
   <mets:structMap TYPE="RelatedObjects">
     <mets:div DMDID="x6kkx p0ov5" ID="o64yj" LABEL="Default">
-      <mets:div CONTENTIDS="pudl0001" TYPE="IsPartOf"/>
+      <mets:div CONTENTIDS="libmus_personal" TYPE="IsPartOf"/>
       <mets:div ID="aggregates" TYPE="OrderedList">
         <mets:div ID="a5z8u" LABEL="vol. 1, upper cover" ORDER="1" TYPE="Static">
           <mets:fptr FILEID="gylme"/>

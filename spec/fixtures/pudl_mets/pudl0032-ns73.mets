@@ -681,7 +681,7 @@
   </mets:fileSec>
   <mets:structMap TYPE="RelatedObjects">
     <mets:div DMDID="mlys4 wvyxo" ID="ec9b0" LABEL="Default">
-      <mets:div CONTENTIDS="pudl0032" TYPE="IsPartOf"/>
+      <mets:div CONTENTIDS="libmus_personal" TYPE="IsPartOf"/>
       <mets:div ID="aggregates" TYPE="OrderedList">
         <mets:div ID="jypry" LABEL="image 1" ORDER="1" TYPE="Static">
           <mets:fptr FILEID="gjpt0"/>

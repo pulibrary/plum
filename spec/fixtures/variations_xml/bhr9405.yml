@@ -109,6 +109,7 @@
     </datafield>
   </record>
 :thumbnail_path: "/tmp/ingest/bhr9405-1-1.tif"
+:collections: []
 :structure:
   :nodes:
   - :label: "[Title Page and Copyright Page]"

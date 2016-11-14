@@ -42,6 +42,10 @@ class ContentdmExport
     items.size > 1
   end
 
+  def collections
+    []
+  end
+
   private
 
     def items

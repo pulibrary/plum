@@ -1,16 +1,14 @@
 class IngestYAMLJob < ActiveJob::Base
+  include CollectionHelper
   queue_as :ingest
 
   # @param [String] yaml_file Filename of a YAML file to ingest
   # @param [String] user User to ingest as
-  # @param [Array<String>] collections Collection IDs the resources should be members of
-  def perform(yaml_file, user, collections = [])
+  def perform(yaml_file, user)
     logger.info "Ingesting YAML #{yaml_file}"
     @yaml_file = yaml_file
     @yaml = File.open(yaml_file) { |f| Psych.load(f) }
     @user = user
-    @collections = collections.map { |col_id| Collection.find(col_id) }
-
     ingest
   end
 
@@ -24,7 +22,7 @@ class IngestYAMLJob < ActiveJob::Base
       resource.source_metadata = @yaml[:source_metadata] if @yaml[:source_metadata].present?
 
       resource.apply_depositor_metadata @user
-      resource.member_of_collections = @collections
+      resource.member_of_collections = find_or_create_collections(@yaml[:collections])
 
       resource.save!
       logger.info "Created #{resource.class}: #{resource.id}"

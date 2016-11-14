@@ -38,6 +38,10 @@ class PreingestableMETS < METSDocument
     add_file_attributes super
   end
 
+  def collections
+    Array.wrap(collection_slugs)
+  end
+
   private
 
     def add_file_attributes(file_hash_array)
