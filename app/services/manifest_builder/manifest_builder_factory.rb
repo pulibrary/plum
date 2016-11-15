@@ -17,7 +17,7 @@ class ManifestBuilder
 
     def manifest_presenters
       record.member_presenters.select do |x|
-        x.model_name.name != "FileSet"
+        x.model_name.name != "FileSet" && (!x.current_ability || x.current_ability.can?(:read, x.solr_document))
       end
     end
   end

@@ -27,6 +27,10 @@ class AllCollectionsManifestBuilder < ManifestBuilder
       ManifestBuilder::CollectionRecordPropertyBuilder.new(record, root_path)
     end
 
+    def manifest_builder_class
+      IIIF::Presentation::Collection.new
+    end
+
     def sequence_builder
       nil
     end

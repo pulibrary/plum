@@ -50,6 +50,26 @@ RSpec.describe CollectionShowPresenter do
     expect(json_manifest['viewingDirection']).to eq nil
   end
 
+  context "when the user doesn't have permission to a child resource" do
+    subject { described_class.new(solr_doc, ability) }
+    let(:ability) { Ability.new(user) }
+    let(:user) { FactoryGirl.create(:user) }
+    let(:scanned_resource) do
+      s = FactoryGirl.build(:private_scanned_resource)
+      s.member_of_collections = [collection]
+      allow(s).to receive(:id).and_return("resource")
+      solr.add(s.to_solr)
+      s
+    end
+    it "doesn't show up in the collection's manifests" do
+      manifest = nil
+      expect { manifest = ManifestBuilder.new(subject).to_json }.not_to raise_error
+      json_manifest = JSON.parse(manifest)
+
+      expect(json_manifest["manifests"]).to be_nil
+    end
+  end
+
   describe "#label" do
     it "is an empty array" do
       expect(subject.label).to eq []
