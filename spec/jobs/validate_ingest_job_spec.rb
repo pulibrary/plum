@@ -34,7 +34,9 @@ RSpec.describe ValidateIngestJob do
     describe 'an invalid checksum' do
       it 'generates a error' do
         allow(checksum_stub).to receive(:value).and_return('bad')
-        expect(logger).to receive(:error).with("Checksum Mismatch: #{replaces} (#{file_set_id})")
+        allow(Digest::SHA1).to receive(:hexdigest).and_return('file_sha')
+        allow(File).to receive(:read)
+        expect(logger).to receive(:error).with("Checksum Mismatch: #{replaces}, FileSet: #{file_set_id}, mets: 5b0ed4a62f96a19c5267fa8a9e1caf876c87e8d0, file: file_sha, fedora: bad")
         described_class.perform_now(mets_file)
       end
     end
@@ -43,7 +45,7 @@ RSpec.describe ValidateIngestJob do
   describe 'a missing fileset' do
     it 'generates an error' do
       allow(FileSet).to receive(:where).and_return([])
-      expect(logger).to receive(:error).with("Missing FileSet: #{replaces} ()")
+      expect(logger).to receive(:error).with("Missing FileSet: #{replaces}")
       described_class.perform_now(mets_file)
     end
   end

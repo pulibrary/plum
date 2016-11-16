@@ -159,6 +159,10 @@ RSpec.describe METSDocument do
       it "builds a label for a file from hierarchy (but does not include volume label)" do
         expect(subject.file_label('l898s')).to eq('upper cover. pastedown')
       end
+
+      it "includes volume labels in replaces string" do
+        expect(subject.files_for_volume('phys1').first[:replaces]).to eq 'pudl0001/4609321/s42/phys1/00000001'
+      end
     end
 
     context "an item with logical structure" do
