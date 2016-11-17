@@ -6,6 +6,7 @@
   bf: http://id.loc.gov/ontologies/bibframe/
   dc: http://purl.org/dc/elements/1.1/
   dcterms: http://purl.org/dc/terms/
+  mods: http://www.loc.gov/mods/rdf/v1#
   mrel: http://id.loc.gov/vocabulary/relators/
   pulterms: http://library.princeton.edu/terms/
   rdf: http://www.w3.org/1999/02/22-rdf-syntax-ns#
@@ -48,8 +49,14 @@
     "@id": dcterms:title
   edition:
     "@id": bf:editionStatement
+  holding_location:
+    "@id": bf:heldBy
+  series:
+    "@id": bf:seriesStatement
   call_number:
     "@id": pulterms:call_number
+  physical_description:
+    "@id": mods:physicalExtent
   abridger:
     "@id": mrel:abr
   actor:
