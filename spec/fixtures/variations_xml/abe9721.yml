@@ -4,11 +4,16 @@
   :default:
     :state: final_review
     :viewing_direction: left-to-right
-    :rights_statement: http://rightsstatements.org/vocab/NKC/1.0/
-    :visibility: open
+    :rights_statement: http://rightsstatements.org/vocab/InC/1.0/
+    :visibility: authenticated
+    :viewing_hint: paged
   :local:
     :source_metadata_identifier: ABE9721
-    :viewing_direction: left-to-right
+    :identifier: http://purl.dlib.indiana.edu/iudl/variations/score/ABE9721
+    :holding_location: https://libraries.indiana.edu/music
+    :physical_description: "   v. of music : facsims. ; 36 x 44 cm"
+    :copyright_holder:
+    - "(C) 1990 Fryderyk Chopin Society; Green Peace Pub."
   :remote:
     title:
     - 'The facsimil[e] edition of the autograph of Fryderyk Chopin''s works : from

@@ -8,9 +8,14 @@ RSpec.describe VariationsDocument do
 
   describe "parses attributes" do
     { source_metadata_identifier: 'BHR9405',
+      identifier: 'http://purl.dlib.indiana.edu/iudl/variations/score/BHR9405',
       viewing_direction: 'left-to-right',
       location: 'IU Music Library',
       holding_location: 'https://libraries.indiana.edu/music',
+      physical_description: '1 score (64 p.) ; 32 cm',
+      copyright_holder: ['G. Ricordi & Co.'],
+      visibility: 'open',
+      rights_statement: 'http://rightsstatements.org/vocab/InC/1.0/',
       collections: []
     }.each do |att, val|
       describe "##{att}" do
