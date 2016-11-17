@@ -135,6 +135,7 @@ class IngestMETSJob < ActiveJob::Base
 
         ingest_files(parent: parent, resource: r, files: @mets.files_for_volume(volume_id))
         r.logical_order.order = map_fileids(@mets.structure_for_volume(volume_id))
+        r.thumbnail_id = r.file_sets.first.id unless r.thumbnail_id
         r.save!
       end
     end
