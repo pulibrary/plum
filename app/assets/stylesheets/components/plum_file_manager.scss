@@ -46,10 +46,11 @@
       float: none;
     }
   }
-  .ui-selected {
+  li > .ui-selected {
     background-color: #F39814;
   }
-  .ui-selecting {
+
+  li > .ui-selecting {
     background-color: #FECA40;
   }
   .panel > form {
