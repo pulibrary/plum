@@ -19,4 +19,9 @@ def advance(obj, state)
   puts "#{obj.id}: #{obj.state} -> #{state}"
   obj.state = state
   obj.save!
+  manifest_event_generator.record_updated(obj)
+end
+
+def manifest_event_generator
+  @manifest_event_generator ||= ManifestEventGenerator.new(Plum.messaging_client)
 end
