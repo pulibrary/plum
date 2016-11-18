@@ -3,6 +3,8 @@ class SolrDocument
   include Blacklight::Solr::Document
   # Adds CurationConcerns behaviors to the SolrDocument.
   include CurationConcerns::SolrDocumentBehavior
+  include SolrDates
+  include SolrTechnicalMetadata
 
   # self.unique_key = 'id'
   # Email uses the semantic field mappings below to generate the body of an email.
@@ -20,14 +22,6 @@ class SolrDocument
   # Do content negotiation for AF models.
 
   use_extension(Hydra::ContentNegotiation)
-
-  def date_created
-    self[Solrizer.solr_name('date_created')]
-  end
-
-  def date_created_display
-    DateValue.new(date_created).to_a
-  end
 
   def state
     Array(self[Solrizer.solr_name("state")]).first
@@ -98,14 +92,6 @@ class SolrDocument
 
   def thumbnail_id
     Array(self[Solrizer.solr_name('hasRelatedImage', :symbol)]).first
-  end
-
-  def height
-    self[Solrizer.solr_name('height', Solrizer::Descriptor.new(:integer, :stored))]
-  end
-
-  def width
-    self[Solrizer.solr_name('width', Solrizer::Descriptor.new(:integer, :stored))]
   end
 
   def collection

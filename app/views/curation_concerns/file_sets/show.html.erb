@@ -4,6 +4,7 @@
 <% end %>
 <%= media_display @presenter %>
 <%= render "attributes", curation_concern: @presenter %>
+<%= render "technical_metadata", curation_concern: @presenter %>
 
   <div class="form-actions">
     <%= link_to "Download this File", main_app.download_path(@presenter), class: 'btn btn-default' %>

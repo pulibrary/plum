@@ -3,7 +3,11 @@ class FileSet < ActiveFedora::Base
   include ::CurationConcerns::FileSetBehavior
   Hydra::Derivatives.output_file_service = PersistPairtreeDerivatives
 
+  characterization_terms << [:color_space, :profile_name, :valid]
+  delegate :color_space, :profile_name, :valid, to: :characterization_proxy
+
   property :replaces, predicate: ::RDF::Vocab::DC.replaces, multiple: false
+
   apply_schema IIIFPageSchema, ActiveFedora::SchemaIndexingStrategy.new(
     ActiveFedora::Indexers::GlobalIndexer.new([:stored_searchable, :symbol])
   )
@@ -40,9 +44,13 @@ class FileSet < ActiveFedora::Base
 
   def to_solr(solr_doc = {})
     super.tap do |doc|
+      doc["color_space_ssim"] = color_space
       doc["full_text_tesim"] = ocr_text if ocr_text.present?
       doc["ordered_by_ssim"] = ordered_by.map(&:id).to_a
+      doc["profile_name_ssim"] = profile_name
       doc["replaces_ssim"] = replaces
+      doc["valid_ssim"] = valid
+      doc["well_formed_ssim"] = well_formed
     end
   end
 
