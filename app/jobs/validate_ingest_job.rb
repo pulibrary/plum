@@ -15,14 +15,12 @@ class ValidateIngestJob < ActiveJob::Base
       @mets.files.each do |file|
         f = FileSet.where(replaces_ssim: file[:replaces]).first
         if f
-          warn(file, f.id, "Checksum Mismatch") unless f.original_file.checksum.value == file[:checksum]
+          if f.original_file.checksum.value != file[:checksum]
+            logger.error("Checksum Mismatch: #{file[:replaces]}, FileSet: #{f.id}, mets: #{file[:checksum]}, file: #{Digest::SHA1.hexdigest(File.read(file[:path]))}, fedora: #{f.original_file.checksum.value}")
+          end
         else
-          warn(file, nil, "Missing FileSet")
+          logger.error("Missing FileSet: #{file[:replaces]}")
         end
       end
-    end
-
-    def warn(file, fileset, message)
-      logger.error "#{message}: #{file[:replaces]} (#{fileset})"
     end
 end

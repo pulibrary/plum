@@ -59,7 +59,7 @@ class METSDocument
 
   def files_for_volume(volume_id)
     @mets.xpath("//mets:div[@ID='#{volume_id}']//mets:fptr/@FILEID").map do |file_id|
-      file_info(@mets.xpath("//mets:file[@ID='#{file_id.value}']"))
+      file_info(@mets.xpath("//mets:file[@ID='#{file_id.value}']"), volume_id)
     end
   end
 
@@ -69,14 +69,16 @@ class METSDocument
     end
   end
 
-  def file_info(file)
+  def file_info(file, volume_id = nil)
     path = file.xpath('mets:FLocat/@xlink:href').to_s.gsub(/file:\/\//, '')
+    replaces = volume_id ? "#{volume_id}/" : ""
+    replaces += File.basename(path, File.extname(path))
     {
       id: file.xpath('@ID').to_s,
-      checksum: file.xpath('@CHECKSUM').to_s,
+      checksum: file.xpath('@CHECKSUM').to_s.rjust(40, '0'),
       mime_type: file.xpath('@MIMETYPE').to_s,
       path: path,
-      replaces: "#{pudl_id}/#{File.basename(path, File.extname(path))}"
+      replaces: "#{pudl_id}/#{replaces}"
     }
   end
 
