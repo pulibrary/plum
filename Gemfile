@@ -42,6 +42,7 @@ gem 'hydra-role-management', '~> 0.2.0'
 gem 'rsolr', '~> 1.1.0'
 gem 'devise', '~> 3.0'
 gem 'devise-guests', '~> 0.3'
+gem 'ldap_groups_lookup', '~> 0.4.0', git: 'https://github.com/IUBLibTech/ldap_groups_lookup'
 gem 'iiif-presentation', git: 'https://github.com/iiif/osullivan', branch: 'development'
 
 # PDF generation

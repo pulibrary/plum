@@ -64,10 +64,16 @@ class Ability
     curation_concern_read_permissions
   end
 
-  # Abilities that should be granted to patron
+  # Abilities that should be granted to patrons in an authorized group
+  # Ability to read authenticated visibility items is handled by #user_groups
+  def music_patron_permissions
+    curation_concern_read_permissions
+    can [:flag], curation_concerns
+  end
+
+  # Abilities that should be granted to patrons not in an authorized group
   def campus_patron_permissions
     anonymous_permissions
-    can [:flag], curation_concerns
   end
 
   def anonymous_permissions
@@ -101,6 +107,19 @@ class Ability
     end
   end
 
+  def user_groups
+    return @user_groups if @user_groups
+
+    @user_groups = default_user_groups
+    @user_groups |= current_user.groups if current_user.respond_to? :groups
+    if Plum.config[:authorized_ldap_groups].blank?
+      @user_groups |= ['registered'] unless current_user.new_record?
+    else
+      @user_groups |= ['registered'] if current_user.music_patron?
+    end
+    @user_groups
+  end
+
   private
 
     def universal_reader?
@@ -112,6 +131,6 @@ class Ability
     end
 
     def roles
-      ['anonymous', 'campus_patron', 'curator', 'fulfiller', 'editor', 'image_editor', 'admin']
+      ['anonymous', 'music_patron', 'campus_patron', 'curator', 'fulfiller', 'editor', 'image_editor', 'admin']
     end
 end

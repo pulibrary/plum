@@ -41,12 +41,17 @@ defaults: &defaults
   events:
     server: 'amqp://localhost:5672'
     exchange: 'plum_events'
+  authorized_ldap_groups:
+  - BL-LDLP-VariationsMCOUsers
+
 
 development:
   <<: *defaults
 
 test:
   <<: *defaults
+  iiif_url: "http://192.168.99.100:5004"
+  authorized_ldap_groups: null
 
 production:
   <<: *defaults

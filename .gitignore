@@ -23,6 +23,8 @@ noid-minter-state
 /coverage
 /staged_files
 
+/config/ldap_groups_lookup.yml
+
 # Ignore Ruby Version Management stuff
 # /.rvmrc
 /.ruby-*

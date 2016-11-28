@@ -9,7 +9,11 @@ class User < ActiveRecord::Base
   # Connects this user object to Role-management behaviors.
   include Hydra::RoleManagement::UserRoles
   # include Sufia::UserUsageStats
-  include ::PulUserRoles
+  include ::IuUserRoles
+
+  # Enable ADS group lookup
+  include LDAPGroupsLookup::Behavior
+  alias_attribute :ldap_lookup_key, :username
 
   if Blacklight::Utils.needs_attr_accessible?
 
@@ -29,6 +33,26 @@ class User < ActiveRecord::Base
 
   def to_param
     id
+  end
+
+  def groups
+    g = roles.map(&:name)
+    if Plum.config[:authorized_ldap_groups].blank?
+      g += ['registered'] unless new_record? || guest?
+    else
+      g += ['registered'] if music_patron?
+    end
+    g
+  end
+
+  def authorized_ldap_member?(force_update = nil)
+    if force_update == :force || authorized_membership_updated_at.nil? || authorized_membership_updated_at < Time.now - 1.day
+      groups = Plum.config[:authorized_ldap_groups] || []
+      self.authorized_membership = member_of_ldap_group?(groups)
+      self.authorized_membership_updated_at = Time.now
+      save
+    end
+    authorized_membership
   end
 
   def self.from_omniauth(access_token)
