@@ -1,6 +1,6 @@
 RSpec.configure do |config|
   config.before(:each) do
-    messaging_client = instance_double(MessagingClient, publish: true)
+    messaging_client = instance_double(MessagingClient, publish: true, enabled?: true)
     allow(Plum).to receive(:messaging_client).and_return(messaging_client)
   end
 end

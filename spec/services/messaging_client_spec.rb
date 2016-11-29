@@ -10,4 +10,17 @@ RSpec.describe MessagingClient do
       end
     end
   end
+  describe "#enabled?" do
+    context "when the URL is not blank" do
+      it "returns true" do
+        expect(subject.enabled?).to eq(true)
+      end
+    end
+    context "when the URL is blank" do
+      subject { described_class.new(nil) }
+      it "returns false" do
+        expect(subject.enabled?).to eq(false)
+      end
+    end
+  end
 end

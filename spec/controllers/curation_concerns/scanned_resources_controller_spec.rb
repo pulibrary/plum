@@ -93,7 +93,7 @@ describe CurationConcerns::ScannedResourcesController do
         expect(s.member_of_collections).to eq [collection]
       end
       it "posts the collection slugs to the event endpoint" do
-        messaging_client = instance_double(MessagingClient, publish: true)
+        messaging_client = instance_double(MessagingClient, publish: true, enabled?: true)
         manifest_generator = ManifestEventGenerator.new(messaging_client)
         allow(ManifestEventGenerator).to receive(:new).and_return(manifest_generator)
 

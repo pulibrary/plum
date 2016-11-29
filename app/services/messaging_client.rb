@@ -4,8 +4,12 @@ class MessagingClient
     @amqp_url = amqp_url
   end
 
+  def enabled?
+    !amqp_url.blank?
+  end
+
   def publish(message)
-    exchange.publish(message, persistent: true)
+    exchange.publish(message, persistent: true) if enabled?
   rescue
     Rails.logger.warn "Unable to publish message to #{amqp_url}"
   end

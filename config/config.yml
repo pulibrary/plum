@@ -56,6 +56,9 @@ development:
 
 test:
   <<: *defaults
+  events:
+    server:
+    exchange: 'plum_events'
   iiif_url: "http://192.168.99.100:5004"
   authorized_ldap_groups: null
 

@@ -4,19 +4,24 @@ class ManifestEventGenerator
     @rabbit_exchange = rabbit_exchange
   end
 
+  delegate :enabled?, to: :rabbit_exchange
+
   def record_created(record)
+    return false unless enabled?
     publish_message(
       message_with_collections("CREATED", record)
     )
   end
 
   def record_deleted(record)
+    return false unless enabled?
     publish_message(
       message("DELETED", record)
     )
   end
 
   def record_updated(record)
+    return false unless enabled?
     publish_message(
       message_with_collections("UPDATED", record)
     )
