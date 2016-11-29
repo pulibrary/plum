@@ -1,0 +1,12 @@
+defaults: &defaults
+  adapter: solr
+  url: <%= ENV['GEOBLACKLIGHT_SOLR_URL'] || "http://127.0.0.1:8983/solr/blacklight-core" %>
+    
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults

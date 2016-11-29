@@ -1,6 +1,7 @@
 class Ability
   include Hydra::Ability
   include CurationConcerns::Ability
+  include GeoConcerns::Ability
 
   # Define any customized permissions here.
   def custom_permissions

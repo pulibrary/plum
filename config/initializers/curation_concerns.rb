@@ -3,6 +3,10 @@ CurationConcerns.configure do |config|
   config.register_curation_concern :multi_volume_work
   # Injected via `rails g curation_concerns:work ScannedResource`
   config.register_curation_concern :scanned_resource
+  # Injected via `rails g geo_concerns:install`
+  config.register_curation_concern :vector_work
+  config.register_curation_concern :raster_work
+  config.register_curation_concern :image_work
 
   config.max_days_between_audits = 7
 
