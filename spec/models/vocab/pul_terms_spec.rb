@@ -7,7 +7,9 @@ RSpec.describe PULTerms do
       source_metadata: 'Source Metadata',
       ocr_language: 'OCR Language',
       pdf_type: 'PDF Type',
-      call_number: 'Call Number'
+      call_number: 'Call Number',
+      published: 'Published',
+      visibility: 'Visibility'
     }.each do |term, label|
       describe "#{term}" do
         it "has the right label" do

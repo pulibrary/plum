@@ -18,13 +18,17 @@ class PlumSchema < ActiveTriples::Schema
   property :start_canvas, predicate: ::RDF::Vocab::IIIF.hasStartCanvas, multiple: false
 
   # Generated from Context
+  property :edition, predicate: RDF::URI("http://id.loc.gov/ontologies/bibframe/editionStatement")
+  property :series, predicate: RDF::URI("http://id.loc.gov/ontologies/bibframe/seriesStatement")
   property :coverage, predicate: RDF::Vocab::DC11.coverage
+  property :date, predicate: RDF::Vocab::DC11.date
   property :format, predicate: RDF::Vocab::DC11.format
   property :source, predicate: RDF::Vocab::DC11.source
   property :extent, predicate: RDF::Vocab::DC.extent
-  property :edition, predicate: RDF::URI("http://id.loc.gov/ontologies/bibframe/editionStatement")
-  property :series, predicate: RDF::URI("http://id.loc.gov/ontologies/bibframe/seriesStatement")
-  property :call_number, predicate: PULTerms.call_number
+  property :issued, predicate: RDF::Vocab::DC.issued
+  property :modified, predicate: RDF::Vocab::DC.modified
+  property :lccn_call_number, predicate: RDF::Vocab::Identifiers.lccn
+  property :local_call_number, predicate: RDF::Vocab::Identifiers.local
   property :physical_description, predicate: RDF::Vocab::MODS.physicalExtent, multiple: false
   property :abridger, predicate: RDF::Vocab::MARCRelators.abr
   property :actor, predicate: RDF::Vocab::MARCRelators.act
@@ -290,6 +294,9 @@ class PlumSchema < ActiveTriples::Schema
   property :writer_of_supplementary_textual_content, predicate: RDF::Vocab::MARCRelators.wst
   property :writer_of_introduction, predicate: RDF::Vocab::MARCRelators.win
   property :writer_of_preface, predicate: RDF::Vocab::MARCRelators.wpr
+  property :call_number, predicate: PULTerms.call_number
+  property :published, predicate: PULTerms.published, multiple: false
+  property :responsibility_note, predicate: ::RDF::Vocab::SKOS.note
 
   # All of the fields to display when looping through Plum's schema.
   # Ignore things like admin data (workflow note), title, description, etc, as

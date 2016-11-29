@@ -22,8 +22,8 @@ class ManifestBuilder
 
       def see_also_hash
         {
-          "@id" => "https://bibdata.princeton.edu/bibliographic/#{source_metadata_identifier}/jsonld", # FIXME: find IU equivalent link
-          "format" => "application/ld+json"
+          "@id" => Plum.config['manifest_builder']['see_also_hash']['id'] % source_metadata_identifier,
+          "format" => Plum.config['manifest_builder']['see_also_hash']['format']
         }
       end
   end

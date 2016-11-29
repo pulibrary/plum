@@ -16,7 +16,7 @@ RSpec.describe PreingestJob do
     let(:mets_file_rtl) { Rails.root.join("spec", "fixtures", "pudl_mets", "pudl0032-ns73.mets").to_s }
     let(:mets_file_multi) { Rails.root.join("spec", "fixtures", "pudl_mets", "pudl0001-4609321-s42.mets").to_s }
     let(:yaml_file) { preingest_file.sub(/\.mets$/, '.yml') }
-    let(:document_class) { PreingestableMETS }
+    let(:document_class) { IuMetadata::Preingest::Mets }
 
     context "with a single-volume mets file", vcr: { cassette_name: 'bibdata-bhr9405' } do
       let(:preingest_file) { mets_file_single }
@@ -35,7 +35,7 @@ RSpec.describe PreingestJob do
     let(:variations_file_single) { Rails.root.join("spec", "fixtures", "variations_xml", "bhr9405.xml").to_s }
     let(:variations_file_multi) { Rails.root.join("spec", "fixtures", "variations_xml", "abe9721.xml").to_s }
     let(:yaml_file) { preingest_file.sub(/\.xml$/, '.yml') }
-    let(:document_class) { VariationsDocument }
+    let(:document_class) { IuMetadata::Preingest::Variations }
 
     context "with a single-volume Variations file", vcr: { cassette_name: 'bibdata-bhr9405' } do
       let(:preingest_file) { variations_file_single }
@@ -50,7 +50,7 @@ RSpec.describe PreingestJob do
   describe "preingest a contentDM file" do
     let(:cdm_file_multiple) { Rails.root.join("spec", "fixtures", "contentdm_xml", "Irish_People.xml").to_s }
     let(:yaml_file) { preingest_file.sub(/\.xml$/, '.yml') }
-    let(:document_class) { ContentdmExport }
+    let(:document_class) { IuMetadata::Preingest::Contentdm }
 
     context "with a multi-volume CDM XML export file" do
       let(:preingest_file) { cdm_file_multiple }

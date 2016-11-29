@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe IuMetadata::MarcRecord do
   let(:fixture_path) { File.expand_path('../../fixtures', __FILE__) }
@@ -14,6 +14,20 @@ describe IuMetadata::MarcRecord do
     pth = File.join(fixture_path, '345682.mrx')
     described_class.new(pth, File.open(pth).read)
   }
+  record1_atts =
+     {  title: ['The weeping angels'],
+        sort_title: 'weeping angels',
+        responsibility_note: [],
+        series: [],
+        creator: ['Moffat, Steven.'],
+        date_created: ['1899'],
+        publisher: ['A. Martínez'],
+        publication_place: ['Barceloa'],
+        issued: ['1899.'],
+        published: 'Barceloa, A. Martínez, 1899.',
+        lccn_call_number: [],
+        local_call_number: []
+     }
 
   describe 'id' do
     it 'stores its id' do
@@ -50,14 +64,17 @@ describe IuMetadata::MarcRecord do
 
   describe '#attributes' do
     it 'works' do
-      expected = {
-        title: ['The weeping angels'],
-        sort_title: 'weeping angels',
-        creator: ['Moffat, Steven.'],
-        date_created: '1899',
-        publisher: ['A. Martínez,']
-      }
-      expect(record1.attributes).to eq expected
+      expect(record1.attributes).to eq record1_atts
+    end
+  end
+
+  describe "individual attributes" do
+    record1_atts.each do |att, val|
+      describe "##{att}" do
+        it "returns the expected value" do
+          expect(record1.send(att)).to eq val
+        end
+      end
     end
   end
 

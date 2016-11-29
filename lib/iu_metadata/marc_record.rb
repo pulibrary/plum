@@ -8,15 +8,13 @@ module IuMetadata
 
     attr_reader :id, :source
 
+    ATTRIBUTES = [:identifier, :title, :sort_title, :responsibility_note, :series, :creator, :date_created, :publisher, :publication_place, :issued, :published, :lccn_call_number, :local_call_number]
+
     def attributes
-      {
-        title: title,
-        sort_title: sort_title,
-        creator: creator,
-        date_created: date,
-        publisher: publisher
-      }
+      ATTRIBUTES.map { |att| [att, send(att)] }.to_h.compact
     end
+
+    # used attributes
 
     def abstract
       formatted_fields_as_array('520')
@@ -66,7 +64,7 @@ module IuMetadata
 
     def creator
       creator = []
-      if any_1xx? && !any_7xx_without_t?
+      if any_1xx?
         field = data.fields(['100', '110', '111'])[0]
         creator << format_datafield(field)
         if linked_field?(field)
@@ -74,6 +72,10 @@ module IuMetadata
         end
       end
       creator
+    end
+
+    def date_created
+      Array.wrap(date)
     end
 
     def date
@@ -103,6 +105,14 @@ module IuMetadata
       parts
     end
 
+    def identifier
+      formatted_subfields_as_array(['856'], codes: ['u']).first
+    end
+
+    def issued
+      formatted_subfields_as_array(['260'], codes: ['c']).map { |s| s.sub(/\s*[:;,]\s*$/, '') }
+    end
+
     def language_codes
       codes = []
       from_fixed = data['008'].value[35, 3]
@@ -121,12 +131,32 @@ module IuMetadata
       codes.uniq
     end
 
+    def lccn_call_number
+      formatted_fields_as_array(['090'], exclude_alpha: ['m'])
+    end
+
+    def local_call_number
+      formatted_fields_as_array(['099'])
+    end
+
     def provenance
       formatted_fields_as_array(['541', '561'])
     end
 
+    def publication_place
+      formatted_subfields_as_array(['260', '264'], codes: ['a']).map { |s| s.sub(/\s*[:;,.]\s*$/, '') }
+    end
+
+    def published
+      formatted_fields_as_array(['260', '264']).first
+    end
+
     def publisher
-      formatted_fields_as_array(['260', '264'], codes: ['b'])
+      formatted_subfields_as_array(['260', '264'], codes: ['b']).map { |s| s.sub(/\s*[:;,.]\s*$/, '') }
+    end
+
+    def responsibility_note
+      formatted_fields_as_array(['245'], codes: ['c'])
     end
 
     def rights
@@ -201,12 +231,9 @@ module IuMetadata
 
     def formatted_fields_as_array(fields, opts = {})
       vals = []
-
       data.fields(fields).each do |field|
         val = format_datafield(field, opts)
-
         vals << val if val != ""
-
         next unless linked_field?(field)
         linked_field = get_linked_field(field)
         val = format_datafield(linked_field, opts)
@@ -215,18 +242,33 @@ module IuMetadata
       vals
     end
 
+    def formatted_subfields_as_array(fields, opts = {})
+      vals = []
+      data.fields(fields).each do |field|
+        val = format_subfields(field, opts)
+        vals += val if val.present?
+        next unless linked_field?(field)
+        linked_field = get_linked_field(field)
+        val = format_subfields(linked_field, opts)
+        vals += val if val.present?
+      end
+      vals
+    end
+
     def format_datafield(datafield, hsh = {})
-      codes = hsh.fetch(:codes, ALPHA)
       separator = hsh.fetch(:separator, ' ')
+      format_subfields(datafield, hsh).join(separator)
+    end
+
+    def format_subfields(datafield, hsh = {})
+      codes = hsh.fetch(:codes, ALPHA).dup
       exclude_alpha = hsh.fetch(:exclude_alpha, [])
-
       exclude_alpha.each { |ex| codes.delete ex }
-
       subfield_values = []
       datafield.select { |sf| codes.include? sf.code }.each do |sf|
         subfield_values << sf.value
       end
-      subfield_values.join(separator)
+      subfield_values
     end
 
     private

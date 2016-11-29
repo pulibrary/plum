@@ -19,12 +19,6 @@ class RemoteRecord < SimpleDelegator
     end
   end
 
-  def attributes
-    result = super
-    result[:date_created] = Array(result[:date_created])
-    result
-  end
-
   # Null class.
   class Null
     include Singleton
@@ -39,6 +33,10 @@ class RemoteRecord < SimpleDelegator
     end
 
     def attributes
+      {}
+    end
+
+    def raw_attributes
       {}
     end
   end

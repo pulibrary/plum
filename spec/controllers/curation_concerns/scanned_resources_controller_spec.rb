@@ -205,7 +205,7 @@ describe CurationConcerns::ScannedResourcesController do
         allow(Ezid::Identifier).to receive(:modify)
         post :update, id: scanned_resource, scanned_resource: scanned_resource_attributes, refresh_remote_metadata: true
         expect(reloaded.title).to eq ["The last resort : a novel"]
-        expect(Ezid::Identifier).to have_received(:modify)
+        expect(Ezid::Identifier).to have_received(:modify) if Plum.config['ezid']['update']
       end
     end
     context "when ocr_language is set" do
@@ -520,9 +520,9 @@ describe CurationConcerns::ScannedResourcesController do
     let(:scanned_resource_attributes) { { state: 'complete' } }
     let(:reloaded) { ScannedResource.find scanned_resource.id }
     let(:ezid_metadata) { {
-      dc_publisher: 'Princeton University Library',
+      dc_publisher: I18n.t('ezid.dc_publisher'),
       dc_title: 'Test title',
-      dc_type: 'Text',
+      dc_type: I18n.t('ezid.dc_type'),
       target: "http://plum.com/concern/scanned_resources/#{scanned_resource.id}"
     } }
 
@@ -536,7 +536,7 @@ describe CurationConcerns::ScannedResourcesController do
       it "succeeds", vcr: { cassette_name: "ezid" } do
         post :update, id: scanned_resource.id, scanned_resource: scanned_resource_attributes
         expect(reloaded.state).to eq 'complete'
-        expect(reloaded.identifier).to eq 'ark:/99999/fk4445wg45'
+        expect(reloaded.identifier).to eq 'ark:/99999/fk4445wg45' if Plum.config['ezid']['mint']
         expect(scanned_resource.send(:ezid_metadata)).to eq(ezid_metadata)
       end
     end
@@ -552,7 +552,7 @@ describe CurationConcerns::ScannedResourcesController do
       it "updates EZID" do
         post :update, id: scanned_resource.id, scanned_resource: scanned_resource_attributes
         expect(reloaded.state).to eq 'complete'
-        expect(Ezid::Identifier).to have_received(:modify)
+        expect(Ezid::Identifier).to have_received(:modify) if Plum.config['ezid']['update']
       end
     end
     context "as an image editor" do

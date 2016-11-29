@@ -103,8 +103,8 @@ describe ScannedResource do
         expect(subject.title).to eq(['The last resort : a novel'])
         expect(subject.resource.get_values(:title, literal: true)).to eq([RDF::Literal.new('The last resort : a novel')])
         expect(subject.creator).to eq(['Johnson, Pamela Hansford, 1912-1981'])
-        expect(subject.date_created).to eq([])
-        expect(subject.publisher).to eq(["Macmillan & co., ltd., ; St. Martin's Press,"])
+        expect(subject.date_created).to eq(['1956'])
+        expect(subject.publisher.sort).to eq(["St. Martin's Press", "Macmillan & co., ltd.,"].sort)
       end
 
       it 'Saves a record with extacted Voyager metadata' do
@@ -175,7 +175,7 @@ describe ScannedResource do
       allow(subject).to receive("state_changed?").and_return true
       subject.state = 'complete'
       expect { subject.check_state }.to change { ActionMailer::Base.deliveries.count }.by(1)
-      expect(subject.identifier).to eq 'ark:/99999/fk4445wg45'
+      expect(subject.identifier).to eq 'ark:/99999/fk4445wg45' if Plum.config['ezid']['mint']
     end
     it "does not complete record when state doesn't change" do
       allow(subject).to receive("state_changed?").and_return false

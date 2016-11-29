@@ -62,21 +62,22 @@ module CommonMetadata
     def complete_record
       if identifier
         update_ezid
-      else
+      elsif Plum.config['ezid']['mint']
         self.identifier = Ezid::Identifier.mint(ezid_metadata).id
       end
     end
 
     def ezid_metadata
       {
-        dc_publisher: 'Princeton University Library',
+        dc_publisher: I18n.t('ezid.dc_publisher'),
         dc_title: title.join('; '),
-        dc_type: 'Text',
+        dc_type: I18n.t('ezid.dc_type'),
         target: ManifestBuilder::ManifestHelper.new.polymorphic_url(self)
       }
     end
 
     def update_ezid
+      return unless Plum.config['ezid']['update']
       Ezid::Identifier.modify(identifier, ezid_metadata)
     end
   end

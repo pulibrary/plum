@@ -266,8 +266,8 @@ RSpec.describe PolymorphicManifestBuilder, vcr: { cassette_name: "iiif_manifest"
     end
     context "when it has a bibdata ID" do
       it "links to seeAlso" do
-        expect(json_result["seeAlso"]["@id"]).to eq "https://bibdata.princeton.edu/bibliographic/1234567/jsonld"
-        expect(json_result["seeAlso"]["format"]).to eq "application/ld+json"
+        expect(json_result["seeAlso"]["@id"]).to eq Plum.config['manifest_builder']['see_also_hash']['id'] % '1234567'
+        expect(json_result["seeAlso"]["format"]).to eq Plum.config['manifest_builder']['see_also_hash']['format']
       end
     end
     context "when it has no bibdata id" do

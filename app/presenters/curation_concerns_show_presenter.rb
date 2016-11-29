@@ -29,12 +29,12 @@ class CurationConcernsShowPresenter < CurationConcerns::WorkShowPresenter
     Array.wrap(solr_document.language).map { |code| LanguageService.label(code) }
   end
 
-  def date_created
-    DateValue.new(solr_document.date_created).to_a
-  end
-
   def page_title
     Array.wrap(title).first
+  end
+
+  def full_title
+    [title, responsibility_note].map { |t| Array.wrap(t).first }.select { |t| !t.blank? }.join(' / ')
   end
 
   def start_canvas

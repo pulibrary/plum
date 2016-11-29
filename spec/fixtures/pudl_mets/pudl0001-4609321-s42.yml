@@ -2,22 +2,36 @@
 :resource: MultiVolumeWork
 :attributes:
   :default:
-    :state: final_review
-    :viewing_direction: left-to-right
-    :rights_statement: http://rightsstatements.org/vocab/NKC/1.0/
-    :visibility: open
+    state: final_review
+    viewing_direction: left-to-right
+    rights_statement: http://rightsstatements.org/vocab/NKC/1.0/
+    visibility: open
   :local:
-    :identifier: ark:/88435/7d278t10z
-    :replaces: pudl0001/4609321/s42
-    :source_metadata_identifier: bhr9405
-    :viewing_direction: left-to-right
+    identifier: ark:/88435/7d278t10z
+    replaces: pudl0001/4609321/s42
+    source_metadata_identifier: bhr9405
+    viewing_direction: left-to-right
   :remote:
+    identifier: http://purl.dlib.indiana.edu/iudl/variations/score/BHR9405
     title:
     - Fontane di Roma ; poema sinfonico per orchestra
+    sort_title: Fontane di Roma ; poema sinfonico per orchestra
+    responsibility_note:
+    - di Ottorino Respighi.
     creator:
     - Respighi, Ottorino, 1879-1936.
+    date_created:
+    - '1947'
     publisher:
-    - G. Ricordi,
+    - G. Ricordi
+    publication_place:
+    - Milano
+    - New York
+    issued:
+    - 1947, c1918.
+    published: 'Milano ; New York : G. Ricordi, 1947, c1918.'
+    lccn_call_number:
+    - M1002.R434 F6, R5, 1947
 :source_metadata: |-
   <record xmlns="http://www.loc.gov/MARC21/slim">
     <!-- Length implementation at offset 22 should hold a digit. Assuming 0 -->

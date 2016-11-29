@@ -2,14 +2,11 @@ namespace :pmp do
   desc "Preingest one or more files of chosen type, in specified folder"
   task :preingest, [:document_type] => :environment do |task, args|
     abort "usage: rake preingest[document_type] /path/to/preingest/files" unless args.document_type
-    DOCUMENT_TYPES = {
-      mets: PreingestableMETS,
-      variations: VariationsDocument,
-      contentdm: ContentdmExport
-    }
-    document_class = DOCUMENT_TYPES[args.document_type.to_sym]
-    abort "unknown document_type: #{args.document_type}\nvalid document types: #{DOCUMENT_TYPES.keys.join(', ')}" unless document_class
-
+    begin
+      document_class = "IuMetadata::Preingest::#{args.document_type.titleize}".constantize
+    rescue
+      abort "unknown preingest pipeline: #{args.document_type}"
+    end
     user = User.find_by_user_key( ENV['USER'] ) if ENV['USER']
     user = User.all.select{ |u| u.admin? }.first unless user
 

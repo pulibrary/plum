@@ -1,5 +1,5 @@
 defaults: &defaults
-  locations_url: https://bibdata.princeton.edu/locations/digital_locations.json # FIXME: find IU equivalent link; currently replaced with config/digital_locations.yml
+  locations_url: '' # currently replaced with config/digital_locations.yml
   notifier_email_address: pumpkin@iu.edu
   iiif_url: <%= ENV["PLUM_IIIF_URL"] || "http://192.168.99.100:5004" %>
 
@@ -43,7 +43,13 @@ defaults: &defaults
     exchange: 'plum_events'
   authorized_ldap_groups:
   - BL-LDLP-VariationsMCOUsers
-
+  ezid:
+    mint: false
+    update: false
+  manifest_builder:
+    see_also_hash:
+      id: 'http://dlib.indiana.edu:9000/iucatextract?maximumRecords=1&operation=searchRetrieve&query=cql.serverChoice=%s&recordSchema=marcxml&version=1.1'
+      format: 'application/xml'
 
 development:
   <<: *defaults

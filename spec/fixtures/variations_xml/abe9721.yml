@@ -2,24 +2,39 @@
 :resource: MultiVolumeWork
 :attributes:
   :default:
-    :state: final_review
-    :viewing_direction: left-to-right
-    :rights_statement: http://rightsstatements.org/vocab/InC/1.0/
-    :visibility: authenticated
-    :viewing_hint: paged
+    state: final_review
+    viewing_direction: left-to-right
+    rights_statement: http://rightsstatements.org/vocab/InC/1.0/
+    visibility: authenticated
   :local:
-    :source_metadata_identifier: ABE9721
-    :identifier: http://purl.dlib.indiana.edu/iudl/variations/score/ABE9721
-    :holding_location: https://libraries.indiana.edu/music
-    :physical_description: "   v. of music : facsims. ; 36 x 44 cm"
-    :copyright_holder:
+    source_metadata_identifier: ABE9721
+    holding_location: https://libraries.indiana.edu/music
+    physical_description: "   v. of music : facsims. ; 36 x 44 cm"
+    copyright_holder:
     - "(C) 1990 Fryderyk Chopin Society; Green Peace Pub."
   :remote:
+    identifier: http://purl.dlib.indiana.edu/iudl/variations/score/ABE9721
     title:
     - 'The facsimil[e] edition of the autograph of Fryderyk Chopin''s works : from
       the Collection Fryderyk Chopin Society in Warsaw.'
+    sort_title: 'facsimil[e] edition of the autograph of Fryderyk Chopin''s works
+      : from the Collection Fryderyk Chopin Society in Warsaw.'
+    creator:
+    - Chopin, Frédéric, 1810-1849.
+    date_created:
+    - '1990'
     publisher:
-    - Fryderyk Chopin Society ; Green Peace Publishers,
+    - Fryderyk Chopin Society
+    - Green Peace Publishers
+    publication_place:
+    - Warsaw
+    - Tokyo
+    issued:
+    - c1990-
+    published: 'Warsaw : Fryderyk Chopin Society ; Tokyo : Green Peace Publishers,
+      c1990-'
+    lccn_call_number:
+    - ML96.4 .C5
 :source_metadata: |-
   <record xmlns="http://www.loc.gov/MARC21/slim">
     <!-- Length implementation at offset 22 should hold a digit. Assuming 0 -->

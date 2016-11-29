@@ -13,7 +13,7 @@ RSpec.describe ScannedResourceShowPresenter do
 
   describe "#date_created" do
     it "delegates to solr document" do
-      expect(subject.date_created).to eq ["09/02/2015"]
+      expect(subject.date_created).to eq date_created
     end
   end
   describe "#state" do
