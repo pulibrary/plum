@@ -1,0 +1,24 @@
+# Background color
+# Use '#ffffff' for a solid white background.
+# Add two zeros to a six digit hex color code
+# for a png (does not work with jpeg) image
+# with a transparent background.
+bg_color: '#ffffff00' 
+
+# The fill color for each shape
+fill: '#e4e3ea' 
+
+# The stroke color for each line
+stroke: '#483d8b'
+
+# Width of line in pixels
+weight: '0.3'
+
+# How lines are ended, one of: "butt", "round", "square"
+line_cap: 'square'
+
+# How lines are joined together, one of: "miter", "round", "bevel"
+line_join: 'miter'
+
+# For point rendering only, the radius in pixels of the circle
+radius: '2'
