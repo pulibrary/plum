@@ -11,7 +11,8 @@ dependencies:
     - kakadu
   pre:
     - npm install -g eslint
-    - sudo apt-get install libmagickwand-dev imagemagick redis-server tesseract-ocr tesseract-ocr-ita tesseract-ocr-eng sqlite3 libsqlite3-dev
+    - sudo apt-get install libmagickwand-dev imagemagick redis-server tesseract-ocr tesseract-ocr-ita tesseract-ocr-eng sqlite3 libsqlite3-dev libgdal-dev gdal-bin libcairo2-dev libpango1.0-dev
+    - sudo sh bin/ci_simple_tiles_install.sh
   post:
     - sudo sh bin/ci_kakadu_install.sh
     - bundle exec rake rubocop
