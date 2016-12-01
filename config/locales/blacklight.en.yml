@@ -5,3 +5,8 @@ en:
       fields:
         facet:
           collection_ssim: Collection
+        show:
+          digest: SHA-1
+          original_checksum: MD5
+          profile_name: Color profile
+          well_formed: Well-formed

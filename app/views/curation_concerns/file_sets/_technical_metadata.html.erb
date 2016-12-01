@@ -1,0 +1,20 @@
+<table class="table table-striped <%= dom_class(@presenter) %> attributes">
+  <caption class="table-heading"><h2>Technical Metadata</h2></caption>
+  <thead>
+    <tr><th>Attribute Name</th><th>Values</th></tr>
+  </thead>
+  <tbody>
+    <%= @presenter.attribute_to_html(:well_formed) %>
+    <%= @presenter.attribute_to_html(:valid) %>
+    <%= @presenter.attribute_to_html(:date_uploaded) %>
+    <%= @presenter.attribute_to_html(:date_modified) %>
+    <%= @presenter.attribute_to_html(:file_size) %>
+    <%= @presenter.attribute_to_html(:digest) %>
+    <%= @presenter.attribute_to_html(:original_checksum) %>
+    <%= @presenter.attribute_to_html(:file_format) %>
+    <%= @presenter.attribute_to_html(:profile_name) %>
+    <%= @presenter.attribute_to_html(:color_space) %>
+    <%= @presenter.attribute_to_html(:height) %>
+    <%= @presenter.attribute_to_html(:width) %>
+  </tbody>
+</table>
