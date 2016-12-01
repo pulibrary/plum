@@ -20,6 +20,7 @@ class IngestFileJob < ActiveJob::Base
     # Persist changes to the file_set
     file_set.save!
     file_set.in_works.each do |work|
+      next unless work.respond_to? :pending_uploads
       work.pending_uploads.where(file_name: local_file.original_name).destroy_all
     end
 
