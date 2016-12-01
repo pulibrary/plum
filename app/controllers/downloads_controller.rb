@@ -23,4 +23,8 @@ class DownloadsController < ApplicationController
       file_path = PairtreeDerivativePath.derivative_path_for_reference(asset, file_reference)
       File.exist?(file_path) ? file_path : nil
     end
+
+    def default_file
+      File.exist?(asset.local_file) ? asset.local_file : super
+    end
 end

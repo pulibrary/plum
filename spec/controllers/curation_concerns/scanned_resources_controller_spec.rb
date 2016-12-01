@@ -222,7 +222,7 @@ describe CurationConcerns::ScannedResourcesController do
       it "updates OCR on file sets" do
         ocr_runner = instance_double(OCRRunner)
         allow(OCRRunner).to receive(:new).and_return(ocr_runner)
-        allow(ocr_runner).to receive(:from_datastream)
+        allow(ocr_runner).to receive(:from_file)
 
         post :update, id: scanned_resource, scanned_resource: scanned_resource_attributes
 
@@ -427,7 +427,7 @@ describe CurationConcerns::ScannedResourcesController do
       post :browse_everything_files, id: resource.id, selected_files: params["selected_files"]
       reloaded = resource.reload
       expect(reloaded.file_sets.length).to eq 1
-      expect(reloaded.file_sets.first.files.first.mime_type).to eq "image/tiff"
+      expect(reloaded.file_sets.first.files.first.original_name).to eq "color.tif"
       path = Rails.application.class.routes.url_helpers.file_manager_curation_concerns_scanned_resource_path(resource)
       expect(response).to redirect_to path
       expect(reloaded.pending_uploads.length).to eq 0

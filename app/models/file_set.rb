@@ -13,6 +13,8 @@ class FileSet < ActiveFedora::Base
   )
   after_save :touch_parent_works
 
+  delegate :mime_type_storage, to: :characterization_proxy
+
   validates_with ViewingHintValidator
 
   def self.image_mime_types
@@ -24,7 +26,7 @@ class FileSet < ActiveFedora::Base
   end
 
   def create_derivatives(filename)
-    case mime_type
+    case mime_type_storage.first
     when 'image/tiff'
       Hydra::Derivatives::Jpeg2kImageDerivatives.create(
         filename,
@@ -37,7 +39,7 @@ class FileSet < ActiveFedora::Base
           url: derivative_url('intermediate_file')
         ]
       )
-      RunOCRJob.perform_later(id)
+      RunOCRJob.perform_later(id, filename)
     end
     super
   end
@@ -61,6 +63,11 @@ class FileSet < ActiveFedora::Base
         file = File.open(ocr_file.gsub("file:", ""))
         HOCRDocument.new(file)
       end
+  end
+
+  def local_file
+    pair = id.scan(/..?/).first(4) # TODO: add .push(id) when CC is updated
+    File.join(CurationConcerns.config.working_path, *pair, (label || id))
   end
 
   private
