@@ -49,5 +49,13 @@ describe PairtreeDerivativePath do
         end
       end
     end
+    context 'when given a display raster' do
+      let(:destination_name) { 'display_raster' }
+      it { is_expected.to eq 'tmp/08/61/2n/57/q-display_raster.tif' }
+    end
+    context 'when given a display vector' do
+      let(:destination_name) { 'display_vector' }
+      it { is_expected.to eq 'tmp/08/61/2n/57/q-display_vector.zip' }
+    end
   end
 end
