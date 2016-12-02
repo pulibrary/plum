@@ -27,6 +27,7 @@ RSpec.describe "curation_concerns/base/structure" do
 
   def build_file_set(id:, to_s:)
     i = instance_double(FileSetPresenter, id: id, thumbnail_id: id, to_s: to_s, collection?: false)
+    allow(i).to receive(:solr_document).and_return(SolrDocument.new(FileSet.new(id: "test").to_solr))
     allow(IIIFPath).to receive(:new).with(id).and_return(double(thumbnail: nil))
     i
   end
