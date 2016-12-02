@@ -9,19 +9,19 @@ class PairtreeDerivativePath < CurationConcerns::DerivativePath
   end
 
   def extension
-    case destination_name
-    when 'thumbnail'
-      ".#{MIME::Types.type_for('jpg').first.extensions.first}"
-    when "intermediate_file"
-      ".jp2"
-    when "ocr"
-      ".hocr"
-    when "gray-pdf"
-      ".pdf"
-    when "color-pdf"
-      ".pdf"
-    else
-      ".#{destination_name}"
-    end
+    value = extensions[destination_name]
+    value ? value : ".#{destination_name}"
+  end
+
+  def extensions
+    {
+      "thumbnail" => ".#{MIME::Types.type_for('jpg').first.extensions.first}",
+      "intermediate_file" => ".jp2",
+      "ocr" => ".hocr",
+      "gray-pdf" => ".pdf",
+      "color-pdf" => ".pdf",
+      "display_raster" => ".tif",
+      "display_vector" => ".zip"
+    }
   end
 end
