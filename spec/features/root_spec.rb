@@ -11,8 +11,8 @@ RSpec.feature 'Home Page', type: :feature do
     scenario 'Logged in users see welcome text and links to create content' do
       visit root_path
       expect(page).to have_content('Digital PUL')
-      expect(page).to have_selector('li.work-type/h3.title', text: 'Scanned Resource')
-      expect(page).to have_selector('li.work-type/h3.title', text: 'Collection')
+      expect(page).to have_selector('li.work-type/h4.title', text: 'Scanned Resource')
+      expect(page).to have_selector('li.work-type/h4.title', text: 'Collection')
     end
   end
 
@@ -20,8 +20,8 @@ RSpec.feature 'Home Page', type: :feature do
     scenario 'Anonymous users see only welcome text' do
       visit root_path
       expect(page).to have_content('Digital PUL')
-      expect(page).not_to have_selector('li.work-type/h3.title', text: 'Scanned Resource')
-      expect(page).not_to have_selector('li.work-type/h3.title', text: 'Collection')
+      expect(page).not_to have_selector('li.work-type/h4.title', text: 'Scanned Resource')
+      expect(page).not_to have_selector('li.work-type/h4.title', text: 'Collection')
     end
   end
 end

@@ -14,18 +14,7 @@
       <div class="panel-body">
         <ul class="classify-work">
           <% [ScannedResource, MultiVolumeWork].each do |klass| %>
-            <% if can? :create, klass %>
-              <li class="work-type work-type-<%= klass %>">
-                <h4 class="title"><%= klass.human_readable_type %></h4>
-                <p class="short-description" id="<%= dom_class(klass, 'short_description') %>">
-                  <%= klass.human_readable_short_description %>
-                </p>
-                <%= link_to 'Add New',
-                  main_app.new_polymorphic_path([klass]),
-                  class: "add-button btn btn-primary #{dom_class(klass, 'add_new')}"
-                %>
-              </li>
-            <% end %>
+            <%= render 'welcome/work_item', klass: klass %>
           <% end %>
         </ul>
       </div>
@@ -39,18 +28,7 @@
       <div class="panel-body">
         <ul class="classify-work">
           <% [ImageWork, RasterWork, VectorWork].each do |klass| %>
-            <% if can? :create, klass %>
-              <li class="work-type work-type-geo work-type-<%= klass %>">
-                <h4 class="title"><%= klass.human_readable_type %></h4>
-                <p class="short-description" id="<%= dom_class(klass, 'short_description') %>">
-                  <%= klass.human_readable_short_description %>
-                </p>
-                <%= link_to 'Add New',
-                  main_app.new_polymorphic_path([klass]),
-                  class: "add-button btn btn-primary #{dom_class(klass, 'add_new')}"
-                %>
-              </li>
-            <% end %>
+            <%= render 'welcome/work_item', klass: klass %>
           <% end %>
         </ul>
       </div>
@@ -63,18 +41,9 @@
       <div class="panel-heading">Collections</div>
       <div class="panel-body">
         <ul class="classify-work">
-         <% if can? :create, Collection %>
-            <li class="work-type work-type-Collection">
-              <h4 class="title">Collection</h4>
-              <p class="short-description" id="collection_short_description">
-                <%= Collection.human_readable_short_description %>
-              </p>
-              <%= link_to 'Add New', main_app.new_collection_path, class: "add-button btn btn-primary collection_add_new" %>
-            </li>
-          <% end %>
+          <%= render 'welcome/work_item', klass: Collection %>
         </ul>
       </div>
     </div>
   </div>
 </div>
-
