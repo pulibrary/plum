@@ -17,7 +17,6 @@ RSpec.describe ValidateIngestJob do
 
   describe 'validates the checksum of a fileset' do
     before do
-      allow(FileSet).to receive(:where).and_return([file_set])
       allow(file_set).to receive(:id).and_return(file_set_id)
       allow(file_set).to receive(:original_file).and_return(original_file)
       allow(original_file).to receive(:checksum).and_return(checksum_stub)
@@ -25,28 +24,31 @@ RSpec.describe ValidateIngestJob do
 
     describe 'a valid checksum' do
       it 'does not generate any errors' do
-        allow(checksum_stub).to receive(:value).and_return(checksum)
+        allow(FileSet).to receive(:where).and_return([file_set])
         expect(logger).not_to receive(:error)
+        expect(logger).not_to receive(:warn)
+        described_class.perform_now(mets_file)
+      end
+    end
+
+    describe 'a checksum that matches the file on disk, but not the METS checksum' do
+      it 'generates a warning' do
+        allow(FileSet).to receive(:where).and_return([], [file_set])
+        allow(Digest::SHA1).to receive(:hexdigest).and_return('5b0ed4a62f96a19c5267fa8a9e1caf876c87e8d0')
+        allow(File).to receive(:read)
+        expect(logger).to receive(:warn).with("#{replaces} => #{file_set_id} (matches checksum from disk)")
         described_class.perform_now(mets_file)
       end
     end
 
     describe 'an invalid checksum' do
       it 'generates a error' do
-        allow(checksum_stub).to receive(:value).and_return('bad')
+        allow(FileSet).to receive(:where).and_return([])
         allow(Digest::SHA1).to receive(:hexdigest).and_return('file_sha')
         allow(File).to receive(:read)
-        expect(logger).to receive(:error).with("Checksum Mismatch: #{replaces}, FileSet: #{file_set_id}, mets: 5b0ed4a62f96a19c5267fa8a9e1caf876c87e8d0, file: file_sha, fedora: bad")
+        expect(logger).to receive(:error).with("#{replaces}: no FileSet found matching checksum from METS or disk")
         described_class.perform_now(mets_file)
       end
-    end
-  end
-
-  describe 'a missing fileset' do
-    it 'generates an error' do
-      allow(FileSet).to receive(:where).and_return([])
-      expect(logger).to receive(:error).with("Missing FileSet: #{replaces}")
-      described_class.perform_now(mets_file)
     end
   end
 end

@@ -12,15 +12,26 @@ class ValidateIngestJob < ActiveJob::Base
   private
 
     def validate
-      @mets.files.each do |file|
-        f = FileSet.where(replaces_ssim: file[:replaces]).first
-        if f
-          if f.original_file.checksum.value != file[:checksum]
-            logger.error("Checksum Mismatch: #{file[:replaces]}, FileSet: #{f.id}, mets: #{file[:checksum]}, file: #{Digest::SHA1.hexdigest(File.read(file[:path]))}, fedora: #{f.original_file.checksum.value}")
+      vols = @mets.multi_volume? ? @mets.volume_ids : [nil]
+      vols.each do |vol|
+        files = vol ? @mets.files_for_volume(vol) : @mets.files
+        files.each do |file|
+          fs = FileSet.where(digest_ssim: "urn:sha1:#{file[:checksum]}").first
+          if fs
+            logger.info "#{file[:replaces]} => #{fs.id}"
+          else
+            fs2 = FileSet.where(digest_ssim: "urn:sha1:#{sha_from_disk(file)}").first
+            if fs2
+              logger.warn "#{file[:replaces]} => #{fs2.id} (matches checksum from disk)"
+            else
+              logger.error "#{file[:replaces]}: no FileSet found matching checksum from METS or disk"
+            end
           end
-        else
-          logger.error("Missing FileSet: #{file[:replaces]}")
         end
       end
+    end
+
+    def sha_from_disk(file)
+      Digest::SHA1.hexdigest(File.read(file[:path]))
     end
 end

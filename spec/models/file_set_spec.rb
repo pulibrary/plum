@@ -70,4 +70,23 @@ RSpec.describe FileSet do
       FileUtils.rm_rf(ocr_path.parent) if ocr_path.exist?
     end
   end
+
+  describe '#where' do
+    let(:file_set) { FactoryGirl.create(:file_set) }
+    let(:parent) { FactoryGirl.create(:scanned_resource) }
+    let(:user) { FactoryGirl.create(:admin) }
+    let(:file) { File.open(Rails.root.join("spec", "fixtures", "files", "gray.tif")) }
+    let(:sha1) { 'b1477526078bdcfca2b2e209d929018be1bc9219' }
+
+    before do
+      FileSetActor.new(file_set, user).attach_content(file)
+      file_set.update_index
+      allow(CreateDerivativesJob).to receive(:perform_later)
+    end
+
+    it 'retrieves a fileset by the original file checksum' do
+      expect(described_class.where(digest_ssim: "urn:sha1:#{sha1}").first).to_not be_nil
+      expect(described_class.where(digest_ssim: "urn:sha1:#{sha1}").first.id).to eq(file_set.id)
+    end
+  end
 end
