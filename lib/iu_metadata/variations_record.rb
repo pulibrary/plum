@@ -146,7 +146,13 @@ module IuMetadata
 
       def filename(file_node)
         normalized = file_node.xpath('FileName').first&.content.to_s.downcase.sub(/\.\w{3,4}/, '')
-        root, volume, page = normalized.split('-')
+        if normalized.match(/^\d+$/)
+          root = source_metadata_identifier.downcase
+          volume = 1
+          page = normalized
+        else
+          root, volume, page = normalized.split('-')
+        end
         "#{root}-#{volume.to_i}-#{page.rjust(4, '0')}.tif"
       end
 
