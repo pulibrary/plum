@@ -21,19 +21,19 @@
 }
 
 @font-face {
-  font-family: "work-icons";
-  src:url("work-icons/work-icons.eot");
-  src:url("work-icons/work-icons.eot?#iefix") format("embedded-opentype"),
-    url("work-icons/work-icons.woff") format("woff"),
-    url("work-icons/work-icons.ttf") format("truetype"),
-    url("work-icons/work-icons.svg#work-icons") format("svg");
+  font-family: 'work-icons';
+  src: font-url('work-icons/work-icons.eot');
+  src: font-url('work-icons/work-icons.eot?#iefix') format('embedded-opentype'),
+       font-url('work-icons/work-icons.woff') format('woff'),
+       font-url('work-icons/work-icons.ttf') format('truetype'),
+       font-url('work-icons/work-icons.svg#work-icons') format('svg');
   font-weight: normal;
   font-style: normal;
 }
 
 [class^="icon-"]:before,
 [class*=" icon-"]:before {
-  font-family: "work-icons" !important;
+  font-family: 'work-icons' !important;
   font-style: normal !important;
   font-weight: normal !important;
   font-variant: normal !important;
