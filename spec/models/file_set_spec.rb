@@ -69,6 +69,15 @@ RSpec.describe FileSet do
       FileUtils.rm_rf(path.parent) if path.exist?
       FileUtils.rm_rf(ocr_path.parent) if ocr_path.exist?
     end
+    it "creates a vector thumbnail and indexes the path" do
+      allow_any_instance_of(described_class).to receive(:warn) # suppress virus check warnings
+      subject.geo_mime_type = 'application/vnd.geo+json'
+      file = File.open(Rails.root.join("spec", "fixtures", "files", "mercer.json"))
+      Hydra::Works::UploadFileToFileSet.call(subject, file)
+      subject.create_derivatives(file.path)
+
+      expect(subject.to_solr['thumbnail_path_ss']).to match(/file=thumbnail/)
+    end
   end
 
   describe '#where' do

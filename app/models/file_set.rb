@@ -17,6 +17,9 @@ class FileSet < ActiveFedora::Base
 
   validates_with ViewingHintValidator
 
+  # Use local indexer
+  self.indexer = FileSetIndexer
+
   def self.image_mime_types
     []
   end
@@ -77,6 +80,18 @@ class FileSet < ActiveFedora::Base
 
     def ocr_text
       ocr_document.try(:text).try(:strip)
+    end
+
+    # Override the geo_concerns path factory
+    def derivative_path_factory
+      PairtreeDerivativePath
+    end
+
+    # Remove files as well as shapefile directories
+    def cleanup_derivatives
+      derivative_path_factory.derivatives_for_reference(self).each do |path|
+        FileUtils.rm_rf(path)
+      end
     end
 
     # The destination_name parameter has to match up with the file parameter
