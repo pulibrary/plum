@@ -37,6 +37,7 @@ defaults: &defaults
   events:
     server: 'amqp://localhost:5672'
     exchange: 'plum_events'
+  geo_derivatives_path: <%= File.join(Rails.root, 'tmp', 'geo-derivatives') %>
 
 development:
   <<: *defaults
