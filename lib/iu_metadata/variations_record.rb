@@ -40,7 +40,7 @@ module IuMetadata
     end
 
     # default metadata
-    DEFAULT_ATTRIBUTES = [:visibility, :rights_statement, :viewing_hint]
+    DEFAULT_ATTRIBUTES = [:visibility, :rights_statement, :viewing_hint, :state]
     def default_attributes
       Hash[DEFAULT_ATTRIBUTES.map { |att| [att, send(att)] }]
     end
@@ -61,6 +61,10 @@ module IuMetadata
 
     def viewing_hint
       'paged'
+    end
+
+    def state
+      'complete'
     end
 
     # ingest metadata
