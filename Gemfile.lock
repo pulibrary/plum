@@ -264,7 +264,7 @@ GEM
       unf (>= 0.0.5, < 1.0.0)
     dropbox-sdk (1.6.5)
       json
-    ebnf (1.0.1)
+    ebnf (1.0.2)
       rdf (~> 2.0)
       sxp (~> 1.0)
     erubis (2.7.0)
@@ -387,7 +387,7 @@ GEM
       kaminari (>= 0.16, < 2)
     launchy (2.4.3)
       addressable (~> 2.3)
-    ldp (0.6.1)
+    ldp (0.6.2)
       deprecation
       faraday
       http_logger
