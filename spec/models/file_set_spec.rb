@@ -62,10 +62,6 @@ RSpec.describe FileSet do
       expect(ocr_path).to exist
       expect(subject.to_solr["full_text_tesim"]).to eq "yo"
     end
-    after do
-      FileUtils.rm_rf(path.parent) if path.exist?
-      FileUtils.rm_rf(ocr_path.parent) if ocr_path.exist?
-    end
     it "creates a vector thumbnail and indexes the path" do
       allow_any_instance_of(described_class).to receive(:warn) # suppress virus check warnings
       subject.geo_mime_type = 'application/vnd.geo+json'
@@ -74,6 +70,10 @@ RSpec.describe FileSet do
       subject.create_derivatives(file.path)
 
       expect(subject.to_solr['thumbnail_path_ss']).to match(/file=thumbnail/)
+    end
+    after do
+      FileUtils.rm_rf(path.parent) if path.exist?
+      FileUtils.rm_rf(ocr_path.parent) if ocr_path.exist?
     end
   end
 

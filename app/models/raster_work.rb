@@ -5,4 +5,7 @@ class RasterWork < ActiveFedora::Base
   include ::GeoConcerns::BasicGeoMetadata
   include ::GeoConcerns::GeoreferencedBehavior
   self.valid_child_concerns = [VectorWork]
+
+  # Use local indexer
+  self.indexer = GeoWorkIndexer
 end
