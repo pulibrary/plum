@@ -272,4 +272,12 @@ describe ScannedResource do
       expect(solr_doc['date_created_isi']).to eq 2016
     end
   end
+
+  describe "sortable title" do
+    let(:scanned_resource) { FactoryGirl.create(:scanned_resource, title: ['ABC']) }
+    let(:solr_doc) { scanned_resource.to_solr }
+    it "indexes title as a sortable solr field" do
+      expect(solr_doc['sort_title_ssi']).to eq 'ABC'
+    end
+  end
 end

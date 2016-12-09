@@ -33,15 +33,19 @@ class CatalogController < ApplicationController
 
     # solr fields that will be treated as facets by the blacklight application
     #   The ordering of the field names is the order of the display
-    config.add_facet_field solr_name('human_readable_type', :facetable)
-    config.add_facet_field solr_name('tag', :facetable), limit: 5
-    config.add_facet_field solr_name('subject', :facetable), limit: 5
-    config.add_facet_field solr_name('language', :facetable), limit: 5
-    config.add_facet_field solr_name('based_near', :facetable), limit: 5
-    config.add_facet_field solr_name('file_format', :facetable), limit: 5
-    config.add_facet_field 'generic_type_sim', show: false, single: true
-    config.add_facet_field solr_name('member_of_collections', :symbol), limit: 5, label: 'Collection'
-    config.add_facet_field solr_name('number_of_pages', :stored_sortable, type: :string), limit: 5, label: 'Pages'
+    # config.add_facet_field solr_name('human_readable_type', :facetable)
+    config.add_facet_field solr_name('member_of_collections', :symbol), label: 'Collection'
+    config.add_facet_field solr_name('tag', :facetable)
+    config.add_facet_field solr_name('creator', :facetable)
+    config.add_facet_field solr_name('subject', :facetable)
+    config.add_facet_field solr_name('date_created', :facetable)
+    config.add_facet_field solr_name('language', :facetable)
+    # config.add_facet_field solr_name('based_near', :facetable), limit: 5
+    # config.add_facet_field solr_name('file_format', :facetable), limit: 5
+    # config.add_facet_field 'generic_type_sim', show: false, single: true
+    config.add_facet_field solr_name('publisher', :facetable)
+
+    config.add_facet_field solr_name('number_of_pages', :stored_sortable, type: :string), label: 'Pages'
 
     # Have BL send all facet field names to Solr, which has been the default
     # previously. Simply remove these lines if you'd rather use Solr request
@@ -64,6 +68,7 @@ class CatalogController < ApplicationController
     config.add_index_field solr_name('human_readable_type', :stored_searchable)
     config.add_index_field solr_name('format', :stored_searchable)
     config.add_index_field solr_name('identifier', :stored_searchable)
+    config.add_index_field solr_name('number_of_pages', :stored_sortable, type: :integer), label: 'Pages'
 
     # "fielded" search configuration. Used by pulldown among other places.
     # For supported keys in hash, see rdoc for Blacklight::SearchFields
@@ -233,10 +238,11 @@ class CatalogController < ApplicationController
     # except in the relevancy case).
     # label is key, solr field is value
     config.add_sort_field "score desc, #{uploaded_field} desc", label: "relevance \u25BC"
-    config.add_sort_field "#{uploaded_field} desc", label: "date uploaded \u25BC"
-    config.add_sort_field "#{uploaded_field} asc", label: "date uploaded \u25B2"
-    config.add_sort_field "#{modified_field} desc", label: "date modified \u25BC"
-    config.add_sort_field "#{modified_field} asc", label: "date modified \u25B2"
+    config.add_sort_field "#{modified_field} desc", label: "recently updated"
+    config.add_sort_field "#{solr_name('sort_title', :stored_sortable, type: :string)} asc", label: "title \u25B2"
+    config.add_sort_field "#{solr_name('sort_title', :stored_sortable, type: :string)} desc", label: "title \u25BC"
+    config.add_sort_field "#{solr_name('date_created', :stored_sortable, type: :integer)} asc", label: "date created \u25B2"
+    config.add_sort_field "#{solr_name('date_created', :stored_sortable, type: :integer)} desc", label: "date created \u25BC"
     config.add_sort_field "#{solr_name('number_of_pages', :stored_sortable, type: :integer)} asc", label: "pages \u25B2"
     config.add_sort_field "#{solr_name('number_of_pages', :stored_sortable, type: :integer)} desc", label: "pages \u25BC"
 
@@ -249,5 +255,6 @@ class CatalogController < ApplicationController
   def admin_state_facet
     return unless can? :create, ScannedResource
     blacklight_config.add_facet_field 'state_sim', label: 'State'
+    blacklight_config.add_index_field 'state_ssim', label: 'State'
   end
 end
