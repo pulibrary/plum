@@ -9,25 +9,7 @@ class OCRRunner
                            params)
   end
 
-  def from_datastream
-    Hydra::Derivatives::TempfileService.create(resource.original_file) do |f|
-      ocr_output = from_file(f.path)
-      attach_ocr(ocr_filename(ocr_output))
-    end
-    resource.save
-  end
-
   private
-
-    def attach_ocr(filename)
-      basename = File.basename(filename) if filename
-      iodec = Hydra::Derivatives::IoDecorator.new(File.open(filename, 'rb'), 'text/html', basename)
-      Hydra::Works::AddFileToFileSet.call(resource, iodec, :extracted_text)
-    end
-
-    def ocr_filename(ocr_output)
-      ocr_output.first[:url].sub(/^file:/, '')
-    end
 
     def creator_factory
       OCRCreator

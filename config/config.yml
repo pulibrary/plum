@@ -2,6 +2,7 @@ defaults: &defaults
   locations_url: https://bibdata.princeton.edu/locations/digital_locations.json
   notifier_email_address: plum@princeton.edu
   iiif_url: <%= ENV["PLUM_IIIF_URL"] || "http://192.168.99.100:5004" %>
+  file_url_module: LocalFileUrlGenerator
   jp2_recipes:
     default_color: >
       -rate 2.4,1.48331273,.91673033,.56657224,.35016049,.21641118,.13374944,.08266171 
@@ -45,12 +46,16 @@ test:
 
 production:
   <<: *defaults
+  file_url_module: ExternalFileUrlGenerator
+  external_file_url: "http://plum.princeton.edu:9090"
   events:
     server: <%= ENV['PLUM_RABBIT_SERVER'] || 'amqp://localhost:5672' %>
     exchange: "plum_events"
 
 staging:
   <<: *defaults
+  file_url_module: ExternalFileUrlGenerator
+  external_file_url: "http://localhost:9000"
   events:
     server: <%= ENV['PLUM_RABBIT_SERVER'] || 'amqp://localhost:5672' %>
     exchange: "plum_events"

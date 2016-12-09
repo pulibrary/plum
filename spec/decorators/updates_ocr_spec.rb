@@ -5,6 +5,8 @@ RSpec.describe UpdatesOCR do
   let(:file_set) { FactoryGirl.create(:file_set, content: file) }
   let(:file) { File.open(Rails.root.join("spec", "fixtures", "files", "page18.tif")) }
   before do
+    allow(File).to receive(:open).and_call_original
+    allow(File).to receive(:open).with(file_set.local_file).and_return(file)
     subject.ordered_members << file_set
     subject.save
   end
