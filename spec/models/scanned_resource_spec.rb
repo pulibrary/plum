@@ -264,4 +264,12 @@ describe ScannedResource do
       expect(solr_doc['number_of_pages_ssi']).to eq "0-99 pages"
     end
   end
+
+  describe "date_created indexing" do
+    let(:scanned_resource) { FactoryGirl.create(:scanned_resource, date_created: ['2016']) }
+    let(:solr_doc) { scanned_resource.to_solr }
+    it "indexes date_created as an integer" do
+      expect(solr_doc['date_created_isi']).to eq 2016
+    end
+  end
 end
