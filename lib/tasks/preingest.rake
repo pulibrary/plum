@@ -1,7 +1,10 @@
 namespace :pmp do
-  desc "Preingest one or more files of chosen type, in specified folder"
+  desc "Preingest a file into ingest yaml, using the specified preingest pipeline"
   task :preingest, [:document_type] => :environment do |task, args|
-    abort "usage: rake preingest[document_type] /path/to/preingest/files" unless args.document_type
+    file = ARGV[1]
+    abort "usage: rake preingest[document_type] /path/to/preingest/file" unless args.document_type && file
+    abort "File not found: #{file}" unless File.exists?(file)
+    abort "Directory given instead of file: #{file}" if Dir.exists?(file)
     begin
       document_class = "IuMetadata::Preingest::#{args.document_type.titleize}".constantize
     rescue
@@ -12,16 +15,14 @@ namespace :pmp do
 
     logger = Logger.new(STDOUT)
     PreingestJob.logger = logger
-    logger.info "preingesting #{document_class::FILE_PATTERN} files from: #{ARGV[1]}"
+    logger.info "preingesting file: #{file}"
     logger.info "preingesting as: #{user.user_key} (override with USER=foo)"
-    abort "usage: rake preingest /path/to/preingest/files" unless ARGV[1] && Dir.exist?(ARGV[1])
-    Dir["#{ARGV[1].chomp("/")}/**/#{document_class::FILE_PATTERN}"].each do |file|
-      begin
-        PreingestJob.perform_now(document_class, file, user)
-      rescue => e
-        puts "Error: #{e.message}"
-        puts e.backtrace
-      end
+    begin
+      PreingestJob.perform_now(document_class, file, user)
+    rescue => e
+      logger.info "Error: #{e.message}"
+      logger.info e.backtrace
+      abort "Error encountered"
     end
   end
 end

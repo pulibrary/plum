@@ -2,7 +2,6 @@ module IuMetadata
   module Preingest
     class Contentdm
       include PreingestableDocument
-      FILE_PATTERN = '*.xml'
 
       def initialize(source_file)
         @source_file = source_file

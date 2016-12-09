@@ -2,7 +2,6 @@ module IuMetadata
   module Preingest
     class Mets
       include PreingestableDocument
-      FILE_PATTERN = '*.mets'
 
       def initialize(source_file)
         @source_file = source_file
