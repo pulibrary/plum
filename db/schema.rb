@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161105035331) do
+ActiveRecord::Schema.define(version: 20161208191710) do
 
   create_table "bookmarks", force: :cascade do |t|
     t.integer  "user_id",       null: false
@@ -43,7 +43,7 @@ ActiveRecord::Schema.define(version: 20161105035331) do
     t.string   "template",                                 null: false
     t.text     "counters"
     t.integer  "seq",        limit: 8, default: 0
-    t.binary   "random"
+    t.binary   "rand"
     t.datetime "created_at",                               null: false
     t.datetime "updated_at",                               null: false
   end

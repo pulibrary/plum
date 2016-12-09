@@ -124,10 +124,10 @@ GEM
     active_attr (0.9.0)
       activemodel (>= 3.0.2, < 5.1)
       activesupport (>= 3.0.2, < 5.1)
-    active_fedora-noid (2.0.0.beta3)
+    active_fedora-noid (2.0.0)
       active-fedora (>= 9.7, < 12)
       noid (~> 0.9)
-      rails (>= 4.2.6, < 6)
+      rails (>= 4.2.7.1, < 6)
     activejob (4.2.7.1)
       activesupport (= 4.2.7.1)
       globalid (>= 0.3.0)
@@ -251,7 +251,7 @@ GEM
     docile (1.1.5)
     dropbox-sdk (1.6.5)
       json
-    ebnf (1.0.1)
+    ebnf (1.0.2)
       rdf (~> 2.0)
       sxp (~> 1.0)
     erubis (2.7.0)
@@ -396,7 +396,7 @@ GEM
       kaminari (>= 0.16, < 2)
     launchy (2.4.3)
       addressable (~> 2.3)
-    ldp (0.6.1)
+    ldp (0.6.2)
       deprecation
       faraday
       http_logger
@@ -431,7 +431,7 @@ GEM
     mimemagic (0.3.2)
     mini_magick (4.5.1)
     mini_portile (0.6.2)
-    minitest (5.9.1)
+    minitest (5.10.1)
     modernizr-rails (2.7.1)
     multi_json (1.12.1)
     multi_xml (0.5.5)
@@ -497,7 +497,7 @@ GEM
       faraday
       nokogiri (~> 1.6.0)
       rails (>= 4.2.0, < 6.0)
-    rack (1.6.4)
+    rack (1.6.5)
     rack-protection (1.5.3)
       rack
     rack-test (0.6.3)
@@ -677,7 +677,7 @@ GEM
       rdf (~> 2.0)
     term-ansicolor (1.4.0)
       tins (~> 1.0)
-    thor (0.19.1)
+    thor (0.19.4)
     thread_safe (0.3.5)
     tilt (2.0.5)
     tins (1.12.0)
@@ -717,7 +717,7 @@ DEPENDENCIES
   aasm
   active-fedora (= 11.0.0.rc7)
   active-triples (~> 0.10.0)
-  active_fedora-noid (= 2.0.0.beta3)
+  active_fedora-noid (~> 2.0.0)
   arabic-letter-connector
   browse-everything!
   bunny
@@ -764,6 +764,7 @@ DEPENDENCIES
   rails-assets-babel-polyfill!
   rails-assets-bootstrap-select (= 1.9.4)!
   rails-assets-jqueryui-timepicker-addon!
+  rake (~> 11.3.0)
   redis-namespace
   rsolr (~> 1.1.0)
   rspec-rails
