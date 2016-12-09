@@ -4,6 +4,7 @@ class WorkIndexer < CurationConcerns::WorkIndexer
       object.member_of_collections.each do |col|
         solr_doc[Solrizer.solr_name('member_of_collection_slugs', :symbol)] = col.exhibit_id
       end
+
       (PlumSchema.display_fields + [:title]).each do |field|
         objects = object.get_values(field, literal: true)
         statements = objects.map do |obj|
@@ -21,9 +22,14 @@ class WorkIndexer < CurationConcerns::WorkIndexer
         end
         solr_doc[Solrizer.solr_name("#{field}_literals", :symbol)] = output
       end
+
       pages = object.members.size
       solr_doc[Solrizer.solr_name('number_of_pages', :stored_sortable, type: :integer)] = pages
       solr_doc[Solrizer.solr_name('number_of_pages', :stored_sortable, type: :string)] = pages_bucket(pages, 100)
+
+      unless object.date_created.blank?
+        solr_doc[Solrizer.solr_name('date_created', :stored_sortable, type: :integer)] = object.date_created.first.to_i
+      end
     end
   end
 
