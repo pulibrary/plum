@@ -255,4 +255,13 @@ describe ScannedResource do
       expect(solr_doc['title_literals_ssim']).to eq [JSON.dump("@value" => "Test", "@language" => "fr")]
     end
   end
+
+  describe "number of pages indexing" do
+    let(:scanned_resource) { FactoryGirl.create(:scanned_resource_with_file) }
+    let(:solr_doc) { scanned_resource.to_solr }
+    it "indexes the number of pages" do
+      expect(solr_doc['number_of_pages_isi']).to eq 1
+      expect(solr_doc['number_of_pages_ssi']).to eq "0-99 pages"
+    end
+  end
 end

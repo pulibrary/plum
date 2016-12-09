@@ -21,6 +21,16 @@ class WorkIndexer < CurationConcerns::WorkIndexer
         end
         solr_doc[Solrizer.solr_name("#{field}_literals", :symbol)] = output
       end
+      pages = object.members.size
+      solr_doc[Solrizer.solr_name('number_of_pages', :stored_sortable, type: :integer)] = pages
+      solr_doc[Solrizer.solr_name('number_of_pages', :stored_sortable, type: :string)] = pages_bucket(pages, 100)
     end
   end
+
+  private
+
+    def pages_bucket(pages, size)
+      n = (pages.to_i / size) * size
+      "#{n}-#{n + size - 1} pages"
+    end
 end
