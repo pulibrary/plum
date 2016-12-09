@@ -17,9 +17,11 @@
     - Fontane di Roma ; poema sinfonico per orchestra
     sort_title: Fontane di Roma ; poema sinfonico per orchestra
     responsibility_note:
-    - di Ottorino Respighi.
+    - di Ottorino Respighi
     creator:
-    - Respighi, Ottorino, 1879-1936.
+    - Respighi, Ottorino, 1879-1936
+    subject:
+        - Symphonic poems
     date_created:
     - '1947'
     publisher:
@@ -28,8 +30,8 @@
     - Milano
     - New York
     issued:
-    - 1947, c1918.
-    published: 'Milano ; New York : G. Ricordi, 1947, c1918.'
+    - 1947, c1918
+    published: 'Milano ; New York : G. Ricordi, 1947, c1918'
     lccn_call_number:
     - M1002.R434 F6, R5, 1947
 :source_metadata: |-

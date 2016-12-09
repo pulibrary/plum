@@ -8,7 +8,7 @@ module IuMetadata
 
     attr_reader :id, :source
 
-    ATTRIBUTES = [:identifier, :title, :sort_title, :responsibility_note, :series, :creator, :date_created, :publisher, :publication_place, :issued, :published, :lccn_call_number, :local_call_number]
+    ATTRIBUTES = [:identifier, :title, :sort_title, :responsibility_note, :series, :creator, :subject, :date_created, :publisher, :publication_place, :issued, :published, :lccn_call_number, :local_call_number]
 
     def attributes
       ATTRIBUTES.map { |att| [att, send(att)] }.to_h.compact
@@ -71,7 +71,7 @@ module IuMetadata
           creator << format_datafield(get_linked_field(field))
         end
       end
-      creator
+      trim_punctuation creator
     end
 
     def date_created
@@ -110,7 +110,7 @@ module IuMetadata
     end
 
     def issued
-      formatted_subfields_as_array(['260'], codes: ['c']).map { |s| s.sub(/\s*[:;,]\s*$/, '') }
+      formatted_subfields_as_array(['260'], codes: ['c'])
     end
 
     def language_codes
@@ -144,7 +144,7 @@ module IuMetadata
     end
 
     def publication_place
-      formatted_subfields_as_array(['260', '264'], codes: ['a']).map { |s| s.sub(/\s*[:;,.]\s*$/, '') }
+      formatted_subfields_as_array(['260', '264'], codes: ['a'])
     end
 
     def published
@@ -152,7 +152,7 @@ module IuMetadata
     end
 
     def publisher
-      formatted_subfields_as_array(['260', '264'], codes: ['b']).map { |s| s.sub(/\s*[:;,.]\s*$/, '') }
+      formatted_subfields_as_array(['260', '264'], codes: ['b'])
     end
 
     def responsibility_note
@@ -206,12 +206,12 @@ module IuMetadata
       titles
     end
 
-    def subjects
+    def subject
       # Broken: name puctuation won't come out correctly
       formatted_fields_as_array([
         '600', '610', '611', '630', '648', '650', '651', '653', '654', '655',
         '656', '657', '658', '662', '690'
-      ], separator: '--')
+      ], codes: ['a'])
     end
 
     # We squash together 505s with ' ; '
@@ -239,7 +239,7 @@ module IuMetadata
         val = format_datafield(linked_field, opts)
         vals << val if val != ""
       end
-      vals
+      trim_punctuation(vals)
     end
 
     def formatted_subfields_as_array(fields, opts = {})
@@ -252,7 +252,7 @@ module IuMetadata
         val = format_subfields(linked_field, opts)
         vals += val if val.present?
       end
-      vals
+      trim_punctuation(vals)
     end
 
     def format_datafield(datafield, hsh = {})
@@ -336,6 +336,10 @@ module IuMetadata
           end
         end
         fields
+      end
+
+      def trim_punctuation(ary)
+        ary.map { |s| s.sub(/\s*[:;,.]\s*$/, '') }
       end
   end
 end
