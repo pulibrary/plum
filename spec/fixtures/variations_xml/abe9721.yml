@@ -2,7 +2,7 @@
 :resource: MultiVolumeWork
 :attributes:
   :default:
-    state: complete
+    state: final_review
     viewing_direction: left-to-right
     rights_statement: http://rightsstatements.org/vocab/InC/1.0/
     visibility: authenticated

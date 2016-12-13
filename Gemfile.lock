@@ -437,6 +437,7 @@ GEM
     multi_xml (0.5.5)
     multipart-post (2.0.0)
     nenv (0.3.0)
+    net-http-persistent (2.9.4)
     net-ldap (0.15.0)
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
@@ -750,6 +751,7 @@ DEPENDENCIES
   launchy
   ldap_groups_lookup (~> 0.4.0)!
   modernizr-rails
+  net-http-persistent (~> 2.9.4)
   omniauth-cas
   openseadragon
   pdf-reader!

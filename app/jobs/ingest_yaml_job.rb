@@ -38,6 +38,9 @@ class IngestYAMLJob < ActiveJob::Base
         end
         resource.save!
       end
+
+      resource.state = 'complete'
+      resource.save!
     end
 
     def attach_sources(resource)

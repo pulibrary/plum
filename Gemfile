@@ -57,6 +57,7 @@ gem 'active-fedora', '11.0.0.rc7'
 gem 'active-triples', '~> 0.10.0'
 gem 'active_fedora-noid', '~> 2.0.0'
 gem 'rake', '~> 11.3.0'
+gem 'net-http-persistent', '~> 2.9.4'
 
 group :development, :test do
   gem 'rubocop', '~> 0.34.0', require: false

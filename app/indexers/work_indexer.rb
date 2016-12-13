@@ -25,7 +25,7 @@ class WorkIndexer < CurationConcerns::WorkIndexer
 
       solr_doc[Solrizer.solr_name('sort_title', :stored_sortable)] = object.title.first
 
-      pages = object.members.size
+      pages = object.member_ids.size
       solr_doc[Solrizer.solr_name('number_of_pages', :stored_sortable, type: :integer)] = pages
       solr_doc[Solrizer.solr_name('number_of_pages', :stored_sortable, type: :string)] = pages_bucket(pages, 100)
 
