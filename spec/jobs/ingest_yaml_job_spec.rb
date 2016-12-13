@@ -19,6 +19,7 @@ RSpec.describe IngestYAMLJob do
     let(:file) { described_class.new.send(:decorated_file, file_hash) }
     let(:logical_order) { double('logical_order') }
     let(:order_object) { double('order_object') }
+    let(:ingest_counter) { double('ingest_counter') }
 
     before do
       allow(FileSetActor).to receive(:new).and_return(actor1, actor2)
@@ -31,6 +32,8 @@ RSpec.describe IngestYAMLJob do
       allow_any_instance_of(described_class).to receive(:decorated_file).and_return(file)
       allow_any_instance_of(described_class).to receive(:thumbnail_path).and_return(file_path)
       allow_any_instance_of(ScannedResource).to receive(:save!)
+      allow(IngestCounter).to receive(:new).and_return(ingest_counter)
+      allow(ingest_counter).to receive(:increment)
     end
 
     it "ingests a single-volume yaml file" do
@@ -38,6 +41,7 @@ RSpec.describe IngestYAMLJob do
       expect(actor1).to receive(:attach_content).with(instance_of(File))
       expect(actor2).to receive(:create_metadata).with(resource1, {})
       expect(actor2).to receive(:create_content).with(file)
+      expect(ingest_counter).to receive(:increment)
       described_class.perform_now(yaml_file_single, user)
       expect(resource1.title).to eq(["Fontane di Roma ; poema sinfonico per orchestra"])
       expect(resource1.thumbnail_id).to eq('file1')

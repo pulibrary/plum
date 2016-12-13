@@ -15,6 +15,7 @@ class IngestYAMLJob < ActiveJob::Base
   private
 
     def ingest
+      @counter = IngestCounter.new
       resource = (@yaml[:volumes].present? ? MultiVolumeWork : ScannedResource).new
       if @yaml[:attributes].present?
         @yaml[:attributes].each { |_set_name, attributes| resource.attributes = attributes }
@@ -80,6 +81,7 @@ class IngestYAMLJob < ActiveJob::Base
     def ingest_files(parent: nil, resource: nil, files: [])
       files.each do |f|
         logger.info "Ingesting file #{f[:path]}"
+        @counter.increment
         file_set = FileSet.new
         file_set.attributes = f[:attributes]
         actor = FileSetActor.new(file_set, @user)
