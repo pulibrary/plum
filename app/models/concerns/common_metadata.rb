@@ -6,8 +6,6 @@ module CommonMetadata
   extend ActiveSupport::Concern
 
   included do
-    before_update :check_state
-
     # Plum
     apply_schema PlumSchema, ActiveFedora::SchemaIndexingStrategy.new(
       ActiveFedora::Indexers::GlobalIndexer.new([:symbol, :stored_searchable, :facetable])
@@ -20,7 +18,6 @@ module CommonMetadata
 
     validate :source_metadata_identifier_or_title
     validates_with RightsStatementValidator
-    validates_with StateValidator
     validates_with ViewingDirectionValidator
     validates_with ViewingHintValidator
 
@@ -30,12 +27,6 @@ module CommonMetadata
       end
       self.attributes = remote_data.attributes
       update_ezid if state == 'complete' && identifier
-    end
-
-    def check_state
-      return unless state_changed?
-      complete_record if state == 'complete'
-      ReviewerMailer.notify(id, state).deliver_later
     end
 
     private
@@ -57,28 +48,6 @@ module CommonMetadata
       return if source_metadata_identifier.present? || title.present?
       errors.add(:title, "You must provide a source metadata id or a title")
       errors.add(:source_metadata_identifier, "You must provide a source metadata id or a title")
-    end
-
-    def complete_record
-      if identifier
-        update_ezid
-      else
-        self.identifier = Ezid::Identifier.mint(ezid_metadata).id
-      end
-    end
-
-    def ezid_metadata
-      {
-        dc_publisher: 'Princeton University Library',
-        dc_title: title.join('; '),
-        dc_type: 'Text',
-        target: ManifestBuilder::ManifestHelper.new.polymorphic_url(self)
-      }
-    end
-
-    def update_ezid
-      return if Ezid::Client.config.user == "apitest"
-      Ezid::Identifier.modify(identifier, ezid_metadata)
     end
   end
 end

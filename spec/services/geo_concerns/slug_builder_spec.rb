@@ -14,7 +14,7 @@ describe GeoConcerns::Discovery::DocumentBuilder::SlugBuilder do
                        temporal: ['2011'],
                        subject: ['Human settlements'],
                        language: ['Esperanto'],
-                       identifier: ['ark:/99999/fk4']
+                       identifier: 'ark:/99999/fk4'
                      }
   }
 
