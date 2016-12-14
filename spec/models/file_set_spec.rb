@@ -95,4 +95,12 @@ RSpec.describe FileSet do
       expect(described_class.where(digest_ssim: "urn:sha1:#{sha1}").first.id).to eq(file_set.id)
     end
   end
+
+  describe '#metadata_xml' do
+    let(:xml_file) { Rails.root.join('spec', 'fixtures', 'voyager-2028405.xml') }
+    it 'will read the local file for its XML' do
+      expect(subject).to receive(:local_file) { xml_file }
+      expect(subject.send(:metadata_xml)).to be_kind_of Nokogiri::XML::Document
+    end
+  end
 end

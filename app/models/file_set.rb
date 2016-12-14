@@ -107,4 +107,9 @@ class FileSet < ActiveFedora::Base
       path = PairtreeDerivativePath.derivative_path_for_reference(self, destination_name)
       URI("file://#{path}").to_s
     end
+
+    # Override GeoConcerns method because files are no longer stored in Fedora
+    def metadata_xml
+      Nokogiri::XML(File.open(local_file))
+    end
 end
