@@ -5,4 +5,8 @@ class CurationConcerns::VectorWorksController < ApplicationController
   include GeoConcerns::GeoblacklightControllerBehavior
   include GeoConcerns::MessengerBehavior
   self.curation_concern_type = VectorWork
+
+  def show_presenter
+    VectorWorkShowPresenter
+  end
 end
