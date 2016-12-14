@@ -3,6 +3,7 @@ class MultiVolumeWork < ActiveFedora::Base
   include ::CurationConcerns::WorkBehavior
   include ::CurationConcerns::BasicMetadata
   include ::CommonMetadata
+  include ::StateBehavior
   include ::StructuralMetadata
   include ::HasPendingUploads
   include ::CollectionIndexing
