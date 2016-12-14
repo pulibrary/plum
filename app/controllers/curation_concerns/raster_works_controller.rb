@@ -5,4 +5,8 @@ class CurationConcerns::RasterWorksController < ApplicationController
   include GeoConcerns::GeoblacklightControllerBehavior
   include GeoConcerns::MessengerBehavior
   self.curation_concern_type = RasterWork
+
+  def show_presenter
+    RasterWorkShowPresenter
+  end
 end
