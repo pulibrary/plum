@@ -3,5 +3,10 @@ class CurationConcerns::ImageWorksController < ApplicationController
   include GeoConcerns::ImageWorksControllerBehavior
   include GeoConcerns::GeoblacklightControllerBehavior
   include GeoConcerns::MessengerBehavior
+  include CurationConcerns::Flagging
   self.curation_concern_type = ImageWork
+
+  def show_presenter
+    ImageWorkShowPresenter
+  end
 end
