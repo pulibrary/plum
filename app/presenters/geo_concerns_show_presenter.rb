@@ -1,6 +1,6 @@
 
 class GeoConcernsShowPresenter < GeoConcerns::GeoConcernsShowPresenter
-  delegate :state, :type, :identifier, :collection, to: :solr_document
+  delegate :state, :type, :identifier, :workflow_note, :collection, to: :solr_document
   delegate :flaggable?, to: :state_badge_instance
 
   def state_badge
