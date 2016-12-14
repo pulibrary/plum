@@ -1,4 +1,6 @@
 class MultiVolumeWorkShowPresenter < CurationConcernsShowPresenter
+  include PlumAttributes
+
   def viewing_hint
     'multi-part'
   end
