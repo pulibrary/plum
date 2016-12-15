@@ -23,13 +23,13 @@ RSpec.describe CatalogController do
       get :index, q: ""
       expect(document_ids).to eq [work.id]
     end
-    it "finds parents with child metadata" do
+    it "finds parents with child metadata, even with multiple words in title" do
       work = FactoryGirl.build(:multi_volume_work, title: ["Alpha"])
-      resource = FactoryGirl.create(:scanned_resource, title: ["Beta"])
+      resource = FactoryGirl.create(:scanned_resource, title: ["Beta Gamma"])
       work.ordered_members << resource
       work.save
 
-      get :index, q: "Beta"
+      get :index, q: "Beta Gamma"
       expect(document_ids).to eq [work.id]
     end
 

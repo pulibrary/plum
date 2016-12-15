@@ -11,7 +11,7 @@ class SearchBuilder
 
     def joined_queries
       queries.map do |query|
-        "(#{dismax_join(send(query))})"
+        "_query_: \"#{dismax_join(send(query))}\""
       end.join(" OR ")
     end
 
