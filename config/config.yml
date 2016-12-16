@@ -38,6 +38,7 @@ defaults: &defaults
     server: 'amqp://localhost:5672'
     exchange: 'plum_events'
   geo_derivatives_path: <%= File.join(Rails.root, 'tmp', 'geo-derivatives') %>
+  geoblacklight_provenance: 'Princeton'
 
 development:
   <<: *defaults

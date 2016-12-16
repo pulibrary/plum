@@ -9,7 +9,14 @@ module GeoConcerns
         end
 
         def build(document)
+          document.provenance = provenance
           document.slug = slug
+        end
+
+        # Overrides the geo_concerns provenance to match
+        # match existing geoblacklight metadata.
+        def provenance
+          Plum.config[:geoblacklight_provenance]
         end
 
         # Returns the document slug for use in discovery systems.
@@ -17,8 +24,7 @@ module GeoConcerns
         def slug
           identifier = geo_concern.identifier || geo_concern.id
           id = identifier.gsub(%r(ark:/\d{5}/), '')
-          return id unless geo_concern.provenance
-          "#{geo_concern.provenance.parameterize}-#{id}"
+          "#{provenance.parameterize}-#{id}"
         end
       end
     end
