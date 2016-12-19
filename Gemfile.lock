@@ -87,6 +87,13 @@ GIT
       nokogiri (~> 1.6.6.2)
 
 GIT
+  remote: git://github.com/pulibrary/pul_uv_rails.git
+  revision: 7060d5eac7005573a93aac0335b365e29a576a54
+  branch: master
+  specs:
+    pul_uv_rails (1.8.42)
+
+GIT
   remote: git://github.com/yob/pdf-reader.git
   revision: fb1de686d2895a6bf98a10bc64bd548babad6f15
   specs:
@@ -733,6 +740,7 @@ DEPENDENCIES
   pry-byebug
   pry-rails
   pul_metadata_services!
+  pul_uv_rails!
   rails (= 4.2.7.1)
   rails-assets-babel-polyfill!
   rails-assets-bootstrap-select (= 1.9.4)!
