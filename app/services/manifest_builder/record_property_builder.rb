@@ -8,7 +8,7 @@ class ManifestBuilder
 
     def apply(manifest)
       manifest['@id'] = path.to_s
-      manifest.label = record.to_s
+      manifest.label = title_or_label
       manifest.description = record.description
       manifest.viewing_hint = viewing_hint if viewing_hint
       manifest.try(:viewing_direction=, viewing_direction) if viewing_direction
@@ -22,6 +22,10 @@ class ManifestBuilder
 
       def viewing_hint
         record.viewing_hint || "individuals"
+      end
+
+      def title_or_label
+        record.title.present? ? record.title : record.label
       end
   end
 end

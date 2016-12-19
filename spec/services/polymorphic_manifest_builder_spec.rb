@@ -4,7 +4,7 @@ RSpec.describe PolymorphicManifestBuilder, vcr: { cassette_name: "iiif_manifest"
   subject { described_class.new(solr_document) }
 
   let(:solr_document) { ScannedResourceShowPresenter.new(SolrDocument.new(record.to_solr), nil) }
-  let(:record) { FactoryGirl.build(:scanned_resource) }
+  let(:record) { FactoryGirl.build(:scanned_resource, title: ["Test", "Test2"]) }
   before do
     allow(record).to receive(:persisted?).and_return(true)
     allow(record).to receive(:id).and_return("1")
@@ -32,7 +32,7 @@ RSpec.describe PolymorphicManifestBuilder, vcr: { cassette_name: "iiif_manifest"
     it "renders a manifest for every child scanned resource" do
       expect(subject.manifests.length).to eq 1
       expect(manifest['manifests'].length).to eq 1
-      expect(manifest['manifests'].first['label']).to eq solr_document.to_s
+      expect(manifest['manifests'].first['label']).to eq solr_document.title
       expect(manifest['manifests'].first['@type']).to eq "sc:Manifest"
     end
     it "doesn't render structures for child manifests" do
@@ -104,7 +104,7 @@ RSpec.describe PolymorphicManifestBuilder, vcr: { cassette_name: "iiif_manifest"
         first_structure = manifest["structures"].first
         expect(first_structure["viewingHint"]).to eq "top"
         expect(first_structure["ranges"].length).to eq 2
-        expect(first_structure["ranges"].first["label"]).to eq record.title.first
+        expect(first_structure["ranges"].first["label"]).to eq record.title.join(", ")
         expect(first_structure["ranges"].first["ranges"].length).to eq 1
         expect(first_structure["ranges"].first["ranges"].first["canvases"].first).to eq manifest["sequences"].first["canvases"].first['@id']
       end
@@ -256,7 +256,7 @@ RSpec.describe PolymorphicManifestBuilder, vcr: { cassette_name: "iiif_manifest"
     xit "should have a good JSON-LD result" do
     end
     it "has a label" do
-      expect(result.label).to eq record.to_s
+      expect(result.label).to eq ScannedResourceShowPresenter.new(SolrDocument.new(record.to_solr), nil).title
     end
     it "has an ID" do
       expect(result['@id']).to eq "http://plum.com/concern/scanned_resources/1/manifest"
