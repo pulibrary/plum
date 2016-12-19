@@ -66,7 +66,7 @@ class FileSet < ActiveFedora::Base
   end
 
   def local_file
-    pair = id.scan(/..?/).first(4) # TODO: add .push(id) when CC is updated
+    pair = id.scan(/..?/).first(4).push(id)
     File.join(CurationConcerns.config.working_path, *pair, (label || id))
   end
 
