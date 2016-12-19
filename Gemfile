@@ -115,6 +115,7 @@ group :staging, :development do
   gem 'ruby-prof'
 end
 gem 'rbtrace', require: false
+gem 'pul_uv_rails', github: 'pulibrary/pul_uv_rails', branch: 'master'
 source 'https://rails-assets.org' do
   gem 'rails-assets-babel-polyfill'
   gem 'rails-assets-bootstrap-select', '1.9.4'
