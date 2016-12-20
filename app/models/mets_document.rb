@@ -58,8 +58,8 @@ class METSDocument
   end
 
   def files_for_volume(volume_id)
-    @mets.xpath("//mets:div[@ID='#{volume_id}']//mets:fptr/@FILEID").map do |file_id|
-      file_info(@mets.xpath("//mets:file[@ID='#{file_id.value}']"), volume_id)
+    @mets.xpath("//mets:div[@ID='#{volume_id}']//mets:fptr/@FILEID").map(&:value).uniq.map do |file_id|
+      file_info(@mets.xpath("//mets:file[@ID='#{file_id}']"), volume_id)
     end
   end
 
