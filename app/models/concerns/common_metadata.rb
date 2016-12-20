@@ -13,6 +13,11 @@ module CommonMetadata
       ActiveFedora::Indexers::GlobalIndexer.new([:stored_searchable, :facetable, :symbol])
     )
 
+    # Displayable fields (stored in solr but not indexed)
+    apply_schema DisplayableSchema, ActiveFedora::SchemaIndexingStrategy.new(
+      ActiveFedora::Indexers::GlobalIndexer.new([:displayable])
+    )
+
     # IIIF
     apply_schema IIIFBookSchema, ActiveFedora::SchemaIndexingStrategy.new(
       ActiveFedora::Indexers::GlobalIndexer.new([:stored_searchable, :symbol])
