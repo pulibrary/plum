@@ -5,6 +5,7 @@ RSpec.describe METSDocument do
   let(:mets_file_rtl) { Rails.root.join("spec", "fixtures", "pudl0032-ns73.mets") }
   let(:mets_file_multi) { Rails.root.join("spec", "fixtures", "pudl0001-4609321-s42.mets") }
   let(:mets_file_multi2) { Rails.root.join("spec", "fixtures", "pudl0058-616086.mets") }
+  let(:mets_file_multi3) { Rails.root.join("spec", "fixtures", "pudl0134-170151.mets") }
   let(:tight_bound_mets_file) { Rails.root.join("spec", "fixtures", "pudl0075-6971526.mets") }
   let(:tiff_file) { Rails.root.join("spec", "fixtures", "files", "color.tif") }
   let(:structure) { {
@@ -177,6 +178,16 @@ RSpec.describe METSDocument do
 
       it "uses the logical structure" do
         expect(subject.volume_ids).to eq ['v1log', 'v2log', 'v3log', 'v4log', 'v5log', 'v6log', 'v7log']
+      end
+    end
+
+    context "a multi-volume item with sections that begin and end in the middle of a page" do
+      subject { described_class.new mets_file_multi3 }
+
+      it "does not duplicate pages" do
+        expect(subject.volume_ids).to eq ['v1log', 'v2log']
+        expect(subject.files_for_volume('v1log').length).to eq 730
+        expect(subject.files_for_volume('v2log').length).to eq 492
       end
     end
   end
