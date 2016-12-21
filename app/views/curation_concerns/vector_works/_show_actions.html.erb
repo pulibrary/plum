@@ -1,0 +1,9 @@
+<% if collector || editor %>
+  <div class="form-actions">
+    <% if editor %>
+      <%= link_to "Edit This #{@presenter.human_readable_type}", edit_polymorphic_path([main_app, @presenter]), class: 'btn btn-default' %>
+      <%= render 'vector_actions', document: @presenter %>
+      <%= link_to "Delete This #{@presenter.human_readable_type}", [main_app, @presenter], class: 'btn btn-danger pull-right', data: { confirm: "Delete this #{@presenter.human_readable_type}?" }, method: :delete %>
+    <% end %>
+  </div>
+<% end %>
