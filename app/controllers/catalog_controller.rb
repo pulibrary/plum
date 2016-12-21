@@ -51,7 +51,7 @@ class CatalogController < ApplicationController
     #   The ordering of the field names is the order of the display
     config.add_index_field solr_name('description', :stored_searchable)
     config.add_index_field solr_name('tag', :stored_searchable)
-    config.add_index_field solr_name('subject', :stored_searchable)
+    config.add_index_field solr_name('subject', :stored_searchable), helper_method: :index_subject
     config.add_index_field solr_name('creator', :stored_searchable)
     config.add_index_field solr_name('contributor', :stored_searchable)
     config.add_index_field solr_name('publisher', :stored_searchable)
