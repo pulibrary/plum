@@ -7,6 +7,7 @@ RSpec.describe METSDocument do
   let(:mets_file_multi2) { Rails.root.join("spec", "fixtures", "pudl0058-616086.mets") }
   let(:mets_file_multi3) { Rails.root.join("spec", "fixtures", "pudl0134-170151.mets") }
   let(:tight_bound_mets_file) { Rails.root.join("spec", "fixtures", "pudl0075-6971526.mets") }
+  let(:no_logical_order_mets_file) { Rails.root.join("spec", "fixtures", "pudl0076-2538011.mets") }
   let(:tiff_file) { Rails.root.join("spec", "fixtures", "files", "color.tif") }
   let(:structure) { {
     nodes: [{
@@ -26,6 +27,14 @@ RSpec.describe METSDocument do
                 }
               ]
             }]
+  }}
+  let(:flat_structure) { {
+    nodes: [
+      { proxy: "s45u4", label: "vol 1 front cover" },
+      { proxy: "x04jf", label: "vol 1 pastedown" },
+      { proxy: "iocby", label: "vol 1 front flyleaf 1" },
+      { proxy: "jiots", label: "vol 1 front flyleaf 1v" }
+    ]
   }}
 
   describe "identifiers" do
@@ -188,6 +197,14 @@ RSpec.describe METSDocument do
         expect(subject.volume_ids).to eq ['v1log', 'v2log']
         expect(subject.files_for_volume('v1log').length).to eq 730
         expect(subject.files_for_volume('v2log').length).to eq 492
+      end
+    end
+
+    context "an item with no logical structmap" do
+      subject { described_class.new no_logical_order_mets_file }
+
+      it "defaults to the RelatedObjects order" do
+        expect(subject.structure).to eq flat_structure
       end
     end
   end
