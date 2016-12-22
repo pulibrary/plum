@@ -40,10 +40,6 @@ RSpec.describe "curation_concerns/base/_attributes.html.erb" do
     expect(rendered).to have_content 'Baggins'
   end
 
-  it "displays the metadata source id" do
-    expect(rendered).to have_content '8675309'
-  end
-
   it "displays the label for the rights URI" do
     expect(rendered).to have_content "No Known Copyright"
   end

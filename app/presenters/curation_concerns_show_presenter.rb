@@ -37,6 +37,10 @@ class CurationConcernsShowPresenter < CurationConcerns::WorkShowPresenter
     [title, responsibility_note].map { |t| Array.wrap(t).first }.select { |t| !t.blank? }.join(' / ')
   end
 
+  def display_call_number
+    Array.wrap(lccn_call_number.present? ? lccn_call_number : local_call_number).first
+  end
+
   def start_canvas
     Array.wrap(solr_document.start_canvas).first
   end
