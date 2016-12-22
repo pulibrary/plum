@@ -1,6 +1,6 @@
 module MetsStructure
   def structure
-    structure_type('Logical')
+    structure_type('Logical') || default_structure
   end
 
   def structure_for_volume(volume_id)
@@ -25,6 +25,10 @@ module MetsStructure
       top = structure_map(type).xpath("mets:div/mets:div")
       return nil unless top.length > 0
       { nodes: structure_for_nodeset(top) }
+    end
+
+    def default_structure
+      { nodes: structure_for_nodeset(structure_map('RelatedObjects').xpath("mets:div/mets:div[@TYPE = 'OrderedList']/mets:div")) }
     end
 
     def structure_for_nodeset(nodeset)
