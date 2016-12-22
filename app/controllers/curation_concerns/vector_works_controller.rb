@@ -3,7 +3,7 @@ class CurationConcerns::VectorWorksController < ApplicationController
   include CurationConcerns::ParentContainer
   include GeoConcerns::VectorWorksControllerBehavior
   include GeoConcerns::GeoblacklightControllerBehavior
-  include GeoConcerns::MessengerBehavior
+  include CurationConcerns::GeoMessengerBehavior
   include CurationConcerns::Flagging
   self.curation_concern_type = VectorWork
 
