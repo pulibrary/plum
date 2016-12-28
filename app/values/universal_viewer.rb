@@ -11,7 +11,7 @@ class UniversalViewer
   end
 
   def viewer_link
-    "/#{viewer_root}/uv-#{viewer_version}/lib/embed.js"
+    "#{Rails.application.config.relative_url_root}/#{viewer_root}/uv-#{viewer_version}/lib/embed.js"
   end
 
   def viewer_root

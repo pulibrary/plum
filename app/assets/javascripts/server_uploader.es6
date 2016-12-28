@@ -6,10 +6,7 @@ export default class ServerUploader {
   }
 
   mount_browse_everything() {
-    this.element.browseEverything({
-      route: "/browse",
-      target: "#browse-everything-form"
-    }).done(this.finished_browsing)
+    this.element.browseEverything().done(this.finished_browsing)
   }
 
   get finished_browsing() {

@@ -1,0 +1,9 @@
+:enabled: false
+:host: <%= ENV["PMP_LDAP_HOST"] %>
+:auth:
+  :method: :simple
+  :username: cn=<%= ENV["PMP_LDAP_USER"] || 'guest,ou=Accounts,dc=ads,dc=example,dc=net' %>
+  :password: <%= ENV["PMP_LDAP_PASS"] || 'changeme' %>
+:tree: <%= ENV["PMP_LDAP_TREE"] || 'dc=ads,dc=example,dc=net' %>
+:account_ou: <%= ENV["PMP_LDAP_ACCOUNT_OU"] || 'ou=Accounts' %>
+:group_ou: <%= ENV["PMP_LDAP_GROUP_OU"] || 'ou=Groups' %>

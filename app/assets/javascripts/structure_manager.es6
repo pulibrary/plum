@@ -69,7 +69,8 @@ export default class StructureManager {
       event.preventDefault()
       let element = $(".sortable")
       let serializer = new StructureParser(element)
-      let url = `/concern/${element.attr("data-class-name")}/${element.attr("data-id")}/structure`
+      let root_prefix = $(event.currentTarget).attr("data-prefix")
+      let url = `${root_prefix}/concern/${element.attr("data-class-name")}/${element.attr("data-id")}/structure`
       let button = $(this)
       button.text("Saving..")
       button.addClass("disabled")

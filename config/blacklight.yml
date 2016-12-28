@@ -6,6 +6,6 @@ test: &test
   url: <%= "http://localhost:#{ENV['TEST_JETTY_PORT'] || 8985}/solr/hydra-test" %>
 production: &production
   adapter: solr
-  url: <%= ENV['PLUM_SOLR_URL'] || "http://localhost:8983/solr/blacklight-core" %>
+  url: <%= ENV['PMP_SOLR_URL'] %>
 staging: 
   <<: *production

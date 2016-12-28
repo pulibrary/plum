@@ -1,5 +1,5 @@
 <% if presenter.respond_to?(:member_presenters) && presenter.member_presenters.present? %>
-  <div class="uv viewer" data-config="/uv_config.json" data-uri="<%= main_app.polymorphic_path([main_app,:manifest,presenter]) %>" ></div>
+  <div class="uv viewer" data-config="<%= "#{Rails.application.config.relative_url_root}/uv_config.json" %>" data-uri="<%= main_app.polymorphic_path([main_app,:manifest,presenter]) %>" ></div>
   <%= UniversalViewer.script_tag %>
 <% else %>
   <%= image_tag 'nope.png', class: "canonical-image" %>

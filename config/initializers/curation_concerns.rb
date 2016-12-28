@@ -24,7 +24,7 @@ CurationConcerns.configure do |config|
   # config.persistent_hostpath = 'http://localhost/files/'
 
   # Location on local file system where derivatives will be stored.
-  # config.derivatives_path = File.join(Rails.root, 'tmp', 'derivatives')
+  config.derivatives_path = ENV["PMP_DERIVATIVES_PATH"] || File.join(Rails.root, 'tmp', 'derivatives')
 
   # If you have ffmpeg installed and want to transcode audio and video uncomment this line
   # config.enable_ffmpeg = true
@@ -49,7 +49,7 @@ CurationConcerns.configure do |config|
   # Leaving it blank will set the start date to when ever the file was uploaded by
   # NOTE: if you have always sent analytics to GA for downloads and page views leave this commented out
   # config.analytic_start_date = DateTime.new(2014,9,10)
-  config.working_path = ENV["PLUM_UPLOAD_PATH"]
+  config.working_path = ENV["PMP_UPLOAD_PATH"]
 end
 
 Date::DATE_FORMATS[:standard] = '%m/%d/%Y'

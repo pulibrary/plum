@@ -22,8 +22,10 @@ noid-minter-state
 /fits
 /coverage
 /staged_files
+/public/assets
 
 /config/ldap_groups_lookup.yml
+.secrets.sh
 
 # Ignore Ruby Version Management stuff
 # /.rvmrc

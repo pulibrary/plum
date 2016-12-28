@@ -6,7 +6,8 @@ $(document).ready(function(){
 function detect_duplicates() {
   var $me = $(this);
   if ( $me.val() != '' ) {
-    var url = '/catalog?f[source_metadata_identifier_ssim][]=' + $me.val();
+    var prefix = $('.detect_duplicates').attr("data-prefix")
+    var url = prefix + '/catalog?f[source_metadata_identifier_ssim][]=' + $me.val();
     $.ajax({ url: url + '&format=json' })
     .done(function(data) {
       if ( data.docs.length > 0 ) {

@@ -22,11 +22,11 @@ test:
 
 production: &production
   <<: *default
-  adapter: postgresql
-  database: <%= ENV["PLUM_DB"] %>
-  host: <%= ENV["PLUM_DB_HOST"] %>
-  username: <%= ENV["PLUM_DB_USERNAME"] %>
-  password: <%= ENV["PLUM_DB_PASSWORD"] %>
+  adapter: mysql2
+  database: <%= ENV["PMP_DB"] %>
+  host: <%= ENV["PMP_DB_HOST"] %>
+  username: <%= ENV["PMP_DB_USERNAME"] %>
+  password: <%= ENV["PMP_DB_PASSWORD"] %>
 
 staging:
   <<: *production

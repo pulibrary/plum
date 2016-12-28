@@ -42,7 +42,7 @@
 
 #footer .signature { text-align: center; }
 
-#footer .signature-link { background: url("iu-sig-formal.2x.png") no-repeat left top; background-size: contain; display: inline-block; height: 0; padding-top: 36px; overflow: hidden; width: 240px; }
+#footer .signature-link { background: url("//assets.iu.edu/brand/3.x/iu-sig-formal.svg") no-repeat left top; background-size: contain; display: inline-block; height: 0; padding-top: 36px; overflow: hidden; width: 240px; }
 
 #footer p { font-size: 12px; line-height: 24px; margin: 0; clear: left; }
 
@@ -50,25 +50,28 @@
 
 #footer .tagline span { text-transform: lowercase; font-family: GeorgiaProBoldItalic, Georgia, serif; font-size: 1rem; vertical-align: 2px; letter-spacing: 0; margin-left: -4px; }
 
-@media screen and (max-width: 320px) { #footer .line-break { display: block; } }
+@media screen and (max-width: 350px) { #footer .line-break-small { display: block; } }
+
+@media screen and (max-width: 420px) { #footer .line-break { display: block; }
+    #footer .hide-on-mobile { display: none; } }
 
 @media only screen and (min-width: 40em) { /* Campus names */
-  #branding-bar .show-on-tablet { display: inline; }
-  #branding-bar .show-on-mobile, #branding-bar .show-on-desktop { display: none; }
-  #footer { text-align: left; border-top: 6px solid #7A1705; padding: 32px 0 24px; }
-  #footer p { line-height: 2.25rem; }
-  #footer .signature { float: left; text-align: left; height: 40px; }
-  #footer .copyright { float: right; clear: right; text-align: right; }
-  #footer .tagline { font-size: 1.5rem; position: absolute; left: 50%; margin: 0 -200px 0 0; top: -55px; padding: 0 24px; -webkit-transform: translateX(-50%); -moz-transform: translateX(-50%); -ms-transform: translateX(-50%); -o-transform: translateX(-50%); transform: translateX(-50%); } }
+    #branding-bar .show-on-tablet { display: inline; }
+    #branding-bar .show-on-mobile, #branding-bar .show-on-desktop { display: none; }
+    #footer { text-align: left; border-top: 6px solid #7A1705; padding: 32px 0 24px; }
+    #footer p { line-height: 2.25rem; }
+    #footer .signature { float: left; text-align: left; height: 40px; }
+    #footer .copyright { float: right; clear: right; text-align: right; }
+    #footer .tagline { font-size: 1.5rem; position: absolute; left: 50%; margin: 0 -200px 0 0; top: -55px; padding: 0 24px; -webkit-transform: translateX(-50%); -moz-transform: translateX(-50%); -ms-transform: translateX(-50%); -o-transform: translateX(-50%); transform: translateX(-50%); } }
 
 @media only screen and (min-width: 1025px) { #branding-bar { margin-bottom: 15px; /* account for trident */ position: relative; }
-  #branding-bar:after { height: 0; }
-  #branding-bar img { position: absolute; top: -5px; width: 65px; }
-  #branding-bar h1, #branding-bar #iu-campus { line-height: 52px; padding-left: 80px; }
-  #branding-bar .search { margin-top: 6px; float: right; width: 250px; }
-  #branding-bar input[type='text'] { width: 80%; float: left; margin-bottom: 0; }
-  #branding-bar input[type='submit'].button { width: 20%; float: left; border-radius: 0; } }
+    #branding-bar:after { height: 0; }
+    #branding-bar img { position: absolute; top: -5px; width: 65px; }
+    #branding-bar h1, #branding-bar #iu-campus { line-height: 52px; padding-left: 80px; }
+    #branding-bar .search { margin-top: 6px; float: right; width: 250px; }
+    #branding-bar input[type='text'] { width: 80%; float: left; margin-bottom: 0; }
+    #branding-bar input[type='submit'].button { width: 20%; float: left; border-radius: 0; } }
 
 @media only screen and (min-width: 1025px) { /* Campus names */
-  #branding-bar .show-on-desktop { display: inline !important; }
-  #branding-bar .show-on-tablet, #branding-bar .show-on-desktop { display: none; } }
+    #branding-bar .show-on-desktop { display: inline !important; }
+    #branding-bar .show-on-tablet, #branding-bar .show-on-desktop { display: none; } }

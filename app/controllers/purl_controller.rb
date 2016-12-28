@@ -14,7 +14,7 @@ class PurlController < ApplicationController
     rescue
       render_404 && return
     end
-    url = "#{request.protocol}#{request.host_with_port}/concern/#{@subfolder}/#{realid}"
+    url = "#{request.protocol}#{request.host_with_port}#{config.relative_url_root}/concern/#{@subfolder}/#{realid}"
     respond_to do |f|
       f.html { redirect_to url }
       f.json { render json: { url: url }.to_json }

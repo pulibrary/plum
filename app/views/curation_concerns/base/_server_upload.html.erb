@@ -5,7 +5,10 @@
         <% if params[:parent_id] %>
           <%= hidden_field_tag 'parent_id', params[:parent_id] %>
         <% end %>
-        <%= button_tag type: 'button', class: 'browse-everything btn btn-primary' do %>
+        <%= button_tag type: 'button', class: 'browse-everything btn btn-primary',
+                       data: {toggle: 'browse-everything',
+                              route: browse_everything_engine.root_path,
+                              target: '#browse-everything-form' } do %>
           Upload from Server
         <% end %>
       <% end %>

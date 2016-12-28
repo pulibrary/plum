@@ -1,11 +1,11 @@
 defaults: &defaults
   locations_url: '' # currently replaced with config/digital_locations.yml
-  notifier_email_address: pumpkin@iu.edu
-  iiif_url: <%= ENV["PLUM_IIIF_URL"] || "http://192.168.99.100:5004" %>
+  notifier_email_address: <%= ENV["PMP_MAILER_ADDRESS"] || "pumpkin@iu.edu" %>
+  iiif_url: <%= ENV["PMP_IIIF_URL"] || "http://192.168.99.100:5004" %>
 
-  store_original_files: true
-  master_file_service_url: <%= ENV["MASTER_FILE_SERVICE_URL"] || "http://purl.dlib.indiana.edu/iudl/variations/master" %>
-  access_file_service_url: <%= ENV["ACCESS_FILE_SERVICE_URL"] || "http://purl.dlib.indiana.edu/iudl/variations/access" %>
+  store_original_files: <%= ENV["PMP_STORE_ORIGINAL_FILES"] == 'true' || "true" %>
+  master_file_service_url: <%= ENV["PMP_MASTER_FILE_SERVICE_URL"] || "http://purl.dlib.indiana.edu/iudl/variations/master" %>
+  access_file_service_url: <%= ENV["PMP_ACCESS_FILE_SERVICE_URL"] || "http://purl.dlib.indiana.edu/iudl/variations/access" %>
 
   jp2_recipes:
     default_color: >
@@ -42,13 +42,13 @@ defaults: &defaults
     server: 'amqp://localhost:5672'
     exchange: 'plum_events'
   authorized_ldap_groups:
-  - BL-LDLP-VariationsMCOUsers
+  - <%= ENV["PMP_LDAP_AUTHORIZED_GROUPS"] || 'TestGroup' %>
   ezid:
     mint: false
     update: false
   manifest_builder:
     see_also_hash:
-      id: 'http://dlib.indiana.edu:9000/iucatextract?maximumRecords=1&operation=searchRetrieve&query=cql.serverChoice=%s&recordSchema=marcxml&version=1.1'
+      id: <%= ENV["PMP_MANIFEST_SEE_ALSO_URL"] || 'http://dlib.indiana.edu:9000/iucatextract?maximumRecords=1&operation=searchRetrieve&query=cql.serverChoice=%s&recordSchema=marcxml&version=1.1' %>
       format: 'application/xml'
   metadata:
     url: 'https://purl.dlib.indiana.edu/iudl/iucat/%s'
@@ -67,7 +67,7 @@ test:
 production:
   <<: *defaults
   events:
-    server: <%= ENV['PLUM_RABBIT_SERVER'] || 'amqp://localhost:5672' %>
+    server: # <%= ENV['PLUM_RABBIT_SERVER'] || 'amqp://localhost:5672' %>
     exchange: "plum_events"
 
 staging:

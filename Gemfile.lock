@@ -225,7 +225,7 @@ GEM
       execjs
     coffee-script-source (1.10.0)
     concurrent-ruby (1.0.2)
-    connection_pool (2.2.0)
+    connection_pool (2.2.1)
     coveralls (0.8.15)
       json (>= 1.8, < 3)
       simplecov (~> 0.12.0)
@@ -235,6 +235,7 @@ GEM
     crack (0.4.3)
       safe_yaml (~> 1.0.0)
     daemons (1.2.4)
+    dalli (2.7.6)
     debug_inspector (0.0.2)
     deprecation (1.0.0)
       activesupport
@@ -265,7 +266,7 @@ GEM
       railties (>= 3.0.0)
     faraday (0.9.2)
       multipart-post (>= 1.2, < 3)
-    fcrepo_wrapper (0.6.0)
+    fcrepo_wrapper (0.7.0)
       ruby-progressbar
     ffi (1.9.10)
     font-awesome-rails (4.6.3.1)
@@ -394,6 +395,7 @@ GEM
       activesupport (>= 3.0.0)
     kaminari_route_prefix (0.0.1)
       kaminari (>= 0.16, < 2)
+    kgio (2.11.0)
     launchy (2.4.3)
       addressable (~> 2.3)
     ldp (0.6.2)
@@ -436,6 +438,7 @@ GEM
     multi_json (1.12.1)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
+    mysql2 (0.4.5)
     nenv (0.3.0)
     net-http-persistent (2.9.4)
     net-ldap (0.15.0)
@@ -475,7 +478,6 @@ GEM
     parslet (1.7.1)
       blankslate (>= 2.0, <= 4.0)
     pdf-core (0.6.1)
-    pg (0.19.0)
     phantomjs (2.1.1.0)
     posix-spawn (0.3.11)
     powerpack (0.1.1)
@@ -491,7 +493,7 @@ GEM
       pry (~> 0.10)
     pry-rails (0.3.4)
       pry (>= 0.9.10)
-    puma (3.6.0)
+    puma (3.6.2)
     qa (0.10.2)
       activerecord-import
       deprecation
@@ -617,10 +619,10 @@ GEM
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
     shellany (0.0.1)
-    sidekiq (4.2.2)
+    sidekiq (4.2.7)
       concurrent-ruby (~> 1.0)
       connection_pool (~> 2.2, >= 2.2.0)
-      rack-protection (~> 1.5)
+      rack-protection (>= 1.5.0)
       redis (~> 3.2, >= 3.2.1)
     signet (0.7.3)
       addressable (~> 2.3)
@@ -645,7 +647,7 @@ GEM
       httparty (>= 0.11.0)
       oauth2 (>= 0.9.2)
     slop (3.6.0)
-    solr_wrapper (0.18.1)
+    solr_wrapper (0.19.0)
       faraday
       ruby-progressbar
       rubyzip
@@ -730,11 +732,12 @@ DEPENDENCIES
   coffee-rails (~> 4.1.0)
   coveralls
   curation_concerns!
+  dalli
   devise (~> 3.0)
   devise-guests (~> 0.3)
   ezid-client
   factory_girl_rails
-  fcrepo_wrapper (~> 0.6.0)
+  fcrepo_wrapper (~> 0.7.0)
   guard-rspec
   guard-rubocop
   hydra-derivatives
@@ -748,14 +751,15 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   jquery-ui-rails
+  kgio
   launchy
   ldap_groups_lookup (~> 0.4.0)!
   modernizr-rails
+  mysql2
   net-http-persistent (~> 2.9.4)
   omniauth-cas
   openseadragon
   pdf-reader!
-  pg
   posix-spawn
   prawn
   pry-byebug
@@ -779,7 +783,7 @@ DEPENDENCIES
   sidekiq
   simplecov
   sinatra
-  solr_wrapper (~> 0.18.0)
+  solr_wrapper (~> 0.19.0)
   spring
   sprockets (~> 3.5.0)
   sprockets-es6

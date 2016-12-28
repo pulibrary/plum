@@ -9,10 +9,10 @@ test:
   url: http://localhost:8986/rest
   base_path: /test
 production: &production
-  user: <%= ENV["PLUM_FEDORA_USER"] || "fedoraAdmin" %>
-  password: <%= ENV["PLUM_FEDORA_PASS"] || "fedoraAdmin" %>
-  url: <%= ENV["PLUM_FEDORA_URL"] || "http://localhost:8984/rest" %>
-  base_path: /prod
+  user: <%= ENV["PMP_FEDORA_USER"] %>
+  password: <%= ENV["PMP_FEDORA_PASS"] %>
+  url: <%= ENV["PMP_FEDORA_URL"] %>
+  base_path: <%= ENV["PMP_FEDORA_BASE"]	%>
 staging:
   <<: *production
   base_path: /staging

@@ -7,7 +7,12 @@
       Add a Section
     </button>
   </a>
-  <button data-action="submit-list" class="btn btn-primary">Save</button>
+  <!--<button data-action="submit-list" class="btn btn-primary">Save</button>-->
+  <%= button_tag type: 'button', class: 'btn btn-primary',
+                 data: { action: 'submit-list',
+                         prefix: Rails.application.config.relative_url_root } do %>
+    Save
+  <% end %>
 </div>
 <ul class="sortable" data-id="<%= @presenter.id %>" data-class-name="<%= @presenter.model_name.plural %>">
   <form class="form-inline">

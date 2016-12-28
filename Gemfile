@@ -78,8 +78,8 @@ group :development, :test do
   gem 'guard-rubocop', require: false
 end
 
-gem 'solr_wrapper', '~> 0.18.0'
-gem 'fcrepo_wrapper', '~> 0.6.0'
+gem 'solr_wrapper', '~> 0.19.0'
+gem 'fcrepo_wrapper', '~> 0.7.0'
 gem 'coveralls', require: false
 
 group :development do
@@ -101,7 +101,10 @@ group :test do
 end
 
 group :production do
-  gem 'pg'
+#   gem 'pg'
+  gem 'mysql2'
+  gem 'dalli'
+  gem 'kgio'
 end
 gem 'posix-spawn'
 gem 'openseadragon'
