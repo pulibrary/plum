@@ -48,35 +48,37 @@ describe PurlController do
         include_examples "responses for matches"
       end
     end
-    shared_examples "returns 404 responses" do
+    shared_examples "responses for no matches" do
+      let(:target_path) { Plum.config['purl_redirect_url'] % id }
+      before(:each) do
+        get :default, id: id, format: format
+      end
       context "in html" do
         let(:format) { 'html' }
-        it "returns a 404 response" do
-          expect(response.status).to eq(404)
-          expect(response).to render_template(file: "#{Rails.root}/public/404.html")
+        it "redirects to #{Plum.config['purl_redirect_url']}" do
+          expect(response).to redirect_to target_path
         end
       end
       context "in json" do
         let(:format) { 'json' }
-        it "returns a 404 response" do
-          expect(response.status).to eq(404)
-          expect(JSON.parse(response.body)['error']).to eq 'not_found'
+        it 'renders a json response' do
+          expect(JSON.parse(response.body)['url']).to match target_path
         end
       end
     end
     context "with an invalid id" do
+      let(:id) { 'BHR940' }
       before(:each) do
-        get :default, id: 'BHR940', format: format
+        scanned_resource
       end
-      include_examples "returns 404 responses"
+      include_examples "responses for no matches"
     end
     context "with an unmatched id" do
+      let!(:id) { scanned_resource.source_metadata_identifier }
       before(:each) do
-        unmatched_id = scanned_resource.source_metadata_identifier
         scanned_resource.destroy!
-        get :default, id: unmatched_id, format: format
       end
-      include_examples "returns 404 responses"
+      include_examples "responses for no matches"
     end
   end
 end

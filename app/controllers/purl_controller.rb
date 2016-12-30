@@ -11,10 +11,10 @@ class PurlController < ApplicationController
     begin
       set_object
       realid = @solr_hit.id
+      url = "#{request.protocol}#{request.host_with_port}#{config.relative_url_root}/concern/#{@subfolder}/#{realid}"
     rescue
-      render_404 && return
+      url = Plum.config['purl_redirect_url'] % params[:id]
     end
-    url = "#{request.protocol}#{request.host_with_port}#{config.relative_url_root}/concern/#{@subfolder}/#{realid}"
     respond_to do |f|
       f.html { redirect_to url }
       f.json { render json: { url: url }.to_json }

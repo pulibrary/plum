@@ -6,6 +6,7 @@ defaults: &defaults
   store_original_files: <%= ENV["PMP_STORE_ORIGINAL_FILES"] == 'true' || "true" %>
   master_file_service_url: <%= ENV["PMP_MASTER_FILE_SERVICE_URL"] || "http://purl.dlib.indiana.edu/iudl/variations/master" %>
   access_file_service_url: <%= ENV["PMP_ACCESS_FILE_SERVICE_URL"] || "http://purl.dlib.indiana.edu/iudl/variations/access" %>
+  purl_redirect_url: <%= ENV["PMP_PURL_REDIRECT_URL"] || "http://server1.variations2.indiana.edu/cgi-bin/access?%s" %>
 
   jp2_recipes:
     default_color: >
