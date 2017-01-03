@@ -32,7 +32,9 @@
   <% end %>
   <%= @presenter.attribute_to_html(:identifier) %>
   <%= @presenter.attribute_to_html(:source_metadata_identifier) %>
-  <%= render 'curation_concerns/base/member_of_collections', presenter: @presenter %>
+  <% if defined?(presenter.member_of_collection_presenters) && presenter.member_of_collection_presenters.size > 0 %>
+    <%= render 'curation_concerns/base/member_of_collections', presenter: @presenter %>
+  <% end %>
   <% if can? :edit, @presenter.id %>
     <%= @presenter.attribute_to_html(:workflow_note) %>
   <% end %>
