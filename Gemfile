@@ -31,7 +31,7 @@ gem 'modernizr-rails'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-gem 'curation_concerns', '1.7.1'
+gem 'curation_concerns', '2.0.0.rc1'
 gem 'pul_metadata_services', github:'pulibrary/pul_metadata_services', branch: :master
 gem 'hydra-role-management', '~> 0.2.0'
 gem 'rsolr', '~> 1.1.0'
@@ -54,6 +54,7 @@ gem 'active_fedora-noid', '2.0.0.beta6'
 
 gem 'rubocop', '~> 0.34.0', require: false
 gem 'rubocop-rspec', '~> 1.3.0', require: false
+gem 'rake', '11.3.0'
 
 group :development, :test do
   gem 'simplecov', '~> 0.9', require: false
