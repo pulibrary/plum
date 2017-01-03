@@ -1,5 +1,8 @@
 <% if CurationConcerns.config.display_media_download_link %>
-    <%= link_to main_app.download_path(file_set), target: "_new", title: "Download the full-sized image" do %>
+    <%= link_to main_app.download_path(file_set),
+                target: :_blank,
+                data: { turbolinks: false },
+                title: "Download the full-sized image" do %>
         <figure>
             <%= render_thumbnail_tag file_set, { class: "img-responsive",
                     alt: "Download the full-sized image of #{file_set.to_s}",
