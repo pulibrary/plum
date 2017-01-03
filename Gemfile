@@ -31,7 +31,7 @@ gem 'modernizr-rails'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-gem 'curation_concerns', github:'projecthydra-labs/curation_concerns', branch: :member_of_replace_plum
+gem 'curation_concerns', '1.7.1'
 gem 'pul_metadata_services', github:'pulibrary/pul_metadata_services', branch: :master
 gem 'hydra-role-management', '~> 0.2.0'
 gem 'rsolr', '~> 1.1.0'
