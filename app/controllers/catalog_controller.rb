@@ -6,14 +6,15 @@ class CatalogController < ApplicationController
     {
       # 'qf' => %w(title_tesim name_tesim source_metadata_identifier_ssim logical_order_headings_tesim member_of_collection_slugs_ssim full_text_tesim),
       'qf' => %w(title_tesim
+                 name_tesim
                  creator_tesim
                  date_created_tesim
                  published_tesim
                  subject_tesim
-                 member_ids_ssim
-                 source_metadata_identifier_ssim
+                 source_metadata_identifier_tesim
                  logical_order_headings_tesim
-                 member_of_collection_slugs_ssim),
+                 member_of_collection_slugs_ssim
+                 full_text_tesim),
       'qt' => 'search',
       'rows' => 10
     }
@@ -47,13 +48,13 @@ class CatalogController < ApplicationController
     config.add_facet_field solr_name('tag', :facetable), limit: true
     config.add_facet_field solr_name('creator', :facetable), limit: true
     config.add_facet_field solr_name('subject', :facetable), limit: true
+    config.add_facet_field solr_name('publication_place', :facetable), label: 'Publication Place', limit: true
+    config.add_facet_field solr_name('publisher', :facetable), limit: true
     config.add_facet_field solr_name('date_created', :stored_sortable, type: :integer), label: 'Date Created', limit: true
     config.add_facet_field solr_name('language', :facetable), limit: true
     # config.add_facet_field solr_name('based_near', :facetable), limit: 5
     # config.add_facet_field solr_name('file_format', :facetable), limit: 5
     # config.add_facet_field 'generic_type_sim', show: false, single: true
-    config.add_facet_field solr_name('publisher', :facetable), limit: true
-
     config.add_facet_field solr_name('number_of_pages', :stored_sortable, type: :string), sort: 'index', label: 'Pages', limit: true
 
     # Have BL send all facet field names to Solr, which has been the default
