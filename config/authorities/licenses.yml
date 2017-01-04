@@ -76,7 +76,7 @@ terms:
       <br/>For other uses you need to obtain permission from the rightsholder(s).
   - id: http://rightsstatements.org/vocab/NoC-CR/1.0/
     term: No Copyright - Contractual Restrictions
-    notable: false
+    notable: true
     active: true
     scopeNote: |
       This Rights Statement can only be used for Items that are in the Public
@@ -94,7 +94,7 @@ terms:
       cultural protections, digitization agreements or donor agreements.
   - id: http://rightsstatements.org/vocab/NoC-OKLR/1.0/
     term: No Copyright - Other Known Legal Restrictions
-    notable: false
+    notable: true
     active: true
     scopeNote: |
       This Rights Statement should be used for Items that are in the public
