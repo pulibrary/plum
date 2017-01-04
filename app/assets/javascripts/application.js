@@ -24,8 +24,10 @@
 //= require bootstrap-select
 //= require openseadragon
 
-// = require curation_concerns/application
+//= require geo_concerns
+//= require curation_concerns/application
 //= require_tree .
+//= require geo_concerns/es6-modules
 
 //= require modernizr
 //= require jquery.iiifOsdViewer

@@ -62,6 +62,15 @@ RSpec.describe FileSet do
       expect(ocr_path).to exist
       expect(subject.to_solr["full_text_tesim"]).to eq "yo"
     end
+    it "creates a vector thumbnail and indexes the path" do
+      allow_any_instance_of(described_class).to receive(:warn) # suppress virus check warnings
+      subject.geo_mime_type = 'application/vnd.geo+json'
+      file = File.open(Rails.root.join("spec", "fixtures", "files", "mercer.json"))
+      Hydra::Works::UploadFileToFileSet.call(subject, file)
+      subject.create_derivatives(file.path)
+
+      expect(subject.to_solr['thumbnail_path_ss']).to match(/file=thumbnail/)
+    end
     after do
       FileUtils.rm_rf(path.parent) if path.exist?
       FileUtils.rm_rf(ocr_path.parent) if ocr_path.exist?
@@ -84,6 +93,14 @@ RSpec.describe FileSet do
     it 'retrieves a fileset by the original file checksum' do
       expect(described_class.where(digest_ssim: "urn:sha1:#{sha1}").first).to_not be_nil
       expect(described_class.where(digest_ssim: "urn:sha1:#{sha1}").first.id).to eq(file_set.id)
+    end
+  end
+
+  describe '#metadata_xml' do
+    let(:xml_file) { Rails.root.join('spec', 'fixtures', 'voyager-2028405.xml') }
+    it 'will read the local file for its XML' do
+      expect(subject).to receive(:local_file) { xml_file }
+      expect(subject.send(:metadata_xml)).to be_kind_of Nokogiri::XML::Document
     end
   end
 end

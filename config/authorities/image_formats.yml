@@ -1,0 +1,7 @@
+terms:
+  - id: image/jpeg
+    term: JPEG
+    code: JPEG
+  - id: image/tiff
+    term: TIFF
+    code: TIFF

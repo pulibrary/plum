@@ -1,6 +1,9 @@
 # -*- encoding : utf-8 -*-
 class SolrDocument
   include Blacklight::Solr::Document
+  # Adds GeoConcerns behaviors to the SolrDocument.
+  include GeoConcerns::SolrDocumentBehavior
+
   # Adds CurationConcerns behaviors to the SolrDocument.
   include CurationConcerns::SolrDocumentBehavior
   include SolrDates

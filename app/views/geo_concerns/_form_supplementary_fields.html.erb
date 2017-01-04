@@ -1,0 +1,28 @@
+<%= render "geo_concerns/form_bounding_box", f: f %>
+<%= render "geo_concerns/form_files_and_links", f: f %>
+<%= render "form_member_of_collections", f: f %>
+<%= render "form_media", f: f %>
+
+<div class="row with-headroom">
+  <div class="col-md-12">
+    <%= render "form_permission", curation_concern: curation_concern, f: f %>
+  </div>
+</div>
+
+<div class="row with-headroom">
+  <div class="col-md-12">
+    <%= render "form_access_policy", curation_concern: curation_concern, f: f %>
+  </div>
+</div>
+
+<div class="row with-headroom">
+  <div class="col-md-12">
+    <%= render "form_state", curation_concern: curation_concern, f: f %>
+  </div>
+</div>
+
+<%= render "form_in_works", f: f %>
+
+<% unless curation_concern.new_record? %>
+  <%= render "geo_concerns/form_populate_metadata", f: f %>
+<% end %>

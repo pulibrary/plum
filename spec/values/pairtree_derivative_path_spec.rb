@@ -1,8 +1,11 @@
 require 'rails_helper'
 
 describe PairtreeDerivativePath do
+  let(:plum_config) { { geo_derivatives_path: 'geo-derivatives' } }
+
   before do
     allow(CurationConcerns.config).to receive(:derivatives_path).and_return('tmp')
+    allow(Plum).to receive(:config).and_return(plum_config)
   end
 
   describe '.derivative_path_for_reference' do
@@ -48,6 +51,18 @@ describe PairtreeDerivativePath do
           expect(subject).to eql "tmp/08/61/2n/57/q-banana-gray-pdf.pdf"
         end
       end
+    end
+    context 'when given a display raster' do
+      let(:destination_name) { 'display_raster' }
+      it { is_expected.to eq 'tmp/08/61/2n/57/q-display_raster.tif' }
+    end
+    context 'when given a display vector' do
+      let(:destination_name) { 'display_vector' }
+      it { is_expected.to eq 'tmp/08/61/2n/57/q-display_vector.zip' }
+    end
+    context 'when given a geo file set' do
+      let(:object) { double(id: '08612n57q', geo_mime_type: 'application/vnd.geo+json') }
+      it { is_expected.to eq 'geo-derivatives/08/61/2n/57/q-thumbnail.jpeg' }
     end
   end
 end

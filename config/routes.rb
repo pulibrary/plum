@@ -38,6 +38,7 @@ Rails.application.routes.draw do
   curation_concerns_basic_routes
   curation_concerns_embargo_management
 
+  mount GeoConcerns::Engine => '/'
   get "/iiif/collections", defaults: { format: :json }, controller: :collections, action: :index_manifest
 
   namespace :curation_concerns, path: :concern do
@@ -67,6 +68,21 @@ Rails.application.routes.draw do
         post :structure, action: :save_structure
         get :manifest, defaults: { format: :json }
         post :browse_everything_files
+        post :flag
+      end
+    end
+    resources :image_works, only: [] do
+      member do
+        post :flag
+      end
+    end
+    resources :raster_works, only: [] do
+      member do
+        post :flag
+      end
+    end
+    resources :vector_works, only: [] do
+      member do
         post :flag
       end
     end

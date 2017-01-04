@@ -4,6 +4,7 @@ class CurationConcerns::CurationConcernsController < ApplicationController
   include CurationConcerns::MemberManagement
   include CurationConcerns::UpdateOCR
   include CurationConcerns::RemoteMetadata
+  include CurationConcerns::Flagging
 
   def curation_concern_name
     curation_concern.class.name.underscore
@@ -22,23 +23,6 @@ class CurationConcerns::CurationConcernsController < ApplicationController
   def file_manager
     parent_presenter
     super
-  end
-
-  def flag
-    curation_concern.state = 'flagged'
-    note = params[curation_concern_name][:workflow_note]
-    curation_concern.workflow_note = curation_concern.workflow_note + [note] unless note.blank?
-    if curation_concern.save
-      respond_to do |format|
-        format.html { redirect_to [main_app, curation_concern], notice: "Resource updated" }
-        format.json { render json: { state: state } }
-      end
-    else
-      respond_to do |format|
-        format.html { redirect_to [main_app, curation_concern], alert: "Unable to update resource" }
-        format.json { render json: { error: "Unable to update resource" } }
-      end
-    end
   end
 
   def browse_everything_files

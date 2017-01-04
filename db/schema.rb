@@ -13,9 +13,6 @@
 
 ActiveRecord::Schema.define(version: 20161101144655) do
 
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
-
   create_table "bookmarks", force: :cascade do |t|
     t.integer  "user_id",       null: false
     t.string   "user_type"
@@ -26,7 +23,7 @@ ActiveRecord::Schema.define(version: 20161101144655) do
     t.string   "document_type"
   end
 
-  add_index "bookmarks", ["user_id"], name: "index_bookmarks_on_user_id", using: :btree
+  add_index "bookmarks", ["user_id"], name: "index_bookmarks_on_user_id"
 
   create_table "checksum_audit_logs", force: :cascade do |t|
     t.string   "file_set_id"
@@ -39,7 +36,7 @@ ActiveRecord::Schema.define(version: 20161101144655) do
     t.datetime "updated_at"
   end
 
-  add_index "checksum_audit_logs", ["file_set_id", "file_id"], name: "by_file_set_id_and_file_id", using: :btree
+  add_index "checksum_audit_logs", ["file_set_id", "file_id"], name: "by_generic_file_id_and_file_id"
 
   create_table "minter_states", force: :cascade do |t|
     t.string   "namespace",            default: "default", null: false
@@ -51,7 +48,7 @@ ActiveRecord::Schema.define(version: 20161101144655) do
     t.datetime "updated_at",                               null: false
   end
 
-  add_index "minter_states", ["namespace"], name: "index_minter_states_on_namespace", unique: true, using: :btree
+  add_index "minter_states", ["namespace"], name: "index_minter_states_on_namespace", unique: true
 
   create_table "pending_uploads", force: :cascade do |t|
     t.string   "curation_concern_id"
@@ -77,8 +74,8 @@ ActiveRecord::Schema.define(version: 20161101144655) do
     t.integer "user_id"
   end
 
-  add_index "roles_users", ["role_id", "user_id"], name: "index_roles_users_on_role_id_and_user_id", using: :btree
-  add_index "roles_users", ["user_id", "role_id"], name: "index_roles_users_on_user_id_and_role_id", using: :btree
+  add_index "roles_users", ["role_id", "user_id"], name: "index_roles_users_on_role_id_and_user_id"
+  add_index "roles_users", ["user_id", "role_id"], name: "index_roles_users_on_user_id_and_role_id"
 
   create_table "searches", force: :cascade do |t|
     t.text     "query_params"
@@ -88,7 +85,7 @@ ActiveRecord::Schema.define(version: 20161101144655) do
     t.datetime "updated_at"
   end
 
-  add_index "searches", ["user_id"], name: "index_searches_on_user_id", using: :btree
+  add_index "searches", ["user_id"], name: "index_searches_on_user_id"
 
   create_table "single_use_links", force: :cascade do |t|
     t.string   "downloadKey"
@@ -118,10 +115,10 @@ ActiveRecord::Schema.define(version: 20161101144655) do
     t.string   "username"
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
-  add_index "users", ["provider"], name: "index_users_on_provider", using: :btree
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
-  add_index "users", ["uid"], name: "index_users_on_uid", using: :btree
+  add_index "users", ["email"], name: "index_users_on_email", unique: true
+  add_index "users", ["provider"], name: "index_users_on_provider"
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["uid"], name: "index_users_on_uid"
 
   create_table "version_committers", force: :cascade do |t|
     t.string   "obj_id"

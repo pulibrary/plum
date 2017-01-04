@@ -22,8 +22,8 @@ class CatalogController < ApplicationController
     config.index.title_field = solr_name('title', :stored_searchable)
     config.index.display_type_field = solr_name('has_model', :symbol)
 
-    # config.index.thumbnail_field = 'thumbnail_path_ss'
-    config.index.thumbnail_method = :iiif_thumbnail_path
+    config.index.thumbnail_field = 'thumbnail_path_ss'
+    config.index.thumbnail_method = :plum_thumbnail_path
     # config.index.partials.delete(:thumbnail) # we render this inside _index_default.html.erb
     config.index.partials += [:action_menu]
 
@@ -51,7 +51,7 @@ class CatalogController < ApplicationController
     #   The ordering of the field names is the order of the display
     config.add_index_field solr_name('description', :stored_searchable)
     config.add_index_field solr_name('tag', :stored_searchable)
-    config.add_index_field solr_name('subject', :stored_searchable)
+    config.add_index_field solr_name('subject', :stored_searchable), helper_method: :index_subject
     config.add_index_field solr_name('creator', :stored_searchable)
     config.add_index_field solr_name('contributor', :stored_searchable)
     config.add_index_field solr_name('publisher', :stored_searchable)
