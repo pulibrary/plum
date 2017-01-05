@@ -2,6 +2,12 @@ require 'rails_helper'
 
 RSpec.describe CatalogController do
   describe "scanned book display" do
+    it "hides scanned resources that do not match the query" do
+      FactoryGirl.create(:scanned_resource, title: ["Irrelevant Work"])
+      get :index, q: "Informative"
+      expect(document_ids).to eq []
+    end
+
     it "shows parent-less scanned resources" do
       resource = FactoryGirl.create(:scanned_resource)
       get :index, q: ""
@@ -48,11 +54,35 @@ RSpec.describe CatalogController do
       expect(document_ids).to eq [work.id]
     end
 
-    it "finds items by their identifier" do
+    it "finds items by their identifier without case sensitivity" do
       resource = FactoryGirl.create(:scanned_resource, source_metadata_identifier: "ab5")
 
-      get :index, q: "ab5"
+      get :index, q: "AB5"
 
+      expect(document_ids).to eq [resource.id]
+    end
+
+    it "finds items by their creator keyword" do
+      resource = FactoryGirl.create(:scanned_resource, creator: ["Takemitsu, Tōru"])
+      get :index, q: "Tōru"
+      expect(document_ids).to eq [resource.id]
+    end
+
+    it "finds items by their subject keyword" do
+      resource = FactoryGirl.create(:scanned_resource, subject: ["A Topical Test Object"])
+      get :index, q: "Topical"
+      expect(document_ids).to eq [resource.id]
+    end
+
+    it "finds items by their date created" do
+      resource = FactoryGirl.create(:scanned_resource, date_created: ["2017"])
+      get :index, q: "2017"
+      expect(document_ids).to eq [resource.id]
+    end
+
+    it "finds items by their publisher" do
+      resource = FactoryGirl.create(:scanned_resource, published: "Paris : Editions Salabert, c1962")
+      get :index, q: "Paris"
       expect(document_ids).to eq [resource.id]
     end
 

@@ -4,7 +4,17 @@ class CatalogController < ApplicationController
   include CurationConcerns::CatalogController
   def self.search_config
     {
-      'qf' => %w(title_tesim name_tesim source_metadata_identifier_ssim logical_order_headings_tesim member_of_collection_slugs_ssim full_text_tesim),
+      # 'qf' => %w(title_tesim name_tesim source_metadata_identifier_ssim logical_order_headings_tesim member_of_collection_slugs_ssim full_text_tesim),
+      'qf' => %w(title_tesim
+                 name_tesim
+                 creator_tesim
+                 date_created_tesim
+                 published_tesim
+                 subject_tesim
+                 source_metadata_identifier_tesim
+                 logical_order_headings_tesim
+                 member_of_collection_slugs_ssim
+                 full_text_tesim),
       'qt' => 'search',
       'rows' => 10
     }
@@ -34,18 +44,18 @@ class CatalogController < ApplicationController
     # solr fields that will be treated as facets by the blacklight application
     #   The ordering of the field names is the order of the display
     # config.add_facet_field solr_name('human_readable_type', :facetable)
-    config.add_facet_field solr_name('member_of_collections', :symbol), label: 'Collection'
-    config.add_facet_field solr_name('tag', :facetable)
-    config.add_facet_field solr_name('creator', :facetable)
-    config.add_facet_field solr_name('subject', :facetable)
-    config.add_facet_field solr_name('date_created', :facetable)
-    config.add_facet_field solr_name('language', :facetable)
+    config.add_facet_field solr_name('member_of_collections', :symbol), label: 'Collection', limit: true
+    config.add_facet_field solr_name('tag', :facetable), limit: true
+    config.add_facet_field solr_name('creator', :facetable), limit: true
+    config.add_facet_field solr_name('subject', :facetable), limit: true
+    config.add_facet_field solr_name('publication_place', :facetable), label: 'Publication Place', limit: true
+    config.add_facet_field solr_name('publisher', :facetable), limit: true
+    config.add_facet_field solr_name('date_created', :stored_sortable, type: :integer), label: 'Date Created', limit: true
+    config.add_facet_field solr_name('language', :facetable), limit: true
     # config.add_facet_field solr_name('based_near', :facetable), limit: 5
     # config.add_facet_field solr_name('file_format', :facetable), limit: 5
     # config.add_facet_field 'generic_type_sim', show: false, single: true
-    config.add_facet_field solr_name('publisher', :facetable)
-
-    config.add_facet_field solr_name('number_of_pages', :stored_sortable, type: :string), label: 'Pages'
+    config.add_facet_field solr_name('number_of_pages', :stored_sortable, type: :string), sort: 'index', label: 'Pages', limit: true
 
     # Have BL send all facet field names to Solr, which has been the default
     # previously. Simply remove these lines if you'd rather use Solr request
