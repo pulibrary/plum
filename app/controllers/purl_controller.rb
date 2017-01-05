@@ -1,12 +1,5 @@
 # new class for imago to handle purl redirection
 class PurlController < ApplicationController
-  def render_404
-    respond_to do |f|
-      f.html { render file: '/public/404.html', status: 404 }
-      f.json { render json: { error: 'not_found' }.to_json, status: 404 }
-    end
-  end
-
   def default
     begin
       set_object
@@ -25,8 +18,8 @@ class PurlController < ApplicationController
 
     OBJECT_LOOKUPS = {
       FileSet => /^\w{3}\d{4}-\d{1}-\d{4}$/,
-      ScannedResource => /^\w{3}\d{4}$/,
-      MultiVolumeWork => /^\w{3}\d{4}$/
+      MultiVolumeWork => /^\w{3}\d{4}$/,
+      ScannedResource => /^\w{3}\d{4}$/
     }
     def set_object
       OBJECT_LOOKUPS.each do |klass, match_pattern|
