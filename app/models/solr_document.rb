@@ -46,10 +46,6 @@ class SolrDocument
     Array(self[Solrizer.solr_name("identifier")]).first
   end
 
-  def workflow_note
-    self[Solrizer.solr_name('workflow_note')]
-  end
-
   def logical_order
     @logical_order ||=
       begin

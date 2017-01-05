@@ -25,8 +25,5 @@
       <%= @presenter.holding_location %>
     <% end %>
     <%= render 'curation_concerns/base/member_of_collections', presenter: @presenter %>
-    <% if can? :edit, @presenter.id %>
-      <%= @presenter.attribute_to_html(:workflow_note) %>
-    <% end %>
   </tbody>
 </table>

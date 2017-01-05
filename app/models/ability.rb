@@ -24,7 +24,7 @@ class Ability
     can [:file_manager, :save_structure], MultiVolumeWork
     can [:create, :read, :edit, :update, :publish, :download], FileSet
     can [:create, :read, :edit, :update, :publish], Collection
-
+    can [:manage], ScannedResource
     # do not allow completing resources
     cannot [:complete], curation_concerns
 
@@ -68,7 +68,6 @@ class Ability
   # Abilities that should be granted to patron
   def campus_patron_permissions
     anonymous_permissions
-    can [:flag], curation_concerns
   end
 
   def anonymous_permissions
@@ -89,7 +88,8 @@ class Ability
   end
 
   def readable_concern?(curation_concern)
-    !unreadable_states.include?(curation_concern.state)
+    # byebug
+    !unreadable_states.include?(curation_concern.workflow_state)
   end
 
   def unreadable_states

@@ -5,43 +5,43 @@ describe Ability do
   subject { described_class.new(current_user) }
 
   let(:open_multi_volume_work) {
-    FactoryGirl.build(:multi_volume_work, user: creating_user, state: 'complete')
+    FactoryGirl.create(:complete_open_multi_volume_work, user: creating_user)
   }
 
   let(:open_scanned_resource) {
-    FactoryGirl.build(:open_scanned_resource, user: creating_user, state: 'complete')
+    FactoryGirl.create(:complete_open_scanned_resource, user: creating_user)
   }
 
   let(:private_scanned_resource) {
-    FactoryGirl.build(:private_scanned_resource, user: creating_user, state: 'complete')
+    FactoryGirl.create(:complete_private_scanned_resource, user: creating_user)
   }
 
   let(:campus_only_scanned_resource) {
-    FactoryGirl.build(:campus_only_scanned_resource, user: creating_user, state: 'complete')
+    FactoryGirl.create(:complete_campus_only_scanned_resource, user: creating_user)
   }
 
   let(:pending_scanned_resource) {
-    FactoryGirl.build(:scanned_resource, user: creating_user, state: 'pending')
+    FactoryGirl.create(:pending_scanned_resource, user: creating_user)
   }
 
   let(:metadata_review_scanned_resource) {
-    FactoryGirl.build(:scanned_resource, user: creating_user, state: 'metadata_review')
+    FactoryGirl.create(:metadata_review_scanned_resource, user: creating_user)
   }
 
   let(:final_review_scanned_resource) {
-    FactoryGirl.build(:scanned_resource, user: creating_user, state: 'final_review')
+    FactoryGirl.create(:final_review_scanned_resource, user: creating_user)
   }
 
   let(:complete_scanned_resource) {
-    FactoryGirl.build(:scanned_resource, user: image_editor, state: 'complete', identifier: 'ark:/99999/fk4445wg45')
+    FactoryGirl.create(:complete_scanned_resource, user: image_editor, identifier: 'ark:/99999/fk4445wg45')
   }
 
   let(:takedown_scanned_resource) {
-    FactoryGirl.build(:scanned_resource, user: image_editor, state: 'takedown', identifier: 'ark:/99999/fk4445wg45')
+    FactoryGirl.create(:takedown_scanned_resource, user: image_editor, identifier: 'ark:/99999/fk4445wg45')
   }
 
   let(:flagged_scanned_resource) {
-    FactoryGirl.build(:scanned_resource, user: image_editor, state: 'flagged', identifier: 'ark:/99999/fk4445wg45')
+    FactoryGirl.create(:flagged_scanned_resource, user: image_editor, identifier: 'ark:/99999/fk4445wg45')
   }
 
   let(:image_editor_file) { FactoryGirl.build(:file_set, user: image_editor) }
@@ -117,7 +117,6 @@ describe Ability do
       should be_able_to(:manifest, open_scanned_resource)
       should be_able_to(:pdf, open_scanned_resource)
       should be_able_to(:color_pdf, open_scanned_resource)
-      should be_able_to(:flag, open_scanned_resource)
       should be_able_to(:read, campus_only_scanned_resource)
       should be_able_to(:read, private_scanned_resource)
       should be_able_to(:read, pending_scanned_resource)
@@ -161,8 +160,6 @@ describe Ability do
       should be_able_to(:manifest, open_scanned_resource)
       should be_able_to(:pdf, open_scanned_resource)
       should be_able_to(:color_pdf, open_scanned_resource)
-      should be_able_to(:flag, open_scanned_resource)
-      should be_able_to(:flag, private_scanned_resource)
       should be_able_to(:file_manager, open_scanned_resource)
       should be_able_to(:file_manager, open_multi_volume_work)
       should be_able_to(:save_structure, open_scanned_resource)
@@ -197,8 +194,6 @@ describe Ability do
       should be_able_to(:read, flagged_scanned_resource)
       should be_able_to(:manifest, open_scanned_resource)
       should be_able_to(:pdf, open_scanned_resource)
-      should be_able_to(:flag, open_scanned_resource)
-      should be_able_to(:flag, private_scanned_resource)
       should be_able_to(:download, image_editor_file)
 
       should_not be_able_to(:file_manager, open_scanned_resource)
@@ -232,7 +227,6 @@ describe Ability do
       should be_able_to(:read, flagged_scanned_resource)
       should be_able_to(:manifest, open_scanned_resource)
       should be_able_to(:pdf, open_scanned_resource)
-      should be_able_to(:flag, open_scanned_resource)
 
       should_not be_able_to(:read, pending_scanned_resource)
       should_not be_able_to(:download, image_editor_file)
@@ -269,9 +263,6 @@ describe Ability do
       should be_able_to(:pdf, campus_only_scanned_resource)
       should be_able_to(:pdf, complete_scanned_resource)
       should be_able_to(:pdf, flagged_scanned_resource)
-      should be_able_to(:flag, open_scanned_resource)
-      should be_able_to(:flag, campus_only_scanned_resource)
-      should be_able_to(:flag, complete_scanned_resource)
 
       should_not be_able_to(:read, private_scanned_resource)
       should_not be_able_to(:read, pending_scanned_resource)

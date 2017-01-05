@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.feature "MultiVolumeWorksController", type: :feature do
   let(:user) { FactoryGirl.create(:image_editor) }
-  let(:multi_volume_work) { FactoryGirl.create(:multi_volume_work, user: user, state: 'metadata_review') }
+  let(:multi_volume_work) { FactoryGirl.create(:metadata_review_multi_volume_work, user: user) }
 
   before(:each) do
     sign_in user
@@ -21,13 +21,9 @@ RSpec.feature "MultiVolumeWorksController", type: :feature do
     fill_in 'multi_volume_work_source_metadata_identifier', with: '1234568'
     fill_in 'multi_volume_work_portion_note', with: 'new portion note'
     fill_in 'multi_volume_work_description', with: 'new description'
-    fill_in 'multi_volume_work_workflow_note', with: 'New note'
-    choose 'Metadata Review'
 
     click_button 'Update Multi volume work'
     expect(page).to have_text("Test title")
-    expect(page).to have_text("New note")
-    expect(page).to have_selector("span.label-info", text: "Metadata Review")
   end
 
   scenario "User can create a new scanned resource attached to the multi-volume work", vcr: { cassette_name: "locations" } do

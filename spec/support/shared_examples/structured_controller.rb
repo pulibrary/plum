@@ -1,6 +1,6 @@
 RSpec.shared_examples "structure persister" do |resource_symbol, presenter_factory|
   describe "#structure" do
-    let(:user) { FactoryGirl.create(:user) }
+    let(:user) { FactoryGirl.create(:admin) }
     before do
       sign_in user
     end

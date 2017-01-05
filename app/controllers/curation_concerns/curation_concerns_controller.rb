@@ -4,15 +4,9 @@ class CurationConcerns::CurationConcernsController < ApplicationController
   include CurationConcerns::MemberManagement
   include CurationConcerns::UpdateOCR
   include CurationConcerns::RemoteMetadata
-  include CurationConcerns::Flagging
 
   def curation_concern_name
     curation_concern.class.name.underscore
-  end
-
-  def update
-    authorize!(:complete, curation_concern, message: 'Unable to mark resource complete') if curation_concern.state != 'complete' && params[curation_concern_name][:state] == 'complete'
-    super
   end
 
   def destroy

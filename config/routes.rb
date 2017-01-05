@@ -55,7 +55,6 @@ Rails.application.routes.draw do
     resources :multi_volume_works, only: [] do
       member do
         get :manifest, defaults: { format: :json }
-        post :flag
         post :browse_everything_files
         get :structure
         post :structure, action: :save_structure
@@ -68,22 +67,6 @@ Rails.application.routes.draw do
         post :structure, action: :save_structure
         get :manifest, defaults: { format: :json }
         post :browse_everything_files
-        post :flag
-      end
-    end
-    resources :image_works, only: [] do
-      member do
-        post :flag
-      end
-    end
-    resources :raster_works, only: [] do
-      member do
-        post :flag
-      end
-    end
-    resources :vector_works, only: [] do
-      member do
-        post :flag
       end
     end
     resources :file_sets, only: [] do

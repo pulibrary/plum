@@ -4,18 +4,17 @@ RSpec.describe "curation_concerns/base/_attributes.html.erb" do
   let(:creator) { 'Bilbo' }
   let(:date_created) { "2015-09-08" }
   let(:rights_statement) { "http://rightsstatements.org/vocab/NKC/1.0/" }
-  let(:workflow_note) { ["First", "Second"] }
 
   let(:solr_document) do
     SolrDocument.new(
+      id: 'test',
       has_model_ssim: ['ScannedResource'],
       creator_tesim: creator,
       author_tesim: 'Baggins',
       source_metadata_identifier_tesim: '8675309',
       date_created_tesim: date_created,
       language_tesim: 'ara',
-      rights_statement_tesim: rights_statement,
-      workflow_note_tesim: workflow_note
+      rights_statement_tesim: rights_statement
     )
   end
   let(:presenter) do
@@ -24,6 +23,7 @@ RSpec.describe "curation_concerns/base/_attributes.html.erb" do
   let(:can_edit) { false }
 
   before do
+    # byebug
     allow(view).to receive(:dom_class) { '' }
     allow(presenter).to receive(:member_of_collections).and_return([])
 
@@ -54,22 +54,6 @@ RSpec.describe "curation_concerns/base/_attributes.html.erb" do
 
   it "displays language name" do
     expect(rendered).to have_content 'Arabic'
-  end
-
-  context "when they can edit" do
-    let(:can_edit) { true }
-    it "displays workflow note" do
-      expect(rendered).to have_content "Workflow note"
-      expect(rendered).to have_content "First"
-    end
-  end
-
-  context "when they can't edit" do
-    let(:can_edit) { false }
-    it "doesn't display workflow note" do
-      expect(rendered).not_to have_content "Workflow note"
-      expect(rendered).not_to have_content "First"
-    end
   end
 
   def assert_catalog_link(field, value)

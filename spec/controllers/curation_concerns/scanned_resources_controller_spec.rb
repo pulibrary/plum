@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe CurationConcerns::ScannedResourcesController do
   let(:user) { FactoryGirl.create(:user) }
-  let(:scanned_resource) { FactoryGirl.create(:scanned_resource, user: user, title: ['Dummy Title'], state: 'complete', identifier: 'ark:/99999/fk4445wg45') }
+  let(:scanned_resource) { FactoryGirl.create(:complete_scanned_resource, user: user, title: ['Dummy Title'], identifier: 'ark:/99999/fk4445wg45') }
   let(:reloaded) { scanned_resource.reload }
 
   describe "delete" do
@@ -119,22 +119,19 @@ describe CurationConcerns::ScannedResourcesController do
       end
       context "when requesting via SSL" do
         it "returns HTTPS paths" do
-          resource = FactoryGirl.build(:scanned_resource)
-          allow(resource).to receive(:id).and_return("test")
-          solr.add resource.to_solr
-          solr.commit
-
+          resource = FactoryGirl.create(:complete_scanned_resource)
           allow(request).to receive(:ssl?).and_return(true)
-          get :manifest, id: "test", format: :json
+
+          get :manifest, id: resource.id, format: :json
 
           expect(response).to be_success
           response_json = JSON.parse(response.body)
-          expect(response_json['@id']).to eq "https://plum.com/concern/scanned_resources/test/manifest"
+          expect(response_json['@id']).to eq "https://plum.com/concern/scanned_resources/#{resource.id}/manifest"
         end
       end
       context "when requesting a child resource" do
         it "returns a manifest" do
-          resource = FactoryGirl.build(:scanned_resource)
+          resource = FactoryGirl.create(:complete_scanned_resource)
           allow(resource).to receive(:id).and_return("resource")
           solr.add resource.to_solr.merge(ordered_by_ssim: ["work"])
           solr.commit
@@ -145,8 +142,8 @@ describe CurationConcerns::ScannedResourcesController do
         end
       end
       it "builds a manifest" do
-        resource = FactoryGirl.build(:scanned_resource)
-        resource_2 = FactoryGirl.build(:scanned_resource)
+        resource = FactoryGirl.create(:complete_scanned_resource)
+        resource_2 = FactoryGirl.create(:complete_scanned_resource)
         allow(resource).to receive(:id).and_return("test")
         allow(resource_2).to receive(:id).and_return("test2")
         solr.add resource.to_solr
@@ -271,7 +268,7 @@ describe CurationConcerns::ScannedResourcesController do
       let(:user) { nil }
       context "and the work's incomplete" do
         it "redirects for auth" do
-          resource = FactoryGirl.create(:scanned_resource, state: 'pending')
+          resource = FactoryGirl.create(:pending_scanned_resource)
 
           get :show, id: resource.id
 
@@ -280,7 +277,7 @@ describe CurationConcerns::ScannedResourcesController do
       end
       context "and the work's flagged" do
         it "works" do
-          resource = FactoryGirl.create(:open_scanned_resource, state: 'flagged')
+          resource = FactoryGirl.create(:flagged_scanned_resource)
 
           get :show, id: resource.id
 
@@ -289,7 +286,7 @@ describe CurationConcerns::ScannedResourcesController do
       end
       context "and the work's complete" do
         it "works" do
-          resource = FactoryGirl.create(:open_scanned_resource, state: 'complete')
+          resource = FactoryGirl.create(:complete_scanned_resource)
 
           get :show, id: resource.id
 
@@ -301,7 +298,7 @@ describe CurationConcerns::ScannedResourcesController do
       let(:user) { FactoryGirl.create(:admin) }
       context "and the work's incomplete" do
         it "works" do
-          resource = FactoryGirl.create(:open_scanned_resource, state: 'pending')
+          resource = FactoryGirl.create(:pending_scanned_resource)
 
           get :show, id: resource.id
 
@@ -311,7 +308,7 @@ describe CurationConcerns::ScannedResourcesController do
     end
     context "when there's a parent" do
       it "is a success" do
-        resource = FactoryGirl.create(:scanned_resource)
+        resource = FactoryGirl.create(:complete_scanned_resource)
         work = FactoryGirl.build(:multi_volume_work)
         work.ordered_members << resource
         work.save
@@ -343,7 +340,7 @@ describe CurationConcerns::ScannedResourcesController do
           let(:user) { FactoryGirl.create(:campus_patron) }
           let(:sign_in_user) { user }
           context "and color PDF is enabled" do
-            let(:scanned_resource) { FactoryGirl.create(:scanned_resource, user: user, title: ['Dummy Title'], pdf_type: ['color']) }
+            let(:scanned_resource) { FactoryGirl.create(:complete_scanned_resource, user: user, title: ['Dummy Title'], pdf_type: ['color']) }
             it "works" do
               pdf = double("Actor")
               allow(ScannedResourcePDF).to receive(:new).with(anything, quality: "color").and_return(pdf)
@@ -459,110 +456,4 @@ describe CurationConcerns::ScannedResourcesController do
   end
 
   include_examples "structure persister", :scanned_resource, ScannedResourceShowPresenter
-
-  describe "#flag" do
-    context "a complete object with an existing workflow note" do
-      let(:scanned_resource) { FactoryGirl.create(:scanned_resource, user: user, state: 'complete', workflow_note: ['Existing note']) }
-      let(:flag_attributes) { { workflow_note: 'Page 4 is broken' } }
-      let(:reloaded) { ScannedResource.find scanned_resource.id }
-      before do
-        sign_in user
-      end
-
-      it "updates the state" do
-        post :flag, id: scanned_resource.id, scanned_resource: flag_attributes
-        expect(response.status).to eq 302
-        expect(flash[:notice]).to eq 'Resource updated'
-
-        expect(reloaded.state).to eq 'flagged'
-        expect(reloaded.workflow_note).to include 'Existing note', 'Page 4 is broken'
-      end
-    end
-    context "a complete object without a workflow note" do
-      let(:scanned_resource) { FactoryGirl.create(:scanned_resource, user: user, state: 'complete') }
-      let(:flag_attributes) { { workflow_note: 'Page 4 is broken' } }
-      let(:reloaded) { ScannedResource.find scanned_resource.id }
-      before do
-        sign_in user
-      end
-
-      it "updates the state" do
-        post :flag, id: scanned_resource.id, scanned_resource: flag_attributes
-        expect(response.status).to eq 302
-        expect(flash[:notice]).to eq 'Resource updated'
-
-        expect(reloaded.state).to eq 'flagged'
-        expect(reloaded.workflow_note).to include 'Page 4 is broken'
-      end
-    end
-    context "a pending object" do
-      let(:scanned_resource) { FactoryGirl.create(:scanned_resource, user: user, state: 'pending') }
-      let(:flag_attributes) { { workflow_note: 'Page 4 is broken' } }
-      let(:reloaded) { ScannedResource.find scanned_resource.id }
-      before do
-        sign_in user
-      end
-
-      it "receives an error" do
-        post :flag, id: scanned_resource.id, scanned_resource: flag_attributes
-        expect(response.status).to eq 302
-        expect(flash[:alert]).to eq 'Unable to update resource'
-        expect(reloaded.state).to eq 'pending'
-      end
-    end
-  end
-
-  describe "marking complete" do
-    let(:scanned_resource) { FactoryGirl.create(:scanned_resource, user: user, state: 'final_review') }
-    let(:scanned_resource_attributes) { { state: 'complete' } }
-    let(:reloaded) { ScannedResource.find scanned_resource.id }
-    let(:ezid_metadata) { {
-      dc_publisher: 'Princeton University Library',
-      dc_title: 'Test title',
-      dc_type: 'Text',
-      target: "http://plum.com/concern/scanned_resources/#{scanned_resource.id}"
-    } }
-
-    context "as an admin" do
-      let(:admin) { FactoryGirl.create(:admin) }
-      before do
-        sign_in admin
-        Ezid::Client.configure do |conf| conf.logger = Logger.new(File::NULL); end
-      end
-
-      it "succeeds", vcr: { cassette_name: "ezid" } do
-        post :update, id: scanned_resource.id, scanned_resource: scanned_resource_attributes
-        expect(reloaded.state).to eq 'complete'
-        expect(reloaded.identifier).to eq 'ark:/99999/fk4445wg45'
-        expect(scanned_resource.send(:ezid_metadata)).to eq(ezid_metadata)
-      end
-    end
-    context "when the item already has an ARK" do
-      let(:admin) { FactoryGirl.create(:admin) }
-      before do
-        sign_in admin
-        scanned_resource.identifier = 'ark:/99999/fk4c255165'
-        scanned_resource.save
-        allow(Ezid::Identifier).to receive(:modify)
-        allow(Ezid::Client.config).to receive(:user).and_return("test")
-      end
-
-      it "updates EZID" do
-        post :update, id: scanned_resource.id, scanned_resource: scanned_resource_attributes
-        expect(reloaded.state).to eq 'complete'
-        expect(Ezid::Identifier).to have_received(:modify)
-      end
-    end
-    context "as an image editor" do
-      before do
-        sign_in user
-      end
-
-      it "fails" do
-        post :update, id: scanned_resource.id, scanned_resource: scanned_resource_attributes
-        expect(flash[:alert]).to eq 'Unable to mark resource complete'
-        expect(reloaded.state).to eq 'final_review'
-      end
-    end
-  end
 end
