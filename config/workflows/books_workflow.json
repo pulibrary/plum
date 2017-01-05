@@ -1,0 +1,127 @@
+{
+  "workflows": [
+    {
+      "name": "book_works",
+      "label": "Book Works",
+      "actions": [
+        {
+          "name": "new",
+          "from_states": [],
+          "transition_to": "pending",
+          "methods": [
+            "Workflow::GrantEditToGroups",
+            "CurationConcerns::Workflow::ActivateObject"
+          ]
+        },
+        {
+          "name": "metadata_review",
+          "from_states": [
+            {
+              "names": ["pending"],
+              "roles": [
+                "admin",
+                "editor"
+              ]
+            }
+          ],
+          "transition_to": "metadata_review",
+          "notifications": [
+            {
+              "notification_type": "email",
+              "name": "Workflow::MetadataReviewNotification",
+              "to": ["notify_metadata_review"]
+            }
+          ]
+        },
+        {
+          "name": "final_review",
+          "from_states": [
+            {
+              "names": ["metadata_review"],
+              "roles": [
+                "admin",
+                "editor"
+              ]
+            }
+          ],
+          "transition_to": "final_review",
+          "notifications": [
+            {
+              "notification_type": "email",
+              "name": "Workflow::FinalReviewNotification",
+              "to": ["notify_final_review"]
+            }
+          ]
+        },
+        {
+          "name": "complete",
+          "from_states": [
+            {
+              "names": ["final_review", "takedown", "flagged"],
+              "roles": [
+                "admin"
+              ]
+            }
+          ],
+          "transition_to": "complete",
+          "methods": [
+            "Workflow::CompleteRecord"
+          ],
+          "notifications": [
+            {
+              "notification_type": "email",
+              "name": "Workflow::CompleteNotification",
+              "to": ["notify_complete"]
+            }
+          ]
+        },
+        {
+          "name": "takedown",
+          "from_states": [
+            {
+              "names": ["complete"],
+              "roles": [
+                "admin",
+                "editor"
+              ]
+            }
+          ],
+          "transition_to": "takedown",
+          "notifications": [
+            {
+              "notification_type": "email",
+              "name": "Workflow::TakedownNotification",
+              "to": ["notify_takedown"]
+            }
+          ]
+        },
+        {
+          "name": "flagged",
+          "from_states": [
+            {
+              "names": ["complete"],
+              "roles": [
+                "admin",
+                "editor",
+                "curator",
+                "notify_metadata_review",
+                "notify_final_review",
+                "notify_complete",
+                "notify_takedown",
+                "notify_flagged"
+              ]
+            }
+          ],
+          "transition_to": "flagged",
+          "notifications": [
+            {
+              "notification_type": "email",
+              "name": "Workflow::FlaggedNotification",
+              "to": ["notify_flagged"]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

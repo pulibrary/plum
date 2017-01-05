@@ -1,17 +1,16 @@
-<p>The following <%= @curation_concern.human_readable_type %> has been marked <%= @state %>:</p>
+<p><%= @message %></p>
 
 <table>
   <tr>
     <th>ID</th>
-    <td><%= @curation_concern.id %></td>
+    <td><%= @work_id %></td>
   </tr>
   <tr>
     <th>Title</th>
-    <td><%= @curation_concern.title.first %></td>
+    <td><%= @title %></td>
   </tr>
   <tr>
     <th>URL</th>
-    <% url = polymorphic_url [main_app, @curation_concern] %>
-    <td><%= link_to url, url %></td>
+    <td><%= link_to @url, @url %></td>
   </tr>
 </table>

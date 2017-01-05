@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 describe ScannedResource do
-  let(:scanned_resource) { FactoryGirl.build(:scanned_resource, source_metadata_identifier: '12345', rights_statement: 'http://rightsstatements.org/vocab/NKC/1.0/', workflow_note: ['Note 1']) }
+  let(:scanned_resource) { FactoryGirl.build(:scanned_resource, source_metadata_identifier: '12345', rights_statement: 'http://rightsstatements.org/vocab/NKC/1.0/') }
   let(:reloaded)         { described_class.find(scanned_resource.id) }
   subject { scanned_resource }
 
@@ -15,19 +15,6 @@ describe ScannedResource do
         expect { subject.save }.to_not raise_error
         expect(reloaded.send(note_type)).to eq note
       end
-    end
-  end
-
-  describe 'has a repeatable workflow note field' do
-    it "allows multiple workflow notes" do
-      subject.workflow_note = ['Note 1', 'Note 2']
-      expect { subject.save }.to_not raise_error
-      expect(reloaded.workflow_note).to include 'Note 1', 'Note 2'
-    end
-    it "allows adding to the workflow notes" do
-      subject.workflow_note << 'Note 2'
-      expect { subject.save }.to_not raise_error
-      expect(reloaded.workflow_note).to include 'Note 1', 'Note 2'
     end
   end
 
@@ -169,62 +156,6 @@ describe ScannedResource do
     end
     it "validates with the viewing hint validator" do
       expect(subject._validators[nil].map(&:class)).to include ViewingHintValidator
-    end
-  end
-
-  describe "#state" do
-    it "validates with the state validator" do
-      expect(subject._validators[nil].map(&:class)).to include StateValidator
-    end
-    it "accepts a valid state" do
-      subject.state = "pending"
-      expect(subject.valid?).to eq true
-    end
-    it "rejects an invalid state" do
-      subject.state = "blargh"
-      expect(subject.valid?).to eq false
-    end
-  end
-
-  describe "#check_state" do
-    subject { FactoryGirl.build(:scanned_resource, source_metadata_identifier: '12345', rights_statement: 'http://rightsstatements.org/vocab/NKC/1.0/', state: 'final_review') }
-    let(:complete_reviewer) { FactoryGirl.create(:complete_reviewer) }
-    before do
-      complete_reviewer.save
-      subject.save
-      allow(Ezid::Identifier).to receive(:modify).and_return(true)
-    end
-    it "completes record when state changes to 'complete'", vcr: { cassette_name: "ezid" } do
-      allow(subject).to receive("state_changed?").and_return true
-      subject.state = 'complete'
-      expect { subject.check_state }.to change { ActionMailer::Base.deliveries.count }.by(1)
-      expect(subject.identifier).to eq 'ark:/99999/fk4445wg45'
-    end
-    it "does not complete record when state doesn't change" do
-      allow(subject).to receive("state_changed?").and_return false
-      subject.state = 'complete'
-      expect(subject).not_to receive(:complete_record)
-      expect { subject.check_state }.not_to change { ActionMailer::Base.deliveries.count }
-    end
-    it "does not complete record when state isn't 'complete'" do
-      subject.state = 'final_review'
-      expect(subject).not_to receive(:complete_record)
-      expect { subject.check_state }.not_to change { ActionMailer::Base.deliveries.count }
-    end
-    it "does not overwrite existing identifier" do
-      allow(subject).to receive("state_changed?").and_return true
-      subject.state = 'complete'
-      subject.identifier = '1234'
-      expect(subject).not_to receive("identifier=")
-      expect { subject.check_state }.to change { ActionMailer::Base.deliveries.count }.by(1)
-      expect(subject.identifier).to eq('1234')
-    end
-    it "does not complete the record when the state transition is invalid" do
-      allow(subject).to receive("state_changed?").and_return true
-      subject.state = 'pending'
-      expect(subject).not_to receive(:complete_record)
-      expect { subject.check_state }.not_to change { ActionMailer::Base.deliveries.count }
-      expect(subject.identifier).to eq(nil)
     end
   end
 

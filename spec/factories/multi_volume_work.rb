@@ -5,7 +5,7 @@ FactoryGirl.define do
     rights_statement "http://rightsstatements.org/vocab/NKC/1.0/"
     description "900 years of time and space, and I’ve never been slapped by someone’s mother."
     visibility Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PUBLIC
-    state "complete"
+    state Vocab::FedoraResourceStatus.active
 
     transient do
       user { FactoryGirl.create(:user) }
@@ -13,6 +13,27 @@ FactoryGirl.define do
 
     after(:build) do |work, evaluator|
       work.apply_depositor_metadata(evaluator.user.user_key)
+    end
+
+    factory :complete_multi_volume_work, aliases: [:complete_open_multi_volume_work] do
+      after(:create) do |work, evaluator|
+        FactoryGirl.create(:complete_sipity_entity, proxy_for_global_id: work.to_global_id.to_s)
+        work.save
+      end
+    end
+
+    factory :pending_multi_volume_work do
+      after(:create) do |work, evaluator|
+        FactoryGirl.create(:pending_sipity_entity, proxy_for_global_id: work.to_global_id.to_s)
+        work.save
+      end
+    end
+
+    factory :metadata_review_multi_volume_work do
+      after(:create) do |work, evaluator|
+        FactoryGirl.create(:metadata_review_sipity_entity, proxy_for_global_id: work.to_global_id.to_s)
+        work.save
+      end
     end
 
     factory :multi_volume_work_with_volume do
