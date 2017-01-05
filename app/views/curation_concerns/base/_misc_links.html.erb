@@ -1,0 +1,6 @@
+<h2>
+  <%= link_to("View record in #{t('services.metadata')}",
+                Plum.config['metadata']['url'] % @presenter.source_metadata_identifier, class: "fa fa-external-link"
+        ) if @presenter.try(:source_metadata_identifier).present? %>
+  <%= link_to("Open large viewer", polymorphic_path([main_app, @presenter], format: :uv), class: "fa fa-external-link") %>
+</h2>

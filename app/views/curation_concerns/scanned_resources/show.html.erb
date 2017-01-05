@@ -15,6 +15,7 @@
 <% editor    = can?(:edit,    @presenter.id) %>
 
 <%= render 'representative_media', presenter: @presenter %>
+<%= render "misc_links", presenter: @presenter %>
 <%= render "attributes", presenter: @presenter %>
 <%= render 'related_files', presenter: @presenter %>
 <%= render "show_actions", collector: collector, editor: editor%>

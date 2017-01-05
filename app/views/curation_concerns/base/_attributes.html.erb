@@ -1,4 +1,3 @@
-<h2><%= link_to("View record in #{t('services.metadata')}", Plum.config['metadata']['url'] % @presenter.source_metadata_identifier, class: "fa fa-external-link") if @presenter.try(:source_metadata_identifier).present? %></h2>
 <table class="table table-striped <%= dom_class(@presenter) %> attributes">
   <caption class="table-heading"><h2>Attributes</h2></caption>
   <tbody>
