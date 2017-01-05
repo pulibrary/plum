@@ -2,8 +2,8 @@ require 'rails_helper'
 
 RSpec.feature "ScannedResourcesController", type: :feature do
   let(:user) { FactoryGirl.create(:image_editor) }
-  let(:open_resource) { FactoryGirl.create(:open_scanned_resource, user: user) }
-  let(:private_resource) { FactoryGirl.create(:private_scanned_resource, user: user) }
+  let(:open_resource) { FactoryGirl.create(:complete_open_scanned_resource, user: user) }
+  let(:private_resource) { FactoryGirl.create(:complete_private_scanned_resource, user: user) }
 
   context "an anonymous user" do
     scenario "views a public manifest" do

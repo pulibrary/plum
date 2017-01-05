@@ -1,6 +1,5 @@
 module PlumAttributes
-  delegate :state, :type, :identifier, :workflow_note, :thumbnail_id, :source_metadata_identifier, :collection, to: :solr_document
-  delegate :flaggable?, to: :state_badge_instance
+  delegate :state, :type, :identifier, :thumbnail_id, :source_metadata_identifier, :collection, to: :solr_document
 
   def state_badge
     state_badge_instance.render
@@ -33,7 +32,7 @@ module PlumAttributes
   private
 
     def state_badge_instance
-      StateBadge.new(type, state)
+      StateBadge.new(self)
     end
 
     def renderer_for(_field, options)

@@ -26,7 +26,8 @@ module CommonMetadata
         self.source_metadata = remote_data.source.dup.try(:force_encoding, 'utf-8')
       end
       self.attributes = remote_data.attributes
-      update_ezid if state == 'complete' && identifier
+
+      CompleteRecord.new(self).complete if workflow_state == 'complete' && identifier
     end
 
     private

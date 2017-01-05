@@ -1,8 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe StateBadge do
+  subject { described_class.new(work_presenter) }
+  let(:work_presenter) { ScannedResourceShowPresenter.new(scanned_resource, nil) }
+
   describe "pending" do
-    subject { described_class.new('type', 'pending') }
+    let(:scanned_resource) { FactoryGirl.create(:pending_scanned_resource) }
 
     it "renders a badge" do
       expect(subject.render).to include("label-default")
@@ -11,7 +14,7 @@ RSpec.describe StateBadge do
   end
 
   describe "metadata_review" do
-    subject { described_class.new('type', 'metadata_review') }
+    let(:scanned_resource) { FactoryGirl.create(:metadata_review_scanned_resource) }
 
     it "renders a badge" do
       expect(subject.render).to include("label-info")
@@ -20,7 +23,7 @@ RSpec.describe StateBadge do
   end
 
   describe "final_review" do
-    subject { described_class.new('type', 'final_review') }
+    let(:scanned_resource) { FactoryGirl.create(:final_review_scanned_resource) }
 
     it "renders a badge" do
       expect(subject.render).to include("label-primary")
@@ -29,7 +32,7 @@ RSpec.describe StateBadge do
   end
 
   describe "complete" do
-    subject { described_class.new('type', 'complete') }
+    let(:scanned_resource) { FactoryGirl.create(:complete_scanned_resource) }
 
     it "renders a badge" do
       expect(subject.render).to include("label-success")
@@ -38,7 +41,7 @@ RSpec.describe StateBadge do
   end
 
   describe "flagged" do
-    subject { described_class.new('type', 'flagged') }
+    let(:scanned_resource) { FactoryGirl.create(:flagged_scanned_resource) }
 
     it "renders a badge" do
       expect(subject.render).to include("label-warning")
@@ -47,7 +50,7 @@ RSpec.describe StateBadge do
   end
 
   describe "takedown" do
-    subject { described_class.new('type', 'takedown') }
+    let(:scanned_resource) { FactoryGirl.create(:takedown_scanned_resource) }
 
     it "renders a badge" do
       expect(subject.render).to include("label-danger")

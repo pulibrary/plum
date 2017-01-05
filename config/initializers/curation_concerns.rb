@@ -57,3 +57,5 @@ CurationConcerns.configure do |config|
 end
 
 Date::DATE_FORMATS[:standard] = '%m/%d/%Y'
+
+CurationConcerns::Workflow::WorkflowFactory.workflow_strategy = Workflow::PlumWorkflowStrategy

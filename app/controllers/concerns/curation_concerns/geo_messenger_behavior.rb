@@ -9,7 +9,7 @@ module CurationConcerns
 
     def after_update_response
       super
-      return unless geo_concern.state == 'complete'
+      return unless curation_concern.workflow_state == 'complete'
       geo_concerns_messenger.record_updated(geo_concern)
     end
 

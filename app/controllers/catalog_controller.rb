@@ -251,6 +251,6 @@ class CatalogController < ApplicationController
   end
   def admin_state_facet
     return unless can? :create, ScannedResource
-    blacklight_config.add_facet_field 'state_sim', label: 'State'
+    blacklight_config.add_facet_field 'workflow_state_name_ssim', label: 'State'
   end
 end

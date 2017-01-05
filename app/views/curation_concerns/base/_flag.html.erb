@@ -1,9 +1,0 @@
-<% if @presenter.flaggable? %>
-  <div class="col-md-12 with-headroom">
-    <%= simple_form_for [main_app, @presenter], url: main_app.polymorphic_path([:flag, @presenter]), method: :post, html: { class: 'form-inline' } do |f| %>
-      <legend>Flag for Review</legend>
-      <%= f.input :workflow_note, optional: true, label: false, placeholder: 'Reason', input_html: { value: '', size: 30 } %>
-      <%= f.submit 'Flag', class: 'btn btn-danger' %>
-    <% end %>
-  </div>
-<% end %>
