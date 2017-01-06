@@ -327,6 +327,26 @@ describe CurationConcerns::ScannedResourcesController do
     end
   end
 
+  describe "show uv format" do
+    before do
+      sign_in user if user
+    end
+    context "when the user is anonymous" do
+      let(:user) { nil }
+
+      context "and the work's complete" do
+        it "works" do
+          resource = FactoryGirl.create(:open_scanned_resource, state: 'complete')
+
+          get :show, id: resource.id, format: :uv
+
+          expect(response).to be_success
+          expect(response).to render_template("viewer_only.html.erb")
+        end
+      end
+    end
+  end
+
   describe 'pdf' do
     before do
       sign_in user if sign_in_user
