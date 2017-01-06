@@ -13,7 +13,7 @@ en:
     institution:
       name: *INSTITUTION_NAME
       homepage_url: "#"
-    product_name: "IU Paged Media"
+    product_name: "Pages Online"
     visibility:
       authenticated:
         text: *INSTITUTION_NAME
