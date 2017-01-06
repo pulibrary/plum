@@ -4,6 +4,7 @@
       <%= link_to "Edit This #{@presenter.human_readable_type}", edit_polymorphic_path([main_app, @presenter]), class: 'btn btn-default' %>
       <%= link_to t('file_manager.link_text'), ContextualPath.new(@presenter, @parent_presenter).file_manager, class: 'btn btn-default' %>
       <%= link_to "Edit Structure", ContextualPath.new(@presenter, @parent_presenter).structure, class: 'btn btn-default' %>
+      <%= link_to "Delete This #{@presenter.human_readable_type}", [main_app, @presenter], class: 'btn btn-danger pull-right', data: { confirm: "Delete this #{@presenter.human_readable_type}?" }, method: :delete %>
       <% if can?(:color_pdf, ScannedResource) %>
         <div class="btn-group">
           <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -22,6 +23,5 @@
         <%= link_to "Download PDF", polymorphic_path([main_app, :pdf, @presenter], pdf_quality: "gray"), class: "btn btn-default" %>
       <% end %>
     <% end %>
-      <%= link_to "Delete This #{@presenter.human_readable_type}", [main_app, @presenter], class: 'btn btn-danger pull-right', data: { confirm: "Delete this #{@presenter.human_readable_type}?" }, method: :delete %>
   </div>
 <% end %>
