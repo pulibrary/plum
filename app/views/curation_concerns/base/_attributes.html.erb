@@ -47,8 +47,8 @@
     <%= @presenter.holding_location %>
   <% end %>
   <%= render 'curation_concerns/base/member_of_collections', presenter: @presenter %>
+  <%= @presenter.attribute_to_html(:identifier) %>
   <% if can? :edit, @presenter.id %>
-    <%= @presenter.attribute_to_html(:identifier) %>
     <%= @presenter.attribute_to_html(:source_metadata_identifier) %>
     <%= @presenter.attribute_to_html(:workflow_note) %>
   <% end %>
