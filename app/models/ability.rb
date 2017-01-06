@@ -5,7 +5,8 @@ class Ability
   # Define any customized permissions here.
   def custom_permissions
     alias_action :show, :manifest, to: :read
-    alias_action :color_pdf, :pdf, :edit, to: :modify
+    alias_action :edit, to: :modify
+    # alias_action :color_pdf, :pdf, :edit, to: :modify
     roles.each do |role|
       send "#{role}_permissions" if current_user.send "#{role}?"
     end
@@ -85,12 +86,12 @@ class Ability
     cannot [:read], curation_concerns do |curation_concern|
       !readable_concern?(curation_concern)
     end
-    can :pdf, (curation_concerns + [ScannedResourceShowPresenter]) do |curation_concern|
-      ["color", "gray"].include?(Array(curation_concern.pdf_type).first)
-    end
-    can :color_pdf, (curation_concerns + [ScannedResourceShowPresenter]) do |curation_concern|
-      curation_concern.pdf_type == ["color"]
-    end
+    # can :pdf, (curation_concerns + [ScannedResourceShowPresenter]) do |curation_concern|
+    #   ["color", "gray"].include?(Array(curation_concern.pdf_type).first)
+    # end
+    # can :color_pdf, (curation_concerns + [ScannedResourceShowPresenter]) do |curation_concern|
+    #   curation_concern.pdf_type == ["color"]
+    # end
   end
 
   def readable_concern?(curation_concern)

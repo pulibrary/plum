@@ -345,18 +345,19 @@ describe CurationConcerns::ScannedResourcesController do
         context "when not given permission" do
           let(:user) { FactoryGirl.create(:campus_patron) }
           let(:sign_in_user) { user }
-          context "and color PDF is enabled" do
-            let(:scanned_resource) { FactoryGirl.create(:scanned_resource, user: user, title: ['Dummy Title'], pdf_type: ['color']) }
-            it "works" do
-              pdf = double("Actor")
-              allow(ScannedResourcePDF).to receive(:new).with(anything, quality: "color").and_return(pdf)
-              allow(pdf).to receive(:render).and_return(true)
-
-              get :pdf, id: scanned_resource, pdf_quality: "color"
-
-              expect(response).to redirect_to(Rails.application.class.routes.url_helpers.download_path(scanned_resource, file: 'color-pdf'))
-            end
-          end
+          # Commented because Admin is our only PDF enabled role and this test needs a non-admin role.
+          # context "and color PDF is enabled" do
+          #   let(:scanned_resource) { FactoryGirl.create(:scanned_resource, user: user, title: ['Dummy Title'], pdf_type: ['color']) }
+          #   it "works" do
+          #     pdf = double("Actor")
+          #     allow(ScannedResourcePDF).to receive(:new).with(anything, quality: "color").and_return(pdf)
+          #     allow(pdf).to receive(:render).and_return(true)
+          #
+          #     get :pdf, id: scanned_resource, pdf_quality: "color"
+          #
+          #     expect(response).to redirect_to(Rails.application.class.routes.url_helpers.download_path(scanned_resource, file: 'color-pdf'))
+          #   end
+          # end
           it "doesn't work" do
             get :pdf, id: scanned_resource, pdf_quality: "color"
 
@@ -368,6 +369,9 @@ describe CurationConcerns::ScannedResourcesController do
     context "when requesting gray" do
       let(:sign_in_user) { nil }
       context "when given permission" do
+        let(:user) { FactoryGirl.create(:admin) }
+        let(:sign_in_user) { user } # Admin is only role with PDF ability.
+
         it 'generates the pdf then redirects to its download url' do
           pdf = double("Actor")
           allow(ScannedResourcePDF).to receive(:new).with(anything, quality: "gray").and_return(pdf)

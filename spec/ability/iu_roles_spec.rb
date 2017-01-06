@@ -124,8 +124,6 @@ describe Ability do
     it {
       should be_able_to(:read, open_scanned_resource)
       should be_able_to(:manifest, open_scanned_resource)
-      should be_able_to(:pdf, open_scanned_resource)
-      should be_able_to(:color_pdf, open_scanned_resource)
       should be_able_to(:flag, open_scanned_resource)
       should be_able_to(:read, campus_only_scanned_resource)
       should be_able_to(:read, private_scanned_resource)
@@ -150,6 +148,8 @@ describe Ability do
       should_not be_able_to(:complete, pending_scanned_resource)
       should_not be_able_to(:destroy, complete_scanned_resource)
       should_not be_able_to(:destroy, admin_file)
+      should_not be_able_to(:pdf, open_scanned_resource)
+      should_not be_able_to(:color_pdf, open_scanned_resource)
     }
   end
 
@@ -168,8 +168,6 @@ describe Ability do
       should be_able_to(:read, takedown_scanned_resource)
       should be_able_to(:read, flagged_scanned_resource)
       should be_able_to(:manifest, open_scanned_resource)
-      should be_able_to(:pdf, open_scanned_resource)
-      should be_able_to(:color_pdf, open_scanned_resource)
       should be_able_to(:flag, open_scanned_resource)
       should be_able_to(:flag, private_scanned_resource)
       should be_able_to(:file_manager, open_scanned_resource)
@@ -187,6 +185,8 @@ describe Ability do
       should_not be_able_to(:complete, pending_scanned_resource)
       should_not be_able_to(:destroy, complete_scanned_resource)
       should_not be_able_to(:destroy, admin_file)
+      should_not be_able_to(:pdf, open_scanned_resource)
+      should_not be_able_to(:color_pdf, open_scanned_resource)
     }
   end
 
@@ -205,7 +205,6 @@ describe Ability do
       should be_able_to(:read, takedown_scanned_resource)
       should be_able_to(:read, flagged_scanned_resource)
       should be_able_to(:manifest, open_scanned_resource)
-      should be_able_to(:pdf, open_scanned_resource)
       should be_able_to(:flag, open_scanned_resource)
       should be_able_to(:flag, private_scanned_resource)
       should be_able_to(:download, image_editor_file)
@@ -223,6 +222,7 @@ describe Ability do
       should_not be_able_to(:complete, pending_scanned_resource)
       should_not be_able_to(:destroy, complete_scanned_resource)
       should_not be_able_to(:destroy, admin_file)
+      should_not be_able_to(:pdf, open_scanned_resource)
     }
   end
 
@@ -240,7 +240,6 @@ describe Ability do
       should be_able_to(:read, takedown_scanned_resource)
       should be_able_to(:read, flagged_scanned_resource)
       should be_able_to(:manifest, open_scanned_resource)
-      should be_able_to(:pdf, open_scanned_resource)
       should be_able_to(:flag, open_scanned_resource)
 
       should_not be_able_to(:read, pending_scanned_resource)
@@ -258,6 +257,7 @@ describe Ability do
       should_not be_able_to(:destroy, role)
       should_not be_able_to(:complete, pending_scanned_resource)
       should_not be_able_to(:destroy, admin_file)
+      should_not be_able_to(:pdf, open_scanned_resource)
     }
   end
 
@@ -274,10 +274,6 @@ describe Ability do
       should be_able_to(:manifest, campus_only_scanned_resource)
       should be_able_to(:manifest, complete_scanned_resource)
       should be_able_to(:manifest, flagged_scanned_resource)
-      should be_able_to(:pdf, open_scanned_resource)
-      should be_able_to(:pdf, campus_only_scanned_resource)
-      should be_able_to(:pdf, complete_scanned_resource)
-      should be_able_to(:pdf, flagged_scanned_resource)
       should be_able_to(:flag, open_scanned_resource)
       should be_able_to(:flag, campus_only_scanned_resource)
       should be_able_to(:flag, complete_scanned_resource)
@@ -301,6 +297,10 @@ describe Ability do
       should_not be_able_to(:destroy, role)
       should_not be_able_to(:complete, pending_scanned_resource)
       should_not be_able_to(:destroy, admin_file)
+      should_not be_able_to(:pdf, open_scanned_resource)
+      should_not be_able_to(:pdf, campus_only_scanned_resource)
+      should_not be_able_to(:pdf, complete_scanned_resource)
+      should_not be_able_to(:pdf, flagged_scanned_resource)
     }
   end
 
@@ -317,13 +317,14 @@ describe Ability do
     it {
       should be_able_to(:read, open_scanned_resource)
       should be_able_to(:manifest, open_scanned_resource)
-      should be_able_to(:pdf, open_scanned_resource)
+
       should be_able_to(:read, complete_scanned_resource)
       should be_able_to(:manifest, complete_scanned_resource)
       should be_able_to(:read, flagged_scanned_resource)
       should be_able_to(:manifest, flagged_scanned_resource)
-      should be_able_to(:color_pdf, color_enabled_resource)
 
+      should_not be_able_to(:color_pdf, color_enabled_resource)
+      should_not be_able_to(:pdf, open_scanned_resource)
       should_not be_able_to(:pdf, no_pdf_scanned_resource)
       should_not be_able_to(:flag, open_scanned_resource)
       should_not be_able_to(:read, campus_only_scanned_resource)
@@ -362,13 +363,13 @@ describe Ability do
     it {
       should be_able_to(:read, open_scanned_resource)
       should be_able_to(:manifest, open_scanned_resource)
-      should be_able_to(:pdf, open_scanned_resource)
       should be_able_to(:read, complete_scanned_resource)
       should be_able_to(:manifest, complete_scanned_resource)
       should be_able_to(:read, flagged_scanned_resource)
       should be_able_to(:manifest, flagged_scanned_resource)
-      should be_able_to(:color_pdf, color_enabled_resource)
 
+      should_not be_able_to(:color_pdf, color_enabled_resource)
+      should_not be_able_to(:pdf, open_scanned_resource)
       should_not be_able_to(:pdf, no_pdf_scanned_resource)
       should_not be_able_to(:flag, open_scanned_resource)
       should_not be_able_to(:read, campus_only_scanned_resource)
