@@ -33,6 +33,12 @@ RSpec.feature "CatalogController", type: :feature do
       expect(page).to have_text "Test title"
       expect(page).to have_selector "div.blacklight-state_sim", text: "State"
     end
+
+    scenario "CurationConcerns creators see editing links" do
+      visit search_catalog_path q: ""
+      expect(page).to have_text "Test title"
+      expect(page).to have_selector "a.itemedit", text: "Edit Scanned Resource"
+    end
   end
 
   describe "anonymous user" do
@@ -47,6 +53,12 @@ RSpec.feature "CatalogController", type: :feature do
       visit search_catalog_path q: ""
       expect(page).to have_text "Test title"
       expect(page).not_to have_selector "div.blacklight-state_sim", text: "State"
+    end
+
+    scenario "Anonymous users see a viewer link" do
+      visit search_catalog_path q: ""
+      expect(page).to have_text "Test title"
+      expect(page).to have_selector "a.itemshow", text: "Open in Viewer"
     end
   end
 end

@@ -1,21 +1,36 @@
-<% if can?(:edit, document) || can?(:collect, document) %>
-  <div class="btn-group">
-    <button class="btn btn-default btn-small dropdown-toggle" data-toggle="dropdown" href="#">Select an action <span class="caret"></span></button>
-    <ul class="dropdown-menu">
-      <% if can? :edit, document %>
-        <li>
-          <%= link_to [:edit, document], class: 'itemicon itemedit' do %><i class="glyphicon glyphicon-pencil"></i> Edit <%= document.human_readable_type %>
-          <% end %>
-        </li>
-        <li>
-          <%= link_to document, class: 'itemicon itemtrash',
-                      title: "Delete #{document.human_readable_type}", method: :delete,
-                      data: {
-                        confirm: "Deleting a #{document.human_readable_type} from #{t('curation_concerns.product_name')} is permanent. Click OK to delete this #{document.human_readable_type} from #{t('curation_concerns.product_name')}, or Cancel to cancel this operation" } do %>
-                          <i class="glyphicon glyphicon-trash"></i> Delete <%= document.human_readable_type %>
-          <% end %>
-        </li>
+<div class="btn-group">
+  <button class="btn btn-default btn-small dropdown-toggle" data-toggle="dropdown" href="#">Select an action <span class="caret"></span></button>
+  <ul class="dropdown-menu">
+    <li>
+      <%= link_to polymorphic_path([main_app, document], format: :uv), class: 'itemicon itemshow' do %>
+          <i class="glyphicon glyphicon-fullscreen"></i> Open in Viewer
       <% end %>
-    </ul>
-  </div>
-<% end %>
+    </li>
+    <% if can? :edit, document %>
+        <li><hr/></li>
+        <li>
+          <%= link_to [:edit, document], class: 'itemicon itemedit' do %>
+              <i class="glyphicon glyphicon-pencil"></i> Edit <%= document.human_readable_type %>
+          <% end %>
+        </li>
+        <li>
+          <%= link_to [:file_manager, document], class: 'itemicon itemedit' do %>
+              <i class="glyphicon glyphicon-file"></i> File Manager
+          <% end %>
+        </li>
+        <li>
+          <%= link_to [:structure, document], class: 'itemicon itemedit' do %>
+              <i class="glyphicon glyphicon-indent-left"></i> Edit Structure
+          <% end %>
+        </li>
+      <li>
+        <%= link_to document, class: 'itemicon itemtrash',
+                    title: "Delete #{document.human_readable_type}", method: :delete,
+                    data: {
+                      confirm: "Deleting a #{document.human_readable_type} from #{t('curation_concerns.product_name')} is permanent. Click OK to delete this #{document.human_readable_type} from #{t('curation_concerns.product_name')}, or Cancel to cancel this operation" } do %>
+                        <i class="glyphicon glyphicon-trash"></i> Delete <%= document.human_readable_type %>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+</div>
