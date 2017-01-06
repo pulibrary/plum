@@ -141,6 +141,10 @@ class SolrDocument
       id
     end
 
+    def to_global_id
+      URI::GID.build app: GlobalID.app, model_name: model_name.name, model_id: @id
+    end
+
     private
 
       def klass
