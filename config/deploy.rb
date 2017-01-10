@@ -65,6 +65,9 @@ namespace :sidekiq do
     on roles(:worker2) do
       execute :sudo, :initctl, :restart, "plum-derivatives"
     end
+    on roles(:worker3) do
+      execute :sudo, :service, "plum-derivatives", :restart
+    end
   end
 end
 after 'deploy:starting', 'sidekiq:quiet'
