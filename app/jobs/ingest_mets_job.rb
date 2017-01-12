@@ -24,6 +24,7 @@ class IngestMETSJob < ActiveJob::Base
       resource.member_of_collections = Array(@mets.collection_slugs).map { |slug| find_or_create_collection(slug) }
       resource.apply_remote_metadata
       resource.save!
+      Workflow::InitializeState.call(resource, 'book_works', 'final_review')
       logger.info "Created #{resource.class}: #{resource.id}"
 
       attach_mets resource
@@ -128,6 +129,7 @@ class IngestMETSJob < ActiveJob::Base
         r.title = [@mets.label_for_volume(volume_id)]
         r.viewing_hint = @mets.viewing_hint
         r.save!
+        Workflow::InitializeState.call(r, 'book_works', 'final_review')
         logger.info "Created ScannedResource: #{r.id}"
 
         parent.ordered_members << r
@@ -142,7 +144,6 @@ class IngestMETSJob < ActiveJob::Base
 
     def minimal_record(klass)
       resource = klass.new
-      resource.state = 'final_review'
       resource.viewing_direction = @mets.viewing_direction
       resource.rights_statement = 'http://rightsstatements.org/vocab/NKC/1.0/'
       resource.visibility = Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PUBLIC
