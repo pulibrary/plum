@@ -75,7 +75,6 @@ describe CurationConcerns::ScannedResourcesController do
         expect(manifest_generator).not_to have_received(:record_created)
       end
     end
-
     context "when selecting a collection" do
       let(:collection) { FactoryGirl.create(:collection, user: user) }
       let(:scanned_resource_attributes) do
@@ -372,7 +371,7 @@ describe CurationConcerns::ScannedResourcesController do
       end
       context "when the resource has no pdf type set" do
         let(:sign_in_user) { FactoryGirl.create(:user) }
-        let(:scanned_resource) { FactoryGirl.create(:scanned_resource, user: user, title: ['Dummy Title'], pdf_type: []) }
+        let(:scanned_resource) { FactoryGirl.create(:complete_scanned_resource, user: user, title: ['Dummy Title'], pdf_type: []) }
         it "redirects to root" do
           get :pdf, id: scanned_resource, pdf_quality: "gray"
 
@@ -453,6 +452,11 @@ describe CurationConcerns::ScannedResourcesController do
         expect(resource.pending_uploads.length).to eq 1
       end
     end
+  end
+
+  describe "#form_class" do
+    subject { described_class.new.form_class }
+    it { is_expected.to eq CurationConcerns::ScannedResourceForm }
   end
 
   include_examples "structure persister", :scanned_resource, ScannedResourceShowPresenter
