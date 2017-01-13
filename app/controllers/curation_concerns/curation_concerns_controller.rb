@@ -5,10 +5,6 @@ class CurationConcerns::CurationConcernsController < ApplicationController
   include CurationConcerns::UpdateOCR
   include CurationConcerns::RemoteMetadata
 
-  def curation_concern_name
-    curation_concern.class.name.underscore
-  end
-
   def destroy
     messenger.record_deleted(curation_concern)
     super

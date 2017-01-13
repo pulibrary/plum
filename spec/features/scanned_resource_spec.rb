@@ -4,7 +4,7 @@ RSpec.feature "ScannedResourcesController", type: :feature do
   let(:user) { FactoryGirl.create(:image_editor) }
 
   context "an authorized user" do
-    let(:scanned_resource) { FactoryGirl.create(:complete_scanned_resource, title: ["first title", "second title"], user: user) }
+    let(:scanned_resource) { FactoryGirl.create(:scanned_resource, title: ["first title", "second title"], user: user) }
     before(:each) do
       sign_in user
       scanned_resource

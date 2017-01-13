@@ -26,10 +26,6 @@ class SolrDocument
 
   use_extension(Hydra::ContentNegotiation)
 
-  def state
-    Array(self[Solrizer.solr_name("state")]).first
-  end
-
   def type
     self['has_model_ssim'].first
   end
