@@ -6,6 +6,7 @@
     viewing_direction: left-to-right
     rights_statement: http://rightsstatements.org/vocab/InC/1.0/
     visibility: authenticated
+    viewing_hint: paged
   :local:
     source_metadata_identifier: ABE9721
     holding_location: https://libraries.indiana.edu/music

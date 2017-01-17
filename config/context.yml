@@ -67,6 +67,8 @@
     "@id": edm:rights
   viewing_direction:
     "@id": iiif:viewingDirection
+  viewing_hint:
+    "@id": iiif:viewingHint
   state:
     "@id": f3access:objState
   lccn_call_number:
@@ -611,6 +613,8 @@
     "@id": pulterms:call_number
   published:
     "@id": pulterms:published
+  source_metadata:
+    "@id": pulterms:source_metadata
   source_metadata_identifier:
     "@id": pulterms:metadata_id
   visibility:
