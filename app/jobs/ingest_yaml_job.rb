@@ -71,6 +71,7 @@ class IngestYAMLJob < ActiveJob::Base
 
         ingest_files(parent: parent, resource: r, files: volume[:files])
         r.logical_order.order = map_fileids(volume[:structure])
+        r.state = 'complete'
         r.save!
 
         parent.ordered_members << r
