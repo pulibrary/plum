@@ -1,5 +1,13 @@
 {
   "modules": {
+    "contentLeftPanel" : {
+      "options": {
+        "defaultToTreeEnabled": true
+      },
+      "content": {
+        "index": "TOC"
+      }
+    },
     "footerPanel": {
       "options": {
         "downloadEnabled": false,
