@@ -15,7 +15,9 @@ namespace :pmp do
     logger.info "ingesting as: #{user.user_key} (override with USER=foo)"
 
     begin
-      IngestYAMLJob.perform_now(file, user)
+      file_association_method = ENV['FILE_ASSOCIATION_METHOD'] || 'batch'
+      logger.info "ingesting with file association method: #{file_association_method} (override with FILE_ASSOCIATION_METHOD=batch|individual|none)"
+      IngestYAMLJob.perform_now(file, user, file_association_method: file_association_method)
     rescue => e
       logger.info "Error: #{e.message}"
       logger.info e.backtrace
