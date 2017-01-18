@@ -156,6 +156,14 @@ RSpec.describe IngestMETSJob do
       expect(fileset1.files.first.content).to start_with("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>\n<mets:mets")
       expect(resource.viewing_hint).to eq('paged')
     end
+    context "when there's no isPartOf" do
+      let(:mets_file) { Rails.root.join("spec", "fixtures", "pudl0001-4612596-no-collection.mets") }
+      it "can ingest it", vcr: { cassette_name: 'bibdata-4612596' } do
+        described_class.perform_now(mets_file, user)
+
+        expect(resource.member_of_collections).to eq []
+      end
+    end
     context "when the file is already ingested", vcr: { cassette_name: 'bibdata-4612596' } do
       it "deletes the old version" do
         mvw = FactoryGirl.create(:multi_volume_work_with_file, identifier: "ark:/88435/5m60qr98h")
