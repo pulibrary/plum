@@ -36,6 +36,26 @@ RSpec.describe IngestYAMLJob do
       allow(ingest_counter).to receive(:increment)
     end
 
+    it "recovers from HTTP errors" do
+      allow(actor1).to receive(:attach_related_object)
+      allow(actor1).to receive(:attach_content)
+      allow(actor2).to receive(:create_metadata)
+      allow(actor2).to receive(:create_content)
+
+      call_count = 0
+      allow_any_instance_of(Net::HTTP).to receive(:transport_request).and_wrap_original { |m, *args, &block|
+        call_count += 1
+        if call_count.odd? && args.first['user-agent'] =~ /^Faraday/ # RSolr does not use Faraday yet.
+          args.first['content-type'] = "BADDATA" # Causes a 400 error in Fedora.
+        end
+        m.call(*args, &block)
+      }
+      expect_any_instance_of(Faraday::Request::Retry).to receive(:retry_request?).at_least(:once).and_call_original
+
+      described_class.perform_now(yaml_file_single, user)
+      expect(resource1.state).to eq('complete')
+    end
+
     it "ingests a single-volume yaml file" do
       expect(actor1).to receive(:attach_related_object).with(resource1)
       expect(actor1).to receive(:attach_content).with(instance_of(File))
