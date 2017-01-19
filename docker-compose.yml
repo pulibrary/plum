@@ -1,0 +1,15 @@
+version: '2'
+# More services can be found in docker-compose-full.yml 
+services:
+  loris:
+    image: lorisimageserver/loris
+    ports:
+      - "5004:5004"
+    volumes:
+      - ./tmp/derivatives:/usr/local/share/images
+  geoserver:
+    image: geoconcerns/geoserver
+    ports:
+      - "8181:8080"
+    volumes:
+      - ./tmp/geo-derivatives:/opt/geoserver/data_dir/derivatives
