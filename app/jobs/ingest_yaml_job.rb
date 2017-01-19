@@ -110,6 +110,7 @@ class IngestYAMLJob < ActiveJob::Base
     def ingest_thumbnail(file_set, resource, parent)
       resource.thumbnail_id = file_set.id
       resource.representative_id = file_set.id
+      resource.save!
       parent.thumbnail_id = file_set.id if parent
       parent.representative_id = file_set.id if parent
     end
