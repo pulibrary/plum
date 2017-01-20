@@ -7,7 +7,7 @@ class IngestMETSJob < ActiveJob::Base
   # @param [String] user User to ingest as
   def perform(mets_file, user)
     logger.info "Ingesting METS #{mets_file}"
-    @mets = METSDocument.new mets_file
+    @mets = METSDocument::Factory.new(mets_file).new
     @user = user
 
     ingest
