@@ -73,6 +73,7 @@ class Ability
   def anonymous_permissions
     # do not allow viewing incomplete resources
     curation_concern_read_permissions
+    can [:download], FileSet
   end
 
   def curation_concern_read_permissions
