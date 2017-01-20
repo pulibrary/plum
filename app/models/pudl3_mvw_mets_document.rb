@@ -4,7 +4,7 @@ class Pudl3MVWMetsDocument < METSDocument
   end
 
   def volume_ids
-    files.map { |x| x[:path].split("/")[-2] }
+    files.map { |x| x[:path].split("/")[-2] }.uniq
   end
 
   def label_for_volume(volume_id)
