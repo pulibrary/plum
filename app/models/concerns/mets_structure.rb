@@ -4,6 +4,7 @@ module MetsStructure
   end
 
   def structure_for_volume(volume_id)
+    return {} if structureless?
     volume = volume_nodes.find { |vol| vol.attribute("ID").value == volume_id }
     { nodes: structure_for_nodeset(volume.element_children) }
   end
@@ -18,6 +19,10 @@ module MetsStructure
 
     def structure_map(type)
       @mets.xpath("/mets:mets/mets:structMap[@TYPE='#{type}']").first
+    end
+
+    def structureless?
+      false
     end
 
     def structure_type(type)

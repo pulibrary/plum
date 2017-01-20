@@ -113,6 +113,32 @@ RSpec.describe IngestMETSJob do
       described_class.perform_now(mets_file_multi, user)
       expect(work.ordered_member_ids).to eq(['resource1', 'resource2'])
     end
+
+    context "when given a pudl0003 MVW with no structmap", vcr: { cassette_name: 'bibdata-4612596' } do
+      let(:mets_file) { Rails.root.join("spec", "fixtures", "pudl0003-tc85_2621.mets") }
+      it "hacks together a MVW from the path" do
+        allow(actor1).to receive(:attach_related_object)
+        allow(actor1).to receive(:attach_content)
+        allow(actor2).to receive(:create_metadata)
+        allow(actor2).to receive(:create_content)
+        expect(resource1).to receive(:logical_order).at_least(:once).and_return(logical_order)
+        expect(resource2).to receive(:logical_order).at_least(:once).and_return(logical_order)
+        expect(logical_order).to receive(:order=).at_least(:once)
+        allow(logical_order).to receive(:order).and_return(nil)
+        allow(logical_order).to receive(:object).and_return(order_object)
+        allow(order_object).to receive(:each_section).and_return([])
+        expect(resource1).to receive(:ordered_members=)
+        expect(resource2).to receive(:ordered_members=)
+        allow(resource1).to receive(:file_sets).and_return([fileset])
+        allow(resource2).to receive(:file_sets).and_return([fileset])
+        expect(resource1).to receive(:thumbnail_id=)
+        expect(resource2).to receive(:thumbnail_id=)
+
+        described_class.perform_now(mets_file, user)
+
+        expect(work.ordered_member_ids).to eq(['resource1', 'resource2'])
+      end
+    end
   end
 
   describe "integration test" do
