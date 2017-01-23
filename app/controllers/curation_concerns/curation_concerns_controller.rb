@@ -15,7 +15,7 @@ class CurationConcerns::CurationConcernsController < ApplicationController
   end
 
   def alphabetize_members
-    @sorted = curation_concern.members.sort { |x, y| x.label <=> y.label }
+    @sorted = curation_concern.members.sort { |x, y| x.label.to_s <=> y.label.to_s }
     flash[:notice] = "Files have been ordered alphabetically, by filename."
     curation_concern.update_attributes(ordered_members: @sorted)
     redirect_to :back
