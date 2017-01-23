@@ -1,14 +1,20 @@
 namespace :state do
   desc "Migrate state from the state property to Sipity"
   task migrate: :environment do
-    ['MultiVolumeWork', 'ScannedResource', 'ImageWork', 'RasterWork', 'VectorWork'].each do |model|
-      ActiveFedora::SolrService.get("has_model_ssim:#{model}")['response']['docs'].each do |doc|
-        puts "#{doc['id']} (#{model})"
-        obj = ActiveFedora::Base.find(doc['id'])
-        unless obj.workflow_state
-          Workflow::InitializeState.call(obj, 'book_works', obj.state)
-          obj.state = Vocab::FedoraResourceStatus.active
-          obj.save!
+    workflows = {
+      'book_works': ['MultiVolumeWork', 'ScannedResource'],
+      'geo_works': ['ImageWork', 'RasterWork', 'VectorWork']
+    }
+    workflows.keys.each do |workflow_name|
+      workflows[workflow_name].each do |model|
+        ActiveFedora::SolrService.query("has_model_ssim:#{model}", fl: "id").map{|x| x["id"]}.each do |id|
+          puts "#{id} (#{model})"
+          obj = ActiveFedora::Base.find(id)
+          unless obj.workflow_state
+            Workflow::InitializeState.call(obj, workflow_name, obj.state)
+            obj.state = Vocab::FedoraResourceStatus.active
+            obj.save!
+          end
         end
       end
     end
