@@ -69,6 +69,7 @@ group :development, :test do
   gem 'pry-rails'
   # Use sqlite3 as the database for Active Record
   gem 'sqlite3'
+  gem 'rails-controller-testing'
 end
 
 gem 'solr_wrapper', '~> 0.18.0'
@@ -111,7 +112,6 @@ gem 'newrelic_rpm'
 gem 'iso-639'
 gem 'bunny'
 gem 'string_rtl'
-#gem 'sinatra'
 gem 'redis-namespace'
 gem 'arabic-letter-connector'
 group :staging, :development do

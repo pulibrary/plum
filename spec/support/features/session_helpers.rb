@@ -32,7 +32,7 @@ module Features
                FactoryGirl.create(:user).username
              end
       OmniAuth.config.add_mock(:cas, uid: user)
-      visit user_omniauth_authorize_path(:cas)
+      visit user_cas_omniauth_authorize_path
     end
   end
 end

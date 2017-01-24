@@ -125,7 +125,7 @@ describe CurationConcerns::ScannedResourcesController do
 
           expect(response).to be_success
           response_json = JSON.parse(response.body)
-          expect(response_json['@id']).to eq "https://plum.com/concern/scanned_resources/#{resource.id}/manifest"
+          expect(response_json['@id']).to eq "http://plum.com/concern/scanned_resources/#{resource.id}/manifest"
         end
       end
       context "when requesting a child resource" do
@@ -215,6 +215,9 @@ describe CurationConcerns::ScannedResourcesController do
         s
       end
       let(:file_set) { FactoryGirl.create(:file_set) }
+
+      around { |example| perform_enqueued_jobs(&example) }
+
       it "updates OCR on file sets" do
         ocr_runner = instance_double(OCRRunner)
         allow(OCRRunner).to receive(:new).and_return(ocr_runner)

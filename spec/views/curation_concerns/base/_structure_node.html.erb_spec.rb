@@ -14,6 +14,10 @@ RSpec.describe "curation_concerns/base/_structure_node.html.erb" do
     FileSetPresenter.new(SolrDocument.new(f.to_solr), nil)
   end
   before do
+    view.class.send(:eval, 'include Blacklight::CatalogHelperBehavior')
+    view.class.send(:eval, 'include CurationConcernsHelper')
+    view.class.send(:eval, 'include OsdModalHelper')
+    view.class.send(:eval, 'include ThumbnailHelper')
     stub_blacklight_views
     render partial: "curation_concerns/base/structure_node", locals: { node: node }
   end

@@ -1,5 +1,5 @@
 require 'new_relic/agent/method_tracer'
-class IngestMETSJob < ActiveJob::Base
+class IngestMETSJob < ApplicationJob
   include ::NewRelic::Agent::MethodTracer
   queue_as :ingest
 

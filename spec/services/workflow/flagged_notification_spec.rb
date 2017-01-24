@@ -9,6 +9,8 @@ RSpec.describe Workflow::FlaggedNotification do
     ActionMailer::Base.deliveries = []
   end
 
+  around { |example| perform_enqueued_jobs(&example) }
+
   describe ".send_notification" do
     it 'sends a message to all users' do
       described_class.send_notification(entity: entity, user: approver, comment: nil, recipients: {})

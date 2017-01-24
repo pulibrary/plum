@@ -41,6 +41,6 @@ module CurationConcerns::Manifest
     end
 
     def login_url
-      main_app.user_omniauth_authorize_url(:cas)
+      main_app.user_cas_omniauth_authorize_url
     end
 end

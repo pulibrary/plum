@@ -577,6 +577,10 @@ GEM
       rails-assets-jquery (>= 1.8)
     rails-assets-jquery (3.1.1)
     rails-assets-jqueryui-timepicker-addon (1.6.3)
+    rails-controller-testing (1.0.1)
+      actionpack (~> 5.x)
+      actionview (~> 5.x)
+      activesupport (~> 5.x)
     rails-dom-testing (2.0.2)
       activesupport (>= 4.2.0, < 6.0)
       nokogiri (~> 1.6)
@@ -841,6 +845,7 @@ DEPENDENCIES
   rails-assets-babel-polyfill!
   rails-assets-bootstrap-select (= 1.9.4)!
   rails-assets-jqueryui-timepicker-addon!
+  rails-controller-testing
   rake (= 11.3.0)
   rbtrace
   redis-namespace

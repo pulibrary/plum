@@ -13,6 +13,8 @@ RSpec.describe Workflow::CompleteNotification do
     ActionMailer::Base.deliveries = []
   end
 
+  around { |example| perform_enqueued_jobs(&example) }
+
   describe ".send_notification" do
     it 'sends a message to all users' do
       expect { described_class.send_notification(entity: entity, user: approver, comment: comment, recipients: recipients) }

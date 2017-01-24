@@ -1,4 +1,4 @@
-class RunOCRJob < ActiveJob::Base
+class RunOCRJob < ApplicationJob
   queue_as :lowest
 
   def perform(file_set_id, filename = nil)

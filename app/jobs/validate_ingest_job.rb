@@ -1,4 +1,4 @@
-class ValidateIngestJob < ActiveJob::Base
+class ValidateIngestJob < ApplicationJob
   queue_as :ingest
 
   # @param [String] mets_file Filename of a METS file to validate

@@ -33,6 +33,7 @@ RSpec.describe "curation_concerns/base/structure" do
   end
   let(:scanned_resource) { ScannedResourceShowPresenter.new(SolrDocument.new(ScannedResource.new(id: "test").to_solr), nil) }
   before do
+    view.class.send(:eval, 'include StructureHelper')
     stub_blacklight_views
     assign(:logical_order, logical_order)
     assign(:presenter, scanned_resource)
