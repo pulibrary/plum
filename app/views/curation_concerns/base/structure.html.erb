@@ -10,7 +10,7 @@
   <!--<button data-action="submit-list" class="btn btn-primary">Save</button>-->
   <%= button_tag type: 'button', class: 'btn btn-primary',
                  data: { action: 'submit-list',
-                         prefix: Rails.application.config.relative_url_root } do %>
+                         prefix: Rails.application.config.relative_url_root || '' } do %>
     Save
   <% end %>
 </div>
