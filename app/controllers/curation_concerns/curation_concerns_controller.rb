@@ -64,6 +64,15 @@ class CurationConcerns::CurationConcernsController < ApplicationController
     messenger.record_created(curation_concern)
   end
 
+  protected
+
+    def additional_response_formats(wants)
+      wants.uv do
+        presenter && parent_presenter
+        render 'viewer_only.html.erb', layout: 'boilerplate', content_type: 'text/html'
+      end
+    end
+
   private
 
     def search_builder_class
