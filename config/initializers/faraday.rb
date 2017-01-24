@@ -47,7 +47,7 @@ module PumpkinExtensions
               conn.request :url_encoded # This is a default middleware
               conn.request :retry, max: 4, interval: 0.1, backoff_factor: 4 # Safe retry for timeouts.
               conn.request :retry, max: 4, interval: 0.1, backoff_factor: 4, # Retry all methods that seem to be ESS errors.
-                                   methods: [], exceptions: ['Faraday::EssError'],
+                                   methods: [], exceptions: [Faraday::EssError],
                                    retry_if: ->(env, _exception) { env[:status] != 404 } # Should never encounter 404, but just in case.
               conn.request :instrumentation
               conn.response :raise_ess_error
