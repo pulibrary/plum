@@ -1,6 +1,46 @@
 version: '2'
-# More services can be found in docker-compose-full.yml 
 services:
+  # plum:
+  #   image: test
+  #   ports:
+  #     - "3000:3000"
+  #   links:
+  #     - gcsolr:solr
+  #     - redis:redis
+  #   environment:
+  #     SOLR_URL: http://localhost:8983
+  #     REDIS_HOST: http://redis
+  #     FCREPO_URL: http://localhost:8986/rest
+  # gcsolr:
+  #   image: geoconcerns/solr
+  #   expose:
+  #     - "8983"
+  #   ports:
+  #     - "8983:8983"
+  redis:
+    image: redis:3.2.4-alpine
+    ports:
+      - "6379:6379"
+  pulmap:
+    build: docker/pulmap/.
+    ports:
+      - "3001:3000"
+    links:
+      - gblsolr:solr
+      - rabbitmq
+    environment:
+      RABBIT_SERVER: amqp://rabbitmq:5672
+  gblsolr:
+    image: geoconcerns/geoblacklight-solr
+    expose:
+      - "8983"
+    ports:
+      - "9983:8983"
+  rabbitmq:
+    image: rabbitmq:3.6.5-management
+    ports:
+      - "5672:5672"
+      - "15672:15672"
   loris:
     image: lorisimageserver/loris
     ports:
