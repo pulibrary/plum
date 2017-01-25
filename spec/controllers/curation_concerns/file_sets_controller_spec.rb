@@ -12,14 +12,14 @@ RSpec.describe CurationConcerns::FileSetsController do
     end
     it "can update viewing_hint" do
       allow_any_instance_of(described_class).to receive(:parent_id).and_return(nil)
-      patch :update, id: file_set.id, file_set: { viewing_hint: 'non-paged' }
+      patch :update, params: { id: file_set.id, file_set: { viewing_hint: 'non-paged' } }
       expect(file_set.reload.viewing_hint).to eq 'non-paged'
     end
     context "when updating via json" do
       render_views
       it "can update title" do
         allow_any_instance_of(described_class).to receive(:parent_id).and_return(nil)
-        patch :update, id: file_set.id, file_set: { viewing_hint: '', title: ["test"] }, format: :json
+        patch :update, params: { id: file_set.id, file_set: { viewing_hint: '', title: ["test"] }, format: :json }
         expect(response).to be_success
         file_set.reload
         expect(file_set.viewing_hint).to eq ""
@@ -28,7 +28,7 @@ RSpec.describe CurationConcerns::FileSetsController do
     end
     it "redirects to the containing scanned resource after editing" do
       allow_any_instance_of(described_class).to receive(:parent).and_return(parent)
-      patch :update, id: file_set.id, file_set: { viewing_hint: 'non-paged' }
+      patch :update, params: { id: file_set.id, file_set: { viewing_hint: 'non-paged' } }
       expect(response).to redirect_to(Rails.application.class.routes.url_helpers.file_manager_curation_concerns_scanned_resource_path(parent.id))
     end
   end
@@ -42,10 +42,7 @@ RSpec.describe CurationConcerns::FileSetsController do
       allow(ManifestEventGenerator).to receive(:new).and_return(manifest_generator)
       allow(IngestFileJob).to receive(:perform_later).and_return(true)
       allow(CharacterizeJob).to receive(:perform_later).and_return(true)
-      xhr :post, :create, parent_id: parent,
-                          file_set: { files: [file],
-                                      title: ['test title'],
-                                      visibility: 'restricted' }
+      post :create, params: { parent_id: parent, file_set: { files: [file], title: ['test title'], visibility: 'restricted' } }, xhr: true
       expect(FileSet.all.length).to eq 1
       expect(manifest_generator).to have_received(:record_updated).with(parent)
     end
@@ -68,7 +65,7 @@ RSpec.describe CurationConcerns::FileSetsController do
       "#{b.top_left.x},#{b.top_left.y},#{b.width},#{b.height}"
     end
     it "returns a manifest for the file set" do
-      get :text, parent_id: parent.id, id: file_set.id, format: :json
+      get :text, params: { parent_id: parent.id, id: file_set.id, format: :json }
 
       expect(JSON.parse(response.body)).to eq(
         "@context" => "http://iiif.io/api/presentation/2/context.json",
@@ -100,7 +97,7 @@ RSpec.describe CurationConcerns::FileSetsController do
       allow_any_instance_of(described_class).to receive(:parent_id).and_return(nil)
     end
     it "triggers regenerating derivatives" do
-      post :derivatives, id: file_set.id
+      post :derivatives, params: { id: file_set.id }
       expect(CreateDerivativesJob).to have_received(:perform_later)
     end
   end

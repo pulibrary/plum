@@ -110,7 +110,7 @@ describe ScannedResource do
 
       it 'Extracts Voyager Metadata' do
         subject.apply_remote_metadata
-        expect(subject.title).to eq(['The Giant Bible of Mainz; 500th anniversary, April fourth, fourteen fifty-two, April fourth, nineteen fifty-two.'])
+        expect(subject.title.first.to_s).to eq('The Giant Bible of Mainz; 500th anniversary, April fourth, fourteen fifty-two, April fourth, nineteen fifty-two.')
         expect(subject.resource.get_values(:title, literal: true)).to eq([RDF::Literal.new("The Giant Bible of Mainz; 500th anniversary, April fourth, fourteen fifty-two, April fourth, nineteen fifty-two.", language: :eng)])
         expect(subject.creator).to eq(['Miner, Dorothy Eugenia'])
         expect(subject.date_created).to eq(['1952-01-01T00:00:00Z'])

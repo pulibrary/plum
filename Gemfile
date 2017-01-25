@@ -7,7 +7,7 @@ gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
-gem 'coffee-rails' #, '~> 4.1.0'
+gem 'coffee-rails', '~> 4.2.1'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
@@ -32,11 +32,10 @@ gem 'modernizr-rails'
 # gem 'capistrano-rails', group: :development
 
 gem 'curation_concerns', '2.0.0.rc1'
-#gem 'pul_metadata_services', github:'pulibrary/pul_metadata_services', branch: :master
-gem 'pul_metadata_services', path: '/Users/escowles/src/pul_metadata_services'
+gem 'pul_metadata_services', github:'pulibrary/pul_metadata_services', branch: 'relax-activesupport-dependency'
 gem 'hydra-role-management', '~> 0.2.0'
 gem 'rsolr', '~> 1.1.0'
-gem 'devise' # , '~> 3.0'
+gem 'devise' , '~> 4.2.0'
 gem 'devise-guests', '~> 0.3'
 gem 'iiif-presentation', github: 'iiif/osullivan', branch: 'development'
 gem 'geo_concerns', '~> 0.3.4'
@@ -49,8 +48,8 @@ gem 'prawn'
 gem 'hydra-works', github: 'projecthydra-labs/hydra-works', branch: 'master'
 gem 'hydra-pcdm', github: 'projecthydra-labs/hydra-pcdm', branch: 'master'
 gem 'hydra-derivatives', '3.1.3'
-gem 'active-fedora', '11.0.0.rc7'
-gem 'active-triples', '~> 0.10.0'
+gem 'active-fedora', '~> 11.1.2'
+gem 'active-triples', '~> 0.11.0'
 gem 'active_fedora-noid', '2.0.0.beta6'
 
 gem 'rubocop', '~> 0.34.0', require: false
@@ -84,7 +83,7 @@ group :development do
   gem 'capistrano-rails'
   gem 'capistrano-passenger'
   gem 'capistrano-rails-console'
-  gem 'capistrano' #, '3.4.0'
+  gem 'capistrano', '~> 3.7.1'
 end
 
 group :test do

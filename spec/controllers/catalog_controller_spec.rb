@@ -10,13 +10,13 @@ RSpec.describe CatalogController do
   describe "scanned book display" do
     it "shows parent-less scanned resources" do
       resource = FactoryGirl.create(:complete_scanned_resource)
-      get :index, q: ""
+      get :index, params: { q: "" }
       expect(document_ids).to eq [resource.id]
     end
     it "shows child-less parent resources" do
       work = FactoryGirl.create(:complete_multi_volume_work)
 
-      get :index, q: ""
+      get :index, params: { q: "" }
       expect(document_ids).to eq [work.id]
     end
     it "hides scanned resources with parents" do
@@ -26,7 +26,7 @@ RSpec.describe CatalogController do
       work.save
       resource.save
 
-      get :index, q: ""
+      get :index, params: { q: "" }
       expect(document_ids).to eq [work.id]
     end
     it "finds parents with child metadata, even with multiple words in title" do
@@ -36,7 +36,7 @@ RSpec.describe CatalogController do
       work.save
       resource.save
 
-      get :index, q: "Beta Gamma"
+      get :index, params: { q: "Beta Gamma" }
       expect(document_ids).to eq [work.id]
     end
 
@@ -52,14 +52,14 @@ RSpec.describe CatalogController do
       work.save
       resource.save
 
-      get :index, q: "informatica"
+      get :index, params: { q: "informatica" }
       expect(document_ids).to eq [work.id]
     end
 
     it "finds items by their identifier" do
       resource = FactoryGirl.create(:complete_scanned_resource, source_metadata_identifier: "ab5")
 
-      get :index, q: "ab5"
+      get :index, params: { q: "ab5" }
 
       expect(document_ids).to eq [resource.id]
     end
@@ -71,7 +71,7 @@ RSpec.describe CatalogController do
       resource.save!
       file_set.save
 
-      get :index, q: "Screwdriver"
+      get :index, params: { q: "Screwdriver" }
 
       expect(document_ids).to eq [resource.id]
     end
@@ -85,7 +85,7 @@ RSpec.describe CatalogController do
       resource.save!
       file_set.save
 
-      get :index, q: "informatica"
+      get :index, params: { q: "informatica" }
 
       expect(document_ids).to eq [resource.id]
     end
@@ -101,14 +101,14 @@ RSpec.describe CatalogController do
       }
       resource.save!
 
-      get :index, q: "Tales"
+      get :index, params: { q: "Tales" }
 
       expect(document_ids).to eq [resource.id]
     end
 
     it "hides items the user can't read" do
       FactoryGirl.create(:pending_scanned_resource)
-      get :index, q: ""
+      get :index, params: { q: "" }
 
       expect(document_ids).to eq []
     end
@@ -119,7 +119,7 @@ RSpec.describe CatalogController do
       resource = FactoryGirl.create(:complete_scanned_resource_in_collection)
       resource.save
 
-      get :index, q: resource.member_of_collections.first.exhibit_id
+      get :index, params: { q: resource.member_of_collections.first.exhibit_id }
 
       expect(document_ids).to eq [resource.id]
     end

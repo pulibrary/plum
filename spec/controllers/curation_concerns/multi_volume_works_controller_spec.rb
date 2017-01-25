@@ -18,9 +18,9 @@ describe CurationConcerns::MultiVolumeWorksController do
         )
       end
       it "updates the metadata" do
-        post :create, multi_volume_work: multi_volume_work_attributes
+        post :create, params: { multi_volume_work: multi_volume_work_attributes }
         s = MultiVolumeWork.last
-        expect(s.title).to eq ['The Giant Bible of Mainz; 500th anniversary, April fourth, fourteen fifty-two, April fourth, nineteen fifty-two.']
+        expect(s.title.first.to_s).to eq 'The Giant Bible of Mainz; 500th anniversary, April fourth, fourteen fifty-two, April fourth, nineteen fifty-two.'
       end
     end
   end
@@ -45,7 +45,7 @@ describe CurationConcerns::MultiVolumeWorksController do
       sign_in user
       allow(CharacterizeJob).to receive(:perform_later).once
       allow(BrowseEverythingIngestJob).to receive(:perform_later).and_return(true) if stub
-      post :browse_everything_files, id: resource.id, selected_files: params["selected_files"]
+      post :browse_everything_files, params: { id: resource.id, selected_files: params["selected_files"] }
     end
     it "appends a new file set" do
       reloaded = resource.reload

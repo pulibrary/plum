@@ -14,7 +14,7 @@ describe CurationConcerns::ScannedResourcesController do
     it "deletes a record" do
       s = FactoryGirl.create(:scanned_resource)
 
-      delete :destroy, id: s.id
+      delete :destroy, params: { id: s.id }
 
       expect(ScannedResource.all.length).to eq 0
     end
@@ -24,7 +24,7 @@ describe CurationConcerns::ScannedResourcesController do
       manifest_generator = instance_double(ManifestEventGenerator, record_deleted: true)
       allow(ManifestEventGenerator).to receive(:new).and_return(manifest_generator)
 
-      delete :destroy, id: s.id
+      delete :destroy, params: { id: s.id }
 
       expect(manifest_generator).to have_received(:record_deleted)
     end
@@ -41,15 +41,15 @@ describe CurationConcerns::ScannedResourcesController do
         )
       end
       it "updates the metadata" do
-        post :create, scanned_resource: scanned_resource_attributes
+        post :create, params: { scanned_resource: scanned_resource_attributes }
         s = ScannedResource.last
-        expect(s.title).to eq ['The Giant Bible of Mainz; 500th anniversary, April fourth, fourteen fifty-two, April fourth, nineteen fifty-two.']
+        expect(s.title.first.to_s).to eq 'The Giant Bible of Mainz; 500th anniversary, April fourth, fourteen fifty-two, April fourth, nineteen fifty-two.'
       end
       it "posts a creation event to the queue" do
         manifest_generator = instance_double(ManifestEventGenerator, record_created: true, record_updated: true)
         allow(ManifestEventGenerator).to receive(:new).and_return(manifest_generator)
 
-        post :create, scanned_resource: scanned_resource_attributes
+        post :create, params: { scanned_resource: scanned_resource_attributes }
 
         expect(manifest_generator).to have_received(:record_created).with(ScannedResource.last)
       end
@@ -62,7 +62,7 @@ describe CurationConcerns::ScannedResourcesController do
       end
       it "receives an error" do
         expect do
-          post :create, scanned_resource: scanned_resource_attributes
+          post :create, params: { scanned_resource: scanned_resource_attributes }
         end.not_to change { ScannedResource.count }
         expect(response.status).to be 422
       end
@@ -70,7 +70,7 @@ describe CurationConcerns::ScannedResourcesController do
         manifest_generator = instance_double(ManifestEventGenerator, record_created: true)
         allow(ManifestEventGenerator).to receive(:new).and_return(manifest_generator)
 
-        post :create, scanned_resource: scanned_resource_attributes
+        post :create, params: { scanned_resource: scanned_resource_attributes }
 
         expect(manifest_generator).not_to have_received(:record_created)
       end
@@ -83,7 +83,7 @@ describe CurationConcerns::ScannedResourcesController do
         )
       end
       it "successfully add the resource to the collection" do
-        post :create, scanned_resource: scanned_resource_attributes
+        post :create, params: { scanned_resource: scanned_resource_attributes }
         s = ScannedResource.last
         expect(s.member_of_collections).to eq [collection]
       end
@@ -92,7 +92,7 @@ describe CurationConcerns::ScannedResourcesController do
         manifest_generator = ManifestEventGenerator.new(messaging_client)
         allow(ManifestEventGenerator).to receive(:new).and_return(manifest_generator)
 
-        post :create, scanned_resource: scanned_resource_attributes
+        post :create, params: { scanned_resource: scanned_resource_attributes }
 
         s = ScannedResource.last
 
@@ -121,7 +121,7 @@ describe CurationConcerns::ScannedResourcesController do
           resource = FactoryGirl.create(:complete_scanned_resource)
           allow(request).to receive(:ssl?).and_return(true)
 
-          get :manifest, id: resource.id, format: :json
+          get :manifest, params: { id: resource.id, format: :json }
 
           expect(response).to be_success
           response_json = JSON.parse(response.body)
@@ -135,7 +135,7 @@ describe CurationConcerns::ScannedResourcesController do
           solr.add resource.to_solr.merge(ordered_by_ssim: ["work"])
           solr.commit
 
-          get :manifest, id: "resource", format: :json
+          get :manifest, params: { id: "resource", format: :json }
 
           expect(response).to be_success
         end
@@ -150,7 +150,7 @@ describe CurationConcerns::ScannedResourcesController do
         solr.commit
         expect(ScannedResource).not_to receive(:find)
 
-        get :manifest, id: "test2", format: :json
+        get :manifest, params: { id: "test2", format: :json }
 
         expect(response).to be_success
         response_json = JSON.parse(response.body)
@@ -167,19 +167,19 @@ describe CurationConcerns::ScannedResourcesController do
     end
     context 'by default' do
       it 'updates the record but does not refresh the exernal metadata' do
-        post :update, id: scanned_resource, scanned_resource: scanned_resource_attributes
+        post :update, params: { id: scanned_resource, scanned_resource: scanned_resource_attributes }
         expect(reloaded.portion_note).to eq 'Section 2'
         expect(reloaded.title).to eq ['Dummy Title']
         expect(reloaded.description).to eq 'a description'
       end
       it "can update the start_canvas" do
-        post :update, id: scanned_resource, scanned_resource: { start_canvas: "1" }
+        post :update, params: { id: scanned_resource, scanned_resource: { start_canvas: "1" } }
         expect(reloaded.start_canvas).to eq "1"
       end
       context "when in a collection" do
         let(:scanned_resource) { FactoryGirl.create(:scanned_resource_in_collection, user: user) }
         it "doesn't remove the item from collections" do
-          patch :update, id: scanned_resource, scanned_resource: { ocr_language: [], viewing_hint: "individuals", viewing_direction: "left-to-right" }
+          patch :update, params: { id: scanned_resource, scanned_resource: { ocr_language: [], viewing_hint: "individuals", viewing_direction: "left-to-right" } }
           expect(reloaded.member_of_collections).not_to be_blank
         end
       end
@@ -187,7 +187,7 @@ describe CurationConcerns::ScannedResourcesController do
         manifest_generator = instance_double(ManifestEventGenerator, record_updated: true)
         allow(ManifestEventGenerator).to receive(:new).and_return(manifest_generator)
 
-        post :update, id: scanned_resource, scanned_resource: scanned_resource_attributes
+        post :update, params: { id: scanned_resource, scanned_resource: scanned_resource_attributes }
 
         expect(manifest_generator).to have_received(:record_updated).with(scanned_resource)
       end
@@ -196,8 +196,8 @@ describe CurationConcerns::ScannedResourcesController do
       it 'updates remote metadata' do
         allow(Ezid::Identifier).to receive(:modify)
         allow(Ezid::Client.config).to receive(:user).and_return("test")
-        post :update, id: scanned_resource, scanned_resource: scanned_resource_attributes, refresh_remote_metadata: true
-        expect(reloaded.title).to eq ['The Giant Bible of Mainz; 500th anniversary, April fourth, fourteen fifty-two, April fourth, nineteen fifty-two.']
+        post :update, params: { id: scanned_resource, scanned_resource: scanned_resource_attributes, refresh_remote_metadata: true }
+        expect(reloaded.title.first.to_s).to eq 'The Giant Bible of Mainz; 500th anniversary, April fourth, fourteen fifty-two, April fourth, nineteen fifty-two.'
         expect(Ezid::Identifier).to have_received(:modify)
       end
     end
@@ -223,7 +223,7 @@ describe CurationConcerns::ScannedResourcesController do
         allow(OCRRunner).to receive(:new).and_return(ocr_runner)
         allow(ocr_runner).to receive(:from_file)
 
-        post :update, id: scanned_resource, scanned_resource: scanned_resource_attributes
+        post :update, params: { id: scanned_resource, scanned_resource: scanned_resource_attributes }
 
         expect(OCRRunner).to have_received(:new).with(file_set)
       end
@@ -241,7 +241,7 @@ describe CurationConcerns::ScannedResourcesController do
 
         updated_attributes = resource.attributes
         updated_attributes[:member_of_collection_ids] = [col2.id]
-        post :update, id: resource, scanned_resource: updated_attributes
+        post :update, params: { id: resource, scanned_resource: updated_attributes }
         expect(resource.reload.member_of_collections).to eq [col2]
       end
     end
@@ -255,7 +255,7 @@ describe CurationConcerns::ScannedResourcesController do
       scanned_resource.save!
     end
     it "updates metadata" do
-      post :update, id: scanned_resource.id, scanned_resource: { viewing_hint: 'continuous', viewing_direction: 'bottom-to-top' }
+      post :update, params: { id: scanned_resource.id, scanned_resource: { viewing_hint: 'continuous', viewing_direction: 'bottom-to-top' } }
       scanned_resource.reload
       expect(scanned_resource.viewing_direction).to eq 'bottom-to-top'
       expect(scanned_resource.viewing_hint).to eq 'continuous'
@@ -272,7 +272,7 @@ describe CurationConcerns::ScannedResourcesController do
         it "redirects for auth" do
           resource = FactoryGirl.create(:pending_scanned_resource)
 
-          get :show, id: resource.id
+          get :show, params: { id: resource.id }
 
           expect(response).to be_redirect
         end
@@ -281,7 +281,7 @@ describe CurationConcerns::ScannedResourcesController do
         it "works" do
           resource = FactoryGirl.create(:flagged_scanned_resource)
 
-          get :show, id: resource.id
+          get :show, params: { id: resource.id }
 
           expect(response).to be_success
         end
@@ -290,7 +290,7 @@ describe CurationConcerns::ScannedResourcesController do
         it "works" do
           resource = FactoryGirl.create(:complete_scanned_resource)
 
-          get :show, id: resource.id
+          get :show, params: { id: resource.id }
 
           expect(response).to be_success
         end
@@ -302,7 +302,7 @@ describe CurationConcerns::ScannedResourcesController do
         it "works" do
           resource = FactoryGirl.create(:pending_scanned_resource)
 
-          get :show, id: resource.id
+          get :show, params: { id: resource.id }
 
           expect(response).to be_success
         end
@@ -316,7 +316,7 @@ describe CurationConcerns::ScannedResourcesController do
         work.save
         resource.update_index
 
-        get :show, id: resource.id
+        get :show, params: { id: resource.id }
 
         expect(response).to be_success
       end
@@ -335,7 +335,7 @@ describe CurationConcerns::ScannedResourcesController do
           pdf = double("Actor")
           allow(ScannedResourcePDF).to receive(:new).with(anything, quality: "color").and_return(pdf)
           allow(pdf).to receive(:render).and_return(true)
-          get :pdf, id: scanned_resource, pdf_quality: "color"
+          get :pdf, params: { id: scanned_resource, pdf_quality: "color" }
           expect(response).to redirect_to(Rails.application.class.routes.url_helpers.download_path(scanned_resource, file: 'color-pdf'))
         end
         context "when not given permission" do
@@ -348,13 +348,13 @@ describe CurationConcerns::ScannedResourcesController do
               allow(ScannedResourcePDF).to receive(:new).with(anything, quality: "color").and_return(pdf)
               allow(pdf).to receive(:render).and_return(true)
 
-              get :pdf, id: scanned_resource, pdf_quality: "color"
+              get :pdf, params: { id: scanned_resource, pdf_quality: "color" }
 
               expect(response).to redirect_to(Rails.application.class.routes.url_helpers.download_path(scanned_resource, file: 'color-pdf'))
             end
           end
           it "doesn't work" do
-            get :pdf, id: scanned_resource, pdf_quality: "color"
+            get :pdf, params: { id: scanned_resource, pdf_quality: "color" }
 
             expect(response).to redirect_to "/"
           end
@@ -368,7 +368,7 @@ describe CurationConcerns::ScannedResourcesController do
           pdf = double("Actor")
           allow(ScannedResourcePDF).to receive(:new).with(anything, quality: "gray").and_return(pdf)
           allow(pdf).to receive(:render).and_return(true)
-          get :pdf, id: scanned_resource, pdf_quality: "gray"
+          get :pdf, params: { id: scanned_resource, pdf_quality: "gray" }
           expect(response).to redirect_to(Rails.application.class.routes.url_helpers.download_path(scanned_resource, file: 'gray-pdf'))
         end
       end
@@ -376,7 +376,7 @@ describe CurationConcerns::ScannedResourcesController do
         let(:sign_in_user) { FactoryGirl.create(:user) }
         let(:scanned_resource) { FactoryGirl.create(:complete_scanned_resource, user: user, title: ['Dummy Title'], pdf_type: []) }
         it "redirects to root" do
-          get :pdf, id: scanned_resource, pdf_quality: "gray"
+          get :pdf, params: { id: scanned_resource, pdf_quality: "gray" }
 
           expect(response).to redirect_to Rails.application.class.routes.url_helpers.root_path
         end
@@ -385,7 +385,7 @@ describe CurationConcerns::ScannedResourcesController do
         let(:scanned_resource) { FactoryGirl.create(:private_scanned_resource, title: ['Dummy Title']) }
         context "and not logged in" do
           it "redirects for auth" do
-            get :pdf, id: scanned_resource, pdf_quality: "gray"
+            get :pdf, params: { id: scanned_resource, pdf_quality: "gray" }
 
             expect(response).to redirect_to "http://test.host/users/auth/cas"
           end
@@ -393,7 +393,7 @@ describe CurationConcerns::ScannedResourcesController do
         context "and logged in" do
           let(:sign_in_user) { FactoryGirl.create(:user) }
           it "redirects to root" do
-            get :pdf, id: scanned_resource, pdf_quality: "gray"
+            get :pdf, params: { id: scanned_resource, pdf_quality: "gray" }
 
             expect(response).to redirect_to Rails.application.class.routes.url_helpers.root_path
           end
@@ -423,7 +423,7 @@ describe CurationConcerns::ScannedResourcesController do
       allow(CharacterizeJob).to receive(:perform_later)
     end
     it "appends a new file set" do
-      post :browse_everything_files, id: resource.id, selected_files: params["selected_files"]
+      post :browse_everything_files, params: { id: resource.id, selected_files: params["selected_files"] }
       reloaded = resource.reload
       expect(reloaded.file_sets.length).to eq 1
       expect(reloaded.file_sets.first.files.first.original_name).to eq "color.tif"
@@ -434,7 +434,7 @@ describe CurationConcerns::ScannedResourcesController do
     context "when there's a parent id" do
       it "redirects to the parent path" do
         allow(BrowseEverythingIngestJob).to receive(:perform_later).and_return(true)
-        post :browse_everything_files, id: resource.id, selected_files: params["selected_files"], parent_id: resource.id
+        post :browse_everything_files, params: { id: resource.id, selected_files: params["selected_files"], parent_id: resource.id }
         path = Rails.application.class.routes.url_helpers.file_manager_curation_concerns_parent_scanned_resource_path(id: resource.id, parent_id: resource.id)
         expect(response).to redirect_to path
       end
@@ -442,7 +442,7 @@ describe CurationConcerns::ScannedResourcesController do
     context "when the job hasn't run yet" do
       it "creates pending uploads" do
         allow(BrowseEverythingIngestJob).to receive(:perform_later).and_return(true)
-        post :browse_everything_files, id: resource.id, selected_files: params["selected_files"]
+        post :browse_everything_files, params: { id: resource.id, selected_files: params["selected_files"] }
         expect(resource.pending_uploads.length).to eq 1
         pending_upload = resource.pending_uploads.first
         expect(pending_upload.file_name).to eq File.basename(file.path)
@@ -451,7 +451,7 @@ describe CurationConcerns::ScannedResourcesController do
       end
       it "doesn't delete the pending upload until after file is in Fedora" do
         allow(IngestFileJob).to receive(:perform_later).and_return(true)
-        post :browse_everything_files, id: resource.id, selected_files: params["selected_files"]
+        post :browse_everything_files, params: { id: resource.id, selected_files: params["selected_files"] }
         expect(resource.pending_uploads.length).to eq 1
       end
     end

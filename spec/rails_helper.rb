@@ -32,9 +32,6 @@ ActiveRecord::Migration.maintain_test_schema!
 Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
 
 RSpec.configure do |config|
-  # Include ActiveJob helper
-  config.include ::ActiveJob::TestHelper
-
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
 
@@ -58,9 +55,10 @@ RSpec.configure do |config|
   # https://relishapp.com/rspec/rspec-rails/docs
   config.infer_spec_type_from_file_location!
   config.infer_spec_type_from_file_location!
+  config.include ActiveJob::TestHelper
   config.include Capybara::DSL
-  config.include Devise::TestHelpers, type: :controller
-  config.include Devise::TestHelpers, type: :view
+  config.include Devise::Test::ControllerHelpers, type: :controller
+  config.include Devise::Test::ControllerHelpers, type: :view
   config.include Warden::Test::Helpers, type: :feature
   config.include Warden::Test::Helpers, type: :request
   config.include Features::SessionHelpers, type: :feature
