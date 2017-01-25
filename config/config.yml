@@ -53,6 +53,22 @@ defaults: &defaults
       format: 'application/xml'
   metadata:
     url: 'https://purl.dlib.indiana.edu/iudl/iucat/%s'
+    editable:
+    - :identifier
+    - :sort_title
+    - :responsibility_note
+    - :series
+    - :creator
+    - :published
+    - :publication_place
+    - :publisher
+    - :issued
+    - :physical_description
+    - :lccn_call_number
+    - :local_call_number
+    - :copyright_holder
+    - :date_created
+    - :subject
 
 development:
   <<: *defaults
