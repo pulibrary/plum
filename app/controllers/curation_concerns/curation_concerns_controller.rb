@@ -53,6 +53,6 @@ class CurationConcerns::CurationConcernsController < ApplicationController
     end
 
     def selected_files_params
-      params[:selected_files].to_h
+      params[:selected_files].to_unsafe_h
     end
 end

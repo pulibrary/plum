@@ -26,6 +26,7 @@ describe CurationConcerns::MultiVolumeWorksController do
   end
 
   describe "#browse_everything_files" do
+    around { |example| perform_enqueued_jobs(&example) }
     let(:resource) { FactoryGirl.create(:multi_volume_work, user: user) }
     let(:file) { File.open(Rails.root.join("spec", "fixtures", "files", "color.tif")) }
     let(:user) { FactoryGirl.create(:admin) }
