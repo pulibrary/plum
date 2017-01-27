@@ -1,4 +1,3 @@
-import ServerUploader from "server_uploader"
 import BulkLabeler from "bulk_labeler/bulk_label"
 import ModalViewer from "modal_viewer"
 import PlumFileManager from "file_manager/plum"
@@ -7,7 +6,6 @@ import UniversalViewer from "universal_viewer"
 export default class Initializer {
   constructor() {
     this.initialize_bootstrap_select()
-    this.server_uploader = new ServerUploader
     this.bulk_labeler = new BulkLabeler
     this.modal_viewer = new ModalViewer
     this.initialize_timepicker()
