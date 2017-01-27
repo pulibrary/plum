@@ -25,6 +25,7 @@
             }
           ],
           "transition_to": "metadata_review",
+          "methods": ["Grocer::ExportObject"],
           "notifications": [
             {
               "notification_type": "email",

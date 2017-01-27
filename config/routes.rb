@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  mount Grocer::Engine => '/'
   mount JasmineRails::Engine => '/specs' if defined?(JasmineRails)
   mount BrowseEverything::Engine => '/browse'
 

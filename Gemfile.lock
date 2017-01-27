@@ -48,6 +48,15 @@ GIT
       om (~> 3.1)
 
 GIT
+  remote: git://github.com/pulibrary/grocer.git
+  revision: 9824808403395529073eb4c720efb897b8f1eda8
+  branch: spawn
+  specs:
+    grocer (0.1.0)
+      active-fedora
+      kaminari
+
+GIT
   remote: git://github.com/pulibrary/pul_metadata_services.git
   revision: 584736f58b3dcf1136e9b1817954299d5e6ca82c
   branch: relax-activesupport-dependency
@@ -819,6 +828,7 @@ DEPENDENCIES
   factory_girl_rails
   fcrepo_wrapper (~> 0.6.0)
   geo_concerns (~> 0.3.4)
+  grocer!
   hydra-derivatives (= 3.1.3)
   hydra-pcdm!
   hydra-role-management (~> 0.2.0)
