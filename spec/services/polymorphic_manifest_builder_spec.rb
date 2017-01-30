@@ -134,6 +134,7 @@ RSpec.describe PolymorphicManifestBuilder, vcr: { cassette_name: "iiif_manifest"
       end
       let(:solr) { ActiveFedora.solr.conn }
       before do
+        allow(file_set).to receive(:ocr_text).and_return(['foo'])
         record.ordered_members << file_set2
         record.ordered_member_proxies.insert_target_at(0, file_set)
         record.thumbnail = file_set2
