@@ -93,6 +93,10 @@ class SolrDocument
     return language if language && Tesseract.languages.keys.include?(language.first.to_sym)
   end
 
+  def ocr_text
+    (self['full_text_tesim'] || []).first
+  end
+
   def thumbnail_id
     Array(self[Solrizer.solr_name('hasRelatedImage', :symbol)]).first
   end

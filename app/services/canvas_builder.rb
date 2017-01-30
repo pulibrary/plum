@@ -32,7 +32,7 @@ class CanvasBuilder
       canvas.label = record.to_s
       canvas.viewing_hint = record.viewing_hint if record.viewing_hint
       attach_image
-      attach_other_content
+      attach_other_content if record.ocr_text
     end
 
     def attach_image
