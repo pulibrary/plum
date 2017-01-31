@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170103194043) do
+ActiveRecord::Schema.define(version: 20170127153851) do
 
   create_table "bookmarks", force: :cascade do |t|
     t.integer  "user_id",       null: false
@@ -54,6 +54,19 @@ ActiveRecord::Schema.define(version: 20170103194043) do
     t.index ["parent_id"], name: "index_curation_concerns_operations_on_parent_id"
     t.index ["rgt"], name: "index_curation_concerns_operations_on_rgt"
     t.index ["user_id"], name: "index_curation_concerns_operations_on_user_id"
+  end
+
+  create_table "grocer_exports", force: :cascade do |t|
+    t.string   "pid"
+    t.integer  "job"
+    t.string   "status"
+    t.datetime "last_error"
+    t.datetime "last_success"
+    t.string   "logfile"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.string   "ark"
+    t.index ["pid"], name: "index_grocer_exports_on_pid", unique: true
   end
 
   create_table "minter_states", force: :cascade do |t|

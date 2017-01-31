@@ -8,6 +8,15 @@
         <%= button_tag type: 'button', class: 'browse-everything btn btn-primary' do %>
           Upload from Server
         <% end %>
+        <script>
+          $(document).ready(function() {
+            $('#browse-everything-form').browseEverything({
+              route: '/browse', target: '#browse-everything-form'
+            }).done(function(data) {
+              $('#browse-everything-form').submit();
+            });
+          });
+        </script>
       <% end %>
     </div>
   </div>
