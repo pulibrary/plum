@@ -30,10 +30,6 @@ RSpec.describe "curation_concerns/base/file_manager.html.erb" do
   let(:context) { Blacklight::Configuration::Context.new double }
 
   before do
-    view.class.send(:eval, 'include Blacklight::CatalogHelperBehavior')
-    view.class.send(:eval, 'include CurationConcernsHelper')
-    view.class.send(:eval, 'include OsdModalHelper')
-    view.class.send(:eval, 'include ThumbnailHelper')
     assign(:presenter, parent_presenter)
     allow(parent_presenter).to receive(:member_presenters).and_return(members)
     stub_blacklight_views
