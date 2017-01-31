@@ -18,7 +18,7 @@ RSpec.describe VoyagerUpdater::EventStream, vcr: { cassette_name: 'voyager_dump'
       allow(manifest_event_generator).to receive(:record_updated)
       subject.process!
 
-      expect(s.reload.title).to eq ["Coda"]
+      expect(s.reload.title.first.to_s).to eq "Coda"
       expect(manifest_event_generator).to have_received(:record_updated).with(s)
     end
 

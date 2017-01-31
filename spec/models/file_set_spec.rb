@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe FileSet do
+  around { |example| perform_enqueued_jobs(&example) }
+
   subject { described_class.new.tap { |x| x.apply_depositor_metadata("bob") } }
 
   describe "#viewing_hint" do

@@ -1,4 +1,4 @@
-class IngestFileJob < ActiveJob::Base
+class IngestFileJob < ApplicationJob
   queue_as CurationConcerns.config.ingest_queue_name
 
   # @param [FileSet] file_set

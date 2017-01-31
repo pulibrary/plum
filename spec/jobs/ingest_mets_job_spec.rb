@@ -42,7 +42,7 @@ RSpec.describe IngestMETSJob do
       expect(actor2).to receive(:create_metadata).with(resource1, {})
       expect(actor2).to receive(:create_content).with(file)
       described_class.perform_now(mets_file, user)
-      expect(resource1.title).to eq(["Ars minor [fragment]."])
+      expect(resource1.title.first.to_s).to eq("Ars minor [fragment].")
       expect(resource1.thumbnail_id).to eq('file1')
       expect(resource1.viewing_direction).to eq('left-to-right')
       expect(resource1.visibility).to eq(Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PUBLIC)
@@ -62,7 +62,7 @@ RSpec.describe IngestMETSJob do
         allow(described_class.logger).to receive(:info).and_call_original
         expect(described_class.logger).to receive(:info).with("Failed ingesting #{file_path} 1 times, retrying. Error: Stuff went bad").and_call_original
         described_class.perform_now(mets_file, user)
-        expect(resource1.title).to eq(["Ars minor [fragment]."])
+        expect(resource1.title.first.to_s).to eq("Ars minor [fragment].")
         expect(resource1.thumbnail_id).to eq('file1')
         expect(resource1.viewing_direction).to eq('left-to-right')
         expect(resource1.visibility).to eq(Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PUBLIC)

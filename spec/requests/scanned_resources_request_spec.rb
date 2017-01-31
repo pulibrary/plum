@@ -18,7 +18,7 @@ RSpec.describe 'ScannedResourcesController', type: :request do
       rights_statement: 'http://rightsstatements.org/vocab/NKC/1.0/'
     }
 
-    post '/concern/scanned_resources', scanned_resource: valid_params
+    post '/concern/scanned_resources', params: { scanned_resource: valid_params }
 
     resource_path = curation_concerns_scanned_resource_path(assigns(:curation_concern))
     expect(response).to redirect_to(resource_path)

@@ -11,6 +11,8 @@ RSpec.describe UpdatesOCR do
     subject.save
   end
 
+  around { |example| perform_enqueued_jobs(&example) }
+
   context "when ocr_language is changed" do
     it "regenerates OCR derivatives" do
       stub_language("ita+eng", "Italian & English")
