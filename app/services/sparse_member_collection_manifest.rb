@@ -7,4 +7,8 @@ class SparseMemberCollectionManifest < ManifestBuilder
   def child_manifest_factory
     OnlyPropertyManifestBuilder
   end
+
+  def sequence_builder
+    nil
+  end
 end
