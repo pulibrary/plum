@@ -21,7 +21,7 @@ class ManifestBuilder
       def sequence
         @sequence ||=
           begin
-            sequence = IIIF::Presentation::Sequence.new
+            sequence = IIIF::Manifest.new
             sequence["@id"] ||= parent_path.to_s + "/sequence/normal"
             canvas_builder.apply(sequence)
             start_canvas_builder.apply(sequence) if start_canvas_builder

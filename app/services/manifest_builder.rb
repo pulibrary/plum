@@ -26,8 +26,7 @@ class ManifestBuilder
   end
 
   def apply(manifest)
-    manifest['manifests'] ||= []
-    manifest['manifests'] += [self.manifest]
+    manifest.manifests += [self.manifest]
   end
 
   private
@@ -73,7 +72,7 @@ class ManifestBuilder
 
     def manifest_builder_class
       if manifest_builders.length > 0
-        IIIF::Presentation::Collection.new
+        IIIF::Collection.new
       else
         IIIF::Presentation::Manifest.new
       end

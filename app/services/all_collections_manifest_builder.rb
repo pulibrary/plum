@@ -28,7 +28,7 @@ class AllCollectionsManifestBuilder < ManifestBuilder
     end
 
     def manifest_builder_class
-      IIIF::Presentation::Collection.new
+      IIIF::Collection.new
     end
 
     def sequence_builder
