@@ -4,8 +4,12 @@ class SparseMemberCollectionManifest < ManifestBuilder
     manifest['collections'] += [self.manifest]
   end
 
-  def child_manifest_factory
-    OnlyPropertyManifestBuilder
+  def manifest_builders
+    nil
+  end
+
+  def manifest_builder_class
+    IIIF::Presentation::Collection.new
   end
 
   def sequence_builder
