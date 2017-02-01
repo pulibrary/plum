@@ -11,7 +11,7 @@ module Workflow
 
     def initialize(entity, comment, user, recipients)
       @work_id = entity.proxy_for_global_id.sub(/.*\//, '')
-      @title = entity.proxy_for.title.first
+      @title = entity.proxy_for.title.first.to_s
       @type = entity.proxy_for.human_readable_type
       @comment = comment.respond_to?(:comment) ? comment.comment.to_s : ''
       @recipients = recipients

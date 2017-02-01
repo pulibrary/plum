@@ -4,7 +4,8 @@ RSpec.describe Workflow::CompleteNotification do
   let(:approver) { FactoryGirl.build(:user) }
   let(:to_user) { FactoryGirl.build(:user) }
   let(:cc_user) { FactoryGirl.build(:user) }
-  let(:work) { FactoryGirl.create(:scanned_resource) }
+  let(:title) { RDF::Literal.new('Test title', language: :en) }
+  let(:work) { FactoryGirl.create(:scanned_resource, title: [title]) }
   let(:entity) { FactoryGirl.build(:sipity_entity, proxy_for_global_id: work.to_global_id.to_s) }
   let(:comment) { double("comment", comment: 'A pleasant read') }
   let(:recipients) { { 'to' => [to_user], 'cc' => [cc_user] } }
@@ -24,6 +25,12 @@ RSpec.describe Workflow::CompleteNotification do
       expect(ActionMailer::Base.deliveries.first.subject).to eq "[plum] Scanned Resource #{work.id}: Complete"
       expect(ActionMailer::Base.deliveries.first.to_s)
         .to include("The following Scanned Resource has been moved to Complete by #{approver.user_key}:")
+    end
+  end
+
+  describe 'handles RDF::Literal titles' do
+    it 'uses the value' do
+      expect(described_class.new(entity, nil, approver, []).title).to eq(title.to_s)
     end
   end
 end
