@@ -315,10 +315,6 @@ RSpec.describe PolymorphicManifestBuilder, vcr: { cassette_name: "iiif_manifest"
         record.ocr_language = ["test"]
         expect(result.metadata.first).to be_nil
       end
-      it "has a date created" do
-        record.date_created = ["1981-01-31"]
-        expect(result.metadata).not_to be_empty
-      end
     end
     describe "a record in a collection" do
       let(:resource) { FactoryGirl.create(:scanned_resource_in_collection) }
