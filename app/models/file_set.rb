@@ -47,6 +47,7 @@ class FileSet < ActiveFedora::Base
       dst = derivative_path('intermediate_file')
       FileUtils.mkdir_p(File.dirname(dst))
       FileUtils.cp(filename, dst)
+      RunOCRJob.perform_later(id) if Plum.config[:store_original_files]
     end
     super
   end
