@@ -19,6 +19,7 @@ class PlumSchema < ActiveTriples::Schema
 
   # Generated from Context
   property :coverage, predicate: RDF::Vocab::DC11.coverage
+  property :display_date, predicate: RDF::Vocab::DC11.date
   property :format, predicate: RDF::Vocab::DC11.format
   property :source, predicate: RDF::Vocab::DC11.source
   property :extent, predicate: RDF::Vocab::DC.extent

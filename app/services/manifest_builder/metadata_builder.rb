@@ -23,7 +23,7 @@ class ManifestBuilder
       end
 
       def metadata_fields
-        PlumSchema.display_fields + [:exhibit_id, :collection] - [:has_model]
+        PlumSchema.display_fields + [:exhibit_id, :collection] - [:has_model, :date_created]
       end
 
       class MetadataObject
