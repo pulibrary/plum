@@ -14,7 +14,7 @@ RSpec.describe PolymorphicManifestBuilder, vcr: { cassette_name: "iiif_manifest"
 
   context "when given a MVW with Children" do
     subject { described_class.new(mvw_document) }
-    let(:mvw_document) { MultiVolumeWorkShowPresenter.new(SolrDocument.new(mvw_record.to_solr), nil) }
+    let(:mvw_document) { MultiVolumeWorkShowPresenter::DynamicShowPresenter.new.new(SolrDocument.new(mvw_record.to_solr), nil) }
     let(:mvw_record) { FactoryGirl.build(:multi_volume_work, viewing_hint: viewing_hint) }
     let(:manifest) { JSON.parse(subject.manifest.to_json) }
     let(:viewing_hint) { "individuals" }
@@ -22,6 +22,16 @@ RSpec.describe PolymorphicManifestBuilder, vcr: { cassette_name: "iiif_manifest"
       allow(mvw_record).to receive(:persisted?).and_return(true)
       allow(mvw_record).to receive(:id).and_return("2")
       allow(mvw_document).to receive(:member_presenters).and_return([solr_document])
+    end
+    context "when there's a mvw child" do
+      before do
+        allow(mvw_document).to receive(:member_presenters).and_return([mvw_document])
+      end
+      it "renders them" do
+        expect(subject.manifests.length).to eq 1
+        expect(manifest['manifests'].length).to eq 1
+        expect(manifest['manifests'].first['@type']).to eq "sc:Collection"
+      end
     end
     it "renders as a collection" do
       expect(manifest['@type']).to eq "sc:Collection"

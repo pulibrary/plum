@@ -4,15 +4,19 @@ class SparseMemberCollectionManifest < ManifestBuilder
     manifest['collections'] += [self.manifest]
   end
 
-  def manifest_builders
-    nil
-  end
-
   def manifest_builder_class
     IIIF::Presentation::Collection.new
   end
 
   def sequence_builder
+    nil
+  end
+
+  def pdf_link_builder
+    nil
+  end
+
+  def thumbnail_builder
     nil
   end
 end
