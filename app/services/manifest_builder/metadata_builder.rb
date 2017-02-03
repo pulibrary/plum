@@ -14,16 +14,45 @@ class ManifestBuilder
 
       def metadata_objects
         metadata_fields.map do |field|
-          if record.respond_to?("#{field}_literals") && record.try("#{field}_literals").present?
-            MetadataObject.new(field, record.try("#{field}_literals")).to_h
-          elsif record.respond_to?(field)
-            MetadataObject.new(field, record.try(field)).to_h
-          end
+          MetadataObject.new(field, get_field(field)).to_h
         end.select(&:present?)
       end
 
+      class Field
+        def self.for(record, field)
+          if record.try("#{field}_literals").present?
+            self.for(record, "#{field}_literals")
+          elsif field.to_s.start_with?("language")
+            LanguageField.new(record, field)
+          else
+            new(record, field)
+          end
+        end
+        attr_reader :record, :field
+        def initialize(record, field)
+          @record = record
+          @field = field
+        end
+
+        def values
+          record.try(field) || []
+        end
+      end
+
+      class LanguageField < Field
+        def values
+          super.map do |value|
+            LanguageService.label(value)
+          end
+        end
+      end
+
+      def get_field(field)
+        Field.for(record, field).values
+      end
+
       def metadata_fields
-        PlumSchema.display_fields + [:exhibit_id, :collection] - [:has_model, :date_created]
+        PlumSchema.display_fields + [:exhibit_id, :collection] - [:has_model, :date_created, :identifier, :replaces]
       end
 
       class MetadataObject

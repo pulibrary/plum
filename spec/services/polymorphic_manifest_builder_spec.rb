@@ -296,6 +296,15 @@ RSpec.describe PolymorphicManifestBuilder, vcr: { cassette_name: "iiif_manifest"
           ]
         )
       end
+      it "converts languages" do
+        record.language = ["ara"]
+        expect(result.metadata.first).to eql(
+          "label" => "Language",
+          "value" => [
+            "Arabic"
+          ]
+        )
+      end
       it "can handle RDF literals" do
         record.creator = [::RDF::Literal.new("Test Author", language: "fr")]
         expect(result.metadata.first).to eql(
