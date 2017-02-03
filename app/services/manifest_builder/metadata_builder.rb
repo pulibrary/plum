@@ -14,7 +14,7 @@ class ManifestBuilder
 
       def metadata_objects
         metadata_fields.map do |field|
-          MetadataObject.new(field, get_field(field)).to_h
+          MetadataObject.new(Field.for(record, field)).to_h
         end.select(&:present?)
       end
 
@@ -37,6 +37,10 @@ class ManifestBuilder
         def values
           record.try(field) || []
         end
+
+        def field_name
+          field.to_s.gsub("_literals", "")
+        end
       end
 
       class LanguageField < Field
@@ -47,19 +51,15 @@ class ManifestBuilder
         end
       end
 
-      def get_field(field)
-        Field.for(record, field).values
-      end
-
       def metadata_fields
         PlumSchema.display_fields + [:exhibit_id, :collection] - [:has_model, :date_created, :identifier, :replaces]
       end
 
       class MetadataObject
-        attr_reader :field_name, :values
-        def initialize(field_name, values)
-          @field_name = field_name
-          @values = values
+        attr_reader :field
+        delegate :values, :field_name, to: :field
+        def initialize(field)
+          @field = field
         end
 
         def label
