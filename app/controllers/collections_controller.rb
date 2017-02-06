@@ -1,5 +1,5 @@
 class CollectionsController < ApplicationController
-  include CurationConcerns::CollectionsControllerBehavior
+  include Hyrax::CollectionsControllerBehavior
   skip_load_and_authorize_resource only: :index_manifest
   skip_before_action :authenticate_user!, only: [:index_manifest, :manifest]
   self.presenter_class = WorkSearchBuilder

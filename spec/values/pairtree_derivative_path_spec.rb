@@ -4,7 +4,7 @@ describe PairtreeDerivativePath do
   let(:plum_config) { { geo_derivatives_path: 'geo-derivatives' } }
 
   before do
-    allow(CurationConcerns.config).to receive(:derivatives_path).and_return('tmp')
+    allow(Hyrax.config).to receive(:derivatives_path).and_return('tmp')
     allow(Plum).to receive(:config).and_return(plum_config)
   end
 

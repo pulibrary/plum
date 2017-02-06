@@ -1,10 +1,10 @@
-class BatchFileSetActor < ::CurationConcerns::Actors::FileSetActor
+class BatchFileSetActor < ::Hyrax::Actors::FileSetActor
   def attach_file_to_work(work, file_set, file_set_params)
     copy_visibility(work, file_set) unless assign_visibility?(file_set_params)
     work.members << file_set
     work.save
 
-    CurationConcerns.config.callback.run(:after_create_fileset, file_set, user)
+    Hyrax.config.callback.run(:after_create_fileset, file_set, user)
   end
 
   def attach_related_object(resource)

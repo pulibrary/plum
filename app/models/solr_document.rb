@@ -4,8 +4,8 @@ class SolrDocument
   # Adds GeoConcerns behaviors to the SolrDocument.
   include GeoConcerns::SolrDocumentBehavior
 
-  # Adds CurationConcerns behaviors to the SolrDocument.
-  include CurationConcerns::SolrDocumentBehavior
+  # Adds Hyrax behaviors to the SolrDocument.
+  include Hyrax::SolrDocumentBehavior
   include SolrDates
   include SolrTechnicalMetadata
 

@@ -1,7 +1,7 @@
 class VectorWork < ActiveFedora::Base
-  include ::CurationConcerns::WorkBehavior
+  include ::Hyrax::WorkBehavior
   include ::GeoConcerns::VectorWorkBehavior
-  include ::CurationConcerns::BasicMetadata
+  include ::Hyrax::BasicMetadata
   include ::GeoConcerns::BasicGeoMetadata
   include ::GeoConcerns::GeoreferencedBehavior
   include ::GeoMetadata

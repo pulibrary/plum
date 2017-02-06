@@ -1,4 +1,4 @@
-class MultiVolumeWorkShowPresenter < CurationConcernsShowPresenter
+class MultiVolumeWorkShowPresenter < HyraxShowPresenter
   include PlumAttributes
 
   def viewing_hint

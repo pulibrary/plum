@@ -6,7 +6,7 @@
 [![Stories in Ready](https://badge.waffle.io/pulibrary/plum.png?label=ready&title=Ready)](https://waffle.io/pulibrary/plum)
 [![Apache 2.0 License](https://img.shields.io/badge/license-Apache%202.0-blue.svg?style=plastic)](./LICENSE)
 
-Plum is a Hydra head based on [CurationConcerns](http://github.com/projecthydra-labs/curation_concerns), with two types of works:
+Plum is a Hydra head based on [Hyrax](http://github.com/projecthydra-labs/curation_concerns), with two types of works:
 * ScannedResource: a book or other resource composed of one or more scanned pages
 * MultiVolumeWork: a book set, sammelband or other resource composed of multiple ScannedResources
 

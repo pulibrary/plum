@@ -1,8 +1,8 @@
 class IngestFileJob < ApplicationJob
-  queue_as CurationConcerns.config.ingest_queue_name
+  queue_as Hyrax.config.ingest_queue_name
 
   # @param [FileSet] file_set
-  # @param [String] filepath the cached file within the CurationConcerns.config.working_path
+  # @param [String] filepath the cached file within the Hyrax.config.working_path
   # @param [String,NilClass] mime_type
   # @param [User] user
   # @param [String] relation ('original_file')

@@ -1,6 +1,6 @@
-module CurationConcerns
+module Hyrax
   module Actors
-    class RasterWorkActor < CurationConcerns::Actors::BaseActor
+    class RasterWorkActor < Hyrax::Actors::BaseActor
     end
   end
 end

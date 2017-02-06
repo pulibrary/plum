@@ -1,6 +1,6 @@
-module CurationConcerns
+module Hyrax
   module Actors
-    class VectorWorkActor < CurationConcerns::Actors::BaseActor
+    class VectorWorkActor < Hyrax::Actors::BaseActor
     end
   end
 end

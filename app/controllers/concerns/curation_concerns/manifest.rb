@@ -1,4 +1,4 @@
-module CurationConcerns::Manifest
+module Hyrax::Manifest
   extend ActiveSupport::Concern
 
   included do

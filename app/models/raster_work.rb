@@ -1,7 +1,7 @@
 class RasterWork < ActiveFedora::Base
-  include ::CurationConcerns::WorkBehavior
+  include ::Hyrax::WorkBehavior
   include ::GeoConcerns::RasterWorkBehavior
-  include ::CurationConcerns::BasicMetadata
+  include ::Hyrax::BasicMetadata
   include ::GeoConcerns::BasicGeoMetadata
   include ::GeoConcerns::GeoreferencedBehavior
   include ::GeoMetadata

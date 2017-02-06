@@ -1,7 +1,7 @@
 # A work which has metadata and may have one or more ScannedResources members.
 class MultiVolumeWork < ActiveFedora::Base
-  include ::CurationConcerns::WorkBehavior
-  include ::CurationConcerns::BasicMetadata
+  include ::Hyrax::WorkBehavior
+  include ::Hyrax::BasicMetadata
   include ::CommonMetadata
   include ::StateBehavior
   include ::StructuralMetadata

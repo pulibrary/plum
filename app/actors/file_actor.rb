@@ -1,5 +1,5 @@
-class FileActor < ::CurationConcerns::Actors::FileActor
+class FileActor < ::Hyrax::Actors::FileActor
   def working_file(file)
-    CurationConcerns::WorkingDirectory.copy_file_to_working_directory(file, file_set.id)
+    Hyrax::WorkingDirectory.copy_file_to_working_directory(file, file_set.id)
   end
 end

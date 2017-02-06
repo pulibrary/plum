@@ -1,6 +1,6 @@
-module CurationConcerns
+module Hyrax
   module Actors
-    class ImageWorkActor < CurationConcerns::Actors::BaseActor
+    class ImageWorkActor < Hyrax::Actors::BaseActor
     end
   end
 end

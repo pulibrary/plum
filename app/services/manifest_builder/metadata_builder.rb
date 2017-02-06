@@ -88,7 +88,7 @@ class ManifestBuilder
           end
 
           def renderer
-            @renderer ||= CurationConcerns::Renderers::AttributeRenderer.new(field_name, values)
+            @renderer ||= Hyrax::Renderers::AttributeRenderer.new(field_name, values)
           end
       end
   end

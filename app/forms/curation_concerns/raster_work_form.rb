@@ -1,5 +1,5 @@
-module CurationConcerns
-  class RasterWorkForm < ::CurationConcerns::CurationConcernsForm
+module Hyrax
+  class RasterWorkForm < ::Hyrax::HyraxForm
     include ::GeoConcerns::BasicGeoMetadataForm
     include ::GeoConcerns::ExternalMetadataFileForm
     include ::GeoConcerns::GeoreferencedForm

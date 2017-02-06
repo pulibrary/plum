@@ -1,5 +1,5 @@
-module CurationConcerns
-  class VectorWorkForm < ::CurationConcerns::CurationConcernsForm
+module Hyrax
+  class VectorWorkForm < ::Hyrax::HyraxForm
     include ::GeoConcerns::BasicGeoMetadataForm
     include ::GeoConcerns::ExternalMetadataFileForm
     include ::GeoConcerns::GeoreferencedForm

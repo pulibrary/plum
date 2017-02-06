@@ -1,4 +1,4 @@
-class WorkIndexer < CurationConcerns::WorkIndexer
+class WorkIndexer < Hyrax::WorkIndexer
   def generate_solr_document
     super.tap do |solr_doc|
       object.member_of_collections.each do |col|

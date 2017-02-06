@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe CurationConcerns::FileSetsController do
+RSpec.describe Hyrax::FileSetsController do
   let(:file_set) { FactoryGirl.build(:file_set) }
   let(:parent) { FactoryGirl.create(:scanned_resource) }
   let(:user) { FactoryGirl.create(:admin) }

@@ -1,4 +1,4 @@
-class ContextualPath < CurationConcerns::ContextualPath
+class ContextualPath < Hyrax::ContextualPath
   def file_manager
     action_path(:file_manager)
   end

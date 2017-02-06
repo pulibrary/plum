@@ -49,7 +49,7 @@ describe "curation_concerns/multi_volume_works/show.html.erb" do
     allow(resource_presenter).to receive(:member_of_collections).and_return([])
     assign(:presenter, presenter)
     allow(view).to receive(:contextual_path).with(anything, anything) do |x, y|
-      CurationConcerns::ContextualPath.new(x, y).show
+      Hyrax::ContextualPath.new(x, y).show
     end
     render
   end
