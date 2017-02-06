@@ -29,7 +29,7 @@ Rails.application.routes.draw do
   default_url_options Rails.application.config.action_mailer.default_url_options
 
   # Collections have to go before CC routes, to add index_manifest.
-  resources :collections, only: [] do
+  resources :collections, only: [:new] do
     member do
       get :manifest, defaults: { format: :json }
     end
