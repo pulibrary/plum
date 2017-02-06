@@ -48,8 +48,44 @@ GIT
       om (~> 3.1)
 
 GIT
-  remote: git://github.com/projecthydra-labs/hyrax.git
-  revision: ffc9993f26e8dc0f767c678c8f5dbc29464a82f5
+  remote: git://github.com/pulibrary/pul_metadata_services.git
+  revision: 584736f58b3dcf1136e9b1817954299d5e6ca82c
+  branch: relax-activesupport-dependency
+  specs:
+    pul_metadata_services (0.0.1)
+      activesupport (>= 4.2.4)
+      faraday (~> 0.9.1)
+      marc (~> 1.0.0)
+      nokogiri (~> 1.6.6.2)
+
+GIT
+  remote: git://github.com/pulibrary/pul_uv_rails.git
+  revision: 7060d5eac7005573a93aac0335b365e29a576a54
+  branch: master
+  specs:
+    pul_uv_rails (1.8.42)
+
+GIT
+  remote: git://github.com/yob/pdf-reader.git
+  revision: 2b9b814c3c0bd5de0300945062bad71244a02174
+  specs:
+    pdf-reader (2.0.0.beta)
+      Ascii85 (~> 1.0.0)
+      afm (~> 0.2.1)
+      hashery (~> 2.0)
+      ruby-rc4
+      ttfunk
+
+GIT
+  remote: https://github.com/jcoyne/flipflop.git
+  revision: 0eecddade9890548c92b1e8aa681512f1db01469
+  branch: hydra
+  specs:
+    flipflop (2.2.1)
+      activesupport (>= 4.0)
+
+PATH
+  remote: /Users/tterrell/projects/hyrax
   specs:
     hyrax (0.0.1.alpha)
       active_attr (~> 0.9.0)
