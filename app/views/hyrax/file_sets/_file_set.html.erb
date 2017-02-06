@@ -2,7 +2,7 @@
   <td class="thumbnail">
     <%= render_thumbnail_tag file_set, onerror: default_icon_fallback %>
   </td>
-  <td class="attribute filename"><%= link_to(file_set.link_name, main_app.curation_concerns_file_set_path(file_set)) %>
+  <td class="attribute filename"><%= link_to(file_set.link_name, main_app.hyrax_file_set_path(file_set)) %>
     <% if file_set.title && file_set.title != file_set.link_name %>
       <div class="pagenumber"><%= file_set.title %></div>
     <% end %>
@@ -10,6 +10,6 @@
   <td class="attribute date_uploaded"><%= file_set.date_uploaded %></td>
   <td class="attribute permission"><%= file_set.permission_badge %></td>
   <td>
-    <%= render 'curation_concerns/file_sets/actions', file_set: file_set %>
+    <%= render 'hyrax/file_sets/actions', file_set: file_set %>
   </td>
 </tr>

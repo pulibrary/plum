@@ -44,7 +44,7 @@ gem 'iiif-presentation', github: 'iiif/osullivan', branch: 'development'
 gem 'prawn'
 # gem 'pdf-inspector', '~> 1.2.0', group: [:test]
 
-# Copied from curation_concerns Gemfile.extra
+# Copied from hyrax Gemfile.extra
 gem 'hydra-works', github: 'projecthydra-labs/hydra-works', branch: 'master'
 gem 'hydra-pcdm', github: 'projecthydra-labs/hydra-pcdm', branch: 'master'
 gem 'hydra-derivatives', '3.1.3'

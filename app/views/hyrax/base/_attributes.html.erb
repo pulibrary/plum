@@ -33,7 +33,7 @@
   <%= @presenter.attribute_to_html(:identifier) %>
   <%= @presenter.attribute_to_html(:source_metadata_identifier) %>
   <% if defined?(presenter.member_of_collection_presenters) && presenter.member_of_collection_presenters.size > 0 %>
-    <%= render 'curation_concerns/base/member_of_collections', presenter: @presenter %>
+    <%= render 'hyrax/base/member_of_collections', presenter: @presenter %>
   <% end %>
   </tbody>
 </table>

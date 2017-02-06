@@ -74,7 +74,7 @@ RSpec.feature "ScannedResourcesController", type: :feature do
 
     scenario "User can follow link to parent multi volume work" do
       parent_id = scanned_resource.ordered_by.first.id
-      visit curation_concerns_parent_scanned_resource_path(parent_id, scanned_resource.id)
+      visit hyrax_parent_scanned_resource_path(parent_id, scanned_resource.id)
       click_link 'Test title'
       expect(page).to have_text('Test title')
     end

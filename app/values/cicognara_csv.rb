@@ -20,6 +20,6 @@ class CicognaraCSV
   end
 
   def self.manifest_url(obj)
-    Rails.application.routes.url_helpers.send "manifest_curation_concerns_#{obj.model_name.singular}_url", obj
+    Rails.application.routes.url_helpers.send "manifest_hyrax_#{obj.model_name.singular}_url", obj
   end
 end

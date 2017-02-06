@@ -42,7 +42,7 @@ Rails.application.routes.draw do
   # mount GeoConcerns::Engine => '/'
   get "/iiif/collections", defaults: { format: :json }, controller: :collections, action: :index_manifest
 
-  namespace :curation_concerns, path: :concern do
+  namespace :hyrax, path: :concern do
     resources :parent, only: [] do
       [:multi_volume_works, :scanned_resources].each do |type|
         resources type, only: [] do
@@ -77,7 +77,7 @@ Rails.application.routes.draw do
     end
   end
 
-  namespace :curation_concerns, path: :concern do
+  namespace :hyrax, path: :concern do
     resources :file_sets, only: [], path: 'container/:parent_id/file_sets', as: 'member_file_set' do
       member do
         get :text, defaults: { format: :json }

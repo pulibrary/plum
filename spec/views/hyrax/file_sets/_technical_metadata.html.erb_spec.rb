@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "curation_concerns/file_sets/_technical_metadata.html.erb" do
+RSpec.describe "hyrax/file_sets/_technical_metadata.html.erb" do
   let(:solr_doc) do
     SolrDocument.new(id: 'p1', generic_work_ids_ssim: ['book1'],
                      has_model_ssim: ['FileSet'], title_tesim: 'p. 1',
@@ -18,7 +18,7 @@ RSpec.describe "curation_concerns/file_sets/_technical_metadata.html.erb" do
 
   before do
     assign(:presenter, file_set_presenter)
-    render partial: "curation_concerns/file_sets/technical_metadata"
+    render partial: "hyrax/file_sets/technical_metadata"
   end
 
   it 'shows technical metadata' do

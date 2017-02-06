@@ -6,7 +6,7 @@
 [![Stories in Ready](https://badge.waffle.io/pulibrary/plum.png?label=ready&title=Ready)](https://waffle.io/pulibrary/plum)
 [![Apache 2.0 License](https://img.shields.io/badge/license-Apache%202.0-blue.svg?style=plastic)](./LICENSE)
 
-Plum is a Hydra head based on [Hyrax](http://github.com/projecthydra-labs/curation_concerns), with two types of works:
+Plum is a Hydra head based on [Hyrax](http://github.com/projecthydra-labs/hyrax), with two types of works:
 * ScannedResource: a book or other resource composed of one or more scanned pages
 * MultiVolumeWork: a book set, sammelband or other resource composed of multiple ScannedResources
 
@@ -40,7 +40,7 @@ After cloning the Plum repository:
 * Install dependencies: `bundle install`
 * Setup the database: `rake db:migrate`
 * Setup ActiveFedora::Noid minter: `rails g active_fedora:noid:seed`
-* Load the workflows in `config/workflows`: `rake curation_concerns:workflow:load`
+* Load the workflows in `config/workflows`: `rake hyrax:workflow:load`
 
 ## Running the Tests
 

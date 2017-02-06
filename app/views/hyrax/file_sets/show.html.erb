@@ -12,9 +12,9 @@
 
     <% if can? :edit, @presenter.id %>
       <%= link_to "Edit this File", edit_polymorphic_path([main_app, @presenter]), class: 'btn btn-default'  %>
-      <%= link_to( 'Rollback', main_app.versions_curation_concerns_file_set_path(@presenter),
+      <%= link_to( 'Rollback', main_app.versions_hyrax_file_set_path(@presenter),
         { class: 'btn btn-default', title: "Rollback to previous version" }) %>
-      <%= link_to( 'Regenerate Derivatives', main_app.derivatives_curation_concerns_file_set_path(@presenter),
+      <%= link_to( 'Regenerate Derivatives', main_app.derivatives_hyrax_file_set_path(@presenter),
         { method: :post, class: 'btn btn-default', title: "Regenerate derivatives" }) %>
       <%= link_to "Delete This #{@presenter.human_readable_type}", [main_app, @presenter], class: 'btn btn-danger pull-right', data: { confirm: "Delete this #{@presenter.human_readable_type}?" }, method: :delete %>
     <% end %>

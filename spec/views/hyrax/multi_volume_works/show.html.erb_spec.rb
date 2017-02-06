@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe "curation_concerns/multi_volume_works/show.html.erb" do
+describe "hyrax/multi_volume_works/show.html.erb" do
   let(:creator) { 'Bilbo' }
   let(:date_created) { "2015-09-08" }
   let(:rights) { "No touching" }
@@ -68,7 +68,7 @@ describe "curation_concerns/multi_volume_works/show.html.erb" do
       expect(rendered).to have_link member_presenter.to_s, href: "/concern/file_sets/#{member_presenter.id}"
     end
     it "has a link to edit structure" do
-      expect(rendered).to have_link "Edit Structure", href: structure_curation_concerns_multi_volume_work_path(id: presenter.id)
+      expect(rendered).to have_link "Edit Structure", href: structure_hyrax_multi_volume_work_path(id: presenter.id)
     end
   end
 end

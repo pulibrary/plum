@@ -8,7 +8,7 @@ $font-family-serif: $font-serif;
 $bootstrap-sass-asset-helper: true;
 @import 'bootstrap/variables';
 @import 'bootstrap/mixins';
-@import 'curation_concerns/curation_concerns';
+@import 'hyrax/hyrax';
 
 body {
     padding: 0;

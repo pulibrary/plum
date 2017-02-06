@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "curation_concerns/base/_attributes.html.erb" do
+RSpec.describe "hyrax/base/_attributes.html.erb" do
   let(:creator) { 'Bilbo' }
   let(:date_created) { "2015-09-08" }
   let(:rights_statement) { "http://rightsstatements.org/vocab/NKC/1.0/" }

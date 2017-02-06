@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "curation_concerns/base/structure" do
+RSpec.describe "hyrax/base/structure" do
   let(:logical_order) do
     WithProxyForObject::Factory.new(members).new(params)
   end

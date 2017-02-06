@@ -1,5 +1,5 @@
 # Generated via
-#  `rails generate curation_concerns:work MultiVolumeWork`
+#  `rails generate hyrax:work MultiVolumeWork`
 require 'rails_helper'
 
 describe Hyrax::MultiVolumeWorksController do
@@ -54,7 +54,7 @@ describe Hyrax::MultiVolumeWorksController do
       first_file = reloaded.file_sets.first.files.first
       expect(first_file.original_name).to eq "color.tif"
       expect(first_file.mime_type).to eq "message/external-body;access-type=URL;url=\"http://plum.com/downloads/#{reloaded.file_sets.first.id}\""
-      path = Rails.application.class.routes.url_helpers.file_manager_curation_concerns_multi_volume_work_path(resource)
+      path = Rails.application.class.routes.url_helpers.file_manager_hyrax_multi_volume_work_path(resource)
       expect(response).to redirect_to path
       expect(reloaded.pending_uploads.length).to eq 0
     end

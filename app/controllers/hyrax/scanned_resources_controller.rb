@@ -1,5 +1,5 @@
 # Generated via
-#  `rails generate curation_concerns:work ScannedResource`
+#  `rails generate hyrax:work ScannedResource`
 
 class Hyrax::ScannedResourcesController < Hyrax::HyraxController
   self.curation_concern_type = ScannedResource

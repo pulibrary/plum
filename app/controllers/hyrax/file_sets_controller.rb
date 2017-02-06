@@ -47,7 +47,7 @@ module Hyrax
       end
 
       def annotation_builder
-        AnnotationListBuilder.new(@file_set, main_app.text_curation_concerns_member_file_set_url(parent, @file_set), CanvasID.new(@file_set.id, polymorphic_url([main_app, :manifest, parent])).to_s)
+        AnnotationListBuilder.new(@file_set, main_app.text_hyrax_member_file_set_url(parent, @file_set), CanvasID.new(@file_set.id, polymorphic_url([main_app, :manifest, parent])).to_s)
       end
   end
 end

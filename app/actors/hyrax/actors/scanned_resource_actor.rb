@@ -1,5 +1,5 @@
 # Generated via
-#  `rails generate curation_concerns:work ScannedResource`
+#  `rails generate hyrax:work ScannedResource`
 module Hyrax::Actors
   class ScannedResourceActor < PlumActor
   end

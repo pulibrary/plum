@@ -1,5 +1,5 @@
 # Generated via
-#  `rails generate curation_concerns:work MultiVolumeWork`
+#  `rails generate hyrax:work MultiVolumeWork`
 module Hyrax::Actors
   class MultiVolumeWorkActor < PlumActor
   end

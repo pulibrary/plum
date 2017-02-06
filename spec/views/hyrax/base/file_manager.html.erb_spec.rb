@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "curation_concerns/base/file_manager.html.erb" do
+RSpec.describe "hyrax/base/file_manager.html.erb" do
   let(:members) { [file_set] }
   let(:file_set) { FileSetPresenter.new(solr_doc, nil) }
   let(:solr_doc) do
@@ -53,7 +53,7 @@ RSpec.describe "curation_concerns/base/file_manager.html.erb" do
       expect(rendered).to have_selector "input[name='scanned_resource[title][]'][type='text'][value='#{file_set}']"
     end
     it "has a link back to parent" do
-      expect(rendered).to have_link "Test title", href: curation_concerns_multi_volume_work_path(id: "resource")
+      expect(rendered).to have_link "Test title", href: hyrax_multi_volume_work_path(id: "resource")
     end
     it "doesn't have radio inputs" do
       expect(rendered).not_to have_selector("#sortable input[type=radio][name='scanned_resource[viewing_hint]']")
@@ -81,7 +81,7 @@ RSpec.describe "curation_concerns/base/file_manager.html.erb" do
   end
 
   it "has a link back to parent" do
-    expect(rendered).to have_link "Test title", href: curation_concerns_scanned_resource_path(id: "resource")
+    expect(rendered).to have_link "Test title", href: hyrax_scanned_resource_path(id: "resource")
   end
 
   it "has an actions bar for labeling" do

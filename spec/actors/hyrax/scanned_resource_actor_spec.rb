@@ -1,5 +1,5 @@
 # Generated via
-#  `rails generate curation_concerns:work ScannedResource`
+#  `rails generate hyrax:work ScannedResource`
 require 'rails_helper'
 
 describe Hyrax::Actors::ScannedResourceActor do
