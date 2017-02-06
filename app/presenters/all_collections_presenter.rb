@@ -38,7 +38,7 @@ class AllCollectionsPresenter < CollectionShowPresenter
   end
 
   class NullSolrDocument
-    def method_missing(*args)
+    def method_missing(*_args)
       nil
     end
   end

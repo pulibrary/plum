@@ -101,9 +101,7 @@ class Ability
     end
   end
 
-  def admin?
-    current_user.admin?
-  end
+  delegate :admin?, to: :current_user
 
   private
 
