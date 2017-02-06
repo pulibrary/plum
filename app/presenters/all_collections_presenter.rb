@@ -19,6 +19,10 @@ class AllCollectionsPresenter < CollectionShowPresenter
     nil
   end
 
+  def identifier
+    nil
+  end
+
   def member_presenters
     @member_presenters ||= super.select do |presenter|
       if presenter.current_ability
@@ -26,6 +30,16 @@ class AllCollectionsPresenter < CollectionShowPresenter
       else
         true
       end
+    end
+  end
+
+  def solr_document
+    NullSolrDocument.new
+  end
+
+  class NullSolrDocument
+    def method_missing(*args)
+      nil
     end
   end
 
