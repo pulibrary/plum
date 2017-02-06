@@ -27,7 +27,7 @@ class SearchBuilder
       end
 
       def dismax_join(query)
-        "#{query}{!dismax}#{parent_query}"
+        "#{query}{!edismax}#{parent_query}"
       end
 
       def main_query

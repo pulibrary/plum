@@ -9,6 +9,10 @@ class SearchBuilder < Hyrax::CatalogSearchBuilder
     :hide_incomplete
   ]
 
+  self.default_processor_chain -= [
+    :show_works_or_works_that_contain_files
+  ]
+
   def self.show_actions
     [:show, :manifest, :structure, :pdf]
   end
