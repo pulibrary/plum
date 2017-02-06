@@ -1,10 +1,10 @@
 require 'rails_helper'
 
-describe "curation_concerns/base/_form_required_information.html.erb" do
+describe "hyrax/base/_form_required_information.html.erb" do
   let(:curation_concern) { ScannedResource.new }
   before do
     form = simple_form_for([curation_concern])
-    render partial: "curation_concerns/base/form_required_information", locals: {
+    render partial: "hyrax/base/form_required_information", locals: {
       f: form
     }
   end

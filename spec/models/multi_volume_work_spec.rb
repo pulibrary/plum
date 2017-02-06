@@ -1,5 +1,5 @@
 # Generated via
-#  `rails generate curation_concerns:work MultiVolumeWork`
+#  `rails generate hyrax:work MultiVolumeWork`
 require 'rails_helper'
 
 describe MultiVolumeWork do

@@ -1,1 +1,1 @@
-//= require curation_concerns/application
+//= require hyrax/application

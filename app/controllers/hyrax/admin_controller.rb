@@ -4,7 +4,7 @@ module Hyrax
   # This controller provides a framework for reading in a configuration
   #  and displaying administrative widgets on an admistrative dashboard.
   #
-  # This configuration is included in config/initializers/curation_concerns.rb
+  # This configuration is included in config/initializers/hyrax.rb
   #
   # The administrative dashbord is divided into two columns, a left side menu
   #  and the right action display.

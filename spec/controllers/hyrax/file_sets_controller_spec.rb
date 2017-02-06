@@ -29,7 +29,7 @@ RSpec.describe Hyrax::FileSetsController do
     it "redirects to the containing scanned resource after editing" do
       allow_any_instance_of(described_class).to receive(:parent).and_return(parent)
       patch :update, params: { id: file_set.id, file_set: { viewing_hint: 'non-paged' } }
-      expect(response).to redirect_to(Rails.application.class.routes.url_helpers.file_manager_curation_concerns_scanned_resource_path(parent.id))
+      expect(response).to redirect_to(Rails.application.class.routes.url_helpers.file_manager_hyrax_scanned_resource_path(parent.id))
     end
   end
 

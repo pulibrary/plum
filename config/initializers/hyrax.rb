@@ -1,7 +1,7 @@
 Hyrax.config do |config|
-  # Injected via `rails g curation_concerns:work MultiVolumeWork`
+  # Injected via `rails g hyrax:work MultiVolumeWork`
   config.register_curation_concern :multi_volume_work
-  # Injected via `rails g curation_concerns:work ScannedResource`
+  # Injected via `rails g hyrax:work ScannedResource`
   config.register_curation_concern :scanned_resource
   # Injected via `rails g geo_concerns:install`
   config.register_curation_concern :vector_work
@@ -44,7 +44,7 @@ Hyrax.config do |config|
   config.minter_statefile = "log/minter-state-#{Rails.env}"
 
   # Specify the prefix for Redis keys:
-  # config.redis_namespace = "curation_concerns"
+  # config.redis_namespace = "hyrax"
 
   # Specify the path to the file characterization tool:
   # config.fits_path = "fits.sh"

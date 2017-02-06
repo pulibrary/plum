@@ -43,7 +43,7 @@ RSpec.shared_examples "page header" do |header_method, page_title|
       subject { helper.send header_method }
 
       let(:href) { Rails.application.routes.url_helpers
-        .curation_concerns_scanned_resource_path(parent_id) }
+        .hyrax_scanned_resource_path(parent_id) }
 
       it { is_expected.to have_selector('h1', text: page_title) }
       it { is_expected.to have_link('Test Resource', href: href) }

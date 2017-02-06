@@ -1,5 +1,5 @@
 # Generated via
-#  `rails generate curation_concerns:work ScannedResource`
+#  `rails generate hyrax:work ScannedResource`
 class ScannedResource < ActiveFedora::Base
   include ::Hyrax::WorkBehavior
   include ::Hyrax::BasicMetadata

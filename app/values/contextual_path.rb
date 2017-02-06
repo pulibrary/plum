@@ -11,7 +11,7 @@ class ContextualPath < Hyrax::ContextualPath
 
     def action_path(action)
       if parent_presenter
-        polymorphic_path([action, :curation_concerns, :parent, presenter.model_name.singular], parent_id: parent_presenter.id, id: presenter.id)
+        polymorphic_path([action, :hyrax, :parent, presenter.model_name.singular], parent_id: parent_presenter.id, id: presenter.id)
       else
         polymorphic_path([action, presenter])
       end

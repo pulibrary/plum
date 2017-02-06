@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "curation_concerns/base/_related_files.html.erb" do
+RSpec.describe "hyrax/base/_related_files.html.erb" do
   let(:user) { FactoryGirl.create(:admin) }
   let(:page_document) do
     SolrDocument.new(id: 'p1', generic_work_ids_ssim: ['book1'],
@@ -15,7 +15,7 @@ RSpec.describe "curation_concerns/base/_related_files.html.erb" do
     allow_any_instance_of(NilClass).to receive(:can?).and_return(true)
 
     assign(:file_set, page_presenter)
-    render partial: "curation_concerns/file_sets/file_set", locals: { file_set: page_presenter }
+    render partial: "hyrax/file_sets/file_set", locals: { file_set: page_presenter }
   end
 
   it 'shows filename and title' do

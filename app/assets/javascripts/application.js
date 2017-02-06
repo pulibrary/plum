@@ -25,7 +25,7 @@
 //= require openseadragon
 
 //= require geo_concerns
-//= require curation_concerns/application
+//= require hyrax/application
 //= require_tree .
 //= require geo_concerns/es6-modules
 

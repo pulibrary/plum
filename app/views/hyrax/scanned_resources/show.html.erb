@@ -1,6 +1,6 @@
 <% provide :page_title, @presenter.page_title %>
 <% provide :page_header do %>
-  <%= render "curation_concerns/base/title_header" %>
+  <%= render "hyrax/base/title_header" %>
   <% if @parent_presenter %>
     <ul class="breadcrumb">
       <li><%= link_to @parent_presenter, polymorphic_path([main_app, @parent_presenter]) %></li>

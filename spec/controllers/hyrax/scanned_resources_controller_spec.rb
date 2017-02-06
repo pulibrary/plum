@@ -428,7 +428,7 @@ describe Hyrax::ScannedResourcesController do
       reloaded = resource.reload
       expect(reloaded.file_sets.length).to eq 1
       expect(reloaded.file_sets.first.files.first.original_name).to eq "color.tif"
-      path = Rails.application.class.routes.url_helpers.file_manager_curation_concerns_scanned_resource_path(resource)
+      path = Rails.application.class.routes.url_helpers.file_manager_hyrax_scanned_resource_path(resource)
       expect(response).to redirect_to path
       expect(reloaded.pending_uploads.length).to eq 0
     end
@@ -436,7 +436,7 @@ describe Hyrax::ScannedResourcesController do
       it "redirects to the parent path" do
         allow(BrowseEverythingIngestJob).to receive(:perform_later).and_return(true)
         post :browse_everything_files, params: { id: resource.id, selected_files: params["selected_files"], parent_id: resource.id }
-        path = Rails.application.class.routes.url_helpers.file_manager_curation_concerns_parent_scanned_resource_path(id: resource.id, parent_id: resource.id)
+        path = Rails.application.class.routes.url_helpers.file_manager_hyrax_parent_scanned_resource_path(id: resource.id, parent_id: resource.id)
         expect(response).to redirect_to path
       end
     end
