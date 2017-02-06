@@ -57,5 +57,4 @@ Hyrax.config do |config|
 end
 
 Date::DATE_FORMATS[:standard] = '%m/%d/%Y'
-
 Hyrax::Workflow::WorkflowFactory.workflow_strategy = Workflow::PlumWorkflowStrategy

@@ -12,7 +12,7 @@ class Hyrax::ScannedResourcesController < Hyrax::HyraxController
 
   def pdf
     ScannedResourcePDF.new(presenter, quality: params[:pdf_quality]).render(pdf_path)
-    redirect_to main_app.download_path(presenter, file: pdf_type)
+    redirect_to hyrax.download_path(presenter, file: pdf_type)
   end
 
   def form_class

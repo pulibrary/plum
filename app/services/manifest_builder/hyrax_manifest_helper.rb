@@ -1,6 +1,6 @@
 class ManifestBuilder
-  class ManifestHelper
-    include Rails.application.routes.url_helpers
+  class HyraxManifestHelper
+    include Hyrax::Engine.routes.url_helpers
     include ActionDispatch::Routing::PolymorphicRoutes
 
     def default_url_options

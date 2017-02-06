@@ -336,7 +336,7 @@ describe Hyrax::ScannedResourcesController do
           allow(ScannedResourcePDF).to receive(:new).with(anything, quality: "color").and_return(pdf)
           allow(pdf).to receive(:render).and_return(true)
           get :pdf, params: { id: scanned_resource, pdf_quality: "color" }
-          expect(response).to redirect_to(Rails.application.class.routes.url_helpers.download_path(scanned_resource, file: 'color-pdf'))
+          expect(response).to redirect_to(ManifestBuilder::HyraxManifestHelper.new.download_path(scanned_resource, file: 'color-pdf', locale: 'en'))
         end
         context "when not given permission" do
           let(:user) { FactoryGirl.create(:campus_patron) }
@@ -350,13 +350,13 @@ describe Hyrax::ScannedResourcesController do
 
               get :pdf, params: { id: scanned_resource, pdf_quality: "color" }
 
-              expect(response).to redirect_to(Rails.application.class.routes.url_helpers.download_path(scanned_resource, file: 'color-pdf'))
+              expect(response).to redirect_to(ManifestBuilder::HyraxManifestHelper.new.download_path(scanned_resource, file: 'color-pdf', locale: 'en'))
             end
           end
           it "doesn't work" do
             get :pdf, params: { id: scanned_resource, pdf_quality: "color" }
 
-            expect(response).to redirect_to "/"
+            expect(response).to redirect_to "/?locale=en"
           end
         end
       end
@@ -369,7 +369,7 @@ describe Hyrax::ScannedResourcesController do
           allow(ScannedResourcePDF).to receive(:new).with(anything, quality: "gray").and_return(pdf)
           allow(pdf).to receive(:render).and_return(true)
           get :pdf, params: { id: scanned_resource, pdf_quality: "gray" }
-          expect(response).to redirect_to(Rails.application.class.routes.url_helpers.download_path(scanned_resource, file: 'gray-pdf'))
+          expect(response).to redirect_to(ManifestBuilder::HyraxManifestHelper.new.download_path(scanned_resource, file: 'gray-pdf', locale: 'en'))
         end
       end
       context "when the resource has no pdf type set" do
@@ -378,7 +378,7 @@ describe Hyrax::ScannedResourcesController do
         it "redirects to root" do
           get :pdf, params: { id: scanned_resource, pdf_quality: "gray" }
 
-          expect(response).to redirect_to Rails.application.class.routes.url_helpers.root_path
+          expect(response).to redirect_to Rails.application.class.routes.url_helpers.root_path(locale: 'en')
         end
       end
       context "when not given permission" do
@@ -387,7 +387,7 @@ describe Hyrax::ScannedResourcesController do
           it "redirects for auth" do
             get :pdf, params: { id: scanned_resource, pdf_quality: "gray" }
 
-            expect(response).to redirect_to "http://test.host/users/auth/cas"
+            expect(response).to redirect_to "http://test.host/users/auth/cas?locale=en"
           end
         end
         context "and logged in" do
@@ -395,7 +395,7 @@ describe Hyrax::ScannedResourcesController do
           it "redirects to root" do
             get :pdf, params: { id: scanned_resource, pdf_quality: "gray" }
 
-            expect(response).to redirect_to Rails.application.class.routes.url_helpers.root_path
+            expect(response).to redirect_to Rails.application.class.routes.url_helpers.root_path(locale: 'en')
           end
         end
       end
