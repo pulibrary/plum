@@ -1,1 +1,1 @@
-//= require geo_concerns/application
+// require geo_concerns/application
