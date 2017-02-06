@@ -8,10 +8,10 @@ class ApplicationController < ActionController::Base
   end
   # Adds a few additional behaviors into the application controller
   include Blacklight::Controller
+  include Hydra::Controller::ControllerBehavior
 
   # Adds Hyrax behaviors to the application controller.
-  include Hyrax::ApplicationControllerBehavior
-  include Hydra::Controller::ControllerBehavior
+  include Hyrax::Controller
   include Hyrax::ThemedLayoutController
   with_themed_layout '1_column'
 

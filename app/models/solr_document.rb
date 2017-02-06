@@ -2,7 +2,7 @@
 class SolrDocument
   include Blacklight::Solr::Document
   # Adds GeoConcerns behaviors to the SolrDocument.
-  include GeoConcerns::SolrDocumentBehavior
+  # include GeoConcerns::SolrDocumentBehavior
 
   # Adds Hyrax behaviors to the SolrDocument.
   include Hyrax::SolrDocumentBehavior

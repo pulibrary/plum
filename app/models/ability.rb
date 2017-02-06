@@ -1,7 +1,7 @@
 class Ability
   include Hydra::Ability
-  include Hyrax::Ability
-  include GeoConcerns::Ability
+  # include Hyrax::Ability
+  # include GeoConcerns::Ability
 
   # Define any customized permissions here.
   def custom_permissions
