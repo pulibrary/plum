@@ -1,6 +1,6 @@
 class Ability
   include Hydra::Ability
-  # include Hyrax::Ability
+  include Hyrax::Ability
   # include GeoConcerns::Ability
 
   # Define any customized permissions here.
