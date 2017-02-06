@@ -39,7 +39,7 @@ Rails.application.routes.draw do
   curation_concerns_basic_routes
   curation_concerns_embargo_management
 
-  mount GeoConcerns::Engine => '/'
+  # mount GeoConcerns::Engine => '/'
   get "/iiif/collections", defaults: { format: :json }, controller: :collections, action: :index_manifest
 
   namespace :curation_concerns, path: :concern do

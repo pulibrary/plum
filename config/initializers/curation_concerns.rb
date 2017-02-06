@@ -1,4 +1,4 @@
-Hyrax.configure do |config|
+Hyrax.config do |config|
   # Injected via `rails g curation_concerns:work MultiVolumeWork`
   config.register_curation_concern :multi_volume_work
   # Injected via `rails g curation_concerns:work ScannedResource`
