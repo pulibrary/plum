@@ -175,7 +175,7 @@ RSpec.describe IngestMETSJob do
     end
 
     before(:all) do
-      CurationConcerns::Workflow::WorkflowImporter.load_workflows
+      Hyrax::Workflow::WorkflowImporter.load_workflows
     end
 
     it "ingests a mets file", vcr: { cassette_name: 'bibdata-4612596' } do

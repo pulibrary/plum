@@ -2,7 +2,7 @@
 #  `rails generate curation_concerns:work MultiVolumeWork`
 require 'rails_helper'
 
-describe CurationConcerns::MultiVolumeWorksController do
+describe Hyrax::MultiVolumeWorksController do
   let(:user) { FactoryGirl.create(:user) }
   let(:multi_volume_work) { FactoryGirl.create(:multi_volume_work, user: user, title: ['Dummy Title']) }
 

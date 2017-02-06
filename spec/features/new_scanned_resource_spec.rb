@@ -27,7 +27,7 @@ RSpec.feature "ScannedResourcesController", type: :feature do
       expect(page).to have_selector("span.label-default", text: "Pending")
       expect(page).to have_text("No Known Copyright")
 
-      CurationConcerns::Workflow::PermissionGenerator.call(agents: user, roles: 'admin', workflow: workflow)
+      Hyrax::Workflow::PermissionGenerator.call(agents: user, roles: 'admin', workflow: workflow)
       visit current_path
 
       choose 'Metadata Review'

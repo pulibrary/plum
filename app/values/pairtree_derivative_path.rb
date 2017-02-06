@@ -1,4 +1,4 @@
-class PairtreeDerivativePath < CurationConcerns::DerivativePath
+class PairtreeDerivativePath < Hyrax::DerivativePath
   def initialize(object, destination_name = nil)
     @object = object
     @id = object.is_a?(String) ? object : object.id
@@ -16,7 +16,7 @@ class PairtreeDerivativePath < CurationConcerns::DerivativePath
   end
 
   def derivatives_path_prefix
-    Pathname.new(CurationConcerns.config.derivatives_path).join(pair_path)
+    Pathname.new(Hyrax.config.derivatives_path).join(pair_path)
   end
 
   def file_name

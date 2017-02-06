@@ -1,4 +1,4 @@
-module CurationConcerns::MemberManagement
+module Hyrax::MemberManagement
   extend ActiveSupport::Concern
 
   included do

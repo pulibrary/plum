@@ -1,3 +1,3 @@
 class WorkSearchBuilder < ::SearchBuilder
-  include CurationConcerns::SingleResult
+  include Hyrax::SingleResult
 end

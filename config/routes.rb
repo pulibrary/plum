@@ -34,7 +34,7 @@ Rails.application.routes.draw do
       get :manifest, defaults: { format: :json }
     end
   end
-  mount CurationConcerns::Engine, at: '/'
+  mount Hyrax::Engine, at: '/'
   curation_concerns_collections
   curation_concerns_basic_routes
   curation_concerns_embargo_management

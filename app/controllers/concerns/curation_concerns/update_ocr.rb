@@ -1,4 +1,4 @@
-module CurationConcerns
+module Hyrax
   module UpdateOCR
     extend ActiveSupport::Concern
     def decorator

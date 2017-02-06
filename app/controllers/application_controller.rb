@@ -9,10 +9,10 @@ class ApplicationController < ActionController::Base
   # Adds a few additional behaviors into the application controller
   include Blacklight::Controller
 
-  # Adds CurationConcerns behaviors to the application controller.
-  include CurationConcerns::ApplicationControllerBehavior
+  # Adds Hyrax behaviors to the application controller.
+  include Hyrax::ApplicationControllerBehavior
   include Hydra::Controller::ControllerBehavior
-  include CurationConcerns::ThemedLayoutController
+  include Hyrax::ThemedLayoutController
   with_themed_layout '1_column'
 
   # Prevent CSRF attacks by raising an exception.

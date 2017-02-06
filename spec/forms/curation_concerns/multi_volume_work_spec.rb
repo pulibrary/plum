@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe CurationConcerns::MultiVolumeWorkForm do
+RSpec.describe Hyrax::MultiVolumeWorkForm do
   subject { described_class.new(work, nil) }
   let(:work) { MultiVolumeWork.new }
 

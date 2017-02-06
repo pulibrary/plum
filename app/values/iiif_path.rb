@@ -34,7 +34,7 @@ class IIIFPath
 
     def curation_concern_root_path
       Pathname.new(
-        CurationConcerns.config.derivatives_path
+        Hyrax.config.derivatives_path
       )
     end
 

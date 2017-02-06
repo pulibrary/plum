@@ -1,5 +1,5 @@
-class FileSetPresenter < CurationConcerns::FileSetPresenter
-  include CurationConcerns::Serializers
+class FileSetPresenter < Hyrax::FileSetPresenter
+  include Hyrax::Serializers
   delegate :viewing_hint, :title, :file_label, :width, :height, :digest, :date_modified,
            :well_formed, :valid, :color_space, :profile_name, :ocr_text, to: :solr_document
 

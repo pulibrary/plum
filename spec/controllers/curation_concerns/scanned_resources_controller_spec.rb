@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe CurationConcerns::ScannedResourcesController do
+describe Hyrax::ScannedResourcesController do
   let(:user) { FactoryGirl.create(:user) }
   let(:scanned_resource) { FactoryGirl.create(:complete_scanned_resource, user: user, title: ['Dummy Title'], identifier: 'ark:/99999/fk4445wg45') }
   let(:reloaded) { scanned_resource.reload }
@@ -460,7 +460,7 @@ describe CurationConcerns::ScannedResourcesController do
 
   describe "#form_class" do
     subject { described_class.new.form_class }
-    it { is_expected.to eq CurationConcerns::ScannedResourceForm }
+    it { is_expected.to eq Hyrax::ScannedResourceForm }
   end
 
   include_examples "structure persister", :scanned_resource, ScannedResourceShowPresenter

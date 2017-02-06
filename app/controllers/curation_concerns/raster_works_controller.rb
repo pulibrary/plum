@@ -1,9 +1,9 @@
-class CurationConcerns::RasterWorksController < ApplicationController
-  include CurationConcerns::CurationConcernController
-  include CurationConcerns::ParentContainer
+class Hyrax::RasterWorksController < ApplicationController
+  include Hyrax::CurationConcernController
+  include Hyrax::ParentContainer
   include GeoConcerns::RasterWorksControllerBehavior
   include GeoConcerns::GeoblacklightControllerBehavior
-  include CurationConcerns::GeoMessengerBehavior
+  include Hyrax::GeoMessengerBehavior
   self.curation_concern_type = RasterWork
 
   def show_presenter

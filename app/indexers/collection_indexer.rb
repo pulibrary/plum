@@ -1,4 +1,4 @@
-class CollectionIndexer < CurationConcerns::CollectionIndexer
+class CollectionIndexer < Hyrax::CollectionIndexer
   def generate_solr_document
     super.tap do |solr_doc|
       titles = solr_doc[Solrizer.solr_name('title', :stored_searchable)] || []

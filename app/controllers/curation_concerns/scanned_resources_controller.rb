@@ -1,7 +1,7 @@
 # Generated via
 #  `rails generate curation_concerns:work ScannedResource`
 
-class CurationConcerns::ScannedResourcesController < CurationConcerns::CurationConcernsController
+class Hyrax::ScannedResourcesController < Hyrax::HyraxController
   self.curation_concern_type = ScannedResource
   skip_load_and_authorize_resource only: SearchBuilder.show_actions
   before_action :authorize_pdf, only: [:pdf]
@@ -16,7 +16,7 @@ class CurationConcerns::ScannedResourcesController < CurationConcerns::CurationC
   end
 
   def form_class
-    CurationConcerns::ScannedResourceForm
+    Hyrax::ScannedResourceForm
   end
 
   private

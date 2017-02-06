@@ -1,4 +1,4 @@
-CurationConcerns.configure do |config|
+Hyrax.configure do |config|
   # Injected via `rails g curation_concerns:work MultiVolumeWork`
   config.register_curation_concern :multi_volume_work
   # Injected via `rails g curation_concerns:work ScannedResource`
@@ -33,7 +33,7 @@ CurationConcerns.configure do |config|
   # If you have ffmpeg installed and want to transcode audio and video uncomment this line
   # config.enable_ffmpeg = true
 
-  # CurationConcerns uses NOIDs for files and collections instead of Fedora UUIDs
+  # Hyrax uses NOIDs for files and collections instead of Fedora UUIDs
   # where NOID = 10-character string and UUID = 32-character string w/ hyphens
   # config.enable_noids = true
 
@@ -58,4 +58,4 @@ end
 
 Date::DATE_FORMATS[:standard] = '%m/%d/%Y'
 
-CurationConcerns::Workflow::WorkflowFactory.workflow_strategy = Workflow::PlumWorkflowStrategy
+Hyrax::Workflow::WorkflowFactory.workflow_strategy = Workflow::PlumWorkflowStrategy

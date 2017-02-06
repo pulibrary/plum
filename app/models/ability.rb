@@ -1,6 +1,6 @@
 class Ability
   include Hydra::Ability
-  include CurationConcerns::Ability
+  include Hyrax::Ability
   include GeoConcerns::Ability
 
   # Define any customized permissions here.
@@ -108,7 +108,7 @@ class Ability
     end
 
     def curation_concerns
-      CurationConcerns.config.curation_concerns
+      Hyrax.config.curation_concerns
     end
 
     def roles

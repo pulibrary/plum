@@ -1,6 +1,6 @@
-module CurationConcernsHelper
+module HyraxHelper
   include ::BlacklightHelper
-  include CurationConcerns::MainAppHelpers
+  include Hyrax::MainAppHelpers
 
   def default_icon_fallback
     "this.src='#{image_path('default.png')}'".html_safe

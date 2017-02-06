@@ -1,7 +1,7 @@
 class SearchBuilder < Blacklight::SearchBuilder
   include Blacklight::Solr::SearchBuilderBehavior
   include Hydra::AccessControlsEnforcement
-  include CurationConcerns::SearchFilters
+  include Hyrax::SearchFilters
   delegate :unreadable_states, to: :current_ability
 
   self.default_processor_chain += [

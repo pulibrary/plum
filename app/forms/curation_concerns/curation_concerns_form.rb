@@ -1,5 +1,5 @@
-module CurationConcerns
-  class CurationConcernsForm < CurationConcerns::Forms::WorkForm
+module Hyrax
+  class HyraxForm < Hyrax::Forms::WorkForm
     self.terms += [:holding_location, :rights_statement, :rights_note, :source_metadata_identifier, :portion_note, :description, :state, :collection_ids, :ocr_language, :nav_date, :pdf_type, :start_canvas]
     delegate :collection_ids, to: :model
 

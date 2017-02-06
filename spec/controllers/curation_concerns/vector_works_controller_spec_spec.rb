@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe CurationConcerns::VectorWorksController do
+describe Hyrax::VectorWorksController do
   let(:user) { FactoryGirl.create(:user) }
   let(:vector_work) { FactoryGirl.create(:complete_vector_work, user: user) }
   let(:manifest_generator) { instance_double(GeoConcerns::EventsGenerator) }

@@ -1,7 +1,7 @@
 class ImageWork < ActiveFedora::Base
-  include ::CurationConcerns::WorkBehavior
+  include ::Hyrax::WorkBehavior
   include ::GeoConcerns::ImageWorkBehavior
-  include ::CurationConcerns::BasicMetadata
+  include ::Hyrax::BasicMetadata
   include ::GeoConcerns::BasicGeoMetadata
   include ::GeoMetadata
   include ::StateBehavior

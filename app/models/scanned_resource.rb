@@ -1,8 +1,8 @@
 # Generated via
 #  `rails generate curation_concerns:work ScannedResource`
 class ScannedResource < ActiveFedora::Base
-  include ::CurationConcerns::WorkBehavior
-  include ::CurationConcerns::BasicMetadata
+  include ::Hyrax::WorkBehavior
+  include ::Hyrax::BasicMetadata
   include ::CommonMetadata
   include ::StateBehavior
   include ::StructuralMetadata

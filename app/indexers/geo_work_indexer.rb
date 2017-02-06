@@ -1,3 +1,3 @@
-class GeoWorkIndexer < CurationConcerns::WorkIndexer
+class GeoWorkIndexer < Hyrax::WorkIndexer
   self.thumbnail_path_service = ThumbnailPathService
 end

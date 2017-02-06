@@ -1,4 +1,4 @@
-module CurationConcerns::RemoteMetadata
+module Hyrax::RemoteMetadata
   extend ActiveSupport::Concern
 
   private

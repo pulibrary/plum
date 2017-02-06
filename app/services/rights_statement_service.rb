@@ -1,4 +1,4 @@
-class RightsStatementService < CurationConcerns::LicenseService
+class RightsStatementService < Hyrax::LicenseService
   def definition(id)
     obj = authority.find(id)
     obj['definition'] || ''

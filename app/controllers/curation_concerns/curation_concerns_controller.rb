@@ -1,9 +1,9 @@
-class CurationConcerns::CurationConcernsController < ApplicationController
-  include CurationConcerns::CurationConcernController
-  include CurationConcerns::Manifest
-  include CurationConcerns::MemberManagement
-  include CurationConcerns::UpdateOCR
-  include CurationConcerns::RemoteMetadata
+class Hyrax::HyraxController < ApplicationController
+  include Hyrax::CurationConcernController
+  include Hyrax::Manifest
+  include Hyrax::MemberManagement
+  include Hyrax::UpdateOCR
+  include Hyrax::RemoteMetadata
 
   def destroy
     messenger.record_deleted(curation_concern)
