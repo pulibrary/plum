@@ -6,6 +6,7 @@ module BlacklightStubbing
     allow(view).to receive(:blacklight_configuration_context).and_return(Blacklight::Configuration::Context.new(controller))
     allow(view).to receive(:search_session).and_return({})
     allow(view).to receive(:current_search_session).and_return(nil)
+    allow(view).to receive(:search_state).and_return(Blacklight::SearchState.new({}, CatalogController.new.blacklight_config))
   end
 end
 

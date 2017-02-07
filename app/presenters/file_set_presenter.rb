@@ -6,4 +6,14 @@ class FileSetPresenter < Hyrax::FileSetPresenter
   def thumbnail_id
     id
   end
+
+  def to_s
+    if title.present?
+      Array(title).join(' | ')
+    elsif label.present?
+      label
+    else
+      'No Title'
+    end
+  end
 end
