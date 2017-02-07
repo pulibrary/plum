@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   # Connects this user object to Hydra behaviors.
   include Hydra::User
+  include Hyrax::UserUsageStats
   # Connects this user object to Role-management behaviors.
   include Hydra::RoleManagement::UserRoles
 

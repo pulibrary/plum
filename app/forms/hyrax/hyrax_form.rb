@@ -52,5 +52,9 @@ module Hyrax
         self["rights_statement"]
       end
     end
+
+    def secondary_terms
+      super - [:collection_ids]
+    end
   end
 end

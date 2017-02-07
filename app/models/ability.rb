@@ -1,7 +1,12 @@
 class Ability
   include Hydra::Ability
-  # include Hyrax::Ability
   # include GeoConcerns::Ability
+  #
+  def can_create_any_work?
+    Hyrax.config.curation_concerns.any? do |curation_concern_type|
+      can?(:create, curation_concern_type)
+    end
+  end
 
   # Define any customized permissions here.
   def custom_permissions

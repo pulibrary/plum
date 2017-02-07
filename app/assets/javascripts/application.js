@@ -24,6 +24,8 @@
 //= require bootstrap-select
 //= require openseadragon
 
+//= require dataTables/jquery.dataTables
+//= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
 //= require hyrax
 //= require_tree .
 
@@ -34,6 +36,6 @@ Blacklight.onLoad(function() {
   Initializer = require('plum_boot')
   window.plum = new Initializer()
 })
-$(document).ready(function(){
+$(document).ready(function() {
   Blacklight.activate()
 })

@@ -30,7 +30,7 @@ RSpec.describe CollectionsController do
 
         get :manifest, params: { id: coll.id, format: :json }
 
-        expect(response).to redirect_to "/users/auth/cas"
+        expect(response).to redirect_to "/users/auth/cas?locale=en"
       end
     end
   end

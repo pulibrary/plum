@@ -13,6 +13,19 @@ en:
       name: "Princeton University Library"
       homepage_url: "#"
     product_name: "Digital PUL"
+    works:
+      edit:
+        additional_fields: "Additional fields"
+        breadcrumb: 'Edit'
+        header: Manage Your Work
+        in_collections: This Work in Collections
+        in_other_works: This Work in Other Works
+        in_this_work: Other Works in this Work
+        tab:
+          files:         "Files"
+          metadata:      "Descriptions"
+          relationships: "Relationships"
+          share:         "Share"
   simple_form:
     hints:
       defaults:

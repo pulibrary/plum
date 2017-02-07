@@ -92,4 +92,6 @@ Rails.application.routes.draw do
 
   # Dynamic robots.txt
   get '/robots.:format' => 'pages#robots'
+
+  mount Qa::Engine => '/authorities'
 end
