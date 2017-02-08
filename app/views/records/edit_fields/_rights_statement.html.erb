@@ -1,0 +1,6 @@
+  <%= f.input :rights_statement,
+              as: :select,
+              collection: RightsStatementService.new.select_options,
+              input_html: { class: 'form-control rights-statement' },
+              label: 'Rights Statement' %>
+

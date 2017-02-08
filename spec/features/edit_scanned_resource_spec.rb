@@ -30,7 +30,7 @@ RSpec.feature "ScannedResourcesController", type: :feature do
       fill_in 'scanned_resource_nav_date', with: '2016-04-01T01:01:01Z'
       select 'Color PDF', from: 'scanned_resource_pdf_type'
 
-      click_button 'Update Scanned resource'
+      click_button 'Save'
       expect(page).to have_text("Test title")
     end
 
