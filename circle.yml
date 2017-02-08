@@ -11,7 +11,9 @@ dependencies:
     - kakadu
   pre:
     - npm install -g eslint
-    - sudo apt-get install libmagickwand-dev imagemagick redis-server tesseract-ocr tesseract-ocr-ita tesseract-ocr-eng sqlite3 libsqlite3-dev
+    - sudo apt-get install libopenjpeg2 libmagickwand-dev imagemagick redis-server
+    - bash ./.install_leptonica
+    - sudo apt-get install tesseract-ocr tesseract-ocr-ita tesseract-ocr-eng sqlite3 libsqlite3-dev
   post:
     - sudo sh bin/ci_kakadu_install.sh
     - bundle exec rake rubocop

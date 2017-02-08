@@ -1,0 +1,7 @@
+wget "http://www.leptonica.com/source/leptonica-1.73.tar.gz"
+tar xzf leptonica-1.73.tar.gz
+cd leptonica-1.73
+sed -i 's/#define  HAVE_LIBJP2K     0/#define  HAVE_LIBJP2K     1/g' ./src/environ.h
+sed -i 's/-ltiff -ljpeg -lpng -lz -lm/-ltiff -ljpeg -lpng -lz -lm -lopenjp2/g' ./prog/makefile.static
+./configure
+make
