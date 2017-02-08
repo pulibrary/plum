@@ -39,7 +39,7 @@ RSpec.feature "ScannedResourcesController", type: :feature do
       fill_in 'scanned_resource_source_metadata_identifier', with: 'badid'
       check "refresh_remote_metadata"
 
-      click_button 'Update Scanned resource'
+      click_button 'Save'
       expect(page).to have_text("Error retrieving metadata")
     end
 

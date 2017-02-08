@@ -2,6 +2,7 @@ module Hyrax
   class HyraxForm < Hyrax::Forms::WorkForm
     self.terms += [:holding_location, :rights_statement, :rights_note, :source_metadata_identifier, :portion_note, :description, :state, :collection_ids, :ocr_language, :nav_date, :pdf_type, :start_canvas]
     self.required_fields = [:title, :source_metadata_identifier, :rights_statement]
+    self.terms -= [:ordered_member_ids]
     delegate :collection_ids, to: :model
 
     def notable_rights_statement?
@@ -59,7 +60,7 @@ module Hyrax
     end
 
     def secondary_terms
-      (super - [:collection_ids]).uniq
+      [:portion_note, :description, :nav_date]
     end
   end
 end
