@@ -11,8 +11,8 @@ dependencies:
     - kakadu
   pre:
     - npm install -g eslint
-    - bash ./.install_leptonica
     - sudo apt-get install libmagickwand-dev imagemagick redis-server tesseract-ocr tesseract-ocr-ita tesseract-ocr-eng sqlite3 libsqlite3-dev
+    - bash ./.install_leptonica
     - bash ./.tesseract_test
   post:
     - sudo sh bin/ci_kakadu_install.sh
