@@ -69,7 +69,7 @@ RSpec.feature "ScannedResourcesController", type: :feature do
     let(:scanned_resource) { FactoryGirl.create(:complete_scanned_resource_with_multi_volume_work, user: user) }
     scenario "User can't edit a scanned resource" do
       visit edit_polymorphic_path [scanned_resource]
-      expect(page).to have_selector("div.alert-info", text: "You are not authorized to access this page")
+      expect(page).to have_content "Unauthorized"
     end
 
     scenario "User can follow link to parent multi volume work" do
