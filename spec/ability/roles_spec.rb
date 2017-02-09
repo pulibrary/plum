@@ -33,15 +33,15 @@ describe Ability do
   }
 
   let(:complete_scanned_resource) {
-    FactoryGirl.create(:complete_scanned_resource, user: image_editor, identifier: 'ark:/99999/fk4445wg45')
+    FactoryGirl.create(:complete_scanned_resource, user: image_editor, identifier: ['ark:/99999/fk4445wg45'])
   }
 
   let(:takedown_scanned_resource) {
-    FactoryGirl.create(:takedown_scanned_resource, user: image_editor, identifier: 'ark:/99999/fk4445wg45')
+    FactoryGirl.create(:takedown_scanned_resource, user: image_editor, identifier: ['ark:/99999/fk4445wg45'])
   }
 
   let(:flagged_scanned_resource) {
-    FactoryGirl.create(:flagged_scanned_resource, user: image_editor, identifier: 'ark:/99999/fk4445wg45')
+    FactoryGirl.create(:flagged_scanned_resource, user: image_editor, identifier: ['ark:/99999/fk4445wg45'])
   }
 
   let(:image_editor_file) { FactoryGirl.build(:file_set, user: image_editor) }
