@@ -1,6 +1,6 @@
-wget "https://github.com/uclouvain/openjpeg/releases/download/version.2.1/openjpeg-2.1.0-Linux-i386.tar.gz"
-tar xzf openjpeg-2.1.0-Linux-i386.tar.gz
-cd openjpeg-2.1.0-Linux-i386
+wget "https://github.com/uclouvain/openjpeg/archive/version.2.1.zip"
+unzip version.2.1.zip
+cd openjpeg-version.2.1
 mkdir build
 cd build
 cmake ..
