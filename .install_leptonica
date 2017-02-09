@@ -1,3 +1,14 @@
+wget "https://github.com/uclouvain/openjpeg/releases/download/version.2.1/openjpeg-2.1.0-Linux-i386.tar.gz"
+tar xzf openjpeg-2.1.0-Linux-i386.tar.gz
+cd openjpeg-2.1.0-Linux-i386
+mkdir build
+cd build
+cmake ..
+make
+sudo make install
+sudo make clean
+cd ..
+cd ..
 wget "http://www.leptonica.com/source/leptonica-1.73.tar.gz"
 tar xzf leptonica-1.73.tar.gz
 cd leptonica-1.73
@@ -15,4 +26,5 @@ cd tesseract-3.04.01
 LDFLAGS="-L/usr/local/lib" CFLAGS="-I/usr/local/include" make
 sudo make install
 sudo ldconfig
+cd ..
 tesseract -v
