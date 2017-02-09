@@ -12,6 +12,7 @@ namespace :state do
           obj = ActiveFedora::Base.find(id)
           unless obj.workflow_state
             Workflow::InitializeState.call(obj, workflow_name, obj.state)
+            obj.apply_remote_metadata
             obj.state = Vocab::FedoraResourceStatus.active
             obj.save!
           end
