@@ -21,8 +21,8 @@ cd ..
 git clone --depth 1 https://github.com/tesseract-ocr/tesseract.git
 cd tesseract
 ./autogen.sh
-./configure --enable-debug
-LDFLAGS="-L/usr/local/lib" CFLAGS="-I/usr/local/include" make
+./configure
+make
 sudo make install
 sudo ldconfig
 make training
