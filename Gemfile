@@ -32,7 +32,7 @@ gem 'modernizr-rails'
 # gem 'capistrano-rails', group: :development
 
 gem 'curation_concerns', '2.0.0.rc1'
-gem 'pul_metadata_services', github:'pulibrary/pul_metadata_services', branch: 'relax-activesupport-dependency'
+gem 'pul_metadata_services', github:'pulibrary/pul_metadata_services', branch: 'pulfa-metadata'
 gem 'hydra-role-management', '~> 0.2.0'
 gem 'rsolr', '~> 1.1.0'
 gem 'devise' , '~> 4.2.0'
