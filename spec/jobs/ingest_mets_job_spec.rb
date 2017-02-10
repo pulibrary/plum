@@ -40,7 +40,8 @@ RSpec.describe IngestMETSJob do
       allow(resource1).to receive(:member_ids).and_return([1])
       expect(actor1).to receive(:attach_related_object).with(resource1)
       expect(actor1).to receive(:attach_content).with(instance_of(File))
-      expect(actor2).to receive(:create_metadata).with(resource1, {})
+      expect(actor2).to receive(:attach_file_to_work).with(resource1)
+      expect(actor2).to receive(:create_metadata).with({})
       expect(actor2).to receive(:create_content).with(file)
       described_class.perform_now(mets_file, user)
       expect(resource1.title.first.to_s).to eq("Ars minor [fragment].")
@@ -54,11 +55,12 @@ RSpec.describe IngestMETSJob do
         expect(actor1).to receive(:attach_related_object).with(resource1)
         expect(actor1).to receive(:attach_content).with(instance_of(File))
         @counter = 0
-        expect(actor2).to receive(:create_metadata).twice.with(resource1, {}) do
+        expect(actor2).to receive(:create_metadata).twice.with({}) do
           @counter += 1
           raise "Stuff went bad" if @counter == 1
           true
         end
+        expect(actor2).to receive(:attach_file_to_work).with(resource1)
         expect(actor2).to receive(:create_content).with(file)
         allow(described_class.logger).to receive(:info).and_call_original
         expect(described_class.logger).to receive(:info).with("Failed ingesting #{file_path} 1 times, retrying. Error: Stuff went bad").and_call_original
@@ -75,7 +77,8 @@ RSpec.describe IngestMETSJob do
         allow(resource1).to receive(:member_ids).and_return([])
         expect(actor1).to receive(:attach_related_object).with(resource1)
         expect(actor1).to receive(:attach_content).with(instance_of(File))
-        expect(actor2).to receive(:create_metadata).with(resource1, {})
+        expect(actor2).to receive(:create_metadata).with({})
+        expect(actor2).to receive(:attach_file_to_work).with(resource1)
         expect(actor2).to receive(:create_content).with(file)
         allow(described_class.logger).to receive(:info).and_call_original
         expect(described_class.logger).to receive(:info).with("Incorrect number of files ingested for #{resource1.id}: 0 of expected 1").and_call_original
@@ -88,6 +91,7 @@ RSpec.describe IngestMETSJob do
       allow(actor1).to receive(:attach_related_object)
       allow(actor1).to receive(:attach_content)
       allow(actor2).to receive(:create_metadata)
+      allow(actor2).to receive(:attach_file_to_work)
       allow(actor2).to receive(:create_content)
       described_class.perform_now(mets_file_rtl, user)
       expect(resource1.viewing_direction).to eq('right-to-left')
@@ -98,6 +102,7 @@ RSpec.describe IngestMETSJob do
       allow(actor1).to receive(:attach_related_object)
       allow(actor1).to receive(:attach_content)
       allow(actor2).to receive(:create_metadata)
+      allow(actor2).to receive(:attach_file_to_work)
       allow(actor2).to receive(:create_content)
       expect(resource1).to receive(:logical_order).at_least(:once).and_return(logical_order)
       expect(resource2).to receive(:logical_order).at_least(:once).and_return(logical_order)
@@ -203,23 +208,23 @@ RSpec.describe IngestMETSJob do
     end
     context "when the file is already ingested", vcr: { cassette_name: 'bibdata-4612596' } do
       it "deletes the old version" do
-        mvw = FactoryGirl.create(:multi_volume_work_with_file, identifier: "ark:/88435/5m60qr98h")
+        mvw = FactoryGirl.create(:multi_volume_work_with_file, identifier: ["ark:/88435/5m60qr98h"])
         fs = mvw.ordered_members.to_a.first
         allow(described_class.logger).to receive(:info).and_call_original
         described_class.perform_now(mets_file, user)
 
-        expect(ActiveFedora::SolrService.query("identifier_tesim:#{RSolr.solr_escape(resource.identifier)}", fl: "id").length).to eq 1
+        expect(ActiveFedora::SolrService.query("identifier_tesim:#{RSolr.solr_escape(resource.identifier[0])}", fl: "id").length).to eq 1
         expect(ActiveFedora::SolrService.query("id:#{fs.id}", fl: "id").length).to eq 0
-        expect(described_class.logger).to have_received(:info).with("Deleting existing resource with ID of #{mvw.id} which had ARK #{mvw.identifier}")
+        expect(described_class.logger).to have_received(:info).with("Deleting existing resource with ID of #{mvw.id} which had ARK #{mvw.identifier.first}")
       end
     end
     context "when there's another resource with a different ark", vcr: { cassette_name: 'bibdata-4612596' } do
       it "doesn't delete it" do
-        FactoryGirl.create(:multi_volume_work_with_file, identifier: "ark:/88435/5m60qr98r")
+        FactoryGirl.create(:multi_volume_work_with_file, identifier: ["ark:/88435/5m60qr98r"])
 
         described_class.perform_now(mets_file, user)
 
-        expect(ActiveFedora::SolrService.query("identifier_tesim:#{RSolr.solr_escape(resource.identifier)}", fl: "id").length).to eq 2
+        expect(ActiveFedora::SolrService.query("identifier_tesim:#{RSolr.solr_escape(resource.identifier[0])}", fl: "id").length).to eq 2
       end
     end
   end
