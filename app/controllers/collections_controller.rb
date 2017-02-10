@@ -31,7 +31,7 @@ class CollectionsController < ApplicationController
   private
 
     def manifest_builder
-      @manifest_builder ||= PolymorphicManifestBuilder.new(presenter, ssl: request.ssl?)
+      @manifest_builder ||= SparseMemberCollectionManifest.new(presenter, ssl: request.ssl?)
     end
 
     def all_manifests_builder

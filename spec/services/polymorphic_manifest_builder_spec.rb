@@ -14,7 +14,7 @@ RSpec.describe PolymorphicManifestBuilder, vcr: { cassette_name: "iiif_manifest"
 
   context "when given a MVW with Children" do
     subject { described_class.new(mvw_document) }
-    let(:mvw_document) { MultiVolumeWorkShowPresenter.new(SolrDocument.new(mvw_record.to_solr), nil) }
+    let(:mvw_document) { MultiVolumeWorkShowPresenter::DynamicShowPresenter.new.new(SolrDocument.new(mvw_record.to_solr), nil) }
     let(:mvw_record) { FactoryGirl.build(:multi_volume_work, viewing_hint: viewing_hint) }
     let(:manifest) { JSON.parse(subject.manifest.to_json) }
     let(:viewing_hint) { "individuals" }
@@ -22,6 +22,16 @@ RSpec.describe PolymorphicManifestBuilder, vcr: { cassette_name: "iiif_manifest"
       allow(mvw_record).to receive(:persisted?).and_return(true)
       allow(mvw_record).to receive(:id).and_return("2")
       allow(mvw_document).to receive(:member_presenters).and_return([solr_document])
+    end
+    context "when there's a mvw child" do
+      before do
+        allow(mvw_document).to receive(:member_presenters).and_return([mvw_document])
+      end
+      it "renders them" do
+        expect(subject.manifests.length).to eq 1
+        expect(manifest['manifests'].length).to eq 1
+        expect(manifest['manifests'].first['@type']).to eq "sc:Collection"
+      end
     end
     it "renders as a collection" do
       expect(manifest['@type']).to eq "sc:Collection"
@@ -134,6 +144,7 @@ RSpec.describe PolymorphicManifestBuilder, vcr: { cassette_name: "iiif_manifest"
       end
       let(:solr) { ActiveFedora.solr.conn }
       before do
+        allow(file_set).to receive(:ocr_text).and_return(['foo'])
         record.ordered_members << file_set2
         record.ordered_member_proxies.insert_target_at(0, file_set)
         record.thumbnail = file_set2
@@ -302,6 +313,15 @@ RSpec.describe PolymorphicManifestBuilder, vcr: { cassette_name: "iiif_manifest"
           ]
         )
       end
+      it "converts languages" do
+        record.language = ["ara"]
+        expect(result.metadata.first).to eql(
+          "label" => "Language",
+          "value" => [
+            "Arabic"
+          ]
+        )
+      end
       it "can handle RDF literals" do
         record.creator = [::RDF::Literal.new("Test Author", language: "fr")]
         expect(result.metadata.first).to eql(
@@ -320,10 +340,6 @@ RSpec.describe PolymorphicManifestBuilder, vcr: { cassette_name: "iiif_manifest"
       it "doesn't render ocr_language" do
         record.ocr_language = ["test"]
         expect(result.metadata.first).to be_nil
-      end
-      it "has a date created" do
-        record.date_created = ["1981-01-31"]
-        expect(result.metadata).not_to be_empty
       end
     end
     describe "a record in a collection" do

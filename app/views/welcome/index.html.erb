@@ -2,48 +2,16 @@
 <p>
   <%=t('curation_concerns.product_name') %> is a secure application that enables
   <%=t('curation_concerns.institution.name') %> to efficiently carry out varied
-  and complex workflows related to digitization while adhereing to standards
+  and complex workflows related to digitization while adhering to standards
   and best practices which ensure that our content will be preserved and
   accessible to our community and the world for generations.
 </p>
 
-<div class="row">
-  <div class="col-md-12">
-    <div class="panel panel-classify-work">
-      <div class="panel-heading">Books and Manuscripts</div>
-      <div class="panel-body">
-        <ul class="classify-work">
-          <% [ScannedResource, MultiVolumeWork].each do |klass| %>
-            <%= render 'welcome/work_item', klass: klass %>
-          <% end %>
-        </ul>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="row">
-  <div class="col-md-12">
-    <div class="panel panel-classify-work">
-      <div class="panel-heading">Maps and Geospatial Data</div>
-      <div class="panel-body">
-        <ul class="classify-work">
-          <% [ImageWork, RasterWork, VectorWork].each do |klass| %>
-            <%= render 'welcome/work_item', klass: klass %>
-          <% end %>
-        </ul>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="row">
-  <div class="col-md-12">
-    <div class="panel panel-classify-work">
-      <div class="panel-heading">Collections</div>
-      <div class="panel-body">
-        <ul class="classify-work">
-          <%= render 'welcome/work_item', klass: Collection %>
-        </ul>
-      </div>
-    </div>
-  </div>
-</div>
+<%= render partial: 'welcome/work_types', locals: { label: 'Books and Manuscripts',
+                                                    types: [ScannedResource, MultiVolumeWork] } %>
+
+<%= render partial: 'welcome/work_types', locals: { label: 'Maps and Geospatial Data',
+                                                    types: [ImageWork, RasterWork, VectorWork] } %>
+
+<%= render partial: 'welcome/work_types', locals: { label: 'Collections',
+                                                    types: [Collection] } %>

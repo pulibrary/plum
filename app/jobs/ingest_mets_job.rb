@@ -7,7 +7,7 @@ class IngestMETSJob < ApplicationJob
   # @param [String] user User to ingest as
   def perform(mets_file, user)
     logger.info "Ingesting METS #{mets_file}"
-    @mets = METSDocument.new mets_file
+    @mets = METSDocument::Factory.new(mets_file).new
     @user = user
 
     ingest
@@ -21,7 +21,7 @@ class IngestMETSJob < ApplicationJob
       resource.identifier = @mets.ark_id
       resource.replaces = @mets.pudl_id
       resource.source_metadata_identifier = @mets.bib_id
-      resource.member_of_collections = Array(@mets.collection_slugs).map { |slug| find_or_create_collection(slug) }
+      resource.member_of_collections = Array(@mets.collection_slugs).select(&:present?).map { |slug| find_or_create_collection(slug) }
       resource.apply_remote_metadata
       resource.save!
       Workflow::InitializeState.call(resource, 'book_works', 'final_review')
@@ -60,6 +60,7 @@ class IngestMETSJob < ApplicationJob
     end
 
     def find_or_create_collection(slug)
+      return unless slug.present?
       existing = Collection.where exhibit_id_ssim: slug
       return existing.first if existing.first
       col = Collection.new metadata_for_collection(slug)

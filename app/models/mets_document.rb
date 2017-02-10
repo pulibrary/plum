@@ -1,6 +1,6 @@
 class METSDocument
   include MetsStructure
-  attr_reader :source_file
+  attr_reader :source_file, :mets
 
   def initialize(mets_file)
     @source_file = mets_file
