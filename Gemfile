@@ -118,7 +118,7 @@ group :staging, :development do
 end
 gem 'rbtrace', require: false
 gem 'pul_uv_rails', github: 'pulibrary/pul_uv_rails', branch: 'master'
-gem 'grocer', github: 'pulibrary/grocer', branch: 'spawn'
+gem 'grocer', github: 'pulibrary/grocer'
 source 'https://rails-assets.org' do
   gem 'rails-assets-babel-polyfill'
   gem 'rails-assets-bootstrap-select', '1.9.4'

@@ -49,8 +49,7 @@ GIT
 
 GIT
   remote: git://github.com/pulibrary/grocer.git
-  revision: 9824808403395529073eb4c720efb897b8f1eda8
-  branch: spawn
+  revision: 910e3d55f4ddc2792ee4fc80bd47e275aacfd458
   specs:
     grocer (0.1.0)
       active-fedora
