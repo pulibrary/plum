@@ -37,7 +37,7 @@ class Ability
     can [:destroy], FileSet, depositor: current_user.uid
     can [:destroy], curation_concerns, depositor: current_user.uid
     cannot [:destroy], curation_concerns do |obj|
-      !obj.identifier.nil?
+      !obj.identifier.blank?
     end
   end
 
