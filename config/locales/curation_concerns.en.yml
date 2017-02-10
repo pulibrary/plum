@@ -14,6 +14,9 @@ en:
       name: *INSTITUTION_NAME
       homepage_url: "#"
     product_name: "Pages Online"
+    show:
+      related_files:
+        heading: Volumes
     visibility:
       authenticated:
         text: *INSTITUTION_NAME
