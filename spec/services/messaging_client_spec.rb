@@ -3,6 +3,9 @@ require 'rails_helper'
 RSpec.describe MessagingClient do
   subject { described_class.new(url) }
   let(:url) { "amqp://test.x.z.s:4000" }
+  before do
+    allow_any_instance_of(Logger).to receive(:warn)
+  end
   describe "#publish" do
     context "when the URL is bad" do
       it "doesn't error" do
