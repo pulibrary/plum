@@ -29,5 +29,5 @@ sudo ldconfig
 cd ..
 git clone https://github.com/tesseract-ocr/tessdata.git
 sudo cp tessdata/eng.* /usr/local/share/tessdata/
-sduo cp tessdata/ita* /usr/local/share/tessdata
+sudo cp tessdata/ita* /usr/local/share/tessdata
 tesseract -v
