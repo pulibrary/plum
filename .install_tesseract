@@ -18,8 +18,9 @@ sed -i 's/-ltiff -ljpeg -lpng -lz -lm/-ltiff -ljpeg -lpng -lz -lm -lopenjp2/g' .
 make
 sudo make install
 cd ..
-git clone --depth 1 https://github.com/tesseract-ocr/tesseract.git
-cd tesseract
+wget "https://github.com/tesseract-ocr/tesseract/archive/3.04.00.zip"
+unzip 3.04.00.zip
+cd tesseract-3.04.00
 ./autogen.sh
 ./configure
 make
