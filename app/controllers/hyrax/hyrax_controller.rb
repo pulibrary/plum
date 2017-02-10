@@ -1,5 +1,5 @@
 class Hyrax::HyraxController < ApplicationController
-  include Hyrax::CurationConcernController
+  include Hyrax::WorksControllerBehavior
   include Hyrax::Manifest
   include Hyrax::MemberManagement
   include Hyrax::UpdateOCR
@@ -42,6 +42,7 @@ class Hyrax::HyraxController < ApplicationController
     end
 
     def curation_concern
+      return nil unless @curation_concern
       @decorated_concern ||=
         begin
           @curation_concern = decorator.new(@curation_concern)
