@@ -39,12 +39,18 @@ defaults: &defaults
     exchange: 'plum_events'
   geo_derivatives_path: <%= File.join(Rails.root, 'tmp', 'geo-derivatives') %>
   geoblacklight_provenance: 'Princeton'
+  pulfa:
+    master_files: <%= File.join(Rails.root, 'tmp', 'pulfa-master') %>
+    service_files: <%= File.join(Rails.root, 'tmp', 'pulfa-service') %>
 
 development:
   <<: *defaults
 
 test:
   <<: *defaults
+  pulfa:
+    master_files: <%= File.join(Rails.root, 'spec', 'fixtures', 'files') %>
+    service_files: <%= File.join(Rails.root, 'spec', 'fixtures', 'files') %>
 
 production:
   <<: *defaults

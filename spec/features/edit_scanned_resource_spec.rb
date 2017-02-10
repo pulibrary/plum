@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.feature "ScannedResourcesController", type: :feature do
   let(:user) { FactoryGirl.create(:image_editor) }
-  let(:scanned_resource) { FactoryGirl.create(:scanned_resource_with_multi_volume_work, user: user, state: 'metadata_review') }
+  let(:scanned_resource) { FactoryGirl.create(:metadata_review_scanned_resource_with_multi_volume_work, user: user) }
   let(:parent_presenter) do
     ScannedResourceShowPresenter.new(
       SolrDocument.new(
@@ -29,11 +29,9 @@ RSpec.feature "ScannedResourcesController", type: :feature do
       fill_in 'scanned_resource_description', with: 'new description'
       fill_in 'scanned_resource_nav_date', with: '2016-04-01T01:01:01Z'
       select 'Color PDF', from: 'scanned_resource_pdf_type'
-      choose 'Final Review'
 
       click_button 'Update Scanned resource'
       expect(page).to have_text("Test title")
-      expect(page).to have_selector("span.label-primary", text: "Final Review")
     end
 
     scenario "User gets an error for bad metadata identifier change" do
@@ -68,7 +66,7 @@ RSpec.feature "ScannedResourcesController", type: :feature do
   end
 
   context "an anonymous user" do
-    let(:scanned_resource) { FactoryGirl.create(:scanned_resource_with_multi_volume_work, user: user, state: 'complete') }
+    let(:scanned_resource) { FactoryGirl.create(:complete_scanned_resource_with_multi_volume_work, user: user) }
     scenario "User can't edit a scanned resource" do
       visit edit_polymorphic_path [scanned_resource]
       expect(page).to have_selector("div.alert-info", text: "You are not authorized to access this page")

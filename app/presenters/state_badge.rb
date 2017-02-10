@@ -1,45 +1,47 @@
 class StateBadge
   include ActionView::Context
   include ActionView::Helpers::TagHelper
+  attr_reader :actions, :current_state
 
-  def initialize(type, state = nil)
-    @type = type.underscore
-    @state = StateWorkflow.new state
+  def initialize(work_presenter)
+    @actions = work_presenter.workflow.actions
+    @current_state = work_presenter.workflow.state
   end
 
   def render
-    label = I18n.t("state.#{current_state}.label")
-    content_tag(:span, label, title: label, class: "label #{dom_label_class}")
+    badge(current_state)
   end
 
   def render_buttons
-    html = render_radio_button(current_state, checked: true)
-    @state.valid_transitions.each do |valid_state|
-      html += render_radio_button(valid_state)
-    end
-    html
-  end
-
-  def flaggable?
-    @state.flagged? || @state.valid_transitions.include?(:flagged)
-  end
-
-  def render_hidden
-    tag :input, id: "#{field_id}", name: field_name, type: :hidden, value: current_state
+    actions.collect do |action_state, _label|
+      render_radio_button(action_state)
+    end.join.html_safe
   end
 
   private
 
-    def render_radio_button(state, checked = false)
-      content_tag :label, class: 'radio' do
-        tag(:input, id: field_id(state), name: field_name, type: :radio, value: state, checked: checked) +
-          content_tag(:span, I18n.t("state.#{state}.label"), class: "label #{dom_label_class(state)}", for: field_id(state)) +
-          " " + I18n.t("state.#{state}.desc")
+    def render_radio_button(action_state)
+      content_tag :div, class: 'radio' do
+        content_tag :label do
+          input_tag(action_state) + badge(action_state) + label(action_state)
+        end
       end
     end
 
-    def dom_label_class(state = current_state)
-      state_classes[state]
+    def input_tag(state)
+      tag(:input, id: field_id(state), name: "workflow_action[name]", type: :radio, value: state)
+    end
+
+    def badge(state)
+      content_tag(:span, I18n.t("state.#{state}.label"), class: "label #{dom_label_class(state)}", for: field_id(state))
+    end
+
+    def label(state)
+      " " + I18n.t("state.#{state}.desc")
+    end
+
+    def dom_label_class(state)
+      state_classes[state.to_sym] if state
     end
 
     def state_classes
@@ -53,15 +55,7 @@ class StateBadge
       }
     end
 
-    def current_state
-      @state.aasm.current_state
-    end
-
-    def field_name
-      "#{@type}[state]"
-    end
-
-    def field_id(state = current_state)
-      "#{@type}_state_#{state}"
+    def field_id(state)
+      "workflow_action_name_#{state}"
     end
 end

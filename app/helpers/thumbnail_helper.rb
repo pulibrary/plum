@@ -1,4 +1,6 @@
 module ThumbnailHelper
+  include Blacklight::CatalogHelperBehavior
+
   # Generates a thumbnail path for the various work and fileset types.
   # @param document [SolrDocument, ShowPresenter] an object's solr document or show presenter
   # @param image_options [Hash]
@@ -25,5 +27,16 @@ module ThumbnailHelper
     else
       :iiif_thumbnail_path
     end
+  end
+
+  def geo_concerns_thumbnail_path(document, image_options = {})
+    url = thumbnail_url(document)
+    image_tag url, image_options if url.present?
+  end
+
+  def iiif_thumbnail_path(document, image_options = {})
+    return unless document.thumbnail_id
+    url = IIIFPath.new(document.thumbnail_id).thumbnail
+    image_tag url, image_options if url.present?
   end
 end

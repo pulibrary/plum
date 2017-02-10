@@ -36,3 +36,6 @@ Blacklight.onLoad(function() {
   Initializer = require('plum_boot')
   window.plum = new Initializer()
 })
+$(document).ready(function(){
+  Blacklight.activate()
+})

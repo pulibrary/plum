@@ -1,5 +1,5 @@
-The following <%= @curation_concern.human_readable_type %> has been marked <%= @state %>:
+<%= @message %>
 
-ID...: <%= @curation_concern.id %>
-Title: <%= @curation_concern.title.first %>
-URL..: <%= polymorphic_url([main_app, @curation_concern]) %>
+ID...: <%= @work_id %>
+Title: <%= @title %>
+URL..: <%= link_to @url, @url %>

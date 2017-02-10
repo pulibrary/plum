@@ -1,4 +1,4 @@
-class TouchParentJob < ActiveJob::Base
+class TouchParentJob < ApplicationJob
   queue_as :lowest
 
   def perform(file_set)

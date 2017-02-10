@@ -31,6 +31,8 @@ RSpec.describe IngestMETSJob do
       allow_any_instance_of(METSDocument).to receive(:thumbnail_path).and_return(file_path)
       allow_any_instance_of(METSDocument).to receive(:source_file).and_return(mets_file)
       allow_any_instance_of(ScannedResource).to receive(:save!)
+      allow_any_instance_of(ScannedResource).to receive(:workflow_state).and_return('final_review')
+      allow(Workflow::InitializeState).to receive(:call)
     end
 
     it "ingests a mets file", vcr: { cassette_name: 'bibdata-4612596' } do
@@ -40,10 +42,9 @@ RSpec.describe IngestMETSJob do
       expect(actor2).to receive(:create_metadata).with(resource1, {})
       expect(actor2).to receive(:create_content).with(file)
       described_class.perform_now(mets_file, user)
-      expect(resource1.title).to eq(["Ars minor [fragment]."])
+      expect(resource1.title.first.to_s).to eq("Ars minor [fragment].")
       expect(resource1.thumbnail_id).to eq('file1')
       expect(resource1.viewing_direction).to eq('left-to-right')
-      expect(resource1.state).to eq('final_review')
       expect(resource1.visibility).to eq(Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PUBLIC)
     end
     context "when an error happens during ingest", vcr: { cassette_name: 'bibdata-4612596' } do
@@ -61,10 +62,9 @@ RSpec.describe IngestMETSJob do
         allow(described_class.logger).to receive(:info).and_call_original
         expect(described_class.logger).to receive(:info).with("Failed ingesting #{file_path} 1 times, retrying. Error: Stuff went bad").and_call_original
         described_class.perform_now(mets_file, user)
-        expect(resource1.title).to eq(["Ars minor [fragment]."])
+        expect(resource1.title.first.to_s).to eq("Ars minor [fragment].")
         expect(resource1.thumbnail_id).to eq('file1')
         expect(resource1.viewing_direction).to eq('left-to-right')
-        expect(resource1.state).to eq('final_review')
         expect(resource1.visibility).to eq(Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PUBLIC)
       end
     end
@@ -165,6 +165,10 @@ RSpec.describe IngestMETSJob do
 
       allow(IngestFileJob).to receive(:perform_later).and_return(true)
       allow(CharacterizeJob).to receive(:perform_later).and_return(true)
+    end
+
+    before(:all) do
+      CurationConcerns::Workflow::WorkflowImporter.load_workflows
     end
 
     it "ingests a mets file", vcr: { cassette_name: 'bibdata-4612596' } do

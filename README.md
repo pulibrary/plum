@@ -33,13 +33,20 @@ Plum is a Hydra head based on [CurationConcerns](http://github.com/projecthydra-
     * Used for publishing create/update/delete events for systems such as 
       [Pomegranate](https://github.com/pulibrary/pomegranate)
 
+## Initial Setup
+
+After cloning the Plum repository:
+
+* Install dependencies: `bundle install`
+* Setup the database: `rake db:migrate`
+* Setup ActiveFedora::Noid minter: `rails g active_fedora:noid:seed`
+* Load the workflows in `config/workflows`: `rake curation_concerns:workflow:load`
+
 ## Running the Tests
 
-Setup dependencies and run the test suite:
+Run the test suite:
 
    ```sh
-   $ bundle install
-   $ rake db:migrate
    $ rake ci
    ```
 
@@ -71,12 +78,12 @@ and then open it with the Javascript tests:
    $ open -a "Google Chrome" tmp/jasmine/runner.html --args --allow-file-access-from-files
    ```
 
-## Adding an Admin user
+## Adding an Admin user and assigning workflow roles
 
-1. Run the development servers with `rake server:development`
-1. Run Plum with `rails s`
+1. Run the development servers with `rake hydra:server` (or run Rails and Solr/Fedora separately with `rails s` and `rake server:development`).
 1. Go to http://localhost:3000/users/auth/cas and login with CAS
 1. $ rake add_admin_role
+1. Go to http://localhost:3000/admin/workflow_roles and grant workflow roles
 
 ## Configuring Loris for Development
 

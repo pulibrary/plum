@@ -26,7 +26,7 @@ RSpec.feature "ScannedResourcesController", type: :feature do
   end
 
   context "an anonymous user" do
-    let(:scanned_resource) { FactoryGirl.create(:scanned_resource, title: ["first title", "second title"], user: user) }
+    let(:scanned_resource) { FactoryGirl.create(:complete_scanned_resource, title: ["first title", "second title"], user: user) }
 
     scenario "viewing a scanned resource it should display rights boilerplate" do
       visit polymorphic_path [scanned_resource]

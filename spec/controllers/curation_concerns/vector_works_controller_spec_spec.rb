@@ -1,9 +1,8 @@
 require 'rails_helper'
 
 describe CurationConcerns::VectorWorksController do
-  let(:state) { 'complete' }
   let(:user) { FactoryGirl.create(:user) }
-  let(:vector_work) { FactoryGirl.create(:vector_work, state: state, user: user) }
+  let(:vector_work) { FactoryGirl.create(:complete_vector_work, user: user) }
   let(:manifest_generator) { instance_double(GeoConcerns::EventsGenerator) }
 
   before do
@@ -22,7 +21,7 @@ describe CurationConcerns::VectorWorksController do
 
     it 'fires a delete event' do
       expect(manifest_generator).to receive(:record_deleted)
-      delete :destroy, id: vector_work
+      delete :destroy, params: { id: vector_work }
     end
   end
 
@@ -40,15 +39,15 @@ describe CurationConcerns::VectorWorksController do
     context 'with a complete state' do
       it 'fires an update event' do
         expect(manifest_generator).to receive(:record_updated)
-        post :update, id: vector_work, vector_work: vector_work_attributes
+        post :update, params: { id: vector_work, vector_work: vector_work_attributes }
       end
     end
 
     context 'with a non-complete state' do
-      let(:state) { 'final_review' }
+      let(:vector_work) { FactoryGirl.create(:pending_vector_work, user: user) }
       it 'does not fire an update event' do
         expect(manifest_generator).to_not receive(:record_updated)
-        post :update, id: vector_work, vector_work: vector_work_attributes
+        post :update, params: { id: vector_work, vector_work: vector_work_attributes }
       end
     end
   end

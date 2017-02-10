@@ -264,7 +264,14 @@ RSpec.describe PolymorphicManifestBuilder, vcr: { cassette_name: "iiif_manifest"
   describe "#manifest" do
     let(:result) { subject.manifest }
     let(:json_result) { JSON.parse(result.to_json) }
-    xit "should have a good JSON-LD result" do
+    it "includes basic metadata in JSON-LD format" do
+      expect(json_result["@context"]).to eq("http://iiif.io/api/presentation/2/context.json")
+      expect(json_result["@id"]).to eq("http://plum.com/concern/scanned_resources/1/manifest")
+      expect(json_result["@type"]).to eq("sc:Manifest")
+      expect(json_result["label"]).to contain_exactly("Test", "Test2")
+      expect(json_result["description"]).to eq(["900 years of time and space, and I’ve never been slapped by someone’s mother."])
+      expect(json_result["viewingHint"]).to eq("individuals")
+      expect(json_result["viewingDirection"]).to eq("left-to-right")
     end
     it "has a label" do
       expect(result.label).to eq ScannedResourceShowPresenter.new(SolrDocument.new(record.to_solr), nil).title

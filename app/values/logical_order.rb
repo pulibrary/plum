@@ -11,7 +11,7 @@ class LogicalOrder
   #   LogicalOrder.new({"nodes": [ { "proxy": "a" } ]},
   #     RDF::URI("http://test.com"), LogicalOrder)
   def initialize(order_hash = {}, rdf_subject = nil, node_class = LogicalOrder, top = true)
-    @order_hash = order_hash.with_indifferent_access
+    @order_hash = plain_hash(order_hash).with_indifferent_access
     @rdf_subject = RDF::URI(rdf_subject.to_s) if rdf_subject
     @node_class = node_class
     @top = top
@@ -94,5 +94,9 @@ class LogicalOrder
 
     def default_label
       "Logical" if top
+    end
+
+    def plain_hash(h)
+      h.respond_to?(:to_unsafe_h) ? h.to_unsafe_h : h
     end
 end

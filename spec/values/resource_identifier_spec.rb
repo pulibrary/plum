@@ -1,8 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe ResourceIdentifier do
+  around { |example| perform_enqueued_jobs(&example) }
+
   subject { described_class.new(scanned_resource.id) }
   let(:scanned_resource) { FactoryGirl.create(:scanned_resource) }
+
   describe "#to_s" do
     it "returns an identifier" do
       expect(subject.to_s).to be_kind_of String

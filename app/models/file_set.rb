@@ -31,6 +31,7 @@ class FileSet < ActiveFedora::Base
   end
 
   def create_derivatives(filename)
+    return if replaces && replaces.start_with?('urn:pudl:images')
     case mime_type_storage.first
     when 'image/tiff'
       Hydra::Derivatives::Jpeg2kImageDerivatives.create(

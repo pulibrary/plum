@@ -26,10 +26,6 @@ class SolrDocument
 
   use_extension(Hydra::ContentNegotiation)
 
-  def state
-    Array(self[Solrizer.solr_name("state")]).first
-  end
-
   def type
     self['has_model_ssim'].first
   end
@@ -44,10 +40,6 @@ class SolrDocument
 
   def identifier
     Array(self[Solrizer.solr_name("identifier")]).first
-  end
-
-  def workflow_note
-    self[Solrizer.solr_name('workflow_note')]
   end
 
   def logical_order
@@ -143,6 +135,10 @@ class SolrDocument
 
     def to_param
       id
+    end
+
+    def to_global_id
+      URI::GID.build app: GlobalID.app, model_name: model_name.name, model_id: @id
     end
 
     private

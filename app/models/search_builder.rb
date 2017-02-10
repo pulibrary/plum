@@ -25,16 +25,23 @@ class SearchBuilder < Blacklight::SearchBuilder
   end
 
   def hide_incomplete(solr_params)
-    return if unreadable_states.blank?
+    # admin route causes errors with current_ability.
+    return if blacklight_params.empty?
+    return if current_ability.unreadable_states.blank?
     solr_params[:fq] ||= []
-    state_field = ActiveFedora.index_field_mapper.solr_name('state', :symbol)
+    state_field = Solrizer.solr_name('workflow_state_name', :symbol)
     state_string = readable_states.map { |state| "#{state_field}:#{state}" }.join(" OR ")
-    state_string += " OR has_model_ssim:Collection"
+    state_string += " OR " unless state_string == ""
+    state_string += "has_model_ssim:Collection"
     solr_params[:fq] << state_string
   end
 
   def readable_states
-    StateWorkflow.aasm.states.map(&:name).map(&:to_s) - unreadable_states
+    all_states - unreadable_states
+  end
+
+  def all_states
+    Sipity::Workflow.all.map { |w| w.workflow_states.map(&:name) }.flatten.uniq
   end
 
   def show_action?

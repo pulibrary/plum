@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mets:mets xmlns:mets="http://www.loc.gov/METS/"
+           xmlns:xlink="http://www.w3.org/1999/xlink"
+           xmlns:mix="http://www.loc.gov/mix/v20"
+           xmlns:dct="http://purl.org/dc/terms/"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://www.loc.gov/METS/ http://www.loc.gov/standards/mets/mets.xsd"
+           TYPE="DigitalArchivalObject"
+           OBJID="AC057/c18">
+   <mets:metsHdr CREATEDATE="2015-11-19T21:37:13Z">
+      <mets:metsDocumentID>http://findingaids.princeton.edu/folders/AC057/c18.mets</mets:metsDocumentID>
+   </mets:metsHdr>
+   <mets:amdSec ID="rights">
+      <mets:rightsMD ID="w">
+         <mets:mdWrap MDTYPE="DC">
+            <mets:xmlData>
+               <dct:accessRights>WORLD</dct:accessRights>
+            </mets:xmlData>
+         </mets:mdWrap>
+      </mets:rightsMD>
+      <mets:rightsMD ID="po">
+         <mets:mdWrap MDTYPE="DC">
+            <mets:xmlData>
+               <dct:accessRights>PRINCETON_ONLY</dct:accessRights>
+            </mets:xmlData>
+         </mets:mdWrap>
+      </mets:rightsMD>
+   </mets:amdSec>
+   <mets:amdSec ID="tech">
+      <mets:techMD ID="td1e20">
+         <mets:mdWrap MDTYPE="NISOIMG">
+            <mets:xmlData>
+               <mix:imageWidth>2552</mix:imageWidth>
+               <mix:imageHeight>3300</mix:imageHeight>
+            </mets:xmlData>
+         </mets:mdWrap>
+      </mets:techMD>
+      <mets:techMD ID="td1e42">
+         <mets:mdWrap MDTYPE="NISOIMG">
+            <mets:xmlData>
+               <mix:imageWidth>2552</mix:imageWidth>
+               <mix:imageHeight>3300</mix:imageHeight>
+            </mets:xmlData>
+         </mets:mdWrap>
+      </mets:techMD>
+      <mets:techMD ID="td1e67">
+         <mets:mdWrap MDTYPE="NISOIMG">
+            <mets:xmlData>
+               <mix:imageWidth>2557</mix:imageWidth>
+               <mix:imageHeight>3300</mix:imageHeight>
+            </mets:xmlData>
+         </mets:mdWrap>
+      </mets:techMD>
+      <mets:techMD ID="td1e89">
+         <mets:mdWrap MDTYPE="NISOIMG">
+            <mets:xmlData>
+               <mix:imageWidth>2557</mix:imageWidth>
+               <mix:imageHeight>3300</mix:imageHeight>
+            </mets:xmlData>
+         </mets:mdWrap>
+      </mets:techMD>
+   </mets:amdSec>
+   <mets:fileSec>
+      <mets:fileGrp ID="fgd1e1">
+         <mets:file USE="deliverable"
+                    ID="fd1e3"
+                    CHECKSUM="6c51b385ed40ad1a39f12a935b242acd2a8bcc78"
+                    CHECKSUMTYPE="SHA-1"
+                    MIMETYPE="application/pdf"
+                    SIZE="150850">
+            <mets:FLocat LOCTYPE="URN" xlink:href="urn:pudl:images:deliverable:test.pdf"/>
+         </mets:file>
+      </mets:fileGrp>
+      <mets:fileGrp ID="fgd1e18">
+         <mets:file USE="master"
+                    ID="fd1e20"
+                    CHECKSUM="fc1fe35874a4f0814a1d3cbc612dbce1a95c639c"
+                    CHECKSUMTYPE="SHA-1"
+                    MIMETYPE="image/tiff"
+                    SIZE="8434288"
+                    ADMID="td1e20">
+            <mets:FLocat LOCTYPE="URN"
+                         xlink:href="urn:pudl:images:master:color.tif"/>
+         </mets:file>
+         <mets:file USE="deliverable"
+                    ID="fd1e42"
+                    CHECKSUM="1ae09ec614784daba7b506afa2a34ccabcfde7b0"
+                    CHECKSUMTYPE="SHA-1"
+                    MIMETYPE="image/jp2"
+                    SIZE="1157805"
+                    ADMID="td1e42">
+            <mets:FLocat LOCTYPE="URN"
+                         xlink:href="urn:pudl:images:deliverable:color.jp2"/>
+         </mets:file>
+      </mets:fileGrp>
+      <mets:fileGrp ID="fgd1e65">
+         <mets:file USE="master"
+                    ID="fd1e67"
+                    CHECKSUM="7696720b2860004093ff0d46feea99ebec791d61"
+                    CHECKSUMTYPE="SHA-1"
+                    MIMETYPE="image/tiff"
+                    SIZE="8450788"
+                    ADMID="td1e67">
+            <mets:FLocat LOCTYPE="URN"
+                         xlink:href="urn:pudl:images:master:gray.tif"/>
+         </mets:file>
+         <mets:file USE="deliverable"
+                    ID="fd1e89"
+                    CHECKSUM="5070f2c80db03f4a1220029fb91dc7d081178a98"
+                    CHECKSUMTYPE="SHA-1"
+                    MIMETYPE="image/jp2"
+                    SIZE="1289871"
+                    ADMID="td1e89">
+            <mets:FLocat LOCTYPE="URN"
+                         xlink:href="urn:pudl:images:deliverable:gray.jp2"/>
+         </mets:file>
+      </mets:fileGrp>
+   </mets:fileSec>
+   <mets:structMap>
+      <mets:div LABEL="Henkin, Leon and Tucker, Albert [Transcript no. 19], 1984 May 18"
+                TYPE="Folder"
+                ADMID="w">
+         <mets:fptr FILEID="fgd1e1"/>
+         <mets:div LABEL="[1]" ORDER="1" TYPE="FolderMember">
+            <mets:fptr FILEID="fgd1e18"/>
+         </mets:div>
+         <mets:div LABEL="[2]" ORDER="2" TYPE="FolderMember">
+            <mets:fptr FILEID="fgd1e65"/>
+         </mets:div>
+      </mets:div>
+   </mets:structMap>
+</mets:mets>

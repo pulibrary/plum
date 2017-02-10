@@ -43,10 +43,10 @@ RSpec.describe VoyagerUpdater::Event, vcr: { cassette_name: 'voyager_dump' } do
 
   describe "#process!" do
     it "updates all changed records" do
-      s = FactoryGirl.create(:scanned_resource, source_metadata_identifier: "359850")
+      s = FactoryGirl.create(:complete_scanned_resource, source_metadata_identifier: "359850")
       subject.process!
 
-      expect(s.reload.title).to eq ["Coda"]
+      expect(s.reload.title.first.to_s).to eq "Coda"
       expect(subject).to be_processed
     end
     context "when processed" do
