@@ -84,14 +84,12 @@ describe ScannedResource do
         subject.source_metadata_identifier = 'AC123_c00004'
       end
 
-      # Pending until
-      # https://github.com/pulibrary/pul_metadata_services/issues/5 is closed
-      xit 'Extracts Pulfa Metadata and full source' do
+      it 'Extracts Pulfa Metadata and full source' do
         subject.apply_remote_metadata
-        expect(subject.title.first).to eq('Series 1: University Librarian Records - Subseries 1A, Frederic Vinton - Correspondence')
+        expect(subject.title.first).to eq('Series 1: University Librarian Records - Subseries 1A, Frederic Vinton - Correspondence - 19th Century Catalog and Correspondence, Pre-Vinton, 1811-')
         expect(subject.creator.first).to eq('Princeton University. Library. Dept. of Rare Books and Special Collections')
         expect(subject.publisher.first).to eq('Princeton University. Library. Dept. of Rare Books and Special Collections')
-        expect(subject.date_created.first).to eq('1734-2012')
+        expect(subject.date.first).to eq('circa 1865')
         expect(subject.source_metadata).to eq(fixture('pulfa-AC123_c00004.xml').read)
       end
 
