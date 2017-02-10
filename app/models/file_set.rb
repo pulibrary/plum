@@ -48,7 +48,7 @@ class FileSet < ActiveFedora::Base
       )
       RunOCRJob.perform_later(id, filename)
     end
-    super
+    file_set_derivatives_service.create_derivatives(filename)
   end
 
   def to_solr(solr_doc = {})
