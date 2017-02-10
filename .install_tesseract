@@ -26,7 +26,8 @@ cd tesseract-3.04.00
 make
 sudo make install
 sudo ldconfig
-make training
-sudo make training-install
 cd ..
+git clone https://github.com/tesseract-ocr/tessdata.git
+cp tessdata/eng.* /usr/local/share/tessdata/
+cp tessdat/ita* /usr/local/share/tessdata
 tesseract -v
