@@ -17,5 +17,3 @@ module Plum
 end
 
 Hydra::Derivatives.kdu_compress_recipes = Plum.config['jp2_recipes']
-
-Faraday.default_adapter = :net_http_persistent

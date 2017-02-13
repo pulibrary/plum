@@ -53,9 +53,20 @@ class ManifestBuilder
               if value.is_a?(Hash)
                 value
               else
-                value.to_s
+                wrap_href value.to_s
               end
             end
+          end
+
+          def wrap_href(str)
+            uri = URI(str.strip)
+            if uri.is_a? URI::HTTP
+              return "<a href=\"#{uri}\">#{uri}</a>"
+            else
+              return str
+            end
+          rescue URI::InvalidURIError
+            return str
           end
 
           def renderer

@@ -295,6 +295,16 @@ RSpec.describe PolymorphicManifestBuilder, vcr: { cassette_name: "iiif_manifest"
           ]
         )
       end
+      it "wraps URLs with <a> tags" do
+        url = "http://purl.test/1234567"
+        record.identifier = url
+        expect(result.metadata.first).to eql(
+          "label" => "Identifier",
+          "value" => [
+            "<a href=\"#{url}\">#{url}</a>"
+          ]
+        )
+      end
       it "can handle RDF literals" do
         record.creator = [::RDF::Literal.new("Test Author", language: "fr")]
         expect(result.metadata.first).to eql(

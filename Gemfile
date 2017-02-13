@@ -98,6 +98,7 @@ group :test do
   gem "launchy"
   gem "vcr", '~> 2.9'
   gem "webmock", '~> 1.0', require: false
+  gem 'rspecproxies'
 end
 
 group :production do

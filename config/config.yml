@@ -3,7 +3,7 @@ defaults: &defaults
   notifier_email_address: <%= ENV["PMP_MAILER_ADDRESS"] || "pumpkin@iu.edu" %>
   iiif_url: <%= ENV["PMP_IIIF_URL"] || "http://192.168.99.100:5004" %>
 
-  store_original_files: <%= ENV["PMP_STORE_ORIGINAL_FILES"] == 'true' || "true" %>
+  store_original_files: <%= ENV["PMP_STORE_ORIGINAL_FILES"] || true %>
   master_file_service_url: <%= ENV["PMP_MASTER_FILE_SERVICE_URL"] || "http://purl.dlib.indiana.edu/iudl/variations/master" %>
   access_file_service_url: <%= ENV["PMP_ACCESS_FILE_SERVICE_URL"] || "http://purl.dlib.indiana.edu/iudl/variations/access" %>
   purl_redirect_url: <%= ENV["PMP_PURL_REDIRECT_URL"] || "http://server1.variations2.indiana.edu/cgi-bin/access?%s" %>

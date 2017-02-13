@@ -15,7 +15,7 @@ class CurationConcerns::CurationConcernsController < ApplicationController
   end
 
   def alphabetize_members
-    @sorted = curation_concern.members.sort { |x, y| x.label <=> y.label }
+    @sorted = curation_concern.members.sort { |x, y| x.label.to_s <=> y.label.to_s }
     flash[:notice] = "Files have been ordered alphabetically, by filename."
     curation_concern.update_attributes(ordered_members: @sorted)
     redirect_to :back
@@ -63,6 +63,15 @@ class CurationConcerns::CurationConcernsController < ApplicationController
   def send_record_created
     messenger.record_created(curation_concern)
   end
+
+  protected
+
+    def additional_response_formats(wants)
+      wants.uv do
+        presenter && parent_presenter
+        render 'viewer_only.html.erb', layout: 'boilerplate', content_type: 'text/html'
+      end
+    end
 
   private
 

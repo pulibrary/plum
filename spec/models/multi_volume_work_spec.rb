@@ -92,4 +92,16 @@ describe MultiVolumeWork do
   end
 
   include_examples "structural metadata"
+
+  describe "solr indexing" do
+    it "sets number_of_pages by sum of child volumes' pages" do
+      scanned_resource1.members = [FactoryGirl.create(:file_set)]
+      scanned_resource1.save
+      scanned_resource2.members = [FactoryGirl.create(:file_set), FactoryGirl.create(:file_set)]
+      scanned_resource2.save
+      subject.ordered_members = [scanned_resource1, scanned_resource2]
+      subject.save
+      expect(subject.to_solr['number_of_pages_isi']).to eq 3
+    end
+  end
 end

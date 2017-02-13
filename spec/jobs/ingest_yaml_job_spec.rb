@@ -36,42 +36,97 @@ RSpec.describe IngestYAMLJob do
       allow(ingest_counter).to receive(:increment)
     end
 
-    it "ingests a single-volume yaml file" do
-      expect(actor1).to receive(:attach_related_object).with(resource1)
-      expect(actor1).to receive(:attach_content).with(instance_of(File))
-      expect(actor2).to receive(:create_metadata).with(resource1, {})
-      expect(actor2).to receive(:create_content).with(file)
-      expect(ingest_counter).to receive(:increment)
-      described_class.perform_now(yaml_file_single, user)
-      expect(resource1.title).to eq(["Fontane di Roma ; poema sinfonico per orchestra"])
-      expect(resource1.thumbnail_id).to eq('file1')
-      expect(resource1.viewing_direction).to eq('left-to-right')
-      expect(resource1.state).to eq('complete')
-      expect(resource1.visibility).to eq(Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PUBLIC)
+    shared_examples "HTTP error recovery" do
+      it "recovers from HTTP errors" do
+        allow(actor1).to receive(:attach_related_object)
+        allow(actor1).to receive(:attach_content)
+        allow(actor2).to receive(:create_metadata)
+        allow(actor2).to receive(:create_content)
+
+        call_count = 0
+        allow_any_instance_of(Net::HTTP).to receive(:transport_request).and_wrap_original { |m, *args, &block|
+          call_count += 1
+          if call_count.odd? && args.first['user-agent'] =~ /^Faraday/ # RSolr does not use Faraday yet.
+            args.first['content-type'] = "BADDATA" # Causes a 400 error in Fedora.
+          end
+          m.call(*args, &block)
+        }
+        expect_any_instance_of(Faraday::Request::Retry).to receive(:retry_request?).at_least(:once).and_call_original
+
+        described_class.perform_now(yaml_file_single, user, file_association_method: file_association_method)
+        expect(resource1.state).to eq('complete')
+      end
+    end
+    context "with FILE_ASSOCIATION_METHOD: individual" do
+      let(:file_association_method) { 'individual' }
+      include_examples "HTTP error recovery"
+    end
+    context "with FILE_ASSOCIATION_METHOD: batch" do
+      let(:file_association_method) { 'batch' }
+      include_examples "HTTP error recovery"
+    end
+    context "with FILE_ASSOCIATION_METHOD: none" do
+      let(:file_association_method) { 'none' }
+      include_examples "HTTP error recovery"
     end
 
-    it "ingests a right-to-left yaml file" do
-      allow(actor1).to receive(:attach_related_object)
-      allow(actor1).to receive(:attach_content)
-      allow(actor2).to receive(:create_metadata)
-      allow(actor2).to receive(:create_content)
-      described_class.perform_now(yaml_file_rtl, user)
-      expect(resource1.viewing_direction).to eq('right-to-left')
+    shared_examples "ingest cases" do
+      it "ingests a single-volume yaml file" do
+        expect(actor1).to receive(:attach_related_object).with(resource1)
+        expect(actor1).to receive(:attach_content).with(instance_of(File))
+        if file_association_method.in? ['batch', 'none']
+          expect(actor2).to receive(:create_metadata).with(nil, {})
+        else
+          expect(actor2).to receive(:create_metadata).with(resource1, {})
+        end
+        expect(actor2).to receive(:create_content).with(file)
+        expect(ingest_counter).to receive(:increment)
+        described_class.perform_now(yaml_file_single, user, file_association_method: file_association_method)
+        expect(resource1.title).to eq(["Fontane di Roma ; poema sinfonico per orchestra"])
+        expect(resource1.thumbnail_id).to eq('file1')
+        expect(resource1.viewing_direction).to eq('left-to-right')
+        expect(resource1.state).to eq('complete')
+        expect(resource1.visibility).to eq(Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PUBLIC)
+      end
+      it "ingests a right-to-left yaml file" do
+        allow(actor1).to receive(:attach_related_object)
+        allow(actor1).to receive(:attach_content)
+        allow(actor2).to receive(:create_metadata)
+        allow(actor2).to receive(:create_content)
+        described_class.perform_now(yaml_file_rtl, user)
+        expect(resource1.viewing_direction).to eq('right-to-left')
+      end
+      it "ingests a multi-volume yaml file" do
+        allow(actor1).to receive(:attach_related_object)
+        allow(actor1).to receive(:attach_content)
+        allow(actor2).to receive(:create_metadata)
+        allow(actor2).to receive(:create_content)
+        expect(resource1).to receive(:logical_order).at_least(:once).and_return(logical_order)
+        expect(resource2).to receive(:logical_order).at_least(:once).and_return(logical_order)
+        expect(logical_order).to receive(:order=).at_least(:once)
+        allow(logical_order).to receive(:order).and_return(nil)
+        allow(logical_order).to receive(:object).and_return(order_object)
+        allow(order_object).to receive(:each_section).and_return([])
+        # kludge exception for batch case
+        if file_association_method == 'batch'
+          allow(work).to receive(:ordered_members=)
+          allow(work).to receive(:ordered_member_ids).and_return(['resource1', 'resource2'])
+        end
+        described_class.perform_now(yaml_file_multi, user, file_association_method: file_association_method)
+        expect(work.ordered_member_ids).to eq(['resource1', 'resource2'])
+      end
     end
-
-    it "ingests a multi-volume yaml file" do
-      allow(actor1).to receive(:attach_related_object)
-      allow(actor1).to receive(:attach_content)
-      allow(actor2).to receive(:create_metadata)
-      allow(actor2).to receive(:create_content)
-      expect(resource1).to receive(:logical_order).at_least(:once).and_return(logical_order)
-      expect(resource2).to receive(:logical_order).at_least(:once).and_return(logical_order)
-      expect(logical_order).to receive(:order=).at_least(:once)
-      allow(logical_order).to receive(:order).and_return(nil)
-      allow(logical_order).to receive(:object).and_return(order_object)
-      allow(order_object).to receive(:each_section).and_return([])
-      described_class.perform_now(yaml_file_multi, user)
-      expect(work.ordered_member_ids).to eq(['resource1', 'resource2'])
+    context "with FILE_ASSOCIATION_METHOD: individual" do
+      let(:file_association_method) { 'individual' }
+      include_examples "ingest cases"
+    end
+    context "with FILE_ASSOCIATION_METHOD: batch" do
+      let(:file_association_method) { 'batch' }
+      include_examples "ingest cases"
+    end
+    context "with FILE_ASSOCIATION_METHOD: none" do
+      let(:file_association_method) { 'none' }
+      include_examples "ingest cases"
     end
   end
 
@@ -103,7 +158,7 @@ RSpec.describe IngestYAMLJob do
     end
 
     it "ingests a yaml file" do
-      described_class.perform_now(mets_file, user)
+      described_class.perform_now(mets_file, user, file_association_method: 'individual')
       expect(resource.persisted?).to be true
       expect(resource.file_sets.length).to eq 1
       expect(resource.reload.logical_order.order).to eq(order.deep_stringify_keys)

@@ -15,6 +15,8 @@ function detect_duplicates() {
       } else {
         $('#duplicates').remove();
       }
+    }).fail(function(jqXHR, textStatus, errorThrown) {
+      window.plum.flash.set("danger", "Request failed: " + errorThrown)
     });
   }
 }

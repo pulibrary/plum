@@ -15,6 +15,7 @@
 <% editor    = can?(:edit,    @presenter.id) %>
 
 <%= render '/curation_concerns/base/representative_media', presenter: @presenter %>
+<%= render "/curation_concerns/base/misc_links", presenter: @presenter %>
 <%= render "/curation_concerns/base/attributes", presenter: @presenter %>
 <%= render '/curation_concerns/base/related_files', presenter: @presenter %>
 
