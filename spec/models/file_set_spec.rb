@@ -105,4 +105,22 @@ RSpec.describe FileSet do
       expect(subject.send(:metadata_xml)).to be_kind_of Nokogiri::XML::Document
     end
   end
+
+  describe '#destroy' do
+    let(:file_set) { FactoryGirl.create(:file_set, label: 'gray.tif') }
+    let(:parent) { FactoryGirl.create(:scanned_resource) }
+    let(:user) { FactoryGirl.create(:admin) }
+    let(:file) { File.open(Rails.root.join("spec", "fixtures", "files", "gray.tif")) }
+
+    before do
+      FileSetActor.new(file_set, user).attach_content(file)
+      file_set.update_index
+      allow(CreateDerivativesJob).to receive(:perform_later)
+    end
+
+    it 'removes files' do
+      expect(FileUtils).to receive(:rm_rf).with(file_set.local_file)
+      file_set.destroy
+    end
+  end
 end
