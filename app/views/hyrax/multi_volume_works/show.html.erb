@@ -16,6 +16,6 @@
 
 <%= render '/hyrax/base/representative_media', presenter: @presenter %>
 <%= render "/hyrax/base/attributes", presenter: @presenter %>
-<%= render '/hyrax/base/relationships', presenter: @presenter %>
+<%= render "/hyrax/base/items", presenter: @presenter %>
 <%= render 'workflow_actions', presenter: @presenter if @presenter.workflow.actions.present? %>
 <%= render "show_actions", collector: collector, editor: editor%>
