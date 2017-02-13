@@ -97,6 +97,11 @@ class SolrDocument
     self[Solrizer.solr_name('member_of_collections', :symbol)]
   end
 
+  def title_or_label
+    return label if title.blank?
+    Array(title).join(', ')
+  end
+
   def method_missing(meth_name, *args, &block)
     if ScannedResource.properties.values.map(&:term).include?(meth_name)
       self[Solrizer.solr_name(meth_name.to_s)]
