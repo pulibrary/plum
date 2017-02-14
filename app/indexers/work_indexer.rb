@@ -27,6 +27,14 @@ class WorkIndexer < CurationConcerns::WorkIndexer
       solr_doc[Solrizer.solr_name("language", :facetable)] = object.language.map do |code|
         LanguageService.label(code)
       end
+
+      suppress solr_doc, 'source_metadata'
+    end
+  end
+
+  def suppress(solr_doc, field)
+    [:symbol, :stored_searchable, :facetable].each do |type|
+      solr_doc.delete(Solrizer.solr_name(field, type))
     end
   end
 end
