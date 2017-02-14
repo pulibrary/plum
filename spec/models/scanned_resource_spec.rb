@@ -219,4 +219,18 @@ describe ScannedResource do
       expect(solr_doc['title_ssort']).to eq solr_doc['title_tesim'].to_sentence
     end
   end
+
+  describe "source metadata", vcr: { cassette_name: "bibdata" } do
+    let(:scanned_resource) { FactoryGirl.build :scanned_resource, source_metadata_identifier: '2028405' }
+    let(:solr_doc) { scanned_resource.to_solr }
+
+    before do
+      subject.source_metadata_identifier = '2028405'
+    end
+
+    it "is not indexed" do
+      expect(solr_doc['source_metadata_identifier_ssim']).to eq(['2028405'])
+      expect(solr_doc['source_metadata_ssim']).to be_nil
+    end
+  end
 end
