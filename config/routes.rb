@@ -29,9 +29,11 @@ Rails.application.routes.draw do
   default_url_options Rails.application.config.action_mailer.default_url_options
 
   # Collections have to go before CC routes, to add index_manifest.
-  resources :collections do
-    member do
-      get :manifest, defaults: { format: :json }
+  scope module: 'hyrax' do
+    resources :collections do
+      member do
+        get :manifest, defaults: { format: :json }
+      end
     end
   end
   mount Hyrax::Engine, at: '/'
@@ -40,7 +42,7 @@ Rails.application.routes.draw do
   curation_concerns_embargo_management
 
   # mount GeoConcerns::Engine => '/'
-  get "/iiif/collections", defaults: { format: :json }, controller: :collections, action: :index_manifest
+  get "/iiif/collections", defaults: { format: :json }, controller: 'hyrax/collections', action: :index_manifest
 
   namespace :hyrax, path: :concern do
     resources :parent, only: [] do

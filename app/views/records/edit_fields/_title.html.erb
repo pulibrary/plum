@@ -1,1 +1,5 @@
-<%= f.input :title, as: :multi_value, readonly: f.object.source_metadata_identifier.present?, input_html: { class: 'mutex' } %>
+<% if f.object.respond_to?(:source_metadata_identifier) %>
+  <%= f.input :title, as: :multi_value, readonly: f.object.source_metadata_identifier.present?, input_html: { class: 'mutex' } %>
+<% else %>
+  <%= f.input :title, as: :multi_value %>
+<% end %>

@@ -47,7 +47,11 @@ module Hyrax
       end
 
       def annotation_builder
-        AnnotationListBuilder.new(@file_set, main_app.text_hyrax_member_file_set_url(parent, @file_set), CanvasID.new(@file_set.id, polymorphic_url([main_app, :manifest, parent])).to_s)
+        AnnotationListBuilder.new(@file_set, manifest_helper.text_hyrax_member_file_set_url(parent, @file_set), CanvasID.new(@file_set.id, manifest_helper.polymorphic_url([:manifest, parent])).to_s)
+      end
+
+      def manifest_helper
+        ManifestBuilder::ManifestHelper.new
       end
   end
 end

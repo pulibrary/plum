@@ -1,5 +1,5 @@
 <% if Hyrax.config.display_media_download_link %>
-    <%= link_to main_app.download_path(file_set),
+    <%= link_to hyrax.download_path(file_set),
                 target: :_blank,
                 data: { turbolinks: false },
                 title: "Download the full-sized image" do %>

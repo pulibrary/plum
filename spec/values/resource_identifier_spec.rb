@@ -23,11 +23,11 @@ RSpec.describe ResourceIdentifier do
       file_set2 = FactoryGirl.create(:file_set)
       scanned_resource.ordered_members << file_set1
       scanned_resource.ordered_members << file_set2
-      scanned_resource.save
+      scanned_resource.save!
       old_id = subject.to_s
 
-      actor = Hyrax::CurationConcern.actor(scanned_resource, FactoryGirl.build(:user))
-      actor.update("ordered_member_ids" => [file_set2.id, file_set1.id])
+      actor = Hyrax::CurationConcern.actor(scanned_resource, FactoryGirl.create(:user))
+      actor.update(ordered_member_ids: [file_set2.id, file_set1.id])
 
       expect(subject.reload.to_s).not_to eq old_id
     end

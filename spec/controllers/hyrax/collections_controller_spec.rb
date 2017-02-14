@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe CollectionsController do
+RSpec.describe Hyrax::CollectionsController do
   describe "#manifest" do
     let(:user) { FactoryGirl.create(:admin) }
     before do
