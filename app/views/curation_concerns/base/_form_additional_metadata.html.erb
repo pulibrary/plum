@@ -1,0 +1,29 @@
+<%# force-drop fields inapplicable, or displayed elsewhere in edit page framework %>
+<% edit_fields = f.object.terms & (PlumSchema.edit_fields - [:has_model, :depositor, :date_uploaded, :date_modified, :relative_path, :import_url, :replaces, :source_metadata, :portion_note, :rights_note, :start_canvas]) %>
+<% single_fields = edit_fields.select { |p| !f.object.model_class.multiple?(p) }.map(&:to_sym) %>
+<% multi_fields = edit_fields - single_fields %>
+<div class="row">
+  <% [{ header: 'Single-valued Metadata Fields',
+        id: 'single-metadata',
+        args: {},
+        fields: single_fields },
+      { header: 'Multi-valued Metadata Fields',
+        id: 'multi-metadata',
+        args: { as: :multi_value },
+        fields: multi_fields }].each do |fieldset| %>
+    <% if fieldset[:fields].any? %>
+      <div class="col-md-6">
+        <fieldset class="optional prompt">
+          <legend><%= fieldset[:header] %></legend>
+          <% fieldset[:fields].each do |display_field| %>
+          <% begin %>
+            <%= f.input display_field, **fieldset[:args] %>
+          <% rescue %>
+            <%= "Error displaying: #{display_field}<br/>".html_safe %>
+          <% end %>
+        <% end %>
+        </fieldset>
+      </div>
+    <% end %>
+  <% end %>
+</div>
