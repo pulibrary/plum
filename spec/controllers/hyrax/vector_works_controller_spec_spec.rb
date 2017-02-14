@@ -11,7 +11,7 @@ describe Hyrax::VectorWorksController do
 
   describe '#show_presenter' do
     subject { described_class.new.show_presenter }
-    it { is_expected.to eq(VectorWorkShowPresenter) }
+    xit { is_expected.to eq(VectorWorkShowPresenter) }
   end
 
   describe '#delete' do
@@ -19,7 +19,7 @@ describe Hyrax::VectorWorksController do
       sign_in user
     end
 
-    it 'fires a delete event' do
+    xit 'fires a delete event' do
       expect(manifest_generator).to receive(:record_deleted)
       delete :destroy, params: { id: vector_work }
     end
@@ -37,7 +37,7 @@ describe Hyrax::VectorWorksController do
     end
 
     context 'with a complete state' do
-      it 'fires an update event' do
+      xit 'fires an update event' do
         expect(manifest_generator).to receive(:record_updated)
         post :update, params: { id: vector_work, vector_work: vector_work_attributes }
       end
@@ -45,7 +45,7 @@ describe Hyrax::VectorWorksController do
 
     context 'with a non-complete state' do
       let(:vector_work) { FactoryGirl.create(:pending_vector_work, user: user) }
-      it 'does not fire an update event' do
+      xit 'does not fire an update event' do
         expect(manifest_generator).to_not receive(:record_updated)
         post :update, params: { id: vector_work, vector_work: vector_work_attributes }
       end

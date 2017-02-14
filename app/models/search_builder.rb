@@ -28,6 +28,12 @@ class SearchBuilder < Hyrax::CatalogSearchBuilder
     solr_params[:q] = JoinChildrenQuery.new(solr_params[:q]).to_s
   end
 
+  # Allow people to see all collections as ones they can ingest into.
+  def gated_discovery_filters(permission_types = discovery_permissions, ability = current_ability)
+    return [] if models == collection_classes
+    super
+  end
+
   def hide_incomplete(solr_params)
     # admin route causes errors with current_ability.
     return if blacklight_params.empty?

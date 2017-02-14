@@ -1,16 +1,9 @@
-class CollectionsController < ApplicationController
+class Hyrax::CollectionsController < ApplicationController
   include Hyrax::CollectionsControllerBehavior
   skip_load_and_authorize_resource only: :index_manifest
   skip_before_action :authenticate_user!, only: [:index_manifest, :manifest]
-  self.presenter_class = WorkSearchBuilder
-
-  def form_class
-    CollectionEditForm
-  end
-
-  def presenter_class
-    CollectionShowPresenter
-  end
+  self.presenter_class = CollectionShowPresenter
+  self.form_class = CollectionEditForm
 
   def manifest
     respond_to do |f|

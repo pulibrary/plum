@@ -29,7 +29,7 @@ RSpec.describe Hyrax::FileSetsController do
     it "redirects to the containing scanned resource after editing" do
       allow_any_instance_of(described_class).to receive(:parent).and_return(parent)
       patch :update, params: { id: file_set.id, file_set: { viewing_hint: 'non-paged' } }
-      expect(response).to redirect_to(Rails.application.class.routes.url_helpers.file_manager_hyrax_scanned_resource_path(parent.id))
+      expect(response).to redirect_to(Rails.application.class.routes.url_helpers.file_manager_hyrax_scanned_resource_path(parent.id, locale: 'en'))
     end
   end
 
@@ -58,8 +58,8 @@ RSpec.describe Hyrax::FileSetsController do
     end
     let(:document) { File.open(Rails.root.join("spec", "fixtures", "files", "test.hocr")) }
     let(:ocr_document) { HOCRDocument.new(document) }
-    let(:parent_path) { "http://test.host/concern/container/#{parent.id}/file_sets/#{file_set.id}/text" }
-    let(:canvas_id) { "http://test.host/concern/scanned_resources/#{parent.id}/manifest/canvas/#{file_set.id}" }
+    let(:parent_path) { "http://plum.com/concern/container/#{parent.id}/file_sets/#{file_set.id}/text" }
+    let(:canvas_id) { "http://plum.com/concern/scanned_resources/#{parent.id}/manifest/canvas/#{file_set.id}" }
     let(:bounding_box) do
       b = ocr_document.lines.first.bounding_box
       "#{b.top_left.x},#{b.top_left.y},#{b.width},#{b.height}"
