@@ -7,7 +7,7 @@ class CompleteRecord
   end
 
   def complete
-    if identifier
+    if identifier.present?
       update_metadata
     else
       mint_identifier
@@ -47,7 +47,7 @@ class CompleteRecord
     end
 
     def mint_identifier
-      record.identifier = minter.mint(metadata).id
+      record.identifier = [minter.mint(metadata).id]
       record.save
     end
 end

@@ -20,7 +20,7 @@ RSpec.describe 'ScannedResourcesController', type: :request do
 
     post '/concern/scanned_resources', params: { scanned_resource: valid_params }
 
-    resource_path = hyrax_scanned_resource_path(assigns(:curation_concern))
+    resource_path = hyrax_scanned_resource_path(assigns(:curation_concern), locale: nil)
     expect(response).to redirect_to(resource_path)
     follow_redirect!
 
