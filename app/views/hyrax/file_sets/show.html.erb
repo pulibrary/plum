@@ -7,7 +7,7 @@
 <%= render "technical_metadata", curation_concern: @presenter %>
 
   <div class="form-actions">
-    <%= link_to "Download this File", main_app.download_path(@presenter), class: 'btn btn-default' %>
+    <%= link_to "Download this File", hyrax.download_path(@presenter), class: 'btn btn-default' %>
     <%= link_to "Back to #{parent.human_readable_type}", parent_path(parent), class: 'btn btn-default' %>
 
     <% if can? :edit, @presenter.id %>
