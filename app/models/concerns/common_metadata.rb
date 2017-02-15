@@ -27,7 +27,7 @@ module CommonMetadata
       end
       self.attributes = remote_data.attributes
 
-      CompleteRecord.new(self).complete if workflow_state == 'complete' && identifier
+      CompleteRecord.new(self).complete if workflow_state == 'complete' && identifier.present?
     end
 
     private

@@ -22,7 +22,7 @@ RSpec.feature "MultiVolumeWorksController", type: :feature do
     fill_in 'multi_volume_work_portion_note', with: 'new portion note'
     fill_in 'multi_volume_work_description', with: 'new description'
 
-    click_button 'Update Multi volume work'
+    click_button 'Save'
     expect(page).to have_text("Test title")
   end
 

@@ -22,7 +22,7 @@ RSpec.describe CicognaraCSV do
     let(:col) { obj.member_of_collections.first }
     let(:manifest_url) { "http://plum.com/concern/scanned_resources/#{obj.id}/manifest" }
     let(:values) { [['cico:qgb', 'Plum', manifest_url, 'Princeton University Library',
-                     'Oversize NA2810 .H75f', '2068747', nil, nil, 'Amsterdam, J. Jeansson, 1620.', '1620',
+                     'Oversize NA2810 .H75f', '2068747', [], nil, 'Amsterdam, J. Jeansson, 1620.', '1620',
                      nil, nil, '39 . 30 plates. 30 x 40 cm.', 'http://rightsstatements.org/vocab/NKC/1.0/',
                      false]] }
 
