@@ -91,6 +91,7 @@ group :test do
   gem "launchy"
   gem "vcr", '~> 2.9'
   gem "webmock", '~> 1.0', require: false
+  gem "database_cleaner"
 end
 
 group :production do
@@ -125,4 +126,5 @@ source 'https://rails-assets.org' do
   gem 'rails-assets-jqueryui-timepicker-addon'
 end
 gem 'flipflop', git: 'https://github.com/jcoyne/flipflop.git', branch: 'hydra'
+gem 'poltergeist'
 

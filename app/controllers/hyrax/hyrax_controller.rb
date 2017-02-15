@@ -4,6 +4,7 @@ class Hyrax::HyraxController < ApplicationController
   include Hyrax::MemberManagement
   include Hyrax::UpdateOCR
   include Hyrax::RemoteMetadata
+  include Hyrax::BreadcrumbsForWorks
 
   def destroy
     messenger.record_deleted(curation_concern)
@@ -31,6 +32,16 @@ class Hyrax::HyraxController < ApplicationController
         redirect_to contextual_path(curation_concern, parent_presenter)
       end
       wants.json { render :show, status: :created, location: polymorphic_path([main_app, curation_concern]) }
+    end
+  end
+
+  def after_update_response
+    if params[:file_manager_redirect]
+      puts "YO"
+      puts params.to_h
+      redirect_to polymorphic_path([main_app, :file_manager, curation_concern])
+    else
+      super
     end
   end
 
