@@ -1,3 +1,18 @@
+/* ...
+ *= require jquery-ui
+ *= require select2
+ *= require_self
+*/
+
+@import "bootstrap-sprockets";
+@import 'bootstrap';
+@import 'blacklight/blacklight';
+@import "font-awesome";
+@import "blacklight_gallery/gallery";
+@import "blacklight_gallery/masonry";
+@import "blacklight_gallery/slideshow";
+@import "blacklight_gallery/osd_viewer";
+@import 'hyrax/hyrax';
 @import "variables/colors";
 @import "variables/typography";
 
@@ -8,6 +23,8 @@ $font-family-serif: $font-serif;
 $bootstrap-sass-asset-helper: true;
 @import 'bootstrap/variables';
 @import 'bootstrap/mixins';
+@import 'bootstrap';
+@import 'bootstrap/navbar';
 @import 'hyrax/hyrax';
 
 body {
