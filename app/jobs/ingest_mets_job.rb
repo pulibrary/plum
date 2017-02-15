@@ -73,6 +73,7 @@ class IngestMETSJob < ApplicationJob
       collection_metadata.each do |c|
         return { exhibit_id: slug, title: [c['title']], description: [c['blurb']] } if c['slug'] == slug
       end
+      raise StandardError, "No collection metadata found for slug '#{slug}'"
     end
 
     def collection_metadata

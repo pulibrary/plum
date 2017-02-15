@@ -5,6 +5,7 @@ RSpec.describe IngestMETSJob do
     let(:mets_file) { Rails.root.join("spec", "fixtures", "pudl0001-4612596.mets") }
     let(:mets_file_rtl) { Rails.root.join("spec", "fixtures", "pudl0032-ns73.mets") }
     let(:mets_file_multi) { Rails.root.join("spec", "fixtures", "pudl0001-4609321-s42.mets") }
+    let(:mets_bad_coll) { Rails.root.join("spec", "fixtures", "bad-collection.mets") }
     let(:tiff_file) { Rails.root.join("spec", "fixtures", "files", "color.tif") }
     let(:user) { FactoryGirl.build(:admin) }
     let(:actor1) { double('actor1') }
@@ -137,6 +138,12 @@ RSpec.describe IngestMETSJob do
         described_class.perform_now(mets_file, user)
 
         expect(work.ordered_member_ids).to eq(['resource1', 'resource2'])
+      end
+    end
+
+    context "when there is no metadata for the collection slug" do
+      it "raises an appropriate error" do
+        expect { described_class.perform_now(mets_bad_coll, user) }.to raise_error StandardError, /No collection metadata found for slug/
       end
     end
   end
