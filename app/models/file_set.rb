@@ -14,6 +14,7 @@ class FileSet < ActiveFedora::Base
     ActiveFedora::Indexers::GlobalIndexer.new([:stored_searchable, :symbol])
   )
   after_save :touch_parent_works
+  before_destroy :cleanup_files
 
   delegate :mime_type_storage, to: :characterization_proxy
 
@@ -100,6 +101,11 @@ class FileSet < ActiveFedora::Base
       derivative_path_factory.derivatives_for_reference(self).each do |path|
         FileUtils.rm_rf(path)
       end
+    end
+
+    def cleanup_files
+      cleanup_derivatives
+      FileUtils.rm_rf(local_file)
     end
 
     # The destination_name parameter has to match up with the file parameter
