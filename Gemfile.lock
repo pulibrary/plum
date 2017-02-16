@@ -48,46 +48,11 @@ GIT
       om (~> 3.1)
 
 GIT
-  remote: git://github.com/pulibrary/pul_metadata_services.git
-  revision: 584736f58b3dcf1136e9b1817954299d5e6ca82c
-  branch: relax-activesupport-dependency
+  remote: git://github.com/projecthydra-labs/hyrax.git
+  revision: 84fa011fd54c0defa349904b0d835925522ed662
+  branch: fix_file_manager_form
   specs:
-    pul_metadata_services (0.0.1)
-      activesupport (>= 4.2.4)
-      faraday (~> 0.9.1)
-      marc (~> 1.0.0)
-      nokogiri (~> 1.6.6.2)
-
-GIT
-  remote: git://github.com/pulibrary/pul_uv_rails.git
-  revision: 7060d5eac7005573a93aac0335b365e29a576a54
-  branch: master
-  specs:
-    pul_uv_rails (1.8.42)
-
-GIT
-  remote: git://github.com/yob/pdf-reader.git
-  revision: 2b9b814c3c0bd5de0300945062bad71244a02174
-  specs:
-    pdf-reader (2.0.0.beta)
-      Ascii85 (~> 1.0.0)
-      afm (~> 0.2.1)
-      hashery (~> 2.0)
-      ruby-rc4
-      ttfunk
-
-GIT
-  remote: https://github.com/jcoyne/flipflop.git
-  revision: 0eecddade9890548c92b1e8aa681512f1db01469
-  branch: hydra
-  specs:
-    flipflop (2.2.1)
-      activesupport (>= 4.0)
-
-PATH
-  remote: /Users/tterrell/projects/hyrax
-  specs:
-    hyrax (0.0.1.alpha)
+    hyrax (1.0.0.alpha)
       active_attr (~> 0.9.0)
       active_fedora-noid (~> 2.0)
       almond-rails (~> 0.0.1)
@@ -125,6 +90,7 @@ PATH
       rdf-rdfxml
       redis-namespace (~> 1.5.2)
       redlock (~> 0.1.2)
+      retriable (>= 2.9, < 4.0)
       select2-rails (~> 3.5.9)
       signet
       tinymce-rails (~> 4.1)
@@ -132,20 +98,12 @@ PATH
       yaml_db (~> 0.2)
 
 GIT
-  remote: git://github.com/pulibrary/grocer.git
-  revision: 910e3d55f4ddc2792ee4fc80bd47e275aacfd458
-  specs:
-    grocer (0.1.0)
-      active-fedora
-      kaminari
-
-GIT
   remote: git://github.com/pulibrary/pul_metadata_services.git
-  revision: 08bc4282fbd4b956737d62f52738730a47e75496
-  branch: pulfa-metadata
+  revision: 584736f58b3dcf1136e9b1817954299d5e6ca82c
+  branch: relax-activesupport-dependency
   specs:
     pul_metadata_services (0.0.1)
-      activesupport (>= 4.2.7.1)
+      activesupport (>= 4.2.4)
       faraday (~> 0.9.1)
       marc (~> 1.0.0)
       nokogiri (~> 1.6.6.2)
@@ -258,13 +216,13 @@ GEM
       execjs
     awesome_nested_set (3.1.1)
       activerecord (>= 4.0.0, < 5.1)
-    aws-sdk (2.7.3)
-      aws-sdk-resources (= 2.7.3)
-    aws-sdk-core (2.7.3)
+    aws-sdk (2.7.9)
+      aws-sdk-resources (= 2.7.9)
+    aws-sdk-core (2.7.9)
       aws-sigv4 (~> 1.0)
       jmespath (~> 1.0)
-    aws-sdk-resources (2.7.3)
-      aws-sdk-core (= 2.7.3)
+    aws-sdk-resources (2.7.9)
+      aws-sdk-core (= 2.7.9)
     aws-sigv4 (1.0.0)
     babel-source (5.8.35)
     babel-transpiler (0.7.0)
@@ -286,7 +244,7 @@ GEM
       blacklight (~> 6.0)
       cancancan (~> 1.8)
       deprecation (~> 1.0)
-    blacklight-gallery (0.7.0)
+    blacklight-gallery (0.8.0)
       blacklight (~> 6.3)
       bootstrap-sass (~> 3.0)
       openseadragon (>= 0.2.0)
@@ -332,7 +290,7 @@ GEM
       json (>= 1.7)
       mime-types (>= 1.16)
       mimemagic (>= 0.3.0)
-    clipboard-rails (1.5.16)
+    clipboard-rails (1.6.0)
     cliver (0.3.2)
     coderay (1.1.1)
     coffee-rails (4.2.1)
@@ -356,6 +314,8 @@ GEM
     dalli (2.7.6)
     database_cleaner (1.5.3)
     debug_inspector (0.0.2)
+    declarative (0.0.9)
+    declarative-option (0.1.0)
     deprecation (1.0.0)
       activesupport
     devise (4.2.0)
@@ -427,15 +387,15 @@ GEM
       railties (>= 3.2, < 5.1)
     globalid (0.3.7)
       activesupport (>= 4.1.0)
-    google-api-client (0.9.26)
+    google-api-client (0.10.0)
       addressable (~> 2.3)
       googleauth (~> 0.5)
       httpclient (~> 2.7)
       hurley (~> 0.1)
       memoist (~> 0.11)
       mime-types (>= 1.6)
-      representable (~> 2.3.0)
-      retriable (~> 2.0)
+      representable (~> 3.0)
+      retriable (>= 2.0, < 4.0)
     google_drive (2.1.2)
       google-api-client (>= 0.9.0, < 1.0.0)
       googleauth (>= 0.5.0, < 1.0.0)
@@ -531,7 +491,7 @@ GEM
     json-ld (2.1.2)
       multi_json (~> 1.12)
       rdf (~> 2.1)
-    json-schema (2.7.0)
+    json-schema (2.8.0)
       addressable (>= 2.4)
     jwt (1.5.6)
     kaminari (0.17.0)
@@ -723,15 +683,17 @@ GEM
       redis (~> 3.0, >= 3.0.4)
     redlock (0.1.8)
       redis (~> 3, >= 3.0.0)
-    representable (2.3.0)
-      uber (~> 0.0.7)
+    representable (3.0.3)
+      declarative (< 0.1.0)
+      declarative-option (< 0.2.0)
+      uber (< 0.2.0)
     responders (2.3.0)
       railties (>= 4.2.0, < 5.1)
     rest-client (1.8.0)
       http-cookie (>= 1.0.2, < 2.0)
       mime-types (>= 1.16, < 3.0)
       netrc (~> 0.7)
-    retriable (2.1.0)
+    retriable (3.0.0)
     rsolr (1.1.2)
       builder (>= 2.1.2)
     rspec-core (3.5.4)
@@ -844,7 +806,7 @@ GEM
     thread_safe (0.3.5)
     tilt (2.0.6)
     tins (1.13.2)
-    tinymce-rails (4.5.2)
+    tinymce-rails (4.5.3)
       railties (>= 3.1.1)
     tinymce-rails-imageupload (4.0.17.beta)
       railties (>= 3.2, < 6)
@@ -857,7 +819,7 @@ GEM
       railties (>= 3.1)
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
-    uber (0.0.15)
+    uber (0.1.0)
     uglifier (3.0.4)
       execjs (>= 0.3.0, < 3)
     unf (0.1.4)

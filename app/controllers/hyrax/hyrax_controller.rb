@@ -13,7 +13,7 @@ class Hyrax::HyraxController < ApplicationController
 
   def file_manager
     parent_presenter
-    super
+    @form = ::FileManagerForm.new(curation_concern, current_ability)
   end
 
   def browse_everything_files
@@ -37,8 +37,6 @@ class Hyrax::HyraxController < ApplicationController
 
   def after_update_response
     if params[:file_manager_redirect]
-      puts "YO"
-      puts params.to_h
       redirect_to polymorphic_path([main_app, :file_manager, curation_concern])
     else
       super

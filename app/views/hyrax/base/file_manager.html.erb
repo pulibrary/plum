@@ -3,11 +3,11 @@
   <% if @parent_presenter %>
       <li><%= link_to @parent_presenter, polymorphic_path([main_app, @parent_presenter]) %></li>
   <% end %>
-  <li><%= link_to @presenter, ContextualPath.new(@presenter, @parent_presenter).show %></li>
+  <li><%= link_to @form, ContextualPath.new(@form, @parent_presenter).show %></li>
   <li class="active">File Manager</li>
 </ul>
 
-<% if !@presenter.member_presenters.empty? %>
+<% if !@form.member_presenters.empty? %>
   <div data-action="file-manager">
     <div class="col-md-3" id="file-manager-tools">
       <h2>Toolbar</h2>

@@ -1,7 +1,7 @@
  <div class="row">
   <div class="col-md-3"> 
     <div class="well well-sm">
-      <%= form_tag polymorphic_path([main_app, :browse_everything_files, @presenter]), id: "browse-everything-form" do %>
+      <%= form_tag polymorphic_path([main_app, :browse_everything_files, @form]), id: "browse-everything-form" do %>
         <% if params[:parent_id] %>
           <%= hidden_field_tag 'parent_id', params[:parent_id] %>
         <% end %>
@@ -11,10 +11,10 @@
       <% end %>
     </div>
   </div>
-  <% if @presenter.pending_uploads.present? %>
+  <% if @form.pending_uploads.present? %>
     <div class="col-md-9">
       <div class="well well-sm">
-        <%= render "pending_uploads", uploads: @presenter.pending_uploads %>
+        <%= render "pending_uploads", uploads: @form.pending_uploads %>
       </div>
     </div>
   <% end %>

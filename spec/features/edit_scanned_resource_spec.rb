@@ -43,7 +43,6 @@ RSpec.feature "ScannedResourcesController", type: :feature do
       expect(page).to have_text("Error retrieving metadata")
     end
 
-
     let(:file1) { File.open(Rails.root.join("spec", "fixtures", "files", "gray.tif")) }
     let(:uploaded_file1) { Hyrax::UploadedFile.create(file: file1, user: user) }
     scenario "User can follow link to bulk edit scanned resource and add a new file", js: true do
