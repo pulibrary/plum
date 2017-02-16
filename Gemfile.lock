@@ -49,7 +49,7 @@ GIT
 
 GIT
   remote: git://github.com/projecthydra-labs/hyrax.git
-  revision: a8c6821cf9dd278a8d3ec799abea5ae3fcf54bd2
+  revision: 76d0a9460e189e747a8f461aedd2ab6fadda3be7
   branch: master
   specs:
     hyrax (1.0.0.alpha)
