@@ -32,7 +32,7 @@ gem 'modernizr-rails'
 # gem 'capistrano-rails', group: :development
 
 gem 'hyrax', github: 'projecthydra-labs/hyrax', branch: 'fix_file_manager_form'
-gem 'pul_metadata_services', github:'pulibrary/pul_metadata_services', branch: 'relax-activesupport-dependency'
+gem 'pul_metadata_services', github:'pulibrary/pul_metadata_services', branch: 'master'
 gem 'hydra-role-management', '~> 0.2.0'
 gem 'rsolr', '~> 1.1.0'
 gem 'devise' , '~> 4.2.0'

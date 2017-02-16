@@ -99,11 +99,11 @@ GIT
 
 GIT
   remote: git://github.com/pulibrary/pul_metadata_services.git
-  revision: 584736f58b3dcf1136e9b1817954299d5e6ca82c
-  branch: relax-activesupport-dependency
+  revision: b0497dda4824d74fed1f97d856f285189060ea13
+  branch: master
   specs:
     pul_metadata_services (0.0.1)
-      activesupport (>= 4.2.4)
+      activesupport (>= 4.2.7.1)
       faraday (~> 0.9.1)
       marc (~> 1.0.0)
       nokogiri (~> 1.6.6.2)
