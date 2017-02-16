@@ -92,6 +92,7 @@ describe MultiVolumeWork do
   end
 
   include_examples "structural metadata"
+  include_examples "common metadata"
 
   describe "solr indexing" do
     it "sets number_of_pages by sum of child volumes' pages" do

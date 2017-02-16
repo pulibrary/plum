@@ -226,6 +226,7 @@ describe ScannedResource do
   end
 
   include_examples "structural metadata"
+  include_examples "common metadata"
 
   describe "collection indexing" do
     let(:scanned_resource) { FactoryGirl.create(:scanned_resource_in_collection) }

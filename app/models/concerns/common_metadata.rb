@@ -43,6 +43,12 @@ module CommonMetadata
       ReviewerMailer.notify(id, state).deliver_later
     end
 
+    # override to address issue with @delegated_attributes being in disagreement
+    # with attributes overriden by Schema inclusion
+    def self.multiple?(field)
+      properties[field.to_s].try(:multiple?)
+    end
+
     private
 
     def remote_data
