@@ -1,9 +1,13 @@
 /* mutex: only one form element with the class 'mutex' may be used at a time.
    all others will be disabled until it is blank. */
 $(document).ready(function(){
-    $(".mutex").change(mutex);
+    $(".form-group").on("change", ".mutex", mutex)
     $(".mutex[value]").change();
     $(".mutex").attr("required", null)
+    $('.multi_value.form-group', this.form).bind('managed_field:remove', function() { 
+      $("#mutex_field").val($(".mutex[value]").val());
+      $(".mutex").change();
+    })
 });
 
 function mutex() {
