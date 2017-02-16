@@ -2,6 +2,7 @@
    all others will be disabled until it is blank. */
 $(document).ready(function(){
     $(".mutex").change(mutex);
+    $(".mutex[value]").change();
     $(".mutex").attr("required", null)
 });
 
