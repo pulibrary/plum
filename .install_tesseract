@@ -1,0 +1,33 @@
+wget "https://github.com/uclouvain/openjpeg/archive/version.2.1.zip"
+unzip version.2.1.zip
+cd openjpeg-version.2.1
+mkdir build
+cd build
+cmake ..
+make
+sudo make install
+sudo make clean
+cd ..
+cd ..
+wget "http://www.leptonica.com/source/leptonica-1.73.tar.gz"
+tar xzf leptonica-1.73.tar.gz
+cd leptonica-1.73
+sed -i 's/#define  HAVE_LIBJP2K     0/#define  HAVE_LIBJP2K     1/g' ./src/environ.h
+sed -i 's/-ltiff -ljpeg -lpng -lz -lm/-ltiff -ljpeg -lpng -lz -lm -lopenjp2/g' ./prog/makefile.static
+./configure
+make
+sudo make install
+cd ..
+wget "https://github.com/tesseract-ocr/tesseract/archive/3.04.00.zip"
+unzip 3.04.00.zip
+cd tesseract-3.04.00
+./autogen.sh
+./configure
+make
+sudo make install
+sudo ldconfig
+cd ..
+git clone https://github.com/tesseract-ocr/tessdata.git
+sudo cp tessdata/eng.* /usr/local/share/tessdata/
+sudo cp tessdata/ita* /usr/local/share/tessdata
+tesseract -v
