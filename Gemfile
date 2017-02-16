@@ -31,7 +31,7 @@ gem 'modernizr-rails'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-gem 'hyrax', github: 'projecthydra-labs/hyrax', branch: 'fix_file_manager_form'
+gem 'hyrax', github: 'projecthydra-labs/hyrax', branch: 'master'
 gem 'pul_metadata_services', github:'pulibrary/pul_metadata_services', branch: 'master'
 gem 'hydra-role-management', '~> 0.2.0'
 gem 'rsolr', '~> 1.1.0'

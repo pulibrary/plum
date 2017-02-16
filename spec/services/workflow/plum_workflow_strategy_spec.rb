@@ -5,9 +5,9 @@ RSpec.describe Workflow::PlumWorkflowStrategy, :no_clean do
     let(:work) { FactoryGirl.build(:scanned_resource) }
     let(:workflow_strategy) { described_class.new(work, nil) }
 
-    describe '#workflow_name' do
-      subject { workflow_strategy.workflow_name }
-      it { is_expected.to eq 'book_works' }
+    describe '#workflow_id' do
+      subject { workflow_strategy.workflow_id }
+      it { is_expected.to eq Sipity::Workflow.where(name: 'book_works').first!.id }
     end
   end
 
@@ -16,8 +16,8 @@ RSpec.describe Workflow::PlumWorkflowStrategy, :no_clean do
     let(:workflow_strategy) { described_class.new(work, nil) }
 
     describe '#workflow_name' do
-      subject { workflow_strategy.workflow_name }
-      it { is_expected.to eq 'geo_works' }
+      subject { workflow_strategy.workflow_id }
+      it { is_expected.to eq Sipity::Workflow.where(name: 'geo_works').first!.id }
     end
   end
 end
