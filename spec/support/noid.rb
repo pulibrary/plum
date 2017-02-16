@@ -8,5 +8,4 @@ RSpec.configure do |config|
   config.after :suite do
     enable_production_minter!
   end
-
 end

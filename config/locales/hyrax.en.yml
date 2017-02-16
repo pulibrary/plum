@@ -14,7 +14,7 @@ en:
       homepage_url: "#"
     product_name: "Digital PUL"
     works:
-      edit:
+      update:
         additional_fields: "Additional fields"
         breadcrumb: 'Edit'
         header: Manage Your Work

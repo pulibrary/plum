@@ -1,4 +1,4 @@
-<ul id="sortable" data-id="<%= @presenter.id %>" data-class-name="<%= @presenter.model_name.plural %>" data-singular-class-name="<%= @presenter.model_name.singular %>" class="list-unstyled grid clearfix">
+<ul id="sortable" data-id="<%= @form.id %>" data-class-name="<%= @form.model_name.plural %>" data-singular-class-name="<%= @form.model_name.singular %>" class="list-unstyled grid clearfix">
   <div class="alert alert-success" role="alert">
     Reordered Successfully
   </div>
@@ -8,7 +8,7 @@
   <div class="alert alert-danger" role="alert">
     Reordering Failed. Please save again.
   </div>
- <% @presenter.member_presenters.each do |member| %>
+ <% @form.member_presenters.each do |member| %>
    <%= render "file_manager_member", node: member %>
  <% end %>
 </ul>

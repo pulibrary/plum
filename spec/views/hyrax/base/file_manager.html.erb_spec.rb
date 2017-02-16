@@ -13,9 +13,9 @@ RSpec.describe "hyrax/base/file_manager.html.erb" do
       )
     )
   end
-  let(:resource) { FactoryGirl.build(:file_set) }
+  let(:resource) { FactoryGirl.create(:file_set) }
 
-  let(:parent) { FactoryGirl.build(:scanned_resource) }
+  let(:parent) { FactoryGirl.create(:scanned_resource) }
   let(:parent_solr_doc) do
     SolrDocument.new(parent.to_solr.merge(id: "resource"), nil)
   end
@@ -28,10 +28,12 @@ RSpec.describe "hyrax/base/file_manager.html.erb" do
 
   let(:blacklight_config) { CatalogController.new.blacklight_config }
   let(:context) { Blacklight::Configuration::Context.new double }
+  let(:form) { FileManagerForm.new(parent, nil) }
 
   before do
-    assign(:presenter, parent_presenter)
-    allow(parent_presenter).to receive(:member_presenters).and_return(members)
+    assign(:form, form)
+    allow(form).to receive(:member_presenters).and_return(members)
+    allow(form).to receive(:pending_uploads).and_return([pending_upload])
     stub_blacklight_views
     allow(view).to receive(:curation_concern).and_return(parent)
     allow(view).to receive(:contextual_path).with(anything, anything) do |x, y|
@@ -41,19 +43,19 @@ RSpec.describe "hyrax/base/file_manager.html.erb" do
   end
 
   context "for a MVW" do
-    let(:parent) { FactoryGirl.build(:multi_volume_work) }
+    let(:parent) { FactoryGirl.create(:multi_volume_work) }
     let(:parent_presenter) do
       s = MultiVolumeWorkShowPresenter.new(parent_solr_doc, nil)
       allow(s).to receive(:pending_uploads).and_return([pending_upload])
       s
     end
     let(:file_set) { ScannedResourceShowPresenter.new(solr_doc, nil) }
-    let(:resource) { FactoryGirl.build(:scanned_resource) }
+    let(:resource) { FactoryGirl.create(:scanned_resource) }
     it "renders scanned resources as reorderable" do
       expect(rendered).to have_selector "input[name='scanned_resource[title][]'][type='text'][value='#{file_set}']"
     end
     it "has a link back to parent" do
-      expect(rendered).to have_link "Test title", href: hyrax_multi_volume_work_path(id: "resource")
+      expect(rendered).to have_link "Test title", href: hyrax_multi_volume_work_path(id: parent.id)
     end
     it "doesn't have radio inputs" do
       expect(rendered).not_to have_selector("#sortable input[type=radio][name='scanned_resource[viewing_hint]']")
@@ -81,7 +83,7 @@ RSpec.describe "hyrax/base/file_manager.html.erb" do
   end
 
   it "has a link back to parent" do
-    expect(rendered).to have_link "Test title", href: hyrax_scanned_resource_path(id: "resource")
+    expect(rendered).to have_link "Test title", href: hyrax_scanned_resource_path(id: parent.id)
   end
 
   it "has an actions bar for labeling" do
@@ -147,7 +149,7 @@ RSpec.describe "hyrax/base/file_manager.html.erb" do
   end
 
   context "when it's a MVW" do
-    let(:parent) { FactoryGirl.build(:multi_volume_work) }
+    let(:parent) { FactoryGirl.create(:multi_volume_work) }
     it "has a correct input to edit the viewing hint" do
       expect(rendered).to have_selector("input[name='multi_volume_work[viewing_hint]']")
     end
