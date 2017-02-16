@@ -55,6 +55,7 @@ Hyrax.config do |config|
   # config.analytic_start_date = DateTime.new(2014,9,10)
   config.working_path = ENV["PLUM_UPLOAD_PATH"]
   config.work_requires_files = false
+  config.active_deposit_agreement_acceptance = false
 end
 
 Date::DATE_FORMATS[:standard] = '%m/%d/%Y'
