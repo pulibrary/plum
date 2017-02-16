@@ -49,8 +49,8 @@ GIT
 
 GIT
   remote: git://github.com/projecthydra-labs/hyrax.git
-  revision: 84fa011fd54c0defa349904b0d835925522ed662
-  branch: fix_file_manager_form
+  revision: a8c6821cf9dd278a8d3ec799abea5ae3fcf54bd2
+  branch: master
   specs:
     hyrax (1.0.0.alpha)
       active_attr (~> 0.9.0)
