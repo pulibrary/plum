@@ -33,7 +33,6 @@ RSpec.feature "MultiVolumeWorksController", type: :feature do
     click_link 'Attach Scanned Resource'
     fill_in 'scanned_resource_title', with: 'Volume 1'
     select 'No Known Copyright', from: 'scanned_resource_rights_statement'
-    check "agreement"
     click_button 'Save'
     expect(current_path).to start_with "/concern/parent/#{multi_volume_work.id}/scanned_resources/"
 

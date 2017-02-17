@@ -35,6 +35,6 @@ class CollectionShowPresenter < Hyrax::CollectionPresenter
     end
 
     def file_presenter_class
-      MultiVolumeWorkShowPresenter::DynamicShowPresenter.new
+      ::DynamicShowPresenter.new
     end
 end

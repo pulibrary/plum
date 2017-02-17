@@ -98,9 +98,17 @@ GIT
       yaml_db (~> 0.2)
 
 GIT
+  remote: git://github.com/pulibrary/grocer.git
+  revision: 910e3d55f4ddc2792ee4fc80bd47e275aacfd458
+  specs:
+    grocer (0.1.0)
+      active-fedora
+      kaminari
+
+GIT
   remote: git://github.com/pulibrary/pul_metadata_services.git
-  revision: b0497dda4824d74fed1f97d856f285189060ea13
-  branch: master
+  revision: 08bc4282fbd4b956737d62f52738730a47e75496
+  branch: pulfa-metadata
   specs:
     pul_metadata_services (0.0.1)
       activesupport (>= 4.2.7.1)

@@ -15,6 +15,8 @@ module Hyrax
         false
       elsif field.to_sym == :rights_statement
         false
+      elsif field.to_sym == :identifier
+        false
       else
         super
       end
