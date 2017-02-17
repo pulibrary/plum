@@ -18,6 +18,7 @@ RSpec.describe UpdatesOCR do
       stub_language("ita+eng", "Italian & English")
       stub_language("eng+ita", "Italian & English")
       stub_language("eng", "English")
+      allow_any_instance_of(FileSet).to receive(:mime_type_storage).and_return(['image/tiff'])
       file_set.create_derivatives(file.path)
       file_set.save
       old_content = file_set.to_solr["full_text_tesim"]

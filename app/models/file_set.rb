@@ -17,6 +17,7 @@ class FileSet < ActiveFedora::Base
   before_destroy :cleanup_files
 
   delegate :mime_type_storage, to: :characterization_proxy
+  delegate :derivative_url, to: :file_set_derivatives_service
 
   validates_with ViewingHintValidator
 
@@ -29,26 +30,6 @@ class FileSet < ActiveFedora::Base
 
   def iiif_path
     IIIFPath.new(id).to_s
-  end
-
-  def create_derivatives(filename)
-    return if replaces && replaces.start_with?('urn:pudl:images')
-    case mime_type_storage.first
-    when 'image/tiff'
-      Hydra::Derivatives::Jpeg2kImageDerivatives.create(
-        filename,
-        outputs: [
-          label: 'intermediate_file',
-          service: {
-            datastream: 'intermediate_file',
-            recipe: :default
-          },
-          url: derivative_url('intermediate_file')
-        ]
-      )
-      RunOCRJob.perform_later(id, filename)
-    end
-    file_set_derivatives_service.create_derivatives(filename)
   end
 
   def to_solr(solr_doc = {})
@@ -91,28 +72,9 @@ class FileSet < ActiveFedora::Base
       ocr_document.try(:text).try(:strip)
     end
 
-    # Override the geo_concerns path factory
-    def derivative_path_factory
-      PairtreeDerivativePath
-    end
-
-    # Remove files as well as shapefile directories
-    def cleanup_derivatives
-      derivative_path_factory.derivatives_for_reference(self).each do |path|
-        FileUtils.rm_rf(path)
-      end
-    end
-
     def cleanup_files
       cleanup_derivatives
       FileUtils.rm_rf(local_file)
-    end
-
-    # The destination_name parameter has to match up with the file parameter
-    # passed to the DownloadsController
-    def derivative_url(destination_name)
-      path = PairtreeDerivativePath.derivative_path_for_reference(self, destination_name)
-      URI("file://#{path}").to_s
     end
 
     # Override GeoConcerns method because files are no longer stored in Fedora
