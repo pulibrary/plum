@@ -18,7 +18,7 @@ class IngestMETSJob < ApplicationJob
     def ingest
       delete_duplicates!
       resource = minimal_record(@mets.multi_volume? ? MultiVolumeWork : ScannedResource)
-      resource.identifier = [@mets.ark_id]
+      resource.identifier = @mets.ark_id
       resource.replaces = @mets.pudl_id
       resource.source_metadata_identifier = @mets.bib_id
       resource.member_of_collections = Array(@mets.collection_slugs).select(&:present?).map { |slug| find_or_create_collection(slug) }

@@ -127,6 +127,7 @@ RSpec.describe IngestMETSJob do
         allow(actor1).to receive(:attach_content)
         allow(actor2).to receive(:create_metadata)
         allow(actor2).to receive(:create_content)
+        allow(actor2).to receive(:attach_file_to_work)
         expect(resource1).to receive(:logical_order).at_least(:once).and_return(logical_order)
         expect(resource2).to receive(:logical_order).at_least(:once).and_return(logical_order)
         expect(logical_order).to receive(:order=).at_least(:once)
@@ -208,23 +209,23 @@ RSpec.describe IngestMETSJob do
     end
     context "when the file is already ingested", vcr: { cassette_name: 'bibdata-4612596' } do
       it "deletes the old version" do
-        mvw = FactoryGirl.create(:multi_volume_work_with_file, identifier: ["ark:/88435/5m60qr98h"])
+        mvw = FactoryGirl.create(:multi_volume_work_with_file, identifier: "ark:/88435/5m60qr98h")
         fs = mvw.ordered_members.to_a.first
         allow(described_class.logger).to receive(:info).and_call_original
         described_class.perform_now(mets_file, user)
 
-        expect(ActiveFedora::SolrService.query("identifier_tesim:#{RSolr.solr_escape(resource.identifier[0])}", fl: "id").length).to eq 1
+        expect(ActiveFedora::SolrService.query("identifier_tesim:#{RSolr.solr_escape(resource.identifier)}", fl: "id").length).to eq 1
         expect(ActiveFedora::SolrService.query("id:#{fs.id}", fl: "id").length).to eq 0
-        expect(described_class.logger).to have_received(:info).with("Deleting existing resource with ID of #{mvw.id} which had ARK #{mvw.identifier.first}")
+        expect(described_class.logger).to have_received(:info).with("Deleting existing resource with ID of #{mvw.id} which had ARK #{mvw.identifier}")
       end
     end
     context "when there's another resource with a different ark", vcr: { cassette_name: 'bibdata-4612596' } do
       it "doesn't delete it" do
-        FactoryGirl.create(:multi_volume_work_with_file, identifier: ["ark:/88435/5m60qr98r"])
+        FactoryGirl.create(:multi_volume_work_with_file, identifier: "ark:/88435/5m60qr98r")
 
         described_class.perform_now(mets_file, user)
 
-        expect(ActiveFedora::SolrService.query("identifier_tesim:#{RSolr.solr_escape(resource.identifier[0])}", fl: "id").length).to eq 2
+        expect(ActiveFedora::SolrService.query("identifier_tesim:#{RSolr.solr_escape(resource.identifier)}", fl: "id").length).to eq 2
       end
     end
   end

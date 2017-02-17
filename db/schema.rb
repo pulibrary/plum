@@ -64,19 +64,6 @@ ActiveRecord::Schema.define(version: 20170206212244) do
     t.index ["user_id"], name: "index_curation_concerns_operations_on_user_id"
   end
 
-  create_table "grocer_exports", force: :cascade do |t|
-    t.string   "pid"
-    t.integer  "job"
-    t.string   "status"
-    t.datetime "last_error"
-    t.datetime "last_success"
-    t.string   "logfile"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-    t.string   "ark"
-    t.index ["pid"], name: "index_grocer_exports_on_pid", unique: true
-  end
-
   create_table "featured_works", force: :cascade do |t|
     t.integer  "order",      default: 5
     t.string   "work_id"
@@ -106,6 +93,19 @@ ActiveRecord::Schema.define(version: 20170206212244) do
     t.integer  "user_id"
     t.index ["file_id"], name: "index_file_view_stats_on_file_id"
     t.index ["user_id"], name: "index_file_view_stats_on_user_id"
+  end
+
+  create_table "grocer_exports", force: :cascade do |t|
+    t.string   "pid"
+    t.integer  "job"
+    t.string   "status"
+    t.datetime "last_error"
+    t.datetime "last_success"
+    t.string   "logfile"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.string   "ark"
+    t.index ["pid"], name: "index_grocer_exports_on_pid", unique: true
   end
 
   create_table "hyrax_features", force: :cascade do |t|

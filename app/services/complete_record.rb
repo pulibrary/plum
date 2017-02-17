@@ -47,7 +47,7 @@ class CompleteRecord
     end
 
     def mint_identifier
-      record.identifier = [minter.mint(metadata).id]
+      record.identifier = minter.mint(metadata).id
       record.save
     end
 end
