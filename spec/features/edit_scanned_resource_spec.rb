@@ -50,8 +50,8 @@ RSpec.feature "ScannedResourcesController", type: :feature do
       allow_any_instance_of(FileSet).to receive(:warn) # suppress virus warning messages
 
       visit polymorphic_path [scanned_resource]
-      click_link I18n.t('file_manager.link_text')
-      expect(page).to have_text(I18n.t('file_manager.link_text'))
+      expect(page).to have_link(I18n.t('file_manager.link_text'))
+      visit polymorphic_path [:file_manager, scanned_resource]
 
       expect(page).to have_selector("form.edit_scanned_resource")
       within("form.edit_scanned_resource") do
