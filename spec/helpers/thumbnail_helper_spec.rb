@@ -17,7 +17,7 @@ describe ThumbnailHelper do
       )
     end
 
-    xit 'returns a path to the thumbnail image' do
+    it 'returns a path to the thumbnail image' do
       expect(subject).to receive(:link_to_document).with(document, /<img src=\"\/images\/thumbnail.jpg/)
       subject.plum_thumbnail_path(document)
     end
@@ -26,14 +26,14 @@ describe ThumbnailHelper do
   context 'when document is a VectorWork' do
     let(:vector_work) { FactoryGirl.create(:vector_work) }
     let(:document) do
-      GeoConcerns::VectorWorkShowPresenter.new(
+      GeoWorks::VectorWorkShowPresenter.new(
         SolrDocument.new(
           vector_work.to_solr
         ), nil
       )
     end
 
-    xit 'returns a path to the thumbnail image' do
+    it 'returns a path to the thumbnail image' do
       expect(subject).to receive(:link_to_document).with(document, /<img src=\"\/images\/thumbnail.jpg/)
       subject.plum_thumbnail_path(document)
     end

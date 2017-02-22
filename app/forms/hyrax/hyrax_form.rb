@@ -61,7 +61,7 @@ module Hyrax
     end
 
     def secondary_terms
-      [:portion_note, :description, :nav_date]
+      [:portion_note, :description, :nav_date, :related_url]
     end
   end
 end

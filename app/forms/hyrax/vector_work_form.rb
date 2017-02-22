@@ -1,8 +1,8 @@
 module Hyrax
-  class VectorWorkForm < ::Hyrax::HyraxForm
-    include ::GeoConcerns::BasicGeoMetadataForm
-    include ::GeoConcerns::ExternalMetadataFileForm
-    include ::GeoConcerns::GeoreferencedForm
+  class VectorWorkForm < ::Hyrax::GeoWorkForm
+    include ::GeoWorks::BasicGeoMetadataForm
+    include ::GeoWorks::ExternalMetadataFileForm
+    include ::GeoWorks::GeoreferencedForm
     self.model_class = ::VectorWork
   end
 end

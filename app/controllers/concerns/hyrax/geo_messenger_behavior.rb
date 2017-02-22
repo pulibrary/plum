@@ -3,22 +3,22 @@ module Hyrax
     extend ActiveSupport::Concern
 
     def destroy
-      geo_concerns_messenger.record_deleted(geo_concern)
+      geo_works_messenger.record_deleted(geo_work)
       super
     end
 
     def after_update_response
       super
       return unless curation_concern.workflow_state == 'complete'
-      geo_concerns_messenger.record_updated(geo_concern)
+      geo_works_messenger.record_updated(geo_work)
     end
 
-    def geo_concerns_messenger
-      @geo_concerns_messenger ||= GeoConcerns::Messaging.messenger
+    def geo_works_messenger
+      @geo_works_messenger ||= GeoWorks::Messaging.messenger
     end
 
-    def geo_concern
-      doc = SolrDocument.new(curation_concern.to_solr)
+    def geo_work
+      doc = ::SolrDocument.new(curation_concern.to_solr)
       show_presenter.new(doc, current_ability, request)
     end
   end

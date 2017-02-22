@@ -41,7 +41,7 @@ Rails.application.routes.draw do
   curation_concerns_basic_routes
   curation_concerns_embargo_management
 
-  # mount GeoConcerns::Engine => '/'
+  mount GeoWorks::Engine => '/'
   get "/iiif/collections", defaults: { format: :json }, controller: 'hyrax/collections', action: :index_manifest
 
   namespace :hyrax, path: :concern do

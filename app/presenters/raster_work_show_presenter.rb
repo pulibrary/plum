@@ -1,3 +1,3 @@
-class RasterWorkShowPresenter < GeoConcerns::GeoConcernsShowPresenter
+class RasterWorkShowPresenter < GeoWorks::RasterWorkShowPresenter
   include PlumAttributes
 end

@@ -3,10 +3,10 @@
 require 'rails_helper'
 
 describe Hyrax::RasterWorksController do
-  xit { is_expected.to be_kind_of(GeoConcerns::RasterWorksControllerBehavior) }
+  it { is_expected.to be_kind_of(GeoWorks::RasterWorksControllerBehavior) }
 
   describe '#show_presenter' do
     subject { described_class.new.show_presenter }
-    xit { is_expected.to eq(RasterWorkShowPresenter) }
+    it { is_expected.to eq(RasterWorkShowPresenter) }
   end
 end

@@ -24,7 +24,7 @@ describe FileSetActor do
     end
 
     context 'when the parent work is a VectorWork' do
-      xit 'does not fire a record_updated manifest event' do
+      it 'does not fire a record_updated manifest event' do
         expect(messenger).to_not receive(:record_updated)
         subject.attach_file_to_work(vector_work, {})
       end

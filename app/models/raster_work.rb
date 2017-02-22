@@ -1,9 +1,9 @@
 class RasterWork < ActiveFedora::Base
   include ::Hyrax::WorkBehavior
-  # include ::GeoConcerns::RasterWorkBehavior
+  include ::GeoWorks::RasterWorkBehavior
   include ::Hyrax::BasicMetadata
-  # include ::GeoConcerns::BasicGeoMetadata
-  # include ::GeoConcerns::GeoreferencedBehavior
+  include ::GeoWorks::BasicGeoMetadata
+  include ::GeoWorks::GeoreferencedBehavior
   include ::GeoMetadata
   include ::StateBehavior
   self.valid_child_concerns = [VectorWork]
