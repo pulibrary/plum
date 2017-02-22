@@ -18,7 +18,7 @@ module Hyrax
     end
 
     def geo_work
-      doc = SolrDocument.new(curation_concern.to_solr)
+      doc = ::SolrDocument.new(curation_concern.to_solr)
       show_presenter.new(doc, current_ability, request)
     end
   end
