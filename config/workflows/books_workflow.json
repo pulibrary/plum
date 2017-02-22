@@ -10,7 +10,7 @@
           "transition_to": "pending",
           "methods": [
             "Workflow::GrantEditToGroups",
-            "CurationConcerns::Workflow::ActivateObject"
+            "Hyrax::Workflow::ActivateObject"
           ]
         },
         {

@@ -32,11 +32,11 @@ class IngestMETSJob < ApplicationJob
       if @mets.multi_volume?
         ingest_volumes(resource)
       else
-        resource.viewing_hint = @mets.viewing_hint
         ingest_files(resource: resource, files: @mets.files)
         if @mets.structure.present?
           resource.logical_order.order = map_fileids(@mets.structure)
         end
+        resource.viewing_hint = @mets.viewing_hint
         resource.save!
         validate!(resource)
       end
@@ -104,7 +104,8 @@ class IngestMETSJob < ApplicationJob
       file_set.title = [@mets.file_label(f[:id])]
       file_set.replaces = f[:replaces]
       actor = BatchFileSetActor.new(file_set, @user)
-      actor.create_metadata(resource, @mets.file_opts(f))
+      actor.create_metadata(@mets.file_opts(f))
+      actor.attach_file_to_work(resource)
       actor.create_content(@mets.decorated_file(f))
 
       mets_to_repo_map[f[:id]] = file_set.id

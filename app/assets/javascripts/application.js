@@ -24,10 +24,12 @@
 //= require bootstrap-select
 //= require openseadragon
 
-//= require geo_concerns
-//= require curation_concerns/application
+//= require dataTables/jquery.dataTables
+//= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
+//= require geo_works/application
+//= require hyrax
 //= require_tree .
-//= require geo_concerns/es6-modules
+//= require geo_works/es6-modules
 
 //= require modernizr
 //= require jquery.iiifOsdViewer
@@ -36,6 +38,6 @@ Blacklight.onLoad(function() {
   Initializer = require('plum_boot')
   window.plum = new Initializer()
 })
-$(document).ready(function(){
+$(document).ready(function() {
   Blacklight.activate()
 })

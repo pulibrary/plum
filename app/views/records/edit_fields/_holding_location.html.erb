@@ -1,0 +1,5 @@
+  <%= f.input :holding_location,
+              as: :select,
+              collection: HoldingLocationService.select_options,
+              input_html: { class: 'form-control' },
+              label: 'Holding Location' %>

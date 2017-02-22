@@ -1,4 +1,4 @@
-class RightsStatementRenderer < CurationConcerns::Renderers::RightsAttributeRenderer
+class RightsStatementRenderer < Hyrax::Renderers::RightsAttributeRenderer
   def initialize(rights_statement, rights_note, options = {})
     super(:rights, rights_statement, options)
     if !rights_note.nil? && RightsStatementService.new.notable?(rights_statement)

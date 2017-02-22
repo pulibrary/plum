@@ -55,7 +55,7 @@ class CanvasBuilder
     end
 
     def attach_other_content
-      id = parent_path.send(:helper).text_curation_concerns_member_file_set_url(parent_path.record, record)
+      id = parent_path.send(:helper).text_hyrax_member_file_set_url(parent_path.record, record)
       resource = {
         "@id" => id,
         "@type" => "sc:AnnotationList",

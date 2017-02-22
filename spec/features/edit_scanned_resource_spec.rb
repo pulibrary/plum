@@ -30,7 +30,7 @@ RSpec.feature "ScannedResourcesController", type: :feature do
       fill_in 'scanned_resource_nav_date', with: '2016-04-01T01:01:01Z'
       select 'Color PDF', from: 'scanned_resource_pdf_type'
 
-      click_button 'Update Scanned resource'
+      click_button 'Save'
       expect(page).to have_text("Test title")
     end
 
@@ -39,25 +39,30 @@ RSpec.feature "ScannedResourcesController", type: :feature do
       fill_in 'scanned_resource_source_metadata_identifier', with: 'badid'
       check "refresh_remote_metadata"
 
-      click_button 'Update Scanned resource'
+      click_button 'Save'
       expect(page).to have_text("Error retrieving metadata")
     end
 
-    scenario "User can follow link to bulk edit scanned resource and add a new file" do
+    let(:file1) { File.open(Rails.root.join("spec", "fixtures", "files", "gray.tif")) }
+    let(:uploaded_file1) { Hyrax::UploadedFile.create(file: file1, user: user) }
+    scenario "User can follow link to bulk edit scanned resource and add a new file", js: true do
       allow(CharacterizeJob).to receive(:perform_later).once
       allow_any_instance_of(FileSet).to receive(:warn) # suppress virus warning messages
 
       visit polymorphic_path [scanned_resource]
-      click_link I18n.t('file_manager.link_text')
-      expect(page).to have_text(I18n.t('file_manager.link_text'))
+      expect(page).to have_link(I18n.t('file_manager.link_text'))
+      visit polymorphic_path [:file_manager, scanned_resource]
 
-      within("form.new_file_set") do
-        attach_file("file_set[files][]", File.join(Rails.root, 'spec/fixtures/files/image.png'))
-        click_on("Start upload")
+      expect(page).to have_selector("form.edit_scanned_resource")
+      within("form.edit_scanned_resource") do
+        page.execute_script("$(\"#fileupload.edit_scanned_resource\").append('<input name=\"uploaded_files[]\" value=\"#{uploaded_file1.id}\" type=\"hidden\">');")
+        perform_enqueued_jobs do
+          click_on("Save")
+        end
       end
 
       visit polymorphic_path [parent_presenter.member_presenters.first]
-      expect(page).to have_content "image.png"
+      expect(page).to have_content "gray.tif"
 
       visit edit_polymorphic_path [scanned_resource]
       expect(page).not_to have_text('Representative Media')
@@ -69,12 +74,12 @@ RSpec.feature "ScannedResourcesController", type: :feature do
     let(:scanned_resource) { FactoryGirl.create(:complete_scanned_resource_with_multi_volume_work, user: user) }
     scenario "User can't edit a scanned resource" do
       visit edit_polymorphic_path [scanned_resource]
-      expect(page).to have_selector("div.alert-info", text: "You are not authorized to access this page")
+      expect(page).to have_content "Unauthorized"
     end
 
     scenario "User can follow link to parent multi volume work" do
       parent_id = scanned_resource.ordered_by.first.id
-      visit curation_concerns_parent_scanned_resource_path(parent_id, scanned_resource.id)
+      visit hyrax_parent_scanned_resource_path(parent_id, scanned_resource.id)
       click_link 'Test title'
       expect(page).to have_text('Test title')
     end

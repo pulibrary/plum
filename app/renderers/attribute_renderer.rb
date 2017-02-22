@@ -1,4 +1,4 @@
-class AttributeRenderer < CurationConcerns::Renderers::AttributeRenderer
+class AttributeRenderer < Hyrax::Renderers::AttributeRenderer
   # Draw the table row for the attribute
   def render
     markup = ''

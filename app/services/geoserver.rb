@@ -3,7 +3,7 @@ require 'rgeoserver'
 require 'yaml'
 require 'erb'
 
-class Geoserver < GeoConcerns::Delivery::Geoserver
+class Geoserver < GeoWorks::Delivery::Geoserver
   attr_reader :config, :workspace_name, :file_set, :file_path
 
   private

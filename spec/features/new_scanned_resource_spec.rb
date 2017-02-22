@@ -21,13 +21,13 @@ RSpec.feature "ScannedResourcesController", type: :feature do
       fill_in 'scanned_resource_title', with: 'Test Title'
       expect(page).to have_select 'scanned_resource_rights_statement', selected: 'No Known Copyright'
       expect(page).to have_select 'scanned_resource_pdf_type', selected: 'Grayscale PDF'
-      click_button 'Create Scanned resource'
+      click_button 'Save'
 
       expect(page).to have_selector("h1", text: "Test Title")
       expect(page).to have_selector("span.label-default", text: "Pending")
       expect(page).to have_text("No Known Copyright")
 
-      CurationConcerns::Workflow::PermissionGenerator.call(agents: user, roles: 'admin', workflow: workflow)
+      Hyrax::Workflow::PermissionGenerator.call(agents: user, roles: 'admin', workflow: workflow)
       visit current_path
 
       choose 'Metadata Review'

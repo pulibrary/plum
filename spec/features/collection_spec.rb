@@ -70,20 +70,20 @@ RSpec.feature 'Collections', type: :feature do
     it "works" do
       visit edit_polymorphic_path [resource]
       select 'Col 1', from: 'scanned_resource[member_of_collection_ids][]'
-      click_button 'Update Scanned resource'
+      click_button 'Save'
       expect(page).to have_selector 'a.collection-link', text: 'Col 1'
       expect(page).not_to have_selector 'a.collection-link', text: 'Col 2'
 
       visit edit_polymorphic_path [resource]
       select 'Col 2', from: 'scanned_resource[member_of_collection_ids][]'
       unselect 'Col 1', from: 'scanned_resource[member_of_collection_ids][]'
-      click_button 'Update Scanned resource'
+      click_button 'Save'
       expect(page).not_to have_selector 'a.collection-link', text: 'Col 1'
       expect(page).to have_selector 'a.collection-link', text: 'Col 2'
 
       visit edit_polymorphic_path [resource]
       unselect 'Col 2', from: 'scanned_resource[member_of_collection_ids][]'
-      click_button 'Update Scanned resource'
+      click_button 'Save'
       expect(page).not_to have_selector 'a.collection-link', text: 'Col 1'
       expect(page).not_to have_selector 'a.collection-link', text: 'Col 2'
     end

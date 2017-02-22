@@ -1,5 +1,5 @@
 class DownloadsController < ApplicationController
-  include CurationConcerns::DownloadBehavior
+  include Hyrax::DownloadBehavior
 
   protected
 

@@ -1,4 +1,4 @@
-class CollectionEditForm < CurationConcerns::Forms::CollectionEditForm
+class CollectionEditForm < Hyrax::Forms::CollectionForm
   terms << :exhibit_id
   delegate :exhibit_id, to: :model
 
@@ -18,5 +18,13 @@ class CollectionEditForm < CurationConcerns::Forms::CollectionEditForm
 
   def description
     self[:description].first
+  end
+
+  def primary_terms
+    [:title, :exhibit_id]
+  end
+
+  def secondary_terms
+    [:description]
   end
 end

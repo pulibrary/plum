@@ -1,6 +1,3 @@
-class RasterWorkShowPresenter < GeoConcerns::GeoConcernsShowPresenter
+class RasterWorkShowPresenter < GeoWorks::RasterWorkShowPresenter
   include PlumAttributes
-
-  self.work_presenter_class = ::VectorWorkShowPresenter
-  self.file_format_service = GeoConcerns::RasterFormatService
 end

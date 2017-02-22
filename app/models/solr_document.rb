@@ -1,11 +1,11 @@
 # -*- encoding : utf-8 -*-
 class SolrDocument
   include Blacklight::Solr::Document
-  # Adds GeoConcerns behaviors to the SolrDocument.
-  include GeoConcerns::SolrDocumentBehavior
+  # Adds GeoWorks behaviors to the SolrDocument.
+  include GeoWorks::SolrDocumentBehavior
 
-  # Adds CurationConcerns behaviors to the SolrDocument.
-  include CurationConcerns::SolrDocumentBehavior
+  # Adds Hyrax behaviors to the SolrDocument.
+  include Hyrax::SolrDocumentBehavior
   include SolrDates
   include SolrTechnicalMetadata
 
@@ -95,6 +95,11 @@ class SolrDocument
 
   def collection
     self[Solrizer.solr_name('member_of_collections', :symbol)]
+  end
+
+  def title_or_label
+    return label if title.blank?
+    Array(title).join(', ')
   end
 
   def method_missing(meth_name, *args, &block)

@@ -1,6 +1,3 @@
-class ImageWorkShowPresenter < GeoConcerns::GeoConcernsShowPresenter
+class ImageWorkShowPresenter < GeoWorks::ImageWorkShowPresenter
   include PlumAttributes
-
-  self.work_presenter_class = ::RasterWorkShowPresenter
-  self.file_format_service = GeoConcerns::ImageFormatService
 end

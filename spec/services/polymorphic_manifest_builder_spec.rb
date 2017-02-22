@@ -14,7 +14,7 @@ RSpec.describe PolymorphicManifestBuilder, vcr: { cassette_name: "iiif_manifest"
 
   context "when given a MVW with Children" do
     subject { described_class.new(mvw_document) }
-    let(:mvw_document) { MultiVolumeWorkShowPresenter::DynamicShowPresenter.new.new(SolrDocument.new(mvw_record.to_solr), nil) }
+    let(:mvw_document) { ::DynamicShowPresenter.new.new(SolrDocument.new(mvw_record.to_solr), nil) }
     let(:mvw_record) { FactoryGirl.build(:multi_volume_work, viewing_hint: viewing_hint) }
     let(:manifest) { JSON.parse(subject.manifest.to_json) }
     let(:viewing_hint) { "individuals" }

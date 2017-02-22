@@ -1,6 +1,7 @@
 export default class UniversalViewer {
   constructor() {
     this.addFullscreenEventListeners()
+    $(".viewer").trigger("resize")
   }
 
   addFullscreenEventListeners() {
@@ -23,8 +24,14 @@ export default class UniversalViewer {
     if (fullscreen !== true) {
       this.sleep(200).then(() => {
         let frame = document.getElementsByTagName("iframe")[0]
+        frame.style.position = null
         frame.style.top = null
         frame.style.left = null
+      })
+    } else {
+      this.sleep(200).then(() => {
+        let frame = document.getElementsByTagName("iframe")[0]
+        frame.style.position = "absolute"
       })
     }
   }

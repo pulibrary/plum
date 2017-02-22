@@ -1,6 +1,6 @@
 FactoryGirl.define do
   # The ::FileSet model is defined in spec/internal/app/models by the
-  # curation_concerns:install generator.
+  # hyrax:install generator.
   factory :file_set, class: FileSet do
     transient do
       user { FactoryGirl.create(:user) }

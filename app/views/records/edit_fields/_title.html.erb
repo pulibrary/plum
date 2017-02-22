@@ -1,0 +1,6 @@
+<% if f.object.respond_to?(:source_metadata_identifier) %>
+  <%= f.input :title, as: :multi_value, readonly: f.object.source_metadata_identifier.present?, input_html: { class: 'mutex' } %>
+  <%= hidden_field_tag 'mutex_field', nil, required: true %>
+<% else %>
+  <%= f.input :title, as: :multi_value %>
+<% end %>

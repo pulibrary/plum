@@ -7,7 +7,7 @@ class CompleteRecord
   end
 
   def complete
-    if identifier
+    if identifier.present?
       update_metadata
     else
       mint_identifier

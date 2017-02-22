@@ -29,20 +29,22 @@ Rails.application.routes.draw do
   default_url_options Rails.application.config.action_mailer.default_url_options
 
   # Collections have to go before CC routes, to add index_manifest.
-  resources :collections, only: [] do
-    member do
-      get :manifest, defaults: { format: :json }
+  scope module: 'hyrax' do
+    resources :collections do
+      member do
+        get :manifest, defaults: { format: :json }
+      end
     end
   end
-  mount CurationConcerns::Engine, at: '/'
+  mount Hyrax::Engine, at: '/'
   curation_concerns_collections
   curation_concerns_basic_routes
   curation_concerns_embargo_management
 
-  mount GeoConcerns::Engine => '/'
-  get "/iiif/collections", defaults: { format: :json }, controller: :collections, action: :index_manifest
+  mount GeoWorks::Engine => '/'
+  get "/iiif/collections", defaults: { format: :json }, controller: 'hyrax/collections', action: :index_manifest
 
-  namespace :curation_concerns, path: :concern do
+  namespace :hyrax, path: :concern do
     resources :parent, only: [] do
       [:multi_volume_works, :scanned_resources].each do |type|
         resources type, only: [] do
@@ -77,7 +79,7 @@ Rails.application.routes.draw do
     end
   end
 
-  namespace :curation_concerns, path: :concern do
+  namespace :hyrax, path: :concern do
     resources :file_sets, only: [], path: 'container/:parent_id/file_sets', as: 'member_file_set' do
       member do
         get :text, defaults: { format: :json }
@@ -92,4 +94,6 @@ Rails.application.routes.draw do
 
   # Dynamic robots.txt
   get '/robots.:format' => 'pages#robots'
+
+  mount Qa::Engine => '/authorities'
 end

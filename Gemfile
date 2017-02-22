@@ -31,26 +31,26 @@ gem 'modernizr-rails'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-gem 'curation_concerns', '2.0.0.rc1'
+gem 'hyrax', github: 'projecthydra-labs/hyrax', branch: 'master'
 gem 'pul_metadata_services', github:'pulibrary/pul_metadata_services', branch: 'pulfa-metadata'
 gem 'hydra-role-management', '~> 0.2.0'
 gem 'rsolr', '~> 1.1.0'
 gem 'devise' , '~> 4.2.0'
 gem 'devise-guests', '~> 0.3'
 gem 'iiif-presentation', github: 'iiif/osullivan', branch: 'development'
-gem 'geo_concerns', '~> 0.3.4'
+gem 'geo_works', github: 'geoconcerns/geo_works', branch: 'master'
 
 # PDF generation
 gem 'prawn'
 # gem 'pdf-inspector', '~> 1.2.0', group: [:test]
 
-# Copied from curation_concerns Gemfile.extra
+# Copied from hyrax Gemfile.extra
 gem 'hydra-works', github: 'projecthydra-labs/hydra-works', branch: 'master'
 gem 'hydra-pcdm', github: 'projecthydra-labs/hydra-pcdm', branch: 'master'
 gem 'hydra-derivatives', '3.1.3'
 gem 'active-fedora', '~> 11.1.2'
 gem 'active-triples', '~> 0.11.0'
-gem 'active_fedora-noid', '2.0.0.beta6'
+gem 'active_fedora-noid', '2.0.0'
 
 gem 'rubocop', '~> 0.34.0', require: false
 gem 'rubocop-rspec', '~> 1.3.0', require: false
@@ -91,6 +91,7 @@ group :test do
   gem "launchy"
   gem "vcr", '~> 2.9'
   gem "webmock", '~> 1.0', require: false
+  gem "database_cleaner"
 end
 
 group :production do
@@ -124,3 +125,6 @@ source 'https://rails-assets.org' do
   gem 'rails-assets-bootstrap-select', '1.9.4'
   gem 'rails-assets-jqueryui-timepicker-addon'
 end
+gem 'flipflop', git: 'https://github.com/jcoyne/flipflop.git', branch: 'hydra'
+gem 'poltergeist'
+

@@ -52,7 +52,7 @@ class ManifestBuilder
       end
 
       def metadata_fields
-        PlumSchema.display_fields + [:exhibit_id, :collection] - [:has_model, :date_created, :identifier, :replaces]
+        PlumSchema.display_fields + [:exhibit_id, :collection] - [:has_model, :resource_type, :date_created, :identifier, :replaces]
       end
 
       class MetadataObject
@@ -88,7 +88,7 @@ class ManifestBuilder
           end
 
           def renderer
-            @renderer ||= CurationConcerns::Renderers::AttributeRenderer.new(field_name, values)
+            @renderer ||= Hyrax::Renderers::AttributeRenderer.new(field_name, values)
           end
       end
   end

@@ -28,7 +28,7 @@ RSpec.feature "CatalogController", type: :feature do
       scanned_resource.update_index
     end
 
-    scenario "CurationConcerns creators see a state facet" do
+    scenario "Hyrax creators see a state facet" do
       visit search_catalog_path q: ""
       expect(page).to have_text "Test title"
       expect(page).to have_selector "div.blacklight-workflow_state_name_ssim", text: "State"
