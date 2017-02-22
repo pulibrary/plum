@@ -49,7 +49,7 @@ GIT
 
 GIT
   remote: git://github.com/projecthydra-labs/hyrax.git
-  revision: 76d0a9460e189e747a8f461aedd2ab6fadda3be7
+  revision: 6484f5a5bef041bcf4e5bd5e786174cee4f228cb
   branch: master
   specs:
     hyrax (1.0.0.alpha)
@@ -61,7 +61,7 @@ GIT
       blacklight-gallery (~> 0.7)
       breadcrumbs_on_rails (~> 3.0)
       browse-everything (>= 0.10.5)
-      carrierwave (~> 0.9)
+      carrierwave (~> 1.0)
       clipboard-rails (~> 1.5)
       daemons (~> 1.1)
       dry-equalizer (~> 0.2)
@@ -292,12 +292,10 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
-    carrierwave (0.11.2)
-      activemodel (>= 3.2.0)
-      activesupport (>= 3.2.0)
-      json (>= 1.7)
+    carrierwave (1.0.0)
+      activemodel (>= 4.0.0)
+      activesupport (>= 4.0.0)
       mime-types (>= 1.16)
-      mimemagic (>= 0.3.0)
     clipboard-rails (1.6.0)
     cliver (0.3.2)
     coderay (1.1.1)
@@ -340,7 +338,7 @@ GEM
       unf (>= 0.0.5, < 1.0.0)
     dropbox-sdk (1.6.5)
       json
-    dry-configurable (0.5.0)
+    dry-configurable (0.6.0)
       concurrent-ruby (~> 1.0)
     dry-container (0.6.0)
       concurrent-ruby (~> 1.0)
