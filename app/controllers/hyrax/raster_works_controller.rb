@@ -1,8 +1,8 @@
 class Hyrax::RasterWorksController < ApplicationController
   include Hyrax::CurationConcernController
   include Hyrax::ParentContainer
-  # include GeoConcerns::RasterWorksControllerBehavior
-  # include GeoConcerns::GeoblacklightControllerBehavior
+  include GeoWorks::RasterWorksControllerBehavior
+  include GeoWorks::GeoblacklightControllerBehavior
   include Hyrax::GeoMessengerBehavior
   self.curation_concern_type = RasterWork
 

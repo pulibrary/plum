@@ -26,8 +26,10 @@
 
 //= require dataTables/jquery.dataTables
 //= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
+//= require geo_works/application
 //= require hyrax
 //= require_tree .
+//= require geo_works/es6-modules
 
 //= require modernizr
 //= require jquery.iiifOsdViewer

@@ -4,7 +4,7 @@
     <tr><th>Attribute Name</th><th>Values</th></tr>
   </thead>
   <tbody>
-    <%= render 'geo_concerns/attribute_rows', presenter: presenter %>
+    <%= render 'geo_works/attribute_rows', presenter: presenter %>
     <%= presenter.attribute_to_html(:permission_badge, label: 'Access Rights') %>
 
     <%= presenter.attribute_to_html(:rights, render_as: :rights) %>

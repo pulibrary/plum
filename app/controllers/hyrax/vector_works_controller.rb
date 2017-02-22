@@ -1,8 +1,8 @@
 class Hyrax::VectorWorksController < ApplicationController
-  include Hyrax::CurationConcernController
+  include Hyrax::WorksControllerBehavior
   include Hyrax::ParentContainer
-  # include GeoConcerns::VectorWorksControllerBehavior
-  # include GeoConcerns::GeoblacklightControllerBehavior
+  include GeoWorks::VectorWorksControllerBehavior
+  include GeoWorks::GeoblacklightControllerBehavior
   include Hyrax::GeoMessengerBehavior
   self.curation_concern_type = VectorWork
 

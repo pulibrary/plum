@@ -1,4 +1,4 @@
-module GeoConcerns
+module GeoWorks
   class DeliveryService
     attr_reader :geoserver
 

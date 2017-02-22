@@ -3,5 +3,5 @@
 require 'rails_helper'
 
 describe RasterWork do
-  xit { is_expected.to be_kind_of(GeoConcerns::RasterWorkBehavior) }
+  it { is_expected.to be_kind_of(GeoWorks::RasterWorkBehavior) }
 end

@@ -1,6 +1,6 @@
 class Ability
   include Hydra::Ability
-  # include GeoConcerns::Ability
+  include GeoWorks::Ability
   #
   def can_create_any_work?
     Hyrax.config.curation_concerns.any? do |curation_concern_type|

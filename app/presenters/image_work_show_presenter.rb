@@ -1,3 +1,3 @@
-class ImageWorkShowPresenter < GeoConcerns::GeoConcernsShowPresenter
+class ImageWorkShowPresenter < GeoWorks::ImageWorkShowPresenter
   include PlumAttributes
 end
