@@ -3,5 +3,9 @@ module Hyrax
     include ::GeoWorks::BasicGeoMetadataForm
     include ::GeoWorks::ExternalMetadataFileForm
     self.model_class = ::ImageWork
+
+    def secondary_terms
+      super - [:cartographic_projection]
+    end
   end
 end
