@@ -64,7 +64,7 @@ RSpec.describe FileSet do
       expect(ocr_path).to exist
       expect(subject.to_solr["full_text_tesim"]).to eq "yo"
     end
-    xit "creates a vector thumbnail and indexes the path" do
+    it "creates a vector thumbnail and indexes the path" do
       allow_any_instance_of(described_class).to receive(:warn) # suppress virus check warnings
       subject.geo_mime_type = 'application/vnd.geo+json'
       file = File.open(Rails.root.join("spec", "fixtures", "files", "mercer.json"))
