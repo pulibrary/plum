@@ -63,4 +63,4 @@ Hyrax::Workflow::WorkflowFactory.workflow_strategy = Workflow::PlumWorkflowStrat
 Hyrax::MemberPresenterFactory.work_presenter_class = DynamicShowPresenter.new
 Hyrax::MemberPresenterFactory.file_presenter_class = FileSetPresenter
 # Prepend our derivative service.
-Hyrax::DerivativeService.services = [PlumDerivativesService, GeoWorks::FileSetDerivativesService] + Hyrax::DerivativeService.services
+Hyrax::DerivativeService.services = [PlumDerivativesService, GeoDerivativesService] + Hyrax::DerivativeService.services
