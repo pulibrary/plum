@@ -3,5 +3,5 @@
 require 'rails_helper'
 
 describe ImageWork do
-  xit { is_expected.to be_kind_of(GeoConcerns::ImageWorkBehavior) }
+  it { is_expected.to be_kind_of(GeoWorks::ImageWorkBehavior) }
 end

@@ -1,8 +1,8 @@
 module Hyrax
-  class RasterWorkForm < ::Hyrax::HyraxForm
-    include ::GeoConcerns::BasicGeoMetadataForm
-    include ::GeoConcerns::ExternalMetadataFileForm
-    include ::GeoConcerns::GeoreferencedForm
+  class RasterWorkForm < ::Hyrax::GeoWorkForm
+    include ::GeoWorks::BasicGeoMetadataForm
+    include ::GeoWorks::ExternalMetadataFileForm
+    include ::GeoWorks::GeoreferencedForm
     self.model_class = ::RasterWork
   end
 end

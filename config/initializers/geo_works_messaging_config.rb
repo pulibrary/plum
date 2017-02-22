@@ -1,11 +1,11 @@
-module GeoConcerns
+module GeoWorks
   module Messaging
     def config
       @config ||= config_yaml.with_indifferent_access
     end
 
     def messenger
-      GeoConcerns::EventsGenerator.new
+      GeoWorks::EventsGenerator.new
     end
 
     def geoblacklight_client
@@ -19,16 +19,16 @@ module GeoConcerns
     private
 
       def config_yaml
-        config_file = "#{Rails.root}/config/geo_concerns_messaging.yml"
+        config_file = "#{Rails.root}/config/geo_works_messaging.yml"
         YAML.load(ERB.new(File.read(config_file)).result)[Rails.env]
       end
 
       def local_client
-        GeoConcerns::LocalMessagingClient.new
+        GeoWorks::LocalMessagingClient.new
       end
 
       def rabbit_client
-        GeoConcerns::RabbitMessagingClient.new(Messaging.config['events']['server'])
+        GeoWorks::RabbitMessagingClient.new(Messaging.config['events']['server'])
       end
 
       module_function :config, :config_yaml, :messenger, :local_client,

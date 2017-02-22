@@ -3,10 +3,10 @@ require 'rails_helper'
 describe Hyrax::VectorWorksController do
   let(:user) { FactoryGirl.create(:user) }
   let(:vector_work) { FactoryGirl.create(:complete_vector_work, user: user) }
-  let(:manifest_generator) { instance_double(GeoConcerns::EventsGenerator) }
+  let(:manifest_generator) { instance_double(GeoWorks::EventsGenerator) }
 
   before do
-    allow(GeoConcerns::EventsGenerator).to receive(:new).and_return(manifest_generator)
+    allow(GeoWorks::EventsGenerator).to receive(:new).and_return(manifest_generator)
   end
 
   describe '#show_presenter' do

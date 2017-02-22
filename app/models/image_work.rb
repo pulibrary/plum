@@ -1,8 +1,8 @@
 class ImageWork < ActiveFedora::Base
   include ::Hyrax::WorkBehavior
-  # include ::GeoConcerns::ImageWorkBehavior
+  include ::GeoWorks::ImageWorkBehavior
   include ::Hyrax::BasicMetadata
-  # include ::GeoConcerns::BasicGeoMetadata
+  include ::GeoWorks::BasicGeoMetadata
   include ::GeoMetadata
   include ::StateBehavior
   self.valid_child_concerns = [RasterWork]

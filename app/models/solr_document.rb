@@ -1,8 +1,8 @@
 # -*- encoding : utf-8 -*-
 class SolrDocument
   include Blacklight::Solr::Document
-  # Adds GeoConcerns behaviors to the SolrDocument.
-  # include GeoConcerns::SolrDocumentBehavior
+  # Adds GeoWorks behaviors to the SolrDocument.
+  include GeoWorks::SolrDocumentBehavior
 
   # Adds Hyrax behaviors to the SolrDocument.
   include Hyrax::SolrDocumentBehavior
