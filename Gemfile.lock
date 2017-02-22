@@ -1,4 +1,12 @@
 GIT
+  remote: git://github.com/PerfectlyNormal/tinymce-rails-imageupload.git
+  revision: 230416b793ad89df3618eee9c61770d652ff86d7
+  specs:
+    tinymce-rails-imageupload (4.0.17.beta)
+      railties (>= 3.2, < 6)
+      tinymce-rails (~> 4.0)
+
+GIT
   remote: git://github.com/geoconcerns/geo_works.git
   revision: b418d01b1f3eea4edfa03a01c83a22eed3e8d0b4
   branch: master
@@ -858,9 +866,6 @@ GEM
     tins (1.13.2)
     tinymce-rails (4.5.3)
       railties (>= 3.1.1)
-    tinymce-rails-imageupload (4.0.17.beta)
-      railties (>= 3.2, < 6)
-      tinymce-rails (~> 4.0)
     trollop (2.1.2)
     ttfunk (1.4.0)
     twitter-typeahead-rails (0.11.1.pre.corejavascript)
@@ -975,6 +980,7 @@ DEPENDENCIES
   sprockets-rails (~> 2.3.3)
   sqlite3
   string_rtl
+  tinymce-rails-imageupload!
   uglifier (>= 1.3.0)
   vcr (~> 2.9)
   web-console (~> 2.0)
