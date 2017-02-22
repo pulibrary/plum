@@ -17,7 +17,7 @@ describe ThumbnailHelper do
       )
     end
 
-    xit 'returns a path to the thumbnail image' do
+    it 'returns a path to the thumbnail image' do
       expect(subject).to receive(:link_to_document).with(document, /<img src=\"\/images\/thumbnail.jpg/)
       subject.plum_thumbnail_path(document)
     end
