@@ -21,6 +21,7 @@ RSpec.feature "ScannedResourcesController", type: :feature do
       fill_in 'scanned_resource_title', with: 'Test Title'
       expect(page).to have_select 'scanned_resource_rights_statement', selected: 'No Known Copyright'
       expect(page).to have_select 'scanned_resource_pdf_type', selected: 'Grayscale PDF'
+      expect(page).not_to have_select 'scanned_resource_admin_set_id'
       click_button 'Save'
 
       expect(page).to have_selector("h1", text: "Test Title")
