@@ -125,7 +125,6 @@ source 'https://rails-assets.org' do
   gem 'rails-assets-bootstrap-select', '1.9.4'
   gem 'rails-assets-jqueryui-timepicker-addon'
 end
-gem 'flipflop', git: 'https://github.com/jcoyne/flipflop.git', branch: 'hydra'
 gem 'poltergeist'
 gem 'tinymce-rails-imageupload', github: 'PerfectlyNormal/tinymce-rails-imageupload'
-
+gem 'flipflop', github: 'voormedia/flipflop'

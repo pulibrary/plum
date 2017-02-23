@@ -59,7 +59,6 @@ Hyrax.config do |config|
 end
 
 Date::DATE_FORMATS[:standard] = '%m/%d/%Y'
-Hyrax::Workflow::WorkflowFactory.workflow_strategy = Workflow::PlumWorkflowStrategy
 Hyrax::MemberPresenterFactory.work_presenter_class = DynamicShowPresenter.new
 Hyrax::MemberPresenterFactory.file_presenter_class = FileSetPresenter
 # Prepend our derivative service.

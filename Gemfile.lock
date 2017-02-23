@@ -72,7 +72,7 @@ GIT
 
 GIT
   remote: git://github.com/projecthydra-labs/hyrax.git
-  revision: 9bef4c6b9bdff715c6376c55a349f9ffe2e56541
+  revision: d3b98b19cf96e6b54a761f2e1005df318af43504
   branch: master
   specs:
     hyrax (1.0.0.alpha)
@@ -147,6 +147,13 @@ GIT
     pul_uv_rails (1.8.42)
 
 GIT
+  remote: git://github.com/voormedia/flipflop.git
+  revision: 590f2aed794327e0bc2c837cd029f47bc61715b4
+  specs:
+    flipflop (2.2.1)
+      activesupport (>= 4.0)
+
+GIT
   remote: git://github.com/yob/pdf-reader.git
   revision: 8cbeecba9ab3999d69ba5081925d2a293d1db468
   specs:
@@ -156,14 +163,6 @@ GIT
       hashery (~> 2.0)
       ruby-rc4
       ttfunk
-
-GIT
-  remote: https://github.com/jcoyne/flipflop.git
-  revision: 0eecddade9890548c92b1e8aa681512f1db01469
-  branch: hydra
-  specs:
-    flipflop (2.2.1)
-      activesupport (>= 4.0)
 
 GEM
   remote: https://rubygems.org/

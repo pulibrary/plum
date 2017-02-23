@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170206212244) do
+ActiveRecord::Schema.define(version: 20170223192839) do
 
   create_table "bookmarks", force: :cascade do |t|
     t.integer  "user_id",       null: false
@@ -205,7 +205,7 @@ ActiveRecord::Schema.define(version: 20170206212244) do
     t.datetime "updated_at"
     t.date     "release_date"
     t.string   "release_period"
-    t.index ["admin_set_id"], name: "index_permission_templates_on_admin_set_id"
+    t.index ["admin_set_id"], name: "index_permission_templates_on_admin_set_id", unique: true
   end
 
   create_table "processed_events", force: :cascade do |t|
@@ -412,12 +412,14 @@ ActiveRecord::Schema.define(version: 20170206212244) do
   end
 
   create_table "sipity_workflows", force: :cascade do |t|
-    t.string   "name",        null: false
+    t.string   "name",                   null: false
     t.string   "label"
     t.text     "description"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.index ["name"], name: "index_sipity_workflows_on_name", unique: true
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.integer  "permission_template_id"
+    t.boolean  "active"
+    t.index ["permission_template_id", "name"], name: "index_sipity_workflows_on_permission_template_and_name", unique: true
   end
 
   create_table "tinymce_assets", force: :cascade do |t|
