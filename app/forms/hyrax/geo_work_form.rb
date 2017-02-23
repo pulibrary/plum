@@ -7,12 +7,11 @@ module Hyrax
     self.required_fields = [:title, :rights_statement, :coverage]
 
     def primary_terms
-      super - [:holding_location, :pdf_type]
+      super - [:holding_location, :pdf_type, :nav_date, :portion_note, :related_url]
     end
 
     def secondary_terms
-      terms = super - [:nav_date, :portion_note, :related_url]
-      terms + [:spatial, :temporal, :issued, :cartographic_projection, :should_populate_metadata]
+      super + [:spatial, :temporal, :issued, :cartographic_projection, :should_populate_metadata]
     end
   end
 end
