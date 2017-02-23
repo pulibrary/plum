@@ -17,6 +17,11 @@
 /tmp
 noid-minter-state
 
+# Ignore pre-ingest generated files for CDM
+/spec/fixtures/contentdm_xml/*
+!/spec/fixtures/contentdm_xml/*.xml
+!/spec/fixtures/contentdm_xml/*.yml
+
 /fcrepo4-development-data
 /fcrepo4-test-data
 /fits
