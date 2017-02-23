@@ -42,12 +42,12 @@ class FileSet < ActiveFedora::Base
           url: derivative_url('intermediate_file')
         ]
       )
-      RunOCRJob.perform_later(id) if Plum.config[:store_original_files]
+      create_ocr(id)
     when mime_type.include?('image/jp2')
       dst = derivative_path('intermediate_file')
       FileUtils.mkdir_p(File.dirname(dst))
       FileUtils.cp(filename, dst)
-      RunOCRJob.perform_later(id) if Plum.config[:store_original_files]
+      create_ocr(id)
     end
     super
   end
@@ -72,6 +72,13 @@ class FileSet < ActiveFedora::Base
 
     def touch_parent_works
       TouchParentJob.perform_later(self)
+    end
+
+    # OCR file if configuration allows
+    #
+    # @param id [String] Fileset id
+    def create_ocr(id)
+      RunOCRJob.perform_later(id) if Plum.config[:create_ocr_files] && Plum.config[:store_original_files]
     end
 
     def ocr_file

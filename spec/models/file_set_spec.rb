@@ -76,6 +76,8 @@ RSpec.describe FileSet do
       file = File.open(Rails.root.join("spec", "fixtures", "files", "page18.tif"))
       Hydra::Works::UploadFileToFileSet.call(subject, file)
       allow_any_instance_of(HOCRDocument).to receive(:text).and_return("yo")
+      allow(Plum.config).to receive(:[]).with(:store_original_files).and_return(true)
+      allow(Plum.config).to receive(:[]).with(:create_ocr_files).and_return(true)
 
       subject.create_derivatives(file.path)
 
@@ -86,6 +88,19 @@ RSpec.describe FileSet do
       subject.reload
       expect(subject.files.size).to eq(2)
       expect(subject.files.to_a.find { |x| x.mime_type != "image/tiff" }.content).to include "<div class='ocr_page'"
+    end
+    it "does not create full text if OCR is disabled in configuration." do
+      allow_any_instance_of(described_class).to receive(:warn) # suppress virus check warnings
+      allow(Hydra::Derivatives::Jpeg2kImageDerivatives).to receive(:create).and_return(true)
+      file = File.open(Rails.root.join("spec", "fixtures", "files", "page18.tif"))
+      Hydra::Works::UploadFileToFileSet.call(subject, file)
+      allow_any_instance_of(HOCRDocument).to receive(:text).and_return("yo")
+      allow(Plum.config).to receive(:[]).with(:store_original_files).and_return(true)
+      allow(Plum.config).to receive(:[]).with(:create_ocr_files).and_return(false)
+
+      subject.create_derivatives(file.path)
+
+      expect(ocr_path).not_to exist
     end
     after do
       FileUtils.rm_rf(path.parent) if path.exist?
