@@ -16,6 +16,9 @@ en:
       homepage_url: "#"
     product_name: "Digital PUL"
     works:
+      form:
+        tab:
+          relationships: "Collections"
       update:
         additional_fields: "Additional fields"
         breadcrumb: 'Edit'
