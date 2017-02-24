@@ -57,7 +57,7 @@ module Hyrax
     end
 
     def primary_terms
-      super + [:rights_note, :holding_location, :pdf_type, :portion_note, :description, :nav_date, :related_url]
+      super + [:rights_note, :holding_location, :pdf_type, :portion_note, :description, :nav_date]
     end
 
     def secondary_terms
