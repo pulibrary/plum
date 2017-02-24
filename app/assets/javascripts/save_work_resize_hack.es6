@@ -1,6 +1,7 @@
 export default class SaveWorkResizeHack {
   constructor() {
     this.element = $("#savewidget")
+    if(this.element.length == 0) { return }
     this.width = this.element.width()
     this.height = this.element.height()
     this.left = this.element.offset().left
