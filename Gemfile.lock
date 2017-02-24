@@ -72,8 +72,8 @@ GIT
 
 GIT
   remote: git://github.com/projecthydra-labs/hyrax.git
-  revision: 3b8e3b46661db3a196da54762d8e11c3f710d52e
-  branch: yaml_flipflop_strategy
+  revision: a31d11d2175941162ba34c0bd00961f2becd07f7
+  branch: master
   specs:
     hyrax (1.0.0.alpha)
       active_attr (~> 0.9.0)
