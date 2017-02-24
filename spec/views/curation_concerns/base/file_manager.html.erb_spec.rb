@@ -37,6 +37,7 @@ RSpec.describe "curation_concerns/base/file_manager.html.erb" do
     allow(view).to receive(:contextual_path).with(anything, anything) do |x, y|
       CurationConcerns::ContextualPath.new(x, y).show
     end
+    allow(file_set).to receive(:thumbnail_id).and_return('test_thumbnail_id')
     render
   end
 
@@ -49,6 +50,12 @@ RSpec.describe "curation_concerns/base/file_manager.html.erb" do
     end
     let(:file_set) { ScannedResourceShowPresenter.new(solr_doc, nil) }
     let(:resource) { FactoryGirl.build(:scanned_resource) }
+    it "uses ScannedResource's thumbnail_id values for Thumbnail radio options" do
+      expect(rendered).to have_selector "input[name='thumbnail_id'][type='radio'][value='#{file_set.thumbnail_id}']"
+    end
+    it "uses ScannedResource's start_canvas values for Starting Page radio options" do
+      expect(rendered).to have_selector "input[name='start_canvas'][type='radio'][value='#{file_set.thumbnail_id}']"
+    end
     it "renders scanned resources as reorderable" do
       expect(rendered).to have_selector "input[name='scanned_resource[title][]'][type='text'][value='#{file_set}']"
     end
@@ -96,7 +103,7 @@ RSpec.describe "curation_concerns/base/file_manager.html.erb" do
   end
 
   it "has thumbnails for each resource with fallback to default placeholder image" do
-    expect(rendered).to have_selector("img[src='#{IIIFPath.new(file_set.id)}/full/!200,150/0/default.jpg']")
+    expect(rendered).to have_selector("img[src='#{IIIFPath.new(file_set.thumbnail_id)}/full/!200,150/0/default.jpg']")
     expect(rendered).to have_selector('img[onerror="this.src=\'/assets/default.png\'"]')
   end
 
@@ -116,7 +123,7 @@ RSpec.describe "curation_concerns/base/file_manager.html.erb" do
   end
 
   it "renders an OSD link for each member" do
-    expect(rendered).to have_selector("*[data-modal-manifest='#{IIIFPath.new(file_set.id)}/info.json']")
+    expect(rendered).to have_selector("*[data-modal-manifest='#{IIIFPath.new(file_set.thumbnail_id)}/info.json']")
   end
 
   it "renders a server upload form" do
