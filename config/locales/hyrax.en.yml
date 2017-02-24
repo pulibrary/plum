@@ -1,5 +1,10 @@
 en:
   hyrax:
+    visibility:
+      open:
+        text: "Open"
+        note_html: "Open to the world. Anyone can view."
+        warning_html: ""
     catalog:
       index:
         type_tabs:
