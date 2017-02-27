@@ -16,15 +16,11 @@ class CollectionEditForm < Hyrax::Forms::CollectionForm
     self[:title].first
   end
 
-  def description
-    self[:description].first
-  end
-
   def primary_terms
-    [:title, :exhibit_id]
+    [:title, :exhibit_id, :description]
   end
 
   def secondary_terms
-    [:description]
+    []
   end
 end

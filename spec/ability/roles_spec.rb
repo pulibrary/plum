@@ -106,6 +106,9 @@ describe Ability do
       should be_able_to(:manifest, open_scanned_resource)
       should be_able_to(:manifest, pending_scanned_resource)
     }
+    it "can create works" do
+      expect(subject.can_create_any_work?).to be true
+    end
   end
 
   describe 'as an image editor' do
@@ -141,6 +144,9 @@ describe Ability do
       should_not be_able_to(:destroy, complete_scanned_resource)
       should_not be_able_to(:destroy, admin_file)
     }
+    it "can create works" do
+      expect(subject.can_create_any_work?).to be true
+    end
   end
 
   describe 'as an editor' do
@@ -176,6 +182,9 @@ describe Ability do
       should_not be_able_to(:destroy, complete_scanned_resource)
       should_not be_able_to(:destroy, admin_file)
     }
+    it "cannot create works" do
+      expect(subject.can_create_any_work?).to be false
+    end
   end
 
   describe 'as a fulfiller' do
@@ -210,6 +219,9 @@ describe Ability do
       should_not be_able_to(:destroy, complete_scanned_resource)
       should_not be_able_to(:destroy, admin_file)
     }
+    it "cannot create works" do
+      expect(subject.can_create_any_work?).to be false
+    end
   end
 
   describe 'as a curator' do
@@ -244,6 +256,9 @@ describe Ability do
       should_not be_able_to(:complete, pending_scanned_resource)
       should_not be_able_to(:destroy, admin_file)
     }
+    it "cannot create works" do
+      expect(subject.can_create_any_work?).to be false
+    end
   end
 
   describe 'as a campus user' do
@@ -284,6 +299,9 @@ describe Ability do
       should_not be_able_to(:complete, pending_scanned_resource)
       should_not be_able_to(:destroy, admin_file)
     }
+    it "cannot create works" do
+      expect(subject.can_create_any_work?).to be false
+    end
   end
 
   describe 'as an anonymous user' do
@@ -329,5 +347,8 @@ describe Ability do
       should_not be_able_to(:complete, pending_scanned_resource)
       should_not be_able_to(:destroy, admin_file)
     }
+    it "cannot create works" do
+      expect(subject.can_create_any_work?).to be false
+    end
   end
 end
