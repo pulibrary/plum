@@ -23,4 +23,13 @@ class CollectionEditForm < Hyrax::Forms::CollectionForm
   def secondary_terms
     []
   end
+
+  def multiple?(field)
+    case field.to_sym
+    when :description, :title
+      return false
+    else
+      super
+    end
+  end
 end

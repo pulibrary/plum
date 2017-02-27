@@ -32,6 +32,7 @@ en:
   simple_form:
     labels:
       defaults:
+        exhibit_id: "Exhibit Slug"
         ocr_language: "OCR Language"
     options:
       defaults:
