@@ -169,7 +169,6 @@ GEM
   remote: https://rails-assets.org/
   specs:
     Ascii85 (1.0.2)
-    aasm (4.11.1)
     actioncable (5.0.1)
       actionpack (= 5.0.1)
       nio4r (~> 1.2)
@@ -905,7 +904,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  aasm
   active-fedora (~> 11.1.2)
   active-triples (~> 0.11.0)
   active_fedora-noid (= 2.0.0)

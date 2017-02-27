@@ -4,9 +4,11 @@ RSpec.describe SolrDocument do
   subject { described_class.new(document_hash) }
 
   let(:date_created) { "2015-09-02" }
+  let(:date_modified) { "2015-10-01T12:34:56Z" }
   let(:document_hash) do
     {
       date_created_tesim: date_created,
+      system_modified_dtsi: date_modified,
       language_tesim: ['eng'],
       width_is: 200,
       height_is: 400
@@ -16,6 +18,12 @@ RSpec.describe SolrDocument do
   describe "#date_created" do
     it "returns date_created_tesim" do
       expect(subject.date_created).to eq date_created
+    end
+  end
+
+  describe "#system_modified" do
+    it "has a system modification date" do
+      expect(subject.system_modified).to eq('10/01/15 12:34:56 PM UTC')
     end
   end
 
