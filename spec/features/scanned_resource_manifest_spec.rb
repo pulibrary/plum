@@ -7,12 +7,12 @@ RSpec.feature "ScannedResourcesController", type: :feature do
 
   context "an anonymous user" do
     scenario "views a public manifest" do
-      visit manifest_curation_concerns_scanned_resource_path open_resource
+      visit manifest_hyrax_scanned_resource_path open_resource
       expect(page.status_code).to eq 200
     end
 
     scenario "views a private manifest" do
-      visit manifest_curation_concerns_scanned_resource_path private_resource
+      visit manifest_hyrax_scanned_resource_path private_resource
       expect(page.status_code).to eq 401
     end
   end
@@ -23,12 +23,12 @@ RSpec.feature "ScannedResourcesController", type: :feature do
     end
 
     scenario "views a public manifest" do
-      visit manifest_curation_concerns_scanned_resource_path open_resource
+      visit manifest_hyrax_scanned_resource_path open_resource
       expect(page.status_code).to eq 200
     end
 
     scenario "views a private manifest" do
-      visit manifest_curation_concerns_scanned_resource_path private_resource
+      visit manifest_hyrax_scanned_resource_path private_resource
       expect(page.status_code).to eq 200
     end
   end

@@ -1,4 +1,4 @@
-class CollectionEditForm < CurationConcerns::Forms::CollectionEditForm
+class CollectionEditForm < Hyrax::Forms::CollectionForm
   terms << :exhibit_id
   delegate :exhibit_id, to: :model
 
@@ -16,7 +16,20 @@ class CollectionEditForm < CurationConcerns::Forms::CollectionEditForm
     self[:title].first
   end
 
-  def description
-    self[:description].first
+  def primary_terms
+    [:title, :exhibit_id, :description]
+  end
+
+  def secondary_terms
+    []
+  end
+
+  def multiple?(field)
+    case field.to_sym
+    when :description, :title
+      return false
+    else
+      super
+    end
   end
 end

@@ -2,14 +2,14 @@ module Workflow
   class PlumWorkflowStrategy
     attr_reader :work
 
-    def initialize(work, _attributes)
+    def initialize(work)
       @work = work
     end
 
     # @return [String] The name of the workflow to use
-    def workflow_name
-      return 'book_works' if book_works.include? work_class
-      return 'geo_works' if geo_works.include? work_class
+    def workflow
+      return Sipity::Workflow.where(name: 'book_works').first! if book_works.include? work_class
+      return Sipity::Workflow.where(name: 'geo_works').first! if geo_works.include? work_class
     end
 
     private

@@ -1,6 +1,6 @@
 import RadioTracker from "file_manager/radio_tracker"
 import SelectTracker from "file_manager/select_tracker"
-import {InputTracker, FileManagerMember} from "curation_concerns/file_manager/member"
+import {InputTracker, FileManagerMember} from "hyrax/file_manager/member"
 import BulkActionManager from "file_manager/bulk_actions"
 export default class PlumFileManager {
   constructor() {

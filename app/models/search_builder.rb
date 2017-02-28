@@ -1,12 +1,16 @@
-class SearchBuilder < Blacklight::SearchBuilder
+class SearchBuilder < Hyrax::CatalogSearchBuilder
   include Blacklight::Solr::SearchBuilderBehavior
   include Hydra::AccessControlsEnforcement
-  include CurationConcerns::SearchFilters
+  include Hyrax::SearchFilters
   delegate :unreadable_states, to: :current_ability
 
   self.default_processor_chain += [
     :hide_parented_resources, :join_from_parent,
     :hide_incomplete
+  ]
+
+  self.default_processor_chain -= [
+    :show_works_or_works_that_contain_files
   ]
 
   def self.show_actions
@@ -22,6 +26,12 @@ class SearchBuilder < Blacklight::SearchBuilder
   def join_from_parent(solr_params)
     return if show_action?
     solr_params[:q] = JoinChildrenQuery.new(solr_params[:q]).to_s
+  end
+
+  # Allow people to see all collections as ones they can ingest into.
+  def gated_discovery_filters(permission_types = discovery_permissions, ability = current_ability)
+    return [] if models == collection_classes
+    super
   end
 
   def hide_incomplete(solr_params)

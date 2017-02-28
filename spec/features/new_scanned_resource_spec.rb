@@ -17,17 +17,22 @@ RSpec.feature "ScannedResourcesController", type: :feature do
     scenario "Logged in user can create a new scanned resource and advance workflow state", vcr: { cassette_name: "locations" } do
       visit new_polymorphic_path [ScannedResource]
       expect(page).to_not have_selector("label.label-warning", text: "Pending")
+      expect(page).to_not have_text("To create a separate work for each of the files")
+      expect(page).to_not have_text("The more descriptive information you provide")
+      expect(page).to_not have_selector("span.warning", text: "Embargo")
+      expect(page).to_not have_selector("span.warning", text: "Lease")
 
       fill_in 'scanned_resource_title', with: 'Test Title'
       expect(page).to have_select 'scanned_resource_rights_statement', selected: 'No Known Copyright'
       expect(page).to have_select 'scanned_resource_pdf_type', selected: 'Grayscale PDF'
-      click_button 'Create Scanned resource'
+      expect(page).not_to have_select 'scanned_resource_admin_set_id'
+      click_button 'Save'
 
       expect(page).to have_selector("h1", text: "Test Title")
       expect(page).to have_selector("span.label-default", text: "Pending")
       expect(page).to have_text("No Known Copyright")
 
-      CurationConcerns::Workflow::PermissionGenerator.call(agents: user, roles: 'admin', workflow: workflow)
+      Hyrax::Workflow::PermissionGenerator.call(agents: user, roles: 'admin', workflow: workflow)
       visit current_path
 
       choose 'Metadata Review'

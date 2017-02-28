@@ -28,7 +28,7 @@ class ManifestEventGenerator
       {
         "id" => record.id,
         "event" => type,
-        "manifest_url" => helper.polymorphic_url([:manifest, :curation_concerns, record.model_name.singular.to_sym], id: record.id)
+        "manifest_url" => helper.polymorphic_url([:manifest, :hyrax, record.model_name.singular.to_sym], id: record.id)
       }
     end
 

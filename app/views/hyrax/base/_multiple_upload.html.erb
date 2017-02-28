@@ -1,0 +1,44 @@
+
+<%= form_for(@form, url: polymorphic_path([main_app, @form]), html: { multipart: true, id: 'fileupload' }) do |f| %>
+  <input type="hidden" name="file_manager_redirect" value=1 />
+  <div class="row">
+    <div class="col-md-3">
+      <div class="well well-sm fileupload-buttonbar">
+        <span class="btn btn-success fileinput-button">
+          <i class="glyphicon glyphicon-plus"></i>
+          <span>Select files...</span>
+          <input type="file" name="files[]" multiple />
+        </span>
+        <% if browser_supports_directory_upload? %>
+          <!-- The fileinput-button span is used to style the file input field as button -->
+          <span class="btn btn-success fileinput-button">
+            <span class="glyphicon glyphicon-plus"></span>
+            <span>Add folder...</span>
+            <input type="file" name="files[]" multiple directory webkitdirectory>
+          </span>
+        <% end %>
+        </span>
+        <button type="reset" class="btn btn-warning cancel">
+          <i class="glyphicon glyphicon-ban-circle"></i>
+          <span>Cancel upload</span>
+        </button>
+        <%= f.submit(class: 'btn btn-primary') %>
+      </div>
+    </div>
+    <div class="col-md-9 fileupload-progress">
+      <div class="well well-sm fileupload-list">
+        <h3><small>Select files or directories to upload, or drag them here.</small></h3>
+        <!-- The global progress bar -->
+        <div class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100">
+          <div class="progress-bar progress-bar-success" style="width:0%;"></div>
+        </div>
+        <!-- The loading indicator is shown during image processing -->
+        <div class="fileupload-loading"></div>
+        <br />
+        <!-- The table listing the files available for upload/download -->
+        <table id="file-table" class="table table-striped"><tbody class="files" data-toggle="modal-gallery" data-target="#modal-gallery"></tbody></table>
+      </div>
+    </div>
+  </div>
+<% end %>
+<%= render 'hyrax/uploads/js_templates' %>

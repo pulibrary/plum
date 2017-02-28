@@ -20,7 +20,7 @@ RSpec.feature "ScannedResourcesController", type: :feature do
 
     scenario "Viewing a scanned resource from a search it should include link back to search" do
       visit search_catalog_path q: "title"
-      first('.index_title > a').click
+      first('.document h2 > a').click
       expect(page).to have_selector "a", text: I18n.t('blacklight.back_to_search')
     end
   end

@@ -20,16 +20,16 @@ module ThumbnailHelper
 
     if document['geo_mime_type_tesim']
       # geo fileset
-      :geo_concerns_thumbnail_path
+      :geo_works_thumbnail_path
     elsif ["ImageWork", "RasterWork", "VectorWork"].include?(class_name)
       # geo work
-      :geo_concerns_thumbnail_path
+      :geo_works_thumbnail_path
     else
       :iiif_thumbnail_path
     end
   end
 
-  def geo_concerns_thumbnail_path(document, image_options = {})
+  def geo_works_thumbnail_path(document, image_options = {})
     url = thumbnail_url(document)
     image_tag url, image_options if url.present?
   end
@@ -37,6 +37,6 @@ module ThumbnailHelper
   def iiif_thumbnail_path(document, image_options = {})
     return unless document.thumbnail_id
     url = IIIFPath.new(document.thumbnail_id).thumbnail
-    image_tag url, image_options if url.present?
+    image_tag url, image_options.merge(onerror: default_icon_fallback) if url.present?
   end
 end

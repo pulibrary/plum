@@ -1,7 +1,12 @@
 class Ability
   include Hydra::Ability
-  include CurationConcerns::Ability
-  include GeoConcerns::Ability
+  include GeoWorks::Ability
+  #
+  def can_create_any_work?
+    Hyrax.config.curation_concerns.any? do |curation_concern_type|
+      can?(:create, curation_concern_type)
+    end
+  end
 
   # Define any customized permissions here.
   def custom_permissions
@@ -32,7 +37,7 @@ class Ability
     can [:destroy], FileSet, depositor: current_user.uid
     can [:destroy], curation_concerns, depositor: current_user.uid
     cannot [:destroy], curation_concerns do |obj|
-      !obj.identifier.nil?
+      !obj.identifier.blank?
     end
   end
 
@@ -101,6 +106,8 @@ class Ability
     end
   end
 
+  delegate :admin?, to: :current_user
+
   private
 
     def universal_reader?
@@ -108,7 +115,7 @@ class Ability
     end
 
     def curation_concerns
-      CurationConcerns.config.curation_concerns
+      Hyrax.config.curation_concerns
     end
 
     def roles

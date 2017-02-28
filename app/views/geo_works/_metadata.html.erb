@@ -1,0 +1,30 @@
+<h2><%= t('.header') %></h2>
+<table class="table table-striped <%= dom_class(presenter) %> attributes" <%= presenter.microdata_type_to_html %>>
+  <thead>
+    <tr><th><%= t('.attribute_name_label') %></th><th><%= t('.attribute_values_label') %></th></tr>
+  </thead>
+  <tbody>
+    <%= render 'attribute_rows', presenter: presenter %>
+    <%= render 'geo_works/attribute_rows', presenter: presenter %>
+    <%= presenter.attribute_to_html(:embargo_release_date, render_as: :date) %>
+    <%= presenter.attribute_to_html(:lease_expiration_date, render_as: :date) %>
+    <%= presenter.attribute_to_html(:permission_badge, label: 'Access Rights') %>
+    <%= presenter.attribute_to_html(:rights, render_as: :rights) %>
+    <% if @presenter.respond_to? :state_badge %>
+    <tr>
+      <th>State</th>
+      <td>
+        <%= @presenter.state_badge %>
+      </td>
+    </tr>
+    <% end %>
+    <%= presenter.attribute_to_html(:embargo_release_date, render_as: :date) %>
+    <%= presenter.attribute_to_html(:lease_expiration_date, render_as: :date) %>
+    <% if @presenter.respond_to? :rights_statement %>
+      <%= @presenter.rights_statement %>
+    <% end %>
+    <% if @presenter.respond_to? :holding_location %>
+      <%= @presenter.holding_location %>
+    <% end %>
+  </tbody>
+</table>

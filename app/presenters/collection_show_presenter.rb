@@ -1,5 +1,5 @@
-class CollectionShowPresenter < CurationConcerns::CollectionPresenter
-  include CurationConcerns::Serializers
+class CollectionShowPresenter < Hyrax::CollectionPresenter
+  include Hyrax::Serializers
   delegate :id, :title, :exhibit_id, :date_created, to: :solr_document, allow_nil: true
 
   delegate :title, :description, :creator, :contributor, :subject, :publisher, :language,
@@ -35,6 +35,6 @@ class CollectionShowPresenter < CurationConcerns::CollectionPresenter
     end
 
     def file_presenter_class
-      MultiVolumeWorkShowPresenter::DynamicShowPresenter.new
+      ::DynamicShowPresenter.new
     end
 end

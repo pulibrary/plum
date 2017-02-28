@@ -1,0 +1,42 @@
+en:
+  hyrax:
+    visibility:
+      open:
+        text: "Open"
+        note_html: "Open to the world. Anyone can view."
+        warning_html: ""
+    catalog:
+      index:
+        type_tabs:
+          all: All
+    division:
+      name: ""
+      homepage_url: "#"
+    document_language: "en"
+    google_analytics_id: ""
+    institution_name: "Princeton University Library"
+    institution_name_full: "Princeton University Library"
+    institution:
+      name: "Princeton University Library"
+      homepage_url: "#"
+    product_name: "Digital PUL"
+    works:
+      form:
+        tab:
+          relationships: "Collections"
+      update:
+        additional_fields: "Additional fields"
+        breadcrumb: 'Edit'
+        header: Manage Your Work
+        in_collections: This Work in Collections
+        in_other_works: This Work in Other Works
+        in_this_work: Other Works in this Work
+        tab:
+          files:         "Files"
+          metadata:      "Descriptions"
+          relationships: "Relationships"
+          share:         "Share"
+  simple_form:
+    hints:
+      defaults:
+        files: ''

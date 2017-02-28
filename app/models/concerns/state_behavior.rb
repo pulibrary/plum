@@ -7,5 +7,9 @@ module StateBehavior
       return nil unless respond_to?(:to_sipity_entity) && persisted? && to_sipity_entity
       to_sipity_entity.workflow_state.name
     end
+
+    def active_workflow
+      Workflow::PlumWorkflowStrategy.new(self).workflow
+    end
   end
 end

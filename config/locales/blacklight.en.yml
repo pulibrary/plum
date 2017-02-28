@@ -5,8 +5,33 @@ en:
       fields:
         facet:
           collection_ssim: Collection
+          human_readable_type_sim: Type of Work
+          creator_sim: Creator
+          keyword_sim: Keyword
+          subject_sim: Subject
+          language_sim: Language
+          based_near_sim: Location
+          publisher_sim: Publisher
+          file_format_sim: Format
+          generic_type_sim: Type
         show:
           digest: SHA-1
           original_checksum: MD5
           profile_name: Color profile
           well_formed: Well-formed
+        index:
+          description_tesim: "Description"
+          keyword_tesim: "Keyword"
+          subject_tesim: "Subject"
+          creator_tesim: "Creator"
+          contributor_tesim: "Contributor"
+          publisher_tesim: "Publisher"
+          based_near_tesim: "Location"
+          language_tesim: "Language"
+          date_uploaded_tesi: "Date Uploaded"
+          date_modified_tesi: "Date Modified"
+          date_created_tesim: "Date Created"
+          rights_tesim: "Rights"
+          human_readable_type_tesim: "Resource Type"
+          format_tesim: "File Format"
+          identifier_tesim: "Identifier"

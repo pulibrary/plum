@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 describe VectorWork do
-  it { is_expected.to be_kind_of(GeoConcerns::VectorWorkBehavior) }
+  it { is_expected.to be_kind_of(GeoWorks::VectorWorkBehavior) }
 
   describe 'thumbnail indexing' do
     let(:vector_work) { FactoryGirl.create(:vector_work) }

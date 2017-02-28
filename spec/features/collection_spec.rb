@@ -34,13 +34,19 @@ RSpec.feature 'Collections', type: :feature do
       expect(page).to have_selector 'li.exhibit_id', text: 'slug1'
     end
     scenario 'is edited' do
-      c = FactoryGirl.create(:collection, user: user)
+      s = FactoryGirl.create(:scanned_resource_in_collection, user: user)
+      c = s.member_of_collections.first
+
       visit collection_path(c)
-      click_link 'Edit'
+      within('.actions-controls-collections') do
+        click_link 'Edit'
+      end
 
       expect(page).to have_field 'collection_title', with: c.title.first
       fill_in 'collection_title', with: "Alfafa"
-      click_button "Update Collection"
+      within(".primary-actions") do
+        click_button "Update Collection"
+      end
       expect(page).to have_selector "h1", text: "Alfafa"
     end
     scenario 'fails to input exhibit ID' do
@@ -70,20 +76,20 @@ RSpec.feature 'Collections', type: :feature do
     it "works" do
       visit edit_polymorphic_path [resource]
       select 'Col 1', from: 'scanned_resource[member_of_collection_ids][]'
-      click_button 'Update Scanned resource'
+      click_button 'Save'
       expect(page).to have_selector 'a.collection-link', text: 'Col 1'
       expect(page).not_to have_selector 'a.collection-link', text: 'Col 2'
 
       visit edit_polymorphic_path [resource]
       select 'Col 2', from: 'scanned_resource[member_of_collection_ids][]'
       unselect 'Col 1', from: 'scanned_resource[member_of_collection_ids][]'
-      click_button 'Update Scanned resource'
+      click_button 'Save'
       expect(page).not_to have_selector 'a.collection-link', text: 'Col 1'
       expect(page).to have_selector 'a.collection-link', text: 'Col 2'
 
       visit edit_polymorphic_path [resource]
       unselect 'Col 2', from: 'scanned_resource[member_of_collection_ids][]'
-      click_button 'Update Scanned resource'
+      click_button 'Save'
       expect(page).not_to have_selector 'a.collection-link', text: 'Col 1'
       expect(page).not_to have_selector 'a.collection-link', text: 'Col 2'
     end

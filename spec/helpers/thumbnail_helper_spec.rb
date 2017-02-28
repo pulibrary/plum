@@ -26,7 +26,7 @@ describe ThumbnailHelper do
   context 'when document is a VectorWork' do
     let(:vector_work) { FactoryGirl.create(:vector_work) }
     let(:document) do
-      GeoConcerns::VectorWorkShowPresenter.new(
+      GeoWorks::VectorWorkShowPresenter.new(
         SolrDocument.new(
           vector_work.to_solr
         ), nil
