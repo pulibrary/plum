@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe RightsStatementService do
   let(:uri) { 'http://rightsstatements.org/vocab/InC/1.0/' }
   let(:noc_cr_uri) { 'http://rightsstatements.org/vocab/NoC-CR/1.0/' }
+  let(:nkc_uri) { 'http://rightsstatements.org/vocab/NKC/1.0/' }
   let(:desc) { 'This Item is protected by copyright and/or related rights.' }
   let(:valid_statements) {
     [
@@ -23,8 +24,9 @@ RSpec.describe RightsStatementService do
     end
 
     it "indicates which statements should have notes enabled" do
-      expect(described_class.new.notable?(uri)).to be false
+      expect(described_class.new.notable?(uri)).to be true
       expect(described_class.new.notable?(noc_cr_uri)).to be true
+      expect(described_class.new.notable?(nkc_uri)).to be false
     end
 
     it "lists all valid rights statements" do
