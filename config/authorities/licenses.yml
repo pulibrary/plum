@@ -2,7 +2,7 @@
 terms:
   - id: http://rightsstatements.org/vocab/InC/1.0/
     term: In Copyright
-    notable: false
+    notable: true
     active: true
     scopeNote: |
       This Rights Statement can be used for an Item that is in copyright. Using
@@ -40,7 +40,7 @@ terms:
       copyright and related rights legislation that applies to your use.
   - id: http://rightsstatements.org/vocab/InC-EDU/1.0/
     term: In Copyright - Educational Use Permitted
-    notable: false
+    notable: true
     active: true
     scopeNote: |
       This Rights Statement can be used only for copyrighted Items for which
@@ -58,7 +58,7 @@ terms:
       <br/>For other uses, you need to obtain permission from the rights-holder(s).
   - id: http://rightsstatements.org/vocab/InC-NC/1.0/
     term: In Copyright - NonCommercial Use Permitted
-    notable: false
+    notable: true
     active: true
     scopeNote: |
       This Rights Statement can be used only for copyrighted Items for which
