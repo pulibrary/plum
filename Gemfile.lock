@@ -72,7 +72,7 @@ GIT
 
 GIT
   remote: git://github.com/projecthydra-labs/hyrax.git
-  revision: a31d11d2175941162ba34c0bd00961f2becd07f7
+  revision: 3a7195f534c7708a510acf453aa7dc0ba89c83e4
   branch: master
   specs:
     hyrax (1.0.0.alpha)
@@ -361,7 +361,7 @@ GEM
       unf (>= 0.0.5, < 1.0.0)
     dropbox-sdk (1.6.5)
       json
-    dry-configurable (0.6.1)
+    dry-configurable (0.6.2)
       concurrent-ruby (~> 1.0)
     dry-container (0.6.0)
       concurrent-ruby (~> 1.0)
@@ -373,7 +373,7 @@ GEM
       dry-container (~> 0.2, >= 0.2.6)
       dry-core (~> 0.2)
       dry-equalizer (~> 0.2)
-    dry-struct (0.1.1)
+    dry-struct (0.2.0)
       dry-configurable (~> 0.1)
       dry-equalizer (~> 0.2)
       dry-types (~> 0.9, >= 0.9.0)
