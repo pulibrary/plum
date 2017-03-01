@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe GeoWorks::Discovery::DocumentBuilder::SlugBuilder do
+describe Discovery::SlugBuilder do
   subject { described_class.new(geo_work_presenter) }
 
   let(:document) { instance_double('Document') }

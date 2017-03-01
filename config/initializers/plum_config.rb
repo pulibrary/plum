@@ -17,3 +17,14 @@ module Plum
 end
 
 Hydra::Derivatives.kdu_compress_recipes = Plum.config['jp2_recipes']
+
+# Use custon GeoWorks document builders
+GeoWorks::Discovery::DocumentBuilder.root_path_class = Discovery::DocumentPath
+GeoWorks::Discovery::DocumentBuilder.services = [
+  GeoWorks::Discovery::DocumentBuilder::BasicMetadataBuilder,
+  GeoWorks::Discovery::DocumentBuilder::SpatialBuilder,
+  GeoWorks::Discovery::DocumentBuilder::DateBuilder,
+  GeoWorks::Discovery::DocumentBuilder::ReferencesBuilder,
+  GeoWorks::Discovery::DocumentBuilder::LayerInfoBuilder,
+  Discovery::SlugBuilder
+]

@@ -8,7 +8,7 @@ GIT
 
 GIT
   remote: git://github.com/geoconcerns/geo_works.git
-  revision: b418d01b1f3eea4edfa03a01c83a22eed3e8d0b4
+  revision: a4dbd7aab9bd6576a9042ebe62108cdd1073c0fc
   branch: master
   specs:
     geo_works (0.3.4)
@@ -984,4 +984,4 @@ DEPENDENCIES
   webmock (~> 1.0)
 
 BUNDLED WITH
-   1.14.4
+   1.14.5
