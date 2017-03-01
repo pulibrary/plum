@@ -79,6 +79,18 @@ class SolrDocument
     self[Solrizer.solr_name('source_metadata_identifier')]
   end
 
+  def source_jsonld
+    (self[Solrizer.solr_name('source_jsonld')] || []).first
+  end
+
+  def nav_date
+    self[Solrizer.solr_name('nav_date')]
+  end
+
+  def portion_note
+    self[Solrizer.solr_name('portion_note')]
+  end
+
   def ocr_language
     ocr_lang = self[Solrizer.solr_name('ocr_language')]
     return ocr_lang unless ocr_lang.nil?
@@ -95,6 +107,10 @@ class SolrDocument
 
   def collection
     self[Solrizer.solr_name('member_of_collections', :symbol)]
+  end
+
+  def collection_ids
+    self[Solrizer.solr_name('member_of_collection_ids', :symbol)]
   end
 
   def title_or_label

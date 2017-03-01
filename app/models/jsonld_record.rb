@@ -1,3 +1,5 @@
+require 'rest-client'
+
 class JSONLDRecord
   class Factory
     attr_reader :factory
@@ -25,6 +27,10 @@ class JSONLDRecord
     marc
   end
 
+  def jsonld
+    @jsonld ||= RestClient.get("https://bibdata.princeton.edu/bibliographic/#{bib_id}/jsonld")
+  end
+
   def attributes
     @attributes ||=
       begin
@@ -34,6 +40,9 @@ class JSONLDRecord
           end
         ]
       end
+
+    @attributes['sort_title'] = Array(@attributes['sort_title']).first
+    @attributes
   end
 
   def appropriate_fields
@@ -61,6 +70,6 @@ class JSONLDRecord
     end
 
     def outbound_graph
-      @outbound_graph ||= RDF::Graph.load("https://bibdata.princeton.edu/bibliographic/#{bib_id}/jsonld")
+      @outbound_graph ||= RDF::Graph.new.from_jsonld(jsonld)
     end
 end

@@ -25,6 +25,9 @@ module CommonMetadata
       if remote_data.source
         self.source_metadata = remote_data.source.dup.try(:force_encoding, 'utf-8')
       end
+      if remote_data.respond_to?(:jsonld)
+        self.source_jsonld = remote_data.jsonld.dup.try(:force_encoding, 'utf-8')
+      end
       self.attributes = remote_data.attributes
 
       CompleteRecord.new(self).complete if workflow_state == 'complete' && identifier.present?
