@@ -288,6 +288,13 @@ RSpec.describe PolymorphicManifestBuilder, vcr: { cassette_name: "iiif_manifest"
         expect(json_result["seeAlso"]["format"]).to eq "application/ld+json"
       end
     end
+    context "when it has an identifier" do
+      it "links to the princeton ark service" do
+        record.identifier = "ark:/88435/7w62fb79g"
+        expect(json_result["rendering"]["@id"]).to eq "http://arks.princeton.edu/ark:/88435/7w62fb79g"
+        expect(json_result["rendering"]["format"]).to eq "text/html"
+      end
+    end
     context "when it has no bibdata id" do
       let(:record) { FactoryGirl.build(:scanned_resource, source_metadata_identifier: nil) }
       it "doesn't do seeAlso" do

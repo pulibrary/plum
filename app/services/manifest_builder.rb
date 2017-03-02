@@ -43,7 +43,8 @@ class ManifestBuilder
           pdf_link_builder,
           metadata_builder,
           thumbnail_builder,
-          see_also_builder
+          see_also_builder,
+          rendering_builder
         )
     end
 
@@ -69,6 +70,10 @@ class ManifestBuilder
 
     def see_also_builder
       SeeAlsoBuilder.new(record)
+    end
+
+    def rendering_builder
+      RenderingBuilder.new(record)
     end
 
     def manifest_builder_class
