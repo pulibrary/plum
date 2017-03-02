@@ -50,7 +50,7 @@ gem 'hydra-pcdm', github: 'projecthydra-labs/hydra-pcdm', branch: 'master'
 gem 'hydra-derivatives', '3.1.3'
 gem 'active-fedora', '~> 11.1.2'
 gem 'active-triples', '~> 0.11.0'
-gem 'active_fedora-noid', '2.0.0'
+gem 'active_fedora-noid', '2.0.2'
 
 gem 'rubocop', '~> 0.34.0', require: false
 gem 'rubocop-rspec', '~> 1.3.0', require: false

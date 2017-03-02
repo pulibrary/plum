@@ -1,2 +1,4 @@
 assign_admin_set:
   enabled: false
+show_deposit_agreement:
+  enabled: false
