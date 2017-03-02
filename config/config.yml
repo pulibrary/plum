@@ -7,7 +7,8 @@ defaults: &defaults
   master_file_service_url: <%= ENV["PMP_MASTER_FILE_SERVICE_URL"] || "http://purl.dlib.indiana.edu/iudl/variations/master" %>
   access_file_service_url: <%= ENV["PMP_ACCESS_FILE_SERVICE_URL"] || "http://purl.dlib.indiana.edu/iudl/variations/access" %>
   purl_redirect_url: <%= ENV["PMP_PURL_REDIRECT_URL"] || "http://server1.variations2.indiana.edu/cgi-bin/access?%s" %>
-  create_ocr_files: <%= ENV["PMP_CREATE_OCR_FILES"] || true %>
+  create_hocr_files: <%= ENV["PMP_CREATE_HOCR_FILES"] || true %>
+  index_hocr_files: <%= ENV["PMP_INDEX_HOCR_FILES"] || true %>
 
   jp2_recipes:
     default_color: >

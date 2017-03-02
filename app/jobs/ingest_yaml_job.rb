@@ -93,18 +93,24 @@ class IngestYAMLJob < ActiveJob::Base
         file_set.attributes = f[:attributes]
         copy_visibility(resource, file_set) unless assign_visibility?(f[:attributes])
         actor = FileSetActor.new(file_set, @user)
-        if @file_association_method.in? ['batch', 'none']
-          actor.create_metadata(nil, f[:file_opts])
-        else
-          actor.create_metadata(resource, f[:file_opts])
-        end
-        actor.create_content(decorated_file(f))
+        ingest_actors(actor, f)
 
         yaml_to_repo_map[f[:id]] = file_set.id
         @file_sets << file_set if @file_association_method == 'batch'
         ingest_thumbnail(file_set, resource, parent) if thumbnail_path?(f[:path])
       end
       attach_files_to_work(resource, @file_sets) if @file_sets.any?
+    end
+
+    def ingest_actors(actor, f)
+      if @file_association_method.in? ['batch', 'none']
+        actor.create_metadata(nil, f[:file_opts])
+      else
+        puts "*** File association method - #{@file_association_method.to_s} ***"
+        actor.create_metadata(resource, f[:file_opts])
+      end
+      actor.create_content(decorated_file(f))
+      actor.create_content(ocr_file(f), "extracted_text") if ocr_file(f)
     end
 
     def ingest_thumbnail(file_set, resource, parent)
@@ -117,6 +123,14 @@ class IngestYAMLJob < ActiveJob::Base
 
     def decorated_file(f)
       IoDecorator.new(open(f[:path]), f[:mime_type], File.basename(f[:path]))
+    end
+
+    def ocr_file(f)
+      if f.key?(:ocr_path) && File.exist?(f[:ocr_path])
+        File.open(f[:ocr_path])
+      else
+        false
+      end
     end
 
     def map_fileids(hsh)
