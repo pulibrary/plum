@@ -106,7 +106,6 @@ class IngestYAMLJob < ActiveJob::Base
       if @file_association_method.in? ['batch', 'none']
         actor.create_metadata(nil, f[:file_opts])
       else
-        puts "*** File association method - #{@file_association_method.to_s} ***"
         actor.create_metadata(resource, f[:file_opts])
       end
       actor.create_content(decorated_file(f))
