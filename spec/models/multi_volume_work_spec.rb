@@ -7,6 +7,7 @@ describe MultiVolumeWork do
   let(:multi_volume_work) { FactoryGirl.build(:multi_volume_work, source_metadata_identifier: '12345', rights_statement: nkc) }
   let(:scanned_resource1) { FactoryGirl.build(:scanned_resource, title: ['Volume 1'], rights_statement: nkc) }
   let(:scanned_resource2) { FactoryGirl.build(:scanned_resource, title: ['Volume 2'], rights_statement: nkc) }
+  let(:file_set)          { FactoryGirl.build(:file_set) }
   let(:reloaded)          { described_class.find(multi_volume_work.id) }
   subject { multi_volume_work }
 
@@ -61,6 +62,7 @@ describe MultiVolumeWork do
   describe 'has scanned resource members' do
     before do
       subject.ordered_members = [scanned_resource1, scanned_resource2]
+      scanned_resource1.thumbnail = file_set
     end
     it "has scanned resources" do
       expect(subject.ordered_members).to eq [scanned_resource1, scanned_resource2]
@@ -68,6 +70,7 @@ describe MultiVolumeWork do
     it "can persist when it has a thumbnail set to scanned resource" do
       subject.thumbnail = scanned_resource1
       expect(subject.save).to eq true
+      expect(subject.thumbnail_id).to eq file_set.id
     end
   end
 

@@ -8,4 +8,9 @@ class MultiVolumeWork < ActiveFedora::Base
   include ::HasPendingUploads
   include ::CollectionIndexing
   self.valid_child_concerns = [ScannedResource]
+
+  def thumbnail_id
+    return nil if thumbnail.nil?
+    thumbnail.respond_to?(:thumbnail) ? thumbnail.thumbnail.try(:id) : thumbnail.try(:id)
+  end
 end
