@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "hyrax/base/_attributes.html.erb" do
   let(:creator) { 'Bilbo' }
-  let(:date_created) { "2015-09-08" }
+  let(:date) { "2015" }
   let(:rights_statement) { "http://rightsstatements.org/vocab/NKC/1.0/" }
 
   let(:solr_document) do
@@ -12,7 +12,7 @@ RSpec.describe "hyrax/base/_attributes.html.erb" do
       creator_tesim: creator,
       author_tesim: 'Baggins',
       source_metadata_identifier_tesim: '8675309',
-      date_created_tesim: date_created,
+      date_tesim: date,
       language_tesim: 'ara',
       rights_statement_tesim: rights_statement
     )
@@ -47,8 +47,8 @@ RSpec.describe "hyrax/base/_attributes.html.erb" do
     expect(rendered).to have_content "No Known Copyright"
   end
 
-  it "displays date created" do
-    expect(rendered).to have_content "09/08/2015"
+  it "displays date" do
+    expect(rendered).to have_content "2015"
   end
 
   it "displays language name" do
