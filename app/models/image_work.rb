@@ -5,6 +5,7 @@ class ImageWork < ActiveFedora::Base
   include ::GeoWorks::BasicGeoMetadata
   include ::GeoMetadata
   include ::StateBehavior
+  include ::ApplyRemoteMetadata
   self.valid_child_concerns = [RasterWork]
 
   # Use local indexer

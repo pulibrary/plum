@@ -1,8 +1,7 @@
-class Hyrax::ImageWorksController < ApplicationController
-  include Hyrax::CurationConcernController
+class Hyrax::ImageWorksController < Hyrax::GeoWorksController
   include GeoWorks::ImageWorksControllerBehavior
-  include GeoWorks::GeoblacklightControllerBehavior
-  include Hyrax::GeoMessengerBehavior
+  include Hyrax::Manifest
+  include Hyrax::RemoteMetadata
   self.curation_concern_type = ImageWork
 
   def show_presenter

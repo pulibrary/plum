@@ -12,6 +12,7 @@ class PairtreeDerivativePath < Hyrax::DerivativePath
   def geo_path_prefix
     return unless @object.respond_to?(:geo_mime_type)
     return if @object.geo_mime_type.nil? || @object.geo_mime_type.empty?
+    return if @object.geo_mime_type == "image/tiff"
     Pathname.new(Plum.config[:geo_derivatives_path]).join(pair_path)
   end
 

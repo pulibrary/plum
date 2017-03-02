@@ -8,4 +8,5 @@ class GeoSchema < ActiveTriples::Schema
   property :source_metadata, predicate: ::PULTerms.source_metadata, multiple: false
   property :holding_location, predicate: ::RDF::Vocab::Bibframe.heldBy, multiple: false
   property :ocr_language, predicate: ::PULTerms.ocr_language
+  property :source_jsonld, predicate: ::PULTerms.source_jsonld, multiple: false
 end

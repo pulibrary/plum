@@ -4,6 +4,7 @@ class ScannedResource < ActiveFedora::Base
   include ::Hyrax::WorkBehavior
   include ::Hyrax::BasicMetadata
   include ::CommonMetadata
+  include ::ApplyRemoteMetadata
   include ::StateBehavior
   include ::StructuralMetadata
   include ::HasPendingUploads

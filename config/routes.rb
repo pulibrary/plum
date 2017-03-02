@@ -71,6 +71,11 @@ Rails.application.routes.draw do
         post :browse_everything_files
       end
     end
+    resources :image_works, only: [] do
+      member do
+        get :manifest, defaults: { format: :json }
+      end
+    end
     resources :file_sets, only: [] do
       member do
         post :derivatives
