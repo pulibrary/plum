@@ -53,4 +53,47 @@ RSpec.describe ScannedResourceShowPresenter do
       end
     end
   end
+
+  describe "export linked data", vcr: { cassette_name: 'bibdata-jsonld' } do
+    let(:resource) { FactoryGirl.create(:scanned_resource_in_collection, source_metadata_identifier: '2028405') }
+    let(:collection) { resource.member_of_collections.first }
+    subject { described_class.new(SolrDocument.new(resource.to_solr), ability) }
+
+    context "when the resource has remote metadata" do
+      before do
+        resource.apply_remote_metadata
+      end
+
+      it 'Merges remote JSON-LD with local values' do
+        json = JSON.parse(subject.export_as_jsonld)
+
+        expect(json['edm_rights']).to eq ['http://rightsstatements.org/vocab/NKC/1.0/']
+        expect(json['title']).to eq({ '@value': 'The Giant Bible of Mainz; 500th anniversary, April fourth, fourteen fifty-two, April fourth, nineteen fifty-two', '@language': 'eng' }.stringify_keys)
+        expect(json['description']).to eq 'Seal of the Library of Congress on t.p.'
+        expect(json['format']).to eq 'Book'
+        expect(json['date']).to eq '1952'
+        expect(json['memberOf']).to eq [{ '@id': "http://plum.com/collections/#{collection.id}", 'title': collection.title.first }.stringify_keys]
+      end
+    end
+
+    context "when the resource has only local metadata" do
+      it 'displays the local values' do
+        json = JSON.parse(subject.export_as_jsonld)
+        expect(json['edm_rights']).to eq ['http://rightsstatements.org/vocab/NKC/1.0/']
+        expect(json['title']).to eq('Test title')
+      end
+
+      it 'generates turtle' do
+        ttl = subject.export_as_ttl
+        expect(ttl).to include '<http://purl.org/dc/terms/title> "Test title"'
+        expect(ttl).to include '<http://www.europeana.eu/schemas/edm/rights> "http://rightsstatements.org/vocab/NKC/1.0/"'
+      end
+
+      it 'generates ntriples' do
+        nt = subject.export_as_nt
+        expect(nt).to include '<http://purl.org/dc/terms/title> "Test title"'
+        expect(nt).to include '<http://www.europeana.eu/schemas/edm/rights> "http://rightsstatements.org/vocab/NKC/1.0/"'
+      end
+    end
+  end
 end

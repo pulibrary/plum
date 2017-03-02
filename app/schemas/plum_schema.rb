@@ -9,6 +9,7 @@ class PlumSchema < ActiveTriples::Schema
   property :rights_note, predicate: ::RDF::Vocab::DC11.rights, multiple: false
   property :source_metadata_identifier, predicate: ::PULTerms.metadata_id, multiple: false
   property :source_metadata, predicate: ::PULTerms.source_metadata, multiple: false
+  property :source_jsonld, predicate: ::PULTerms.source_jsonld, multiple: false
   property :holding_location, predicate: ::RDF::Vocab::Bibframe.heldBy, multiple: false
   property :ocr_language, predicate: ::PULTerms.ocr_language
   property :nav_date, predicate: ::RDF::URI("http://iiif.io/api/presentation/2#navDate"), multiple: false
@@ -293,7 +294,7 @@ class PlumSchema < ActiveTriples::Schema
   # Ignore things like admin data (workflow note), title, description, etc, as
   # those have custom display logic.
   def self.display_fields
-    ScannedResource.properties.values.map(&:term) - [:description, :state, :rights_statement, :holding_location, :title, :depositor, :source_metadata_identifier, :source_metadata, :date_modified, :date_uploaded, :nav_date, :pdf_type, :ocr_language, :keyword, :create_date, :modified_date, :head, :tail] - IIIFBookSchema.properties.map(&:name)
+    ScannedResource.properties.values.map(&:term) - [:description, :state, :rights_statement, :holding_location, :title, :depositor, :source_metadata_identifier, :source_metadata, :date_modified, :date_uploaded, :nav_date, :pdf_type, :ocr_language, :keyword, :create_date, :modified_date, :head, :tail, :source_jsonld] - IIIFBookSchema.properties.map(&:name)
   end
 end
 # rubocop:enable Metrics/ClassLength
