@@ -29,3 +29,10 @@ dl.document-metadata {
 #sortAndPerPage {
   margin-top: 1em;
 }
+
+div.pagination {
+  a.disabled {
+    color: gray;
+    pointer-events: none;
+  }
+}
