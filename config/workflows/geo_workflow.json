@@ -65,7 +65,8 @@
           ],
           "transition_to": "complete",
           "methods": [
-            "Workflow::CompleteRecord"
+            "Workflow::CompleteRecord",
+            "Workflow::PublishToGeoBlacklight"
           ],
           "notifications": [
             {
@@ -87,6 +88,9 @@
             }
           ],
           "transition_to": "takedown",
+          "methods": [
+            "Workflow::RemoveFromGeoBlacklight"
+          ],
           "notifications": [
             {
               "notification_type": "email",
