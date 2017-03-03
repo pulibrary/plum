@@ -22,9 +22,13 @@ class ManifestBuilder
 
       def see_also_hash
         {
-          "@id" => "https://bibdata.princeton.edu/bibliographic/#{source_metadata_identifier}/jsonld",
+          "@id" => helper.polymorphic_url(record, format: :jsonld),
           "format" => "application/ld+json"
         }
+      end
+
+      def helper
+        ManifestBuilder::ManifestHelper.new
       end
   end
 end
