@@ -7,8 +7,12 @@ namespace :reindex do
         puts "#{id} (#{model})"
         obj = ActiveFedora::Base.find(id)
         if obj.source_metadata_identifier
-          obj.apply_remote_metadata
-          obj.save
+          begin
+            obj.apply_remote_metadata
+            obj.save
+          rescue StandardError => e
+            puts "Errored on #{id}: #{e.message}"
+          end
         end
       end
     end
