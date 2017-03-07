@@ -21,11 +21,11 @@
 :files:
 - :id: pg1
   :mime_type: image/jp2
-  :path: "/spec/fixtures/files/image.jp2"
+  :path: "spec/fixtures/files/image.jp2"
   :attributes:
     :title:
     - Page 1
-  :ocr_path: "/spec/fixtures/files/fulltext.txt"
+  :ocr_path: "spec/fixtures/files/fulltext.txt"
   :file_opts: {}
 :sources:
 - :title:

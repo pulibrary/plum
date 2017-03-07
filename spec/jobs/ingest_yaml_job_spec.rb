@@ -8,6 +8,7 @@ RSpec.describe IngestYAMLJob do
     let(:yaml_file_ocr) { Rails.root.join("spec", "fixtures", "files", "ocr.yml") }
     let(:tiff_file) { Rails.root.join("spec", "fixtures", "files", "color.tif") }
     let(:jpg2_file) { Rails.root.join("spec", "fixtures", "files", "image.jp2") }
+    let(:ocr_file) { Rails.root.join("spec", "fixtures", "files", "fulltext.txt") }
     let(:user) { FactoryGirl.build(:admin) }
     let(:actor1) { double('actor1') }
     let(:actor2) { double('actor2') }
@@ -19,6 +20,10 @@ RSpec.describe IngestYAMLJob do
     let(:mime_type) { 'image/tiff' }
     let(:file_hash) { { path: tiff_file, mime_type: mime_type } }
     let(:file) { described_class.new.send(:decorated_file, file_hash) }
+    let(:ocr_file_path) { '/spec/fixtures/files/fulltext.txt' }
+    let(:ocr_mime_type) { 'text/plain' }
+    let(:ocr_file_hash) { { path: ocr_file_path, mime_type: ocr_mime_type } }
+    let(:ocr_file) { described_class.new.send(:decorated_file, ocr_file_hash) }
     let(:logical_order) { double('logical_order') }
     let(:order_object) { double('order_object') }
     let(:ingest_counter) { double('ingest_counter') }
