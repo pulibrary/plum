@@ -5,7 +5,7 @@ RSpec.describe IngestYAMLJob do
     let(:yaml_file_single) { Rails.root.join("spec", "fixtures", "pudl_mets", "pudl0001-4612596.yml") }
     let(:yaml_file_rtl) { Rails.root.join("spec", "fixtures", "pudl_mets", "pudl0032-ns73.yml") }
     let(:yaml_file_multi) { Rails.root.join("spec", "fixtures", "pudl_mets", "pudl0001-4609321-s42.yml") }
-    let(:yaml_file_ocr) { Rails.root.join("spec", "fixtures", "files", "ocr.yml" )}
+    let(:yaml_file_ocr) { Rails.root.join("spec", "fixtures", "files", "ocr.yml") }
     let(:tiff_file) { Rails.root.join("spec", "fixtures", "files", "color.tif") }
     let(:jpg2_file) { Rails.root.join("spec", "fixtures", "files", "image.jp2") }
     let(:user) { FactoryGirl.build(:admin) }
