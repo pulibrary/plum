@@ -1,0 +1,33 @@
+---
+:resource: ScannedResource
+:attributes:
+  :default:
+    state: final_review
+    viewing_direction: left-to-right
+    rights_statement: http://rightsstatements.org/vocab/NKC/1.0/
+    visibility: open
+  :local:
+    source_metadata_identifier:
+    viewing_direction: left-to-right
+:source_metadata:
+:thumbnail_path:
+:collections: []
+:structure:
+  :nodes:
+  - :label: Page 1
+    :nodes:
+    - :label: Page 1
+      :proxy: pg1
+:files:
+- :id: pg1
+  :mime_type: image/jp2
+  :path: "/spec/fixtures/files/image.jp2"
+  :attributes:
+    :title:
+    - Page 1
+  :ocr_path: "/spec/fixtures/files/fulltext.txt"
+  :file_opts: {}
+:sources:
+- :title:
+  - Contentdm XML
+  :file: spec/fixtures/files/ocr.xml
