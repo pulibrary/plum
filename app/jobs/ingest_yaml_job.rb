@@ -93,7 +93,13 @@ class IngestYAMLJob < ActiveJob::Base
         file_set.attributes = f[:attributes]
         copy_visibility(resource, file_set) unless assign_visibility?(f[:attributes])
         actor = FileSetActor.new(file_set, @user)
-        ingest_actors(actor, f)
+        if @file_association_method.in? ['batch', 'none']
+          actor.create_metadata(nil, f[:file_opts])
+        else
+          actor.create_metadata(resource, f[:file_opts])
+        end
+        actor.create_content(decorated_file(f))
+        ingest_ocr(actor, f)
 
         yaml_to_repo_map[f[:id]] = file_set.id
         @file_sets << file_set if @file_association_method == 'batch'
@@ -102,13 +108,7 @@ class IngestYAMLJob < ActiveJob::Base
       attach_files_to_work(resource, @file_sets) if @file_sets.any?
     end
 
-    def ingest_actors(actor, f)
-      if @file_association_method.in? ['batch', 'none']
-        actor.create_metadata(nil, f[:file_opts])
-      else
-        actor.create_metadata(resource, f[:file_opts])
-      end
-      actor.create_content(decorated_file(f))
+    def ingest_ocr(actor, f)
       actor.create_content(ocr_file(f), "extracted_text") if ocr_file(f)
     end
 
