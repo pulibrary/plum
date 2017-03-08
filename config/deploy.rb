@@ -1,5 +1,5 @@
 # config valid only for current version of Capistrano
-lock '3.4.0'
+# lock '3.4.0'
 
 set :application, 'plum'
 set :repo_url, 'https://github.com/pulibrary/plum.git'

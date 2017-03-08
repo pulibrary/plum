@@ -1,4 +1,4 @@
-class MessagingClient
+class GeoblacklightMessagingClient
   attr_reader :amqp_url
   def initialize(amqp_url)
     @amqp_url = amqp_url
@@ -21,6 +21,6 @@ class MessagingClient
     end
 
     def exchange
-      @exchange ||= channel.fanout(Plum.config['events']['exchange']['plum'], durable: true)
+      @exchange ||= channel.fanout(Plum.config['events']['exchange']['geoblacklight'], durable: true)
     end
 end

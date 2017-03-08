@@ -2,7 +2,7 @@ class Hyrax::GeoWorksController < ApplicationController
   include Hyrax::WorksControllerBehavior
   include Hyrax::BreadcrumbsForWorks
   include GeoWorks::GeoblacklightControllerBehavior
-  include Hyrax::GeoMessengerBehavior
+  include Hyrax::GeoEventsBehavior
 
   private
 

@@ -2,6 +2,7 @@ module Hyrax
   class FileSetsController < ApplicationController
     include Hyrax::FileSetsControllerBehavior
     include GeoWorks::FileSetsControllerBehavior
+    include Hyrax::GeoFileSetEventsBehavior
 
     def show_presenter
       ::FileSetPresenter
@@ -19,6 +20,7 @@ module Hyrax
           render :show, status: :ok, location: polymorphic_path([main_app, curation_concern])
         end
       end
+      geo_works_events_generator.record_updated(geo_work) if curation_concern.parent.workflow_state == 'complete'
     end
 
     # this is provided so that implementing application can override this behavior and map params to different attributes
