@@ -10,6 +10,10 @@ class Hyrax::GeoWorksController < ApplicationController
       CompositeDecorator.new(NullDecorator)
     end
 
+    def document_class
+      Discovery::GeoblacklightDocument
+    end
+
     def curation_concern
       @decorated_concern ||=
         begin

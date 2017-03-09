@@ -45,7 +45,7 @@ class PlumGeoblacklightEventGenerator
     end
 
     def generate_document(record)
-      GeoWorks::Discovery::DocumentBuilder.new(record, GeoWorks::Discovery::GeoblacklightDocument.new)
+      GeoWorks::Discovery::DocumentBuilder.new(record, Discovery::GeoblacklightDocument.new)
     end
 
     def slug(record)
