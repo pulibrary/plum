@@ -30,6 +30,13 @@ RSpec.describe FileSet do
   end
 
   describe "#create_derivatives" do
+    let(:delivery_service) { instance_double(GeoWorks::DeliveryService) }
+
+    before do
+      allow(delivery_service).to receive(:publish)
+      allow(GeoWorks::DeliveryService).to receive(:new).and_return(delivery_service)
+    end
+
     let(:path) { Pathname.new(PairtreeDerivativePath.derivative_path_for_reference(subject, 'intermediate_file')) }
     let(:thumbnail_path) { Pathname.new(PairtreeDerivativePath.derivative_path_for_reference(subject, 'thumbnail')) }
     let(:ocr_path) { Pathname.new(PairtreeDerivativePath.derivative_path_for_reference(subject, 'ocr')) }

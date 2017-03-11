@@ -3,7 +3,7 @@ require 'uri'
 ##
 # Delivers derivatives to external services, like GeoServer
 ##
-class DeliveryJob < ActiveJob::Base
+class GeoserverDeliveryJob < ActiveJob::Base
   queue_as Hyrax.config.ingest_queue_name
 
   attr_reader :file_set

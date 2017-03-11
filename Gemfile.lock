@@ -8,8 +8,8 @@ GIT
 
 GIT
   remote: git://github.com/geoconcerns/geo_works.git
-  revision: e9e790f90c2ea49ef29b8db623be9e8b83db150d
-  branch: 8-refactor-messaging
+  revision: 762b26a7e12f1c810ac1db9496ce7caf2d642f2c
+  branch: master
   specs:
     geo_works (0.3.4)
       hyrax
