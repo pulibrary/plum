@@ -41,8 +41,11 @@ RSpec.feature "ScannedResourcesController", type: :feature do
       choose 'Final Review'
       click_button 'Submit'
 
+      generator = instance_double(ManifestEventGenerator, record_updated: true)
+      allow(ManifestEventGenerator).to receive(:new).and_return(generator)
       choose 'Complete'
       click_button 'Submit'
+      expect(generator).to have_received(:record_updated)
 
       expect(page).to have_selector("li.identifier", text: "ark:/99999/fk4wtest")
 
