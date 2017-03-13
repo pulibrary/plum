@@ -109,7 +109,10 @@ class IngestYAMLJob < ActiveJob::Base
     end
 
     def ingest_ocr(actor, f)
-      actor.create_content(ocr_file(f), "extracted_text") if ocr_file(f)
+      return unless ocr_file?(f)
+      ocr_file = File.open(f[:ocr_path])
+      actor.create_content(ocr_file, "extracted_text")
+      ocr_file.close
     end
 
     def ingest_thumbnail(file_set, resource, parent)
@@ -124,12 +127,8 @@ class IngestYAMLJob < ActiveJob::Base
       IoDecorator.new(open(f[:path]), f[:mime_type], File.basename(f[:path]))
     end
 
-    def ocr_file(f)
-      if f.key?(:ocr_path) && File.exist?(f[:ocr_path])
-        File.open(f[:ocr_path])
-      else
-        false
-      end
+    def ocr_file?(f)
+      (f.key?(:ocr_path) && File.exist?(f[:ocr_path])) ? true : false
     end
 
     def map_fileids(hsh)
