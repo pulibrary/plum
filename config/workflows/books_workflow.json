@@ -25,7 +25,7 @@
             }
           ],
           "transition_to": "metadata_review",
-          "methods": ["Grocer::ExportObject"],
+          "methods": ["Grocer::ExportObject", "Workflow::UpdatedEvent"],
           "notifications": [
             {
               "notification_type": "email",
@@ -46,6 +46,9 @@
             }
           ],
           "transition_to": "final_review",
+          "methods": [
+            "Workflow::UpdatedEvent"
+          ],
           "notifications": [
             {
               "notification_type": "email",
@@ -66,7 +69,8 @@
           ],
           "transition_to": "complete",
           "methods": [
-            "Workflow::CompleteRecord"
+            "Workflow::CompleteRecord",
+            "Workflow::UpdatedEvent"
           ],
           "notifications": [
             {
@@ -86,6 +90,9 @@
                 "editor"
               ]
             }
+          ],
+          "methods": [
+            "Workflow::UpdatedEvent"
           ],
           "transition_to": "takedown",
           "notifications": [
@@ -114,6 +121,9 @@
             }
           ],
           "transition_to": "flagged",
+          "methods": [
+            "Workflow::UpdatedEvent"
+          ],
           "notifications": [
             {
               "notification_type": "email",
