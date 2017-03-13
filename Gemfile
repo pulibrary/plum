@@ -129,5 +129,7 @@ gem 'tinymce-rails-imageupload', github: 'PerfectlyNormal/tinymce-rails-imageupl
 gem 'flipflop', github: 'voormedia/flipflop'
 group :staging, :production do
   gem 'ddtrace'
+end
+group :development, :staging, :production do
   gem 'honeybadger', '~> 2.0'
 end
