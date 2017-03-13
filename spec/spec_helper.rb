@@ -1,4 +1,3 @@
-require 'simplecov'
 require 'active_fedora/noid/rspec'
 
 if ENV['CI']
