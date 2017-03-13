@@ -27,7 +27,7 @@ RSpec.describe HoldingLocationAuthority do
   }
 
   before do
-    allow(subject).to receive(:get_json).and_return(JSON.parse(json))
+    allow(subject).to receive(:json).and_return(JSON.parse(json))
   end
 
   context "with data" do
