@@ -127,3 +127,4 @@ end
 gem 'poltergeist'
 gem 'tinymce-rails-imageupload', github: 'PerfectlyNormal/tinymce-rails-imageupload'
 gem 'flipflop', github: 'voormedia/flipflop'
+gem 'ddtrace'
