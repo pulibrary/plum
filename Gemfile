@@ -127,5 +127,7 @@ end
 gem 'poltergeist'
 gem 'tinymce-rails-imageupload', github: 'PerfectlyNormal/tinymce-rails-imageupload'
 gem 'flipflop', github: 'voormedia/flipflop'
-gem 'ddtrace'
-gem 'honeybadger', '~> 2.0'
+group :staging, :production do
+  gem 'ddtrace'
+  gem 'honeybadger', '~> 2.0'
+end
