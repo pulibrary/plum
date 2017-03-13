@@ -5,9 +5,6 @@ if ENV['CI']
   require 'coveralls'
   SimpleCov.formatter = Coveralls::SimpleCov::Formatter
 end
-SimpleCov.start('rails') do
-  add_filter '/spec'
-end
 
 RSpec.configure do |config|
   include ActiveFedora::Noid::RSpec
