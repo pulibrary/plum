@@ -9,15 +9,22 @@ class IngestPULFAJob < ApplicationJob
     @user = user
     @pages = []
 
-    ingest
+    begin
+      ingest
+    rescue StandardError => e
+      Rails.logger.warn e.to_s
+      Rails.logger.warn e.backtrace
+    end
   end
 
   private
 
     def ingest
+      replaces = @mets.xpath('/mets:mets/@OBJID').first.value
+      delete_duplicates! replaces
       r = ScannedResource.new
       r.title = [@mets.xpath("//mets:structMap/mets:div/@LABEL").first.value]
-      r.replaces = @mets.xpath('/mets:mets/@OBJID').first.value
+      r.replaces = replaces
       r.rights_statement = 'http://rightsstatements.org/vocab/NKC/1.0/'
       r.visibility = Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PUBLIC
       r.apply_depositor_metadata @user
@@ -38,6 +45,17 @@ class IngestPULFAJob < ApplicationJob
       # add pages to order
       r.ordered_members = @pages
       r.save!
+    end
+
+    def delete_duplicates!(replaces)
+      old_resource_ids(replaces).map { |x| ActiveFedora::Base.find(x) }.each do |resource|
+        logger.info "Deleting existing resource (#{resource.id}) which had replaces = #{replaces}"
+        resource.destroy
+      end
+    end
+
+    def old_resource_ids(replaces)
+      ActiveFedora::SolrService.query("replaces_ssim:#{replaces}", fl: "id").map { |x| x["id"] }
     end
 
     def file_info(file)
@@ -76,8 +94,9 @@ class IngestPULFAJob < ApplicationJob
       file_set.title = [tiff_info[:title]]
       file_set.replaces = tiff_info[:id]
       actor = BatchFileSetActor.new(file_set, @user)
-      actor.create_metadata(resource, {})
+      actor.create_metadata
       actor.create_content(File.open(tiff_info[:file]))
+      actor.attach_file_to_work(resource)
       @pages << file_set
       logger.info "Ingested TIFF #{tiff_info[:file]}"
 
