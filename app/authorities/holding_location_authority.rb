@@ -2,7 +2,7 @@ class HoldingLocationAuthority
   include Qa::Authorities::WebServiceBase
 
   def all
-    get_json(url).each { |loc| loc['id'] = loc['url'].sub(/\.json$/, '') }
+    json(url).each { |loc| loc['id'] = loc['url'].sub(/\.json$/, '') }
   end
 
   def find(id)
