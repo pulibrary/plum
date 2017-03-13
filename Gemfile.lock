@@ -342,6 +342,8 @@ GEM
     dalli (2.7.6)
     database_cleaner (1.5.3)
     dbf (3.1.0)
+    ddtrace (0.5.0)
+      msgpack
     debug_inspector (0.0.2)
     declarative (0.0.9)
     declarative-option (0.1.0)
@@ -928,6 +930,7 @@ DEPENDENCIES
   coveralls (= 0.8.3)
   dalli
   database_cleaner
+  ddtrace
   devise (~> 4.2.0)
   devise-guests (~> 0.3)
   ezid-client
