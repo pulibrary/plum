@@ -121,6 +121,7 @@ gem 'pul_uv_rails', github: 'pulibrary/pul_uv_rails', branch: 'master'
 gem 'grocer', github: 'pulibrary/grocer'
 source 'https://rails-assets.org' do
   gem 'rails-assets-babel-polyfill'
+  gem 'rails-assets-jquery', '2.2.4'
   gem 'rails-assets-bootstrap-select', '1.9.4'
   gem 'rails-assets-jqueryui-timepicker-addon'
 end
