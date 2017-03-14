@@ -125,6 +125,25 @@ RSpec.describe CatalogController do
     end
   end
 
+  describe "manifest lookup" do
+    context "when the manifest is found" do
+      it "redirects to the manifest" do
+        resource = FactoryGirl.create(:complete_scanned_resource, identifier: 'ark:/99999/12345678')
+        resource.save
+
+        get :lookup_manifest, params: { prefix: 'ark:', naan: '99999', arkid: '12345678' }
+        expect(response).to redirect_to "http://test.host/concern/scanned_resources/#{resource.id}/manifest?locale=en"
+      end
+    end
+
+    context "when the manifeset is not found" do
+      it "sends a 404 error" do
+        get :lookup_manifest, params: { prefix: 'ark:', naan: '99999', arkid: '99999999' }
+        expect(response.status).to be 404
+      end
+    end
+  end
+
   def document_ids
     assigns[:document_list].map do |x|
       x["id"]

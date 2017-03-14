@@ -42,6 +42,7 @@ Rails.application.routes.draw do
 
   mount GeoWorks::Engine => '/'
   get "/iiif/collections", defaults: { format: :json }, controller: 'hyrax/collections', action: :index_manifest
+  get "/iiif/lookup/:prefix/:naan/:arkid", controller: 'catalog', action: :lookup_manifest, as: :lookup_manifest
 
   namespace :hyrax, path: :concern do
     resources :parent, only: [] do

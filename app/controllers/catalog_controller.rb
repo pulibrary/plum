@@ -263,4 +263,17 @@ class CatalogController < ApplicationController
     return unless can? :create, ScannedResource
     blacklight_config.add_facet_field 'workflow_state_name_ssim', label: 'State'
   end
+
+  def lookup_manifest
+    ark = "#{params[:prefix]}/#{params[:naan]}/#{params[:arkid]}"
+    _, result = search_results(q: "identifier_ssim:#{RSolr.solr_escape(ark)}", fl: "id, has_model_ssim", rows: 1)
+
+    if result.first
+      object_id = result.first['id']
+      model_name = result.first['has_model_ssim'].first
+      redirect_to polymorphic_url([:manifest, :hyrax, model_name.underscore.to_sym], id: object_id)
+    else
+      render json: { message: "No manifest found for #{ark}" }, status: 404
+    end
+  end
 end
