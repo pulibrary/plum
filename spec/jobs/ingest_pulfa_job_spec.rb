@@ -22,8 +22,10 @@ RSpec.describe IngestPULFAJob do
     let(:fileset2) { FileSet.new id: 'fileset2' }
     let(:fileset3) { FileSet.new id: 'fileset3' }
     let(:resource) { ScannedResource.new id: 'resource01' }
+    let(:existing) { FactoryGirl.create(:scanned_resource, replaces: 'AC057/c18') }
 
     before do
+      existing.update_index
       allow(BatchFileSetActor).to receive(:new).and_return(actor1, actor2, actor3)
       allow(ScannedResource).to receive(:new).and_return(resource)
       allow(FileSet).to receive(:new).and_return(fileset1, fileset2, fileset3)
@@ -47,6 +49,24 @@ RSpec.describe IngestPULFAJob do
       expect(resource.visibility).to eq(Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PUBLIC)
       expect(fileset2.title.first.to_s).to eq("[1]")
       expect(fileset3.title.first.to_s).to eq("[2]")
+      expect { ActiveFedora::Base.find(existing.id) }.to raise_error Ldp::Gone
+    end
+  end
+
+  describe "error handling" do
+    let(:mets) { fixture('files/AC057-c18.mets') }
+    let(:user) { FactoryGirl.build(:admin) }
+
+    before do
+      allow(ScannedResource).to receive(:new).and_raise(StandardError.new("Test error"))
+    end
+
+    it "logs error messages" do
+      allow(described_class.logger).to receive(:info).and_call_original
+      allow(described_class.logger).to receive(:warn).and_call_original
+      expect(described_class.logger).to receive(:info).with("Ingesting PULFA METS #{mets}")
+      expect(described_class.logger).to receive(:warn).with("Test error")
+      expect { described_class.perform_now(mets, user) }.not_to raise_error
     end
   end
 end
