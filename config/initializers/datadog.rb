@@ -13,7 +13,10 @@ if Rails.env.staging? || Rails.env.production?
 
   Sidekiq.configure_server do |config|
     config.server_middleware do |chain|
-      chain.add(Datadog::Contrib::Sidekiq::Tracer)
+      chain.add(
+        Datadog::Contrib::Sidekiq::Tracer,
+        sidekiq_service: 'sidekiq'
+      )
     end
   end
   Datadog::Monkey.patch_all
