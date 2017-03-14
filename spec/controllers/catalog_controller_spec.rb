@@ -144,6 +144,12 @@ RSpec.describe CatalogController do
     end
   end
 
+  describe "modified_field" do
+    it "uses the system modification date" do
+      expect(described_class.modified_field).to eq('system_modified_dtsi')
+    end
+  end
+
   def document_ids
     assigns[:document_list].map do |x|
       x["id"]
