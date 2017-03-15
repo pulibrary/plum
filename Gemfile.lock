@@ -141,10 +141,10 @@ GIT
 
 GIT
   remote: git://github.com/pulibrary/pul_uv_rails.git
-  revision: 7060d5eac7005573a93aac0335b365e29a576a54
+  revision: c268739da1e849499a3c2954d4e069f0aef1ba9c
   branch: master
   specs:
-    pul_uv_rails (1.8.42)
+    pul_uv_rails (2.0.1)
 
 GIT
   remote: git://github.com/voormedia/flipflop.git
