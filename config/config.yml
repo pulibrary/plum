@@ -68,7 +68,9 @@ defaults: &defaults
       Stiles=\{1024,1024\}
   events:
     server: 'amqp://localhost:5672'
-    exchange: 'plum_events'
+    exchange: 
+      plum: "plum_events"
+      geoblacklight: "gbl_events"
   geo_derivatives_path: <%= File.join(Rails.root, 'tmp', 'geo-derivatives') %>
   geoblacklight_provenance: 'Princeton'
   pulfa:
@@ -90,7 +92,9 @@ production:
   external_file_url: "http://plum.princeton.edu:9090"
   events:
     server: <%= ENV['PLUM_RABBIT_SERVER'] || 'amqp://localhost:5672' %>
-    exchange: "plum_events"
+    exchange: 
+      plum: "plum_events"
+      geoblacklight: "gbl_events"
 
 staging:
   <<: *defaults
@@ -98,4 +102,6 @@ staging:
   external_file_url: "http://localhost:9000"
   events:
     server: <%= ENV['PLUM_RABBIT_SERVER'] || 'amqp://localhost:5672' %>
-    exchange: "plum_events"
+    exchange: 
+      plum: "plum_events"
+      geoblacklight: "gbl_events"

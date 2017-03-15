@@ -6,17 +6,17 @@ class DeliverToGeoBlacklight
   end
 
   def delete
-    geo_works_messenger.record_deleted(geo_work)
+    geo_works_events_generator.record_deleted(geo_work)
   end
 
   def update
-    geo_works_messenger.record_updated(geo_work)
+    geo_works_events_generator.record_updated(geo_work)
   end
 
   private
 
-    def geo_works_messenger
-      @geo_works_messenger ||= GeoWorks::Messaging.messenger
+    def geo_works_events_generator
+      @geo_works_events_generator ||= GeoWorks::EventsGenerator.new
     end
 
     def geo_work

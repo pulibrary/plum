@@ -7,13 +7,17 @@ module Plum
     MessagingClient.new(Plum.config['events']['server'])
   end
 
+  def geoblacklight_messaging_client
+    GeoblacklightMessagingClient.new(Plum.config['events']['server'])
+  end
+
   private
 
     def config_yaml
       YAML.load(ERB.new(File.read("#{Rails.root}/config/config.yml")).result)[Rails.env]
     end
 
-    module_function :config, :config_yaml, :messaging_client
+    module_function :config, :config_yaml, :messaging_client, :geoblacklight_messaging_client
 end
 
 Hydra::Derivatives.kdu_compress_recipes = Plum.config['jp2_recipes']
@@ -26,5 +30,11 @@ GeoWorks::Discovery::DocumentBuilder.services = [
   GeoWorks::Discovery::DocumentBuilder::DateBuilder,
   GeoWorks::Discovery::DocumentBuilder::ReferencesBuilder,
   GeoWorks::Discovery::DocumentBuilder::LayerInfoBuilder,
-  Discovery::SlugBuilder
+  Discovery::SlugBuilder,
+  Discovery::IIIFBuilder
+]
+
+GeoWorks::EventsGenerator.services = [
+  PlumGeoblacklightEventGenerator,
+  GeoWorks::EventsGenerator::GeoserverEventGenerator
 ]

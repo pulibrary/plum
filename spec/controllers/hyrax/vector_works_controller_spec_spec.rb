@@ -51,4 +51,20 @@ describe Hyrax::VectorWorksController do
       end
     end
   end
+
+  describe '#geoblacklight' do
+    # Tell RSpec where to find the geoblacklight route.
+    routes { GeoWorks::Engine.routes }
+    let(:builder) { instance_double(GeoWorks::Discovery::DocumentBuilder, to_hash: { id: 'test' }) }
+    let(:document) { instance_double(Discovery::GeoblacklightDocument) }
+    before do
+      sign_in user
+      allow(Discovery::GeoblacklightDocument).to receive(:new).and_return(document)
+    end
+
+    it 'uses the plum document builder class' do
+      expect(GeoWorks::Discovery::DocumentBuilder).to receive(:new).with(anything, document).and_return(builder)
+      get :geoblacklight, params: { id: vector_work.id, format: :json }
+    end
+  end
 end

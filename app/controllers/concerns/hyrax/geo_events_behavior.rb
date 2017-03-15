@@ -1,20 +1,20 @@
 module Hyrax
-  module GeoMessengerBehavior
+  module GeoEventsBehavior
     extend ActiveSupport::Concern
 
     def destroy
-      geo_works_messenger.record_deleted(geo_work)
+      geo_works_events_generator.record_deleted(geo_work)
       super
     end
 
     def after_update_response
       super
       return unless curation_concern.workflow_state == 'complete'
-      geo_works_messenger.record_updated(geo_work)
+      geo_works_events_generator.record_updated(geo_work)
     end
 
-    def geo_works_messenger
-      @geo_works_messenger ||= GeoWorks::Messaging.messenger
+    def geo_works_events_generator
+      @geo_works_events_generator ||= GeoWorks::EventsGenerator.new
     end
 
     def geo_work

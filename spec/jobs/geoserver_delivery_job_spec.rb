@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe DeliveryJob do
+describe GeoserverDeliveryJob do
   let(:id) { 'ab' }
   let(:file_set) { instance_double(FileSet, id: id, geo_mime_type: file_format) }
 
