@@ -128,8 +128,8 @@ GIT
 
 GIT
   remote: git://github.com/pulibrary/pul_metadata_services.git
-  revision: 08bc4282fbd4b956737d62f52738730a47e75496
-  branch: pulfa-metadata
+  revision: 57a200dd2fa1c21f6611c6bc7683e528c31469dc
+  branch: master
   specs:
     pul_metadata_services (0.0.1)
       activesupport (>= 4.2.7.1)
