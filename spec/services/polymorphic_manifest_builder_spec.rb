@@ -341,6 +341,27 @@ RSpec.describe PolymorphicManifestBuilder, vcr: { cassette_name: "iiif_manifest"
           ]
         )
       end
+      it "has the right label for publisher" do
+        record.publisher = ["1987"]
+        expect(result.metadata.first).to eql(
+          "label" => "Published/Created",
+          "value" => [
+            "1987"
+          ]
+        )
+      end
+      it "doesn't display sort title" do
+        record.sort_title = "Bla"
+        expect(result.metadata).to be_empty
+      end
+      it "doesn't display date" do
+        record.date = ["1917"]
+        expect(result.metadata).to be_empty
+      end
+      it "doesn't display part of" do
+        record.part_of = ["Testing"]
+        expect(result.metadata).to be_empty
+      end
       it "is empty with no metadata" do
         expect(result.metadata).to be_empty
       end

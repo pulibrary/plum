@@ -19,6 +19,7 @@ en:
           original_checksum: MD5
           profile_name: Color profile
           well_formed: Well-formed
+          publisher: Published/Created
         index:
           description_tesim: "Description"
           keyword_tesim: "Keyword"
