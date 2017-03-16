@@ -5,15 +5,15 @@ class IngestPULFAJob < ApplicationJob
   # @param [String] user User to ingest as
   def perform(mets_file, user)
     logger.info "Ingesting PULFA METS #{mets_file}"
+    @ingest = IngestService.new(logger)
     @mets = Nokogiri::XML(File.open(mets_file))
     @user = user
-    @pages = []
 
     begin
       ingest
     rescue StandardError => e
-      Rails.logger.warn e.to_s
-      Rails.logger.warn e.backtrace
+      logger.warn e.to_s
+      logger.warn e.backtrace
     end
   end
 
@@ -21,41 +21,23 @@ class IngestPULFAJob < ApplicationJob
 
     def ingest
       replaces = @mets.xpath('/mets:mets/@OBJID').first.value
-      delete_duplicates! replaces
-      r = ScannedResource.new
-      r.title = [@mets.xpath("//mets:structMap/mets:div/@LABEL").first.value]
-      r.replaces = replaces
-      r.rights_statement = 'http://rightsstatements.org/vocab/NKC/1.0/'
-      r.visibility = Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PUBLIC
-      r.apply_depositor_metadata @user
-      r.save!
-      Workflow::InitializeState.call(r, 'book_works', 'final_review')
-      logger.info "Created ScannedResource #{r.id} (#{r.replaces})"
+      @ingest.delete_duplicates!("replaces_ssim:#{replaces}")
+      r = @ingest.minimal_record(ScannedResource, @user, title: [@mets.xpath("//mets:structMap/mets:div/@LABEL").first.value], replaces: replaces)
 
-      @mets.xpath("/mets:mets/mets:fileSec/mets:fileGrp").map do |group|
+      pages = []
+      @mets.xpath("/mets:mets/mets:fileSec/mets:fileGrp").each do |group|
         master = file_info(group.xpath("mets:file[@USE='master']"))
         service = file_info(group.xpath("mets:file[@USE='deliverable']"))
         if master[:file]
-          ingest_page(r, master, service)
+          pages << ingest_page(r, master, service)
         elsif service[:type] == 'application/pdf'
           attach_pdf(r, service)
         end
       end
 
       # add pages to order
-      r.ordered_members = @pages
+      r.ordered_members = pages
       r.save!
-    end
-
-    def delete_duplicates!(replaces)
-      old_resource_ids(replaces).map { |x| ActiveFedora::Base.find(x) }.each do |resource|
-        logger.info "Deleting existing resource (#{resource.id}) which had replaces = #{replaces}"
-        resource.destroy
-      end
-    end
-
-    def old_resource_ids(replaces)
-      ActiveFedora::SolrService.query("replaces_ssim:#{replaces}", fl: "id").map { |x| x["id"] }
     end
 
     def file_info(file)
@@ -90,19 +72,14 @@ class IngestPULFAJob < ApplicationJob
     end
 
     def ingest_page(resource, tiff_info, jp2_info)
-      file_set = FileSet.new
-      file_set.title = [tiff_info[:title]]
-      file_set.replaces = tiff_info[:id]
-      actor = BatchFileSetActor.new(file_set, @user)
-      actor.create_metadata
-      actor.create_content(File.open(tiff_info[:file]))
-      actor.attach_file_to_work(resource)
-      @pages << file_set
-      logger.info "Ingested TIFF #{tiff_info[:file]}"
+      file_set = @ingest.ingest_file(resource, File.new(tiff_info[:file]), @user, {},
+                                     title: [tiff_info[:title]], replaces: tiff_info[:id])
 
       dest = PairtreeDerivativePath.derivative_path_for_reference file_set.id, 'intermediate_file'
       FileUtils.mkdir_p File.dirname(dest)
       FileUtils.cp jp2_info[:file], dest
       logger.info "Copied JP2 #{jp2_info[:file]} to #{dest}"
+
+      file_set
     end
 end

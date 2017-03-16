@@ -216,7 +216,7 @@ RSpec.describe IngestMETSJob do
 
         expect(ActiveFedora::SolrService.query("identifier_tesim:#{RSolr.solr_escape(resource.identifier)}", fl: "id").length).to eq 1
         expect(ActiveFedora::SolrService.query("id:#{fs.id}", fl: "id").length).to eq 0
-        expect(described_class.logger).to have_received(:info).with("Deleting existing resource with ID of #{mvw.id} which had ARK #{mvw.identifier}")
+        expect(described_class.logger).to have_received(:info).with("Deleting existing resource with ID of #{mvw.id} which matched identifier_ssim:ark\\:\\/88435\\/5m60qr98h")
       end
     end
     context "when there's another resource with a different ark", vcr: { cassette_name: 'bibdata-4612596' } do

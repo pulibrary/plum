@@ -7,6 +7,7 @@ class IngestMETSJob < ApplicationJob
   # @param [String] user User to ingest as
   def perform(mets_file, user)
     logger.info "Ingesting METS #{mets_file}"
+    @ingest = IngestService.new(logger)
     @mets = METSDocument::Factory.new(mets_file).new
     @user = user
 
@@ -16,17 +17,14 @@ class IngestMETSJob < ApplicationJob
   private
 
     def ingest
-      delete_duplicates!
-      resource = minimal_record(@mets.multi_volume? ? MultiVolumeWork : ScannedResource)
-      resource.identifier = @mets.ark_id
-      resource.replaces = @mets.pudl_id
-      resource.source_metadata_identifier = @mets.bib_id
-      resource.member_of_collections = Array(@mets.collection_slugs).select(&:present?).map { |slug| find_or_create_collection(slug) }
-      resource.apply_remote_metadata
-      resource.save!
-      Workflow::InitializeState.call(resource, 'book_works', 'final_review')
-      logger.info "Created #{resource.class}: #{resource.id}"
-
+      @ingest.delete_duplicates!("identifier_ssim:#{RSolr.solr_escape(@mets.ark_id)}")
+      klass = @mets.multi_volume? ? MultiVolumeWork : ScannedResource
+      cols = Array(@mets.collection_slugs).select(&:present?).map { |slug| find_or_create_collection(slug) }
+      resource = @ingest.minimal_record(klass, @user, viewing_direction: @mets.viewing_direction,
+                                                      identifier: @mets.ark_id,
+                                                      replaces: @mets.pudl_id,
+                                                      source_metadata_identifier: @mets.bib_id,
+                                                      member_of_collections: cols)
       attach_mets resource
 
       if @mets.multi_volume?
@@ -45,18 +43,6 @@ class IngestMETSJob < ApplicationJob
     def validate!(resource)
       return if @mets.files.length == resource.member_ids.length
       logger.info "Incorrect number of files ingested for #{resource.id}: #{resource.member_ids.length} of expected #{@mets.files.length}"
-    end
-
-    def delete_duplicates!
-      old_resources = old_resource_ids.map { |x| ActiveFedora::Base.find(x) }
-      old_resources.each do |resource|
-        logger.info "Deleting existing resource with ID of #{resource.id} which had ARK #{@mets.ark_id}"
-        resource.destroy
-      end
-    end
-
-    def old_resource_ids
-      ActiveFedora::SolrService.query("identifier_ssim:#{RSolr.solr_escape(@mets.ark_id)}", fl: "id").map { |x| x["id"] }
     end
 
     def find_or_create_collection(slug)
@@ -99,15 +85,8 @@ class IngestMETSJob < ApplicationJob
     end
 
     def ingest_file(parent: nil, resource: nil, f: nil, count: 0)
-      logger.info "Ingesting file #{f[:path]}"
-      file_set = FileSet.new
-      file_set.title = [@mets.file_label(f[:id])]
-      file_set.replaces = f[:replaces]
-      actor = BatchFileSetActor.new(file_set, @user)
-      actor.create_metadata(@mets.file_opts(f))
-      actor.attach_file_to_work(resource)
-      actor.create_content(@mets.decorated_file(f))
-
+      file_set = @ingest.ingest_file(resource, @mets.decorated_file(f), @user, @mets.file_opts(f),
+                                     title: [@mets.file_label(f[:id])], replaces: f[:replaces])
       mets_to_repo_map[f[:id]] = file_set.id
 
       if f[:path] == @mets.thumbnail_path
@@ -128,13 +107,9 @@ class IngestMETSJob < ApplicationJob
 
     def ingest_volumes(parent)
       @mets.volume_ids.each do |volume_id|
-        r = minimal_record(ScannedResource)
-        r.title = [@mets.label_for_volume(volume_id)]
-        r.viewing_hint = @mets.viewing_hint
-        r.save!
-        Workflow::InitializeState.call(r, 'book_works', 'final_review')
-        logger.info "Created ScannedResource: #{r.id}"
-
+        r = @ingest.minimal_record(ScannedResource, @user, viewing_direction: @mets.viewing_direction,
+                                                           title: [@mets.label_for_volume(volume_id)],
+                                                           viewing_hint: @mets.viewing_hint)
         parent.ordered_members << r
         parent.save!
 
@@ -143,15 +118,6 @@ class IngestMETSJob < ApplicationJob
         r.thumbnail_id = r.file_sets.first.id unless r.thumbnail_id
         r.save!
       end
-    end
-
-    def minimal_record(klass)
-      resource = klass.new
-      resource.viewing_direction = @mets.viewing_direction
-      resource.rights_statement = 'http://rightsstatements.org/vocab/NKC/1.0/'
-      resource.visibility = Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PUBLIC
-      resource.apply_depositor_metadata @user
-      resource
     end
 
     def map_fileids(hsh)
