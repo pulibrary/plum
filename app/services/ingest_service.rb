@@ -11,14 +11,14 @@ class IngestService
     r.apply_depositor_metadata user
     r.apply_remote_metadata if r.source_metadata_identifier
     r.save!
-    Workflow::InitializeState.call(r, 'book_works', 'final_review')
+    Workflow::InitializeState.call(r, workflow_name, 'final_review')
     @logger.info "Created #{klass}: #{r.id} #{attributes}"
 
     r
   end
 
   def ingest_dir(dir, bib, user)
-    klass = File.directory?(Dir["#{dir}/*"].first) ? MultiVolumeWork : ScannedResource
+    klass = choose_class(Dir["#{dir}/*"].first)
     attribs = bib.nil? ? { title: [File.basename(dir)] } : { source_metadata_identifier: bib }
     r = minimal_record klass, user, attribs
     members = []
@@ -26,7 +26,7 @@ class IngestService
       if File.directory? f
         members << ingest_dir(f, nil, user)
       else
-        members << ingest_file(r, f, user, {}, title: [File.basename(f)])
+        members << ingest_file(r, f, user, {}, file_set_attributes.merge(title: [File.basename(f)]))
       end
     end
     r.ordered_members = members
@@ -52,5 +52,17 @@ class IngestService
       @logger.info "Deleting existing resource with ID of #{r.id} which matched #{query}"
       r.destroy
     end
+  end
+
+  def workflow_name
+    'book_works'
+  end
+
+  def choose_class(file)
+    File.directory?(file) ? MultiVolumeWork : ScannedResource
+  end
+
+  def file_set_attributes
+    {}
   end
 end
