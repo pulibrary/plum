@@ -17,4 +17,22 @@ namespace :bulk do
       puts e.backtrace
     end
   end
+  desc "Ingest a directory of scanned map TIFFs, each filename corresponds to a Bib ID"
+  task ingest_scanned_maps: :environment do
+    user = User.find_by_user_key( ENV['USER'] ) if ENV['USER']
+    user = User.all.select{ |u| u.admin? }.first unless user
+    dir = ENV['DIR']
+
+    abort "usage: rake bulk:ingest_scanned_maps DIR=/path/to/files" unless dir && Dir.exist?(dir)
+
+    @logger = Logger.new(STDOUT)
+    @logger.info "ingesting files from: #{dir}"
+    @logger.info "ingesting as: #{user.user_key} (override with USER=foo)"
+    begin
+      IngestScannedMapsService.new(@logger).ingest_dir dir, user
+    rescue => e
+      puts "Error: #{e.message}"
+      puts e.backtrace
+    end
+  end
 end

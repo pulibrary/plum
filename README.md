@@ -40,6 +40,7 @@ After cloning the Plum repository:
 * Install dependencies: `bundle install`
 * Setup the database: `rake db:migrate`
 * Setup ActiveFedora::Noid minter: `rails g active_fedora:noid:seed`
+* Create the default admin set: `rake hyrax:default_admin_set:create`
 * Load the workflows in `config/workflows`: `rake hyrax:workflow:load`
 
 ## Running the Tests
