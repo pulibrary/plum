@@ -8,8 +8,8 @@ module Workflow
 
     # @return [String] The name of the workflow to use
     def workflow
-      return Sipity::Workflow.where(name: 'book_works').first! if book_works.include? work_class
-      return Sipity::Workflow.where(name: 'geo_works').first! if geo_works.include? work_class
+      return Sipity::Workflow.where(name: 'book_works').last! if book_works.include? work_class
+      return Sipity::Workflow.where(name: 'geo_works').last! if geo_works.include? work_class
     end
 
     private
