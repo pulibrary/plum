@@ -36,6 +36,18 @@ class IngestService
     r
   end
 
+  def ingest_work(file_path, user)
+    klass = choose_class(file_path)
+    bib_id = File.basename(file_path, '.*')
+    attribs = { source_metadata_identifier: bib_id }
+    r = minimal_record klass, user, attribs
+    members = [ingest_file(r, file_path, user, {}, file_set_attributes.merge(title: [bib_id]))]
+    r.ordered_members = members
+    r.save!
+
+    r
+  end
+
   def ingest_file(parent, file, user, file_options, attributes)
     file_set = FileSet.new
     file_set.attributes = attributes

@@ -57,6 +57,7 @@ Hyrax.config do |config|
   config.work_requires_files = false
   config.active_deposit_agreement_acceptance = false
   config.default_active_workflow_name = "book_works"
+  config.browse_everything = true
 end
 
 Date::DATE_FORMATS[:standard] = '%m/%d/%Y'
