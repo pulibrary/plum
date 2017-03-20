@@ -10,7 +10,6 @@ class BrowseEverythingIngester
 
   def save
     actor.create_metadata({})
-    actor.attach_file_to_work(curation_concern)
     actor.create_content(decorated_file)
     cleanup_download
   end
