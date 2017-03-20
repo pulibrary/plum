@@ -20,9 +20,8 @@ class IngestPULFAJob < ApplicationJob
   private
 
     def ingest
-      replaces = @mets.xpath('/mets:mets/@OBJID').first.value
       @ingest.delete_duplicates!("replaces_ssim:#{replaces}")
-      r = @ingest.minimal_record(ScannedResource, @user, title: [@mets.xpath("//mets:structMap/mets:div/@LABEL").first.value], replaces: replaces)
+      r = @ingest.minimal_record(ScannedResource, @user, work_attributes)
 
       pages = []
       @mets.xpath("/mets:mets/mets:fileSec/mets:fileGrp").each do |group|
@@ -38,6 +37,18 @@ class IngestPULFAJob < ApplicationJob
       # add pages to order
       r.ordered_members = pages
       r.save!
+    end
+
+    def work_attributes
+      {
+        title: [@mets.xpath("//mets:structMap/mets:div/@LABEL").first.value],
+        source_metadata_identifier: replaces.sub(/\//, '_'),
+        replaces: replaces
+      }
+    end
+
+    def replaces
+      @mets.xpath('/mets:mets/@OBJID').first.value
     end
 
     def file_info(file)

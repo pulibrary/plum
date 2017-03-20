@@ -1,0 +1,116 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://findingaids.princeton.edu/collections/AC057/c18.xml?scope=record
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.9.2
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - Jetty/5.1.12 (Linux/3.2.0-124-generic amd64 java/1.6.0_45
+      Pragma:
+      - no-cache
+      Cache-Control:
+      - public
+      Link:
+      - "<http://findingaids.princeton.edu/_services/tree?record-id=AC057>;rel=contents,<http://findingaids.princeton.edu/collections/AC057>;rel=canonical"
+      X-Exist-Id:
+      - '2380'
+      Last-Modified:
+      - Wed, 08 Mar 2017 08:04:33 GMT
+      Content-Type:
+      - application/xml;charset=UTF-8
+      Access-Control-Allow-Origin:
+      - "*"
+      Content-Length:
+      - '3665'
+      Accept-Ranges:
+      - bytes
+      Date:
+      - Thu, 16 Mar 2017 19:01:01 GMT
+      X-Varnish:
+      - '1555966061'
+      Age:
+      - '0'
+      Via:
+      - 1.1 varnish
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: |-
+        <c xmlns="urn:isbn:1-931666-22-9" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:pulfa="http://library.princeton.edu/pulfa" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" level="file" id="AC057_c18">
+            <pulfa:context>
+                <pulfa:uri>http://findingaids.princeton.edu/collections/AC057/c18</pulfa:uri>
+                <pulfa:breadcrumbs>
+                    <pulfa:crumb uri="http://findingaids.princeton.edu/collections/AC057/c48" level="series">Oral History Project Information, Interview Recordings, and Interview Transcripts</pulfa:crumb>
+                </pulfa:breadcrumbs>
+                <pulfa:collectionInfo>
+                    <pulfa:ARK>http://arks.princeton.edu/ark:/88435/sq87bt63m</pulfa:ARK>
+                    <pulfa:uri>http://findingaids.princeton.edu/collections/AC057</pulfa:uri>
+                    <pulfa:collection-creators>
+                        <corpname source="viaf" role="cre" authfilenumber="http://viaf.org/viaf/131959659">Princeton University. Dept. of Mathematics.</corpname>
+                    </pulfa:collection-creators>
+                    <eadid countrycode="US" mainagencycode="US-NjP" url="http://arks.princeton.edu/ark:/88435/sq87bt63m" urn="ark:/88435/sq87bt63m">AC057</eadid>
+                    <unittitle>Department of Mathematics Oral History Project records</unittitle>
+                    <unitid type="collection" countrycode="US" repositorycode="US-NjP">AC057</unitid>
+                    <unitdate normal="1984/1985" type="inclusive">1984-1985</unitdate>
+                    <extent>1.42 linear feet</extent>
+                    <extent>2 boxes</extent>
+                    <extent>1 website</extent>
+                </pulfa:collectionInfo>
+                <pulfa:request type="single">AC057 box 2</pulfa:request>
+            </pulfa:context>
+            <did>
+                <unittitle>Henkin, Leon and Tucker, Albert [Transcript no. 19]</unittitle>
+                <unitdate normal="1984-05-18T00:00:00Z/1984-05-18T00:00:00Z">1984 May 18</unitdate>
+                <langmaterial>
+                    <language langcode="eng"/>
+                </langmaterial>
+                <physloc type="code">mudd</physloc>
+                <repository id="univarchives">
+                    <corpname source="lcsh">Princeton University. Library. Dept. of Rare Books and
+                            Special Collections.</corpname>
+                    <subarea>Seeley G. Mudd Manuscript Library.</subarea>
+                    <subarea>Princeton University Archives.</subarea>
+                    <address>
+                        <addressline>65 Olden Street</addressline>
+                        <addressline>Princeton, New Jersey 08540 USA</addressline>
+                    </address>
+                </repository>
+                <container type="box">2</container>
+                <unitid type="itemnumber">19</unitid>
+                <dao xmlns:xlin="http://www.w3.org/1999/xlink" xlin:href="http://findingaids.princeton.edu/folders/AC057/c18.mets" xlin:type="simple" xlin:role="http://www.loc.gov/METS/"/>
+                <physdesc>
+                    <extent type="computed">portion of 1 box</extent>
+                </physdesc>
+            </did>
+            <scopecontent>
+                <p>Tucker and Henkin talk about John Addison, who became Alonzo Church's
+                                    son-in-law. As an undergraduate at Princeton Addison became committed to
+                                    mathematics as a result of taking Church's course in logic. Tucker tells
+                                    how he helped bring it about that Addison did graduate work at the
+                                    University of Wisconsin with Steve Kleene. The interviewer is William
+                                    Aspray.</p>
+            </scopecontent>
+            <accessrestrict type="closed">
+                <p>The collection is open for research use with the exception of the interview of
+                            William Flexner, which is closed until 2020.</p>
+            </accessrestrict>
+            <controlaccess/>
+        </c>
+    http_version: 
+  recorded_at: Thu, 16 Mar 2017 19:01:01 GMT
+recorded_with: VCR 2.9.3
