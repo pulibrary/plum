@@ -8,11 +8,13 @@ test:
   password: fedoraAdmin
   url: http://localhost:8986/rest
   base_path: /test
-production: &production
+production:
   user: <%= ENV["PLUM_FEDORA_USER"] || "fedoraAdmin" %>
   password: <%= ENV["PLUM_FEDORA_PASS"] || "fedoraAdmin" %>
   url: <%= ENV["PLUM_FEDORA_URL"] || "http://localhost:8984/rest" %>
   base_path: /prod
 staging:
-  <<: *production
+  user: <%= ENV["PLUM_FEDORA_USER"] || "fedoraAdmin" %>
+  password: <%= ENV["PLUM_FEDORA_PASS"] || "fedoraAdmin" %>
+  url: <%= ENV["PLUM_FEDORA_URL"] || "http://localhost:8984/rest" %>
   base_path: /staging
