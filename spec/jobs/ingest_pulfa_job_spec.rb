@@ -47,7 +47,7 @@ RSpec.describe IngestPULFAJob do
       described_class.perform_now(mets, user)
       expect(resource.title.first.to_s).to eq("Oral History Project Information, Interview Recordings, and Interview Transcripts - Henkin, Leon and Tucker, Albert [Transcript no. 19]")
       expect(resource.creator).to eq(['Princeton University. Dept. of Mathematics.'])
-      expect(resource.description).to eq('Box 2')
+      expect(resource.container).to eq(['Box 2'])
       expect(resource.language).to eq(['eng'])
       expect(resource.visibility).to eq(Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PUBLIC)
       expect(fileset2.title.first.to_s).to eq("[1]")

@@ -21,9 +21,10 @@ class RemoteRecord < SimpleDelegator
 
   def attributes
     result = super
-    result[:date_created] = Array(result[:date_created])
+    result[:date] = Array(result.delete(:date_created))
     result[:description] = Array(result[:description]).first
     result.delete :heldBy # TODO: map codes to locations (see plum#1001)
+    result[:member_of_collections] = find_or_create(result.delete(:memberOf))
     result
   end
 
@@ -44,4 +45,20 @@ class RemoteRecord < SimpleDelegator
       {}
     end
   end
+
+  private
+
+    def find_or_create(cols)
+      cols.map { |col| find_or_create_collection(col[:title], col[:identifier]) }
+    end
+
+    def find_or_create_collection(title, slug)
+      return unless title.present?
+      existing = Collection.where exhibit_id_ssim: slug
+      return existing.first if existing.first
+
+      col = Collection.new title: [title], exhibit_id: slug
+      col.save!
+      col
+    end
 end
