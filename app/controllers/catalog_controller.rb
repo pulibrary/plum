@@ -71,9 +71,7 @@ class CatalogController < ApplicationController
     end
     config.add_index_field solr_name('date_uploaded', :stored_sortable)
     config.add_index_field solr_name('date_modified', :stored_sortable)
-    config.add_index_field solr_name('date_created', :stored_searchable) do |field|
-      field.accessor = :date_created_display
-    end
+    config.add_index_field solr_name('date', :stored_searchable)
     config.add_index_field solr_name('human_readable_type', :stored_searchable)
     config.add_index_field solr_name('format', :stored_searchable)
     config.add_index_field solr_name('identifier', :stored_searchable)
@@ -157,8 +155,8 @@ class CatalogController < ApplicationController
       }
     end
 
-    config.add_search_field('date_created') do |field|
-      solr_name = solr_name('created', :stored_searchable, type: :string)
+    config.add_search_field('date') do |field|
+      solr_name = solr_name('date', :stored_searchable, type: :string)
       field.solr_local_parameters = {
           qf: solr_name,
           pf: solr_name
