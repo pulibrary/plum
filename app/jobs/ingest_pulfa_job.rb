@@ -28,7 +28,8 @@ class IngestPULFAJob < ApplicationJob
         master = file_info(group.xpath("mets:file[@USE='master']"))
         service = file_info(group.xpath("mets:file[@USE='deliverable']"))
         if master[:file]
-          pages << ingest_page(r, master, service)
+          pages << @ingest.ingest_file(r, File.new(master[:file]), @user, {},
+                                       title: [master[:title]], replaces: master[:id])
         elsif service[:type] == 'application/pdf'
           attach_pdf(r, service)
         end
@@ -80,17 +81,5 @@ class IngestPULFAJob < ApplicationJob
       actor.attach_related_object(resource)
       actor.attach_content(File.open(pdf_info[:file]))
       logger.info "Attached PDF #{pdf_info[:file]}"
-    end
-
-    def ingest_page(resource, tiff_info, jp2_info)
-      file_set = @ingest.ingest_file(resource, File.new(tiff_info[:file]), @user, {},
-                                     title: [tiff_info[:title]], replaces: tiff_info[:id])
-
-      dest = PairtreeDerivativePath.derivative_path_for_reference file_set.id, 'intermediate_file'
-      FileUtils.mkdir_p File.dirname(dest)
-      FileUtils.cp jp2_info[:file], dest
-      logger.info "Copied JP2 #{jp2_info[:file]} to #{dest}"
-
-      file_set
     end
 end
