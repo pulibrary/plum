@@ -32,6 +32,7 @@ en:
           date_uploaded_tesi: "Date Uploaded"
           date_modified_tesi: "Date Modified"
           date_created_tesim: "Date Created"
+          date_tesim: "Date"
           rights_tesim: "Rights"
           human_readable_type_tesim: "Resource Type"
           format_tesim: "File Format"

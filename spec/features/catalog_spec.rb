@@ -52,7 +52,7 @@ RSpec.feature "CatalogController", type: :feature do
 
   describe "language and date formatting" do
     let(:user) { FactoryGirl.create(:admin) }
-    let(:scanned_resource) { FactoryGirl.create(:complete_scanned_resource, user: user, language: ['deu'], date_created: ['1941-10-23T00:00:00Z']) }
+    let(:scanned_resource) { FactoryGirl.create(:complete_scanned_resource, user: user, language: ['deu'], date_created: ['1941-10-23T00:00:00Z'], date: ['10/23/1941']) }
 
     before(:each) do
       sign_in user

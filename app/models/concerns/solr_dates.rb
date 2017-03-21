@@ -22,10 +22,6 @@ module SolrDates
     self[Solrizer.solr_name('date_created')]
   end
 
-  def date_created_display
-    DateValue.new(date_created).to_a
-  end
-
   private
 
     def formatted_date(field_name)
