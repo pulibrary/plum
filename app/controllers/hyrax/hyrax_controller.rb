@@ -5,6 +5,7 @@ class Hyrax::HyraxController < ApplicationController
   include Hyrax::UpdateOCR
   include Hyrax::RemoteMetadata
   include Hyrax::BreadcrumbsForWorks
+  authorize_resource class: curation_concern_type, instance_name: :curation_concern, only: :file_manager
 
   def destroy
     messenger.record_deleted(curation_concern)
