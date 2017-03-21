@@ -10,10 +10,6 @@ RSpec.describe IngestPULFAJob do
     let(:pdf) { fixture('files/test.pdf') }
     let(:tiff1) { fixture('files/color.tif') }
     let(:tiff2) { fixture('files/gray.tif') }
-    let(:jp2_source) { fixture('files/color.jp2') }
-    let(:jp3_source) { fixture('files/gray.jp2') }
-    let(:jp2_dest) { Rails.root.join('tmp', 'derivatives', 'fi', 'le', 'se', 't2-intermediate_file.jp2') }
-    let(:jp3_dest) { Rails.root.join('tmp', 'derivatives', 'fi', 'le', 'se', 't3-intermediate_file.jp2') }
     let(:user) { FactoryGirl.build(:admin) }
     let(:actor1) { double('actor1') }
     let(:actor2) { double('actor2') }
@@ -29,7 +25,6 @@ RSpec.describe IngestPULFAJob do
       allow(BatchFileSetActor).to receive(:new).and_return(actor1, actor2, actor3)
       allow(ScannedResource).to receive(:new).and_return(resource)
       allow(FileSet).to receive(:new).and_return(fileset1, fileset2, fileset3)
-      allow(FileUtils).to receive(:cp)
       allow(resource).to receive(:save!)
     end
 
@@ -42,12 +37,10 @@ RSpec.describe IngestPULFAJob do
       expect(actor3).to receive(:create_metadata)
       expect(actor3).to receive(:create_content).with(a_file_named(tiff2.path))
       expect(actor3).to receive(:attach_file_to_work).with(resource)
-      expect(FileUtils).to receive(:cp).with(jp2_source.path, jp2_dest.to_s)
-      expect(FileUtils).to receive(:cp).with(jp3_source.path, jp3_dest.to_s)
       described_class.perform_now(mets, user)
       expect(resource.title.first.to_s).to eq("Oral History Project Information, Interview Recordings, and Interview Transcripts - Henkin, Leon and Tucker, Albert [Transcript no. 19]")
       expect(resource.creator).to eq(['Princeton University. Dept. of Mathematics.'])
-      expect(resource.description).to eq('Box 2')
+      expect(resource.container).to eq(['Box 2'])
       expect(resource.language).to eq(['eng'])
       expect(resource.visibility).to eq(Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PUBLIC)
       expect(fileset2.title.first.to_s).to eq("[1]")

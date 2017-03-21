@@ -8,7 +8,7 @@ http_interactions:
       string: ''
     headers:
       User-Agent:
-      - Faraday v0.9.1
+      - Faraday v0.9.2
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
@@ -18,24 +18,36 @@ http_interactions:
       code: 200
       message: OK
     headers:
-      Date:
-      - Fri, 04 Sep 2015 14:46:13 GMT
       Server:
-      - Jetty/5.1.12 (Linux/3.2.0-89-generic amd64 java/1.6.0_45
+      - Jetty/5.1.12 (Linux/3.2.0-124-generic amd64 java/1.6.0_45
       Pragma:
       - no-cache
       Cache-Control:
       - public
       Link:
       - "<http://findingaids.princeton.edu/_services/tree?record-id=AC123>;rel=contents,<http://findingaids.princeton.edu/collections/AC123>;rel=canonical"
+      X-Exist-Id:
+      - '2164'
+      Last-Modified:
+      - Tue, 21 Mar 2017 07:02:49 GMT
       Content-Type:
       - application/xml;charset=UTF-8
-      X-Exist-Id:
-      - '2038'
-      Last-Modified:
-      - Wed, 22 Jul 2015 06:48:33 GMT
-      Transfer-Encoding:
-      - chunked
+      Access-Control-Allow-Origin:
+      - "*"
+      Content-Length:
+      - '3578'
+      Accept-Ranges:
+      - bytes
+      Date:
+      - Tue, 21 Mar 2017 17:11:34 GMT
+      X-Varnish:
+      - '699085849'
+      Age:
+      - '0'
+      Via:
+      - 1.1 varnish
+      Connection:
+      - keep-alive
     body:
       encoding: UTF-8
       string: |-
@@ -51,15 +63,16 @@ http_interactions:
                     <pulfa:ARK>http://arks.princeton.edu/ark:/88435/9s1616192</pulfa:ARK>
                     <pulfa:uri>http://findingaids.princeton.edu/collections/AC123</pulfa:uri>
                     <pulfa:collection-creators>
-                        <corpname rules="legacy" source="viaf" role="cre" authfilenumber="http://viaf.org/viaf/268919187/">Princeton University. Library. Dept. of Rare Books and Special Collections</corpname>
+                        <corpname rules="rda" source="uncontrolled" role="cre"> Princeton University. Library. University Archives</corpname>
                     </pulfa:collection-creators>
                     <eadid countrycode="US" mainagencycode="US-NjP" url="http://arks.princeton.edu/ark:/88435/9s1616192" urn="ark:/88435/9s1616192">AC123</eadid>
                     <unittitle>Princeton University Library Records</unittitle>
                     <unitid type="collection" countrycode="US" repositorycode="US-NjP">AC123</unitid>
-                    <unitdate normal="1734/2012" type="inclusive">1734-2012</unitdate>
+                    <unitdate normal="1734/2016" type="inclusive">1734-2016</unitdate>
                     <unitdate normal="1952/1995" type="bulk">1952-1995</unitdate>
-                    <extent>422.93 linear feet</extent>
-                    <extent>431 boxes, several hundred loose volumes, and 1 oversize drawer</extent>
+                    <extent>465.22 linear feet</extent>
+                    <extent>482 boxes, several hundred loose volumes, and 1 oversize drawer</extent>
+                    <extent>Digital Folders: 49, Digital Files: 3,023</extent>
                 </pulfa:collectionInfo>
                 <pulfa:request type="single">AC123 box 1</pulfa:request>
             </pulfa:context>
@@ -72,7 +85,7 @@ http_interactions:
                 </langmaterial>
                 <physloc type="code">mudd</physloc>
                 <repository id="univarchives">
-                    <corpname rules="aacr2" source="lcsh">Princeton University. Library. Dept. of Rare Books and Special Collections.</corpname>
+                    <corpname source="viaf" authfilenumber="http://viaf.org/viaf/268919187">Princeton University. Library. Dept. of Rare Books and Special Collections.</corpname>
                     <subarea>Seeley G. Mudd Manuscript Library.</subarea>
                     <subarea>Princeton University Archives.</subarea>
                     <address>
@@ -95,5 +108,5 @@ http_interactions:
             <controlaccess/>
         </c>
     http_version: 
-  recorded_at: Fri, 04 Sep 2015 14:46:14 GMT
+  recorded_at: Tue, 21 Mar 2017 17:11:50 GMT
 recorded_with: VCR 2.9.3

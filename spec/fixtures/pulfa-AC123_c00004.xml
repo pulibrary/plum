@@ -10,15 +10,16 @@
             <pulfa:ARK>http://arks.princeton.edu/ark:/88435/9s1616192</pulfa:ARK>
             <pulfa:uri>http://findingaids.princeton.edu/collections/AC123</pulfa:uri>
             <pulfa:collection-creators>
-                <corpname rules="legacy" source="viaf" role="cre" authfilenumber="http://viaf.org/viaf/268919187/">Princeton University. Library. Dept. of Rare Books and Special Collections</corpname>
+                <corpname rules="rda" source="uncontrolled" role="cre"> Princeton University. Library. University Archives</corpname>
             </pulfa:collection-creators>
             <eadid countrycode="US" mainagencycode="US-NjP" url="http://arks.princeton.edu/ark:/88435/9s1616192" urn="ark:/88435/9s1616192">AC123</eadid>
             <unittitle>Princeton University Library Records</unittitle>
             <unitid type="collection" countrycode="US" repositorycode="US-NjP">AC123</unitid>
-            <unitdate normal="1734/2012" type="inclusive">1734-2012</unitdate>
+            <unitdate normal="1734/2016" type="inclusive">1734-2016</unitdate>
             <unitdate normal="1952/1995" type="bulk">1952-1995</unitdate>
-            <extent>422.93 linear feet</extent>
-            <extent>431 boxes, several hundred loose volumes, and 1 oversize drawer</extent>
+            <extent>465.22 linear feet</extent>
+            <extent>482 boxes, several hundred loose volumes, and 1 oversize drawer</extent>
+            <extent>Digital Folders: 49, Digital Files: 3,023</extent>
         </pulfa:collectionInfo>
         <pulfa:request type="single">AC123 box 1</pulfa:request>
     </pulfa:context>
@@ -31,7 +32,7 @@
         </langmaterial>
         <physloc type="code">mudd</physloc>
         <repository id="univarchives">
-            <corpname rules="aacr2" source="lcsh">Princeton University. Library. Dept. of Rare Books and Special Collections.</corpname>
+            <corpname source="viaf" authfilenumber="http://viaf.org/viaf/268919187">Princeton University. Library. Dept. of Rare Books and Special Collections.</corpname>
             <subarea>Seeley G. Mudd Manuscript Library.</subarea>
             <subarea>Princeton University Archives.</subarea>
             <address>

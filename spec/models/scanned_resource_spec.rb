@@ -87,9 +87,10 @@ describe ScannedResource do
       it 'Extracts Pulfa Metadata and full source' do
         subject.apply_remote_metadata
         expect(subject.title.first).to eq('Series 1: University Librarian Records - Subseries 1A, Frederic Vinton - Correspondence - 19th Century Catalog and Correspondence, Pre-Vinton, 1811-')
-        expect(subject.creator.first).to eq('Princeton University. Library. Dept. of Rare Books and Special Collections')
-        expect(subject.publisher.first).to eq('Princeton University. Library. Dept. of Rare Books and Special Collections')
-        expect(subject.date.first).to eq('circa 1865')
+        expect(subject.creator.first).to eq('Princeton University. Library. University Archives')
+        expect(subject.publisher.first).to eq('Princeton University. Library. University Archives')
+        expect(subject.date).to eq(['circa 1865'])
+        expect(subject.date_created).to eq(['1865-01-01T00:00:00Z/1865-12-31T23:59:59Z'])
         expect(subject.source_metadata).to eq(fixture('pulfa-AC123_c00004.xml').read)
       end
 
