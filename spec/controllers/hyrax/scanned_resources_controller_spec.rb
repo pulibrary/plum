@@ -458,5 +458,22 @@ describe Hyrax::ScannedResourcesController do
     it { is_expected.to eq Hyrax::ScannedResourceForm }
   end
 
+  describe "#file_manager" do
+    context "when not signed in" do
+      it "does not allow them to view it" do
+        get :file_manager, params: { id: scanned_resource.id }
+        expect(response).not_to be_success
+      end
+    end
+    context "when logged in as an admin" do
+      let(:user) { FactoryGirl.create(:admin) }
+      it "lets them see it" do
+        sign_in user
+        get :file_manager, params: { id: scanned_resource.id }
+        expect(response).to be_success
+      end
+    end
+  end
+
   include_examples "structure persister", :scanned_resource, ScannedResourceShowPresenter
 end
