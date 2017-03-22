@@ -2,14 +2,17 @@ namespace :collection do
   desc "Mark all members of a Collection complete"
   task complete: :environment do
     colid = ENV['COLLECTION']
-    abort "usage: COLLECTION=[collection id] rake complete_collection" unless colid
+    userid = ENV['USER']
+    abort "usage: COLLECTION=[collection id] USER=[userid] rake collection:complete" unless colid && userid
     begin
       col = Collection.find( colid )
+      user = User.where(username: userid).first!
       puts "completing objects in collection: #{col.title.first}"
       col.member_objects.each do |obj|
-        advance(obj, 'metadata_review') if obj.state == 'pending'
-        advance(obj, 'final_review') if obj.state == 'metadata_review'
-        advance(obj, 'complete') if obj.state == 'final_review'
+        entity = PowerConverter.convert_to_sipity_entity(obj)
+        advance(obj, 'metadata_review', user) if entity.workflow_state.name == 'pending'
+        advance(obj, 'final_review', user) if entity.workflow_state.reload.name == 'metadata_review'
+        advance(obj, 'complete', user) if entity.reload.workflow_state.reload.name == 'final_review'
       end
     rescue => e
       puts "Error: #{e.message}"
@@ -41,10 +44,10 @@ namespace :collection do
   end
 end
 
-def advance(obj, state)
-  puts "#{obj.id}: #{obj.state} -> #{state}"
-  obj.state = state
-  obj.save!
+def advance(obj, state, user)
+  entity = PowerConverter.convert_to_sipity_entity(obj)
+  puts "#{obj.id}: #{entity.workflow_state.name} -> #{state}"
+  Hyrax::Forms::WorkflowActionForm.new(current_ability: Ability.new(user), work: obj, attributes: { name: state}).save
   manifest_event_generator.record_updated(obj)
 end
 
