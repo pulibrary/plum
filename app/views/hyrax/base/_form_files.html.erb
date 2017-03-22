@@ -1,13 +1,14 @@
-     <div id="fileupload">
-        <!-- Redirect browsers with JavaScript disabled to the origin page -->
-        <noscript><input type="hidden" name="redirect" value="<%= main_app.root_path %>"></noscript>
-        <!-- The table listing the files available for upload/download -->
-        <table role="presentation" class="table table-striped"><tbody class="files"></tbody></table>
+<div id="fileupload">
+    <!-- Redirect browsers with JavaScript disabled to the origin page -->
+    <noscript><input type="hidden" name="redirect" value="<%= main_app.root_path %>"></noscript>
+    <!-- The table listing the files available for upload/download -->
+    <table role="presentation" class="table table-striped"><tbody class="files"></tbody></table>
 
-        <h2><%= t('hyrax.base.form_files.local_upload') %></h2>
-        <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
-        <div class="row fileupload-buttonbar">
-            <div class="col-xs-7">
+    <h2>Attach Files</h2>
+    <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
+    <div class="row">
+        <div class="col-md-3">
+            <div class="well well-sm fileupload-buttonbar">
                 <!-- The fileinput-button span is used to style the file input field as button -->
                 <span class="btn btn-success fileinput-button">
                     <span class="glyphicon glyphicon-plus"></span>
@@ -22,6 +23,10 @@
                     <input type="file" name="files[]" multiple directory webkitdirectory>
                 </span>
                 <% end %>
+                <button name="button" type="button" class="btn btn-success" id="browse-btn" data-toggle="browse-everything" data-route="/browse/?locale=en" data-target="new_batch_upload_item">
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span>Add from Server</span>
+                </button>                
                 <button type="reset" class="btn btn-warning cancel hidden">
                     <span class="glyphicon glyphicon-ban-circle"></span>
                     <span>Cancel upload</span>
@@ -39,13 +44,17 @@
                 <div class="progress-extended">&nbsp;</div>
             </div>
         </div>
-        <div class="dropzone">
-          <%= t('hyrax.base.form_files.dropzone') %>
+        <div class="col-md-9 well well-sm fileupload-list dropzone">
+            <h3><small>Select files or directories to upload, or drag them here.</small></h3>
         </div>
-     </div>
+    </div>
+    <div class="row">
+      <div class="col-md-3"> 
+        <div class="well well-sm">
+            <%= f.submit(class: 'btn btn-primary batch-upload-submit') %>
+        </div>
+      </div>
+    </div>        
+</div>
 
 <%= render 'hyrax/uploads/js_templates' %>
-<% if Hyrax.config.browse_everything %>
-  <h2><%= t('hyrax.base.form_files.external_upload') %></h2>
-  <%= render 'browse_everything', f: f %>
-<% end %>

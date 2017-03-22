@@ -1,11 +1,9 @@
 <%= simple_form_for [hyrax, @form], html: { multipart: true } do |f| %>
-  <% content_for :files_tab do %>
-    <p class="switch-upload-type">To create a single work for all the files, go to
-      <%= link_to "New Work", [main_app, :new, Hyrax.primary_work_type.model_name.singular_route_key] %></p>
-    <p class="instructions"><%= t("hyrax.batch_uploads.files.instructions") %></p>
-  <% end %>
-  <%= render 'hyrax/base/guts4form', f: f, tabs: %w[files] do %>
-  <% end %>
+  <% @form.payload_concern ||= 'ScannedResource' %>
+  <p class="switch-upload-type">To create a single <%= @form.payload_concern.constantize.model_name.human.downcase %> for all the files, go to
+    <%= link_to "New Work", [main_app, :new, @form.payload_concern.constantize.model_name.singular_route_key] %></p>
+  <p class="instructions"><%= t("hyrax.batch_uploads.files.instructions") %></p>
+  <%= render 'form_files', f: f %>
   <%= f.hidden_field :payload_concern, value: @form.payload_concern %>
 <% end %>
 
