@@ -354,6 +354,10 @@ RSpec.describe PolymorphicManifestBuilder, vcr: { cassette_name: "iiif_manifest"
         record.sort_title = "Bla"
         expect(result.metadata).to be_empty
       end
+      it "doesn't display created" do
+        record.created = ["Test"]
+        expect(result.metadata).to be_empty
+      end
       it "doesn't display date" do
         record.date = ["1917"]
         expect(result.metadata).to be_empty
