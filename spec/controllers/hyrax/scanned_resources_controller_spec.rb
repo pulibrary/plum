@@ -239,7 +239,7 @@ describe Hyrax::ScannedResourcesController do
       it "updates collection membership" do
         expect(resource.member_of_collections).to_not be_empty
 
-        updated_attributes = resource.attributes
+        updated_attributes = {}
         updated_attributes[:member_of_collection_ids] = [col2.id]
         post :update, params: { id: resource, scanned_resource: updated_attributes }
         expect(resource.reload.member_of_collections).to eq [col2]

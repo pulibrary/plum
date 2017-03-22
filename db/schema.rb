@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170223192839) do
+ActiveRecord::Schema.define(version: 20170322205807) do
 
   create_table "bookmarks", force: :cascade do |t|
     t.integer  "user_id",       null: false
@@ -419,6 +419,7 @@ ActiveRecord::Schema.define(version: 20170223192839) do
     t.datetime "updated_at",             null: false
     t.integer  "permission_template_id"
     t.boolean  "active"
+    t.boolean  "allows_access_grant"
     t.index ["permission_template_id", "name"], name: "index_sipity_workflows_on_permission_template_and_name", unique: true
   end
 
