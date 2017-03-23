@@ -35,7 +35,6 @@ class PlumDerivativesService
   end
 
   def valid?
-    return false if replaces && replaces.start_with?('urn:pudl:images')
     mime_type_storage.first == "image/tiff"
   end
 
