@@ -280,7 +280,7 @@ RSpec.describe PolymorphicManifestBuilder, vcr: { cassette_name: "iiif_manifest"
       expect(result['@id']).to eq "http://plum.com/concern/scanned_resources/1/manifest"
     end
     it "has a description" do
-      expect(result.description).to eq [record.description]
+      expect(result.description).to eq Array(record.description)
     end
     context "when it has a bibdata ID" do
       it "links to seeAlso" do

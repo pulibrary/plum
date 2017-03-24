@@ -12,13 +12,18 @@ describe MultiVolumeWork do
   subject { multi_volume_work }
 
   describe 'has note fields' do
-    [:portion_note, :description].each do |note_type|
-      it "should let me set a #{note_type}" do
-        note = 'This is note text'
-        subject.send("#{note_type}=", note)
-        expect { subject.save }.to_not raise_error
-        expect(reloaded.send(note_type)).to eq note
-      end
+    it "lets me set a portion_note" do
+      note = 'This is note text'
+      subject.portion_note = note
+      expect { subject.save }.to_not raise_error
+      expect(reloaded.portion_note).to eq note
+    end
+
+    it "lets me set a description" do
+      note = 'This is note text'
+      subject.description = [note]
+      expect { subject.save }.to_not raise_error
+      expect(reloaded.description).to eq [note]
     end
   end
 
