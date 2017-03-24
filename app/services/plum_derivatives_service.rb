@@ -10,7 +10,7 @@ class PlumDerivativesService
       filename,
       outputs: [
         label: 'intermediate_file',
-        recipe: recipe,
+        recipe: :default,
         service: {
           datastream: 'intermediate_file'
         },
@@ -40,13 +40,7 @@ class PlumDerivativesService
 
   private
 
-    # Override the geo_concerns path factory
     def derivative_path_factory
       PairtreeDerivativePath
-    end
-
-    # Because of issues with tiffs, scanned maps need a seperate recipe
-    def recipe
-      file_set.geo_mime_type && file_set.geo_mime_type == "image/tiff" ? :geo : :default
     end
 end
