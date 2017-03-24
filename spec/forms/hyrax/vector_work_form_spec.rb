@@ -11,6 +11,7 @@ RSpec.describe Hyrax::VectorWorkForm do
 
   describe "#primary_terms" do
     subject { form.primary_terms }
+    it { is_expected.to include(:should_populate_metadata) }
     it { is_expected.not_to include [:holding_location, :pdf_type] }
   end
 
@@ -21,8 +22,7 @@ RSpec.describe Hyrax::VectorWorkForm do
       is_expected.to include(:spatial,
                              :temporal,
                              :issued,
-                             :cartographic_projection,
-                             :should_populate_metadata)
+                             :cartographic_projection)
     end
   end
 end
