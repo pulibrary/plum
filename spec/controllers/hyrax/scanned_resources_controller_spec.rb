@@ -432,6 +432,24 @@ describe Hyrax::ScannedResourcesController do
       expect(response).to redirect_to path
       expect(reloaded.pending_uploads.length).to eq 0
     end
+    context "when it's failed in the past" do
+      it "continues where it left off" do
+        file_set = FactoryGirl.create(:file_set)
+        upload_set_id = ActiveFedora::Noid::Service.new.mint
+        PendingUpload.create!(curation_concern_id: resource.id, file_name: File.basename(file.path), file_path: file.path, fileset_id: file_set.id, upload_set_id: upload_set_id)
+        noid_service = instance_double(ActiveFedora::Noid::Service)
+        allow(ActiveFedora::Noid::Service).to receive(:new).and_return(noid_service)
+        allow(noid_service).to receive(:mint).and_return(upload_set_id)
+        allow(FileSetActor).to receive(:new)
+        allow(CompositePendingUpload).to receive(:create)
+
+        post :browse_everything_files, params: { id: resource.id, selected_files: params["selected_files"], parent_id: resource.id }
+        reloaded = resource.reload
+
+        expect(reloaded.file_sets.length).to eq 1
+        expect(FileSetActor).not_to have_received(:new)
+      end
+    end
     context "when there's a parent id" do
       it "redirects to the parent path" do
         allow(BrowseEverythingIngestJob).to receive(:perform_later).and_return(true)

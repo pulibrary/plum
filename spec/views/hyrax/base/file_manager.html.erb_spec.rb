@@ -19,10 +19,9 @@ RSpec.describe "hyrax/base/file_manager.html.erb" do
   let(:parent_solr_doc) do
     SolrDocument.new(parent.to_solr.merge(id: "resource"), nil)
   end
-  let(:pending_upload) { FactoryGirl.build(:pending_upload) }
+  let(:pending_upload) { FactoryGirl.create(:pending_upload, curation_concern_id: parent.id) }
   let(:parent_presenter) do
     s = ScannedResourceShowPresenter.new(parent_solr_doc, nil)
-    allow(s).to receive(:pending_uploads).and_return([pending_upload])
     s
   end
 
@@ -31,9 +30,9 @@ RSpec.describe "hyrax/base/file_manager.html.erb" do
   let(:form) { FileManagerForm.new(parent, nil) }
 
   before do
+    pending_upload
     assign(:form, form)
     allow(form).to receive(:member_presenters).and_return(members)
-    allow(form).to receive(:pending_uploads).and_return([pending_upload])
     stub_blacklight_views
     allow(view).to receive(:curation_concern).and_return(parent)
     allow(view).to receive(:contextual_path).with(anything, anything) do |x, y|
@@ -128,6 +127,13 @@ RSpec.describe "hyrax/base/file_manager.html.erb" do
 
   it "displays pending uploads" do
     expect(rendered).to have_content pending_upload.file_name
+  end
+
+  context "when the pending upload has a file set ID" do
+    let(:pending_upload) { FactoryGirl.create(:pending_upload, fileset_id: "test", curation_concern_id: parent.id) }
+    it "doesn't display it" do
+      expect(rendered).not_to have_content pending_upload.file_name
+    end
   end
 
   it "has inputs to edit the viewing hint" do
