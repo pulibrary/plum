@@ -9,12 +9,7 @@ class IngestPULFAJob < ApplicationJob
     @mets = Nokogiri::XML(File.open(mets_file))
     @user = user
 
-    begin
-      ingest
-    rescue StandardError => e
-      logger.warn e.to_s
-      logger.warn e.backtrace
-    end
+    ingest
   end
 
   private
