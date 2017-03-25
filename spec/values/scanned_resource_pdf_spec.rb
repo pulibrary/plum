@@ -8,7 +8,7 @@ RSpec.describe ScannedResourcePDF, vcr: { cassette_name: "iiif_manifest" } do
     r.ordered_members << file_set2
     r.logical_order.order = order
     r.title = ["Leonardo's Book é 祝 ي"]
-    r.description = "All about Leonardo."
+    r.description = ["All about Leonardo."]
     r.author = ["Leonardo"]
     solr.add r.to_solr
     solr.add r.list_source.to_solr

@@ -5,6 +5,6 @@ RSpec.describe Hyrax::MultiVolumeWorkForm do
   let(:work) { MultiVolumeWork.new }
 
   it "doesn't initialize description" do
-    expect(subject.description).to eq nil
+    expect(subject.description).to eq []
   end
 end

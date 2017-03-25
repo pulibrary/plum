@@ -20,7 +20,6 @@ RSpec.feature "MultiVolumeWorksController", type: :feature do
     visit edit_polymorphic_path [multi_volume_work]
     fill_in 'multi_volume_work_source_metadata_identifier', with: '1234568'
     fill_in 'multi_volume_work_portion_note', with: 'new portion note'
-    fill_in 'multi_volume_work_description', with: 'new description'
 
     click_button 'Save'
     expect(page).to have_text("Test title")

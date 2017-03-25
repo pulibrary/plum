@@ -26,7 +26,6 @@ RSpec.feature "ScannedResourcesController", type: :feature do
       visit edit_polymorphic_path [scanned_resource]
       fill_in 'scanned_resource_source_metadata_identifier', with: '1234568'
       fill_in 'scanned_resource_portion_note', with: 'new portion note'
-      fill_in 'scanned_resource_description', with: 'new description'
       fill_in 'scanned_resource_nav_date', with: '2016-04-01T01:01:01Z'
       select 'Color PDF', from: 'scanned_resource_pdf_type'
 

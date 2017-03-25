@@ -7,7 +7,7 @@ module Hyrax
     self.required_fields = [:title, :rights_statement, :coverage]
 
     def primary_terms
-      terms = super + [:should_populate_metadata]
+      terms = super + [:description, :should_populate_metadata]
       terms - [:holding_location, :pdf_type, :nav_date, :portion_note, :related_url]
     end
 
@@ -28,7 +28,7 @@ module Hyrax
     end
 
     def multiple?(field)
-      return false if ['description', 'rights_statement'].include?(field.to_s)
+      return false if ['rights_statement'].include?(field.to_s)
       super
     end
   end

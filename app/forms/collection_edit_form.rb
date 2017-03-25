@@ -4,7 +4,6 @@ class CollectionEditForm < Hyrax::Forms::CollectionForm
 
   def self.model_attributes(attrs)
     attrs[:title] = Array(attrs[:title]) if attrs[:title]
-    attrs[:description] = Array(attrs[:description]) if attrs[:description]
     super(attrs)
   end
 

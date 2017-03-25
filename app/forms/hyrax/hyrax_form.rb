@@ -1,6 +1,6 @@
 module Hyrax
   class HyraxForm < Hyrax::Forms::WorkForm
-    self.terms += [:holding_location, :rights_statement, :rights_note, :source_metadata_identifier, :portion_note, :description, :state, :collection_ids, :ocr_language, :nav_date, :pdf_type, :start_canvas, :uploaded_files]
+    self.terms += [:holding_location, :rights_statement, :rights_note, :source_metadata_identifier, :portion_note, :description, :abstract, :state, :collection_ids, :ocr_language, :nav_date, :pdf_type, :start_canvas, :uploaded_files]
     self.required_fields = [:title, :source_metadata_identifier, :rights_statement]
     delegate :collection_ids, to: :model
 
@@ -9,9 +9,7 @@ module Hyrax
     end
 
     def self.multiple?(field)
-      if field.to_sym == :description
-        false
-      elsif field.to_sym == :pdf_type
+      if field.to_sym == :pdf_type
         false
       elsif field.to_sym == :rights_statement
         false
@@ -36,10 +34,6 @@ module Hyrax
       super
     end
 
-    def description
-      Array.wrap(super).first
-    end
-
     def pdf_type
       if self["pdf_type"].blank?
         "gray"
@@ -57,7 +51,7 @@ module Hyrax
     end
 
     def primary_terms
-      super + [:rights_note, :holding_location, :pdf_type, :portion_note, :description, :nav_date]
+      super + [:rights_note, :holding_location, :pdf_type, :portion_note, :nav_date]
     end
 
     def secondary_terms

@@ -2,7 +2,7 @@
 class PlumSchema < ActiveTriples::Schema
   property :sort_title, predicate: ::OpaqueMods.titleForSort, multiple: false
   property :portion_note, predicate: ::RDF::Vocab::SKOS.scopeNote, multiple: false
-  property :description, predicate: ::RDF::Vocab::DC.abstract, multiple: false
+  property :abstract, predicate: ::RDF::Vocab::DC.abstract, multiple: false
   property :identifier, predicate: ::RDF::Vocab::DC.identifier, multiple: false
   property :replaces, predicate: ::RDF::Vocab::DC.replaces, multiple: false
   property :rights_statement, predicate: ::RDF::Vocab::EDM.rights, multiple: false

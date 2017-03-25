@@ -161,7 +161,7 @@ describe Hyrax::ScannedResourcesController do
   end
 
   describe 'update' do
-    let(:scanned_resource_attributes) { { portion_note: 'Section 2', description: 'a description', source_metadata_identifier: '2028405' } }
+    let(:scanned_resource_attributes) { { portion_note: 'Section 2', description: ['a description'], source_metadata_identifier: '2028405' } }
     before do
       sign_in user
     end
@@ -170,7 +170,7 @@ describe Hyrax::ScannedResourcesController do
         post :update, params: { id: scanned_resource, scanned_resource: scanned_resource_attributes }
         expect(reloaded.portion_note).to eq 'Section 2'
         expect(reloaded.title).to eq ['Dummy Title']
-        expect(reloaded.description).to eq 'a description'
+        expect(reloaded.description).to eq ['a description']
       end
       it "can update the start_canvas" do
         post :update, params: { id: scanned_resource, scanned_resource: { start_canvas: "1" } }

@@ -22,7 +22,7 @@ class RemoteRecord < SimpleDelegator
   def attributes
     result = super
     result[:date] = Array(result.delete(:date_created))
-    result[:description] = Array(result[:description]).first
+    result[:abstract] = Array(result[:abstract]).first
     result.delete :heldBy # TODO: map codes to locations (see plum#1001)
     result[:member_of_collections] = find_or_create(result.delete(:memberOf))
     result
