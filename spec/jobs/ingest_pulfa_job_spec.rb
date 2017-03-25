@@ -61,8 +61,7 @@ RSpec.describe IngestPULFAJob do
       allow(described_class.logger).to receive(:info).and_call_original
       allow(described_class.logger).to receive(:warn).and_call_original
       expect(described_class.logger).to receive(:info).with("Ingesting PULFA METS #{mets}")
-      expect(described_class.logger).to receive(:warn).with("Test error")
-      expect { described_class.perform_now(mets, user) }.not_to raise_error
+      expect { described_class.perform_now(mets, user) }.to raise_error StandardError
     end
   end
 end
