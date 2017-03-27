@@ -111,6 +111,7 @@ gem 'posix-spawn'
 gem 'openseadragon'
 gem 'sidekiq'
 gem "omniauth-cas"
+gem 'piwik_analytics', '~> 1.1.0', git: 'https://github.com/IUBLibTech/piwik_analytics'
 gem 'ezid-client'
 gem 'sprockets-es6'
 gem 'sprockets-rails', '~> 2.3.3'

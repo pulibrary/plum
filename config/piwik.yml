@@ -1,0 +1,32 @@
+# Configuration:
+# 
+# disabled
+#   false if tracking tag should be shown
+# url
+#   The url of your piwik instance (e.g. localhost/piwik/
+# id_site
+#   The id of your website inside Piwik. Must be supplied or piwik will be considered disabled.
+# trackingTimer
+#   Changing the Pause Timer (http://developer.piwik.org/api-reference/tracking-javascript)
+#   false: use default of 500ms
+#
+
+default:
+  piwik: &default
+    id_site: <%= ENV["PMP_PIWIK_ID"] %>
+    url: <%= ENV["PMP_PIWIK_URL"] %>
+    disabled: true
+    trackingTimer: false
+
+development:
+  piwik:
+    <<: *default
+
+test:
+  piwik:
+    <<: *default
+
+production:
+  piwik:
+    <<: *default
+    disabled: false
