@@ -48,6 +48,12 @@ class FileSet < ActiveFedora::Base
       FileUtils.mkdir_p(File.dirname(dst))
       FileUtils.cp(filename, dst)
       create_ocr(id)
+    when mime_type.include?('text/plain')
+      if filename.end_with?("fulltext.txt")
+        dst = derivative_path('ocr', 'txt')
+        FileUtils.mkdir_p(File.dirname(dst))
+        FileUtils.cp(filename, dst)
+      end
     end
     super
   end
@@ -78,7 +84,7 @@ class FileSet < ActiveFedora::Base
     #
     # @param id [String] Fileset id
     def create_ocr(id)
-      RunOCRJob.perform_later(id) if Plum.config[:create_ocr_files] && Plum.config[:store_original_files]
+      RunOCRJob.perform_later(id) if Plum.config[:create_hocr_files] && Plum.config[:store_original_files]
     end
 
     def ocr_file
@@ -86,7 +92,13 @@ class FileSet < ActiveFedora::Base
     end
 
     def ocr_text
-      ocr_document.try(:text).try(:strip)
+      if Plum.config[:create_hocr_files] && Plum.config[:index_hocr_files]
+        ocr_document.try(:text).try(:strip)
+      elsif File.exist?(derivative_path('ocr', 'txt'))
+        File.open(derivative_path('ocr', 'txt')).read
+      else
+        derivative_path('ocr', 'txt')
+      end
     end
 
     # The destination_name parameter has to match up with the file parameter
@@ -96,8 +108,12 @@ class FileSet < ActiveFedora::Base
       URI("file://#{path}").to_s
     end
 
-    def derivative_path(destination_name)
-      PairtreeDerivativePath.derivative_path_for_reference(self, destination_name).to_s
+    def derivative_path(destination_name, ext = false)
+      if ext
+        PairtreeDerivativePath.derivative_path_for_reference(self, destination_name).to_s.sub(/.[^\.]+$/, ".#{ext}")
+      else
+        PairtreeDerivativePath.derivative_path_for_reference(self, destination_name).to_s
+      end
     end
 
     def normalize_identifiers

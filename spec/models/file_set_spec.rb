@@ -77,7 +77,8 @@ RSpec.describe FileSet do
       Hydra::Works::UploadFileToFileSet.call(subject, file)
       allow_any_instance_of(HOCRDocument).to receive(:text).and_return("yo")
       allow(Plum.config).to receive(:[]).with(:store_original_files).and_return(true)
-      allow(Plum.config).to receive(:[]).with(:create_ocr_files).and_return(true)
+      allow(Plum.config).to receive(:[]).with(:create_hocr_files).and_return(true)
+      allow(Plum.config).to receive(:[]).with(:index_hocr_files).and_return(true)
 
       subject.create_derivatives(file.path)
 
@@ -96,11 +97,24 @@ RSpec.describe FileSet do
       Hydra::Works::UploadFileToFileSet.call(subject, file)
       allow_any_instance_of(HOCRDocument).to receive(:text).and_return("yo")
       allow(Plum.config).to receive(:[]).with(:store_original_files).and_return(true)
-      allow(Plum.config).to receive(:[]).with(:create_ocr_files).and_return(false)
+      allow(Plum.config).to receive(:[]).with(:create_hocr_files).and_return(false)
 
       subject.create_derivatives(file.path)
 
       expect(ocr_path).not_to exist
+    end
+    it "creates full text from text file when provided." do
+      allow_any_instance_of(described_class).to receive(:warn) # suppress virus check warnings
+      text_file = File.open(Rails.root.join("spec", "fixtures", "files", "fulltext.txt"))
+      Hydra::Works::UploadFileToFileSet.call(subject, text_file)
+      allow(Plum.config).to receive(:[]).with(:store_original_files).and_return(true)
+      allow(Plum.config).to receive(:[]).with(:create_hocr_files).and_return(false)
+      allow(Plum.config).to receive(:[]).with(:index_hocr_files).and_return(false)
+
+      subject.create_derivatives(text_file.path)
+
+      expect(ocr_path.sub(".hocr", ".txt")).to exist
+      expect(subject.to_solr["full_text_tesim"]).to include "OCR text file."
     end
     after do
       FileUtils.rm_rf(path.parent) if path.exist?

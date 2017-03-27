@@ -5,7 +5,10 @@ RSpec.describe IngestYAMLJob do
     let(:yaml_file_single) { Rails.root.join("spec", "fixtures", "pudl_mets", "pudl0001-4612596.yml") }
     let(:yaml_file_rtl) { Rails.root.join("spec", "fixtures", "pudl_mets", "pudl0032-ns73.yml") }
     let(:yaml_file_multi) { Rails.root.join("spec", "fixtures", "pudl_mets", "pudl0001-4609321-s42.yml") }
+    let(:yaml_file_ocr) { Rails.root.join("spec", "fixtures", "files", "ocr.yml") }
     let(:tiff_file) { Rails.root.join("spec", "fixtures", "files", "color.tif") }
+    let(:jpg2_file) { Rails.root.join("spec", "fixtures", "files", "image.jp2") }
+    let(:ocr_file) { Rails.root.join("spec", "fixtures", "files", "fulltext.txt") }
     let(:user) { FactoryGirl.build(:admin) }
     let(:actor1) { double('actor1') }
     let(:actor2) { double('actor2') }
@@ -17,6 +20,10 @@ RSpec.describe IngestYAMLJob do
     let(:mime_type) { 'image/tiff' }
     let(:file_hash) { { path: tiff_file, mime_type: mime_type } }
     let(:file) { described_class.new.send(:decorated_file, file_hash) }
+    let(:ocr_file_path) { '/spec/fixtures/files/fulltext.txt' }
+    let(:ocr_mime_type) { 'text/plain' }
+    let(:ocr_file_hash) { { path: ocr_file_path, mime_type: ocr_mime_type } }
+    let(:ocr_file) { described_class.new.send(:decorated_file, ocr_file_hash) }
     let(:logical_order) { double('logical_order') }
     let(:order_object) { double('order_object') }
     let(:ingest_counter) { double('ingest_counter') }
@@ -95,6 +102,13 @@ RSpec.describe IngestYAMLJob do
         allow(actor2).to receive(:create_content)
         described_class.perform_now(yaml_file_rtl, user)
         expect(resource1.viewing_direction).to eq('right-to-left')
+      end
+      it "ingest a yaml file with ocr text" do
+        allow(actor1).to receive(:attach_related_object)
+        allow(actor1).to receive(:attach_content)
+        allow(actor2).to receive(:create_metadata)
+        allow(actor2).to receive(:create_content)
+        described_class.perform_now(yaml_file_ocr, user)
       end
       it "ingests a multi-volume yaml file" do
         allow(actor1).to receive(:attach_related_object)

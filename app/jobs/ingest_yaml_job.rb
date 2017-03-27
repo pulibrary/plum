@@ -99,12 +99,20 @@ class IngestYAMLJob < ActiveJob::Base
           actor.create_metadata(resource, f[:file_opts])
         end
         actor.create_content(decorated_file(f))
+        ingest_ocr(actor, f)
 
         yaml_to_repo_map[f[:id]] = file_set.id
         @file_sets << file_set if @file_association_method == 'batch'
         ingest_thumbnail(file_set, resource, parent) if thumbnail_path?(f[:path])
       end
       attach_files_to_work(resource, @file_sets) if @file_sets.any?
+    end
+
+    def ingest_ocr(actor, f)
+      return unless ocr_file?(f)
+      ocr_file = File.open(f[:ocr_path])
+      actor.create_content(ocr_file, "extracted_text")
+      ocr_file.close
     end
 
     def ingest_thumbnail(file_set, resource, parent)
@@ -117,6 +125,10 @@ class IngestYAMLJob < ActiveJob::Base
 
     def decorated_file(f)
       IoDecorator.new(open(f[:path]), f[:mime_type], File.basename(f[:path]))
+    end
+
+    def ocr_file?(f)
+      (f.key?(:ocr_path) && File.exist?(f[:ocr_path])) ? true : false
     end
 
     def map_fileids(hsh)
