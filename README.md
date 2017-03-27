@@ -29,8 +29,15 @@ Pumpkin is a Hydra head based on [Plum](https://github.com/pulibrary/plum) and  
       [compile](https://github.com/tesseract-ocr/tesseract/wiki/Compiling) it.
 * [RabbitMQ](https://www.rabbitmq.com/) (Optional)
     * Start with rabbitmq-server
-    * Used for publishing create/update/delete events for systems such as 
+    * Used for publishing create/update/delete events for systems such as
       [Pomegranate](https://github.com/pulibrary/pomegranate)
+
+## Initial Setup
+You may need to prefix rake commands with `bundle exec`,
+particularly if you have a newer version of the rake gem installed. 
+* Install dependencies: `bundle install`
+* Setup the database: `rake db:migrate`
+* Setup ActiveFedora::Noid minter: `rails g active_fedora:noid:seed`
 
 ## Running the Tests
 
@@ -41,6 +48,8 @@ Setup dependencies and run the test suite:
    $ rake db:migrate
    $ rake ci
    ```
+You may need to create the tmp directory, which can be done automatically by 
+starting the rails server (`rails s`) and then stopping it.
 
 You may also want to run the Fedora and Solr servers in one window with:
 
@@ -64,7 +73,7 @@ And run the test suite in another window:
 ## Configuring Loris for Development
 
 1. Install Docker Toolbox [https://www.docker.com/toolbox](https://www.docker.com/toolbox)
-  * Only necessary for mac or windows machines. For unix boxes install via 
+  * Only necessary for mac or windows machines. For unix boxes install via
       `wget -qO- https://get.docker.com/ | sh`
 1. Start a docker VM: `docker-machine start default`
 1. Setup your docker environment: `eval "$(docker-machine env default)"`
