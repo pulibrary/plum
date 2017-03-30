@@ -58,15 +58,13 @@ class FileSet < ActiveFedora::Base
     super
   end
 
-  def to_solr(solr_doc = {}, ordered_work: false )
+  def to_solr(solr_doc = {}, ordered_work: false)
     super(solr_doc).tap do |doc|
       if ordered_work
-        puts "*** Order Work : " + ordered_work.to_s
         doc[ActiveFedora.index_field_mapper.solr_name("ordered_by", :symbol)] = ordered_work
       else
         doc["full_text_tesim"] = ocr_text if ocr_text.present?
-        ordered_array = ordered_by.map(&:id).to_a
-        doc["ordered_by_ssim"] = ordered_array
+        doc["ordered_by_ssim"] = ordered_by.map(&:id).to_a
       end
     end
   end
