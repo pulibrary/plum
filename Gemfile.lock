@@ -30,25 +30,6 @@ GIT
       json
 
 GIT
-  remote: git://github.com/projecthydra-labs/browse-everything.git
-  revision: 95f20395205f588e0bbd720e55f9204760dfbd37
-  specs:
-    browse-everything (0.12.0)
-      addressable (~> 2.5)
-      aws-sdk
-      bootstrap-sass
-      dropbox-sdk (>= 1.6.2)
-      font-awesome-rails
-      google-api-client (~> 0.9)
-      google_drive
-      httparty
-      rails (>= 3.1)
-      ruby-box
-      sass-rails
-      signet
-      skydrive
-
-GIT
   remote: git://github.com/projecthydra-labs/hydra-pcdm.git
   revision: 0cb9f76f666fb1db55a8f65486da36ad1a1801de
   branch: master
@@ -132,6 +113,25 @@ GIT
       ldp (~> 0.6.0)
       rsolr (>= 1.1.2, < 3)
       solrizer (>= 3.4, < 5)
+
+GIT
+  remote: git://github.com/projecthydra/browse-everything.git
+  revision: 0e335958be2ce6a20818ecf6f592d97d1ca053dd
+  specs:
+    browse-everything (0.12.0)
+      addressable (~> 2.5)
+      aws-sdk
+      bootstrap-sass
+      dropbox-sdk (>= 1.6.2)
+      font-awesome-rails
+      google-api-client (~> 0.9)
+      google_drive
+      httparty
+      rails (>= 3.1)
+      ruby-box
+      sass-rails
+      signet
+      skydrive
 
 GIT
   remote: git://github.com/pulibrary/grocer.git
@@ -233,7 +233,7 @@ GEM
       i18n (~> 0.7)
       minitest (~> 5.1)
       tzinfo (~> 1.1)
-    addressable (2.5.0)
+    addressable (2.5.1)
       public_suffix (~> 2.0, >= 2.0.2)
     afm (0.2.2)
     airbrussh (1.1.2)
@@ -250,13 +250,13 @@ GEM
       execjs
     awesome_nested_set (3.1.1)
       activerecord (>= 4.0.0, < 5.1)
-    aws-sdk (2.8.10)
-      aws-sdk-resources (= 2.8.10)
-    aws-sdk-core (2.8.10)
+    aws-sdk (2.9.0)
+      aws-sdk-resources (= 2.9.0)
+    aws-sdk-core (2.9.0)
       aws-sigv4 (~> 1.0)
       jmespath (~> 1.0)
-    aws-sdk-resources (2.8.10)
-      aws-sdk-core (= 2.8.10)
+    aws-sdk-resources (2.9.0)
+      aws-sdk-core (= 2.9.0)
     aws-sigv4 (1.0.0)
     babel-source (5.8.35)
     babel-transpiler (0.7.0)
@@ -423,7 +423,7 @@ GEM
       railties (>= 3.2, < 5.1)
     globalid (0.3.7)
       activesupport (>= 4.1.0)
-    google-api-client (0.10.1)
+    google-api-client (0.10.2)
       addressable (~> 2.3)
       googleauth (~> 0.5)
       httpclient (~> 2.7)
@@ -875,7 +875,7 @@ GEM
       actionpack (>= 3.1)
       jquery-rails
       railties (>= 3.1)
-    tzinfo (1.2.2)
+    tzinfo (1.2.3)
       thread_safe (~> 0.1)
     uber (0.1.0)
     uglifier (3.0.4)
