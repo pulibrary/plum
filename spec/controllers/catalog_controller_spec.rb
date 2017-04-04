@@ -134,6 +134,16 @@ RSpec.describe CatalogController do
         get :lookup_manifest, params: { prefix: 'ark:', naan: '99999', arkid: '12345678' }
         expect(response).to redirect_to "http://test.host/concern/scanned_resources/#{resource.id}/manifest?locale=en"
       end
+      context "when no_redirect is set" do
+        it "doesn't redirect" do
+          resource = FactoryGirl.create(:complete_scanned_resource, identifier: 'ark:/99999/12345678')
+          resource.save
+
+          get :lookup_manifest, params: { prefix: 'ark:', naan: '99999', arkid: '12345678', no_redirect: 'true' }
+          expect(response).to be_success
+          expect(JSON.parse(response.body)["url"]).to eq "http://test.host/concern/scanned_resources/#{resource.id}/manifest?locale=en"
+        end
+      end
     end
 
     context "when the manifeset is not found" do

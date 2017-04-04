@@ -269,7 +269,11 @@ class CatalogController < ApplicationController
     if result.first
       object_id = result.first['id']
       model_name = result.first['has_model_ssim'].first
-      redirect_to polymorphic_url([:manifest, :hyrax, model_name.underscore.to_sym], id: object_id)
+      if params[:no_redirect]
+        render json: { url: polymorphic_url([:manifest, :hyrax, model_name.underscore.to_sym], id: object_id) }
+      else
+        redirect_to polymorphic_url([:manifest, :hyrax, model_name.underscore.to_sym], id: object_id)
+      end
     else
       render json: { message: "No manifest found for #{ark}" }, status: 404
     end
