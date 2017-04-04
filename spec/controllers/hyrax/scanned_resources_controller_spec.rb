@@ -431,6 +431,8 @@ describe Hyrax::ScannedResourcesController do
       path = Rails.application.class.routes.url_helpers.file_manager_hyrax_scanned_resource_path(resource)
       expect(response).to redirect_to path
       expect(reloaded.pending_uploads.length).to eq 0
+      expect(reloaded.thumbnail_id).not_to be_blank
+      expect(reloaded.representative_id).not_to be_blank
     end
     context "when it's failed in the past" do
       it "continues where it left off" do
