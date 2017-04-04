@@ -18,6 +18,8 @@ class BrowseEverythingIngestJob < ApplicationJob
     end
     relevant_uploads.each(&:destroy)
     curation_concern.ordered_members = records
+    curation_concern.thumbnail = records.first unless curation_concern.thumbnail_id.present?
+    curation_concern.representative = records.first unless curation_concern.representative_id.present?
     curation_concern.save
   end
 end
