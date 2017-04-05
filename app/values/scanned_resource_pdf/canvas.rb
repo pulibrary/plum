@@ -3,6 +3,7 @@ class ScannedResourcePDF
     # Letter width/height in points for a PDF.
     LETTER_WIDTH = PDF::Core::PageGeometry::SIZES["LETTER"].first
     LETTER_HEIGHT = PDF::Core::PageGeometry::SIZES["LETTER"].last
+    BITONAL_SIZE = 2000
     attr_reader :canvas
     def initialize(canvas)
       @canvas = canvas

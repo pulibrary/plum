@@ -245,6 +245,12 @@ RSpec.describe PolymorphicManifestBuilder, vcr: { cassette_name: "iiif_manifest"
           expect(manifest_json['sequences'][0]["rendering"]["@id"]).to eql "http://plum.com/concern/scanned_resources/1/pdf/color"
         end
       end
+      context "when given a bitonal PDF enabled resource" do
+        let(:record) { FactoryGirl.build(:scanned_resource, pdf_type: ['bitonal']) }
+        it "has a color PDF link" do
+          expect(manifest_json['sequences'][0]["rendering"]["@id"]).to eql "http://plum.com/concern/scanned_resources/1/pdf/bitonal"
+        end
+      end
       context "when given SSL" do
         subject { described_class.new(solr_document, ssl: true) }
         it "generates https links appropriately for pdfs" do

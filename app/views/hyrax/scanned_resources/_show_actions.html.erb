@@ -16,8 +16,13 @@
             <li>
               <%= link_to "Grayscale", polymorphic_path([main_app, :pdf, @presenter], pdf_quality: "gray")%>
             </li>
+            <li>
+              <%= link_to "Bitonal", polymorphic_path([main_app, :pdf, @presenter], pdf_quality: "bitonal")%>
+            </li>
           </ul>
         </div>
+      <% elsif form.pdf_type == 'bitonal' %>
+        <%= link_to "Download PDF", polymorphic_path([main_app, :pdf, @presenter], pdf_quality: "bitonal"), class: "btn btn-default" %>
       <% else %>
         <%= link_to "Download PDF", polymorphic_path([main_app, :pdf, @presenter], pdf_quality: "gray"), class: "btn btn-default" %>
       <% end %>

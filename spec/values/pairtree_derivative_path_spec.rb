@@ -51,6 +51,16 @@ describe PairtreeDerivativePath do
           expect(subject).to eql "tmp/08/61/2n/57/q-banana-gray-pdf.pdf"
         end
       end
+      context "which is bitonal" do
+        let(:destination_name) { 'bitonal-pdf' }
+        it "returns a unique PDF path based on the resource identifier" do
+          identifier = instance_double(ResourceIdentifier)
+          allow(ResourceIdentifier).to receive(:new).with(object.id).and_return(identifier)
+          allow(identifier).to receive(:to_s).and_return("banana")
+
+          expect(subject).to eql "tmp/08/61/2n/57/q-banana-bitonal-pdf.pdf"
+        end
+      end
     end
     context 'when given a display raster' do
       let(:destination_name) { 'display_raster' }
