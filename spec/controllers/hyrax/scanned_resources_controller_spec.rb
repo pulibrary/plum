@@ -400,6 +400,45 @@ describe Hyrax::ScannedResourcesController do
         end
       end
     end
+    context "when requesting bitonal" do
+      let(:sign_in_user) { nil }
+      context "when given permission" do
+        it 'generates the pdf then redirects to its download url' do
+          pdf = double("Actor")
+          allow(ScannedResourcePDF).to receive(:new).with(anything, quality: "bitonal").and_return(pdf)
+          allow(pdf).to receive(:render).and_return(true)
+          get :pdf, params: { id: scanned_resource, pdf_quality: "bitonal" }
+          expect(response).to redirect_to(ManifestBuilder::HyraxManifestHelper.new.download_path(scanned_resource, file: 'bitonal-pdf', locale: 'en'))
+        end
+      end
+      context "when the resource has no pdf type set" do
+        let(:sign_in_user) { FactoryGirl.create(:user) }
+        let(:scanned_resource) { FactoryGirl.create(:complete_scanned_resource, user: user, title: ['Dummy Title'], pdf_type: []) }
+        it "redirects to root" do
+          get :pdf, params: { id: scanned_resource, pdf_quality: "bitonal" }
+
+          expect(response).to redirect_to Rails.application.class.routes.url_helpers.root_path(locale: 'en')
+        end
+      end
+      context "when not given permission" do
+        let(:scanned_resource) { FactoryGirl.create(:private_scanned_resource, title: ['Dummy Title']) }
+        context "and not logged in" do
+          it "redirects for auth" do
+            get :pdf, params: { id: scanned_resource, pdf_quality: "bitonal" }
+
+            expect(response).to redirect_to "http://test.host/users/auth/cas?locale=en"
+          end
+        end
+        context "and logged in" do
+          let(:sign_in_user) { FactoryGirl.create(:user) }
+          it "redirects to root" do
+            get :pdf, params: { id: scanned_resource, pdf_quality: "bitonal" }
+
+            expect(response).to redirect_to Rails.application.class.routes.url_helpers.root_path(locale: 'en')
+          end
+        end
+      end
+    end
   end
 
   describe "#browse_everything_files" do

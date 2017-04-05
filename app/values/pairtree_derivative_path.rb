@@ -41,6 +41,7 @@ class PairtreeDerivativePath < Hyrax::DerivativePath
       "ocr" => ".hocr",
       "gray-pdf" => ".pdf",
       "color-pdf" => ".pdf",
+      "bitonal-pdf" => ".pdf",
       "display_raster" => ".tif",
       "display_vector" => ".zip"
     }

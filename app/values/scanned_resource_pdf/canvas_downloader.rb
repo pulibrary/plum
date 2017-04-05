@@ -26,19 +26,29 @@ class ScannedResourcePDF
     private
 
       def canvas_url
-        "#{canvas.url}/full/#{max_width},#{max_height}/0/#{quality}.jpg"
+        "#{canvas.url}/full/#{max_width},#{max_height}/0/#{quality}.#{format}"
+      end
+
+      def format
+        bitonal? ? 'png' : 'jpg'
       end
 
       def max_width
+        return Canvas::BITONAL_SIZE if bitonal?
         [(Canvas::LETTER_WIDTH * scale_factor).round, canvas.width].min
       end
 
       def max_height
+        return Canvas::BITONAL_SIZE if bitonal?
         [(Canvas::LETTER_HEIGHT * scale_factor).round, canvas.height].min
       end
 
       def scale_factor
         1.5
+      end
+
+      def bitonal?
+        quality == 'bitonal'
       end
   end
 end
