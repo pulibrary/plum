@@ -21,6 +21,8 @@ en:
       homepage_url: "#"
     product_name: "Digital PUL"
     works:
+      create:
+        after_create_html: "Work Created"
       form:
         tab:
           relationships: "Collections"
