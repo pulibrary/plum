@@ -43,7 +43,13 @@ class CompleteRecord
     end
 
     def url
-      ManifestBuilder::ManifestHelper.new.polymorphic_url(record)
+      if record.source_metadata_identifier.blank?
+        return ManifestBuilder::ManifestHelper.new.polymorphic_url(record)
+      elsif RemoteRecord.bibdata?(record.source_metadata_identifier)
+        return "https://pulsearch.princeton.edu/catalog/#{record.source_metadata_identifier}#view"
+      else
+        return "http://findingaids.princeton.edu/collections/#{record.source_metadata_identifier.tr('_', '/')}"
+      end
     end
 
     def mint_identifier
