@@ -11,12 +11,13 @@ describe Hyrax::ScannedResourcesController do
       sign_in user
     end
 
-    it "deletes a record" do
+    it "deletes a record and redirects to the root path" do
       s = FactoryGirl.create(:scanned_resource)
 
-      delete :destroy, params: { id: s.id }
+      delete :destroy, params: { id: s.id, format: :html }
 
       expect(ScannedResource.all.length).to eq 0
+      expect(response).to redirect_to "/?locale=en"
     end
 
     it "fires a delete event" do
