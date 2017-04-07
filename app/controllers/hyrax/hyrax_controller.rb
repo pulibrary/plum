@@ -44,6 +44,13 @@ class Hyrax::HyraxController < ApplicationController
     end
   end
 
+  def after_destroy_response(title)
+    respond_to do |wants|
+      wants.html { redirect_to root_path, notice: "Deleted #{title}" }
+      wants.json { render_json_response(response_type: :deleted, message: "Deleted #{curation_concern.id}") }
+    end
+  end
+
   def send_record_created
     messenger.record_created(curation_concern)
   end
