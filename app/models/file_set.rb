@@ -94,10 +94,9 @@ class FileSet < ActiveFedora::Base
     def ocr_text
       if Plum.config[:create_hocr_files] && Plum.config[:index_hocr_files]
         ocr_document.try(:text).try(:strip)
-      elsif File.exist?(derivative_path('ocr', 'txt'))
-        File.open(derivative_path('ocr', 'txt')).read
       else
-        derivative_path('ocr', 'txt')
+        return false unless File.exist?(derivative_path('ocr', 'txt'))
+        File.open(derivative_path('ocr', 'txt')).read
       end
     end
 

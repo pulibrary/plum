@@ -160,9 +160,9 @@ class IngestYAMLJob < ActiveJob::Base
         # that we append to the end of the list.
         work.reload unless work.new_record?
         work.ordered_members = file_sets
-
         # Save the work so the association between the work and the file_set is persisted (head_id)
         work.save!
+        @file_sets.each(&:update_index)
       end
       logger.info "Completed batch file_set association"
       messenger.record_updated(work)
