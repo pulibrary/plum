@@ -1,0 +1,22 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Label:</strong>
+  <%= @vocabulary_collection.label %>
+</p>
+
+<p>
+  <strong>Vocabulary:</strong>
+  <%= link_to @vocabulary_collection.vocabulary.label, @vocabulary_collection.vocabulary %>
+</p>
+
+<%= link_to 'Back', vocabulary_collections_path %>
+<%= link_to 'Edit', edit_vocabulary_collection_path(@vocabulary_collection) %> |
+<%= link_to 'Add Term', vocabulary_collection_add_term_path(@vocabulary_collection.vocabulary, @vocabulary_collection) %>
+
+<h2>Terms</h2>
+<ul>
+  <% VocabularyTerm.where(vocabulary_collection_id: @vocabulary_collection.id).each do |term| %>
+    <li><%= link_to term.label, term %></li>
+  <% end %>
+</ul>

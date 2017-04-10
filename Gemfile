@@ -61,7 +61,7 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'pry-byebug'
   gem 'rspec-rails'
-  gem "factory_girl_rails"
+  gem "factory_girl"
   gem 'jasmine-rails'
   gem 'jasmine-jquery-rails'
   gem 'pdf-reader', github: 'yob/pdf-reader'

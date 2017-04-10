@@ -1,0 +1,41 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Label:</strong>
+  <%= @vocabulary_term.label %>
+</p>
+
+<p>
+  <strong>Uri:</strong>
+  <%= link_to @vocabulary_term.uri, @vocabulary_term.uri %>
+</p>
+
+<p>
+  <strong>Code:</strong>
+  <%= @vocabulary_term.code %>
+</p>
+
+<p>
+  <strong>TGM label:</strong>
+  <%= @vocabulary_term.tgm_label %>
+</p>
+
+<p>
+  <strong>LCSH label:</strong>
+  <%= @vocabulary_term.lcsh_label %>
+</p>
+
+<p>
+  <strong>Vocabulary:</strong>
+  <%= link_to @vocabulary_term.vocabulary.label, @vocabulary_term.vocabulary %>
+</p>
+
+<p>
+  <strong>Vocabulary collection:</strong>
+  <% if @vocabulary_term.vocabulary_collection %>
+  <%= link_to(@vocabulary_term.vocabulary_collection.label, @vocabulary_term.vocabulary_collection) %>
+  <% end %>
+</p>
+
+<%= link_to 'Edit', edit_vocabulary_term_path(@vocabulary_term) %> |
+<%= link_to 'Back', vocabulary_terms_path %>

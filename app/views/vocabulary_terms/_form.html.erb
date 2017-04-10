@@ -1,0 +1,52 @@
+<%= form_for(vocabulary_term) do |f| %>
+  <% if vocabulary_term.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(vocabulary_term.errors.count, "error") %> prohibited this vocabulary_term from being saved:</h2>
+
+      <ul>
+      <% vocabulary_term.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :label %>
+    <%= f.text_field :label %>
+  </div>
+
+  <div class="field">
+    <%= f.label :uri %>
+    <%= f.text_field :uri %>
+  </div>
+
+  <div class="field">
+    <%= f.label :code %>
+    <%= f.text_field :code %>
+  </div>
+
+  <div class="field">
+    <%= f.label :tgm_label, "TGM label" %>
+    <%= f.text_field :tgm_label %>
+  </div>
+
+  <div class="field">
+    <%= f.label :lcsh_label, "LCSH label" %>
+    <%= f.text_field :lcsh_label %>
+  </div>
+
+  <div class="field">
+    <%= f.label :vocabulary_id %>
+    <%= f.collection_select :vocabulary_id, Vocabulary.order(:label), :id, :label, selected: @vocabulary_id %>
+  </div>
+
+  <div class="field">
+    <%= f.label :vocabulary_collection_id %>
+    <%= f.collection_select :vocabulary_collection_id, VocabularyCollection.order(:label), :id, :label, include_blank: true, selected: @vocabulary_collection_id %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
