@@ -7,6 +7,8 @@ Hyrax.config do |config|
   config.register_curation_concern :vector_work
   config.register_curation_concern :raster_work
   config.register_curation_concern :image_work
+  # Injected via `rails g hyrax:work EphemeraBox`
+  config.register_curation_concern :ephemera_box
 
   config.max_days_between_audits = 7
 
