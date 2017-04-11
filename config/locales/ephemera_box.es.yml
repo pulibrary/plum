@@ -1,0 +1,10 @@
+es:
+  hyrax:
+    icons:
+      ephemera_box:     'fa fa-file-text-o'
+    select_type:
+      ephemera_box:
+        # TODO: translate `human_name` into Spanish
+        name:               "Ephemera Box"
+        # TODO: translate `human_name` into Spanish
+        description:        "Ephemera box trabajos"

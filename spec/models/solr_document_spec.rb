@@ -15,8 +15,106 @@ RSpec.describe SolrDocument do
       width_is: 200,
       height_is: 400,
       cartographic_scale_tesim: ['Scale 1:2,000,000'],
-      alternative_tesim: ['Alt title 1', 'Alt title 2']
+      alternative_tesim: ['Alt title 1', 'Alt title 2'],
+      viewing_hint_tesim: ["Viewing Hint"],
+      exhibit_id_tesim: ["test"],
+      rights_statement_tesim: ["test"],
+      rights_note_tesim: ["test"],
+      holding_location_tesim: ["test"],
+      source_metadata_identifier_tesim: "1",
+      source_jsonld_tesim: ["Testing"],
+      nav_date_tesim: ["1"],
+      portion_note_tesim: ["1"],
+      full_text_tesim: ["Text"],
+      hasRelatedImage_ssim: ["Image"],
+      member_of_collections_ssim: ["Collection1"],
+      member_of_collection_ids_ssim: ["1"],
+      folder_number_ssim: ["1"]
     }
+  end
+
+  describe "#viewing_hint" do
+    it "returns the viewing hint" do
+      expect(subject.viewing_hint).to eq "Viewing Hint"
+    end
+  end
+
+  describe "#folder_number" do
+    it "returns the first folder numbe" do
+      expect(subject.folder_number).to eq "1"
+    end
+  end
+
+  describe "#collection" do
+    it "returns the collection names" do
+      expect(subject.collection).to eq ["Collection1"]
+    end
+  end
+
+  describe "#collection_ids" do
+    it "returns the collection IDs" do
+      expect(subject.collection_ids).to eq ["1"]
+    end
+  end
+
+  describe "#thumbnail_id" do
+    it "returns the thumbnail ID" do
+      expect(subject.thumbnail_id).to eq "Image"
+    end
+  end
+
+  describe "#nav_date" do
+    it "returns the nav date" do
+      expect(subject.nav_date).to eq ["1"]
+    end
+  end
+
+  describe "#ocr_text" do
+    it "returns the ocr text" do
+      expect(subject.ocr_text).to eq "Text"
+    end
+  end
+
+  describe "#portion_note" do
+    it "returns the portion_note" do
+      expect(subject.portion_note).to eq ["1"]
+    end
+  end
+
+  describe "#source_jsonld" do
+    it "returns the first source JSONLD" do
+      expect(subject.source_jsonld).to eq "Testing"
+    end
+  end
+
+  describe "#source_metadata_identifier" do
+    it "returns the identifier" do
+      expect(subject.source_metadata_identifier).to eq "1"
+    end
+  end
+
+  describe "#rights_statement" do
+    it "returns the rights statement" do
+      expect(subject.rights_statement).to eq ["test"]
+    end
+  end
+
+  describe "#rights_note" do
+    it "returns the rights note" do
+      expect(subject.rights_note).to eq ["test"]
+    end
+  end
+
+  describe "#holding_location" do
+    it "returns the holding location" do
+      expect(subject.holding_location).to eq ["test"]
+    end
+  end
+
+  describe "#exhibit_id" do
+    it "returns the exhibit id" do
+      expect(subject.exhibit_id).to eq ["test"]
+    end
   end
 
   describe "#create_date" do
