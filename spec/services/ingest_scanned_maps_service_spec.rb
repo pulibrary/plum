@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe IngestScannedMapsService do
+RSpec.describe IngestScannedMapsService, :admin_set do
   subject { described_class.new(logger) }
   let(:logger) { Logger.new(nil) }
   let(:map_dir) { Rails.root.join('spec', 'fixtures', 'ingest_scanned_maps') }
