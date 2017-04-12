@@ -1,0 +1,53 @@
+<%= simple_form_for(vocabulary_term) do |f| %>
+  <% if vocabulary_term.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(vocabulary_term.errors.count, "error") %> prohibited this vocabulary_term from being saved:</h2>
+
+      <ul>
+      <% vocabulary_term.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.input :label %>
+  </div>
+
+  <div class="field">
+    <%= f.input :uri, label: 'URI' %>
+  </div>
+
+  <div class="field">
+    <%= f.input :code %>
+  </div>
+
+  <div class="field">
+    <%= f.input :tgm_label, label: 'TGM label'  %>
+  </div>
+
+  <div class="field">
+    <%= f.input :lcsh_label, label: 'LCSH label' %>
+  </div>
+
+  <div class="field">
+    <%= f.label :vocabulary_id %>
+    <%= f.collection_select :vocabulary_id, Vocabulary.order(:label), :id, :label, selected: @vocabulary_id %>
+  </div>
+
+  <div class="field">
+    <%= f.label :vocabulary_collection_id %>
+    <%= f.collection_select :vocabulary_collection_id, VocabularyCollection.order(:label), :id, :label, include_blank: true, selected: @vocabulary_collection_id %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit(class: 'btn btn-primary') %>
+    <% if params[:action] == "new" %>
+      <%= link_to 'Cancel', vocabulary_terms_path, class: 'btn btn-default' %>
+    <% else %>
+      <%= link_to 'Cancel', @vocabulary_term, class: 'btn btn-default' %>
+      <%= link_to 'Delete This Term', @vocabulary_term, class: 'btn btn-danger pull-right', data: { confirm: "Delete this Term?" }, method: :delete %>
+    <% end %>
+  </div>
+<% end %>

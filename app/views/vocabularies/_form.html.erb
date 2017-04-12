@@ -1,0 +1,27 @@
+<%= simple_form_for(vocabulary) do |f| %>
+  <% if vocabulary.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(vocabulary.errors.count, "error") %> prohibited this vocabulary from being saved:</h2>
+
+      <ul>
+      <% vocabulary.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.input :label %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit(class: 'btn btn-primary') %>
+    <% if params[:action] == "new" %>
+      <%= link_to 'Cancel', vocabularies_path, class: 'btn btn-default' %>
+    <% else %>
+      <%= link_to 'Cancel', @vocabulary, class: 'btn btn-default' %>
+      <%= link_to 'Delete This Vocabulary', @vocabulary, class: 'btn btn-danger pull-right', data: { confirm: "Delete this Vocabulary?" }, method: :delete %>
+    <% end %>
+  </div>
+<% end %>

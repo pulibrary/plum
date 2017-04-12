@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>
+  <%= link_to 'Vocabularies', vocabularies_path %> » Terms
+</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Label</th>
+      <th>URI</th>
+      <th>Vocabulary</th>
+      <th>Collection</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @vocabulary_terms.each do |vocabulary_term| %>
+      <tr>
+        <td class="vocab"><%= vocabulary_term.label %></td>
+        <td class="vocab"><%= link_to vocabulary_term.uri, vocabulary_term.uri %></td>
+        <td class="vocab"><%= link_to vocabulary_term.vocabulary.label, vocabulary_term.vocabulary %></td>
+        <td class="vocab"><%= link_to vocabulary_term.vocabulary_collection.label if vocabulary_term.vocabulary_collection %></td>
+        <td class="vocab"><%= link_to 'Show', vocabulary_term %></td>
+        <td class="vocab"><%= link_to 'Edit', edit_vocabulary_term_path(vocabulary_term) %></td>
+        <td class="vocab"><%= link_to 'Destroy', vocabulary_term, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Vocabulary Term', new_vocabulary_term_path %>

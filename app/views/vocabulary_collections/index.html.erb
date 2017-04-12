@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>
+  <%= link_to 'Vocabularies', vocabularies_path %> » Collections
+</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Label</th>
+      <th>Vocabulary</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @vocabulary_collections.each do |vocabulary_collection| %>
+      <tr>
+        <td class="vocab"><%= vocabulary_collection.label %></td>
+        <td class="vocab"><%= link_to vocabulary_collection.vocabulary.label, vocabulary_collection.vocabulary %></td>
+        <td class="vocab"><%= link_to 'Show', vocabulary_collection %></td>
+        <td class="vocab"><%= link_to 'Edit', edit_vocabulary_collection_path(vocabulary_collection) %></td>
+        <td class="vocab"><%= link_to 'Destroy', vocabulary_collection, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Vocabulary Collection', new_vocabulary_collection_path %>

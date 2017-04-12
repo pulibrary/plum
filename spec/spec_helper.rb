@@ -21,3 +21,7 @@ end
 
 # prevent logging during specs
 Prawn::Font::AFM.hide_m17n_warning = true
+
+# load factories
+FactoryGirl.definition_file_paths << Rails.root.join('spec', 'factories')
+FactoryGirl.reload

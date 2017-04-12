@@ -101,4 +101,11 @@ Rails.application.routes.draw do
   get '/robots.:format' => 'pages#robots'
 
   mount Qa::Engine => '/authorities'
+
+  resources :vocabularies
+  resources :vocabulary_collections
+  resources :vocabulary_terms
+  get '/vocabularies/:vocabulary_id/add_collection' => 'vocabulary_collections#new', as: 'vocabulary_add_collection'
+  get '/vocabularies/:vocabulary_id/add_term' => 'vocabulary_terms#new', as: 'vocabulary_add_term'
+  get '/vocabularies/:vocabulary_id/collections/:vocabulary_collection_id/add_term' => 'vocabulary_terms#new', as: 'vocabulary_collection_add_term'
 end
