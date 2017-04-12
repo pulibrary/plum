@@ -12,7 +12,7 @@ module Hyrax
       respond_to do |wants|
         wants.html do
           msg = "The file #{view_context.link_to(@file_set, [main_app, @file_set])} has been updated." unless msg
-          dest = parent.nil? ? [main_app, @file_set] : [main_app, :file_manager, parent]
+          dest = parent.nil? || geo? ? [main_app, @file_set] : [main_app, :file_manager, parent]
           redirect_to dest, notice: msg
         end
         wants.json do

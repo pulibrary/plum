@@ -36,6 +36,7 @@ RSpec.describe Hyrax::FileSetsController do
     end
     it "redirects to the containing scanned resource after editing" do
       allow_any_instance_of(described_class).to receive(:parent).and_return(parent)
+      allow_any_instance_of(described_class).to receive(:geo?).and_return(false)
       patch :update, params: { id: file_set.id, file_set: { viewing_hint: 'non-paged' } }
       expect(response).to redirect_to(Rails.application.class.routes.url_helpers.file_manager_hyrax_scanned_resource_path(parent.id, locale: 'en'))
     end
@@ -46,9 +47,10 @@ RSpec.describe Hyrax::FileSetsController do
       before do
         allow(parent).to receive(:workflow_state).and_return('complete')
       end
-      it "sends an update message for the parent" do
+      it "sends an update message for the parent and redirects to file_set page" do
         expect(generator).to receive(:record_updated)
         patch :update, params: { id: file_set.id, file_set: { title: ["test"] } }
+        expect(response).to redirect_to(Rails.application.class.routes.url_helpers.hyrax_file_set_path(file_set.id, locale: 'en'))
       end
     end
   end
