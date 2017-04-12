@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe IngestService do
+RSpec.describe IngestService, :admin_set do
   subject { described_class.new(logger) }
   let(:logger) { Logger.new(nil) }
   let(:single_dir) { Rails.root.join('spec', 'fixtures', 'ingest_single') }

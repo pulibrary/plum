@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe StateBehavior do
+describe StateBehavior, :admin_set do
   describe "when there is no sipity entity" do
     let(:sipityless_resource) { Stateful.new }
     before do

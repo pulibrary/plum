@@ -4,7 +4,7 @@ RSpec::Matchers.define :a_file_named do |x|
   match { |actual| actual.path == x }
 end
 
-RSpec.describe IngestPULFAJob do
+RSpec.describe IngestPULFAJob, :admin_set do
   describe "ingesting a mets file" do
     let(:mets) { fixture('files/AC057-c18.mets') }
     let(:pdf) { fixture('files/test.pdf') }

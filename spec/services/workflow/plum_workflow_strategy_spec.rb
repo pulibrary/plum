@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Workflow::PlumWorkflowStrategy, :no_clean do
+RSpec.describe Workflow::PlumWorkflowStrategy, :no_clean, :admin_set do
   context 'when working with a scanned resource' do
     let(:work) { FactoryGirl.build(:scanned_resource) }
     let(:workflow_strategy) { described_class.new(work) }
