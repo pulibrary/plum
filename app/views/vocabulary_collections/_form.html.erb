@@ -1,4 +1,4 @@
-<%= form_for(vocabulary_collection) do |f| %>
+<%= simple_form_for(vocabulary_collection) do |f| %>
   <% if vocabulary_collection.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(vocabulary_collection.errors.count, "error") %> prohibited this vocabulary_collection from being saved:</h2>
@@ -12,8 +12,7 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :label %>
-    <%= f.text_field :label %>
+    <%= f.input :label %>
   </div>
 
   <div class="field">
@@ -22,6 +21,12 @@
   </div>
 
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit(class: 'btn btn-primary') %>
+    <% if params[:action] == "new" %>
+      <%= link_to 'Cancel', vocabulary_collections_path, class: 'btn btn-default' %>
+    <% else %>
+      <%= link_to 'Cancel', @vocabulary_collection, class: 'btn btn-default' %>
+      <%= link_to 'Delete This Collection', @vocabulary_collection, class: 'btn btn-danger pull-right', data: { confirm: "Delete this Collection?" }, method: :delete %>
+    <% end %>
   </div>
 <% end %>

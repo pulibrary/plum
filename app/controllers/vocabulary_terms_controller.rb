@@ -5,7 +5,7 @@ class VocabularyTermsController < ApplicationController
   # GET /vocabulary_terms
   # GET /vocabulary_terms.json
   def index
-    @vocabulary_terms = VocabularyTerm.all
+    @vocabulary_terms = VocabularyTerm.order(:label)
   end
 
   # GET /vocabulary_terms/1

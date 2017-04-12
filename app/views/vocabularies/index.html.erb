@@ -13,10 +13,10 @@
   <tbody>
     <% @vocabularies.each do |vocabulary| %>
       <tr>
-        <td><%= vocabulary.label %></td>
-        <td><%= link_to 'Show', vocabulary %></td>
-        <td><%= link_to 'Edit', edit_vocabulary_path(vocabulary) %></td>
-        <td><%= link_to 'Destroy', vocabulary, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td class="vocab"><%= vocabulary.label %></td>
+        <td class="vocab"><%= link_to 'Show', vocabulary %></td>
+        <td class="vocab"><%= link_to 'Edit', edit_vocabulary_path(vocabulary) %></td>
+        <td class="vocab"><%= link_to 'Destroy', vocabulary, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
