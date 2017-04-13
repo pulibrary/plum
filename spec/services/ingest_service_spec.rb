@@ -11,6 +11,7 @@ RSpec.describe IngestService, :admin_set do
   let(:resource2) { ScannedResource.new }
   let(:multivol) { MultiVolumeWork.new }
   let(:reloaded) { resource.reload }
+  let(:coll) { FactoryGirl.create(:collection) }
 
   describe '#ingest_dir' do
     context 'with a directory of TIFFs', vcr: { cassette_name: 'bibdata-4609321' } do
@@ -18,9 +19,10 @@ RSpec.describe IngestService, :admin_set do
         allow(ScannedResource).to receive(:new).and_return(resource1)
       end
       it 'ingests them as a ScannedResource' do
-        subject.ingest_dir single_dir, bib, user
+        subject.ingest_dir single_dir, bib, user, coll
         expect(resource1.file_sets.length).to eq 2
         expect(resource1.ordered_members.to_a.map(&:label)).to eq ['color.tif', 'gray.tif']
+        expect(resource1.member_of_collection_ids).to eq [coll.id]
       end
     end
 

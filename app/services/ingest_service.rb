@@ -17,7 +17,7 @@ class IngestService
     r
   end
 
-  def ingest_dir(dir, bib, user)
+  def ingest_dir(dir, bib, user, collection = nil)
     klass = choose_class(Dir["#{dir}/*"].first)
     attribs = bib.nil? ? { title: [File.basename(dir)] } : { source_metadata_identifier: bib }
     r = minimal_record klass, user, attribs
@@ -30,6 +30,7 @@ class IngestService
       end
     end
     r.ordered_members = members
+    r.member_of_collections << collection if collection
     r.save!
 
     r

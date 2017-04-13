@@ -5,13 +5,16 @@ namespace :bulk do
     user = User.all.select{ |u| u.admin? }.first unless user
     dir = ENV['DIR']
     bib = ENV['BIB']
-    abort "usage: rake bulk:ingest DIR=/path/to/files BIB=1234567" unless bib && dir && Dir.exist?(dir)
+    coll = ENV['COLL']
+    abort "usage: rake bulk:ingest DIR=/path/to/files BIB=1234567 COLL=collid" unless bib && dir && Dir.exist?(dir)
 
+    coll = ActiveFedora::Base.find(coll) if coll.present?
     @logger = Logger.new(STDOUT)
     @logger.info "ingesting files from: #{dir}"
     @logger.info "ingesting as: #{user.user_key} (override with USER=foo)"
+    @logger.info "adding item to collection #{coll.id}" if coll
     begin
-      IngestService.new(@logger).ingest_dir dir, bib, user
+      IngestService.new(@logger).ingest_dir dir, bib, user, coll
     rescue => e
       puts "Error: #{e.message}"
       puts e.backtrace
