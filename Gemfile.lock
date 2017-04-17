@@ -144,7 +144,7 @@ GIT
 
 GIT
   remote: git://github.com/pulibrary/pul_metadata_services.git
-  revision: 20cd3bb90b8c1fa16023cdcb3b6323ca10fd24d9
+  revision: 799681114616ca10059b48d4e5950998f9b4af9e
   branch: master
   specs:
     pul_metadata_services (0.0.1)
@@ -880,7 +880,7 @@ GEM
       execjs (>= 0.3.0, < 3)
     unf (0.1.4)
       unf_ext
-    unf_ext (0.0.7.2)
+    unf_ext (0.0.7.3)
     vcr (2.9.3)
     warden (1.2.7)
       rack (>= 1.0)
