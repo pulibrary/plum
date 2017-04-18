@@ -6,6 +6,5 @@ FactoryGirl.define do
     tgm_label ""
     lcsh_label ""
     vocabulary FactoryGirl.create(:vocabulary)
-    vocabulary_collection FactoryGirl.create(:vocabulary_collection)
   end
 end

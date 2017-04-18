@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170410193003) do
+ActiveRecord::Schema.define(version: 20170418135317) do
 
   create_table "bookmarks", force: :cascade do |t|
     t.integer  "user_id",       null: false
@@ -517,14 +517,8 @@ ActiveRecord::Schema.define(version: 20170410193003) do
     t.string   "label"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "vocabulary_collections", force: :cascade do |t|
-    t.string   "label"
-    t.integer  "vocabulary_id"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
-    t.index ["vocabulary_id"], name: "index_vocabulary_collections_on_vocabulary_id"
+    t.integer  "parent_id"
+    t.index ["parent_id"], name: "index_vocabularies_on_parent_id"
   end
 
   create_table "vocabulary_terms", force: :cascade do |t|
@@ -534,10 +528,8 @@ ActiveRecord::Schema.define(version: 20170410193003) do
     t.string   "tgm_label"
     t.string   "lcsh_label"
     t.integer  "vocabulary_id"
-    t.integer  "vocabulary_collection_id"
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
-    t.index ["vocabulary_collection_id"], name: "index_vocabulary_terms_on_vocabulary_collection_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
     t.index ["vocabulary_id"], name: "index_vocabulary_terms_on_vocabulary_id"
   end
 

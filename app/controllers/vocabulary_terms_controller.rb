@@ -17,7 +17,6 @@ class VocabularyTermsController < ApplicationController
   def new
     @vocabulary_term = VocabularyTerm.new
     @vocabulary_id = params[:vocabulary_id]
-    @vocabulary_collection_id = params[:vocabulary_collection_id]
   end
 
   # GET /vocabulary_terms/1/edit
@@ -73,6 +72,6 @@ class VocabularyTermsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def vocabulary_term_params
-      params.require(:vocabulary_term).permit(:label, :uri, :code, :tgm_label, :lcsh_label, :vocabulary_id, :vocabulary_collection_id)
+      params.require(:vocabulary_term).permit(:label, :uri, :code, :tgm_label, :lcsh_label, :vocabulary_id)
     end
 end

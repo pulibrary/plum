@@ -10,6 +10,5 @@ RSpec.describe "vocabulary_terms/show", type: :view do
     expect(rendered).to match(/Literacy/)
     expect(rendered).to match(/http:\/\/id.loc.gov\/authorities\/subjects\/sh85077482/)
     expect(rendered).to match(/LAE Subjects/)
-    expect(rendered).to match(/Education/)
   end
 end
