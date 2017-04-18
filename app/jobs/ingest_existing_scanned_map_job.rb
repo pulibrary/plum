@@ -1,10 +1,11 @@
-class IngestScannedMapJob < ApplicationJob
+class IngestExistingScannedMapJob < ApplicationJob
   queue_as :ingest
 
-  # @param [OpenStruct] map_record
+  # @param [Hash] map_record as hash
   # @param [String] user User to ingest as
   def perform(map_record, file_path, user)
-    logger.info "Ingesting Scanned Map #{map_record.ark}"
+    ark = map_record.fetch('ark')
+    logger.info "Ingesting Scanned Map #{ark}"
     ingest_service = ::IngestExistingScannedMap.new(logger)
     ingest_service.ingest_map_record(map_record, file_path, user)
   end
