@@ -65,6 +65,18 @@ RSpec.describe VocabulariesController, type: :controller do
       end
     end
 
+    context "with a parent vocabulary" do
+      let(:parent) { FactoryGirl.create(:vocabulary, label: 'Parent Vocab') }
+      let(:attributes_with_parent) { valid_attributes.merge(parent_id: parent.id) }
+
+      it "assigns a newly created vocabulary as @vocabulary" do
+        post :create, params: { vocabulary: attributes_with_parent }
+        expect(assigns(:vocabulary)).to be_a(Vocabulary)
+        expect(assigns(:vocabulary)).to be_persisted
+        expect(assigns(:vocabulary).parent).to eq(parent)
+      end
+    end
+
     context "with invalid params" do
       it "assigns a newly created but unsaved vocabulary as @vocabulary" do
         post :create, params: { vocabulary: invalid_attributes }

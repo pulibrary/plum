@@ -15,7 +15,6 @@ RSpec.describe "vocabulary_terms/new", type: :view do
       assert_select "input#vocabulary_term_tgm_label[name=?]", "vocabulary_term[tgm_label]"
       assert_select "input#vocabulary_term_lcsh_label[name=?]", "vocabulary_term[lcsh_label]"
       assert_select "select#vocabulary_term_vocabulary_id[name=?]", "vocabulary_term[vocabulary_id]"
-      assert_select "select#vocabulary_term_vocabulary_collection_id[name=?]", "vocabulary_term[vocabulary_collection_id]"
     end
   end
 end

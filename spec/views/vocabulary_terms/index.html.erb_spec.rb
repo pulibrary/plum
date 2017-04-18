@@ -15,7 +15,6 @@ RSpec.describe "vocabulary_terms/index", type: :view do
     assert_select "tr>td", text: "Test", count: 1
     assert_select "tr>td", text: "http:\/\/id.loc.gov\/authorities\/subjects\/sh85077482", count: 1
     assert_select "tr>td", text: "http:\/\/example.org\/test", count: 1
-    assert_select "tr>td", text: "Education", count: 2
     assert_select "tr>td", text: "LAE Subjects", count: 2
   end
 end

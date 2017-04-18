@@ -15,6 +15,11 @@
     <%= f.input :label %>
   </div>
 
+  <div class="field">
+    <%= f.label :parent_id %>
+    <%= f.collection_select :parent_id, Vocabulary.order(:label), :id, :label, include_blank: true, selected: @parent_id %>
+  </div>
+
   <div class="actions">
     <%= f.submit(class: 'btn btn-primary') %>
     <% if params[:action] == "new" %>

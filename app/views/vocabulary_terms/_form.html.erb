@@ -36,11 +36,6 @@
     <%= f.collection_select :vocabulary_id, Vocabulary.order(:label), :id, :label, selected: @vocabulary_id %>
   </div>
 
-  <div class="field">
-    <%= f.label :vocabulary_collection_id %>
-    <%= f.collection_select :vocabulary_collection_id, VocabularyCollection.order(:label), :id, :label, include_blank: true, selected: @vocabulary_collection_id %>
-  </div>
-
   <div class="actions">
     <%= f.submit(class: 'btn btn-primary') %>
     <% if params[:action] == "new" %>

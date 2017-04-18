@@ -3,9 +3,6 @@
 <h1>
   <%= link_to 'Vocabularies', vocabularies_path %> »
   <%= link_to @vocabulary_term.vocabulary.label, @vocabulary_term.vocabulary %> »
-  <% if @vocabulary_term.vocabulary_collection %>
-    <%= link_to @vocabulary_term.vocabulary_collection.label, @vocabulary_term.vocabulary_collection %> »
-  <% end %>
   <%= @vocabulary_term.label %>
 </h1>
 
@@ -32,13 +29,6 @@
 <p>
   <strong>Vocabulary:</strong>
   <%= link_to @vocabulary_term.vocabulary.label, @vocabulary_term.vocabulary %>
-</p>
-
-<p>
-  <strong>Vocabulary collection:</strong>
-  <% if @vocabulary_term.vocabulary_collection %>
-  <%= link_to(@vocabulary_term.vocabulary_collection.label, @vocabulary_term.vocabulary_collection) %>
-  <% end %>
 </p>
 
 <%= link_to 'All Terms', vocabulary_terms_path %> |

@@ -16,10 +16,12 @@ class VocabulariesController < ApplicationController
   # GET /vocabularies/new
   def new
     @vocabulary = Vocabulary.new
+    @parent_id = params[:parent_id]
   end
 
   # GET /vocabularies/1/edit
   def edit
+    @parent_id = @vocabulary.parent.id if @vocabulary.parent
   end
 
   # POST /vocabularies
@@ -71,6 +73,6 @@ class VocabulariesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def vocabulary_params
-      params.require(:vocabulary).permit(:label)
+      params.require(:vocabulary).permit(:label, :parent_id)
     end
 end
