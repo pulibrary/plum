@@ -36,6 +36,8 @@ module Discovery
       # @return [Bool]
       def geo_file_set?
         return false unless file_set
+        geo_mime_type = file_set.solr_document.fetch(:geo_mime_type_ssim, []).first
+        return false unless GeoWorks::ImageFormatService.include?(geo_mime_type)
         @file_set_ids ||= geo_work.geo_file_set_presenters.map(&:id)
         @file_set_ids.include? file_set.id
       end

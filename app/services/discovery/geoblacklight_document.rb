@@ -2,6 +2,11 @@ module Discovery
   class GeoblacklightDocument < GeoWorks::Discovery::GeoblacklightDocument
     attr_accessor :iiif
 
+    def to_hash(_args = nil)
+      return document unless access_rights == private_visibility
+      private_document
+    end
+
     # Override to return a different geoblacklight document for works with private visibility
     def to_json(_args = nil)
       return document.to_json unless access_rights == private_visibility
