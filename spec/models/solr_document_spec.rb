@@ -13,7 +13,9 @@ RSpec.describe SolrDocument do
       system_create_dtsi: system_created,
       language_tesim: ['eng'],
       width_is: 200,
-      height_is: 400
+      height_is: 400,
+      cartographic_scale_tesim: ['Scale 1:2,000,000'],
+      alternative_tesim: ['Alt title 1', 'Alt title 2']
     }
   end
 
@@ -64,6 +66,21 @@ RSpec.describe SolrDocument do
   describe '#method_missing' do
     it 'passes through to super' do
       expect { subject.send :foo }.to raise_error NoMethodError, /undefined method/
+    end
+  end
+
+  describe 'document responds to SolrGeoMetadata field methods' do
+    it '#cartographic_projection returns nil when field missing' do
+      expect(subject.cartographic_projection).to be nil
+    end
+    it '#cartographic_scale single-valued field returns string' do
+      expect(subject.cartographic_scale).to eq 'Scale 1:2,000,000'
+    end
+    it '#edition returns empty array when field missing' do
+      expect(subject.edition).to eq([])
+    end
+    it '#alternative returns multivalued array' do
+      expect(subject.alternative).to eq(['Alt title 1', 'Alt title 2'])
     end
   end
 end

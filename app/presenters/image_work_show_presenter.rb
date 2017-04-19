@@ -1,4 +1,5 @@
 class ImageWorkShowPresenter < GeoWorks::ImageWorkShowPresenter
   include PlumAttributes
-  delegate :viewing_hint, :viewing_direction, :logical_order, :logical_order_object, :ocr_language, to: :solr_document
+  delegate :viewing_hint, :viewing_direction, :logical_order, :logical_order_object, :ocr_language,
+           :cartographic_projection, :cartographic_scale, :alternative, :edition, to: :solr_document
 end
