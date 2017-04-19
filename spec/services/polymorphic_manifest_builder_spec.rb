@@ -257,6 +257,12 @@ RSpec.describe PolymorphicManifestBuilder, vcr: { cassette_name: "iiif_manifest"
           expect(manifest_json['sequences'][0]["rendering"]["@id"]).to eql "http://plum.com/concern/scanned_resources/1/pdf/gray"
         end
       end
+      context "when the PDF type is 'none'" do
+        let(:record) { FactoryGirl.build(:scanned_resource, pdf_type: ['none']) }
+        it "does not have a PDF link" do
+          expect(manifest_json['sequences'][0]["rendering"]).to be nil
+        end
+      end
       context "when given SSL" do
         subject { described_class.new(solr_document, ssl: true) }
         it "generates https links appropriately for pdfs" do

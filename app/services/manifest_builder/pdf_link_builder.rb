@@ -9,6 +9,7 @@ class ManifestBuilder
     def apply(manifest)
       return if record.member_presenters.length == 0
       return if manifest['sequences'].blank?
+      return if record.pdf_type && record.pdf_type.first == 'none'
       return unless path
       manifest['sequences'].first['rendering'] = {
         '@id' => path,
