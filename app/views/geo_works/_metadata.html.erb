@@ -4,8 +4,12 @@
     <tr><th><%= t('.attribute_name_label') %></th><th><%= t('.attribute_values_label') %></th></tr>
   </thead>
   <tbody>
+    <%= presenter.attribute_to_html(:alternative) %>
     <%= render 'attribute_rows', presenter: presenter %>
     <%= presenter.attribute_to_html(:description) %>
+    <%= presenter.attribute_to_html(:edition) %>
+    <%= presenter.attribute_to_html(:cartographic_scale) %>
+    <%= presenter.attribute_to_html(:cartographic_projection) %>
     <%= render 'geo_works/attribute_rows', presenter: presenter %>
     <%= presenter.attribute_to_html(:embargo_release_date, render_as: :date) %>
     <%= presenter.attribute_to_html(:lease_expiration_date, render_as: :date) %>

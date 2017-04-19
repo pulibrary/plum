@@ -3,6 +3,7 @@ class PlumSchema < ActiveTriples::Schema
   property :sort_title, predicate: ::OpaqueMods.titleForSort, multiple: false
   property :portion_note, predicate: ::RDF::Vocab::SKOS.scopeNote, multiple: false
   property :abstract, predicate: ::RDF::Vocab::DC.abstract, multiple: false
+  property :alternative, predicate: ::RDF::Vocab::DC.alternative
   property :identifier, predicate: ::RDF::Vocab::DC.identifier, multiple: false
   property :replaces, predicate: ::RDF::Vocab::DC.replaces, multiple: false
   property :rights_statement, predicate: ::RDF::Vocab::EDM.rights, multiple: false
@@ -25,6 +26,7 @@ class PlumSchema < ActiveTriples::Schema
   property :source, predicate: RDF::Vocab::DC11.source
   property :extent, predicate: RDF::Vocab::DC.extent
   property :edition, predicate: RDF::URI("http://id.loc.gov/ontologies/bibframe/editionStatement")
+  property :cartographic_scale, predicate: RDF::Vocab::Bibframe.cartographicScale, multiple: false
   property :call_number, predicate: PULTerms.call_number
   property :abridger, predicate: RDF::Vocab::MARCRelators.abr
   property :actor, predicate: RDF::Vocab::MARCRelators.act

@@ -42,3 +42,6 @@ en:
     hints:
       defaults:
         files: ''
+    labels:
+      defaults:
+        alternative: 'Alternative title'
