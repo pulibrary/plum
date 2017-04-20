@@ -43,11 +43,13 @@ class FileSet < ActiveFedora::Base
         ]
       )
       create_ocr(id)
+      create_word_boundaries(id)
     when mime_type.include?('image/jp2')
       dst = derivative_path('intermediate_file')
       FileUtils.mkdir_p(File.dirname(dst))
       FileUtils.cp(filename, dst)
       create_ocr(id)
+      create_word_boundaries(id)
     when mime_type.include?('text/plain')
       if filename.end_with?("fulltext.txt")
         dst = derivative_path('ocr', 'txt')
@@ -85,6 +87,10 @@ class FileSet < ActiveFedora::Base
     # @param id [String] Fileset id
     def create_ocr(id)
       RunOCRJob.perform_later(id) if Plum.config[:create_hocr_files] && Plum.config[:store_original_files]
+    end
+
+    def create_word_boundaries(id)
+      RunWordBoundariesJob.perform_later(id)
     end
 
     def ocr_file
