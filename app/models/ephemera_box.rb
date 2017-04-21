@@ -9,8 +9,8 @@ class EphemeraBox < ActiveFedora::Base
   validates :title, presence: { message: 'Your work must have a title.' }
   validates :box_number, :barcode, presence: true
   validates :barcode, with: :barcode_valid?
-  property :barcode, predicate: ::RDF::URI("http://plum.com/predicates/barCode")
-  property :box_number, predicate: ::RDF::URI("http://plum.com/predicates/box_number")
+  property :barcode, predicate: ::RDF::Vocab::DC.identifier
+  property :box_number, predicate: ::RDF::RDFS.label
 
   self.human_readable_type = 'Ephemera Box'
   def box_number=(title)
