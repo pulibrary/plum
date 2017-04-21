@@ -10,13 +10,13 @@ class EphemeraFolder < ActiveFedora::Base
   # Change this to restrict which works can be added as a child.
   # self.valid_child_concerns = []
   validates :title, presence: { message: 'Your work must have a title.' }
-  validates :barcode, with: :barcode_valid?
+  validates :identifier, with: :barcode_valid?
 
   self.human_readable_type = 'Ephemera Folder'
 
   def barcode_valid?
-    return true if Barcode.new(barcode.first).valid?
-    errors.add(:barcode, "has an invalid checkdigit")
+    return true if Barcode.new(identifier.first).valid?
+    errors.add(:identifier, "has an invalid checkdigit")
   end
 
   def box_id

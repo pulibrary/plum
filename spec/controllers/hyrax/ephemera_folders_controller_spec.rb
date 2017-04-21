@@ -10,7 +10,7 @@ RSpec.describe Hyrax::EphemeraFoldersController, admin_set: true do
   let(:attributes) do
     {
       title: "Test",
-      barcode: folder.barcode.first
+      identifier: folder.identifier.first
     }
   end
   describe "#create" do
@@ -25,7 +25,7 @@ RSpec.describe Hyrax::EphemeraFoldersController, admin_set: true do
   end
 
   describe "#update" do
-    let(:updated) { { title: 'New Title', barcode: folder.barcode.first, box_id: box2.id } }
+    let(:updated) { { title: 'New Title', identifier: folder.identifier.first, box_id: box2.id } }
     let(:reloaded) { folder.reload }
 
     before do

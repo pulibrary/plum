@@ -45,3 +45,7 @@ en:
     labels:
       defaults:
         alternative: 'Alternative title'
+      ephemera_box:
+        identifier: 'Barcode'
+      ephemera_folder:
+        identifier: 'Barcode'
