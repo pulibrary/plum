@@ -1,0 +1,8 @@
+en:
+  hyrax:
+    icons:
+      ephemera_folder:     'fa fa-file-text-o'
+    select_type:
+      ephemera_folder:
+        name:               "Ephemera Folder"
+        description:        "Ephemera folder works"

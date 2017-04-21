@@ -1,18 +1,17 @@
 class DynamicShowPresenter
   def new(*args)
-    solr_doc = args.first
-    if solr_doc.type == "ScannedResource"
-      ScannedResourceShowPresenter.new(*args)
-    elsif solr_doc.type == "MultiVolumeWork"
-      MultiVolumeWorkShowPresenter.new(*args)
-    elsif solr_doc.type == "ImageWork"
-      ImageWorkShowPresenter.new(*args)
-    elsif solr_doc.type == "RasterWork"
-      RasterWorkShowPresenter.new(*args)
-    elsif solr_doc.type == "VectorWork"
-      VectorWorkShowPresenter.new(*args)
-    else
-      FileSetPresenter.new(*args)
-    end
+    type = args.first.type
+    klass = begin
+              "#{type}ShowPresenter".constantize
+            rescue
+              nil
+            end
+    klass ||= begin
+                "#{type}Presenter".constantize
+              rescue
+                nil
+              end
+    klass ||= FileSetPresenter
+    klass.new(*args)
   end
 end

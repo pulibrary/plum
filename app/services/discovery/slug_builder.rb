@@ -20,7 +20,7 @@ module Discovery
     # Returns the document slug for use in discovery systems.
     # @return [String] document slug
     def slug
-      identifier = geo_work.identifier || geo_work.id
+      identifier = Array.wrap(geo_work.identifier.first || geo_work.id).first
       id = identifier.gsub(%r(ark:/\d{5}/), '')
       "#{provenance.parameterize}-#{id}"
     end

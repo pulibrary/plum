@@ -31,18 +31,6 @@ class SolrDocument
     self['has_model_ssim'].first
   end
 
-  def viewing_hint
-    Array(self[Solrizer.solr_name("viewing_hint")]).first
-  end
-
-  def viewing_direction
-    Array(self[Solrizer.solr_name("viewing_direction")]).first
-  end
-
-  def identifier
-    Array(self[Solrizer.solr_name("identifier")]).first
-  end
-
   def logical_order
     @logical_order ||=
       begin
@@ -52,44 +40,8 @@ class SolrDocument
       end
   end
 
-  def exhibit_id
-    self[Solrizer.solr_name('exhibit_id')]
-  end
-
-  def rights_statement
-    self[Solrizer.solr_name('rights_statement')]
-  end
-
-  def rights_note
-    self[Solrizer.solr_name('rights_note')]
-  end
-
-  def holding_location
-    self[Solrizer.solr_name('holding_location')]
-  end
-
-  def language
-    self[Solrizer.solr_name('language')]
-  end
-
   def language_display
     (language || []).map { |code| LanguageService.label(code) }
-  end
-
-  def source_metadata_identifier
-    self[Solrizer.solr_name('source_metadata_identifier')]
-  end
-
-  def source_jsonld
-    (self[Solrizer.solr_name('source_jsonld')] || []).first
-  end
-
-  def nav_date
-    self[Solrizer.solr_name('nav_date')]
-  end
-
-  def portion_note
-    self[Solrizer.solr_name('portion_note')]
   end
 
   def ocr_language
@@ -99,11 +51,7 @@ class SolrDocument
   end
 
   def ocr_text
-    (self['full_text_tesim'] || []).first
-  end
-
-  def thumbnail_id
-    Array(self[Solrizer.solr_name('hasRelatedImage', :symbol)]).first
+    Array(self[Solrizer.solr_name("full_text")]).first
   end
 
   def collection
@@ -111,7 +59,7 @@ class SolrDocument
   end
 
   def collection_ids
-    self[Solrizer.solr_name('member_of_collection_ids', :symbol)]
+    member_of_collection_ids
   end
 
   def title_or_label
@@ -120,18 +68,71 @@ class SolrDocument
   end
 
   def method_missing(meth_name, *args, &block)
-    if ScannedResource.properties.values.map(&:term).include?(meth_name)
-      self[Solrizer.solr_name(meth_name.to_s)]
-    elsif ScannedResource.properties.values.map { |x| "#{x.term}_literals".to_sym }.include?(meth_name)
-      Array(self[Solrizer.solr_name(meth_name.to_s, :symbol)]).map do |x|
+    attribute = Attribute.for(meth_name, self)
+    return attribute.value if attribute.valid?
+    super
+  end
+
+  class Attribute
+    class_attribute :single_valued_fields
+    self.single_valued_fields = [
+      :viewing_hint,
+      :viewing_direction,
+      :identifier,
+      :source_jsonld,
+      :folder_number
+    ]
+
+    def self.for(property, document)
+      if property.to_s.end_with?("_literals")
+        LiteralAttribute.new(property, document)
+      elsif single_valued_fields.include?(property.to_sym)
+        SingleAttribute.new(property, document)
+      else
+        new(property.to_sym, document)
+      end
+    end
+
+    attr_reader :property, :document
+    def initialize(property, document)
+      @property = property
+      @document = document
+    end
+
+    def valid?
+      all_terms.include?(property)
+    end
+
+    def value
+      document[Solrizer.solr_name(property)] || document[Solrizer.solr_name(property, :symbol)]
+    end
+
+    def all_terms
+      (Hyrax.config.curation_concerns + [Collection]).map { |x| x.properties.values.map(&:term) }.inject(:+)
+    end
+  end
+
+  class SingleAttribute < Attribute
+    def value
+      Array(super).first
+    end
+  end
+
+  class LiteralAttribute < Attribute
+    def value
+      Array(super).map do |x|
         if x.start_with?("{")
           JSON.parse(x)
         else
           x
         end
       end
-    else
-      super
+    end
+
+    def all_terms
+      super.map do |term|
+        "#{term}_literals".to_sym
+      end
     end
   end
 

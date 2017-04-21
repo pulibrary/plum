@@ -38,6 +38,7 @@ RSpec.describe "hyrax/base/file_manager.html.erb" do
     allow(view).to receive(:contextual_path).with(anything, anything) do |x, y|
       Hyrax::ContextualPath.new(x, y).show
     end
+    allow(controller).to receive(:browse_everything_files).and_return(true)
     render
   end
 

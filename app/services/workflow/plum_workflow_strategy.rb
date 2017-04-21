@@ -19,7 +19,7 @@ module Workflow
       end
 
       def book_works
-        %w(ScannedResource MultiVolumeWork)
+        %w(ScannedResource MultiVolumeWork EphemeraBox EphemeraFolder)
       end
 
       def geo_works

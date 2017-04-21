@@ -1,4 +1,5 @@
 require 'active_fedora/cleaner'
+require 'pry'
 
 RSpec.configure do |config|
   config.before :each do

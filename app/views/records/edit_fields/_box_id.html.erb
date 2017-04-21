@@ -1,0 +1,6 @@
+  <%= f.input :box_id,
+    as: :hidden,
+    input_html: {
+      value: f.object.box_id || params[:parent_id]
+    }
+  %>
