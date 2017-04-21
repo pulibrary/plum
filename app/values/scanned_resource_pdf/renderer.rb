@@ -48,7 +48,7 @@ class ScannedResourcePDF
       end
 
       def prawn_options
-        default_options = { margin: 0 }
+        default_options = { margin: 0, compress: true, optimize_objects: true }
         if canvas_downloaders.first
           default_options[:page_layout] = canvas_downloaders.first.layout
         end
