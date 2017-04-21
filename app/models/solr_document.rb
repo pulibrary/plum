@@ -58,10 +58,6 @@ class SolrDocument
     self[Solrizer.solr_name('member_of_collections', :symbol)]
   end
 
-  def collection_ids
-    member_of_collection_ids
-  end
-
   def title_or_label
     return label if title.blank?
     Array(title).join(', ')
