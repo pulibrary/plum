@@ -1,8 +1,8 @@
 module Hyrax
   class HyraxForm < Hyrax::Forms::WorkForm
-    self.terms += [:holding_location, :rights_statement, :rights_note, :source_metadata_identifier, :portion_note, :description, :abstract, :state, :collection_ids, :ocr_language, :nav_date, :pdf_type, :start_canvas, :uploaded_files]
+    self.terms += [:holding_location, :rights_statement, :rights_note, :source_metadata_identifier, :portion_note, :description, :abstract, :state, :member_of_collection_ids, :ocr_language, :nav_date, :pdf_type, :start_canvas, :uploaded_files]
     self.required_fields = [:title, :source_metadata_identifier, :rights_statement]
-    delegate :collection_ids, to: :model
+    delegate :member_of_collection_ids, to: :model
 
     def notable_rights_statement?
       RightsStatementService.new.notable?(rights_statement)

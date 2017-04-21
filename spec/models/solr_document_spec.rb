@@ -51,12 +51,6 @@ RSpec.describe SolrDocument do
     end
   end
 
-  describe "#collection_ids" do
-    it "returns the collection IDs" do
-      expect(subject.collection_ids).to eq ["1"]
-    end
-  end
-
   describe "#thumbnail_id" do
     it "returns the thumbnail ID" do
       expect(subject.thumbnail_id).to eq "Image"

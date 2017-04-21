@@ -1,5 +1,5 @@
 class HyraxShowPresenter < Hyrax::WorkShowPresenter
-  delegate :viewing_hint, :viewing_direction, :logical_order, :logical_order_object, :ocr_language, :source_jsonld, :collection_ids, to: :solr_document
+  delegate :viewing_hint, :viewing_direction, :logical_order, :logical_order_object, :ocr_language, :source_jsonld, :member_of_collection_ids, to: :solr_document
   delegate(*ScannedResource.properties.values.map(&:term), to: :solr_document, allow_nil: true)
   delegate(*ScannedResource.properties.values.map { |x| "#{x.term}_literals" }, to: :solr_document, allow_nil: true)
 
@@ -55,7 +55,7 @@ class HyraxShowPresenter < Hyrax::WorkShowPresenter
     end
 
     def collection_objects
-      collection_ids.zip(collection).map { |arr| { '@id': col_url(arr.first), title: arr.last } }
+      member_of_collection_ids.zip(collection).map { |arr| { '@id': col_url(arr.first), title: arr.last } }
     end
 
     def logical_order_factory
