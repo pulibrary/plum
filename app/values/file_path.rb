@@ -5,6 +5,6 @@ class FilePath
   end
 
   def clean
-    ::URI.split(uri).compact.last
+    ::URI.unescape(::URI.split(::URI.escape(uri)).compact.last)
   end
 end
