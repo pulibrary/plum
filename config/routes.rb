@@ -85,6 +85,14 @@ Rails.application.routes.draw do
         get :manifest, defaults: { format: :json }
       end
     end
+    resources :map_sets, only: [] do
+      member do
+        get :structure
+        post :structure, action: :save_structure
+        get :manifest, defaults: { format: :json }
+        post :browse_everything_files
+      end
+    end
     resources :file_sets, only: [] do
       member do
         post :derivatives
