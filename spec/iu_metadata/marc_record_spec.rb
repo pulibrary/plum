@@ -21,10 +21,9 @@ describe IuMetadata::MarcRecord do
         series: [],
         creator: ['Moffat, Steven'],
         subject: ['Cuba'],
-        date_created: ['1899'],
         publisher: ['A. Martínez'],
         publication_place: ['Barceloa'],
-        issued: ['1899'],
+        date_published: ['1899'],
         published: 'Barceloa, A. Martínez, 1899',
         lccn_call_number: [],
         local_call_number: []
