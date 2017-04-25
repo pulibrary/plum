@@ -7,10 +7,9 @@ class EphemeraBox < ActiveFedora::Base
   # Change this to restrict which works can be added as a child.
   self.valid_child_concerns = [EphemeraFolder]
   validates :title, presence: { message: 'Your work must have a title.' }
-  validates :box_number, :barcode, presence: true
-  validates :barcode, with: :barcode_valid?
-  property :barcode, predicate: ::RDF::URI("http://plum.com/predicates/barCode")
-  property :box_number, predicate: ::RDF::URI("http://plum.com/predicates/box_number")
+  validates :box_number, :identifier, presence: true
+  validates :identifier, with: :barcode_valid?
+  property :box_number, predicate: ::RDF::RDFS.label
 
   self.human_readable_type = 'Ephemera Box'
   def box_number=(title)
@@ -20,7 +19,7 @@ class EphemeraBox < ActiveFedora::Base
   end
 
   def barcode_valid?
-    return true if Barcode.new(barcode.first).valid?
-    errors.add(:barcode, "has an invalid checkdigit")
+    return true if Barcode.new(identifier.first).valid?
+    errors.add(:identifier, "has an invalid checkdigit")
   end
 end

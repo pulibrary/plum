@@ -13,4 +13,9 @@ class EphemeraBoxPresenter < HyraxShowPresenter
                        .flat_map { |x| x.fetch("id", nil) }.compact
                      end
   end
+
+  def renderer_for(field, _options)
+    return ::BarcodeAttributeRenderer if field == :identifier
+    super
+  end
 end

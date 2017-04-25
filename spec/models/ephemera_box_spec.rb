@@ -17,17 +17,17 @@ RSpec.describe EphemeraBox do
       expect(subject).not_to be_valid
     end
   end
-  describe "#barcode" do
+  describe "#identifier" do
     it "is invalid when it's not set" do
-      subject.barcode = []
+      subject.identifier = []
       expect(subject).not_to be_valid
     end
     it "is invalid when it's set to a non-valid barcode" do
-      subject.barcode = ["bla"]
+      subject.identifier = ["bla"]
       expect(subject).not_to be_valid
     end
     it "is invalid when set to a numeric invalid barcode" do
-      subject.barcode = ["1"]
+      subject.identifier = ["1"]
       expect(subject).not_to be_valid
     end
   end

@@ -27,7 +27,7 @@ RSpec.describe EphemeraFolder do
 
     context "with an invalid barcode" do
       before do
-        subject.barcode = ['123']
+        subject.identifier = ['123']
       end
 
       it "is not valid" do
