@@ -942,6 +942,7 @@ DEPENDENCIES
   jasmine-jquery-rails
   jasmine-rails
   jbuilder (~> 2.0)
+  jquery-datatables-rails (~> 3.4.0)
   jquery-rails
   jquery-ui-rails
   launchy
