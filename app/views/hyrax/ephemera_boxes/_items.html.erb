@@ -12,7 +12,7 @@
       </tr>
     </thead>
     <tbody>
-      <%= render partial: 'member', collection: presenter.member_presenters.sort_by(&:folder_number) %>
+      <%= render partial: 'member', collection: presenter.member_presenters.sort_by(&:folder_number), locals: { box: presenter } %>
     </tbody>
   </table>
 <% elsif can? :edit, presenter.id %>

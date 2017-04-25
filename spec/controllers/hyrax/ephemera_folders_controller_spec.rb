@@ -19,7 +19,7 @@ RSpec.describe Hyrax::EphemeraFoldersController, admin_set: true do
       post :create, params: { ephemera_folder: attributes.merge(box_id: box.id) }
 
       expect(response).to be_redirect
-      id = response.headers["Location"].match(/.*\/(.*)\?/)[1]
+      id = response.headers["Location"].match(/.*\/(.*)/)[1]
       expect(ActiveFedora::Base.find(id).member_of_collections).to eq [box]
     end
   end

@@ -1,0 +1,6 @@
+<%= link_to "Edit",
+        polymorphic_path([main_app, :edit, :hyrax, :parent, member.model_name.singular],
+                         parent_id: box.id,
+                         id: member.id),
+                         class: 'btn btn-primary'
+                       %>

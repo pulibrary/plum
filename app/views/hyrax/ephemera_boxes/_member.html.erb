@@ -1,11 +1,11 @@
 <tr class="<%= dom_class(member) %> attributes">
-  <td class="attribute folder_number"><%= link_to member.try(:folder_number), polymorphic_path([main_app, member]) %></td>
+  <td class="attribute folder_number"><%= link_to member.try(:folder_number), contextual_path(member, box) %></td>
   <td class="attribute workflow_state"><%= member.try(:workflow_state) %></td>
   <td class="attribute title"><%= member.try(:title).to_sentence %></td>
   <td class="attribute identifier"><%= member.try(:identifier).to_sentence %></td>
   <td class="attribute genre"><%= (member.try(:genre) || []).to_sentence %></td>
   <td>
-    <%= render 'actions', member: member %>
+    <%= render 'actions', member: member, box: box%>
   </td>
 </tr>
 
