@@ -55,7 +55,7 @@
     "@id": dcterms:extent
   identifier:
     "@id": dcterms:identifier
-  issued:
+  date_published:
     "@id": dcterms:issued
   modified:
     "@id": dcterms:modified

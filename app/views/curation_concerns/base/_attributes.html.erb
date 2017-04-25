@@ -21,7 +21,7 @@
       </td>
     </tr>
   <% end %>
-  <% (PlumSchema.display_fields - [:creator, :series, :published, :publisher, :publication_place, :issued, :physical_description, :call_number, :identifier, :responsibility_note, :sort_title, :lccn_call_number, :local_call_number]).each do |display_field| %>
+  <% (PlumSchema.display_fields - [:creator, :series, :published, :publisher, :publication_place, :date_published, :physical_description, :call_number, :identifier, :responsibility_note, :sort_title, :lccn_call_number, :local_call_number]).each do |display_field| %>
     <%= @presenter.attribute_to_html(display_field) %>
   <% end %>
   <tr>

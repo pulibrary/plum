@@ -64,7 +64,7 @@ defaults: &defaults
     - :published
     - :publication_place
     - :publisher
-    - :issued
+    - :date_published
     - :physical_description
     - :lccn_call_number
     - :local_call_number

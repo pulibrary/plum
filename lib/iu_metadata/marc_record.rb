@@ -8,7 +8,7 @@ module IuMetadata
 
     attr_reader :id, :source
 
-    ATTRIBUTES = [:identifier, :title, :sort_title, :responsibility_note, :series, :creator, :subject, :date_created, :publisher, :publication_place, :issued, :published, :lccn_call_number, :local_call_number]
+    ATTRIBUTES = [:identifier, :title, :sort_title, :responsibility_note, :series, :creator, :subject, :publisher, :publication_place, :date_published, :published, :lccn_call_number, :local_call_number]
 
     def attributes
       ATTRIBUTES.map { |att| [att, send(att)] }.to_h.compact
@@ -74,6 +74,7 @@ module IuMetadata
       trim_punctuation creator
     end
 
+    # no longer used
     def date_created
       Array.wrap(date)
     end
@@ -109,7 +110,7 @@ module IuMetadata
       formatted_subfields_as_array(['856'], codes: ['u']).first
     end
 
-    def issued
+    def date_published
       formatted_subfields_as_array(['260'], codes: ['c'])
     end
 

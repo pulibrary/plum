@@ -103,7 +103,6 @@ describe ScannedResource do
         expect(subject.title).to eq(['The last resort : a novel'])
         expect(subject.resource.get_values(:title, literal: true)).to eq([RDF::Literal.new('The last resort : a novel')])
         expect(subject.creator).to eq(['Johnson, Pamela Hansford, 1912-1981'])
-        expect(subject.date_created).to eq(['1956'])
         expect(subject.publisher.sort).to eq(["St. Martin's Press", "Macmillan & co., ltd.,"].sort)
       end
 

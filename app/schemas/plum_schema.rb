@@ -26,7 +26,7 @@ class PlumSchema < ActiveTriples::Schema
   property :format, predicate: RDF::Vocab::DC11.format
   property :source, predicate: RDF::Vocab::DC11.source
   property :extent, predicate: RDF::Vocab::DC.extent
-  property :issued, predicate: RDF::Vocab::DC.issued
+  property :date_published, predicate: RDF::Vocab::DC.issued
   property :modified, predicate: RDF::Vocab::DC.modified
   property :lccn_call_number, predicate: RDF::Vocab::Identifiers.lccn
   property :local_call_number, predicate: RDF::Vocab::Identifiers.local
