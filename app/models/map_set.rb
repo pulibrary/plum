@@ -10,5 +10,5 @@ class MapSet < ActiveFedora::Base
   include ::GeoWorks::BasicGeoMetadata
   include ::GeoWorks::GeoreferencedBehavior
   include ::GeoWorks::MetadataExtractionHelper
-  self.valid_child_concerns = [ScannedResource, ImageWork, RasterWork, VectorWork]
+  self.valid_child_concerns = [ImageWork, ScannedResource]
 end
