@@ -1,5 +1,5 @@
 class HyraxShowPresenter < Hyrax::WorkShowPresenter
-  delegate :viewing_hint, :viewing_direction, :logical_order, :logical_order_object, :ocr_language, :source_jsonld, :member_of_collection_ids, to: :solr_document
+  delegate :viewing_hint, :viewing_direction, :logical_order, :logical_order_object, :ocr_language, :source_jsonld, :member_of_collection_ids, :workflow_state, to: :solr_document
   delegate(*ScannedResource.properties.values.map(&:term), to: :solr_document, allow_nil: true)
   delegate(*ScannedResource.properties.values.map { |x| "#{x.term}_literals" }, to: :solr_document, allow_nil: true)
 

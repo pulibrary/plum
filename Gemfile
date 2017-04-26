@@ -132,3 +132,4 @@ group :staging, :production do
   gem 'ddtrace'
 end
 gem 'honeybadger', '~> 2.0'
+gem 'jquery-datatables-rails', '~> 3.4.0'

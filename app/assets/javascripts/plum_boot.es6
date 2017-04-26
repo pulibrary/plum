@@ -20,6 +20,7 @@ export default class Initializer {
 
   initialize_bootstrap_select() {
     $("select[multiple='multiple']").selectpicker({})
+    $(".datatable").DataTable()
   }
 
   initialize_timepicker() {

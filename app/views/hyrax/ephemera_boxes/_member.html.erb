@@ -1,13 +1,11 @@
 <tr class="<%= dom_class(member) %> attributes">
-  <td class="thumbnail">
-    <%= render_thumbnail_tag member %>
-  </td>
-  <td class="attribute filename"><%= link_to(member.link_name, contextual_path(member, @presenter)) %></td>
-  <td class="attribute folder_number"><%= member.try(:folder_number) %></td>
-  <td class="attribute date_uploaded"><%= member.try(:date_uploaded) %></td>
-  <td class="attribute permission"><%= member.permission_badge %></td>
+  <td class="attribute folder_number"><%= link_to member.try(:folder_number), contextual_path(member, box) %></td>
+  <td class="attribute workflow_state"><%= member.try(:workflow_state) %></td>
+  <td class="attribute title"><%= member.try(:title).to_sentence %></td>
+  <td class="attribute identifier"><%= member.try(:identifier).to_sentence %></td>
+  <td class="attribute genre"><%= (member.try(:genre) || []).to_sentence %></td>
   <td>
-    <%= render 'actions', member: member %>
+    <%= render 'actions', member: member, box: box%>
   </td>
 </tr>
 

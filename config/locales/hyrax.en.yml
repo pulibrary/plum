@@ -1,5 +1,8 @@
 en:
   hyrax:
+    ephemera_boxes:
+      items:
+        header: 'Folders'
     visibility:
       open:
         text: "Open"

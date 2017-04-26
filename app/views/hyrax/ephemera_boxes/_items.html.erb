@@ -1,18 +1,18 @@
 <h2><%= t('.header') %></h2>
 <% if presenter.member_presenters.present? %>
-  <table class="table table-striped related-files">
+  <table class="table table-striped related-files datatable">
     <thead>
       <tr>
-        <th><%= t('.thumbnail') %></th>
-        <th><%= t('.title') %></th>
         <th><%= t('.folder_number') %></th>
-        <th><%= t('.date_uploaded') %></th>
-        <th><%= t('.visibility') %></th>
+        <th><%= t('.workflow_state') %></th>
+        <th><%= t('.title') %></th>
+        <th><%= t('.identifier') %></th>
+        <th><%= t('.genre') %></th>
         <th><%= t('.actions') %></th>
       </tr>
     </thead>
     <tbody>
-      <%= render partial: 'member', collection: presenter.member_presenters.sort_by(&:folder_number) %>
+      <%= render partial: 'member', collection: presenter.member_presenters.sort_by(&:folder_number), locals: { box: presenter } %>
     </tbody>
   </table>
 <% elsif can? :edit, presenter.id %>
