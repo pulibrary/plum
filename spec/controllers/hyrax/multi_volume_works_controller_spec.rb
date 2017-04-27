@@ -14,7 +14,8 @@ describe Hyrax::MultiVolumeWorksController do
     context "when given a bib id", vcr: { cassette_name: 'bibdata', allow_playback_repeats: true } do
       let(:multi_volume_work_attributes) do
         FactoryGirl.attributes_for(:multi_volume_work).merge(
-          source_metadata_identifier: "2028405"
+          source_metadata_identifier: "2028405",
+          rights_statement: "http://rightsstatements.org/vocab/NKC/1.0/"
         )
       end
       it "updates the metadata" do

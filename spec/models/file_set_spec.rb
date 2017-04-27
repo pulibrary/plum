@@ -29,6 +29,19 @@ RSpec.describe FileSet do
     expect { subject.save! }.not_to raise_error
   end
 
+  describe "#read_attribute_for_validation" do
+    context "when given a multi-valued field" do
+      it "returns an array" do
+        expect(subject.read_attribute_for_validation(:viewing_hint)).to be_kind_of Array
+      end
+    end
+    context "when given a single valued field" do
+      it "doesn't return an array" do
+        expect(subject.read_attribute_for_validation(:id)).not_to be_kind_of Array
+      end
+    end
+  end
+
   describe "#create_derivatives" do
     let(:delivery_service) { instance_double(GeoWorks::DeliveryService) }
 

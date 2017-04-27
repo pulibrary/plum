@@ -8,7 +8,7 @@ class FileSet < ActiveFedora::Base
   characterization_terms << [:color_space, :profile_name, :valid]
   delegate :color_space, :profile_name, :valid, to: :characterization_proxy
 
-  property :replaces, predicate: ::RDF::Vocab::DC.replaces, multiple: false
+  property :replaces, predicate: ::RDF::Vocab::DC.replaces
 
   apply_schema IIIFPageSchema, ActiveFedora::SchemaIndexingStrategy.new(
     ActiveFedora::Indexers::GlobalIndexer.new([:stored_searchable, :symbol])
@@ -56,6 +56,17 @@ class FileSet < ActiveFedora::Base
   def local_file
     pair = id.scan(/..?/).first(4).push(id)
     File.join(Hyrax.config.working_path, *pair, (label || id))
+  end
+
+  # We need to check if an array is equal to another array in validators, but
+  # ActiveTriples doesn't return arrays, just AT::Relations.
+  def read_attribute_for_validation(attribute)
+    result = super
+    if result.respond_to?(:each)
+      result.to_a
+    else
+      result
+    end
   end
 
   private

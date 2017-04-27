@@ -41,7 +41,6 @@ class JSONLDRecord
         ]
       end
 
-    @attributes['sort_title'] = Array(@attributes['sort_title']).first
     @attributes
   end
 

@@ -19,5 +19,20 @@ module CommonMetadata
     validates_with RightsStatementValidator
     validates_with ViewingDirectionValidator
     validates_with ViewingHintValidator
+
+    # We need to check if an array is equal to another array in validators, but
+    # ActiveTriples doesn't return arrays, just AT::Relations.
+    def read_attribute_for_validation(attribute)
+      result = super
+      if result.respond_to?(:each)
+        result.to_a
+      else
+        result
+      end
+    end
+
+    def identifier
+      Array(super).first
+    end
   end
 end

@@ -18,7 +18,7 @@ RSpec.describe IngestPULFAJob, :admin_set do
     let(:fileset2) { FileSet.new id: 'fileset2' }
     let(:fileset3) { FileSet.new id: 'fileset3' }
     let(:resource) { ScannedResource.new id: 'resource01' }
-    let(:existing) { FactoryGirl.create(:scanned_resource, replaces: 'AC057/c18') }
+    let(:existing) { FactoryGirl.create(:scanned_resource, replaces: ['AC057/c18']) }
 
     before do
       existing.update_index

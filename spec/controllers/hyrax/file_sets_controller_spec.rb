@@ -21,7 +21,7 @@ RSpec.describe Hyrax::FileSetsController do
     it "can update viewing_hint" do
       allow_any_instance_of(described_class).to receive(:parent_id).and_return(nil)
       patch :update, params: { id: file_set.id, file_set: { viewing_hint: 'non-paged' } }
-      expect(file_set.reload.viewing_hint).to eq 'non-paged'
+      expect(file_set.reload.viewing_hint).to eq ['non-paged']
     end
     context "when updating via json" do
       render_views
@@ -30,7 +30,7 @@ RSpec.describe Hyrax::FileSetsController do
         patch :update, params: { id: file_set.id, file_set: { viewing_hint: '', title: ["test"] }, format: :json }
         expect(response).to be_success
         file_set.reload
-        expect(file_set.viewing_hint).to eq ""
+        expect(file_set.viewing_hint).to eq []
         expect(file_set.title).to eq ["test"]
       end
     end

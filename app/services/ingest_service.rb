@@ -4,7 +4,7 @@ class IngestService
   end
 
   def minimal_record(klass, user, attributes)
-    default_attributes = { rights_statement: 'http://rightsstatements.org/vocab/NKC/1.0/',
+    default_attributes = { rights_statement: ['http://rightsstatements.org/vocab/NKC/1.0/'],
                            visibility: Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PUBLIC }
     r = klass.new
     r.attributes = default_attributes.merge(attributes)
@@ -19,7 +19,7 @@ class IngestService
 
   def ingest_dir(dir, bib, user, collection = nil)
     klass = choose_class(Dir["#{dir}/*"].first)
-    attribs = bib.nil? ? { title: [File.basename(dir)] } : { source_metadata_identifier: bib }
+    attribs = bib.nil? ? { title: [File.basename(dir)] } : { source_metadata_identifier: [bib] }
     r = minimal_record klass, user, attribs
     members = []
     Dir["#{dir}/*"].sort.each do |f|
@@ -39,7 +39,7 @@ class IngestService
   def ingest_work(file_path, user)
     klass = choose_class(file_path)
     bib_id = File.basename(file_path, '.*')
-    attribs = { source_metadata_identifier: bib_id }
+    attribs = { source_metadata_identifier: [bib_id] }
     r = minimal_record klass, user, attribs
     members = [ingest_file(r, file_path, user, {}, file_set_attributes.merge(title: [bib_id]))]
     r.ordered_members = members

@@ -46,7 +46,7 @@ RSpec.describe IngestMETSJob, :admin_set do
       described_class.perform_now(mets_file, user)
       expect(resource1.title.first.to_s).to eq("Ars minor [fragment].")
       expect(resource1.thumbnail_id).to eq('file1')
-      expect(resource1.viewing_direction).to eq('left-to-right')
+      expect(resource1.viewing_direction).to eq(['left-to-right'])
       expect(resource1.visibility).to eq(Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PUBLIC)
     end
     context "when an error happens during ingest", vcr: { cassette_name: 'bibdata-4612596' } do
@@ -67,7 +67,7 @@ RSpec.describe IngestMETSJob, :admin_set do
         described_class.perform_now(mets_file, user)
         expect(resource1.title.first.to_s).to eq("Ars minor [fragment].")
         expect(resource1.thumbnail_id).to eq('file1')
-        expect(resource1.viewing_direction).to eq('left-to-right')
+        expect(resource1.viewing_direction).to eq(['left-to-right'])
         expect(resource1.visibility).to eq(Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PUBLIC)
       end
     end
@@ -94,7 +94,7 @@ RSpec.describe IngestMETSJob, :admin_set do
       allow(actor2).to receive(:attach_file_to_work)
       allow(actor2).to receive(:create_content)
       described_class.perform_now(mets_file_rtl, user)
-      expect(resource1.viewing_direction).to eq('right-to-left')
+      expect(resource1.viewing_direction).to eq(['right-to-left'])
       expect(resource1.ordered_members.to_a.length).to eq 189
     end
 
@@ -191,13 +191,13 @@ RSpec.describe IngestMETSJob, :admin_set do
       expect(resource.reload.logical_order.order).to eq(order.deep_stringify_keys)
       expect(fileset2.reload.title).to eq(['leaf 1. recto'])
       expect(resource.member_of_collections.first.title).to eq(['Scheide Library : Fifteenth-Century Printing'])
-      expect(resource.replaces).to eq('pudl0001/4612596')
-      expect(fileset2.replaces).to eq('pudl0001/4612596/00000001')
+      expect(resource.replaces).to eq(['pudl0001/4612596'])
+      expect(fileset2.replaces).to eq(['pudl0001/4612596/00000001'])
 
       expect(resource.related_objects).to eq([fileset1])
       expect(fileset1.title).to eq(['METS XML'])
       expect(fileset1.files.first.content).to start_with("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>\n<mets:mets")
-      expect(resource.viewing_hint).to eq('paged')
+      expect(resource.viewing_hint).to eq(['paged'])
     end
     context "when there's no isPartOf" do
       let(:mets_file) { Rails.root.join("spec", "fixtures", "pudl0001-4612596-no-collection.mets") }
@@ -209,7 +209,7 @@ RSpec.describe IngestMETSJob, :admin_set do
     end
     context "when the file is already ingested", vcr: { cassette_name: 'bibdata-4612596' } do
       it "deletes the old version" do
-        mvw = FactoryGirl.create(:multi_volume_work_with_file, identifier: "ark:/88435/5m60qr98h")
+        mvw = FactoryGirl.create(:multi_volume_work_with_file, identifier: ["ark:/88435/5m60qr98h"])
         fs = mvw.ordered_members.to_a.first
         allow(described_class.logger).to receive(:info).and_call_original
         described_class.perform_now(mets_file, user)
@@ -221,7 +221,7 @@ RSpec.describe IngestMETSJob, :admin_set do
     end
     context "when there's another resource with a different ark", vcr: { cassette_name: 'bibdata-4612596' } do
       it "doesn't delete it" do
-        FactoryGirl.create(:multi_volume_work_with_file, identifier: "ark:/88435/5m60qr98r")
+        FactoryGirl.create(:multi_volume_work_with_file, identifier: ["ark:/88435/5m60qr98r"])
 
         described_class.perform_now(mets_file, user)
 

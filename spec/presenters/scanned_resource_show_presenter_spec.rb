@@ -55,7 +55,7 @@ RSpec.describe ScannedResourceShowPresenter do
   end
 
   describe "export linked data", vcr: { cassette_name: 'bibdata-jsonld' } do
-    let(:resource) { FactoryGirl.create(:scanned_resource_in_collection, source_metadata_identifier: '2028405') }
+    let(:resource) { FactoryGirl.create(:scanned_resource_in_collection, source_metadata_identifier: ['2028405']) }
     let(:collection) { resource.member_of_collections.first }
     subject { described_class.new(SolrDocument.new(resource.to_solr), ability) }
 

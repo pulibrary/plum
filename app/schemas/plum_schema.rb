@@ -1,21 +1,21 @@
 # rubocop:disable Metrics/ClassLength
 class PlumSchema < ActiveTriples::Schema
-  property :sort_title, predicate: ::OpaqueMods.titleForSort, multiple: false
-  property :portion_note, predicate: ::RDF::Vocab::SKOS.scopeNote, multiple: false
-  property :abstract, predicate: ::RDF::Vocab::DC.abstract, multiple: false
+  property :sort_title, predicate: ::OpaqueMods.titleForSort
+  property :portion_note, predicate: ::RDF::Vocab::SKOS.scopeNote
+  property :abstract, predicate: ::RDF::Vocab::DC.abstract
   property :alternative, predicate: ::RDF::Vocab::DC.alternative
-  property :identifier, predicate: ::RDF::Vocab::DC.identifier, multiple: false
-  property :replaces, predicate: ::RDF::Vocab::DC.replaces, multiple: false
-  property :rights_statement, predicate: ::RDF::Vocab::EDM.rights, multiple: false
-  property :rights_note, predicate: ::RDF::Vocab::DC11.rights, multiple: false
-  property :source_metadata_identifier, predicate: ::PULTerms.metadata_id, multiple: false
-  property :source_metadata, predicate: ::PULTerms.source_metadata, multiple: false
-  property :source_jsonld, predicate: ::PULTerms.source_jsonld, multiple: false
-  property :holding_location, predicate: ::RDF::Vocab::Bibframe.heldBy, multiple: false
+  property :identifier, predicate: ::RDF::Vocab::DC.identifier
+  property :replaces, predicate: ::RDF::Vocab::DC.replaces
+  property :rights_statement, predicate: ::RDF::Vocab::EDM.rights
+  property :rights_note, predicate: ::RDF::Vocab::DC11.rights
+  property :source_metadata_identifier, predicate: ::PULTerms.metadata_id
+  property :source_metadata, predicate: ::PULTerms.source_metadata
+  property :source_jsonld, predicate: ::PULTerms.source_jsonld
+  property :holding_location, predicate: ::RDF::Vocab::Bibframe.heldBy
   property :ocr_language, predicate: ::PULTerms.ocr_language
-  property :nav_date, predicate: ::RDF::URI("http://iiif.io/api/presentation/2#navDate"), multiple: false
+  property :nav_date, predicate: ::RDF::URI("http://iiif.io/api/presentation/2#navDate")
   property :pdf_type, predicate: ::PULTerms.pdf_type
-  property :start_canvas, predicate: ::RDF::Vocab::IIIF.hasStartCanvas, multiple: false
+  property :start_canvas, predicate: ::RDF::Vocab::IIIF.hasStartCanvas
   property :container, predicate: ::PULTerms.container
 
   # Generated from Context
@@ -26,7 +26,7 @@ class PlumSchema < ActiveTriples::Schema
   property :source, predicate: RDF::Vocab::DC11.source
   property :extent, predicate: RDF::Vocab::DC.extent
   property :edition, predicate: RDF::URI("http://id.loc.gov/ontologies/bibframe/editionStatement")
-  property :cartographic_scale, predicate: RDF::Vocab::Bibframe.cartographicScale, multiple: false
+  property :cartographic_scale, predicate: RDF::Vocab::Bibframe.cartographicScale
   property :call_number, predicate: PULTerms.call_number
   property :abridger, predicate: RDF::Vocab::MARCRelators.abr
   property :actor, predicate: RDF::Vocab::MARCRelators.act

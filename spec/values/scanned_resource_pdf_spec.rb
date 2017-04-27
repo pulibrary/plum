@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe ScannedResourcePDF, vcr: { cassette_name: "iiif_manifest" } do
   subject { described_class.new(presenter) }
   let(:resource) do
-    r = FactoryGirl.build(:scanned_resource, id: "test", holding_location: "https://bibdata.princeton.edu/locations/delivery_locations/3")
+    r = FactoryGirl.build(:scanned_resource, id: "test", holding_location: ["https://bibdata.princeton.edu/locations/delivery_locations/3"])
     r.ordered_members << file_set
     r.ordered_members << file_set2
     r.logical_order.order = order

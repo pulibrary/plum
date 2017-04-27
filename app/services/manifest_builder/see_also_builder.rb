@@ -17,7 +17,7 @@ class ManifestBuilder
       end
 
       def source_metadata_identifier
-        Array(record.try(:source_metadata_identifier)).first
+        Array.wrap(record.try(:source_metadata_identifier)).first
       end
 
       def see_also_hash

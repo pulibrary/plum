@@ -14,7 +14,7 @@ RSpec.describe CicognaraCSV do
 
   describe "#values", vcr: { cassette_name: "cicognara" } do
     let!(:obj) do
-      obj = FactoryGirl.create :complete_scanned_resource_in_collection, source_metadata_identifier: '2068747'
+      obj = FactoryGirl.create :complete_scanned_resource_in_collection, source_metadata_identifier: ['2068747']
       obj.apply_remote_metadata
       obj.save!
       obj

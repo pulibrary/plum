@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe ImageWork do
-  let(:image_work) { FactoryGirl.build(:image_work, rights_statement: 'http://rightsstatements.org/vocab/NKC/1.0/') }
+  let(:image_work) { FactoryGirl.build(:image_work, rights_statement: ['http://rightsstatements.org/vocab/NKC/1.0/']) }
   subject { image_work }
 
   describe 'apply_remote_metadata' do
@@ -17,7 +17,7 @@ describe ImageWork do
 
     context 'With a Voyager ID', vcr: { cassette_name: "bibdata-maps" } do
       before do
-        subject.source_metadata_identifier = '9284317'
+        subject.source_metadata_identifier = ['9284317']
       end
 
       it 'Extracts Voyager Metadata' do

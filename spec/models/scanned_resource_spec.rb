@@ -3,16 +3,16 @@
 require 'rails_helper'
 
 describe ScannedResource do
-  let(:scanned_resource) { FactoryGirl.build(:scanned_resource, source_metadata_identifier: '12345', rights_statement: 'http://rightsstatements.org/vocab/NKC/1.0/') }
+  let(:scanned_resource) { FactoryGirl.build(:scanned_resource, source_metadata_identifier: ['12345'], rights_statement: ['http://rightsstatements.org/vocab/NKC/1.0/']) }
   let(:reloaded)         { described_class.find(scanned_resource.id) }
   subject { scanned_resource }
 
   describe 'has note fields' do
     it "lets me set a portion_note" do
       note = 'This is note text'
-      subject.portion_note = note
+      subject.portion_note = [note]
       expect { subject.save }.to_not raise_error
-      expect(reloaded.portion_note).to eq note
+      expect(reloaded.portion_note).to eq [note]
     end
 
     it "lets me set a description" do
@@ -26,9 +26,9 @@ describe ScannedResource do
   describe 'has source metadata id' do
     it 'allows setting of metadata id' do
       id = '12345'
-      subject.source_metadata_identifier = id
+      subject.source_metadata_identifier = [id]
       expect { subject.save }.to_not raise_error
-      expect(reloaded.source_metadata_identifier).to eq id
+      expect(reloaded.source_metadata_identifier).to eq [id]
     end
   end
 
@@ -44,7 +44,7 @@ describe ScannedResource do
     end
     context "when only metadata id is set" do
       before do
-        subject.source_metadata_identifier = "12355"
+        subject.source_metadata_identifier = ["12355"]
       end
       it 'passes' do
         expect(subject.valid?).to eq true
@@ -63,9 +63,9 @@ describe ScannedResource do
   describe '#rights_statement' do
     it "sets rights_statement" do
       nkc = 'http://rightsstatements.org/vocab/NKC/1.0/'
-      subject.rights_statement = nkc
+      subject.rights_statement = [nkc]
       expect { subject.save }.to_not raise_error
-      expect(reloaded.rights_statement).to eq nkc
+      expect(reloaded.rights_statement).to eq [nkc]
     end
 
     it "requires rights_statement" do
@@ -86,7 +86,7 @@ describe ScannedResource do
     end
     context 'With a Pulfa ID', vcr: { cassette_name: 'pulfa' } do
       before do
-        subject.source_metadata_identifier = 'AC123_c00004'
+        subject.source_metadata_identifier = ['AC123_c00004']
       end
 
       it 'Extracts Pulfa Metadata and full source' do
@@ -96,7 +96,7 @@ describe ScannedResource do
         expect(subject.publisher.first).to eq('Princeton University. Library. University Archives')
         expect(subject.date).to eq(['circa 1865'])
         expect(subject.date_created).to eq(['1865-01-01T00:00:00Z/1865-12-31T23:59:59Z'])
-        expect(subject.source_metadata).to eq(fixture('pulfa-AC123_c00004.xml').read)
+        expect(subject.source_metadata.first).to eq(fixture('pulfa-AC123_c00004.xml').read)
       end
 
       it 'Saves a record with extacted ead metadata' do
@@ -109,7 +109,7 @@ describe ScannedResource do
 
     context 'With a Voyager ID', vcr: { cassette_name: "bibdata", record: :new_episodes }do
       before do
-        subject.source_metadata_identifier = '2028405'
+        subject.source_metadata_identifier = ['2028405']
       end
 
       it 'Extracts Voyager Metadata' do
@@ -227,16 +227,30 @@ describe ScannedResource do
   end
 
   describe "source metadata", vcr: { cassette_name: "bibdata" } do
-    let(:scanned_resource) { FactoryGirl.build :scanned_resource, source_metadata_identifier: '2028405' }
+    let(:scanned_resource) { FactoryGirl.build :scanned_resource, source_metadata_identifier: ['2028405'] }
     let(:solr_doc) { scanned_resource.to_solr }
 
     before do
-      subject.source_metadata_identifier = '2028405'
+      subject.source_metadata_identifier = ['2028405']
     end
 
     it "is not indexed" do
       expect(solr_doc['source_metadata_identifier_ssim']).to eq(['2028405'])
       expect(solr_doc['source_metadata_ssim']).to be_nil
+    end
+  end
+
+  describe "#read_attribute_for_validation" do
+    let(:scanned_resource) { FactoryGirl.build :scanned_resource, source_metadata_identifier: ['2028405'] }
+    context "when given a multi-valued field" do
+      it "returns an array" do
+        expect(scanned_resource.read_attribute_for_validation(:source_metadata_identifier)).to be_kind_of Array
+      end
+    end
+    context "when given a single valued field" do
+      it "doesn't return an array" do
+        expect(scanned_resource.read_attribute_for_validation(:id)).not_to be_kind_of Array
+      end
     end
   end
 end

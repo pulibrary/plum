@@ -1,7 +1,9 @@
 module Hyrax
-  class HyraxForm < Hyrax::Forms::WorkForm
+  class HyraxForm < ::Hyrax::Forms::WorkForm
+    include SingleValuedForm
     self.terms += [:holding_location, :rights_statement, :rights_note, :source_metadata_identifier, :portion_note, :description, :abstract, :state, :member_of_collection_ids, :ocr_language, :nav_date, :pdf_type, :start_canvas, :uploaded_files]
     self.required_fields = [:title, :source_metadata_identifier, :rights_statement]
+    self.single_valued_fields = [:pdf_type, :rights_statement, :sort_title, :portion_note, :abstract, :replaces, :rights_note, :source_metadata_identifier, :source_metadata, :source_jsonld, :holding_location, :nav_date, :start_canvas, :cartographic_scale, :viewing_hint, :viewing_direction, :start_canvas]
     delegate :member_of_collection_ids, to: :model
 
     def notable_rights_statement?
@@ -9,28 +11,12 @@ module Hyrax
     end
 
     def self.multiple?(field)
-      if field.to_sym == :pdf_type
-        false
-      elsif field.to_sym == :rights_statement
-        false
-      elsif field.to_sym == :identifier
-        false
-      else
-        super
-      end
-    end
-
-    # @param [ActiveSupport::Parameters]
-    # @return [Hash] a hash suitable for populating Collection attributes.
-    def self.model_attributes(_)
-      attrs = super
-      # cast pdf_type back to multivalued
-      attrs[:pdf_type] = Array(attrs[:pdf_type]) if attrs[:pdf_type]
-      attrs
+      return false if field.to_sym == :identifier
+      super
     end
 
     def initialize_field(key)
-      return if [:description, :pdf_type].include?(key.to_sym)
+      return if [:description].include?(key.to_sym)
       super
     end
 
@@ -43,10 +29,10 @@ module Hyrax
     end
 
     def rights_statement
-      if Array(self["rights_statement"]).first.blank?
-        "http://rightsstatements.org/vocab/NKC/1.0/"
+      if self[:rights_statement].present?
+        self[:rights_statement]
       else
-        self["rights_statement"]
+        "http://rightsstatements.org/vocab/NKC/1.0/"
       end
     end
 
