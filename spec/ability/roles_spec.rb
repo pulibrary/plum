@@ -44,10 +44,12 @@ describe Ability do
     FactoryGirl.create(:flagged_scanned_resource, user: image_editor, identifier: 'ark:/99999/fk4445wg45')
   }
 
+  let(:ephemera_editor_file) { FactoryGirl.build(:file_set, user: ephemera_editor) }
   let(:image_editor_file) { FactoryGirl.build(:file_set, user: image_editor) }
   let(:admin_file) { FactoryGirl.build(:file_set, user: admin_user) }
 
   let(:admin_user) { FactoryGirl.create(:admin) }
+  let(:ephemera_editor) { FactoryGirl.create(:ephemera_editor) }
   let(:image_editor) { FactoryGirl.create(:image_editor) }
   let(:editor) { FactoryGirl.create(:editor) }
   let(:fulfiller) { FactoryGirl.create(:fulfiller) }
@@ -67,8 +69,9 @@ describe Ability do
     allow(takedown_scanned_resource).to receive(:id).and_return("takedown")
     allow(flagged_scanned_resource).to receive(:id).and_return("flagged")
     allow(image_editor_file).to receive(:id).and_return("image_editor_file")
+    allow(ephemera_editor_file).to receive(:id).and_return("ephemera_editor_file")
     allow(admin_file).to receive(:id).and_return("admin_file")
-    [open_scanned_resource, private_scanned_resource, campus_only_scanned_resource, pending_scanned_resource, metadata_review_scanned_resource, final_review_scanned_resource, complete_scanned_resource, takedown_scanned_resource, flagged_scanned_resource, image_editor_file, admin_file].each do |obj|
+    [open_scanned_resource, private_scanned_resource, campus_only_scanned_resource, pending_scanned_resource, metadata_review_scanned_resource, final_review_scanned_resource, complete_scanned_resource, takedown_scanned_resource, flagged_scanned_resource, image_editor_file, ephemera_editor_file, admin_file].each do |obj|
       allow(subject.cache).to receive(:get).with(obj.id).and_return(Hydra::PermissionsSolrDocument.new(obj.to_solr, nil))
     end
   end
@@ -111,6 +114,53 @@ describe Ability do
     end
   end
 
+  describe 'as an ephemera editor' do
+    let(:creating_user) { image_editor }
+    let(:current_user) { ephemera_editor }
+    let(:ephemera_folder) { FactoryGirl.create(:ephemera_folder, user: ephemera_editor) }
+    let(:other_ephemera_folder) { FactoryGirl.create(:ephemera_folder, user: image_editor) }
+
+    it {
+      should be_able_to(:read, open_scanned_resource)
+      should be_able_to(:manifest, open_scanned_resource)
+      should be_able_to(:pdf, open_scanned_resource)
+      should_not be_able_to(:color_pdf, open_scanned_resource)
+      should be_able_to(:read, campus_only_scanned_resource)
+      should_not be_able_to(:read, private_scanned_resource)
+      should_not be_able_to(:read, pending_scanned_resource)
+      should_not be_able_to(:read, metadata_review_scanned_resource)
+      should_not be_able_to(:read, final_review_scanned_resource)
+      should be_able_to(:read, complete_scanned_resource)
+      should_not be_able_to(:read, takedown_scanned_resource)
+      should be_able_to(:read, flagged_scanned_resource)
+      should be_able_to(:download, image_editor_file)
+      should_not be_able_to(:file_manager, open_scanned_resource)
+      should_not be_able_to(:file_manager, open_multi_volume_work)
+      should_not be_able_to(:save_structure, open_scanned_resource)
+      should_not be_able_to(:update, open_scanned_resource)
+      should_not be_able_to(:create, ScannedResource.new)
+      should be_able_to(:create, FileSet.new)
+      should_not be_able_to(:destroy, image_editor_file)
+      should be_able_to(:destroy, ephemera_editor_file)
+      should_not be_able_to(:destroy, pending_scanned_resource)
+
+      should be_able_to(:create, EphemeraBox.new)
+      should be_able_to(:create, EphemeraFolder.new)
+      should be_able_to(:read, ephemera_folder)
+      should be_able_to(:update, ephemera_folder)
+      should be_able_to(:destroy, ephemera_folder)
+      should be_able_to(:read, other_ephemera_folder)
+      should be_able_to(:update, other_ephemera_folder)
+      should be_able_to(:destroy, other_ephemera_folder)
+
+      should_not be_able_to(:create, Role.new)
+      should_not be_able_to(:destroy, role)
+      should_not be_able_to(:complete, pending_scanned_resource)
+      should_not be_able_to(:destroy, complete_scanned_resource)
+      should_not be_able_to(:destroy, admin_file)
+    }
+  end
+
   describe 'as an image editor' do
     let(:creating_user) { image_editor }
     let(:current_user) { image_editor }
@@ -143,6 +193,7 @@ describe Ability do
       should_not be_able_to(:complete, pending_scanned_resource)
       should_not be_able_to(:destroy, complete_scanned_resource)
       should_not be_able_to(:destroy, admin_file)
+      should_not be_able_to(:destroy, ephemera_editor_file)
     }
     it "can create works" do
       expect(subject.can_create_any_work?).to be true

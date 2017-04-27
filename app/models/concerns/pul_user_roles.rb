@@ -1,6 +1,10 @@
 module PulUserRoles
   extend ActiveSupport::Concern
 
+  def ephemera_editor?
+    roles.where(name: 'ephemera_editor').exists?
+  end
+
   def image_editor?
     roles.where(name: 'image_editor').exists?
   end
