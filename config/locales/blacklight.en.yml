@@ -20,6 +20,7 @@ en:
           profile_name: Color profile
           well_formed: Well-formed
           publisher: Published/Created
+          alternative: Alternative title
         index:
           description_tesim: "Description"
           keyword_tesim: "Keyword"
