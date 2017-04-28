@@ -445,7 +445,7 @@ describe Hyrax::ScannedResourcesController do
   describe "#browse_everything_files" do
     let(:resource) { FactoryGirl.create(:scanned_resource, user: user) }
     let(:file) { File.open(Rails.root.join("spec", "fixtures", "files", "color.tif")) }
-    let(:user) { FactoryGirl.create(:admin) }
+    let(:user) { FactoryGirl.create(:image_editor) }
     let(:params) do
       {
         "selected_files" => {
