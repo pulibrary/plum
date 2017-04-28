@@ -20,10 +20,10 @@ class IngestMETSJob < ApplicationJob
       @ingest.delete_duplicates!("identifier_ssim:#{RSolr.solr_escape(@mets.ark_id)}")
       klass = @mets.multi_volume? ? MultiVolumeWork : ScannedResource
       cols = Array(@mets.collection_slugs).select(&:present?).map { |slug| find_or_create_collection(slug) }
-      resource = @ingest.minimal_record(klass, @user, viewing_direction: @mets.viewing_direction,
-                                                      identifier: @mets.ark_id,
-                                                      replaces: @mets.pudl_id,
-                                                      source_metadata_identifier: @mets.bib_id,
+      resource = @ingest.minimal_record(klass, @user, viewing_direction: [@mets.viewing_direction],
+                                                      identifier: [@mets.ark_id],
+                                                      replaces: [@mets.pudl_id],
+                                                      source_metadata_identifier: [@mets.bib_id],
                                                       member_of_collections: cols)
       attach_mets resource
 
@@ -34,7 +34,7 @@ class IngestMETSJob < ApplicationJob
         if @mets.structure.present?
           resource.logical_order.order = map_fileids(@mets.structure)
         end
-        resource.viewing_hint = @mets.viewing_hint
+        resource.viewing_hint = [@mets.viewing_hint]
         resource.save!
         validate!(resource)
       end
@@ -86,7 +86,7 @@ class IngestMETSJob < ApplicationJob
 
     def ingest_file(parent: nil, resource: nil, f: nil, count: 0)
       file_set = @ingest.ingest_file(resource, @mets.decorated_file(f), @user, @mets.file_opts(f),
-                                     title: [@mets.file_label(f[:id])], replaces: f[:replaces])
+                                     title: [@mets.file_label(f[:id])], replaces: [f[:replaces]])
       mets_to_repo_map[f[:id]] = file_set.id
 
       if f[:path] == @mets.thumbnail_path
@@ -107,9 +107,9 @@ class IngestMETSJob < ApplicationJob
 
     def ingest_volumes(parent)
       @mets.volume_ids.each do |volume_id|
-        r = @ingest.minimal_record(ScannedResource, @user, viewing_direction: @mets.viewing_direction,
+        r = @ingest.minimal_record(ScannedResource, @user, viewing_direction: [@mets.viewing_direction],
                                                            title: [@mets.label_for_volume(volume_id)],
-                                                           viewing_hint: @mets.viewing_hint)
+                                                           viewing_hint: [@mets.viewing_hint])
         parent.ordered_members << r
         parent.save!
 

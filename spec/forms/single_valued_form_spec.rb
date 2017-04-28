@@ -1,13 +1,20 @@
 require 'rails_helper'
 
 RSpec.describe SingleValuedForm do
-  subject { described_class.new(work, nil, nil) }
+  subject { TestForm.new(work, nil, nil) }
   let(:work) { FactoryGirl.build :ephemera_box }
 
   before do
-    described_class.single_valued_fields = [:identifier]
-    described_class.model_class = ::EphemeraBox
-    described_class.terms = [:identifier, :title]
+    class TestForm < Hyrax::Forms::WorkForm
+      include SingleValuedForm
+    end
+    TestForm.single_valued_fields = [:identifier]
+    TestForm.model_class = ::EphemeraBox
+    TestForm.terms = [:identifier, :title]
+  end
+
+  after do
+    Object.send(:remove_const, :TestForm)
   end
 
   context "an instance" do
@@ -19,14 +26,14 @@ RSpec.describe SingleValuedForm do
 
   context "the class" do
     it "reports single-valued fields" do
-      expect(described_class.multiple?(:identifier)).to be false
-      expect(described_class.multiple?(:title)).to be true
+      expect(TestForm.multiple?(:identifier)).to be false
+      expect(TestForm.multiple?(:title)).to be true
     end
   end
 
   describe "model_attributes" do
     let(:params) { ActionController::Parameters.new(identifier: '123', title: ['Box 1']) }
-    let(:attribs) { described_class.model_attributes(params).to_h }
+    let(:attribs) { TestForm.model_attributes(params).to_h }
 
     it "converts singular fields to arrays" do
       expect(attribs[:identifier]).to eq(['123'])

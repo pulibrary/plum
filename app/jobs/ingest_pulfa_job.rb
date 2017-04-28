@@ -24,7 +24,7 @@ class IngestPULFAJob < ApplicationJob
         service = file_info(group.xpath("mets:file[@USE='deliverable']"))
         if master[:file]
           pages << @ingest.ingest_file(r, File.new(master[:file]), @user, {},
-                                       title: [master[:title]], replaces: master[:id])
+                                       title: [master[:title]], replaces: [master[:id]])
         elsif service[:type] == 'application/pdf'
           attach_pdf(r, service)
         end
@@ -38,8 +38,8 @@ class IngestPULFAJob < ApplicationJob
     def work_attributes
       {
         title: [@mets.xpath("//mets:structMap/mets:div/@LABEL").first.value],
-        source_metadata_identifier: replaces.sub(/\//, '_'),
-        replaces: replaces
+        source_metadata_identifier: [replaces.sub(/\//, '_')],
+        replaces: [replaces]
       }
     end
 

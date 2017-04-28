@@ -18,6 +18,6 @@ class ViewingHintValidator < ActiveModel::Validator
         "individuals",
         "non-paged",
         "facing-pages"
-      ]
+      ].map { |x| Array.wrap(x) }
     end
 end

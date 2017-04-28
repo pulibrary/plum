@@ -20,7 +20,7 @@ RSpec.describe RightsStatementValidator do
     valid_statements.each do |statement|
       context "when rights_statement is #{statement}" do
         it "does not add errors" do
-          record = build_record(rights_statement: statement)
+          record = build_record(rights_statement: [statement])
 
           subject.validate(record)
 

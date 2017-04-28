@@ -15,7 +15,7 @@ RSpec.describe PolymorphicManifestBuilder, vcr: { cassette_name: "iiif_manifest"
   context "when given a MVW with Children" do
     subject { described_class.new(mvw_document) }
     let(:mvw_document) { ::DynamicShowPresenter.new.new(SolrDocument.new(mvw_record.to_solr), nil) }
-    let(:mvw_record) { FactoryGirl.build(:multi_volume_work, viewing_hint: viewing_hint) }
+    let(:mvw_record) { FactoryGirl.build(:multi_volume_work, viewing_hint: [viewing_hint]) }
     let(:manifest) { JSON.parse(subject.manifest.to_json) }
     let(:viewing_hint) { "individuals" }
     before do
@@ -148,7 +148,7 @@ RSpec.describe PolymorphicManifestBuilder, vcr: { cassette_name: "iiif_manifest"
         record.ordered_members << file_set2
         record.ordered_member_proxies.insert_target_at(0, file_set)
         record.thumbnail = file_set2
-        record.start_canvas = file_set2.id
+        record.start_canvas = [file_set2.id]
         record.logical_order.order = {
           "label": "TOP!",
           "nodes": [
@@ -202,7 +202,7 @@ RSpec.describe PolymorphicManifestBuilder, vcr: { cassette_name: "iiif_manifest"
         expect(manifest_json["sequences"].first["viewingHint"]).to eq "individuals"
       end
       it "has a viewing hint" do
-        file_set.viewing_hint = "non-paged"
+        file_set.viewing_hint = ["non-paged"]
         solr.add file_set.to_solr
         solr.commit
 
@@ -210,7 +210,7 @@ RSpec.describe PolymorphicManifestBuilder, vcr: { cassette_name: "iiif_manifest"
         expect { subject.manifest.to_json }.not_to raise_error
       end
       it "handles facing-pages" do
-        file_set.viewing_hint = "facing-pages"
+        file_set.viewing_hint = ["facing-pages"]
         solr.add file_set.to_solr
         solr.commit
 
@@ -308,7 +308,7 @@ RSpec.describe PolymorphicManifestBuilder, vcr: { cassette_name: "iiif_manifest"
     end
     context "when it has an identifier" do
       it "links to the princeton ark service" do
-        record.identifier = "ark:/88435/7w62fb79g"
+        record.identifier = ["ark:/88435/7w62fb79g"]
         expect(json_result["rendering"]["@id"]).to eq "http://arks.princeton.edu/ark:/88435/7w62fb79g"
         expect(json_result["rendering"]["format"]).to eq "text/html"
       end
@@ -369,7 +369,7 @@ RSpec.describe PolymorphicManifestBuilder, vcr: { cassette_name: "iiif_manifest"
         )
       end
       it "doesn't display sort title" do
-        record.sort_title = "Bla"
+        record.sort_title = ["Bla"]
         expect(result.metadata).to be_empty
       end
       it "doesn't display created" do
@@ -406,14 +406,14 @@ RSpec.describe PolymorphicManifestBuilder, vcr: { cassette_name: "iiif_manifest"
       end
     end
     it "has a viewing hint" do
-      record.viewing_hint = "paged"
+      record.viewing_hint = ["paged"]
       expect(result.viewing_hint).to eq "paged"
     end
     it "has a default viewing hint" do
       expect(result.viewing_hint).to eq "individuals"
     end
     it "has a viewing direction" do
-      record.viewing_direction = "right-to-left"
+      record.viewing_direction = ["right-to-left"]
       expect(result.viewing_direction).to eq "right-to-left"
     end
     it "has a default viewing direction" do

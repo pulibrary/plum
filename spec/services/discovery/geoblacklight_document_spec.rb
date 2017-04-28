@@ -13,7 +13,7 @@ RSpec.describe Discovery::GeoblacklightDocument do
       visibility: visibility,
       title: ['Geo Work'],
       coverage: coverage.to_s,
-      identifier: 'ark:/99999/fk4'
+      identifier: ['ark:/99999/fk4']
     }
   end
 

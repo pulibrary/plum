@@ -37,7 +37,7 @@ RSpec.describe ResourceIdentifier do
       scanned_resource.save
       old_id = subject.to_s
 
-      file_set1.viewing_hint = "continuous"
+      file_set1.viewing_hint = ["continuous"]
       file_set1.save
 
       expect(subject.reload.to_s).not_to eq old_id
@@ -50,7 +50,7 @@ RSpec.describe ResourceIdentifier do
       scanned_resource.ordered_members << file_set2
       scanned_resource.ordered_members << file_set3
       scanned_resource.save
-      file_set3.viewing_hint = "continuous"
+      file_set3.viewing_hint = ["continuous"]
       file_set3.save
       old_id = subject.to_s
 

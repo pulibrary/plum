@@ -6,7 +6,7 @@ describe Discovery::SlugBuilder do
   let(:document) { instance_double('Document') }
   let(:plum_config) { { geoblacklight_provenance: 'Princeton' } }
   let(:geo_work_presenter) { GeoWorks::VectorWorkShowPresenter.new(SolrDocument.new(geo_work.to_solr), nil) }
-  let(:geo_work) { FactoryGirl.build(:vector_work, identifier: 'ark:/99999/fk4') }
+  let(:geo_work) { FactoryGirl.build(:vector_work, identifier: ['ark:/99999/fk4']) }
 
   before do
     allow(Plum).to receive(:config).and_return(plum_config)

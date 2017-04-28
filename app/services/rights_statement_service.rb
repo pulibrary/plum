@@ -5,7 +5,7 @@ class RightsStatementService < Hyrax::LicenseService
   end
 
   def valid_statements
-    authority.all.map { |hash| hash['id'] }
+    authority.all.map { |hash| [hash['id']] }
   end
 
   def notable?(id)

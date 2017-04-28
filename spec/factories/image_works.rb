@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :image_work do
     title ["Test title"]
-    rights_statement "http://rightsstatements.org/vocab/NKC/1.0/"
+    rights_statement ["http://rightsstatements.org/vocab/NKC/1.0/"]
     visibility Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PUBLIC
     state Vocab::FedoraResourceStatus.active
 

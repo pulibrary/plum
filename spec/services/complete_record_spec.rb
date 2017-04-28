@@ -19,7 +19,7 @@ RSpec.describe CompleteRecord do
     context "with a bibdata source_metadata_identifier" do
       let(:bib) { '1234567' }
       let(:metadata) { base_metadata.merge(target: "https://pulsearch.princeton.edu/catalog/#{bib}#view") }
-      let(:obj) { FactoryGirl.build :scanned_resource, source_metadata_identifier: bib, identifier: ark }
+      let(:obj) { FactoryGirl.build :scanned_resource, source_metadata_identifier: [bib], identifier: [ark] }
       it "links to OrangeLight" do
         expect(minter).to receive(:modify).with(ark, metadata)
         subject.complete
@@ -29,7 +29,7 @@ RSpec.describe CompleteRecord do
     context "with a pulfa source_metadata_identifier" do
       let(:cid) { 'AC057/c18' }
       let(:metadata) { base_metadata.merge(target: "http://findingaids.princeton.edu/collections/#{cid}") }
-      let(:obj) { FactoryGirl.build :scanned_resource, source_metadata_identifier: cid, identifier: ark }
+      let(:obj) { FactoryGirl.build :scanned_resource, source_metadata_identifier: [cid], identifier: [ark] }
       it "links to OrangeLight" do
         expect(minter).to receive(:modify).with(ark, metadata)
         subject.complete
@@ -38,7 +38,7 @@ RSpec.describe CompleteRecord do
 
     context "without a source_metadata_identifier" do
       let(:metadata) { base_metadata.merge(target: "http://plum.com/concern/scanned_resources/#{obj.id}") }
-      let(:obj) { FactoryGirl.create :scanned_resource, id: '1234567', identifier: ark, source_metadata_identifier: nil }
+      let(:obj) { FactoryGirl.create :scanned_resource, id: '1234567', identifier: [ark], source_metadata_identifier: nil }
       it "links to OrangeLight" do
         expect(minter).to receive(:modify).with(ark, metadata)
         subject.complete

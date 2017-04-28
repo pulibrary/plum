@@ -57,7 +57,7 @@ RSpec.describe CatalogController do
     end
 
     it "finds items by their identifier" do
-      resource = FactoryGirl.create(:complete_scanned_resource, source_metadata_identifier: "ab5")
+      resource = FactoryGirl.create(:complete_scanned_resource, source_metadata_identifier: ["ab5"])
 
       get :index, params: { q: "ab5" }
 
@@ -128,7 +128,7 @@ RSpec.describe CatalogController do
   describe "manifest lookup" do
     context "when the manifest is found" do
       it "redirects to the manifest" do
-        resource = FactoryGirl.create(:complete_scanned_resource, identifier: 'ark:/99999/12345678')
+        resource = FactoryGirl.create(:complete_scanned_resource, identifier: ['ark:/99999/12345678'])
         resource.save
 
         get :lookup_manifest, params: { prefix: 'ark:', naan: '99999', arkid: '12345678' }
@@ -136,7 +136,7 @@ RSpec.describe CatalogController do
       end
       context "when no_redirect is set" do
         it "doesn't redirect" do
-          resource = FactoryGirl.create(:complete_scanned_resource, identifier: 'ark:/99999/12345678')
+          resource = FactoryGirl.create(:complete_scanned_resource, identifier: ['ark:/99999/12345678'])
           resource.save
 
           get :lookup_manifest, params: { prefix: 'ark:', naan: '99999', arkid: '12345678', no_redirect: 'true' }

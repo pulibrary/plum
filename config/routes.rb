@@ -46,7 +46,7 @@ Rails.application.routes.draw do
 
   namespace :hyrax, path: :concern do
     resources :parent, only: [] do
-      [:multi_volume_works, :scanned_resources, :ephemera_folder].each do |type|
+      [:multi_volume_works, :scanned_resources, :ephemera_folders].each do |type|
         resources type, only: [] do
           member do
             get :file_manager
@@ -66,6 +66,14 @@ Rails.application.routes.draw do
     resources :scanned_resources, only: [] do
       member do
         get "/pdf/:pdf_quality", action: :pdf, as: :pdf
+        get :structure
+        post :structure, action: :save_structure
+        get :manifest, defaults: { format: :json }
+        post :browse_everything_files
+      end
+    end
+    resources :ephemera_folders, only: [] do
+      member do
         get :structure
         post :structure, action: :save_structure
         get :manifest, defaults: { format: :json }

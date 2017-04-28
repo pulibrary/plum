@@ -30,7 +30,7 @@ RSpec.describe RightsStatementService do
     end
 
     it "lists all valid rights statements" do
-      expect(described_class.new.valid_statements).to eq(valid_statements)
+      expect(described_class.new.valid_statements).to eq(valid_statements.map { |x| [x] })
     end
 
     it "lists select options" do

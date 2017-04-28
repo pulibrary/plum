@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe Hyrax::ScannedResourcesController do
   let(:user) { FactoryGirl.create(:user) }
-  let(:scanned_resource) { FactoryGirl.create(:complete_scanned_resource, user: user, title: ['Dummy Title'], identifier: 'ark:/99999/fk4445wg45') }
+  let(:scanned_resource) { FactoryGirl.create(:complete_scanned_resource, user: user, title: ['Dummy Title'], identifier: ['ark:/99999/fk4445wg45']) }
   let(:reloaded) { scanned_resource.reload }
 
   describe "delete" do
@@ -38,7 +38,8 @@ describe Hyrax::ScannedResourcesController do
     context "when given a bib id", vcr: { cassette_name: 'bibdata', record: :new_episodes } do
       let(:scanned_resource_attributes) do
         FactoryGirl.attributes_for(:scanned_resource).merge(
-          source_metadata_identifier: "2028405"
+          source_metadata_identifier:  "2028405",
+          rights_statement: "http://rightsstatements.org/vocab/NKC/1.0/"
         )
       end
       it "updates the metadata" do
@@ -58,7 +59,8 @@ describe Hyrax::ScannedResourcesController do
     context "when given a non-existent bib id", vcr: { cassette_name: 'bibdata_not_found', allow_playback_repeats: true } do
       let(:scanned_resource_attributes) do
         FactoryGirl.attributes_for(:scanned_resource).merge(
-          source_metadata_identifier: "0000000"
+          source_metadata_identifier: "0000000",
+          rights_statement: "http://rightsstatements.org/vocab/NKC/1.0/"
         )
       end
       it "receives an error" do
@@ -80,7 +82,8 @@ describe Hyrax::ScannedResourcesController do
       let(:collection) { FactoryGirl.create(:collection, user: user) }
       let(:scanned_resource_attributes) do
         FactoryGirl.attributes_for(:scanned_resource).except(:source_metadata_identifier).merge(
-          member_of_collection_ids: [collection.id]
+          member_of_collection_ids: [collection.id],
+          rights_statement: "http://rightsstatements.org/vocab/NKC/1.0/"
         )
       end
       it "successfully add the resource to the collection" do
@@ -169,13 +172,13 @@ describe Hyrax::ScannedResourcesController do
     context 'by default' do
       it 'updates the record but does not refresh the exernal metadata' do
         post :update, params: { id: scanned_resource, scanned_resource: scanned_resource_attributes }
-        expect(reloaded.portion_note).to eq 'Section 2'
+        expect(reloaded.portion_note).to eq ['Section 2']
         expect(reloaded.title).to eq ['Dummy Title']
         expect(reloaded.description).to eq ['a description']
       end
       it "can update the start_canvas" do
         post :update, params: { id: scanned_resource, scanned_resource: { start_canvas: "1" } }
-        expect(reloaded.start_canvas).to eq "1"
+        expect(reloaded.start_canvas).to eq ["1"]
       end
       context "when in a collection" do
         let(:scanned_resource) { FactoryGirl.create(:scanned_resource_in_collection, user: user) }
@@ -258,8 +261,8 @@ describe Hyrax::ScannedResourcesController do
     it "updates metadata" do
       post :update, params: { id: scanned_resource.id, scanned_resource: { viewing_hint: 'continuous', viewing_direction: 'bottom-to-top' } }
       scanned_resource.reload
-      expect(scanned_resource.viewing_direction).to eq 'bottom-to-top'
-      expect(scanned_resource.viewing_hint).to eq 'continuous'
+      expect(scanned_resource.viewing_direction).to eq ['bottom-to-top']
+      expect(scanned_resource.viewing_hint).to eq ['continuous']
     end
   end
 

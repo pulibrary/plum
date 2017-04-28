@@ -6,10 +6,10 @@ module ApplyRemoteMetadata
 
     def apply_remote_metadata
       if remote_data.source
-        self.source_metadata = remote_data.source.dup.try(:force_encoding, 'utf-8')
+        self.source_metadata = [remote_data.source.dup.try(:force_encoding, 'utf-8')]
       end
       if remote_data.respond_to?(:jsonld)
-        self.source_jsonld = remote_data.jsonld.dup.try(:force_encoding, 'utf-8')
+        self.source_jsonld = [remote_data.jsonld.dup.try(:force_encoding, 'utf-8')]
       end
       self.attributes = enumerable_to_single_valued_attributes(remote_data.attributes)
       CompleteRecord.new(self).complete if workflow_state == 'complete' && identifier.present?
@@ -29,11 +29,11 @@ module ApplyRemoteMetadata
       end
 
       def remote_data
-        @remote_data ||= remote_metadata_factory.retrieve(source_metadata_identifier)
+        @remote_data ||= remote_metadata_factory.retrieve(source_metadata_identifier.first)
       end
 
       def remote_metadata_factory
-        if RemoteRecord.bibdata?(source_metadata_identifier) == 0
+        if RemoteRecord.bibdata?(source_metadata_identifier.first) == 0
           JSONLDRecord::Factory.new(self.class)
         else
           RemoteRecord
