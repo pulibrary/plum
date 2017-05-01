@@ -24,3 +24,6 @@ noid-minter-state
 /staged_files
 
 /.byebug_history
+
+dump.rdb
+.DS_Store
