@@ -5,7 +5,7 @@ class CatalogController < ApplicationController
   include Hydra::Controller::ControllerBehavior
   def self.search_config
     {
-      'qf' => %w(title_tesim name_tesim source_metadata_identifier_ssim logical_order_headings_tesim member_of_collection_slugs_ssim full_text_tesim),
+      'qf' => %w(title_tesim creator_tesim name_tesim source_metadata_identifier_ssim identifier_tesim replaces_tesim call_number_tesim logical_order_headings_tesim member_of_collection_slugs_ssim full_text_tesim),
       'qt' => 'search',
       'rows' => 10
     }
