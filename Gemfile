@@ -107,6 +107,7 @@ group :production do
   gem 'dalli'
   gem 'kgio'
 end
+gem 'okcomputer'
 gem 'posix-spawn'
 gem 'openseadragon'
 gem 'sidekiq'
