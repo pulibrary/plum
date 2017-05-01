@@ -67,4 +67,48 @@ RSpec.feature "CatalogController", type: :feature do
       expect(page).to_not have_text '1941-10-23'
     end
   end
+
+  describe "searching by identifiers and other metadata" do
+    let(:user) { FactoryGirl.create(:admin) }
+    let(:scanned_resource) { FactoryGirl.create(:complete_scanned_resource, user: user, title: ['This is a persimmon title'], creator: ['Smithee, Al'], replaces: ['pudl8675/309'], identifier: ['ark:/99999/p12345678'], call_number: ['998y']) }
+
+    before(:each) do
+      scanned_resource.update_index
+    end
+
+    it "finds the resource by title" do
+      visit search_catalog_path q: 'persimmon'
+      expect(page).to have_text 'This is a persimmon title'
+    end
+
+    it "finds the resource by creator" do
+      visit search_catalog_path q: 'Smithee'
+      expect(page).to have_text 'This is a persimmon title'
+    end
+
+    it "finds the resource by replaces" do
+      visit search_catalog_path q: 'pudl8675/309'
+      expect(page).to have_text 'This is a persimmon title'
+    end
+
+    it "finds the resource by partial replaces" do
+      visit search_catalog_path q: '309'
+      expect(page).to have_text 'This is a persimmon title'
+    end
+
+    it "finds the resource by ark" do
+      visit search_catalog_path q: 'ark:/9999/p12345678'
+      expect(page).to have_text 'This is a persimmon title'
+    end
+
+    it "finds the resource by partial ark" do
+      visit search_catalog_path q: 'p12345678'
+      expect(page).to have_text 'This is a persimmon title'
+    end
+
+    it "finds the resource by call number" do
+      visit search_catalog_path q: '998y'
+      expect(page).to have_text 'This is a persimmon title'
+    end
+  end
 end
