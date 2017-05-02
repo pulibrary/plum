@@ -3,7 +3,6 @@ class Hyrax::HyraxController < ApplicationController
   include Hyrax::Manifest
   include Hyrax::MemberManagement
   include Hyrax::UpdateOCR
-  include Hyrax::RemoteMetadata
   include Hyrax::BreadcrumbsForWorks
   authorize_resource class: curation_concern_type, instance_name: :curation_concern, only: :file_manager
 

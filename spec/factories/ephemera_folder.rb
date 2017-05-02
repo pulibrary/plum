@@ -3,6 +3,7 @@ FactoryGirl.define do
     title ["Example Folder"]
     folder_number [3]
     identifier ["32101091980639"]
+    rights_statement ["http://rightsstatements.org/vocab/NKC/1.0/"]
 
     transient do
       user { FactoryGirl.create(:user) }
