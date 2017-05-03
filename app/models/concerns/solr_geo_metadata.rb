@@ -9,6 +9,10 @@ module SolrGeoMetadata
       Array(self[Solrizer.solr_name("edition")])
     end
 
+    def contents
+      Array(self[Solrizer.solr_name("contents")])
+    end
+
     def cartographic_scale
       Array(self[Solrizer.solr_name("cartographic_scale")]).first
     end

@@ -16,6 +16,7 @@ RSpec.describe SolrDocument do
       height_is: 400,
       cartographic_scale_tesim: ['Scale 1:2,000,000'],
       alternative_tesim: ['Alt title 1', 'Alt title 2'],
+      contents_tesim: ['Chapter 1', 'Chapter 2'],
       viewing_hint_tesim: ["Viewing Hint"],
       exhibit_id_tesim: ["test"],
       rights_statement_tesim: ["test"],
@@ -173,6 +174,9 @@ RSpec.describe SolrDocument do
     end
     it '#alternative returns multivalued array' do
       expect(subject.alternative).to eq(['Alt title 1', 'Alt title 2'])
+    end
+    it '#tableOfContents returns multivalued array' do
+      expect(subject.contents).to eq(['Chapter 1', 'Chapter 2'])
     end
   end
 end

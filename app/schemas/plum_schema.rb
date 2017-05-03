@@ -6,6 +6,7 @@ class PlumSchema < ActiveTriples::Schema
   property :alternative, predicate: ::RDF::Vocab::DC.alternative
   property :identifier, predicate: ::RDF::Vocab::DC.identifier
   property :replaces, predicate: ::RDF::Vocab::DC.replaces
+  property :contents, predicate: ::RDF::Vocab::DC.tableOfContents
   property :rights_statement, predicate: ::RDF::Vocab::EDM.rights
   property :rights_note, predicate: ::RDF::Vocab::DC11.rights
   property :source_metadata_identifier, predicate: ::PULTerms.metadata_id
