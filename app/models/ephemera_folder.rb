@@ -4,9 +4,11 @@ class EphemeraFolder < ActiveFedora::Base
   include ::Hyrax::WorkBehavior
   include ::Hyrax::BasicMetadata
   include ::StateBehavior
+  include ::HasPendingUploads
   apply_schema EphemeraSchema, ActiveFedora::SchemaIndexingStrategy.new(
     ActiveFedora::Indexers::GlobalIndexer.new([:symbol, :stored_searchable, :facetable])
   )
+  include ::CommonMetadata
   # Change this to restrict which works can be added as a child.
   # self.valid_child_concerns = []
   validates :title, presence: { message: 'Your work must have a title.' }
@@ -15,7 +17,7 @@ class EphemeraFolder < ActiveFedora::Base
   self.human_readable_type = 'Ephemera Folder'
 
   def barcode_valid?
-    return true if Barcode.new(identifier.first).valid?
+    return true if Barcode.new(identifier).valid?
     errors.add(:identifier, "has an invalid checkdigit")
   end
 

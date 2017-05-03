@@ -13,7 +13,7 @@ module SingleValuedForm
     end
 
     def [](key)
-      return super.first if single_valued_fields.include?(key.to_sym)
+      return Array(super).first if single_valued_fields.include?(key.to_sym)
       super
     end
 

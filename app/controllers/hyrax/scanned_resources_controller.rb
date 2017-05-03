@@ -2,6 +2,7 @@
 #  `rails generate hyrax:work ScannedResource`
 
 class Hyrax::ScannedResourcesController < Hyrax::HyraxController
+  include Hyrax::RemoteMetadata
   self.curation_concern_type = ScannedResource
   skip_load_and_authorize_resource only: SearchBuilder.show_actions
   before_action :authorize_pdf, only: [:pdf]
