@@ -16,5 +16,9 @@ module Hyrax
         "http://rightsstatements.org/vocab/NKC/1.0/"
       end
     end
+
+    def autofocus_barcode?
+      true
+    end
   end
 end
