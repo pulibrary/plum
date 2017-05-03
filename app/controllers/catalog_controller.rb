@@ -44,7 +44,6 @@ class CatalogController < ApplicationController
     # solr fields that will be treated as facets by the blacklight application
     #   The ordering of the field names is the order of the display
     config.add_facet_field solr_name('human_readable_type', :facetable)
-    config.add_facet_field solr_name('tag', :facetable), limit: 5
     config.add_facet_field solr_name('subject', :facetable), limit: 5
     config.add_facet_field solr_name('language', :facetable), limit: 5
     config.add_facet_field solr_name('based_near', :facetable), limit: 5
@@ -59,22 +58,12 @@ class CatalogController < ApplicationController
 
     # solr fields to be displayed in the index (search results) view
     #   The ordering of the field names is the order of the display
-    config.add_index_field solr_name('description', :stored_searchable)
-    config.add_index_field solr_name('tag', :stored_searchable)
-    config.add_index_field solr_name('subject', :stored_searchable), helper_method: :index_subject
     config.add_index_field solr_name('creator', :stored_searchable)
     config.add_index_field solr_name('contributor', :stored_searchable)
     config.add_index_field solr_name('publisher', :stored_searchable)
-    config.add_index_field solr_name('based_near', :stored_searchable)
-    config.add_index_field solr_name('language', :stored_searchable) do |field|
-      field.accessor = :language_display
-    end
-    config.add_index_field solr_name('date_uploaded', :stored_sortable)
-    config.add_index_field solr_name('date_modified', :stored_sortable)
-    config.add_index_field solr_name('date', :stored_searchable)
-    config.add_index_field solr_name('human_readable_type', :stored_searchable)
-    config.add_index_field solr_name('format', :stored_searchable)
+    config.add_index_field solr_name('source_metadata_identifier', :stored_searchable), label: 'Bib ID'
     config.add_index_field solr_name('identifier', :stored_searchable)
+    config.add_index_field solr_name('member_of_collections', :symbol), label: 'Collection'
 
     # "fielded" search configuration. Used by pulldown among other places.
     # For supported keys in hash, see rdoc for Blacklight::SearchFields
