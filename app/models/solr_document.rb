@@ -40,10 +40,6 @@ class SolrDocument
       end
   end
 
-  def language_display
-    (language || []).map { |code| LanguageService.label(code) }
-  end
-
   def ocr_language
     ocr_lang = self[Solrizer.solr_name('ocr_language')]
     return ocr_lang unless ocr_lang.nil?
