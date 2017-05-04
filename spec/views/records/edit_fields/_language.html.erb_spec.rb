@@ -15,7 +15,7 @@ RSpec.describe 'records/edit_fields/_language.html.erb' do
   end
 
   context 'with an ephemera folder' do
-    let(:form) { Hyrax::EphemeraBoxForm.new(EphemeraFolder.new, nil, nil) }
+    let(:form) { Hyrax::EphemeraFolderForm.new(EphemeraFolder.new, nil, nil) }
     context "when there is no language vocabulary" do
       it "doesn't create a select box" do
         expect(rendered).not_to have_selector "select"
