@@ -7,6 +7,8 @@ class AuthorityFinder
         Qa::Authorities::Local.subauthority_for('languages')
       when :geographic_origin
         Qa::Authorities::Local.subauthority_for('Geographic Origin')
+      when :genre
+        Qa::Authorities::Local.subauthority_for('Genre')
       end
     rescue Qa::InvalidSubAuthority
       Rails.logger.debug("Non-existent sub-authority requested for property #{property}")
