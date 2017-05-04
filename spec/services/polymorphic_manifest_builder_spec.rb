@@ -121,7 +121,7 @@ RSpec.describe PolymorphicManifestBuilder, vcr: { cassette_name: "iiif_manifest"
     end
   end
 
-  def build_file_set(id)
+  def build_file_set(id, geo_mime_type = nil)
     FileSet.new.tap do |g|
       allow(g).to receive(:persisted?).and_return(true)
       allow(g).to receive(:id).and_return(id)
@@ -130,11 +130,12 @@ RSpec.describe PolymorphicManifestBuilder, vcr: { cassette_name: "iiif_manifest"
       g.title = ["Test"]
       original_file.width = [487]
       original_file.height = [400]
+      g.geo_mime_type = geo_mime_type if geo_mime_type
     end
   end
 
   describe "#canvases" do
-    context "when there is two file sets" do
+    context "when there are two file sets" do
       let(:type) { ::RDF::URI('http://pcdm.org/use#ExtractedText') }
       let(:file_set) do
         build_file_set("x633f104m")
@@ -274,6 +275,33 @@ RSpec.describe PolymorphicManifestBuilder, vcr: { cassette_name: "iiif_manifest"
         expect(first_canvas["otherContent"][0]["@id"]).to eq "http://plum.com/concern/container/1/file_sets/x633f104m/text"
       end
     end
+
+    context "when there is a geo image file set and an external metadata file set" do
+      let(:record) { FactoryGirl.build(:image_work, title: ["Test"]) }
+      let(:file_set) do
+        build_file_set("z633f104m", "image/tiff")
+      end
+      let(:file_set2) do
+        build_file_set("z33f104n", "application/xml; schema=fgdc")
+      end
+      let(:solr) { ActiveFedora.solr.conn }
+      before do
+        allow(file_set).to receive(:ocr_text).and_return(['foo'])
+        record.ordered_members << file_set2
+        record.ordered_member_proxies.insert_target_at(0, file_set)
+        record.thumbnail = file_set
+        solr.add file_set.to_solr
+        solr.add file_set2.to_solr
+        solr.add record.list_source.to_solr
+        solr.commit
+      end
+      let(:manifest_json) { JSON.parse(subject.to_json) }
+
+      it "only has one canvas for the image" do
+        expect(manifest_json["sequences"].first["canvases"].length).to eq 1
+      end
+    end
+
     it "has none" do
       expect(subject.canvases).to eq []
     end
