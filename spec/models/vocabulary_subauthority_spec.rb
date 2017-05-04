@@ -7,13 +7,13 @@ RSpec.describe VocabularySubauthority, type: :model do
   subject { described_class.new(parent.label) }
 
   it 'lists terms and vocabularies' do
-    child_hash = { id: child.id, label: child.label, type: child.class.name }
-    term_hash = { id: term.id, label: term.label, type: term.class.name }
+    child_hash = { id: child.id, label: child.label, type: child.class.name, active: true }.with_indifferent_access
+    term_hash = { id: term.id, label: term.label, type: term.class.name, active: true }.with_indifferent_access
     expect(subject.all).to contain_exactly(child_hash, term_hash)
   end
 
   it 'finds terms by their ids' do
-    term_hash = { id: term.id, label: term.label, type: term.class.name }
+    term_hash = { id: term.id, label: term.label, type: term.class.name, active: true }.with_indifferent_access
     expect(subject.find(term.id)).to eq(term_hash)
   end
 end

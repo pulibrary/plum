@@ -1,8 +1,12 @@
 class WorkIndexer < Hyrax::WorkIndexer
+  # TODO: Refactor complexity here.
   def generate_solr_document
     super.tap do |solr_doc|
       object.member_of_collections.each do |col|
-        solr_doc[Solrizer.solr_name('member_of_collection_slugs', :symbol)] = col.exhibit_id
+        key = Solrizer.solr_name('member_of_collection_slugs', :symbol)
+        solr_doc[key] ||= []
+        solr_doc[key] << col.try(:exhibit_id)
+        solr_doc[key].compact!
       end
       (PlumSchema.display_fields + [:title]).each do |field|
         objects = object.get_values(field, literal: true)
@@ -25,7 +29,7 @@ class WorkIndexer < Hyrax::WorkIndexer
       end
       solr_doc[Solrizer.solr_name("identifier", :symbol)] = object.identifier
       solr_doc[Solrizer.solr_name("language", :facetable)] = object.language.map do |code|
-        LanguageService.label(code)
+        AuthorityFinder.for(property: :language, model: object).try(:find, code).try(:[], :label) || LanguageService.label(code)
       end
 
       suppress solr_doc, 'source_metadata'

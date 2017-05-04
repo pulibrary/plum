@@ -36,6 +36,28 @@ RSpec.describe EphemeraFolder do
     end
   end
 
+  describe "language indexing" do
+    context "when given a set of language IDs" do
+      after do
+        Qa::Authorities::Local.registry.instance_variable_get(:@hash).delete("languages")
+      end
+      before do
+        Qa::Authorities::Local.registry.instance_variable_get(:@hash).delete("languages")
+        vocabulary
+      end
+      let(:vocabulary) do
+        Vocabulary.create!(label: "languages").tap do |vocab|
+          VocabularyTerm.create!(vocabulary: vocab, label: "English")
+          VocabularyTerm.create!(vocabulary: vocab, label: "Japanese")
+        end
+      end
+      let(:folder) { FactoryGirl.build(:ephemera_folder, language: [VocabularyTerm.first.id.to_s]) }
+      it "Returns the label for the IDs" do
+        expect(folder.to_solr["language_sim"]).to eq ["English"]
+      end
+    end
+  end
+
   describe "box and box_id" do
     let(:box) { FactoryGirl.create :ephemera_box }
     let(:col) { FactoryGirl.build :collection }

@@ -15,6 +15,13 @@ RSpec.describe 'records/edit_fields/_identifier.html.erb' do
     end
   end
 
+  context 'with an ephemera folder' do
+    let(:form) { Hyrax::EphemeraFolderForm.new(EphemeraFolder.new, nil, nil) }
+    it 'auto-focuses the barcode field' do
+      expect(rendered).to have_selector 'input#ephemera_folder_identifier[@autofocus="autofocus"]'
+    end
+  end
+
   context 'with an ephemera box' do
     let(:form) { Hyrax::ScannedResourceForm.new(ScannedResource.new, nil, nil) }
     it 'auto-focuses the barcode field' do

@@ -190,7 +190,7 @@ describe ScannedResource do
     let(:solr_doc) { scanned_resource.to_solr }
     it "indexes collection" do
       expect(solr_doc['member_of_collections_ssim']).to eq(['Test Collection'])
-      expect(solr_doc['member_of_collection_slugs_ssim']).to eq(scanned_resource.member_of_collections.first.exhibit_id)
+      expect(solr_doc['member_of_collection_slugs_ssim']).to eq([scanned_resource.member_of_collections.first.exhibit_id])
     end
   end
 

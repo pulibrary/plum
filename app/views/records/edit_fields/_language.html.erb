@@ -1,0 +1,10 @@
+<% authority = AuthorityFinder.for(property: key, model: f.object) %>
+<% if authority %>
+  <% languages = Hyrax::QaSelectService.new(authority.subauthority_name) %>
+  <%= f.input :language,
+    collection: languages.select_active_options,
+    include_blank: true,
+    input_html: { class: 'form-control', multiple: f.object.multiple?(key) } %>
+<% else %>
+  <%= render "records/edit_fields/default", f: f, key: key%>
+<% end %>

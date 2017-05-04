@@ -29,6 +29,14 @@ Metrics/ClassLength:
     - 'app/controllers/catalog_controller.rb'
     - 'app/jobs/ingest_mets_job.rb'
 
+Metrics/CyclomaticComplexity:
+  Exclude:
+    - 'app/indexers/work_indexer.rb'
+
+Metrics/PerceivedComplexity:
+  Exclude:
+    - 'app/indexers/work_indexer.rb'
+
 Metrics/MethodLength:
   Enabled: false
 
