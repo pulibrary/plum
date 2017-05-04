@@ -298,7 +298,7 @@ class PlumSchema < ActiveTriples::Schema
   # Ignore things like admin data (workflow note), title, description, etc, as
   # those have custom display logic.
   def self.display_fields
-    ScannedResource.properties.values.map(&:term) - [:description, :state, :rights_statement, :holding_location, :title, :depositor, :source_metadata_identifier, :source_metadata, :date_modified, :date_uploaded, :nav_date, :pdf_type, :ocr_language, :keyword, :create_date, :modified_date, :head, :tail, :source_jsonld, :sort_title] - IIIFBookSchema.properties.map(&:name)
+    ScannedResource.properties.values.map(&:term) - [:description, :state, :rights_statement, :holding_location, :title, :depositor, :source_metadata_identifier, :source_metadata, :date_modified, :date_uploaded, :nav_date, :pdf_type, :ocr_language, :keyword, :create_date, :modified_date, :head, :tail, :source_jsonld, :sort_title] - IIIFBookSchema.properties.map(&:name) + EphemeraSchema.properties.map(&:name) - [:sort_title]
   end
 end
 # rubocop:enable Metrics/ClassLength

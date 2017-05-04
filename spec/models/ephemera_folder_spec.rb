@@ -58,6 +58,72 @@ RSpec.describe EphemeraFolder do
     end
   end
 
+  describe "Geographic Origin Indexing" do
+    context "when given a set of origin IDs" do
+      after do
+        Qa::Authorities::Local.registry.instance_variable_get(:@hash).delete("Geographic Origin")
+      end
+      before do
+        Qa::Authorities::Local.registry.instance_variable_get(:@hash).delete("Geographic Origin")
+        vocabulary
+      end
+      let(:vocabulary) do
+        Vocabulary.create!(label: "Geographic Origin").tap do |vocab|
+          VocabularyTerm.create!(vocabulary: vocab, label: "English")
+          VocabularyTerm.create!(vocabulary: vocab, label: "Japanese")
+        end
+      end
+      let(:folder) { FactoryGirl.build(:ephemera_folder, geographic_origin: [VocabularyTerm.first.id.to_s]) }
+      it "Returns the label for the IDs" do
+        expect(folder.to_solr["geographic_origin_sim"]).to eq ["English"]
+      end
+    end
+  end
+
+  describe "Genre Indexing" do
+    context "when given a set of genre IDs" do
+      after do
+        Qa::Authorities::Local.registry.instance_variable_get(:@hash).delete("Genre")
+      end
+      before do
+        Qa::Authorities::Local.registry.instance_variable_get(:@hash).delete("Genre")
+        vocabulary
+      end
+      let(:vocabulary) do
+        Vocabulary.create!(label: "Genre").tap do |vocab|
+          VocabularyTerm.create!(vocabulary: vocab, label: "English")
+          VocabularyTerm.create!(vocabulary: vocab, label: "Japanese")
+        end
+      end
+      let(:folder) { FactoryGirl.build(:ephemera_folder, genre: [VocabularyTerm.first.id.to_s]) }
+      it "Returns the label for the IDs" do
+        expect(folder.to_solr["genre_sim"]).to eq ["English"]
+      end
+    end
+  end
+
+  describe "Geo Subject Indexing" do
+    context "when given a set of geo subject IDs" do
+      after do
+        Qa::Authorities::Local.registry.instance_variable_get(:@hash).delete("Geoographic Origin")
+      end
+      before do
+        Qa::Authorities::Local.registry.instance_variable_get(:@hash).delete("Geographic Origin")
+        vocabulary
+      end
+      let(:vocabulary) do
+        Vocabulary.create!(label: "Geographic Origin").tap do |vocab|
+          VocabularyTerm.create!(vocabulary: vocab, label: "English")
+          VocabularyTerm.create!(vocabulary: vocab, label: "Japanese")
+        end
+      end
+      let(:folder) { FactoryGirl.build(:ephemera_folder, geo_subject: [VocabularyTerm.first.id.to_s]) }
+      it "Returns the label for the IDs" do
+        expect(folder.to_solr["geo_subject_sim"]).to eq ["English"]
+      end
+    end
+  end
+
   describe "box and box_id" do
     let(:box) { FactoryGirl.create :ephemera_box }
     let(:col) { FactoryGirl.build :collection }
