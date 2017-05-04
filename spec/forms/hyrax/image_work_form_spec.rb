@@ -7,7 +7,7 @@ RSpec.describe Hyrax::ImageWorkForm do
   describe "#secondary_terms" do
     subject { form.secondary_terms }
     it do
-      is_expected.to include(:cartographic_scale, :edition, :alternative)
+      is_expected.to include(:cartographic_scale, :edition, :alternative, :contents)
     end
   end
 end
