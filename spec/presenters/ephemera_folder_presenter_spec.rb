@@ -13,6 +13,28 @@ RSpec.describe EphemeraFolderPresenter do
   let(:controller) { double(blacklight_config: blacklight_config) }
   subject { described_class.new(SolrDocument.new(folder.to_solr), controller) }
 
+  describe "#language" do
+    context "when given a set of language IDs" do
+      after do
+        Qa::Authorities::Local.registry.instance_variable_get(:@hash).delete("languages")
+      end
+      before do
+        Qa::Authorities::Local.registry.instance_variable_get(:@hash).delete("languages")
+        vocabulary
+      end
+      let(:vocabulary) do
+        Vocabulary.create!(label: "languages").tap do |vocab|
+          VocabularyTerm.create!(vocabulary: vocab, label: "English")
+          VocabularyTerm.create!(vocabulary: vocab, label: "Japanese")
+        end
+      end
+      let(:folder) { FactoryGirl.build(:ephemera_folder, language: [VocabularyTerm.first.id.to_s]) }
+      it "Returns the label for the IDs" do
+        expect(subject.language).to eq ["English"]
+      end
+    end
+  end
+
   describe "#renderer_for" do
     it "renders identifier as a barcodde" do
       expect(subject.renderer_for(:identifier, {})).to be BarcodeAttributeRenderer

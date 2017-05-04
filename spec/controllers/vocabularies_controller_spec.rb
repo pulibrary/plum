@@ -53,6 +53,12 @@ RSpec.describe VocabulariesController, type: :controller do
         }.to change(Vocabulary, :count).by(1)
       end
 
+      it "registers the newly created Vocabulary" do
+        post :create, params: { vocabulary: valid_attributes }
+        vocab = Vocabulary.first
+        expect(Qa::Authorities::Local.subauthority_for(vocab.label)).not_to be_blank
+      end
+
       it "assigns a newly created vocabulary as @vocabulary" do
         post :create, params: { vocabulary: valid_attributes }
         expect(assigns(:vocabulary)).to be_a(Vocabulary)

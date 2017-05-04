@@ -1,7 +1,8 @@
 class VocabularySubauthority < Qa::Authorities::Base
-  attr_reader :vocabulary
+  attr_reader :vocabulary, :subauthority_name
 
   def initialize(subauthority_name)
+    @subauthority_name = subauthority_name
     @vocabulary = Vocabulary.find_by(label: subauthority_name)
   end
 
@@ -26,6 +27,6 @@ class VocabularySubauthority < Qa::Authorities::Base
     end
 
     def format_item(item)
-      { id: item.id, label: item.label, type: item.class.name }
+      { id: item.id, label: item.label, type: item.class.name, active: true }.with_indifferent_access
     end
 end
