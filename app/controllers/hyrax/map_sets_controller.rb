@@ -1,12 +1,8 @@
-# Generated via
-#  `rails generate hyrax:work MapSet`
+class Hyrax::MapSetsController < Hyrax::HyraxController
+  include Hyrax::RemoteMetadata
+  self.curation_concern_type = MapSet
 
-module Hyrax
-  class MapSetsController < Hyrax::HyraxController
-    self.curation_concern_type = MapSet
-
-    def show_presenter
-      MapSetShowPresenter
-    end
+  def show_presenter
+    MapSetShowPresenter
   end
 end
