@@ -4,6 +4,8 @@ class IngestExistingScannedMap < IngestScannedMapsService
     delete_duplicates!("identifier_tesim:\"#{RSolr.solr_escape(full_ark)}\"") if @map.ark
     r = minimal_record choose_class, user, attributes
     members = [ingest_file(r, file_path, user, {}, file_set_attributes.merge(title: [image_id]))]
+    fgdc_path = path_to_fgdc(file_path)
+    members << ingest_file(r, fgdc_path, user, {}, metadata_attributes) if fgdc_path
     r.ordered_members = members
     r.save!
     GeoWorks::TriggerUpdateEvents.call(r)
@@ -55,23 +57,23 @@ class IngestExistingScannedMap < IngestScannedMapsService
 
   def attributes_with_bib_id
     {
-      identifier: full_ark,
-      replaces: image_id,
-      source_metadata_identifier: bib_id,
-      rights_statement: rights_statement,
+      identifier: [full_ark],
+      replaces: [image_id],
+      source_metadata_identifier: [bib_id],
+      rights_statement: [rights_statement],
       visibility: visibility
     }
   end
 
   def attributes_no_bib_id
     {
-      identifier: full_ark,
-      replaces: image_id,
+      identifier: [full_ark],
+      replaces: [image_id],
       title: [title],
       publisher: [publisher],
       creator: [creator],
       description: [description],
-      rights_statement: rights_statement,
+      rights_statement: [rights_statement],
       visibility: visibility
     }
   end
@@ -112,5 +114,15 @@ class IngestExistingScannedMap < IngestScannedMapsService
     elsif @map.bbox == 'f'
       'MARC record is missing bounding box or has an incorrectly formatted bounding box.'
     end
+  end
+
+  def path_to_fgdc(tiff_file_path)
+    base = /(.*\/)/.match(tiff_file_path)[0]
+    path = "#{base}fgdc.xml"
+    path if File.exist?(path)
+  end
+
+  def metadata_attributes
+    { geo_mime_type: 'application/xml; schema=fgdc', title: ['fgdc.xml'] }
   end
 end

@@ -17,7 +17,11 @@ class ManifestBuilder
 
       def file_set_presenters
         record.member_presenters.select do |x|
-          x.model_name.name == "FileSet"
+          if x.solr_document.key?(:geo_mime_type_tesim)
+            x.solr_document[:geo_mime_type_tesim].include?('image/tiff')
+          else
+            x.model_name.name == "FileSet"
+          end
         end
       end
   end
