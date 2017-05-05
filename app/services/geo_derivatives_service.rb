@@ -2,6 +2,7 @@ class GeoDerivativesService < GeoWorks::FileSetDerivativesService
   # Remove files as well as shapefile directories
   def cleanup_derivatives
     derivative_path_factory.derivatives_for_reference(self).each do |path|
+      logger.debug "Removing derivative: #{path}"
       FileUtils.rm_rf(path)
     end
   end

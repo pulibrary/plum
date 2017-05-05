@@ -65,6 +65,8 @@ class IngestService
       @logger.info "Deleting existing resource with ID of #{r.id} which matched #{query}"
       r.destroy
     end
+  rescue Ldp::Gone => gone
+    @logger.debug "Already deleted: #{gone}"
   end
 
   def workflow_name

@@ -14,4 +14,13 @@ class MultiVolumeWork < ActiveFedora::Base
     return nil if thumbnail.nil?
     thumbnail.respond_to?(:thumbnail) ? thumbnail.thumbnail.try(:id) : thumbnail.try(:id)
   end
+
+  before_destroy :cleanup_members
+
+  def cleanup_members
+    members.each do |member|
+      logger.debug "Destroying member: #{member.id}"
+      member.destroy
+    end
+  end
 end
