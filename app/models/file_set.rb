@@ -85,6 +85,7 @@ class FileSet < ActiveFedora::Base
 
     def cleanup_files
       cleanup_derivatives
+      logger.debug "Removing file: #{local_file}"
       FileUtils.rm_rf(local_file)
     end
 

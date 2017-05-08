@@ -99,5 +99,19 @@ describe MultiVolumeWork do
     end
   end
 
+  describe "cleans up members when destroyed" do
+    before do
+      scanned_resource1.save
+      scanned_resource2.save
+      subject.members = [scanned_resource1, scanned_resource2]
+      subject.save
+      subject.destroy
+    end
+    it "deletes them" do
+      expect { ActiveFedora::Base.find(scanned_resource1.id) }.to raise_error(Ldp::Gone)
+      expect { ActiveFedora::Base.find(scanned_resource1.id) }.to raise_error(Ldp::Gone)
+    end
+  end
+
   include_examples "structural metadata"
 end
