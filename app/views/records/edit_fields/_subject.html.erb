@@ -1,0 +1,22 @@
+<% authority = AuthorityFinder.for(property: key, model: f.object) %>
+<% if authority %>
+  <% options = VocabularySelectService.new(authority.subauthority_name) %>
+  <%= f.input key,
+    collection: options.select_all_options,
+    as: :grouped_select,
+    include_blank: true,
+    group_method: :child_terms,
+    group_label_method: :label,
+    label_method: :label,
+    value_method: :id,
+    input_html: { 
+      class: 'form-control', 
+      multiple: f.object.multiple?(key),
+      data: {
+        live_search: true
+      }
+    }
+  %>
+<% else %>
+  <%= render "records/edit_fields/default", f: f, key: key%>
+<% end %>

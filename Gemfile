@@ -122,7 +122,7 @@ gem 'grocer', github: 'pulibrary/grocer'
 source 'https://rails-assets.org' do
   gem 'rails-assets-babel-polyfill'
   gem 'rails-assets-jquery', '2.2.4'
-  gem 'rails-assets-bootstrap-select', '1.9.4'
+  gem 'rails-assets-bootstrap-select', '1.12.2'
   gem 'rails-assets-jqueryui-timepicker-addon'
 end
 gem 'poltergeist'

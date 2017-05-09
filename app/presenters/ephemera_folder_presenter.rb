@@ -31,6 +31,12 @@ class EphemeraFolderPresenter < HyraxShowPresenter
     end
   end
 
+  def subject
+    Array.wrap(solr_document.subject).map do |id|
+      authority_for(:subject).find(id)[:label]
+    end
+  end
+
   def authority_for(property)
     AuthorityFinder.for(property: property, model: self) || NullAuthority
   end

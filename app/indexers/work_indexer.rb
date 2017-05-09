@@ -28,7 +28,7 @@ class WorkIndexer < Hyrax::WorkIndexer
         solr_doc[Solrizer.solr_name("#{field}_literals", :symbol)] = output
       end
       solr_doc[Solrizer.solr_name("identifier", :symbol)] = object.identifier
-      [:geo_subject, :geographic_origin, :genre].each do |property|
+      [:geo_subject, :geographic_origin, :genre, :subject].each do |property|
         next unless object.respond_to?(property)
         solr_doc[Solrizer.solr_name(property.to_s, :facetable)] = object.send(property).map do |code|
           authority = AuthorityFinder.for(property: property, model: object)
