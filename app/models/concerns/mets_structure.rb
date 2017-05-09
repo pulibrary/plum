@@ -5,7 +5,7 @@ module MetsStructure
 
   def structure_for_volume(volume_id)
     return {} if structureless?
-    volume = volume_nodes.find { |vol| vol.attribute("ID").value == volume_id }
+    volume = logical_node_for_volume(volume_id) || volume_nodes.find { |vol| vol.attribute("ID").value == volume_id }
     { nodes: structure_for_nodeset(volume.element_children) }
   end
 
@@ -16,6 +16,12 @@ module MetsStructure
   end
 
   private
+
+    def logical_node_for_volume(volume_id)
+      logical_node = @mets.xpath("/mets:mets/mets:structLink/mets:smLink[@xlink:from='#{volume_id}']")[0]
+      return if logical_node.blank?
+      @mets.xpath("//mets:div[@ID='#{logical_node['xlink:to']}']")[0]
+    end
 
     def structure_map(type)
       @mets.xpath("/mets:mets/mets:structMap[@TYPE='#{type}']").first
