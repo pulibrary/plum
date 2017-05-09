@@ -6,6 +6,7 @@ RSpec.describe METSDocument do
   let(:mets_file_multi) { Rails.root.join("spec", "fixtures", "pudl0001-4609321-s42.mets") }
   let(:mets_file_multi2) { Rails.root.join("spec", "fixtures", "pudl0058-616086.mets") }
   let(:mets_file_multi3) { Rails.root.join("spec", "fixtures", "pudl0134-170151.mets") }
+  let(:mets_file_multi4) { Rails.root.join("spec", "fixtures", "pudl0058-3013164.mets") }
   let(:tight_bound_mets_file) { Rails.root.join("spec", "fixtures", "pudl0075-6971526.mets") }
   let(:no_logical_order_mets_file) { Rails.root.join("spec", "fixtures", "pudl0076-2538011.mets") }
   let(:tiff_file) { Rails.root.join("spec", "fixtures", "files", "color.tif") }
@@ -197,6 +198,71 @@ RSpec.describe METSDocument do
         expect(subject.volume_ids).to eq ['v1log', 'v2log']
         expect(subject.files_for_volume('v1log').length).to eq 730
         expect(subject.files_for_volume('v2log').length).to eq 492
+      end
+    end
+
+    context "a multi-volume item with smLink references to volume structure" do
+      subject { described_class.new mets_file_multi4 }
+      let(:expected_structure) {{
+        "nodes":
+        [
+          {
+            "label": "front cover", "proxy": "nrwkc"
+          },
+          {
+            "label": "front paste down", "proxy": "fh2bx"
+          },
+          {
+            "label": "[Frontispice]", "nodes":
+            [
+              {
+                "label": "frontispice", "proxy": "jtatf"
+              },
+              {
+                "label": "frontispice 1v", "proxy": "dj7kh"
+              }
+            ]
+          },
+          {
+            "label": "[Title Page]", "nodes":
+            [
+              {
+                "label": "p. 1", "proxy": "v7j0i"
+              },
+              {
+                "label": "p. 2", "proxy": "nqks4"
+              }
+            ]
+          },
+          {
+            "label": "Premier Cahier", "nodes":
+            [
+              {
+                "label": "p. 5", "proxy": "hsf26"
+              },
+              {
+                "label": "p. 6", "proxy": "mkqpy"
+              },
+              {
+                "label": "Pavillon d'agrément, gothique anglais, Londres, par Jean Grunden. Pl. 1 et 2",
+                "nodes":
+                [
+                  {
+                    "label": "plate 1", "proxy": "ejgtg"
+                  },
+                  {
+                    "label": "plate 1v", "proxy": "z3g5g"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }}
+
+      it "uses the logical structure" do
+        expect(subject.volume_ids).to eq ['v1phys', 'v2phys']
+        expect(subject.structure_for_volume('v1phys')).to eq expected_structure
       end
     end
 
