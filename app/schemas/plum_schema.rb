@@ -5,6 +5,7 @@ class PlumSchema < ActiveTriples::Schema
   property :abstract, predicate: ::RDF::Vocab::DC.abstract
   property :alternative, predicate: ::RDF::Vocab::DC.alternative
   property :identifier, predicate: ::RDF::Vocab::DC.identifier
+  property :local_identifier, predicate: ::RDF::Vocab::DC11.identifier
   property :replaces, predicate: ::RDF::Vocab::DC.replaces
   property :contents, predicate: ::RDF::Vocab::DC.tableOfContents
   property :rights_statement, predicate: ::RDF::Vocab::EDM.rights
