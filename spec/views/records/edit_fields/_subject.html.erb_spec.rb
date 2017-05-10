@@ -3,9 +3,10 @@ include SimpleForm::ActionViewExtensions::FormHelper
 
 RSpec.describe 'records/edit_fields/_subject.html.erb' do
   let(:vocabulary) { nil }
-  let(:vocabulary_label) { "Subject" }
+  let(:vocabulary_label) { "Subjects" }
   before do
     Qa::Authorities::Local.registry.instance_variable_get(:@hash).delete(vocabulary_label)
+    Qa::Authorities::Local.registry.instance_variable_get(:@hash).delete("Test")
     allow(view).to receive(:f).and_return(simple_form_for(form))
     allow(view).to receive(:key).and_return(:subject)
     vocabulary
@@ -13,6 +14,7 @@ RSpec.describe 'records/edit_fields/_subject.html.erb' do
   end
   after do
     Qa::Authorities::Local.registry.instance_variable_get(:@hash).delete(vocabulary_label)
+    Qa::Authorities::Local.registry.instance_variable_get(:@hash).delete("Test")
   end
 
   context 'with an ephemera folder' do
