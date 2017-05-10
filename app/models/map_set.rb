@@ -11,4 +11,9 @@ class MapSet < ActiveFedora::Base
   include ::GeoWorks::GeoreferencedBehavior
   include ::GeoWorks::MetadataExtractionHelper
   self.valid_child_concerns = [ImageWork, ScannedResource]
+
+  def thumbnail_id
+    return nil if thumbnail.nil?
+    thumbnail.respond_to?(:thumbnail) ? thumbnail.thumbnail.try(:id) : thumbnail.try(:id)
+  end
 end

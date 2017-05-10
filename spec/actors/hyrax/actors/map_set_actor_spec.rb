@@ -1,9 +1,7 @@
-# Generated via
-#  `rails generate hyrax:work MapSet`
 require 'rails_helper'
 
 RSpec.describe Hyrax::Actors::MapSetActor do
-  it "has tests" do
-    skip "Add your tests here"
+  it 'is a BaseActor' do
+    expect(described_class < ::Hyrax::Actors::BaseActor).to be true
   end
 end

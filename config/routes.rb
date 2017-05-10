@@ -46,7 +46,7 @@ Rails.application.routes.draw do
 
   namespace :hyrax, path: :concern do
     resources :parent, only: [] do
-      [:multi_volume_works, :scanned_resources, :ephemera_folders].each do |type|
+      [:multi_volume_works, :scanned_resources, :ephemera_folders, :map_sets].each do |type|
         resources type, only: [] do
           member do
             get :file_manager
