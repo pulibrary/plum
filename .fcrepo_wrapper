@@ -1,4 +1,5 @@
 # Place any default configuration for solr_wrapper here
+version: 4.7.2
 port: 8984
 enable_jms: false
 fcrepo_home_dir: tmp/fcrepo4-development-data

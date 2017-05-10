@@ -1,4 +1,5 @@
 #config/fcrepo_wrapper_test.yml.sample
+version: 4.7.2
 port: 8986
 enable_jms: false
 fcrepo_home_dir: tmp/fcrepo4-test-data

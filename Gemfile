@@ -71,8 +71,8 @@ group :development, :test do
   gem 'rails-controller-testing', require: false
 end
 
-gem 'solr_wrapper', '~> 0.18.0'
-gem 'fcrepo_wrapper', '~> 0.6.0'
+gem 'solr_wrapper', '~> 1.0.0'
+gem 'fcrepo_wrapper', '~> 0.8.0'
 gem 'coveralls', '0.8.3', require: false
 
 group :development do
