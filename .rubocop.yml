@@ -33,6 +33,7 @@ Metrics/ClassLength:
 Metrics/CyclomaticComplexity:
   Exclude:
     - 'app/indexers/work_indexer.rb'
+    - 'app/services/authority_finder.rb'
 
 Metrics/PerceivedComplexity:
   Exclude:

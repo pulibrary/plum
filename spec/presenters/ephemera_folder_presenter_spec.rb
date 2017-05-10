@@ -108,6 +108,36 @@ RSpec.describe EphemeraFolderPresenter do
     end
   end
 
+  describe "#subject" do
+    context "when given a set of genre IDs" do
+      after do
+        Qa::Authorities::Local.registry.instance_variable_get(:@hash).delete("Subjects")
+      end
+      before do
+        Qa::Authorities::Local.registry.instance_variable_get(:@hash).delete("Subjects")
+        vocabulary
+      end
+      let(:vocabulary) do
+        Vocabulary.create!(label: "Subjects").tap do |vocab|
+          Vocabulary.create!(label: "Test", parent: vocab).tap do |vocab_2|
+            VocabularyTerm.create!(vocabulary: vocab_2, label: "English")
+          end
+        end
+      end
+      let(:folder) { FactoryGirl.build(:ephemera_folder, subject: [VocabularyTerm.first.id.to_s]) }
+      it "Returns the label for the IDs" do
+        expect(subject.subject).to eq ["English"]
+      end
+    end
+
+    context "when there's no vocabulary" do
+      let(:folder) { FactoryGirl.build(:ephemera_folder, subject: ["Test"]) }
+      it "works" do
+        expect(subject.subject).to eq ["Test"]
+      end
+    end
+  end
+
   describe "#renderer_for" do
     it "renders identifier as a barcodde" do
       expect(subject.renderer_for(:identifier, {})).to be BarcodeAttributeRenderer

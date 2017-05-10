@@ -19,6 +19,18 @@ RSpec.describe IngestVocab do
       end
     end
 
+    context "with categories & a parent vocab name" do
+      before do
+        described_class.ingest(subject_csv, "LAE Subjects", label: 'subject', category: 'category', uri: 'uri')
+      end
+
+      it "loads the terms with categories & a parent vocab" do
+        expect(VocabularyTerm.all.map(&:label)).to contain_exactly('Agricultural development projects', 'Architecture')
+        expect(Vocabulary.all.map(&:label)).to contain_exactly('LAE Subjects', 'Agrarian and rural issues', 'Arts and culture')
+        expect(Vocabulary.where(label: "Arts and culture").first.parent.label).to eq 'LAE Subjects'
+      end
+    end
+
     context "without categories" do
       before do
         described_class.ingest(genre_csv, "Genres", label: 'pul_label', tgm_label: 'tgm_label', lcsh_label: 'lcsh_label', uri: 'uri')

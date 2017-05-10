@@ -8,7 +8,7 @@ class IngestVocab
     CSV.foreach(file, headers: true) do |obj|
       row = obj.to_h
       category_label = fetch(row, columns, :category)
-      category = Vocabulary.find_or_create_by!(label: category_label) if category_label
+      category = Vocabulary.find_or_create_by!(label: category_label, parent: vocab) if category_label
       VocabularyTerm.create!(
         label: fetch(row, columns, :label),
         tgm_label: fetch(row, columns, :tgm_label),

@@ -124,6 +124,30 @@ RSpec.describe EphemeraFolder do
     end
   end
 
+  describe "Subject Indexing" do
+    context "when given a set of subject IDs" do
+      after do
+        Qa::Authorities::Local.registry.instance_variable_get(:@hash).delete("Subjects")
+      end
+      before do
+        Qa::Authorities::Local.registry.instance_variable_get(:@hash).delete("Subjects")
+        vocabulary
+      end
+      let(:vocabulary) do
+        Vocabulary.create!(label: "Subjects").tap do |vocab|
+          Vocabulary.create!(label: "Test", parent: vocab).tap do |vocab_2|
+            VocabularyTerm.create!(vocabulary: vocab_2, label: "English")
+          end
+        end
+      end
+      let(:folder) { FactoryGirl.build(:ephemera_folder, subject: [VocabularyTerm.first.id.to_s]) }
+      it "Returns the label for the IDs" do
+        expect(folder.to_solr["subject_sim"]).to eq ["English"]
+        expect(folder.to_solr["category_sim"]).to eq ["Test"]
+      end
+    end
+  end
+
   describe "box and box_id" do
     let(:box) { FactoryGirl.create :ephemera_box }
     let(:col) { FactoryGirl.build :collection }

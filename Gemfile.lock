@@ -668,7 +668,7 @@ GEM
       railties (= 5.0.1)
       sprockets-rails (>= 2.0.0)
     rails-assets-babel-polyfill (0.0.1)
-    rails-assets-bootstrap-select (1.9.4)
+    rails-assets-bootstrap-select (1.12.2)
       rails-assets-jquery (>= 1.8)
     rails-assets-jquery (2.2.4)
     rails-assets-jqueryui-timepicker-addon (1.6.3)
@@ -961,7 +961,7 @@ DEPENDENCIES
   pul_uv_rails!
   rails (= 5.0.1)
   rails-assets-babel-polyfill!
-  rails-assets-bootstrap-select (= 1.9.4)!
+  rails-assets-bootstrap-select (= 1.12.2)!
   rails-assets-jquery (= 2.2.4)!
   rails-assets-jqueryui-timepicker-addon!
   rails-controller-testing
