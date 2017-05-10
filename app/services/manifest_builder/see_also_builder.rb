@@ -6,19 +6,12 @@ class ManifestBuilder
     end
 
     def apply(manifest)
-      manifest.see_also = see_also_hash if bibdata?
+      return unless record.model_name
+      manifest.see_also = see_also_hash
       manifest
     end
 
     private
-
-      def bibdata?
-        RemoteRecord.bibdata?(source_metadata_identifier)
-      end
-
-      def source_metadata_identifier
-        Array.wrap(record.try(:source_metadata_identifier)).first
-      end
 
       def see_also_hash
         {

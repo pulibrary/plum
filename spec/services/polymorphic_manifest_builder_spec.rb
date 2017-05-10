@@ -343,8 +343,9 @@ RSpec.describe PolymorphicManifestBuilder, vcr: { cassette_name: "iiif_manifest"
     end
     context "when it has no bibdata id" do
       let(:record) { FactoryGirl.build(:scanned_resource, source_metadata_identifier: nil) }
-      it "doesn't do seeAlso" do
-        expect(json_result["seeAlso"]).to be_blank
+      it "links to seeAlso" do
+        expect(json_result["seeAlso"]["@id"]).to eq "http://plum.com/concern/scanned_resources/1.jsonld"
+        expect(json_result["seeAlso"]["format"]).to eq "application/ld+json"
       end
     end
     describe "metadata" do
