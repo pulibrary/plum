@@ -21,7 +21,7 @@ module ThumbnailHelper
     if document['geo_mime_type_tesim']
       # geo fileset
       :geo_works_thumbnail_path
-    elsif ["ImageWork", "RasterWork", "VectorWork"].include?(class_name)
+    elsif ["ImageWork", "RasterWork", "VectorWork", "MapSet"].include?(class_name)
       # geo work
       :geo_works_thumbnail_path
     else
