@@ -112,9 +112,11 @@ RSpec.describe EphemeraFolderPresenter do
     context "when given a set of genre IDs" do
       after do
         Qa::Authorities::Local.registry.instance_variable_get(:@hash).delete("Subjects")
+        Qa::Authorities::Local.registry.instance_variable_get(:@hash).delete("Test")
       end
       before do
         Qa::Authorities::Local.registry.instance_variable_get(:@hash).delete("Subjects")
+        Qa::Authorities::Local.registry.instance_variable_get(:@hash).delete("Test")
         vocabulary
       end
       let(:vocabulary) do
