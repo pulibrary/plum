@@ -1,7 +1,7 @@
 # Place any default configuration for solr_wrapper here
-version: 6.2.0
+version: 6.5.1
 port: 8983
-instance_dir: tmp/solr-development
+instance_directory: tmp/solr-development
 collection:
   persist: true
   dir: solr/config/

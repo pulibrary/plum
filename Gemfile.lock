@@ -412,7 +412,7 @@ GEM
       activesupport (>= 3.0.0)
     faraday (0.9.2)
       multipart-post (>= 1.2, < 3)
-    fcrepo_wrapper (0.6.0)
+    fcrepo_wrapper (0.8.0)
       ruby-progressbar
     ffi (1.9.18)
     flot-rails (0.0.7)
@@ -826,7 +826,7 @@ GEM
       httparty (>= 0.11.0)
       oauth2 (>= 0.9.2)
     slop (3.6.0)
-    solr_wrapper (0.18.1)
+    solr_wrapper (1.0.0)
       faraday
       ruby-progressbar
       rubyzip
@@ -927,7 +927,7 @@ DEPENDENCIES
   devise-guests (~> 0.3)
   ezid-client
   factory_girl
-  fcrepo_wrapper (~> 0.6.0)
+  fcrepo_wrapper (~> 0.8.0)
   flipflop!
   geo_works!
   grocer!
@@ -977,7 +977,7 @@ DEPENDENCIES
   sdoc (~> 0.4.0)
   sidekiq
   simplecov (~> 0.9)
-  solr_wrapper (~> 0.18.0)
+  solr_wrapper (~> 1.0.0)
   spring
   sprockets (~> 3.5.0)
   sprockets-es6
