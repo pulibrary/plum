@@ -1,0 +1,20 @@
+<div id="child-works">
+  <h2><%= t('.child-works') %></h2>
+  <table class="table table-striped" data-query-url="<%= polymorphic_path([main_app, :hyrax, presenter.model_name.singular], id: @presenter.id) %>" data-members="<%= @presenter.member_presenters.map(&:id) %>" data-param-key="<%= @presenter.model_name.param_key %>">
+    <thead>
+      <% if presenter.work_presenters.present? %>
+        <tr>
+          <th class="col-xs-3"></th>
+          <th>Work Name</th>
+          <th>Actions</th>
+        </tr>
+      <% end %>
+    </thead>
+    <tbody>
+      <% if presenter.work_presenters.present? %>
+        <%= render partial: 'geo_works/related/child_member', collection: @presenter.work_presenters %>
+      <% end %>
+    </tbody>
+  </table>
+  <%= render partial: 'geo_works/related/new_child_member' %>
+</div>
