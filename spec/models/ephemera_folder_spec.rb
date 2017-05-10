@@ -143,6 +143,7 @@ RSpec.describe EphemeraFolder do
       let(:folder) { FactoryGirl.build(:ephemera_folder, subject: [VocabularyTerm.first.id.to_s]) }
       it "Returns the label for the IDs" do
         expect(folder.to_solr["subject_sim"]).to eq ["English"]
+        expect(folder.to_solr["category_sim"]).to eq ["Test"]
       end
     end
   end

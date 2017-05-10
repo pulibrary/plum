@@ -35,6 +35,12 @@ class WorkIndexer < Hyrax::WorkIndexer
           authority.find(code)[:label] if authority
         end.compact
       end
+      subject_authority = AuthorityFinder.for(property: :subject, model: object)
+      if subject_authority
+        solr_doc[Solrizer.solr_name("category", :facetable)] = object.send(:subject).map do |code|
+          subject_authority.find(code)[:vocabulary] if subject_authority
+        end.compact
+      end
       solr_doc[Solrizer.solr_name("language", :facetable)] = object.language.map do |code|
         AuthorityFinder.for(property: :language, model: object).try(:find, code).try(:[], :label) || LanguageService.label(code)
       end
