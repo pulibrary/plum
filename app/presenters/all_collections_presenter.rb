@@ -33,6 +33,9 @@ class AllCollectionsPresenter < CollectionShowPresenter
     end
   end
 
+  def model_name
+  end
+
   def solr_document
     NullSolrDocument.new
   end
