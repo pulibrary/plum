@@ -14,4 +14,18 @@ RSpec.describe PlumDerivativesService do
   subject { described_class.new(file_set) }
 
   it_behaves_like "a Hyrax::DerivativeService"
+
+  describe "#cleanup_derivatives" do
+    let(:tmpfile) { Tempfile.new }
+    let(:factory) { class_double('PairtreeDerivativePath') }
+    before do
+      allow(subject).to receive(:derivative_path_factory).and_return(factory)
+      allow(factory).to receive(:derivatives_for_reference).and_return(tmpfile)
+    end
+
+    it "removes the files" do
+      subject.cleanup_derivatives
+      expect(File.exist?(tmpfile.path)).to be true
+    end
+  end
 end
