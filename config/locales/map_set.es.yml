@@ -1,0 +1,10 @@
+es:
+  hyrax:
+    icons:
+      map_set:     'fa fa-file-text-o'
+    select_type:
+      map_set:
+        # TODO: translate `human_name` into Spanish
+        name:               "Map Set"
+        # TODO: translate `human_name` into Spanish
+        description:        "Map set trabajos"

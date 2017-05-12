@@ -58,4 +58,20 @@ describe ThumbnailHelper do
       subject.plum_thumbnail_path(document)
     end
   end
+
+  context 'when document is a MapSet' do
+    let(:map_set) { FactoryGirl.create(:map_set) }
+    let(:document) do
+      MapSetShowPresenter.new(
+        SolrDocument.new(
+          map_set.to_solr
+        ), nil
+      )
+    end
+
+    it 'returns a path to the thumbnail image' do
+      expect(subject).to receive(:link_to_document).with(document, /<img src=\"\/images\/thumbnail.jpg/)
+      subject.plum_thumbnail_path(document)
+    end
+  end
 end

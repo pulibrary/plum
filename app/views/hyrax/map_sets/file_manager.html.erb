@@ -1,0 +1,21 @@
+<h1><%= t("file_manager.link_text") %></h1>
+<ul class="breadcrumb">
+  <% if @parent_presenter %>
+      <li><%= link_to @parent_presenter, polymorphic_path([main_app, @parent_presenter]) %></li>
+  <% end %>
+  <li><%= link_to @form, ContextualPath.new(@form, @parent_presenter).show %></li>
+  <li class="active">File Manager</li>
+</ul>
+
+<% if !@form.member_presenters.empty? %>
+  <div data-action="file-manager">
+    <div class="col-md-3" id="file-manager-tools">
+      <h2>Toolbar</h2>
+      <%= render "file_manager_actions" %>
+    </div>
+    <div class="col-md-3" id="label-tools-spacer" class="fixed"></div>
+    <div class="col-md-9" id="order-grid">
+      <%= render "file_manager_members" %>
+    </div>
+  </div>
+<% end %>

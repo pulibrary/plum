@@ -23,7 +23,7 @@ module Workflow
       end
 
       def geo_works
-        %w(ImageWork VectorWork RasterWork)
+        %w(ImageWork VectorWork RasterWork MapSet)
       end
   end
 end

@@ -11,6 +11,8 @@ Hyrax.config do |config|
   config.register_curation_concern :ephemera_box
   # Injected via `rails g hyrax:work EphemeraFolder`
   config.register_curation_concern :ephemera_folder
+  # Injected via `rails g hyrax:work MapSet`
+  config.register_curation_concern :map_set
 
   config.max_days_between_audits = 7
 
