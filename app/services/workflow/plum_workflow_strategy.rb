@@ -9,6 +9,7 @@ module Workflow
     # @return [String] The name of the workflow to use
     def workflow
       return Sipity::Workflow.where(name: 'book_works').first! if book_works.include? work_class
+      return Sipity::Workflow.where(name: 'folder_works').first! if folder_works.include? work_class
       return Sipity::Workflow.where(name: 'geo_works').first! if geo_works.include? work_class
     end
 
@@ -19,7 +20,11 @@ module Workflow
       end
 
       def book_works
-        %w(ScannedResource MultiVolumeWork EphemeraBox EphemeraFolder)
+        %w(ScannedResource MultiVolumeWork EphemeraBox)
+      end
+
+      def folder_works
+        %w(EphemeraFolder)
       end
 
       def geo_works

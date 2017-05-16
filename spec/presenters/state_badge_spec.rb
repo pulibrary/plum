@@ -13,6 +13,15 @@ RSpec.describe StateBadge do
     end
   end
 
+  describe "needs_qa" do
+    let(:scanned_resource) { FactoryGirl.create(:needs_qa_ephemera_folder) }
+
+    it "renders a badge" do
+      expect(subject.render).to include("label-info")
+      expect(subject.render).to include("Needs QA")
+    end
+  end
+
   describe "metadata_review" do
     let(:scanned_resource) { FactoryGirl.create(:metadata_review_scanned_resource) }
 

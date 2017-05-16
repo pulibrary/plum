@@ -1,4 +1,4 @@
-<% if presenter.respond_to?(:member_presenters) && presenter.member_presenters.present? %>
+<% if can?(:manifest, presenter) && presenter.respond_to?(:member_presenters) && presenter.member_presenters.present? %>
   <div class="uv viewer" data-config="/uv_config.json" data-uri="<%= main_app.polymorphic_path([main_app,:manifest,presenter]) %>" ></div>
   <%= PulUvRails::UniversalViewer.script_tag %>
 <% else %>
