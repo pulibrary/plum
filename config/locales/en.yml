@@ -57,6 +57,9 @@ en:
     complete:
       label: 'Complete'
       desc:  'Published and accessible according to access control rules'
+    needs_qa:
+      label: 'Needs QA'
+      desc: 'Awaiting approval for images to be public.'
     flagged:
       label: 'Flagged'
       desc:  'In need of attention, but still accessible according to access rules'

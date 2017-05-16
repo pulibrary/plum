@@ -1,0 +1,50 @@
+{
+  "workflows": [
+    {
+      "name": "folder_works",
+      "label": "Folder Works",
+      "actions": [
+        {
+          "name": "new",
+          "from_states": [],
+          "transition_to": "needs_qa",
+          "methods": [
+            "Workflow::Folders::GrantEditToGroups",
+            "Hyrax::Workflow::ActivateObject"
+          ]
+        },
+        {
+          "name": "needs_qa",
+          "from_states": [
+            {
+              "names": ["complete"],
+              "roles": [
+                "admin",
+                "ephemera_editor"
+              ]
+            }
+          ],
+          "methods": [
+          ],
+          "transition_to": "needs_qa"
+        },
+        {
+          "name": "complete",
+          "from_states": [
+            {
+              "names": ["needs_qa"],
+              "roles": [
+                "admin",
+                "ephemera_editor"
+              ]
+            }
+          ],
+          "methods": [
+            "Workflow::CompleteRecord"
+          ],
+          "transition_to": "complete"
+        }
+      ]
+    }
+  ]
+}

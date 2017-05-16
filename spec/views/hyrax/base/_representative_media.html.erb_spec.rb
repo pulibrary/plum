@@ -3,8 +3,10 @@ require 'rails_helper'
 RSpec.describe "hyrax/base/_representative_media.html.erb" do
   let(:presenter) { instance_double(ScannedResourceShowPresenter, member_presenters: member_presenters, id: "1", persisted?: true, model_name: ScannedResource.model_name) }
   let(:member_presenters) { [] }
+  let(:can_manifest) { true }
   before do
     allow(presenter).to receive(:to_model).and_return(presenter)
+    allow(view).to receive(:can?).with(:manifest, presenter).and_return(can_manifest)
     render partial: "hyrax/base/representative_media", locals: { presenter: presenter }
   end
   context "when there are no generic files" do
@@ -16,6 +18,12 @@ RSpec.describe "hyrax/base/_representative_media.html.erb" do
     let(:member_presenters) { [1] }
     it "renders the viewer" do
       expect(response).to have_selector ".viewer[data-uri]"
+    end
+    context "and the user doesn't have permission to manifest" do
+      let(:can_manifest) { false }
+      it "doesn't render the viewer" do
+        expect(response).to have_selector "img[src='/assets/nope.png']"
+      end
     end
   end
 end

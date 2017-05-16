@@ -8,6 +8,10 @@ FactoryGirl.define do
       association :workflow_state, factory: :workflow_state, name: 'pending'
     end
 
+    factory :needs_qa_sipity_entity, class: Sipity::Entity do
+      association :workflow_state, factory: :workflow_state, name: 'needs_qa'
+    end
+
     factory :flagged_sipity_entity, class: Sipity::Entity do
       association :workflow_state, factory: :workflow_state, name: 'flagged'
     end

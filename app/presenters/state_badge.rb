@@ -47,6 +47,7 @@ class StateBadge
     def state_classes
       @state_classes ||= {
         pending: 'label-default',
+        needs_qa: 'label-info',
         metadata_review: 'label-info',
         final_review: 'label-primary',
         complete: 'label-success',

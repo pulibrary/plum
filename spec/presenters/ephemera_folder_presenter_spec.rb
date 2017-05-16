@@ -146,7 +146,7 @@ RSpec.describe EphemeraFolderPresenter do
     end
 
     it "renders title as a regular attribute" do
-      expect(subject.renderer_for(:title, {})).to be Hyrax::Renderers::AttributeRenderer
+      expect(subject.renderer_for(:title, {})).to be ::AttributeRenderer
     end
   end
 end

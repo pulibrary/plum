@@ -93,6 +93,9 @@ class Ability
     cannot [:read], curation_concerns do |curation_concern|
       !readable_concern?(curation_concern)
     end
+    cannot [:manifest], EphemeraFolder do |folder|
+      folder.workflow_state == "needs_qa"
+    end
     can :pdf, (curation_concerns + [ScannedResourceShowPresenter]) do |curation_concern|
       ["color", "gray"].include?(Array(curation_concern.pdf_type).first)
     end
