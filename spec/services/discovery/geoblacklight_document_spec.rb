@@ -71,6 +71,7 @@ RSpec.describe Discovery::GeoblacklightDocument do
         expect(refs).to have_key 'http://schema.org/thumbnailUrl'
         expect(refs).not_to have_key 'http://schema.org/downloadUrl'
         expect(refs).not_to have_key 'http://iiif.io/api/image'
+        expect(refs).not_to have_key 'http://iiif.io/api/presentation#manifest'
         expect(document[:dc_rights_s]).to eq 'Restricted'
       end
     end
@@ -82,6 +83,7 @@ RSpec.describe Discovery::GeoblacklightDocument do
         refs = JSON.parse(document[:dct_references_s])
         expect(refs).to have_key 'http://schema.org/downloadUrl'
         expect(refs).to have_key 'http://iiif.io/api/image'
+        expect(refs).to have_key 'http://iiif.io/api/presentation#manifest'
         expect(document[:dc_rights_s]).to eq 'Public'
       end
     end
@@ -92,9 +94,10 @@ RSpec.describe Discovery::GeoblacklightDocument do
     let(:visibility) { Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PUBLIC }
 
     context 'with a public ImageWork' do
-      it 'only has a iiif reference' do
+      it 'only has iiif references' do
         refs = JSON.parse(document[:dct_references_s])
         expect(refs).to have_key 'http://iiif.io/api/image'
+        expect(refs).to have_key 'http://iiif.io/api/presentation#manifest'
         expect(refs).not_to have_key 'http://www.opengis.net/def/serviceType/ogc/wms'
         expect(refs).not_to have_key 'http://www.opengis.net/def/serviceType/ogc/wfs'
       end

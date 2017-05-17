@@ -1,6 +1,6 @@
 module Discovery
   class GeoblacklightDocument < GeoWorks::Discovery::GeoblacklightDocument
-    attr_accessor :iiif
+    attr_accessor :iiif, :iiif_manifest
 
     def to_hash(_args = nil)
       return document unless access_rights == private_visibility
@@ -24,7 +24,8 @@ module Discovery
         'http://schema.org/thumbnailUrl' => thumbnail,
         'http://www.opengis.net/def/serviceType/ogc/wms' => wms_path,
         'http://www.opengis.net/def/serviceType/ogc/wfs' => wfs_path,
-        'http://iiif.io/api/image' => iiif
+        'http://iiif.io/api/image' => iiif,
+        'http://iiif.io/api/presentation#manifest' => iiif_manifest
       }
     end
 
