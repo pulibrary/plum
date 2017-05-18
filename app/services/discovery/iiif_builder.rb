@@ -8,6 +8,7 @@ module Discovery
 
     def build(document)
       document.iiif = iiif
+      document.iiif_manifest = iiif_manifest
     end
 
     # Get IIIF path for file set
@@ -16,10 +17,19 @@ module Discovery
       "#{path}/info.json"
     end
 
+    def iiif_manifest
+      return unless geo_file_set?
+      "#{manifest_path}/manifest"
+    end
+
     private
 
       def path
         IIIFPath.new(file_set.id).to_s
+      end
+
+      def manifest_path
+        Discovery::DocumentPath.new(geo_work).to_s
       end
 
       # Gets the representative file set.
