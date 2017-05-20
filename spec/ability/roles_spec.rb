@@ -66,6 +66,10 @@ describe Ability do
   let(:role) { Role.where(name: 'admin').first_or_create }
   let(:solr) { ActiveFedora.solr.conn }
 
+  def presenter(resource)
+    DynamicShowPresenter.new.new(SolrDocument.new(resource.to_solr), subject)
+  end
+
   before do
     allow(open_scanned_resource).to receive(:id).and_return("open")
     allow(private_scanned_resource).to receive(:id).and_return("private")
@@ -161,6 +165,9 @@ describe Ability do
       should be_able_to(:update, other_ephemera_folder)
       should be_able_to(:destroy, other_ephemera_folder)
 
+      should be_able_to(:manifest, presenter(complete_ephemera_folder))
+      should be_able_to(:manifest, presenter(needs_qa_ephemera_folder))
+
       should_not be_able_to(:create, Role.new)
       should_not be_able_to(:destroy, role)
       should_not be_able_to(:complete, pending_scanned_resource)
@@ -186,6 +193,7 @@ describe Ability do
       should be_able_to(:read, complete_scanned_resource)
       should be_able_to(:read, takedown_scanned_resource)
       should be_able_to(:read, flagged_scanned_resource)
+      should be_able_to(:manifest, pending_scanned_resource)
       should be_able_to(:download, image_editor_file)
       should be_able_to(:file_manager, open_scanned_resource)
       should be_able_to(:file_manager, open_multi_volume_work)
@@ -195,6 +203,8 @@ describe Ability do
       should be_able_to(:create, FileSet.new)
       should be_able_to(:destroy, image_editor_file)
       should be_able_to(:destroy, pending_scanned_resource)
+
+      should be_able_to(:manifest, presenter(pending_scanned_resource))
 
       should_not be_able_to(:create, Role.new)
       should_not be_able_to(:destroy, role)
@@ -382,6 +392,7 @@ describe Ability do
       should be_able_to(:pdf, open_scanned_resource)
       should be_able_to(:read, complete_scanned_resource)
       should be_able_to(:manifest, complete_scanned_resource)
+      should be_able_to(:manifest, presenter(complete_scanned_resource))
       should be_able_to(:read, flagged_scanned_resource)
       should be_able_to(:manifest, flagged_scanned_resource)
       should be_able_to(:color_pdf, color_enabled_resource)

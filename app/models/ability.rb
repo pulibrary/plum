@@ -28,6 +28,7 @@ class Ability
     can [:manage], EphemeraFolder
     can [:create, :read, :edit, :update, :publish], Collection
     can [:create, :read, :edit, :update, :publish, :download], FileSet
+    can [:manifest], EphemeraFolderPresenter
     can [:destroy], FileSet, depositor: current_user.uid
   end
 
@@ -93,6 +94,9 @@ class Ability
     cannot [:read], curation_concerns do |curation_concern|
       !readable_concern?(curation_concern)
     end
+    can [:manifest], [ScannedResourceShowPresenter, MultiVolumeWorkShowPresenter, EphemeraFolderPresenter] do |curation_concern|
+      readable_concern?(curation_concern)
+    end
     cannot [:manifest], EphemeraFolder do |folder|
       folder.workflow_state == "needs_qa"
     end
@@ -105,6 +109,7 @@ class Ability
   end
 
   def readable_concern?(curation_concern)
+    # binding.pry if curation_concern.kind_of?(ScannedResourceShowPresenter)
     !unreadable_states.include?(curation_concern.workflow_state)
   end
 
@@ -127,7 +132,7 @@ class Ability
     end
 
     def curation_concerns
-      Hyrax.config.curation_concerns
+      Hyrax.config.curation_concerns + [ScannedResourceShowPresenter, MultiVolumeWorkShowPresenter, EphemeraFolderPresenter]
     end
 
     def roles
