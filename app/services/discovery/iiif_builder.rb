@@ -18,7 +18,7 @@ module Discovery
     end
 
     def iiif_manifest
-      return unless geo_file_set?
+      return unless map_set? || geo_file_set?
       "#{manifest_path}/manifest"
     end
 
@@ -40,6 +40,12 @@ module Discovery
           file_set_id = [representative_id]
           geo_work.member_presenters(file_set_id).first
         end
+      end
+
+      # Tests if geo work is a map set
+      # @return [Bool]
+      def map_set?
+        geo_work.model_name.to_s == 'MapSet'
       end
 
       # Tests if the file set is a geo file set.
