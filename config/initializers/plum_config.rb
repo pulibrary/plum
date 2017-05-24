@@ -29,7 +29,7 @@ GeoWorks::Discovery::DocumentBuilder.services = [
   GeoWorks::Discovery::DocumentBuilder::SpatialBuilder,
   GeoWorks::Discovery::DocumentBuilder::DateBuilder,
   GeoWorks::Discovery::DocumentBuilder::ReferencesBuilder,
-  GeoWorks::Discovery::DocumentBuilder::LayerInfoBuilder,
+  Discovery::LayerInfoBuilder,
   Discovery::SlugBuilder,
   Discovery::IIIFBuilder,
   Discovery::WxsBuilder

@@ -38,5 +38,14 @@ FactoryGirl.define do
         file.update_index
       end
     end
+
+    factory :map_set_with_metadata_file do
+      after(:build) do |work, evaluator|
+        metadata_file = FactoryGirl.create(:file_set, user: evaluator.user, geo_mime_type: 'application/xml; schema=fgdc')
+        work.ordered_members << metadata_file
+        work.save
+        metadata_file.update_index
+      end
+    end
   end
 end

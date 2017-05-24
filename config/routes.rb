@@ -91,6 +91,7 @@ Rails.application.routes.draw do
         post :structure, action: :save_structure
         get :manifest, defaults: { format: :json }
         post :browse_everything_files
+        get :geoblacklight, defaults: { format: :json }
       end
     end
     resources :file_sets, only: [] do
