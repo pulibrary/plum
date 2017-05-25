@@ -31,5 +31,12 @@ module Hyrax
       return false if ['rights_statement'].include?(field.to_s)
       super
     end
+
+    def self.multiple?(field)
+      # Necessary to permit coverage param. Coverage is declared as
+      # single-valued in GeoWorks. We'll keep it that way for now.
+      return false if field.to_sym == :coverage
+      super
+    end
   end
 end
