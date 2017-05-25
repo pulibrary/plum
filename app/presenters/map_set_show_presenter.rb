@@ -4,7 +4,7 @@ class MapSetShowPresenter < HyraxShowPresenter
 
   # MapSets done't contain geo file sets directly
   def geo_file_set_presenters
-    nil
+    []
   end
 
   def external_metadata_file_set_presenters
