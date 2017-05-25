@@ -4,6 +4,7 @@ RSpec.describe Hyrax::MapSetsController do
   let(:user) { FactoryGirl.create(:user) }
   let(:coverage) { GeoWorks::Coverage.new(43.039, -69.856, 42.943, -71.032).to_s }
   let(:map_set) { FactoryGirl.create(:map_set, user: user, title: ['Dummy Title'], coverage: coverage) }
+  let(:reloaded) { map_set.reload }
 
   describe 'create' do
     let(:user) { FactoryGirl.create(:admin) }
@@ -23,6 +24,19 @@ RSpec.describe Hyrax::MapSetsController do
         expect(s.title.first.to_s).to eq 'Netherlands, Nieuwe Waterweg and Europoort : Hoek Van Holland to Vlaardingen'
         expect(s.coverage).to eq 'northlimit=52.024167; eastlimit=004.341667; southlimit=51.920000; westlimit=003.966667; units=degrees; projection=EPSG:4326'
       end
+    end
+  end
+
+  describe 'update' do
+    let(:map_set) { FactoryGirl.create(:map_set, user: user, title: ['Dummy Title']) }
+
+    before do
+      sign_in user
+    end
+
+    it 'can update the coverage' do
+      post :update, params: { id: map_set, map_set: { coverage: coverage } }
+      expect(reloaded.coverage).to eq coverage
     end
   end
 
