@@ -34,12 +34,5 @@ module Discovery
         path = hyrax_url_helpers.download_url(id, host: host, protocol: protocol)
         "#{path}?file=thumbnail"
       end
-
-      # Override method for MapSets. MapSets don't contain image files directly.
-      def file_set
-        return if map_set?
-        return unless geo_concern.geo_file_set_presenters
-        geo_concern.geo_file_set_presenters.first
-      end
   end
 end
