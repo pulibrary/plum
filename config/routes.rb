@@ -100,4 +100,7 @@ Rails.application.routes.draw do
 
   # Purl redirects
   get '/purl/:id', to: 'purl#default', as: 'default_purl'
+
+  # iiif search API
+  get 'search/:id', to: 'search#search', as: :search
 end
