@@ -2,6 +2,11 @@ class MapSetShowPresenter < HyraxShowPresenter
   include PlumAttributes
   delegate :spatial, :temporal, :issued, :coverage, :provenance, :layer_modified, to: :solr_document
 
+  # MapSets done't contain geo file sets directly
+  def geo_file_set_presenters
+    nil
+  end
+
   def external_metadata_file_set_presenters
     # filter for external metadata files
     file_set_presenters.select do |member|
