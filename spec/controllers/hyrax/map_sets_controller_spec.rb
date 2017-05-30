@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Hyrax::MapSetsController do
+RSpec.describe Hyrax::MapSetsController, admin_set: true do
   let(:user) { FactoryGirl.create(:user) }
   let(:coverage) { GeoWorks::Coverage.new(43.039, -69.856, 42.943, -71.032).to_s }
   let(:map_set) { FactoryGirl.create(:map_set, user: user, title: ['Dummy Title'], coverage: coverage) }

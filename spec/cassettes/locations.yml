@@ -70,7 +70,7 @@ http_interactions:
   recorded_at: Thu, 28 Jan 2016 16:57:01 GMT
 - request:
     method: get
-    uri: http://findingaids.princeton.edu/collections/badid.xml?scope=record
+    uri: https://findingaids.princeton.edu/collections/badid.xml?scope=record
     body:
       encoding: US-ASCII
       string: ''

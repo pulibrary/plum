@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe ResourceIdentifier do
+RSpec.describe ResourceIdentifier, admin_set: true do
   around { |example| perform_enqueued_jobs(&example) }
 
   subject { described_class.new(scanned_resource.id) }

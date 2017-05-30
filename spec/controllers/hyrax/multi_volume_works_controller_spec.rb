@@ -2,7 +2,7 @@
 #  `rails generate hyrax:work MultiVolumeWork`
 require 'rails_helper'
 
-describe Hyrax::MultiVolumeWorksController do
+describe Hyrax::MultiVolumeWorksController, admin_set: true do
   let(:user) { FactoryGirl.create(:user) }
   let(:multi_volume_work) { FactoryGirl.create(:multi_volume_work, user: user, title: ['Dummy Title']) }
 

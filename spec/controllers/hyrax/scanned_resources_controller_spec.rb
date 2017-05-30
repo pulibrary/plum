@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe Hyrax::ScannedResourcesController do
+describe Hyrax::ScannedResourcesController, admin_set: true do
   let(:user) { FactoryGirl.create(:user) }
   let(:scanned_resource) { FactoryGirl.create(:complete_scanned_resource, user: user, title: ['Dummy Title'], identifier: ['ark:/99999/fk4445wg45']) }
   let(:reloaded) { scanned_resource.reload }
