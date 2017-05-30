@@ -19,6 +19,7 @@ export default class Initializer {
   }
 
   initialize_bootstrap_select() {
+    $("optgroup").addClass("closed")
     $("select[multiple='multiple']").selectpicker({})
     $(".datatable").DataTable()
   }
