@@ -7,9 +7,7 @@ class VocabularySubauthority < Qa::Authorities::Base
   end
 
   def all
-    terms.concat(sub_vocabs).map do |item|
-      format_item(item)
-    end
+    all_terms.sort_by { |x| x[:label] }
   end
 
   def find(id)
@@ -17,6 +15,12 @@ class VocabularySubauthority < Qa::Authorities::Base
   end
 
   private
+
+    def all_terms
+      terms.concat(sub_vocabs).map do |item|
+        format_item(item)
+      end
+    end
 
     def terms
       VocabularyTerm.where(vocabulary_id: @vocabulary.id).to_a
