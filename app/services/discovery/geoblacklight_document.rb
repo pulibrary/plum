@@ -1,6 +1,6 @@
 module Discovery
   class GeoblacklightDocument < GeoWorks::Discovery::GeoblacklightDocument
-    attr_accessor :iiif, :iiif_manifest
+    attr_accessor :iiif, :iiif_manifest, :source, :suppressed
 
     def to_hash(_args = nil)
       return document unless access_rights == private_visibility
@@ -11,6 +11,18 @@ module Discovery
     def to_json(_args = nil)
       return document.to_json unless access_rights == private_visibility
       private_document.to_json
+    end
+
+    # Override to add extra key value pairs to document
+    def document_hash_optional
+      super.merge(document_hash_plum)
+    end
+
+    def document_hash_plum
+      {
+        suppressed_b: suppressed,
+        dct_source_sm: source
+      }
     end
 
     # Overrides references to add iiif ref
