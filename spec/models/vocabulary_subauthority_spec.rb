@@ -12,6 +12,12 @@ RSpec.describe VocabularySubauthority, type: :model do
     expect(subject.all).to contain_exactly(child_hash, term_hash)
   end
 
+  it "orders them by label" do
+    term
+    FactoryGirl.create(:vocabulary_term, label: 'Aardvark', vocabulary: parent)
+    expect(subject.all.map { |x| x[:label] }).to eq ['Aardvark', 'My Term']
+  end
+
   it 'finds terms by their ids' do
     term_hash = { id: term.id, label: term.label, type: term.class.name, vocabulary: 'Parent Vocabulary', active: true }.with_indifferent_access
     expect(subject.find(term.id)).to eq(term_hash)
