@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170418135317) do
+ActiveRecord::Schema.define(version: 20170530155745) do
 
   create_table "bookmarks", force: :cascade do |t|
     t.integer  "user_id",       null: false
@@ -201,7 +201,6 @@ ActiveRecord::Schema.define(version: 20170418135317) do
   create_table "permission_templates", force: :cascade do |t|
     t.string   "admin_set_id"
     t.string   "visibility"
-    t.string   "workflow_name"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.date     "release_date"

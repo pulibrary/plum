@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.feature "ScannedResourcesController", type: :feature do
+RSpec.feature "ScannedResourcesController", type: :feature, admin_set: true do
   let(:user) { FactoryGirl.create(:image_editor) }
   let(:scanned_resource) { FactoryGirl.create(:metadata_review_scanned_resource_with_multi_volume_work, user: user) }
   let(:parent_presenter) do

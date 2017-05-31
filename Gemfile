@@ -31,7 +31,8 @@ gem 'modernizr-rails'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-gem 'hyrax', github: 'projecthydra-labs/hyrax', branch: '1-0-stable'
+gem 'hyrax', '~> 1.0.1'
+gem 'blacklight', '~> 6.9'
 gem 'pul_metadata_services', github:'pulibrary/pul_metadata_services', branch: 'master'
 gem 'hydra-role-management', '~> 0.2.0'
 gem 'rsolr', '~> 1.1.0'
@@ -45,10 +46,10 @@ gem 'prawn'
 # gem 'pdf-inspector', '~> 1.2.0', group: [:test]
 
 # Copied from hyrax Gemfile.extra
-gem 'hydra-works', github: 'projecthydra-labs/hydra-works', branch: 'master'
-gem 'hydra-pcdm', github: 'projecthydra-labs/hydra-pcdm', branch: 'master'
+gem 'hydra-works', '~> 0.16.0'
+gem 'hydra-pcdm', '~> 0.9.0'
 gem 'hydra-derivatives', '3.1.3'
-gem 'active-fedora', '~> 11.1.2', github: 'projecthydra/active_fedora', branch: 'master'
+gem 'active-fedora', '~> 11.2.0'
 gem 'active-triples', '~> 0.11.0'
 gem 'active_fedora-noid', '2.0.2'
 

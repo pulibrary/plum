@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.feature 'Collections', type: :feature do
+RSpec.feature 'Collections', type: :feature, admin_set: true do
   describe 'an anonymous user is not allowed to create a collection' do
     scenario 'link to create a collection is not shown' do
       visit root_path

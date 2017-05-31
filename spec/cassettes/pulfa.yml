@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: http://findingaids.princeton.edu/collections/AC123/c00004.xml?scope=record
+    uri: https://findingaids.princeton.edu/collections/AC123/c00004.xml?scope=record
     body:
       encoding: US-ASCII
       string: ''
@@ -25,7 +25,7 @@ http_interactions:
       Cache-Control:
       - public
       Link:
-      - "<http://findingaids.princeton.edu/_services/tree?record-id=AC123>;rel=contents,<http://findingaids.princeton.edu/collections/AC123>;rel=canonical"
+      - "<https://findingaids.princeton.edu/_services/tree?record-id=AC123>;rel=contents,<https://findingaids.princeton.edu/collections/AC123>;rel=canonical"
       X-Exist-Id:
       - '2164'
       Last-Modified:
@@ -53,15 +53,15 @@ http_interactions:
       string: |-
         <c xmlns="urn:isbn:1-931666-22-9" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:pulfa="http://library.princeton.edu/pulfa" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" level="file" id="AC123_c00004">
             <pulfa:context>
-                <pulfa:uri>http://findingaids.princeton.edu/collections/AC123/c00004</pulfa:uri>
+                <pulfa:uri>https://findingaids.princeton.edu/collections/AC123/c00004</pulfa:uri>
                 <pulfa:breadcrumbs>
-                    <pulfa:crumb uri="http://findingaids.princeton.edu/collections/AC123/c00001" level="series">Series 1: University Librarian Records</pulfa:crumb>
-                    <pulfa:crumb uri="http://findingaids.princeton.edu/collections/AC123/c00002" level="subseries">Subseries 1A, Frederic Vinton</pulfa:crumb>
-                    <pulfa:crumb uri="http://findingaids.princeton.edu/collections/AC123/c00003" level="file">Correspondence</pulfa:crumb>
+                    <pulfa:crumb uri="https://findingaids.princeton.edu/collections/AC123/c00001" level="series">Series 1: University Librarian Records</pulfa:crumb>
+                    <pulfa:crumb uri="https://findingaids.princeton.edu/collections/AC123/c00002" level="subseries">Subseries 1A, Frederic Vinton</pulfa:crumb>
+                    <pulfa:crumb uri="https://findingaids.princeton.edu/collections/AC123/c00003" level="file">Correspondence</pulfa:crumb>
                 </pulfa:breadcrumbs>
                 <pulfa:collectionInfo>
                     <pulfa:ARK>http://arks.princeton.edu/ark:/88435/9s1616192</pulfa:ARK>
-                    <pulfa:uri>http://findingaids.princeton.edu/collections/AC123</pulfa:uri>
+                    <pulfa:uri>https://findingaids.princeton.edu/collections/AC123</pulfa:uri>
                     <pulfa:collection-creators>
                         <corpname rules="rda" source="uncontrolled" role="cre"> Princeton University. Library. University Archives</corpname>
                     </pulfa:collection-creators>

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'ScannedResourcesController', type: :request do
+RSpec.describe 'ScannedResourcesController', type: :request, admin_set: true do
   let(:user) { FactoryGirl.create(:image_editor) }
 
   before do

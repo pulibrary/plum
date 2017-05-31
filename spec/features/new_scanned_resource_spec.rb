@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.feature "ScannedResourcesController", type: :feature do
+RSpec.feature "ScannedResourcesController", type: :feature, admin_set: true do
   let(:user) { FactoryGirl.create(:image_editor) }
   let(:workflow) { Sipity::Workflow.find_by(name: 'book_works') }
   let(:identifier) { instance_double(Ezid::Identifier, id: 'ark:/99999/fk4wtest') }

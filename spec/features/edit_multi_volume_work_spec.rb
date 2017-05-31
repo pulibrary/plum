@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.feature "MultiVolumeWorksController", type: :feature do
+RSpec.feature "MultiVolumeWorksController", type: :feature, admin_set: true do
   let(:user) { FactoryGirl.create(:image_editor) }
   let(:multi_volume_work) { FactoryGirl.create(:metadata_review_multi_volume_work, user: user) }
 
