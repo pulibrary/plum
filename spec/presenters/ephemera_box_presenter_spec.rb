@@ -14,16 +14,6 @@ RSpec.describe EphemeraBoxPresenter do
   let(:controller) { double(blacklight_config: blacklight_config) }
   subject { described_class.new(SolrDocument.new(box.to_solr), controller) }
 
-  describe "#renderer_for" do
-    it "renders identifier as a barcodde" do
-      expect(subject.renderer_for(:identifier, {})).to be BarcodeAttributeRenderer
-    end
-
-    it "renders title as a regular attribute" do
-      expect(subject.renderer_for(:title, {})).to be Hyrax::Renderers::AttributeRenderer
-    end
-  end
-
   describe "#member_presenters" do
     before do
       box.save

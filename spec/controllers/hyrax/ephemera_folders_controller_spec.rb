@@ -7,16 +7,17 @@ RSpec.describe Hyrax::EphemeraFoldersController, admin_set: true do
   let(:box) { FactoryGirl.create(:ephemera_box) }
   let(:box2) { FactoryGirl.create(:ephemera_box, title: ['Box 2']) }
   let(:user) { FactoryGirl.create(:admin) }
+  let(:barcode0) { '00000000000000' }
   let(:attributes) do
     {
       title: "Test",
-      identifier: folder.identifier.first
+      barcode: folder.barcode.first
     }
   end
   describe "#create" do
     it "creates it as a sub-resource of a box" do
       sign_in user
-      post :create, params: { ephemera_folder: attributes.merge(box_id: box.id, identifier: folder.identifier, rights_statement: "http://rightsstatements.org/vocab/NKC/1.0/") }
+      post :create, params: { ephemera_folder: attributes.merge(box_id: box.id, barcode: folder.barcode.first, rights_statement: "http://rightsstatements.org/vocab/NKC/1.0/") }
 
       expect(response).to be_redirect
       id = response.headers["Location"].match(/.*\/(.*)/)[1]
@@ -25,7 +26,7 @@ RSpec.describe Hyrax::EphemeraFoldersController, admin_set: true do
   end
 
   describe "#update" do
-    let(:updated) { { title: 'New Title', identifier: folder.identifier, box_id: box2.id } }
+    let(:updated) { { title: 'New Title', barcode: barcode0, box_id: box2.id } }
     let(:reloaded) { folder.reload }
 
     before do

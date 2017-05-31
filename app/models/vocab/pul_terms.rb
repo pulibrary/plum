@@ -9,4 +9,5 @@ class PULTerms < RDF::StrictVocabulary('http://library.princeton.edu/terms/')
   term :call_number, label: "Call Number".freeze, type: 'rdf:Property'.freeze
   term :container, label: "Container".freeze, type: 'rdf:Property'.freeze
   term :seriesTitle, label: 'Series Title'.freeze, type: 'rdf:Property'.freeze
+  term :barcode, label: 'Barcode'.freeze, type: 'rdf:Property'.freeze
 end

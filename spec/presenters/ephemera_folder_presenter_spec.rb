@@ -139,14 +139,4 @@ RSpec.describe EphemeraFolderPresenter do
       end
     end
   end
-
-  describe "#renderer_for" do
-    it "renders identifier as a barcodde" do
-      expect(subject.renderer_for(:identifier, {})).to be BarcodeAttributeRenderer
-    end
-
-    it "renders title as a regular attribute" do
-      expect(subject.renderer_for(:title, {})).to be ::AttributeRenderer
-    end
-  end
 end

@@ -71,6 +71,7 @@ class SolrDocument
       :viewing_hint,
       :viewing_direction,
       :identifier,
+      :barcode,
       :source_jsonld,
       :folder_number
     ]

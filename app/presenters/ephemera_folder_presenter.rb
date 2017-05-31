@@ -1,12 +1,7 @@
 class EphemeraFolderPresenter < HyraxShowPresenter
   include PlumAttributes
   self.collection_presenter_class = DynamicShowPresenter.new
-  delegate :folder_number, to: :solr_document
-
-  def renderer_for(field, _options)
-    return ::BarcodeAttributeRenderer if field == :identifier
-    super
-  end
+  delegate :barcode, :folder_number, to: :solr_document
 
   def language
     Array.wrap(super).map do |id|
