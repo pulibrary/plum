@@ -23,4 +23,18 @@ RSpec.describe MapSet do
       expect(subject.thumbnail_id).to eq file_set.id
     end
   end
+
+  describe 'cleans up members when destroyed' do
+    before do
+      image_work1.save
+      image_work2.save
+      subject.members = [image_work1, image_work2]
+      subject.save
+      subject.destroy
+    end
+    it 'deletes them' do
+      expect { ActiveFedora::Base.find(image_work1.id) }.to raise_error(Ldp::Gone)
+      expect { ActiveFedora::Base.find(image_work2.id) }.to raise_error(Ldp::Gone)
+    end
+  end
 end
