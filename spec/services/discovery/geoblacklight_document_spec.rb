@@ -87,6 +87,32 @@ RSpec.describe Discovery::GeoblacklightDocument do
         expect(document[:dc_rights_s]).to eq 'Public'
       end
     end
+
+    context 'with a public image work with a mapset parent' do
+      let(:identifier) { ['ark:/99999/fk44jq866'] }
+      let(:map_set) { FactoryGirl.build(:map_set_with_image_work, identifier: identifier) }
+      let(:visibility) { Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PUBLIC }
+
+      before do
+        map_set.ordered_members << geo_concern
+        map_set.save
+        geo_concern.update_index
+      end
+
+      it 'returns a suppressed document with a source field' do
+        expect(document[:suppressed_b]).to eq true
+        expect(document[:dct_source_sm]).to eq ['princeton-fk44jq866']
+      end
+
+      context 'with the parent map set' do
+        let(:geo_concern_presenter) { MapSetShowPresenter.new(SolrDocument.new(map_set.to_solr), nil) }
+
+        it 'does not return a suppressed document or a source field' do
+          expect(document[:suppressed_b]).to be_nil
+          expect(document[:dct_source_sm]).to be_nil
+        end
+      end
+    end
   end
 
   describe 'references' do

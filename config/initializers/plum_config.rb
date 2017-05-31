@@ -32,7 +32,8 @@ GeoWorks::Discovery::DocumentBuilder.services = [
   Discovery::LayerInfoBuilder,
   Discovery::SlugBuilder,
   Discovery::IIIFBuilder,
-  Discovery::WxsBuilder
+  Discovery::WxsBuilder,
+  Discovery::RelationshipBuilder
 ]
 
 GeoWorks::EventsGenerator.services = [
