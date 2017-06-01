@@ -78,6 +78,27 @@ describe Hyrax::ScannedResourcesController, admin_set: true do
         expect(manifest_generator).not_to have_received(:record_created)
       end
     end
+    context "when given a pulfa id", vcr: { cassette_name: 'pulfa', record: :new_episodes } do
+      let(:scanned_resource_attributes) do
+        FactoryGirl.attributes_for(:scanned_resource).merge(
+          source_metadata_identifier:  "RBD1.1_c284",
+          rights_statement: "http://rightsstatements.org/vocab/NKC/1.0/"
+        )
+      end
+      it "updates the metadata" do
+        post :create, params: { scanned_resource: scanned_resource_attributes }
+        s = ScannedResource.last
+        expect(s.title.first.to_s).to eq 'House - Gift Books, Works By and About Derrida, and Related Items - Kostas Axelos. Vers la pensée planétaire.'
+      end
+      it "posts a creation event to the queue" do
+        manifest_generator = instance_double(ManifestEventGenerator, record_created: true, record_updated: true)
+        allow(ManifestEventGenerator).to receive(:new).and_return(manifest_generator)
+
+        post :create, params: { scanned_resource: scanned_resource_attributes }
+
+        expect(manifest_generator).to have_received(:record_created).with(ScannedResource.last)
+      end
+    end
     context "when selecting a collection" do
       let(:collection) { FactoryGirl.create(:collection, user: user) }
       let(:scanned_resource_attributes) do
