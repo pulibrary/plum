@@ -13,7 +13,9 @@ module Discovery
 
     # Get IIIF path for file set
     def iiif
-      return unless geo_file_set?
+      return unless map_set? || geo_file_set?
+      find_thumbnail_file if map_set?
+      return unless file_set
       "#{path}/info.json"
     end
 
@@ -40,6 +42,16 @@ module Discovery
           file_set_id = [representative_id]
           geo_work.member_presenters(file_set_id).first
         end
+      end
+
+      # Finds the file set for a map set thumbnail
+      def find_thumbnail_file
+        map_set = MapSet.find(geo_work.id)
+        image_work = map_set.thumbnail
+        return unless image_work
+        image_work_presenter = ImageWorkShowPresenter.new(SolrDocument.new(image_work.to_solr), nil)
+        file_set_id = image_work_presenter.solr_document.representative_id
+        @file_set = image_work_presenter.geo_file_set_presenters.find { |presenter| presenter.id == file_set_id }
       end
 
       # Tests if geo work is a map set
