@@ -6,13 +6,13 @@ RSpec.describe Discovery::GeoblacklightDocument do
   let(:geo_concern) { FactoryGirl.build(:image_work, attributes) }
   let(:geo_file_set) { FactoryGirl.create(:file_set, geo_mime_type: geo_mime_type, visibility: visibility) }
   let(:geo_mime_type) { 'image/tiff' }
-  let(:coverage) { GeoWorks::Coverage.new(43.039, -69.856, 42.943, -71.032) }
+  let(:coverage) { GeoWorks::Coverage.new(43.039, -69.856, 42.943, -71.032).to_s }
   let(:attributes) do
     {
       id: 'geo-work-1',
       visibility: visibility,
       title: ['Geo Work'],
-      coverage: coverage.to_s,
+      coverage: coverage,
       identifier: ['ark:/99999/fk4']
     }
   end
@@ -90,11 +90,12 @@ RSpec.describe Discovery::GeoblacklightDocument do
 
     context 'with a public image work with a mapset parent' do
       let(:identifier) { ['ark:/99999/fk44jq866'] }
-      let(:map_set) { FactoryGirl.build(:map_set_with_image_work, identifier: identifier) }
+      let(:map_set) { FactoryGirl.build(:map_set, identifier: identifier, coverage: coverage) }
       let(:visibility) { Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PUBLIC }
 
       before do
         map_set.ordered_members << geo_concern
+        map_set.thumbnail_id = geo_concern.id
         map_set.save
         geo_concern.update_index
       end
@@ -106,10 +107,14 @@ RSpec.describe Discovery::GeoblacklightDocument do
 
       context 'with the parent map set' do
         let(:geo_concern_presenter) { MapSetShowPresenter.new(SolrDocument.new(map_set.to_solr), nil) }
+        let(:document) { document_builder.to_hash }
 
-        it 'does not return a suppressed document or a source field' do
+        it 'returns iiif references and does not return a suppressed document or a source field' do
+          refs = JSON.parse(document[:dct_references_s])
           expect(document[:suppressed_b]).to be_nil
           expect(document[:dct_source_sm]).to be_nil
+          expect(refs).to have_key 'http://iiif.io/api/presentation#manifest'
+          expect(refs).to have_key 'http://iiif.io/api/image'
         end
       end
     end
