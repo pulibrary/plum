@@ -16,9 +16,10 @@
     <%= f.text_field :name %>
   </div>
 
+  <% vocabulary_id = ephemera_field.vocabulary.id if ephemera_field.vocabulary %>
   <div class="field">
     <%= f.label :vocabulary_id %>
-    <%= f.text_field :vocabulary_id %>
+    <%= f.collection_select :vocabulary_id, Vocabulary.order(:label), :id, :label, selected: vocabulary_id %>
   </div>
 
   <div class="actions">
