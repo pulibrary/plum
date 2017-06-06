@@ -12,6 +12,7 @@ class EphemeraBox < ActiveFedora::Base
   validates :barcode, with: :barcode_valid?
   property :barcode, predicate: ::PULTerms.barcode
   property :box_number, predicate: ::RDF::RDFS.label
+  property :ephemera_project, predicate: ::PULTerms.ephemera_project
 
   self.human_readable_type = 'Ephemera Box'
   def box_number=(title)

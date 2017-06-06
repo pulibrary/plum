@@ -29,21 +29,25 @@ class WorkIndexer < Hyrax::WorkIndexer
       end
       solr_doc[Solrizer.solr_name("identifier", :symbol)] = object.identifier
       solr_doc[Solrizer.solr_name("barcode", :symbol)] = object.try(:barcode)
+      if object.respond_to?(:ephemera_project) && object.ephemera_project.first
+        solr_doc[Solrizer.solr_name("ephemera_project", :symbol)] = object.ephemera_project.first
+        solr_doc[Solrizer.solr_name("ephemera_project_name", :symbol)] = EphemeraProject.find(object.ephemera_project.first).name
+      end
       [:geo_subject, :geographic_origin, :genre, :subject].each do |property|
         next unless object.respond_to?(property)
         solr_doc[Solrizer.solr_name(property.to_s, :facetable)] = object.send(property).map do |code|
-          authority = AuthorityFinder.for(property: property, model: object)
+          authority = AuthorityFinder.for(property: "#{object.model_name}.#{property}", project: object.try(:project))
           authority.find(code)[:label] if authority
         end.compact
       end
-      subject_authority = AuthorityFinder.for(property: :subject, model: object)
+      subject_authority = AuthorityFinder.for(property: "#{object.model_name}.subject", project: object.try(:project))
       if subject_authority
         solr_doc[Solrizer.solr_name("category", :facetable)] = object.send(:subject).map do |code|
           subject_authority.find(code)[:vocabulary] if subject_authority
         end.compact
       end
       solr_doc[Solrizer.solr_name("language", :facetable)] = object.language.map do |code|
-        AuthorityFinder.for(property: :language, model: object).try(:find, code).try(:[], :label) || LanguageService.label(code)
+        AuthorityFinder.for(property: "#{object.model_name}.language", project: object.try(:project)).try(:find, code).try(:[], :label) || LanguageService.label(code)
       end
 
       suppress solr_doc, 'source_metadata'

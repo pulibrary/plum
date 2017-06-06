@@ -2,28 +2,12 @@
 
 <h1>Ephemera Projects</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Ephemera project</th>
-      <th>Vocabulary</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @ephemera_projects.each do |ephemera_project| %>
-      <tr>
-        <td><%= ephemera_project.name %></td>
-        <td><%= link_to 'Show', ephemera_project %></td>
-        <td><%= link_to 'Edit', edit_ephemera_project_path(ephemera_project) %></td>
-        <td><%= link_to 'Destroy', ephemera_project, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<ul>
+  <% @ephemera_projects.order(:name).each do |ephemera_project| %>
+      <li><%= link_to ephemera_project.name, ephemera_project %></li>
+  <% end %>
+</ul>
 
 <br>
 
-<%= link_to 'New Ephemera Project', new_ephemera_project_path %>
+<%= link_to 'New Ephemera Project', new_ephemera_project_path, class: 'btn btn-primary' %>

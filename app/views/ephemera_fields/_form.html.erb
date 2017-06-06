@@ -1,7 +1,7 @@
 <%= form_for([ephemera_project, ephemera_field]) do |f| %>
   <% if ephemera_field.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(ephemera_field.errors.count, "error") %> prohibited this ephemera_field from being saved:</h2>
+      <h2><%= pluralize(ephemera_field.errors.count, "error") %> prohibited this field from being saved:</h2>
 
       <ul>
       <% ephemera_field.errors.full_messages.each do |message| %>
@@ -13,7 +13,7 @@
 
   <div class="field">
     <%= f.label :name %>
-    <%= f.text_field :name %>
+    <%= f.select :name, controllable_fields %>
   </div>
 
   <% vocabulary_id = ephemera_field.vocabulary.id if ephemera_field.vocabulary %>
@@ -23,6 +23,12 @@
   </div>
 
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit(class: 'btn btn-primary') %>
+    <% if params[:action] == "new" %>
+      <%= link_to 'Cancel', @ephemera_project, class: 'btn btn-default' %>
+    <% else %>
+      <%= link_to 'Cancel', @ephemera_project, class: 'btn btn-default' %>
+      <%= link_to 'Delete This Field', ephemera_project_ephemera_fields_path(@ephemera_project, ephemera_field), class: 'btn btn-danger pull-right', data: { confirm: "Delete this Field?" }, method: :delete %>
+    <% end %>
   </div>
 <% end %>

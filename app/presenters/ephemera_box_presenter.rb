@@ -1,5 +1,5 @@
 class EphemeraBoxPresenter < HyraxShowPresenter
-  delegate :barcode, to: :solr_document
+  delegate :barcode, :ephemera_project, :ephemera_project_name, to: :solr_document
   def member_presenters
     @member_presenters ||= Hyrax::PresenterFactory.build_presenters(member_ids,
                                                                     DynamicShowPresenter.new,
