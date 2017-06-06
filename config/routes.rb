@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
-  resources :ephemera_fields
-  resources :ephemera_projects
+  resources :ephemera_projects do
+    resources :ephemera_fields
+  end
   mount Grocer::Engine => '/'
   mount JasmineRails::Engine => '/specs' if defined?(JasmineRails)
   mount BrowseEverything::Engine => '/browse'

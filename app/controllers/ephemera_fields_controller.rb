@@ -1,10 +1,11 @@
 class EphemeraFieldsController < ApplicationController
   before_action :set_ephemera_field, only: [:show, :edit, :update, :destroy]
+  before_action :set_ephemera_project
 
   # GET /ephemera_fields
   # GET /ephemera_fields.json
   def index
-    @ephemera_fields = EphemeraField.all
+    @ephemera_fields = @ephemera_project.ephemera_fields.all
   end
 
   # GET /ephemera_fields/1
@@ -14,7 +15,7 @@ class EphemeraFieldsController < ApplicationController
 
   # GET /ephemera_fields/new
   def new
-    @ephemera_field = EphemeraField.new
+    @ephemera_field = @ephemera_project.ephemera_fields.new
   end
 
   # GET /ephemera_fields/1/edit
@@ -24,11 +25,11 @@ class EphemeraFieldsController < ApplicationController
   # POST /ephemera_fields
   # POST /ephemera_fields.json
   def create
-    @ephemera_field = EphemeraField.new(ephemera_field_params)
+    @ephemera_field = @ephemera_project.ephemera_fields.new(ephemera_field_params)
 
     respond_to do |format|
       if @ephemera_field.save
-        format.html { redirect_to @ephemera_field, notice: 'Ephemera field was successfully created.' }
+        format.html { redirect_to @ephemera_project, notice: 'Ephemera field was successfully created.' }
         format.json { render :show, status: :created, location: @ephemera_field }
       else
         format.html { render :new }
@@ -42,7 +43,7 @@ class EphemeraFieldsController < ApplicationController
   def update
     respond_to do |format|
       if @ephemera_field.update(ephemera_field_params)
-        format.html { redirect_to @ephemera_field, notice: 'Ephemera field was successfully updated.' }
+        format.html { redirect_to @ephemera_project, notice: 'Ephemera field was successfully updated.' }
         format.json { render :show, status: :ok, location: @ephemera_field }
       else
         format.html { render :edit }
@@ -56,7 +57,7 @@ class EphemeraFieldsController < ApplicationController
   def destroy
     @ephemera_field.destroy
     respond_to do |format|
-      format.html { redirect_to ephemera_fields_url, notice: 'Ephemera field was successfully destroyed.' }
+      format.html { redirect_to @ephemera_project, notice: 'Ephemera field was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -65,6 +66,10 @@ class EphemeraFieldsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_ephemera_field
       @ephemera_field = EphemeraField.find(params[:id])
+    end
+
+    def set_ephemera_project
+      @ephemera_project = EphemeraProject.find(params[:ephemera_project_id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
