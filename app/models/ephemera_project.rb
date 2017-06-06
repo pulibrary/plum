@@ -1,0 +1,2 @@
+class EphemeraProject < ApplicationRecord
+end

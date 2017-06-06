@@ -71,6 +71,12 @@ ActiveRecord::Schema.define(version: 20170613195349) do
     t.index ["user_id"], name: "index_curation_concerns_operations_on_user_id"
   end
 
+  create_table "ephemera_projects", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "featured_works", force: :cascade do |t|
     t.integer  "order",      default: 5
     t.string   "work_id"

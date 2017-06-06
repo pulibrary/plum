@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @ephemera_project.name %>
+</p>
+
+<%= link_to 'Edit', edit_ephemera_project_path(@ephemera_project) %> |
+<%= link_to 'Back', ephemera_projects_path %>
+
+<br/>
+
+<h1>Fields</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Vocabulary</th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @ephemera_fields.each do |ephemera_field| %>
+      <tr>
+        <td><%= link_to ephemera_field.name, ephemera_field %></td>
+        <td><%= link_to ephemera_field.vocabulary.name, ephemera_field.vocabulary %></td>
+        <td><%= link_to 'Edit', edit_ephemera_project_ephemera_field_path(ephemera_field) %></td>
+        <td><%= link_to 'Destroy', ephemera_project_ephemera_field, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= link_to 'Add Field', new_ephemera_project_ephemera_field_path(@ephemera_project) %>
