@@ -85,6 +85,7 @@ RSpec.describe Discovery::GeoblacklightDocument do
         expect(refs).to have_key 'http://iiif.io/api/image'
         expect(refs).to have_key 'http://iiif.io/api/presentation#manifest'
         expect(document[:dc_rights_s]).to eq 'Public'
+        expect(document[:layer_geom_type_s]).to eq 'Image'
       end
     end
 
@@ -113,6 +114,7 @@ RSpec.describe Discovery::GeoblacklightDocument do
           refs = JSON.parse(document[:dct_references_s])
           expect(document[:suppressed_b]).to be_nil
           expect(document[:dct_source_sm]).to be_nil
+          expect(document[:layer_geom_type_s]).to eq 'Image'
           expect(refs).to have_key 'http://iiif.io/api/presentation#manifest'
           expect(refs).to have_key 'http://iiif.io/api/image'
         end

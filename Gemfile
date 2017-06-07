@@ -39,7 +39,7 @@ gem 'rsolr', '~> 1.1.0'
 gem 'devise' , '~> 4.2.0'
 gem 'devise-guests', '~> 0.3'
 gem 'iiif-presentation', github: 'iiif/osullivan', branch: 'development'
-gem 'geo_works', '~> 0.1.1'
+gem 'geo_works', '~> 0.1.2'
 
 # PDF generation
 gem 'prawn'
