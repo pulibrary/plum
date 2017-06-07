@@ -7,19 +7,6 @@ GIT
       tinymce-rails (~> 4.0)
 
 GIT
-  remote: git://github.com/geoconcerns/geo_works.git
-  revision: 876480761d095d55c0fc6491217441e5da45997b
-  branch: master
-  specs:
-    geo_works (0.3.4)
-      hyrax (>= 1.0.0.rc1, < 2.0)
-      jquery-ui-rails (~> 5.0.5)
-      json-schema (>= 2.6.2)
-      leaflet-rails (~> 0.7)
-      rgeoserver (>= 0.10.0)
-      simpler-tiles
-
-GIT
   remote: git://github.com/iiif/osullivan.git
   revision: 1113f6b17a0c7bde22eca60fbf1231ed5d8b4daa
   branch: development
@@ -343,6 +330,13 @@ GEM
       jquery-rails
     font-awesome-rails (4.7.0.1)
       railties (>= 3.2, < 5.1)
+    geo_works (0.1.1)
+      hyrax (>= 1.0.1, < 2.0)
+      jquery-ui-rails (~> 5.0.5)
+      json-schema (>= 2.6.2)
+      leaflet-rails (~> 0.7)
+      rgeoserver (>= 0.10.0)
+      simpler-tiles
     globalid (0.4.0)
       activesupport (>= 4.2.0)
     google-api-client (0.10.3)
@@ -905,7 +899,7 @@ DEPENDENCIES
   factory_girl
   fcrepo_wrapper (~> 0.8.0)
   flipflop!
-  geo_works!
+  geo_works (~> 0.1.1)
   grocer!
   honeybadger (~> 2.0)
   hydra-derivatives (= 3.1.3)
@@ -967,4 +961,4 @@ DEPENDENCIES
   webmock (~> 1.0)
 
 BUNDLED WITH
-   1.14.5
+   1.14.6
