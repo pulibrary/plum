@@ -2,7 +2,7 @@ FactoryGirl.define do
   factory :ephemera_folder do
     title ["Example Folder"]
     folder_number [3]
-    identifier ["32101091980639"]
+    barcode ["32101091980639"]
     rights_statement ["http://rightsstatements.org/vocab/NKC/1.0/"]
     visibility Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PUBLIC
 

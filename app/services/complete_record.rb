@@ -43,7 +43,7 @@ class CompleteRecord
     end
 
     def url
-      if record.source_metadata_identifier.blank?
+      if record.try(:source_metadata_identifier).blank?
         return ManifestBuilder::ManifestHelper.new.polymorphic_url(record)
       elsif RemoteRecord.bibdata?(record.source_metadata_identifier.first)
         return "https://pulsearch.princeton.edu/catalog/#{record.source_metadata_identifier.first}#view"

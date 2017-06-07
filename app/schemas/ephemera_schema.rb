@@ -1,5 +1,6 @@
 class EphemeraSchema < ActiveTriples::Schema
   # Administrative
+  property :barcode, predicate: ::PULTerms.barcode
   property :folder_number, predicate: ::RDF::RDFS.label
   property :width, predicate: ::RDF::Vocab::SCHEMA.width
   property :height, predicate: ::RDF::Vocab::SCHEMA.height

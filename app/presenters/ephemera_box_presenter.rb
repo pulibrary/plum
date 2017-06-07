@@ -1,4 +1,5 @@
 class EphemeraBoxPresenter < HyraxShowPresenter
+  delegate :barcode, to: :solr_document
   def member_presenters
     @member_presenters ||= Hyrax::PresenterFactory.build_presenters(member_ids,
                                                                     DynamicShowPresenter.new,
@@ -12,10 +13,5 @@ class EphemeraBoxPresenter < HyraxShowPresenter
                                                        fl: "id")
                        .flat_map { |x| x.fetch("id", nil) }.compact
                      end
-  end
-
-  def renderer_for(field, _options)
-    return ::BarcodeAttributeRenderer if field == :identifier
-    super
   end
 end
