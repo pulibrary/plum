@@ -2,6 +2,8 @@ require 'rails_helper'
 
 RSpec.describe EphemeraFolderPresenter do
   let(:folder) { FactoryGirl.build(:ephemera_folder) }
+  let(:box) { FactoryGirl.create(:ephemera_box, ephemera_project: [project.id]) }
+  let(:project) { FactoryGirl.create(:ephemera_project) }
 
   let(:blacklight_config) do
     double(
@@ -20,7 +22,8 @@ RSpec.describe EphemeraFolderPresenter do
       end
       before do
         Qa::Authorities::Local.registry.instance_variable_get(:@hash).delete("languages")
-        vocabulary
+        EphemeraField.create! ephemera_project: project, name: "EphemeraFolder.language", vocabulary: vocabulary
+        folder.member_of_collections = [box]
       end
       let(:vocabulary) do
         Vocabulary.create!(label: "languages").tap do |vocab|
@@ -42,7 +45,8 @@ RSpec.describe EphemeraFolderPresenter do
       end
       before do
         Qa::Authorities::Local.registry.instance_variable_get(:@hash).delete("Genre")
-        vocabulary
+        EphemeraField.create! ephemera_project: project, name: "EphemeraFolder.genre", vocabulary: vocabulary
+        folder.member_of_collections = [box]
       end
       let(:vocabulary) do
         Vocabulary.create!(label: "Genre").tap do |vocab|
@@ -64,7 +68,8 @@ RSpec.describe EphemeraFolderPresenter do
       end
       before do
         Qa::Authorities::Local.registry.instance_variable_get(:@hash).delete("Geographic Origin")
-        vocabulary
+        EphemeraField.create! ephemera_project: project, name: "EphemeraFolder.geographic_origin", vocabulary: vocabulary
+        folder.member_of_collections = [box]
       end
       let(:vocabulary) do
         Vocabulary.create!(label: "Geographic Origin").tap do |vocab|
@@ -86,7 +91,8 @@ RSpec.describe EphemeraFolderPresenter do
       end
       before do
         Qa::Authorities::Local.registry.instance_variable_get(:@hash).delete("Geographic Origin")
-        vocabulary
+        EphemeraField.create! ephemera_project: project, name: "EphemeraFolder.geo_subject", vocabulary: vocabulary
+        folder.member_of_collections = [box]
       end
       let(:vocabulary) do
         Vocabulary.create!(label: "Geographic Origin").tap do |vocab|
@@ -117,7 +123,8 @@ RSpec.describe EphemeraFolderPresenter do
       before do
         Qa::Authorities::Local.registry.instance_variable_get(:@hash).delete("Subjects")
         Qa::Authorities::Local.registry.instance_variable_get(:@hash).delete("Test")
-        vocabulary
+        EphemeraField.create! ephemera_project: project, name: "EphemeraFolder.subject", vocabulary: vocabulary
+        folder.member_of_collections = [box]
       end
       let(:vocabulary) do
         Vocabulary.create!(label: "Subjects").tap do |vocab|

@@ -19,7 +19,6 @@ require 'rails_helper'
 # that an instance is receiving a specific message.
 
 RSpec.describe EphemeraProjectsController, type: :controller do
-
   # This should return the minimal set of attributes required to create a valid
   # EphemeraProject. As you add validations to EphemeraProject, be sure to
   # adjust the attributes here as well.
@@ -47,7 +46,7 @@ RSpec.describe EphemeraProjectsController, type: :controller do
   describe "GET #show" do
     it "assigns the requested ephemera_project as @ephemera_project" do
       ephemera_project = EphemeraProject.create! valid_attributes
-      get :show, params: {id: ephemera_project.to_param}, session: valid_session
+      get :show, params: { id: ephemera_project.to_param }, session: valid_session
       expect(assigns(:ephemera_project)).to eq(ephemera_project)
     end
   end
@@ -62,7 +61,7 @@ RSpec.describe EphemeraProjectsController, type: :controller do
   describe "GET #edit" do
     it "assigns the requested ephemera_project as @ephemera_project" do
       ephemera_project = EphemeraProject.create! valid_attributes
-      get :edit, params: {id: ephemera_project.to_param}, session: valid_session
+      get :edit, params: { id: ephemera_project.to_param }, session: valid_session
       expect(assigns(:ephemera_project)).to eq(ephemera_project)
     end
   end
@@ -71,30 +70,30 @@ RSpec.describe EphemeraProjectsController, type: :controller do
     context "with valid params" do
       it "creates a new EphemeraProject" do
         expect {
-          post :create, params: {ephemera_project: valid_attributes}, session: valid_session
+          post :create, params: { ephemera_project: valid_attributes }, session: valid_session
         }.to change(EphemeraProject, :count).by(1)
       end
 
       it "assigns a newly created ephemera_project as @ephemera_project" do
-        post :create, params: {ephemera_project: valid_attributes}, session: valid_session
+        post :create, params: { ephemera_project: valid_attributes }, session: valid_session
         expect(assigns(:ephemera_project)).to be_a(EphemeraProject)
         expect(assigns(:ephemera_project)).to be_persisted
       end
 
       it "redirects to the created ephemera_project" do
-        post :create, params: {ephemera_project: valid_attributes}, session: valid_session
+        post :create, params: { ephemera_project: valid_attributes }, session: valid_session
         expect(response).to redirect_to(EphemeraProject.last)
       end
     end
 
     context "with invalid params" do
       it "assigns a newly created but unsaved ephemera_project as @ephemera_project" do
-        post :create, params: {ephemera_project: invalid_attributes}, session: valid_session
+        post :create, params: { ephemera_project: invalid_attributes }, session: valid_session
         expect(assigns(:ephemera_project)).to be_a_new(EphemeraProject)
       end
 
       it "re-renders the 'new' template" do
-        post :create, params: {ephemera_project: invalid_attributes}, session: valid_session
+        post :create, params: { ephemera_project: invalid_attributes }, session: valid_session
         expect(response).to render_template("new")
       end
     end
@@ -108,20 +107,20 @@ RSpec.describe EphemeraProjectsController, type: :controller do
 
       it "updates the requested ephemera_project" do
         ephemera_project = EphemeraProject.create! valid_attributes
-        put :update, params: {id: ephemera_project.to_param, ephemera_project: new_attributes}, session: valid_session
+        put :update, params: { id: ephemera_project.to_param, ephemera_project: new_attributes }, session: valid_session
         ephemera_project.reload
         skip("Add assertions for updated state")
       end
 
       it "assigns the requested ephemera_project as @ephemera_project" do
         ephemera_project = EphemeraProject.create! valid_attributes
-        put :update, params: {id: ephemera_project.to_param, ephemera_project: valid_attributes}, session: valid_session
+        put :update, params: { id: ephemera_project.to_param, ephemera_project: valid_attributes }, session: valid_session
         expect(assigns(:ephemera_project)).to eq(ephemera_project)
       end
 
       it "redirects to the ephemera_project" do
         ephemera_project = EphemeraProject.create! valid_attributes
-        put :update, params: {id: ephemera_project.to_param, ephemera_project: valid_attributes}, session: valid_session
+        put :update, params: { id: ephemera_project.to_param, ephemera_project: valid_attributes }, session: valid_session
         expect(response).to redirect_to(ephemera_project)
       end
     end
@@ -129,13 +128,13 @@ RSpec.describe EphemeraProjectsController, type: :controller do
     context "with invalid params" do
       it "assigns the ephemera_project as @ephemera_project" do
         ephemera_project = EphemeraProject.create! valid_attributes
-        put :update, params: {id: ephemera_project.to_param, ephemera_project: invalid_attributes}, session: valid_session
+        put :update, params: { id: ephemera_project.to_param, ephemera_project: invalid_attributes }, session: valid_session
         expect(assigns(:ephemera_project)).to eq(ephemera_project)
       end
 
       it "re-renders the 'edit' template" do
         ephemera_project = EphemeraProject.create! valid_attributes
-        put :update, params: {id: ephemera_project.to_param, ephemera_project: invalid_attributes}, session: valid_session
+        put :update, params: { id: ephemera_project.to_param, ephemera_project: invalid_attributes }, session: valid_session
         expect(response).to render_template("edit")
       end
     end
@@ -145,15 +144,14 @@ RSpec.describe EphemeraProjectsController, type: :controller do
     it "destroys the requested ephemera_project" do
       ephemera_project = EphemeraProject.create! valid_attributes
       expect {
-        delete :destroy, params: {id: ephemera_project.to_param}, session: valid_session
+        delete :destroy, params: { id: ephemera_project.to_param }, session: valid_session
       }.to change(EphemeraProject, :count).by(-1)
     end
 
     it "redirects to the ephemera_projects list" do
       ephemera_project = EphemeraProject.create! valid_attributes
-      delete :destroy, params: {id: ephemera_project.to_param}, session: valid_session
+      delete :destroy, params: { id: ephemera_project.to_param }, session: valid_session
       expect(response).to redirect_to(ephemera_projects_url)
     end
   end
-
 end

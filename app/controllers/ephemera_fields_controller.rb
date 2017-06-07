@@ -1,17 +1,6 @@
 class EphemeraFieldsController < ApplicationController
-  before_action :set_ephemera_field, only: [:show, :edit, :update, :destroy]
+  before_action :set_ephemera_field, only: [:edit, :update, :destroy]
   before_action :set_ephemera_project
-
-  # GET /ephemera_fields
-  # GET /ephemera_fields.json
-  def index
-    @ephemera_fields = @ephemera_project.ephemera_fields.all
-  end
-
-  # GET /ephemera_fields/1
-  # GET /ephemera_fields/1.json
-  def show
-  end
 
   # GET /ephemera_fields/new
   def new
@@ -30,7 +19,7 @@ class EphemeraFieldsController < ApplicationController
     respond_to do |format|
       if @ephemera_field.save
         format.html { redirect_to @ephemera_project, notice: 'Ephemera field was successfully created.' }
-        format.json { render :show, status: :created, location: @ephemera_field }
+        format.json { head :created, location: @ephemera_field }
       else
         format.html { render :new }
         format.json { render json: @ephemera_field.errors, status: :unprocessable_entity }
@@ -44,7 +33,7 @@ class EphemeraFieldsController < ApplicationController
     respond_to do |format|
       if @ephemera_field.update(ephemera_field_params)
         format.html { redirect_to @ephemera_project, notice: 'Ephemera field was successfully updated.' }
-        format.json { render :show, status: :ok, location: @ephemera_field }
+        format.json { head :no_content }
       else
         format.html { render :edit }
         format.json { render json: @ephemera_field.errors, status: :unprocessable_entity }
@@ -63,6 +52,7 @@ class EphemeraFieldsController < ApplicationController
   end
 
   private
+
     # Use callbacks to share common setup or constraints between actions.
     def set_ephemera_field
       @ephemera_field = EphemeraField.find(params[:id])

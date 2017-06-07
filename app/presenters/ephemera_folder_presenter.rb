@@ -1,7 +1,7 @@
 class EphemeraFolderPresenter < HyraxShowPresenter
   include PlumAttributes
   self.collection_presenter_class = DynamicShowPresenter.new
-  delegate :barcode, :folder_number, to: :solr_document
+  delegate :barcode, :folder_number, :box_id, :ephemera_project_id, to: :solr_document
 
   def language
     Array.wrap(super).map do |id|
@@ -34,7 +34,7 @@ class EphemeraFolderPresenter < HyraxShowPresenter
   end
 
   def authority_for(property)
-    AuthorityFinder.for(property: property, model: self) || NullAuthority
+    AuthorityFinder.for(property: "EphemeraFolder.#{property}", project: ephemera_project_id) || NullAuthority
   end
 
   class NullAuthority

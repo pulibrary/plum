@@ -19,42 +19,19 @@ require 'rails_helper'
 # that an instance is receiving a specific message.
 
 RSpec.describe EphemeraFieldsController, type: :controller do
-
-  # This should return the minimal set of attributes required to create a valid
-  # EphemeraField. As you add validations to EphemeraField, be sure to
-  # adjust the attributes here as well.
-  let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
-  }
-
-  let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
-  }
+  let(:project) { FactoryGirl.create :ephemera_project }
+  let(:vocab) { FactoryGirl.create :vocabulary }
+  let(:valid_attributes) { { name: 'EphemeraFolder.language', vocabulary: vocab } }
+  let(:invalid_attributes) { { name: 'EphemeraFolder.language' } }
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
   # EphemeraFieldsController. Be sure to keep this updated too.
   let(:valid_session) { {} }
 
-  describe "GET #index" do
-    it "assigns all ephemera_fields as @ephemera_fields" do
-      ephemera_field = EphemeraField.create! valid_attributes
-      get :index, params: {}, session: valid_session
-      expect(assigns(:ephemera_fields)).to eq([ephemera_field])
-    end
-  end
-
-  describe "GET #show" do
-    it "assigns the requested ephemera_field as @ephemera_field" do
-      ephemera_field = EphemeraField.create! valid_attributes
-      get :show, params: {id: ephemera_field.to_param}, session: valid_session
-      expect(assigns(:ephemera_field)).to eq(ephemera_field)
-    end
-  end
-
   describe "GET #new" do
     it "assigns a new ephemera_field as @ephemera_field" do
-      get :new, params: {}, session: valid_session
+      get :new, params: { ephemera_project_id: project.id }, session: valid_session
       expect(assigns(:ephemera_field)).to be_a_new(EphemeraField)
     end
   end
@@ -62,7 +39,7 @@ RSpec.describe EphemeraFieldsController, type: :controller do
   describe "GET #edit" do
     it "assigns the requested ephemera_field as @ephemera_field" do
       ephemera_field = EphemeraField.create! valid_attributes
-      get :edit, params: {id: ephemera_field.to_param}, session: valid_session
+      get :edit, params: { id: ephemera_field.to_param, ephemera_project_id: project.id }, session: valid_session
       expect(assigns(:ephemera_field)).to eq(ephemera_field)
     end
   end
@@ -71,72 +48,59 @@ RSpec.describe EphemeraFieldsController, type: :controller do
     context "with valid params" do
       it "creates a new EphemeraField" do
         expect {
-          post :create, params: {ephemera_field: valid_attributes}, session: valid_session
+          post :create, params: { ephemera_field: valid_attributes, ephemera_project_id: project.id }, session: valid_session
         }.to change(EphemeraField, :count).by(1)
       end
 
       it "assigns a newly created ephemera_field as @ephemera_field" do
-        post :create, params: {ephemera_field: valid_attributes}, session: valid_session
+        post :create, params: { ephemera_field: valid_attributes, ephemera_project_id: project.id }, session: valid_session
         expect(assigns(:ephemera_field)).to be_a(EphemeraField)
         expect(assigns(:ephemera_field)).to be_persisted
       end
 
       it "redirects to the created ephemera_field" do
-        post :create, params: {ephemera_field: valid_attributes}, session: valid_session
-        expect(response).to redirect_to(EphemeraField.last)
+        post :create, params: { ephemera_field: valid_attributes, ephemera_project_id: project.id }, session: valid_session
+        expect(response).to redirect_to(ephemera_project_url(project))
       end
     end
 
     context "with invalid params" do
       it "assigns a newly created but unsaved ephemera_field as @ephemera_field" do
-        post :create, params: {ephemera_field: invalid_attributes}, session: valid_session
-        expect(assigns(:ephemera_field)).to be_a_new(EphemeraField)
-      end
-
-      it "re-renders the 'new' template" do
-        post :create, params: {ephemera_field: invalid_attributes}, session: valid_session
-        expect(response).to render_template("new")
+        post :create, params: { ephemera_field: invalid_attributes, ephemera_project_id: project.id }, session: valid_session
+        expect(response).not_to be_successful
       end
     end
   end
 
   describe "PUT #update" do
     context "with valid params" do
-      let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
-      }
+      let(:new_attributes) { { name: 'EphemeraFolder.genre', vocabulary: vocab } }
 
       it "updates the requested ephemera_field" do
         ephemera_field = EphemeraField.create! valid_attributes
-        put :update, params: {id: ephemera_field.to_param, ephemera_field: new_attributes}, session: valid_session
+        put :update, params: { id: ephemera_field.to_param, ephemera_field: new_attributes, ephemera_project_id: project.id }, session: valid_session
         ephemera_field.reload
-        skip("Add assertions for updated state")
+        expect(ephemera_field.name).to eq('EphemeraFolder.genre')
       end
 
       it "assigns the requested ephemera_field as @ephemera_field" do
         ephemera_field = EphemeraField.create! valid_attributes
-        put :update, params: {id: ephemera_field.to_param, ephemera_field: valid_attributes}, session: valid_session
+        put :update, params: { id: ephemera_field.to_param, ephemera_field: valid_attributes, ephemera_project_id: project.id }, session: valid_session
         expect(assigns(:ephemera_field)).to eq(ephemera_field)
       end
 
       it "redirects to the ephemera_field" do
         ephemera_field = EphemeraField.create! valid_attributes
-        put :update, params: {id: ephemera_field.to_param, ephemera_field: valid_attributes}, session: valid_session
-        expect(response).to redirect_to(ephemera_field)
+        put :update, params: { id: ephemera_field.to_param, ephemera_field: valid_attributes, ephemera_project_id: project.id }, session: valid_session
+        expect(response).to redirect_to(ephemera_project_url(project))
       end
     end
 
     context "with invalid params" do
       it "assigns the ephemera_field as @ephemera_field" do
         ephemera_field = EphemeraField.create! valid_attributes
-        put :update, params: {id: ephemera_field.to_param, ephemera_field: invalid_attributes}, session: valid_session
-        expect(assigns(:ephemera_field)).to eq(ephemera_field)
-      end
-
-      it "re-renders the 'edit' template" do
-        ephemera_field = EphemeraField.create! valid_attributes
-        put :update, params: {id: ephemera_field.to_param, ephemera_field: invalid_attributes}, session: valid_session
-        expect(response).to render_template("edit")
+        put :update, params: { id: ephemera_field.to_param, ephemera_field: invalid_attributes, ephemera_project_id: project.id }, session: valid_session
+        expect(response).not_to be_successful
       end
     end
   end
@@ -145,15 +109,14 @@ RSpec.describe EphemeraFieldsController, type: :controller do
     it "destroys the requested ephemera_field" do
       ephemera_field = EphemeraField.create! valid_attributes
       expect {
-        delete :destroy, params: {id: ephemera_field.to_param}, session: valid_session
+        delete :destroy, params: { id: ephemera_field.to_param, ephemera_project_id: project.id }, session: valid_session
       }.to change(EphemeraField, :count).by(-1)
     end
 
     it "redirects to the ephemera_fields list" do
       ephemera_field = EphemeraField.create! valid_attributes
-      delete :destroy, params: {id: ephemera_field.to_param}, session: valid_session
-      expect(response).to redirect_to(ephemera_fields_url)
+      delete :destroy, params: { id: ephemera_field.to_param, ephemera_project_id: project.id }, session: valid_session
+      expect(response).to redirect_to(ephemera_project_url(project))
     end
   end
-
 end

@@ -7,6 +7,11 @@ class WorkIndexer < Hyrax::WorkIndexer
         solr_doc[key] ||= []
         solr_doc[key] << col.try(:exhibit_id)
         solr_doc[key].compact!
+
+        if col.is_a?(EphemeraBox)
+          solr_doc[Solrizer.solr_name('box_id', :symbol)] = col.id
+          solr_doc[Solrizer.solr_name('ephemera_project_id', :symbol)] = col.ephemera_project
+        end
       end
       (PlumSchema.display_fields + [:title]).each do |field|
         objects = object.get_values(field, literal: true)

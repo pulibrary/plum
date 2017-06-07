@@ -1,7 +1,4 @@
-<%
-  box = EphemeraBox.find(params[:parent_id]) if params[:parent_id]
-  authority = AuthorityFinder.for(property: "#{f.object.model_name}.#{key}", project: box.ephemera_project.first) if box.ephemera_project.first
-%>
+<% authority = find_authority(params[:parent_id], "#{f.object.model_name}.#{key}") %>
 <% if authority %>
   <% options = Hyrax::QaSelectService.new(authority.subauthority_name) %>
   <%= f.input key,

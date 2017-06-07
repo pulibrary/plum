@@ -2,23 +2,21 @@ require 'rails_helper'
 
 RSpec.describe "ephemera_fields/edit", type: :view do
   before(:each) do
+    @project = assign(:ephemera_project, EphemeraProject.create!(name: "My Project"))
+    @vocab = Vocabulary.create!(label: "My Vocab")
     @ephemera_field = assign(:ephemera_field, EphemeraField.create!(
-      :name => "MyString",
-      :ephemera_project_id => 1,
-      :vocabulary => nil
+                                                name: "My Field",
+                                                ephemera_project_id: @project.id,
+                                                vocabulary: @vocab
     ))
   end
 
   it "renders the edit ephemera_field form" do
     render
 
-    assert_select "form[action=?][method=?]", ephemera_field_path(@ephemera_field), "post" do
-
-      assert_select "input#ephemera_field_name[name=?]", "ephemera_field[name]"
-
-      assert_select "input#ephemera_field_ephemera_project_id[name=?]", "ephemera_field[ephemera_project_id]"
-
-      assert_select "input#ephemera_field_vocabulary_id[name=?]", "ephemera_field[vocabulary_id]"
+    assert_select "form[action=?][method=?]", ephemera_project_ephemera_field_path(@project, @ephemera_field), "post" do
+      assert_select "select#ephemera_field_name[name=?]", "ephemera_field[name]"
+      assert_select "select#ephemera_field_vocabulary_id[name=?]", "ephemera_field[vocabulary_id]"
     end
   end
 end

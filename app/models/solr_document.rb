@@ -63,6 +63,10 @@ class SolrDocument
     Array(self[Solrizer.solr_name('ephemera_project_name', :symbol)]).first
   end
 
+  def ephemera_project_id
+    Array(self[Solrizer.solr_name('ephemera_project_id', :symbol)]).first
+  end
+
   def method_missing(meth_name, *args, &block)
     attribute = Attribute.for(meth_name, self)
     return attribute.value if attribute.valid?

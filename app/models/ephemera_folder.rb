@@ -31,13 +31,13 @@ class EphemeraFolder < ActiveFedora::Base
   end
 
   def box
-    member_of_collections.to_a.find do |coll|
+    @box ||= member_of_collections.to_a.find do |coll|
       coll.is_a?(EphemeraBox)
     end
   end
 
   def project
-    box.ephemera_project.first
+    box.ephemera_project.first if box
   end
 
   def identifier

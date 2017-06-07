@@ -62,6 +62,7 @@ class EphemeraProjectsController < ApplicationController
   end
 
   private
+
     # Use callbacks to share common setup or constraints between actions.
     def set_ephemera_project
       @ephemera_project = EphemeraProject.find(params[:id])
