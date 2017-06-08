@@ -95,7 +95,7 @@ RSpec.describe Hyrax::MapSetsController, admin_set: true do
           response_json = JSON.parse(response.body)
           references = JSON.parse(response_json['dct_references_s'])
           expect(response_json['dc_format_s']).to eq 'TIFF'
-          expect(response_json['layer_geom_type_s']).to eq 'Scanned Map'
+          expect(response_json['layer_geom_type_s']).to eq 'Image'
           expect(references).to include('http://iiif.io/api/presentation#manifest')
           expect(references).to include('http://schema.org/thumbnailUrl')
         end

@@ -330,7 +330,7 @@ GEM
       jquery-rails
     font-awesome-rails (4.7.0.1)
       railties (>= 3.2, < 5.1)
-    geo_works (0.1.1)
+    geo_works (0.1.2)
       hyrax (>= 1.0.1, < 2.0)
       jquery-ui-rails (~> 5.0.5)
       json-schema (>= 2.6.2)
@@ -899,7 +899,7 @@ DEPENDENCIES
   factory_girl
   fcrepo_wrapper (~> 0.8.0)
   flipflop!
-  geo_works (~> 0.1.1)
+  geo_works (~> 0.1.2)
   grocer!
   honeybadger (~> 2.0)
   hydra-derivatives (= 3.1.3)

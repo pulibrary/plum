@@ -4,7 +4,7 @@ module Discovery
 
       def geom_type
         if geo_concern.model_name == 'MapSet'
-          'Scanned Map'
+          'Image'
         else
           super
         end
