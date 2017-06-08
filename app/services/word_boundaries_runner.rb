@@ -24,9 +24,7 @@ class WordBoundariesRunner
         json[word_part] << info
       end
     end
-    File.open(json_filepath(), 'w') do |fh|
-      fh.puts json.to_json
-    end
+    File.write(json_filepath(), json.to_json)
 
     if hocr_exists?
       file_set = FileSet.find(@id)
