@@ -1,8 +1,7 @@
 require 'rails_helper'
-
 RSpec.describe WordBoundariesRunner do
   let(:file_set) { FileSet.new }
-  let(:runner) { WordBoundariesRunner.new(file_set.id) }
+  let(:runner) { described_class.new(file_set.id) }
   let(:doc) { File.open(Rails.root.join('spec', 'fixtures', 'files', 'test.hocr')) { |f| Nokogiri::HTML(f) } }
   let(:json) { File.read(Rails.root.join('spec', 'fixtures', 'files', 'test_json.json')) }
 
@@ -43,13 +42,5 @@ RSpec.describe WordBoundariesRunner do
   describe "#json_exists" do
     context "when it exists"
     context "when it doesn't exist"
-  end
-
-  context "when no HOCR file exists" do
-    xit "does not create a file" do
-
-      runner.stub(:hocr_exists?).and_return(false)
-      runner.create.should be_false
-    end
   end
 end
