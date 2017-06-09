@@ -22,13 +22,9 @@ RSpec.describe EphemeraProjectsController, type: :controller do
   # This should return the minimal set of attributes required to create a valid
   # EphemeraProject. As you add validations to EphemeraProject, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
-  }
+  let(:valid_attributes) { { name: "Test Project" } }
 
-  let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
-  }
+  let(:invalid_attributes) { { name: nil } }
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
@@ -91,25 +87,18 @@ RSpec.describe EphemeraProjectsController, type: :controller do
         post :create, params: { ephemera_project: invalid_attributes }, session: valid_session
         expect(assigns(:ephemera_project)).to be_a_new(EphemeraProject)
       end
-
-      it "re-renders the 'new' template" do
-        post :create, params: { ephemera_project: invalid_attributes }, session: valid_session
-        expect(response).to render_template("new")
-      end
     end
   end
 
   describe "PUT #update" do
     context "with valid params" do
-      let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
-      }
+      let(:new_attributes) { { name: "Updated Name" } }
 
       it "updates the requested ephemera_project" do
         ephemera_project = EphemeraProject.create! valid_attributes
         put :update, params: { id: ephemera_project.to_param, ephemera_project: new_attributes }, session: valid_session
         ephemera_project.reload
-        skip("Add assertions for updated state")
+        expect(ephemera_project.name).to eq("Updated Name")
       end
 
       it "assigns the requested ephemera_project as @ephemera_project" do

@@ -21,8 +21,8 @@ require 'rails_helper'
 RSpec.describe EphemeraFieldsController, type: :controller do
   let(:project) { FactoryGirl.create :ephemera_project }
   let(:vocab) { FactoryGirl.create :vocabulary }
-  let(:valid_attributes) { { name: 'EphemeraFolder.language', vocabulary: vocab } }
-  let(:invalid_attributes) { { name: 'EphemeraFolder.language' } }
+  let(:valid_attributes) { { name: 'EphemeraFolder.language', vocabulary_id: vocab.id } }
+  let(:invalid_attributes) { { name: nil, vocabulary_id: nil } }
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
@@ -65,9 +65,10 @@ RSpec.describe EphemeraFieldsController, type: :controller do
     end
 
     context "with invalid params" do
-      it "assigns a newly created but unsaved ephemera_field as @ephemera_field" do
-        post :create, params: { ephemera_field: invalid_attributes, ephemera_project_id: project.id }, session: valid_session
-        expect(response).not_to be_successful
+      it "fails" do
+        expect {
+          post :create, params: { ephemera_field: invalid_attributes, ephemera_project_id: project.id }, session: valid_session
+        }.not_to change(EphemeraField, :count)
       end
     end
   end
@@ -97,10 +98,11 @@ RSpec.describe EphemeraFieldsController, type: :controller do
     end
 
     context "with invalid params" do
-      it "assigns the ephemera_field as @ephemera_field" do
+      it "does not change the ephemera_field" do
         ephemera_field = EphemeraField.create! valid_attributes
-        put :update, params: { id: ephemera_field.to_param, ephemera_field: invalid_attributes, ephemera_project_id: project.id }, session: valid_session
-        expect(response).not_to be_successful
+        expect {
+          put :update, params: { id: ephemera_field.to_param, ephemera_field: invalid_attributes, ephemera_project_id: project.id }, session: valid_session
+        }.not_to change { ephemera_field.updated_at }
       end
     end
   end

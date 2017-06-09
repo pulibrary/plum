@@ -30,7 +30,9 @@ RSpec.describe SolrDocument do
       hasRelatedImage_ssim: ["Image"],
       member_of_collections_ssim: ["Collection1"],
       member_of_collection_ids_ssim: ["1"],
-      folder_number_ssim: ["1"]
+      folder_number_ssim: ["1"],
+      ephemera_project_ssim: ["2"],
+      ephemera_project_name_ssim: ["Test Ephemera Project"]
     }
   end
 
@@ -153,6 +155,13 @@ RSpec.describe SolrDocument do
       expect(subject['ocr_language_tesim']).to be nil
       expect(subject.language).to eq(['eng'])
       expect(subject.ocr_language).to eq(['eng'])
+    end
+  end
+
+  describe "#ephemera_project_name" do
+    it "has accessors for the project id and name" do
+      expect(subject.ephemera_project).to eq("2")
+      expect(subject.ephemera_project_name).to eq("Test Ephemera Project")
     end
   end
 

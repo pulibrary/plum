@@ -11,5 +11,16 @@ require 'rails_helper'
 #   end
 # end
 RSpec.describe EphemeraFieldsHelper, type: :helper do
-  pending "add some examples to (or delete) #{__FILE__}"
+  let(:fields) { [
+    "EphemeraFolder.genre",
+    "EphemeraFolder.language",
+    "EphemeraFolder.geographic_origin",
+    "EphemeraFolder.subject"
+  ] }
+
+  describe "#controllable_fields" do
+    it "lists the controllable fields" do
+      expect(helper.controllable_fields).to match_array(fields)
+    end
+  end
 end

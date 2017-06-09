@@ -1,5 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe EphemeraProject, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it "has a name" do
+    project = described_class.new name: "Test Project"
+    expect(project.name).to eq("Test Project")
+  end
 end
