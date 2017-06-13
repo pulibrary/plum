@@ -4,11 +4,11 @@ module Plum
   end
 
   def messaging_client
-    MessagingClient.new(Plum.config['events']['server'])
+    @messaging_client ||= MessagingClient.new(Plum.config['events']['server'])
   end
 
   def geoblacklight_messaging_client
-    GeoblacklightMessagingClient.new(Plum.config['events']['server'])
+    @geoblacklight_messaging_client ||= GeoblacklightMessagingClient.new(Plum.config['events']['server'])
   end
 
   private

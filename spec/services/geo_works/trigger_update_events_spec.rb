@@ -5,7 +5,7 @@ RSpec.describe GeoWorks::TriggerUpdateEvents do
   let(:messaging_client) { instance_double(GeoblacklightMessagingClient) }
 
   before do
-    allow(GeoblacklightMessagingClient).to receive(:new).and_return(messaging_client)
+    allow(Plum).to receive(:geoblacklight_messaging_client).and_return(messaging_client)
   end
 
   describe '#call' do
