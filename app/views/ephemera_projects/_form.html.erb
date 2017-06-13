@@ -23,7 +23,7 @@
       <%= link_to 'Cancel', ephemera_projects_path, class: 'btn btn-default' %>
     <% else %>
       <%= link_to 'Cancel', @ephemera_project, class: 'btn btn-default' %>
-      <%= link_to 'Delete This Term', @ephemera_project, class: 'btn btn-danger pull-right', data: { confirm: "Delete this Project?" }, method: :delete %>
+      <%= link_to 'Delete This Project', @ephemera_project, class: 'btn btn-danger pull-right', data: { confirm: "Delete this Project?" }, method: :delete %>
     <% end %>
   </div>
 <% end %>

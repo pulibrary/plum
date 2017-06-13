@@ -1,5 +1,6 @@
 class EphemeraProjectsController < ApplicationController
   before_action :set_ephemera_project, only: [:show, :edit, :update, :destroy]
+  authorize_resource only: [:new, :edit, :create, :update, :destroy]
 
   # GET /ephemera_projects
   # GET /ephemera_projects.json

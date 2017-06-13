@@ -10,4 +10,6 @@
 
 <br>
 
-<%= link_to 'New Ephemera Project', new_ephemera_project_path, class: 'btn btn-primary' %>
+<% if can?(:create, EphemeraProject) %>
+  <%= link_to 'New Ephemera Project', new_ephemera_project_path, class: 'btn btn-primary' %>
+<% end %>

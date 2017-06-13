@@ -21,8 +21,13 @@
         <li><%= link_to 'Manage Roles', role_management.roles_path, class: 'menu-heading manage-roles', role: 'menuitem' %></li>
         <li><%= link_to 'Workflow Roles', hyrax.admin_workflow_roles_path, class: 'menu-heading manage-workflow-roles', role: 'menuitem' %></li>
       <% end %>
-      <% if can?(:create, Vocabulary) %>
+      <% if can?(:create, Vocabulary) || can?(:create, EphemeraProject) %>
         <li class="divider"></li>
+      <% end %>
+      <% if can?(:create, EphemeraProject) %>
+        <li><%= link_to 'Manage Ephemera Projects', main_app.ephemera_projects_path, class: 'menu-heading manage-ephemera-projects', role: 'menuitem' %></li>
+      <% end %>
+      <% if can?(:create, Vocabulary) %>
         <li><%= link_to 'Manage Vocabularies', main_app.vocabularies_path, class: 'menu-heading manage-vocabularies', role: 'menuitem' %></li>
       <% end %>
       <% if can?(:create, AuthToken) %>

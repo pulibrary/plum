@@ -1,6 +1,7 @@
 class EphemeraFieldsController < ApplicationController
   before_action :set_ephemera_field, only: [:edit, :update, :destroy]
   before_action :set_ephemera_project
+  authorize_resource only: [:new, :edit, :create, :update, :destroy]
 
   # GET /ephemera_fields/new
   def new
