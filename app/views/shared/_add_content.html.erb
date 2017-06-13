@@ -25,6 +25,10 @@
         <li class="divider"></li>
         <li><%= link_to 'Manage Vocabularies', main_app.vocabularies_path, class: 'menu-heading manage-vocabularies', role: 'menuitem' %></li>
       <% end %>
+      <% if can?(:create, AuthToken) %>
+        <li class="divider"></li>
+        <li><%= link_to 'Manage Auth Tokens', main_app.auth_tokens_path, class: 'menu-heading manage-auth-tokens', role: 'menuitem' %></li>
+      <% end %>
     </ul>
   </div>
 <% end %>
