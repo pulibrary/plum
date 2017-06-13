@@ -54,6 +54,10 @@ class Hyrax::HyraxController < ApplicationController
     messenger.record_created(curation_concern)
   end
 
+  def current_ability
+    ::Ability.new(current_user, auth_token: params[:auth_token])
+  end
+
   private
 
     def search_builder_class

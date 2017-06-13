@@ -136,6 +136,22 @@ describe Hyrax::ScannedResourcesController, admin_set: true do
   describe "#manifest" do
     let(:solr) { ActiveFedora.solr.conn }
     let(:user) { FactoryGirl.create(:user) }
+    context "when not logged in" do
+      it "renders a blank JSON Hash" do
+        resource = FactoryGirl.create(:campus_only_scanned_resource)
+        get :manifest, params: { id: resource.id, format: :json }
+        expect(response.body).to eq "{}"
+      end
+      context "and an authentication token is given" do
+        it "renders the full manifest" do
+          resource = FactoryGirl.create(:campus_only_scanned_resource)
+          authorization_token = AuthToken.create(groups: ["admin"])
+          get :manifest, params: { id: resource.id, format: :json, auth_token: authorization_token.token }
+
+          expect(response.body).not_to eq "{}"
+        end
+      end
+    end
     context "when requesting JSON" do
       render_views
       before do
