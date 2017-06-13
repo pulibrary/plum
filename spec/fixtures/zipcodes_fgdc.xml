@@ -1,0 +1,499 @@
+<metadata xml:lang="en">
+  <Esri>
+    <CreaDate>20081029</CreaDate>
+    <CreaTime>13474000</CreaTime>
+    <SyncDate>20020218</SyncDate>
+    <SyncTime>21173000</SyncTime>
+    <ModDate>20081014</ModDate>
+    <ModTime>15550800</ModTime>
+    <Sync>FALSE</Sync>
+    <MetaID>{7F6FAACA-6BBB-4199-BDC5-51D038E4431C}</MetaID>
+    <SyncOnce>TRUE</SyncOnce>
+    <PublishedDocID>{0095C6E0-7D5F-4662-B68C-61CD421712BC}</PublishedDocID>
+    <PublishStatus>Published</PublishStatus>
+  </Esri>
+  <idinfo>
+    <native Sync="TRUE">Microsoft Windows 2000 Version 5.0 (Build 2195) Service Pack 2; ESRI ArcCatalog 8.1.3.679</native>
+    <descript>
+      <langdata Sync="TRUE">en</langdata>
+      <abstract>Louisiana ZIP Code Areas represents five-digit ZIP Code areas used by the U.S. Postal Service to deliver mail more effectively.  The first digit of a five-digit ZIP Code divides the country into 10 large groups of states numbered from 0 in the Northeast to 9 in the far West.  Within these areas, each state is divided into an average of 10 smaller geographical areas, identified by the 2nd and 3rd digits.  These digits, in conjunction with the first digit, represent a sectional center facility or a mail processing facility area.  The 4th and 5th digits identify a post office, station, branch or local delivery area.</abstract>
+      <purpose>Louisiana ZIP Code Areas provides area, post office name, and population for each ZIP Code area in Louisiana.</purpose>
+      <supplinf>Largest scale when displaying the data: 1:100,000.</supplinf>
+    </descript>
+    <citation>
+      <citeinfo>
+        <origin>Geographic Data Technology, Inc. (GDT)</origin>
+        <pubdate>20020401</pubdate>
+        <title>Louisiana ZIP Code Areas 2002</title>
+        <ftname Sync="TRUE">lazip</ftname>
+        <geoform Sync="TRUE">vector digital data</geoform>
+        <edition>2002</edition>
+        <serinfo>
+          <sername>ESRI Data &amp; Maps</sername>
+          <issue>2002</issue>
+        </serinfo>
+        <pubinfo>
+          <pubplace>Redlands, California, USA</pubplace>
+          <publish>Environmental Systems Research Institute, Inc. (ESRI)</publish>
+        </pubinfo>
+        <origin>Environmental Systems Research Institute, Inc. (ESRI)</origin>
+        <onlink>http://map.princeton.edu/data/00/00/01/41/6/content/restricted/data.zip</onlink>
+      </citeinfo>
+    </citation>
+    <timeperd>
+      <current>ground condition: 200111, 2000; publication date: 2001</current>
+      <timeinfo>
+        <sngdate />
+      </timeinfo>
+    </timeperd>
+    <status>
+      <progress>Complete</progress>
+      <update>Matches software update releases</update>
+    </status>
+    <spdom>
+      <bounding>
+        <westbc Sync="TRUE">-94.043286</westbc>
+        <eastbc Sync="TRUE">-88.817478</eastbc>
+        <northbc Sync="TRUE">33.019481</northbc>
+        <southbc Sync="TRUE">28.926478</southbc>
+      </bounding>
+      <lboundng>
+        <leftbc Sync="TRUE">-94.043286</leftbc>
+        <rightbc Sync="TRUE">-88.817478</rightbc>
+        <bottombc Sync="TRUE">28.926478</bottombc>
+        <topbc Sync="TRUE">33.019481</topbc>
+      </lboundng>
+    </spdom>
+    <keywords>
+      <theme>
+        <themekt>None</themekt>
+        <themekey>polygon</themekey>
+        <themekey>zip codes</themekey>
+        <themekey>areas</themekey>
+        <themekey>five-digit zip codes</themekey>
+        <themekey>post offices</themekey>
+        <themekey>population</themekey>
+        <themekey>location</themekey>
+        <themekey>society</themekey>
+      </theme>
+      <place>
+        <placekey>United States</placekey>
+        <placekey>Louisiana</placekey>
+        <placekt>None</placekt>
+      </place>
+      <temporal>
+        <tempkey>2001</tempkey>
+        <tempkey>2000</tempkey>
+        <tempkey>2001</tempkey>
+        <tempkt>None</tempkt>
+      </temporal>
+    </keywords>
+    <accconst>Access granted to Licensee only.</accconst>
+    <useconst>The data are provided by multiple, third party data vendors under license to ESRI for inclusion on ESRI Data &amp; Maps CD&#8211;ROMs for use with ESRI&#174; software.  Each data vendor has its own data licensing policies and may grant varying redistribution rights to end users. Please consult the redistribution rights below for this data set provided on ESRI Data &amp; Maps CD&#8211;ROMs. As used herein, &#8220;Geodata&#8221; shall mean any digital data set consisting of geographic data coordinates and associated attributes.
+
+The redistribution rights for this data set: Redistribution rights are granted by the data vendor for hard-copy renditions or static, electronic map images (e.g. .gif, .jpeg, etc.) that are plotted, printed, or publicly displayed with proper metadata and source/copyright attribution to the respective data vendor(s).  Geodata is redistributable with a Value-Added Software Application developed by ESRI Business Partners on a royalty-free basis with proper metadata and source/copyright attribution to the respective data vendor(s).
+
+[Applicable to Pop2001 attribute only]&#8211;In addition to the redistribution rights above, geodata is redistributable without a Value-Added Software Application (i.e., adding the sample data to an existing, [non]commercial data set for redistribution) with proper metadata and source/copyright attribution to the respective data vendor(s).
+
+The terms and conditions below apply to all the data sets provided on the ESRI Data &amp; Maps CD&#8211;ROMs.
+
+Proprietary Rights and Copyright: Licensee acknowledges that the Data and Related Materials contain proprietary and confidential property of ESRI and its licensor(s). The Data and Related Materials are owned by ESRI and its licensor(s) and are protected by United States copyright laws and applicable international copyright treaties and/or conventions.
+
+Limited Warranty and Disclaimer: ESRI warrants that the media upon which the Data and Related Materials are provided will be free from defects in materials and workmanship under normal use and service for a period of ninety (90) days from the date of receipt.
+
+THE DATA AND RELATED MATERIALS ARE EXCLUDED FROM THE LIMITED WARRANTY, AND THE LICENSEE EXPRESSLY ACKNOWLEDGES THAT THE DATA CONTAINS SOME NONCONFORMITIES, DEFECTS, OR ERRORS. ESRI DOES NOT WARRANT THAT THE DATA WILL MEET LICENSEE'S NEEDS OR EXPECTATIONS; THAT THE USE OF THE DATA WILL BE UNINTERRUPTED; OR THAT ALL NONCONFORMITIES, DEFECTS, OR ERRORS CAN OR WILL BE CORRECTED. ESRI IS NOT INVITING RELIANCE ON THIS DATA, AND THE LICENSEE SHOULD ALWAYS VERIFY ACTUAL DATA.
+
+EXCEPT FOR THE LIMITED WARRANTY SET FORTH ABOVE, THE DATA AND RELATED MATERIALS CONTAINED THEREIN ARE PROVIDED "AS-IS," WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
+
+Exclusive Remedy and Limitation of Liability: The entire liability of ESRI or its licensor(s) and Licensee's exclusive remedy shall be to terminate the Agreement upon Licensee returning the Data and Related Materials to ESRI with a copy of Licensee's invoice/receipt and ESRI returning the license fees paid to Licensee.
+
+IN NO EVENT SHALL ESRI AND/OR ITS LICENSOR(S) BE LIABLE FOR COSTS OF PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOST PROFITS, LOST SALES, OR BUSINESS EXPENDITURES, INVESTMENTS, OR COMMITMENTS IN CONNECTION WITH ANY BUSINESS; LOSS OF ANY GOODWILL; OR FOR ANY INDIRECT, SPECIAL, INCIDENTAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES ARISING OUT OF THIS AGREEMENT OR USE OF THE DATA AND RELATED MATERIALS, HOWEVER CAUSED, ON ANY THEORY OF LIABILITY, AND WHETHER OR NOT ESRI OR ITS LICENSOR(S) HAVE BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. THESE LIMITATIONS SHALL APPLY NOTWITHSTANDING ANY FAILURE OF ESSENTIAL PURPOSE OF ANY EXCLUSIVE REMEDY.
+
+Third Party Beneficiary: ESRI's licensor(s) has (have) authorized ESRI to (sub)distribute and (sub)license its (their) data as incorporated into the Data and Related Materials. As an intended third party beneficiary to this Agreement, the ESRI licensor(s) is (are) entitled to directly enforce, in its own name, the rights and obligations undertaken by the Licensee and to seek all legal and equitable remedies as are afforded to ESRI.
+
+In the event that the data vendor(s) has (have) granted the end user permission to redistribute the Geodata, please use proper proprietary or copyright attribution for the various data vendor(s), and provide the associated metadata file(s) with the Geodata. In compliance with FGDC metadata standards, ESRI has attempted to practice proper metadata methodologies by providing any data source information, descriptions, and file names to assist in this effort.</useconst>
+    <natvform Sync="TRUE">Shapefile</natvform>
+    <ptcontac>
+      <cntinfo>
+        <cntorgp>
+          <cntorg>Princeton University Library</cntorg>
+          <cntper>Tsering Wangyal Shawa</cntper>
+        </cntorgp>
+        <cntvoice>609-258-6804</cntvoice>
+        <cntemail>shawatw@princeton.edu</cntemail>
+        <hours>8:45 a.m.&#8211;5:00 p.m. EST, Monday&#8211;Friday</hours>
+      </cntinfo>
+    </ptcontac>
+    <datacred>United States Postal Service</datacred>
+  </idinfo>
+  <metainfo>
+    <langmeta Sync="TRUE">en</langmeta>
+    <metstdn Sync="TRUE">FGDC Content Standards for Digital Geospatial Metadata</metstdn>
+    <metstdv Sync="TRUE">FGDC-STD-001-1998</metstdv>
+    <mettc Sync="TRUE">local time</mettc>
+    <metc>
+      <cntinfo>
+        <cntaddr>
+          <addrtype>mailing and physical address</addrtype>
+          <address>Digital Map and Geospatial Information Center, The Lewis Library, Room 228, Princeton University</address>
+          <city>Princeton</city>
+          <state>NJ</state>
+          <postal>08544</postal>
+          <country>USA</country>
+        </cntaddr>
+        <cntorgp>
+          <cntper>Tsering Wangyal Shawa</cntper>
+          <cntorg>Princeton University Library</cntorg>
+        </cntorgp>
+        <cntvoice>609-258-6804</cntvoice>
+        <cntemail>shawatw@princeton.edu</cntemail>
+        <hours>8:45 a.m.&#8211;5:00 p.m. EST, Monday&#8211;Friday</hours>
+      </cntinfo>
+    </metc>
+    <metd Sync="TRUE">20081014</metd>
+    <metextns>
+      <onlink Sync="TRUE">http://www.esri.com/metadata/esriprof80.html</onlink>
+      <metprof Sync="TRUE">ESRI Metadata Profile</metprof>
+    </metextns>
+  </metainfo>
+  <spdoinfo>
+    <direct Sync="TRUE">Vector</direct>
+    <ptvctinf>
+      <esriterm Name="lazip">
+        <efeatyp Sync="TRUE">Simple</efeatyp>
+        <efeageom Sync="TRUE">Polygon</efeageom>
+        <esritopo Sync="TRUE">FALSE</esritopo>
+        <efeacnt Sync="TRUE">479</efeacnt>
+        <spindex Sync="TRUE">TRUE</spindex>
+        <linrefer Sync="TRUE">FALSE</linrefer>
+        <featdesc>Louisiana ZIP Code Area</featdesc>
+      </esriterm>
+      <sdtsterm Name="lazip">
+        <sdtstype Sync="TRUE">G-polygon</sdtstype>
+        <ptvctcnt Sync="TRUE">479</ptvctcnt>
+      </sdtsterm>
+    </ptvctinf>
+  </spdoinfo>
+  <spref>
+    <horizsys>
+      <cordsysn>
+        <geogcsn Sync="TRUE">GCS_North_American_1983</geogcsn>
+      </cordsysn>
+      <geograph>
+        <geogunit Sync="TRUE">Decimal degrees</geogunit>
+        <latres Sync="TRUE">0.000000</latres>
+        <longres Sync="TRUE">0.000000</longres>
+      </geograph>
+      <geodetic>
+        <horizdn Sync="TRUE">North American Datum of 1983</horizdn>
+        <ellips Sync="TRUE">Geodetic Reference System 80</ellips>
+        <semiaxis Sync="TRUE">6378137.000000</semiaxis>
+        <denflat Sync="TRUE">298.257222</denflat>
+      </geodetic>
+    </horizsys>
+  </spref>
+  <eainfo>
+    <detailed Name="lazip">
+      <enttyp>
+        <enttypl Sync="TRUE">lazip</enttypl>
+        <enttypt Sync="TRUE">Feature Class</enttypt>
+        <enttypc Sync="TRUE">479</enttypc>
+        <enttypd>The polygons identify areas where mail is delivered (from a city block or two to a whole rural town) within Louisiana.</enttypd>
+        <enttypds>Geographic Data Technology, Inc.</enttypds>
+      </enttyp>
+      <attr>
+        <attrlabl Sync="TRUE">FID</attrlabl>
+        <attalias Sync="TRUE">FID</attalias>
+        <attrtype Sync="TRUE">OID</attrtype>
+        <attwidth Sync="TRUE">4</attwidth>
+        <atprecis Sync="TRUE">0</atprecis>
+        <attscale Sync="TRUE">0</attscale>
+        <attrdef Sync="TRUE">Internal feature number.</attrdef>
+        <attrdefs Sync="TRUE">ESRI</attrdefs>
+        <attrdomv>
+          <udom Sync="TRUE">Sequential unique whole numbers that are automatically generated.</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl Sync="TRUE">Shape</attrlabl>
+        <attalias Sync="TRUE">Shape</attalias>
+        <attrtype Sync="TRUE">Geometry</attrtype>
+        <attwidth Sync="TRUE">0</attwidth>
+        <atprecis Sync="TRUE">0</atprecis>
+        <attscale Sync="TRUE">0</attscale>
+        <attrdef Sync="TRUE">Feature geometry.</attrdef>
+        <attrdefs Sync="TRUE">ESRI</attrdefs>
+        <attrdomv>
+          <udom Sync="TRUE">Coordinates defining the features.</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl Sync="TRUE">ZIP</attrlabl>
+        <attalias Sync="TRUE">ZIP</attalias>
+        <attrtype Sync="TRUE">String</attrtype>
+        <attwidth Sync="TRUE">5</attwidth>
+        <attrdef>The five-digit number used by the postal service to identify an area where mail is delivered.</attrdef>
+        <attrdefs>United States Postal Service</attrdefs>
+        <attrdomv>
+          <codesetd>
+            <codesetn>USPS National 5-Digit ZIP and Post Office Directory</codesetn>
+            <codesets>United States Postal Service</codesets>
+          </codesetd>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl Sync="TRUE">PO_NAME</attrlabl>
+        <attalias Sync="TRUE">PO_NAME</attalias>
+        <attrtype Sync="TRUE">String</attrtype>
+        <attwidth Sync="TRUE">28</attwidth>
+        <attrdef>The post office name.</attrdef>
+        <attrdefs>United States Postal Service</attrdefs>
+        <attrdomv>
+          <codesetd>
+            <codesetn>USPS National 5-Digit ZIP and Post Office Directory</codesetn>
+            <codesets>United States Postal Service</codesets>
+          </codesetd>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl Sync="TRUE">STATE</attrlabl>
+        <attalias Sync="TRUE">STATE</attalias>
+        <attrtype Sync="TRUE">String</attrtype>
+        <attwidth Sync="TRUE">2</attwidth>
+        <attrdef>The two-letter abbreviation for the state in which the ZIP Code area is located.</attrdef>
+        <attrdefs>United States Postal Service</attrdefs>
+        <attrdomv>
+          <codesetd>
+            <codesetn>USPS City/State File</codesetn>
+            <codesets>United States Postal Service</codesets>
+          </codesetd>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl Sync="TRUE">AREA</attrlabl>
+        <attalias Sync="TRUE">AREA</attalias>
+        <attrtype Sync="TRUE">Number</attrtype>
+        <attwidth Sync="TRUE">12</attwidth>
+        <atnumdec Sync="TRUE">5</atnumdec>
+        <attrdef>The area of the ZIP Code polygon in square miles using Albers Equal Area Projection.</attrdef>
+        <attrdefs>ESRI</attrdefs>
+        <attrdomv>
+          <udom>Calculated areas for the features.</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl Sync="TRUE">SUMBLKPOP</attrlabl>
+        <attalias Sync="TRUE">SUMBLKPOP</attalias>
+        <attrtype Sync="TRUE">Number</attrtype>
+        <attwidth Sync="TRUE">6</attwidth>
+        <attrdef>The sum of the 2000 population for the Census Bureau Block polygon centroids which fall within the zip code area.</attrdef>
+        <attrdefs>ESRI; Department of Commerce, Census Bureau</attrdefs>
+        <attrdomv>
+          <udom>Summed populations for the features.</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl Sync="TRUE">POP2001</attrlabl>
+        <attalias Sync="TRUE">POP2001</attalias>
+        <attrtype Sync="TRUE">Number</attrtype>
+        <attwidth Sync="TRUE">10</attwidth>
+        <attrdef>The 2001 estimated population of the ZIP Code area.</attrdef>
+        <attrdefs>ESRI Business Information Solutions</attrdefs>
+        <attrdomv>
+          <udom>Populations for the features.</udom>
+        </attrdomv>
+      </attr>
+    </detailed>
+  </eainfo>
+  <dataqual>
+    <lineage>
+      <srcinfo>
+        <srccite>
+          <citeinfo>
+            <title>Dynamap/ZIP Code Boundary &amp; Inventory Files v10.0</title>
+            <origin>Geographic Data Technology, Inc.</origin>
+            <pubdate>200201</pubdate>
+            <edition>Version 10.0</edition>
+            <geoform>vector digital data</geoform>
+            <serinfo>
+              <sername>Dynamap&#174;/ZIP Code Boundary &amp; Inventory Files</sername>
+              <issue>v10.0</issue>
+            </serinfo>
+            <pubinfo>
+              <publish>Geographic Data Technology, Inc</publish>
+              <pubplace>Lebanon, New Hampshire, USA</pubplace>
+            </pubinfo>
+          </citeinfo>
+        </srccite>
+        <srcscale>100000</srcscale>
+        <typesrc>CD&#8211;ROM</typesrc>
+        <srctime>
+          <timeinfo>
+            <sngdate>
+              <caldate>200111</caldate>
+            </sngdate>
+          </timeinfo>
+          <srccurr>ground condition</srccurr>
+        </srctime>
+        <srccitea>GDT Dynamap/ZIP Code Boundary &amp; Inventory Files v10.0</srccitea>
+        <srccontr>Attribute and geospatial data</srccontr>
+      </srcinfo>
+      <procstep>
+        <procdesc>How GDT Creates These Files: Creating ZIP Code Areas is a technical process that carefully coordinates United States Postal Service (USPS) postal data and our own Dynamap street data.  The U.S. Post Office assigns ZIP Codes on a street-by-street basis. ZIP code areas are used by the USPS to deliver mail more effectively. Their purpose was never intended to form boundaries for spatial analysis. As a result, GDT formed the following processes to build boundaries from the mail stops present on street segments. By utilizing a wide variety of sources, GDT is able to locate ZIP code changes both large and small and change the representation of ZIP Code areas by redefining the boundaries.
+
+Aligning ZIP Code Zones &amp; Street Segments: The ZIP boundaries are created manually by following actual Dynamap street segments and other non-street features. In areas where the street name match rate is low, GDT technicians make telephone inquiries to area Post Offices, and refer to USPS ZIP+4 State Directories, to determine the predominant ZIP Code. The ZIP Code delivery "zone" is approximated, and ZIP boundaries are created manually by following Dynamap street and non-street segments.
+
+U.S. ZIP Code Areas have been generalized to 1,000 points per polygon and 4,000 points per feature.</procdesc>
+        <procsv>ArcView GIS 3.x</procsv>
+        <srcprod>GDT Dynamap/ZIP Code Boundary &amp; Inventory Files v10.0</srcprod>
+        <procdate>200201</procdate>
+      </procstep>
+      <srcinfo>
+        <srccite>
+          <citeinfo>
+            <origin>Department of Commerce, Census Bureau</origin>
+            <pubdate>2000</pubdate>
+            <title>2000 Census of Population and Housing Public Law 94-171</title>
+            <pubinfo>
+              <publish>Department of Commerce, Census Bureau</publish>
+              <pubplace>USA</pubplace>
+            </pubinfo>
+            <edition>2000</edition>
+            <serinfo>
+              <sername>Census of Population and Housing Public Law 94-171</sername>
+              <issue>2000</issue>
+            </serinfo>
+          </citeinfo>
+        </srccite>
+        <typesrc>CD&#8211;ROM</typesrc>
+        <srctime>
+          <timeinfo>
+            <sngdate>
+              <caldate>2000</caldate>
+            </sngdate>
+          </timeinfo>
+          <srccurr>ground condition</srccurr>
+        </srctime>
+        <srccitea>Census 94-171</srccitea>
+        <srccontr>Attribute data</srccontr>
+      </srcinfo>
+      <srcinfo>
+        <typesrc>electronic mail system</typesrc>
+        <srccitea>ESRI BIS</srccitea>
+        <srccontr>Attribute data</srccontr>
+        <srccite>
+          <citeinfo>
+            <title>Totpop_cy (attribute)</title>
+            <origin>ESRI Business Information Solutions</origin>
+            <pubdate>2001</pubdate>
+            <pubinfo>
+              <publish>ESRI Business Information Solutions</publish>
+              <pubplace>Vienna, Virginia, USA</pubplace>
+            </pubinfo>
+          </citeinfo>
+        </srccite>
+        <srctime>
+          <timeinfo>
+            <sngdate>
+              <caldate>2001</caldate>
+            </sngdate>
+          </timeinfo>
+          <srccurr>publication date</srccurr>
+        </srctime>
+      </srcinfo>
+    </lineage>
+    <posacc>
+      <horizpa>
+        <horizpar>The geospatial part of this data set was extracted from the 2000 Census Version TIGER/Line&#8482; files (CD&#8211;ROM edition). To improve the accuracy, GDT ran a process against the entire nationwide database.  It was generalized to 1,000 points per polygon and 4,000 points per feature. Generalizing reduced the positional accuracy and can't be determined.
+
+The positional accuracy of the TIGER/Line coordinates varies with the source materials used but at best meets the established National Map Accuracy standards (+/- 167 feet approximately) where 1:100,000-scale maps from the USGS are the source. The Census Bureau cannot specify the accuracy of feature updates added by its field staff or of features derived from the GBF/DIME-Files or other map sources. Thus, the level of positional accuracy in the TIGER/Line files is not suitable for high-precision measurement applications such as engineering problems, property transfers, or other uses that might require highly accurate measurements of the earth's surface.</horizpar>
+      </horizpa>
+    </posacc>
+    <logic>No duplicate features are present.</logic>
+    <complete>After processing, the data set is checked for drawing display and number of records and file sizes compared with source materials.</complete>
+  </dataqual>
+  <mdDateSt Sync="TRUE">20081014</mdDateSt>
+  <Binary>
+    <Thumbnail />
+  </Binary>
+  <dataIdInfo>
+    <envirDesc Sync="TRUE">Microsoft Windows 2000 Version 5.0 (Build 2195) Service Pack 2; ESRI ArcCatalog 8.1.3.679</envirDesc>
+    <dataLang>
+      <languageCode Sync="TRUE" value="en" />
+    </dataLang>
+    <idCitation>
+      <resTitle Sync="TRUE">lazip</resTitle>
+      <presForm>
+        <PresFormCd Sync="TRUE" value="005" />
+      </presForm>
+    </idCitation>
+    <spatRpType>
+      <SpatRepTypCd Sync="TRUE" value="001" />
+    </spatRpType>
+    <geoBox esriExtentType="native">
+      <westBL Sync="TRUE">-94.04329</westBL>
+      <eastBL Sync="TRUE">-88.81747</eastBL>
+      <northBL Sync="TRUE">28.92648</northBL>
+      <southBL Sync="TRUE">33.01948</southBL>
+      <exTypeCode Sync="TRUE">1</exTypeCode>
+    </geoBox>
+    <geoBox esriExtentType="decdegrees">
+      <westBL Sync="TRUE">-94.04329</westBL>
+      <eastBL Sync="TRUE">-88.81747</eastBL>
+      <northBL Sync="TRUE">28.92648</northBL>
+      <southBL Sync="TRUE">33.01948</southBL>
+      <exTypeCode Sync="TRUE">1</exTypeCode>
+    </geoBox>
+  </dataIdInfo>
+  <mdLang>
+    <languageCode Sync="TRUE" value="en" />
+  </mdLang>
+  <mdStanName Sync="TRUE">ISO 19115 Geographic Information - Metadata</mdStanName>
+  <mdStanVer Sync="TRUE">DIS_ESRI1.0</mdStanVer>
+  <mdFileID Sync="TRUE">{1F7DDF21-BC01-4C20-8AA5-243B33ED0B1E}</mdFileID>
+  <mdChar>
+    <CharSetCd Sync="TRUE" value="001" />
+  </mdChar>
+  <mdHrLv>
+    <ScopeCd Sync="TRUE" value="005" />
+  </mdHrLv>
+  <mdHrLvName Sync="TRUE">dataset</mdHrLvName>
+  <distInfo>
+    <distributor>
+      <distorTran>
+        <onLineSrc>
+          <orDesc Sync="TRUE">002</orDesc>
+          <protocol Sync="TRUE">Local Area Network</protocol>
+          <linkage Sync="TRUE">file://</linkage>
+        </onLineSrc>
+        <tranSize Sync="TRUE">1.004</tranSize>
+      </distorTran>
+      <distorFormat>
+        <formatName Sync="TRUE">Shapefile</formatName>
+      </distorFormat>
+    </distributor>
+  </distInfo>
+  <refSysInfo>
+    <RefSystem>
+      <refSysID>
+        <identCode Sync="TRUE">GCS_North_American_1983</identCode>
+      </refSysID>
+    </RefSystem>
+  </refSysInfo>
+  <spatRepInfo>
+    <VectSpatRep>
+      <topLvl>
+        <TopoLevCd Sync="TRUE" value="001" />
+      </topLvl>
+      <geometObjs Name="lazip">
+        <geoObjTyp>
+          <GeoObjTypCd Sync="TRUE" value="001" />
+        </geoObjTyp>
+        <geoObjCnt Sync="TRUE">479</geoObjCnt>
+      </geometObjs>
+    </VectSpatRep>
+  </spatRepInfo>
+  <distinfo>
+    <resdesc>Downloadable Data</resdesc>
+  </distinfo>
+</metadata>
