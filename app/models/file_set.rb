@@ -69,6 +69,11 @@ class FileSet < ActiveFedora::Base
     end
   end
 
+  # Override GeoWorks method to use local fgdc metadata extractor
+  def extract_fgdc_metadata(doc)
+    Extractors::FgdcMetadataExtractor.new(doc).to_hash
+  end
+
   private
 
     def touch_parent_works
@@ -89,7 +94,7 @@ class FileSet < ActiveFedora::Base
       FileUtils.rm_rf(local_file)
     end
 
-    # Override GeoConcerns method because files are no longer stored in Fedora
+    # Override GeoWorks method because files are no longer stored in Fedora
     def metadata_xml
       Nokogiri::XML(File.open(local_file))
     end

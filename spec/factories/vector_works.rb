@@ -26,5 +26,14 @@ FactoryGirl.define do
         work.save
       end
     end
+
+    factory :vector_work_with_metadata_file do
+      after(:create) do |vector_work, evaluator|
+        file = FactoryGirl.create(:file_set, user: evaluator.user, geo_mime_type: 'application/xml; schema=fgdc')
+        vector_work.ordered_members << file
+        vector_work.save
+        file.update_index
+      end
+    end
   end
 end
