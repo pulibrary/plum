@@ -2,7 +2,7 @@
   <td class="attribute folder_number"><%= link_to member.try(:folder_number), contextual_path(member, box) %></td>
   <td class="attribute workflow_state"><%= member.try(:workflow_state) %></td>
   <td class="attribute title"><%= member.try(:title).to_sentence %></td>
-  <td class="attribute barcode"><%= member.try(:barcode).to_sentence %></td>
+  <td class="attribute barcode"><%= member.try(:barcode) %></td>
   <td class="attribute identifier"><%= member.try(:identifier).to_sentence %></td>
   <td class="attribute genre"><%= (member.try(:genre) || []).to_sentence %></td>
   <td>
