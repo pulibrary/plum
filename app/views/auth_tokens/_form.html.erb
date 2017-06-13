@@ -1,0 +1,18 @@
+<%= simple_form_for(auth_token) do |f| %>
+  <% if auth_token.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(auth_token.errors.count, "error") %> prohibited this auth_token from being saved:</h2>
+
+      <ul>
+      <% auth_token.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= f.input :groups, as: :multi_value %>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

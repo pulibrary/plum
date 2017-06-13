@@ -1,0 +1,16 @@
+<p id="notice"><%= notice %></p>
+
+<table class="table">
+  <thead>
+    <th>Token</th>
+    <th>Groups</th>
+  </thead>
+  <tbody>
+    <tr>
+      <td><%= @auth_token.token %></td>
+      <td><%= @auth_token.groups.to_sentence %></td>
+    </tr>
+  </tbody>
+</table>
+<%= link_to 'Edit', edit_auth_token_path(@auth_token) %> |
+<%= link_to 'Back', auth_tokens_path %>

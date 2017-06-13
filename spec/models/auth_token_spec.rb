@@ -9,4 +9,9 @@ RSpec.describe AuthToken, type: :model do
     token = described_class.create(groups: ["admin"])
     expect(token.reload.groups).to eq ["admin"]
   end
+
+  it "strips blanks when setting groups" do
+    token = described_class.create(groups: ["admin", ""])
+    expect(token.reload.groups).to eq ["admin"]
+  end
 end
