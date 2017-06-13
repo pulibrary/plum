@@ -52,6 +52,7 @@ describe Ability do
     FactoryGirl.create(:needs_qa_ephemera_folder, user: creating_user)
   }
 
+  let(:external_metadata_file) { FactoryGirl.build(:file_set, user: creating_user, geo_mime_type: 'application/xml; schema=fgdc') }
   let(:ephemera_editor_file) { FactoryGirl.build(:file_set, user: ephemera_editor) }
   let(:image_editor_file) { FactoryGirl.build(:file_set, user: image_editor) }
   let(:admin_file) { FactoryGirl.build(:file_set, user: admin_user) }
@@ -80,6 +81,7 @@ describe Ability do
     allow(complete_scanned_resource).to receive(:id).and_return("complete")
     allow(takedown_scanned_resource).to receive(:id).and_return("takedown")
     allow(flagged_scanned_resource).to receive(:id).and_return("flagged")
+    allow(external_metadata_file).to receive(:id).and_return("external_metadata_file")
     allow(image_editor_file).to receive(:id).and_return("image_editor_file")
     allow(ephemera_editor_file).to receive(:id).and_return("ephemera_editor_file")
     allow(admin_file).to receive(:id).and_return("admin_file")
@@ -396,6 +398,7 @@ describe Ability do
       should be_able_to(:read, flagged_scanned_resource)
       should be_able_to(:manifest, flagged_scanned_resource)
       should be_able_to(:color_pdf, color_enabled_resource)
+      should be_able_to(:download, external_metadata_file)
 
       should_not be_able_to(:pdf, no_pdf_scanned_resource)
       should_not be_able_to(:flag, open_scanned_resource)
