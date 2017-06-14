@@ -160,6 +160,9 @@ class Ability
     can :color_pdf, (curation_concerns + [ScannedResourceShowPresenter]) do |curation_concern|
       curation_concern.pdf_type == ["color"]
     end
+    can [:download], FileSet do |file_set|
+      file_set.respond_to?(:geo_mime_type) && GeoWorks::MetadataFormatService.include?(file_set.geo_mime_type)
+    end
   end
 
   def readable_concern?(curation_concern)
