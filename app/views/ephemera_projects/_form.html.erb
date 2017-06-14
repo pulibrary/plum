@@ -1,0 +1,29 @@
+<%= form_for(ephemera_project) do |f| %>
+  <% if ephemera_project.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(ephemera_project.errors.count, "error") %> prohibited this ephemera_project from being saved:</h2>
+
+      <ul>
+      <% ephemera_project.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit(class: 'btn btn-primary') %>
+
+    <% if params[:action] == "new" %>
+      <%= link_to 'Cancel', ephemera_projects_path, class: 'btn btn-default' %>
+    <% else %>
+      <%= link_to 'Cancel', @ephemera_project, class: 'btn btn-default' %>
+      <%= link_to 'Delete This Project', @ephemera_project, class: 'btn btn-danger pull-right', data: { confirm: "Delete this Project?" }, method: :delete %>
+    <% end %>
+  </div>
+<% end %>

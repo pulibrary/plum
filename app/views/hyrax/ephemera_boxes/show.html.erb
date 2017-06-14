@@ -6,6 +6,11 @@
       <li><%= link_to @parent_presenter, polymorphic_path([main_app, @parent_presenter]) %></li>
       <li class="active"><%= @presenter.human_readable_type %></li>
     </ul>
+  <% elsif @presenter.ephemera_project_name %>
+    <ul class="breadcrumb">
+      <li><%= link_to @presenter.ephemera_project_name, main_app.ephemera_project_path(@presenter.ephemera_project_id) %></li>
+      <li class="active"><%= @presenter.human_readable_type %></li>
+    </ul>
   <% else %>
     <span class="human_readable_type">(<%= @presenter.human_readable_type %>)</span>
   <% end %>

@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  resources :ephemera_projects do
+    resources :ephemera_fields
+  end
+  get '/ephemera_projects/:ephemera_project_id/box' => 'hyrax/ephemera_boxes#new', as: 'ephemera_project_add_box'
+
   mount Grocer::Engine => '/'
   mount JasmineRails::Engine => '/specs' if defined?(JasmineRails)
   mount BrowseEverything::Engine => '/browse'

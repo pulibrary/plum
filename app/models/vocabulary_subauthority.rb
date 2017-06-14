@@ -1,9 +1,9 @@
 class VocabularySubauthority < Qa::Authorities::Base
   attr_reader :vocabulary, :subauthority_name
 
-  def initialize(subauthority_name)
+  def initialize(subauthority_name, vocab = nil)
     @subauthority_name = subauthority_name
-    @vocabulary = Vocabulary.find_by(label: subauthority_name)
+    @vocabulary = vocab || Vocabulary.find_by(label: subauthority_name)
   end
 
   def all

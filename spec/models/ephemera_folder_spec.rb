@@ -44,7 +44,12 @@ RSpec.describe EphemeraFolder do
       before do
         Qa::Authorities::Local.registry.instance_variable_get(:@hash).delete("languages")
         vocabulary
+        folder.member_of_collections = [box]
+        field
       end
+      let(:project) { EphemeraProject.create name: "Test Project" }
+      let(:box) { FactoryGirl.create :ephemera_box, ephemera_project: [project.id] }
+      let(:field) { EphemeraField.create! ephemera_project: project, name: "EphemeraFolder.language", vocabulary: vocabulary }
       let(:vocabulary) do
         Vocabulary.create!(label: "languages").tap do |vocab|
           VocabularyTerm.create!(vocabulary: vocab, label: "English")
@@ -52,8 +57,9 @@ RSpec.describe EphemeraFolder do
         end
       end
       let(:folder) { FactoryGirl.build(:ephemera_folder, language: [VocabularyTerm.first.id.to_s]) }
+      let(:solr_doc) { folder.to_solr }
       it "Returns the label for the IDs" do
-        expect(folder.to_solr["language_sim"]).to eq ["English"]
+        expect(solr_doc["language_sim"]).to eq ["English"]
       end
     end
   end
@@ -66,7 +72,12 @@ RSpec.describe EphemeraFolder do
       before do
         Qa::Authorities::Local.registry.instance_variable_get(:@hash).delete("Geographic Origin")
         vocabulary
+        folder.member_of_collections = [box]
+        field
       end
+      let(:project) { EphemeraProject.create name: "Test Project" }
+      let(:box) { FactoryGirl.create :ephemera_box, ephemera_project: [project.id] }
+      let(:field) { EphemeraField.create! ephemera_project: project, name: "EphemeraFolder.geographic_origin", vocabulary: vocabulary }
       let(:vocabulary) do
         Vocabulary.create!(label: "Geographic Origin").tap do |vocab|
           VocabularyTerm.create!(vocabulary: vocab, label: "English")
@@ -88,7 +99,12 @@ RSpec.describe EphemeraFolder do
       before do
         Qa::Authorities::Local.registry.instance_variable_get(:@hash).delete("Genre")
         vocabulary
+        folder.member_of_collections = [box]
+        field
       end
+      let(:project) { EphemeraProject.create name: "Test Project" }
+      let(:box) { FactoryGirl.create :ephemera_box, ephemera_project: [project.id] }
+      let(:field) { EphemeraField.create! ephemera_project: project, name: "EphemeraFolder.genre", vocabulary: vocabulary }
       let(:vocabulary) do
         Vocabulary.create!(label: "Genre").tap do |vocab|
           VocabularyTerm.create!(vocabulary: vocab, label: "English")
@@ -110,7 +126,12 @@ RSpec.describe EphemeraFolder do
       before do
         Qa::Authorities::Local.registry.instance_variable_get(:@hash).delete("Geographic Origin")
         vocabulary
+        folder.member_of_collections = [box]
+        field
       end
+      let(:project) { EphemeraProject.create name: "Test Project" }
+      let(:box) { FactoryGirl.create :ephemera_box, ephemera_project: [project.id] }
+      let(:field) { EphemeraField.create! ephemera_project: project, name: "EphemeraFolder.geo_subject", vocabulary: vocabulary }
       let(:vocabulary) do
         Vocabulary.create!(label: "Geographic Origin").tap do |vocab|
           VocabularyTerm.create!(vocabulary: vocab, label: "English")
@@ -132,7 +153,12 @@ RSpec.describe EphemeraFolder do
       before do
         Qa::Authorities::Local.registry.instance_variable_get(:@hash).delete("Subjects")
         vocabulary
+        folder.member_of_collections = [box]
+        field
       end
+      let(:project) { EphemeraProject.create name: "Test Project" }
+      let(:box) { FactoryGirl.create :ephemera_box, ephemera_project: [project.id] }
+      let(:field) { EphemeraField.create! ephemera_project: project, name: "EphemeraFolder.subject", vocabulary: vocabulary }
       let(:vocabulary) do
         Vocabulary.create!(label: "Subjects").tap do |vocab|
           Vocabulary.create!(label: "Test", parent: vocab).tap do |vocab_2|

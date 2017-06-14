@@ -15,6 +15,10 @@ class EphemeraFolder < ActiveFedora::Base
   validates :title, presence: { message: 'Your work must have a title.' }
   validates :barcode, with: :barcode_valid?
 
+  def self.controlled_fields
+    [:language, :geographic_origin, :genre, :subject]
+  end
+
   self.human_readable_type = 'Ephemera Folder'
 
   def barcode_valid?
@@ -27,9 +31,13 @@ class EphemeraFolder < ActiveFedora::Base
   end
 
   def box
-    member_of_collections.to_a.find do |coll|
+    @box ||= member_of_collections.to_a.find do |coll|
       coll.is_a?(EphemeraBox)
     end
+  end
+
+  def project
+    box.ephemera_project.first if box
   end
 
   def identifier

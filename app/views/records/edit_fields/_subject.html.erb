@@ -1,4 +1,4 @@
-<% authority = AuthorityFinder.for(property: key, model: f.object) %>
+<% authority = find_authority(params[:parent_id], "#{f.object.model_name}.#{key}") %>
 <% if authority %>
   <% options = VocabularySelectService.new(authority.subauthority_name) %>
   <%= f.input key,
