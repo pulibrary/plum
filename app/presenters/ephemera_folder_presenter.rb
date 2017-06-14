@@ -1,7 +1,7 @@
 class EphemeraFolderPresenter < HyraxShowPresenter
   include PlumAttributes
   self.collection_presenter_class = DynamicShowPresenter.new
-  delegate :barcode, :folder_number, :box_id, :ephemera_project_id, to: :solr_document
+  delegate :barcode, :folder_number, :box_id, :ephemera_project_id, :ephemera_project_name, to: :solr_document
 
   def language
     Array.wrap(super).map do |id|

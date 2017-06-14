@@ -8,10 +8,12 @@ class WorkIndexer < Hyrax::WorkIndexer
         solr_doc[key] << col.try(:exhibit_id)
         solr_doc[key].compact!
 
-        if col.is_a?(EphemeraBox)
-          solr_doc[Solrizer.solr_name('box_id', :symbol)] = col.id
-          solr_doc[Solrizer.solr_name('ephemera_project_id', :symbol)] = col.ephemera_project
-        end
+        next unless col.is_a?(EphemeraBox)
+        solr_doc[Solrizer.solr_name('box_id', :symbol)] = col.id
+
+        next unless col.ephemera_project.first
+        solr_doc[Solrizer.solr_name("ephemera_project_id", :symbol)] = col.ephemera_project.first
+        solr_doc[Solrizer.solr_name("ephemera_project_name", :symbol)] = EphemeraProject.find(col.ephemera_project.first).name
       end
       (PlumSchema.display_fields + [:title]).each do |field|
         objects = object.get_values(field, literal: true)
@@ -35,7 +37,7 @@ class WorkIndexer < Hyrax::WorkIndexer
       solr_doc[Solrizer.solr_name("identifier", :symbol)] = object.identifier
       solr_doc[Solrizer.solr_name("barcode", :symbol)] = object.try(:barcode)
       if object.respond_to?(:ephemera_project) && object.ephemera_project.first
-        solr_doc[Solrizer.solr_name("ephemera_project", :symbol)] = object.ephemera_project.first
+        solr_doc[Solrizer.solr_name("ephemera_project_id", :symbol)] = object.ephemera_project.first
         solr_doc[Solrizer.solr_name("ephemera_project_name", :symbol)] = EphemeraProject.find(object.ephemera_project.first).name
       end
       [:geo_subject, :geographic_origin, :genre, :subject].each do |property|
