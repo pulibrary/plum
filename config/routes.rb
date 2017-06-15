@@ -127,6 +127,6 @@ Rails.application.routes.draw do
   resources :vocabularies
   resources :vocabulary_terms
   get '/vocabularies/:vocabulary_id/add_term' => 'vocabulary_terms#new', as: 'vocabulary_add_term'
-  get '/vocabularies/:parent_id/add_sub_vocabulary' => 'vocabularies#new', as: 'vocabulary_add_sub_vocabulary'
+  get '/vocabularies/:parent_id/add_category' => 'vocabularies#new', as: 'vocabulary_add_category'
   resources :auth_tokens
 end
