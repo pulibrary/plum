@@ -1,1 +1,1 @@
-<%= f.input :pdf_type, collection: {"Color PDF" => "color", "Grayscale PDF" => "gray", "Bitonal PDF" => "bitonal", "No PDF" => "none"}.to_a %>
+<%= f.input :pdf_type, collection: {"Color PDF" => "color", "Grayscale PDF" => "gray", "Bitonal PDF" => "bitonal", "No PDF" => "none"}.to_a, required: f.object.required?(:pdf_type) %>

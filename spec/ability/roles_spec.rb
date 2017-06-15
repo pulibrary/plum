@@ -175,6 +175,11 @@ describe Ability do
       should_not be_able_to(:complete, pending_scanned_resource)
       should_not be_able_to(:destroy, complete_scanned_resource)
       should_not be_able_to(:destroy, admin_file)
+
+      should be_able_to(:create, Template.new)
+      should be_able_to(:read, Template.new)
+      should be_able_to(:update, Template.new)
+      should be_able_to(:destroy, Template.new)
     }
   end
 

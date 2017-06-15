@@ -11,7 +11,7 @@
 <h2>Boxes</h2>
 
 <ul>
-  <% EphemeraBox.where(ephemera_project_ssim: "#{@ephemera_project.id}").each do |box| %>
+  <% EphemeraBox.where(ephemera_project_id_ssim: "#{@ephemera_project.id}").each do |box| %>
     <li><%= link_to "Box #{box.box_number.first}", box %></li>
   <% end %>
 </ul>
@@ -50,3 +50,24 @@
 <% if can?(:create, EphemeraField) %>
   <%= link_to 'Add Field', new_ephemera_project_ephemera_field_path(@ephemera_project), class: 'btn btn-primary' %>
 <% end %>
+
+<h2>Templates</h2>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Template Label</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @templates.each do |template| %>
+      <tr>
+        <td><%= template.template_label %></td>
+        <td>
+          <%= link_to "Delete", polymorphic_path([main_app, :hyrax, template.template_class.underscore, template]), class: 'btn btn-danger', method: :delete, data: { confirm: "Really delete #{template.template_label}?" } %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

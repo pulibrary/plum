@@ -80,6 +80,7 @@ class Ability
   def ephemera_editor_permissions
     can [:manage], EphemeraBox
     can [:manage], EphemeraFolder
+    can [:manage], Template
     can [:create, :read, :edit, :update, :publish], Collection
     can [:create, :read, :edit, :update, :publish, :download], FileSet
     can [:manifest], EphemeraFolderPresenter

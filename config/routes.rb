@@ -57,6 +57,9 @@ Rails.application.routes.draw do
             get :file_manager
             get :structure
           end
+          collection do
+            resources :templates, defaults: { class_type: type.to_s.classify }, as: :"parent_#{type.to_s.singularize}_templates"
+          end
         end
       end
     end
@@ -76,6 +79,9 @@ Rails.application.routes.draw do
         get :manifest, defaults: { format: :json }
         post :browse_everything_files
       end
+      collection do
+        resources :templates, defaults: { class_type: "ScannedResource" }, as: :scanned_resource_templates
+      end
     end
     resources :ephemera_folders, only: [] do
       member do
@@ -83,6 +89,9 @@ Rails.application.routes.draw do
         post :structure, action: :save_structure
         get :manifest, defaults: { format: :json }
         post :browse_everything_files
+      end
+      collection do
+        resources :templates, defaults: { class_type: "EphemeraFolder" }, as: :ephemera_folder_templates
       end
     end
     resources :image_works, only: [] do
@@ -129,4 +138,5 @@ Rails.application.routes.draw do
   get '/vocabularies/:vocabulary_id/add_term' => 'vocabulary_terms#new', as: 'vocabulary_add_term'
   get '/vocabularies/:parent_id/add_category' => 'vocabularies#new', as: 'vocabulary_add_category'
   resources :auth_tokens
+  resources :templates, only: [:index], controller: "hyrax/templates"
 end

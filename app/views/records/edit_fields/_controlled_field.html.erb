@@ -4,6 +4,7 @@
   <%= f.input key,
     collection: options.select_active_options,
     include_blank: true,
+    required: f.object.required?(key),
     input_html: {
       class: 'form-control',
       multiple: f.object.multiple?(key),

@@ -72,8 +72,16 @@ class Hyrax::HyraxController < ApplicationController
       return nil unless @curation_concern
       @decorated_concern ||=
         begin
+          if template
+            @curation_concern.attributes = template.params.except(:member_of_collection_ids, :box_id, :ephemera_project_id)
+            @curation_concern.member_of_collections = template.params.fetch(:member_of_collection_ids, []).map { |x| ActiveFedora::Base.find(x) }
+          end
           @curation_concern = decorator.new(@curation_concern)
         end
+    end
+
+    def template
+      Template.find(params[:template_id]) if params[:template_id]
     end
 
     def decorator
