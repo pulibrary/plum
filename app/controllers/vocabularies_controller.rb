@@ -5,7 +5,7 @@ class VocabulariesController < ApplicationController
   # GET /vocabularies
   # GET /vocabularies.json
   def index
-    @vocabularies = Vocabulary.order(:label)
+    @vocabularies = Vocabulary.where(parent: nil).order(:label)
   end
 
   # GET /vocabularies/1

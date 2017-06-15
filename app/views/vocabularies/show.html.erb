@@ -10,10 +10,10 @@
 
 <%= link_to 'All Vocabularies', vocabularies_path %> |
 <%= link_to 'Edit', edit_vocabulary_path(@vocabulary) %> |
-<%= link_to 'Add Sub-Vocabulary', vocabulary_add_sub_vocabulary_path(@vocabulary.id) %> |
+<%= link_to 'Add Category', vocabulary_add_category_path(@vocabulary.id) %> |
 <%= link_to 'Add Term', vocabulary_add_term_path(@vocabulary.id) %>
 
-<h2>Sub-Vocabularies</h2>
+<h2>Categories</h2>
 <ul>
   <% Vocabulary.where(parent_id: @vocabulary.id).order(:label).each do |sub_vocab| %>
     <li><%= link_to sub_vocab.label, sub_vocab %></li>

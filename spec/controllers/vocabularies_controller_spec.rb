@@ -20,6 +20,13 @@ RSpec.describe VocabulariesController, type: :controller do
       get :index, params: {}
       expect(assigns(:vocabularies)).to eq([vocabulary])
     end
+
+    it "hides categories" do
+      vocabulary = Vocabulary.create! valid_attributes
+      Vocabulary.create! label: 'Category', parent: vocabulary
+      get :index, params: {}
+      expect(assigns(:vocabularies)).to eq([vocabulary])
+    end
   end
 
   describe "GET #show" do
