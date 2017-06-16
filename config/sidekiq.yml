@@ -9,4 +9,4 @@ production:
   - high
   - ingest
   - default
-  # - lowest
+  - lowest
