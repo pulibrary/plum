@@ -11,13 +11,17 @@ module Plum
     @geoblacklight_messaging_client ||= GeoblacklightMessagingClient.new(Plum.config['events']['server'])
   end
 
+  def default_url_options
+    @default_url_options ||= ActionMailer::Base.default_url_options
+  end
+
   private
 
     def config_yaml
       YAML.load(ERB.new(File.read("#{Rails.root}/config/config.yml")).result)[Rails.env]
     end
 
-    module_function :config, :config_yaml, :messaging_client, :geoblacklight_messaging_client
+    module_function :config, :config_yaml, :messaging_client, :geoblacklight_messaging_client, :default_url_options
 end
 
 Hydra::Derivatives.kdu_compress_recipes = Plum.config['jp2_recipes']
