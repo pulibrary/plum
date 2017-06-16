@@ -4,7 +4,7 @@ module Hyrax
   class EphemeraFolderForm < ::Hyrax::Forms::WorkForm
     include SingleValuedForm
     self.model_class = ::EphemeraFolder
-    self.terms = [:barcode, :folder_number, :title, :sort_title, :alternative_title, :language, :genre, :width, :height, :page_count, :box_id, :rights_statement, :series, :creator, :contributor, :publisher, :geographic_origin, :subject, :geo_subject, :description, :date_created, :member_of_collection_ids, :visibility]
+    self.terms = [:barcode, :folder_number, :title, :sort_title, :alternative_title, :language, :genre, :width, :height, :page_count, :box_id, :rights_statement, :series, :creator, :contributor, :publisher, :geographic_origin, :subject, :geo_subject, :description, :date_created, :member_of_collection_ids]
     self.required_fields = [:title, :barcode, :folder_number, :width, :height, :page_count, :box_id, :language, :genre, :rights_statement]
     self.single_valued_fields = [:title, :sort_title, :creator, :geographic_origin, :date_created, :genre, :description, :barcode, :folder_number, :genre, :width, :height, :page_count, :rights_statement]
     delegate :box_id, :project, to: :model
