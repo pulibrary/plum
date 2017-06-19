@@ -10,7 +10,7 @@ class RunWordBoundariesJob < ActiveJob::Base
       word_boundaries_runner.create
     else
       logger.info "WordBoundariesJob: Preconditions not met #{id}"
-      WordBoundariesJob.set(wait: 2.minutes).perform_later id
+      RunWordBoundariesJob.set(wait: 2.minutes).perform_later id
     end
   end
 end
