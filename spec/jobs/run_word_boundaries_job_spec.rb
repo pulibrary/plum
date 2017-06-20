@@ -40,7 +40,7 @@ RSpec.describe RunWordBoundariesJob do
         allow(WordBoundariesRunner).to receive(:new).and_return(mock_runner)
         allow(described_class).to receive(:set) { mock_job }
       end
-      it "logs a message" do
+      it "logs a message and set up to run later" do
         expect(Rails.logger).to receive(:info).with("WordBoundariesJob: 123")
         expect(Rails.logger).to receive(:info).with("WordBoundariesJob: Preconditions not met 123")
         expect(described_class).to receive(:set)
