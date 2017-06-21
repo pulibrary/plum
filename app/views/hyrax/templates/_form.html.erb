@@ -1,0 +1,4 @@
+<%= simple_form_for [main_app, :hyrax, @form.form.model_name.singular, @form], html: { multipart: true } do |f| %>
+  <%= f.input :template_label %>
+  <%= render 'hyrax/base/guts4form', f: f %>
+<% end %>

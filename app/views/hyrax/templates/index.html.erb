@@ -1,0 +1,19 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th>Template Label</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @templates.each do |template| %>
+      <tr>
+        <td><%= template.template_label %></td>
+        <td>
+          <%= link_to "Edit", polymorphic_path([main_app, :edit, :hyrax, template.template_class.underscore, template]), class: 'btn btn-primary' %>
+          <%= link_to "Create from Template", polymorphic_path([main_app, :new, :hyrax, template.template_class.underscore], template_id: template.id), class: 'btn btn-primary' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

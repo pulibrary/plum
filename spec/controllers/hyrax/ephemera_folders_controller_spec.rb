@@ -41,6 +41,19 @@ RSpec.describe Hyrax::EphemeraFoldersController, admin_set: true do
     end
   end
 
+  describe "#new" do
+    context "when created with a template" do
+      it "uses the template's params to initialize" do
+        sign_in user
+        template = FactoryGirl.create(:template, template_class: "EphemeraFolder", params: { title: ["Test Title"] })
+
+        get :new, params: { parent_id: box.id, template_id: template.id }
+
+        expect(assigns[:curation_concern].title).to eq ["Test Title"]
+      end
+    end
+  end
+
   describe "#file_manager" do
     before do
       folder.save

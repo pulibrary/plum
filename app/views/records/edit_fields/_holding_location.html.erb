@@ -2,4 +2,5 @@
               as: :select,
               collection: HoldingLocationService.select_options,
               input_html: { class: 'form-control' },
-              label: 'Holding Location' %>
+              label: 'Holding Location',
+              required: f.object.required?(:holding_location) %>

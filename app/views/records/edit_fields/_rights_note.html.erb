@@ -1,2 +1,2 @@
   <%= f.input :rights_note, as: :text, label: 'Rights Note',
-      input_html: { class: 'rights-note', readonly: !@form.notable_rights_statement? }  %>
+      input_html: { class: 'rights-note', readonly: !@form.notable_rights_statement? }, required: f.object.required?(:rights_note)  %>

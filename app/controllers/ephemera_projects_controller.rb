@@ -11,6 +11,7 @@ class EphemeraProjectsController < ApplicationController
   # GET /ephemera_projects/1
   # GET /ephemera_projects/1.json
   def show
+    @templates = Template.where(template_class: "EphemeraFolder").select { |x| x.params["ephemera_project_id"] == @ephemera_project.id.to_s }
   end
 
   # GET /ephemera_projects/new

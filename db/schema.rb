@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170613195349) do
+ActiveRecord::Schema.define(version: 20170615174420) do
 
   create_table "auth_tokens", force: :cascade do |t|
     t.string   "token"
@@ -443,6 +443,14 @@ ActiveRecord::Schema.define(version: 20170613195349) do
     t.boolean  "active"
     t.boolean  "allows_access_grant"
     t.index ["permission_template_id", "name"], name: "index_sipity_workflows_on_permission_template_and_name", unique: true
+  end
+
+  create_table "templates", force: :cascade do |t|
+    t.text     "params"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.string   "template_class"
+    t.string   "template_label"
   end
 
   create_table "tinymce_assets", force: :cascade do |t|

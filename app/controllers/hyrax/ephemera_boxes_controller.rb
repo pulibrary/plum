@@ -8,5 +8,10 @@ module Hyrax
     include Hyrax::BreadcrumbsForWorks
     self.curation_concern_type = EphemeraBox
     self.show_presenter = EphemeraBoxPresenter
+
+    def show
+      super
+      @available_templates = Template.where(template_class: "EphemeraFolder").select { |x| x.params["ephemera_project_id"] == @presenter.ephemera_project_id }
+    end
   end
 end
