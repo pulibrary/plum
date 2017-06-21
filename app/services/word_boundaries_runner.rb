@@ -6,7 +6,7 @@ class WordBoundariesRunner
   end
 
   def create
-    doc = File.open(hocr_filepath { |f| Nokogiri::HTML(f) })
+    doc = File.open(hocr_filepath) { |f| Nokogiri::HTML(f) }
     json = {}
     doc.css('span.ocrx_word').each do |span|
       text = span.text

@@ -90,7 +90,7 @@ class FileSet < ActiveFedora::Base
     end
 
     def create_word_boundaries(id)
-      RunWordBoundariesJob.perform_later(id)
+      RunWordBoundariesJob.perform_later(id) if Plum.config[:create_word_boundaries]
     end
 
     def ocr_file
