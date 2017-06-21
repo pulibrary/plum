@@ -1,9 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe EphemeraFolderPresenter do
-  let(:folder) { FactoryGirl.build(:ephemera_folder) }
+  let(:folder) { FactoryGirl.build(:ephemera_folder, id: 'abcd1234', language: [term.id.to_s]) }
   let(:box) { FactoryGirl.create(:ephemera_box, ephemera_project: [project.id]) }
   let(:project) { FactoryGirl.create(:ephemera_project) }
+  let(:term) { FactoryGirl.create(:vocabulary_term, label: "English") }
 
   let(:blacklight_config) do
     double(
@@ -144,6 +145,28 @@ RSpec.describe EphemeraFolderPresenter do
       it "works" do
         expect(subject.subject).to eq ["Test"]
       end
+    end
+  end
+
+  describe "linked data" do
+    let(:language_json) {{
+      "@id": Rails.application.class.routes.url_helpers.vocabulary_term_url(term.id),
+      "pref_label": "English",
+      "exact_match": { "@id": "http://id.loc.gov/authorities/subjects/sh85077482" }
+    }}
+    it 'generates json-ld with descriptive metadata' do
+      json = JSON.parse(subject.export_as_jsonld)
+      expect(json["@id"]).to eq("http://plum.com/concern/ephemera_folders/abcd1234")
+      expect(json["title"]).to eq("Example Folder")
+      expect(json["edm_rights"]["@id"]).to eq("http://rightsstatements.org/vocab/NKC/1.0/")
+      expect(json["edm_rights"]["prefLabel"]).to eq("No Known Copyright")
+      expect(json["@type"]).to eq("pcdm:Object")
+      expect(json["identifier"]).to eq(["32101091980639"])
+      expect(json["label"]).to eq("Folder 3")
+      lang = json["language"].first
+      expect(lang["@id"]).to eq(Rails.application.class.routes.url_helpers.vocabulary_term_url(term.id))
+      expect(lang["pref_label"]).to eq("English")
+      expect(lang["exact_match"]["@id"]).to eq("http://id.loc.gov/authorities/subjects/sh85077482")
     end
   end
 end

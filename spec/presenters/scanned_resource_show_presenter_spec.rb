@@ -67,32 +67,32 @@ RSpec.describe ScannedResourceShowPresenter do
       it 'Merges remote JSON-LD with local values' do
         json = JSON.parse(subject.export_as_jsonld)
 
-        expect(json['edm_rights']).to eq ['http://rightsstatements.org/vocab/NKC/1.0/']
+        expect(json['edm_rights']['@id']).to eq('http://rightsstatements.org/vocab/NKC/1.0/')
         expect(json['title']).to eq({ '@value': 'The Giant Bible of Mainz; 500th anniversary, April fourth, fourteen fifty-two, April fourth, nineteen fifty-two', '@language': 'eng' }.stringify_keys)
         expect(json['description']).to eq 'Seal of the Library of Congress on t.p.'
         expect(json['format']).to eq 'Book'
         expect(json['date']).to eq '1952'
-        expect(json['memberOf']).to eq [{ '@id': "http://plum.com/collections/#{collection.id}", 'title': collection.title.first }.stringify_keys]
+        expect(json['memberOf']).to eq [{ '@id': "http://plum.com/collections/#{collection.id}", 'title': collection.title.first, '@type': 'pcdm:Collection' }.stringify_keys]
       end
     end
 
     context "when the resource has only local metadata" do
       it 'displays the local values' do
         json = JSON.parse(subject.export_as_jsonld)
-        expect(json['edm_rights']).to eq ['http://rightsstatements.org/vocab/NKC/1.0/']
+        expect(json['edm_rights']['@id']).to eq('http://rightsstatements.org/vocab/NKC/1.0/')
         expect(json['title']).to eq('Test title')
       end
 
       it 'generates turtle' do
         ttl = subject.export_as_ttl
         expect(ttl).to include '<http://purl.org/dc/terms/title> "Test title"'
-        expect(ttl).to include '<http://www.europeana.eu/schemas/edm/rights> "http://rightsstatements.org/vocab/NKC/1.0/"'
+        expect(ttl).to include '<http://www.europeana.eu/schemas/edm/rights> <http://rightsstatements.org/vocab/NKC/1.0/>'
       end
 
       it 'generates ntriples' do
         nt = subject.export_as_nt
         expect(nt).to include '<http://purl.org/dc/terms/title> "Test title"'
-        expect(nt).to include '<http://www.europeana.eu/schemas/edm/rights> "http://rightsstatements.org/vocab/NKC/1.0/"'
+        expect(nt).to include '<http://www.europeana.eu/schemas/edm/rights> <http://rightsstatements.org/vocab/NKC/1.0/>'
       end
     end
   end

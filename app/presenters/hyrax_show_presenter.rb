@@ -41,9 +41,17 @@ class HyraxShowPresenter < Hyrax::WorkShowPresenter
         memberOf: collection_objects,
         scopeNote: portion_note,
         navDate: nav_date,
-        edm_rights: solr_document.rights_statement,
+        edm_rights: rights_object,
         identifier: identifier
       }.reject { |_, v| v.nil? || v.try(:empty?) }
+    end
+
+    def rights_object
+      {
+        '@id': solr_document.rights_statement.first,
+        '@type': 'dcterms:RightsStatement',
+        prefLabel: RightsStatementService.new.label(solr_document.rights_statement.first)
+      }
     end
 
     def obj_url
@@ -55,7 +63,7 @@ class HyraxShowPresenter < Hyrax::WorkShowPresenter
     end
 
     def collection_objects
-      member_of_collection_ids.zip(collection).map { |arr| { '@id': col_url(arr.first), title: arr.last } }
+      member_of_collection_ids.zip(collection).map { |arr| { '@id': col_url(arr.first), title: arr.last, '@type': 'pcdm:Collection' } }
     end
 
     def logical_order_factory

@@ -42,4 +42,33 @@ class EphemeraFolderPresenter < HyraxShowPresenter
       { id: id, label: id }
     end
   end
+
+  private
+
+    def local_fields
+      super.tap do |fields|
+        fields['@type'] = 'pcdm:Object'
+        fields[:alternative] = alternative
+        fields[:creator] = creator
+        fields[:contributor] = contributor
+        fields[:publisher] = publisher
+        fields[:identifier] = [identifier.first, barcode].reject(&:blank?)
+        fields[:label] = "Folder #{folder_number}"
+        fields[:is_part_of] = ephemera_project_name
+        fields[:coverage] = geo_subject
+        fields[:dcterms_type] = lookup_objects(:genre)
+        fields[:origin_place] = lookup_objects(:geographic_origin)
+        fields[:language] = lookup_objects(:language)
+        fields[:subject] = lookup_objects(:subject)
+      end
+    end
+
+    def lookup_objects(type)
+      Array.wrap(solr_document.send(type)).map do |id|
+        term = VocabularyTerm.find(id)
+        obj = { '@id': Rails.application.routes.url_helpers.vocabulary_term_url(id), pref_label: term.label }
+        obj[:exact_match] = { '@id': term.uri } if term.uri.present?
+        obj
+      end
+    end
 end
