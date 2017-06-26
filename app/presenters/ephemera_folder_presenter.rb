@@ -65,10 +65,18 @@ class EphemeraFolderPresenter < HyraxShowPresenter
 
     def lookup_objects(type)
       Array.wrap(solr_document.send(type)).map do |id|
-        term = VocabularyTerm.find(id)
-        obj = { '@id': Rails.application.routes.url_helpers.vocabulary_term_url(id), pref_label: term.label }
-        obj[:exact_match] = { '@id': term.uri } if term.uri.present?
-        obj
+        convert_to_object(id)
       end
+    end
+
+    def convert_to_object(id)
+      return id unless id.match(/^\d+/)
+      term = VocabularyTerm.find(id)
+      obj = { '@id': Rails.application.routes.url_helpers.vocabulary_term_url(id), pref_label: term.label }
+      obj[:exact_match] = { '@id': term.uri } if term.uri.present?
+      obj
+    rescue
+      Rails.logger.warn "Error looking up #{type} #{id}"
+      id
     end
 end

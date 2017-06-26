@@ -149,11 +149,6 @@ RSpec.describe EphemeraFolderPresenter do
   end
 
   describe "linked data" do
-    let(:language_json) {{
-      "@id": Rails.application.class.routes.url_helpers.vocabulary_term_url(term.id),
-      "pref_label": "English",
-      "exact_match": { "@id": "http://id.loc.gov/authorities/subjects/sh85077482" }
-    }}
     it 'generates json-ld with descriptive metadata' do
       json = JSON.parse(subject.export_as_jsonld)
       expect(json["@id"]).to eq("http://plum.com/concern/ephemera_folders/abcd1234")
@@ -167,6 +162,18 @@ RSpec.describe EphemeraFolderPresenter do
       expect(lang["@id"]).to eq(Rails.application.class.routes.url_helpers.vocabulary_term_url(term.id))
       expect(lang["pref_label"]).to eq("English")
       expect(lang["exact_match"]["@id"]).to eq("http://id.loc.gov/authorities/subjects/sh85077482")
+    end
+
+    it 'does not fail when values are not controlled' do
+      folder.genre = ['foo']
+      json = JSON.parse(subject.export_as_jsonld)
+      expect(json["dcterms_type"]).to eq(['foo'])
+    end
+
+    it 'does not fail when lookups fail' do
+      folder.genre = ['0000000']
+      json = JSON.parse(subject.export_as_jsonld)
+      expect(json["dcterms_type"]).to eq(['0000000'])
     end
   end
 end
