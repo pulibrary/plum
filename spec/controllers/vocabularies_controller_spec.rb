@@ -35,6 +35,30 @@ RSpec.describe VocabulariesController, type: :controller do
       get :show, params: { id: vocabulary.to_param }
       expect(assigns(:vocabulary)).to eq(vocabulary)
     end
+
+    it "serves JSON-LD" do
+      vocabulary = Vocabulary.create! valid_attributes
+      get :show, params: { id: vocabulary.to_param, format: :jsonld }
+
+      json = JSON.parse(response.body)
+      expect(json['@id']).to eq(vocabulary_url(vocabulary, locale: nil))
+      expect(json['@type']).to eq('skos:ConceptScheme')
+      expect(json['pref_label']).to eq(vocabulary.label)
+    end
+
+    it "serves Turtle", vcr: { cassette_name: 'context.json' } do
+      vocabulary = Vocabulary.create! valid_attributes
+      get :show, params: { id: vocabulary.to_param, format: :ttl }
+
+      expect(response.body).to include "<http://www.w3.org/2004/02/skos/core#prefLabel> \"#{vocabulary.label}\""
+    end
+
+    it "serves N-Triples", vcr: { cassette_name: 'context.json' } do
+      vocabulary = Vocabulary.create! valid_attributes
+      get :show, params: { id: vocabulary.to_param, format: :nt }
+
+      expect(response.body).to include "<http://www.w3.org/2004/02/skos/core#prefLabel> \"#{vocabulary.label}\""
+    end
   end
 
   describe "GET #new" do

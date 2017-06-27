@@ -50,7 +50,7 @@ class HyraxShowPresenter < Hyrax::WorkShowPresenter
       {
         '@id': solr_document.rights_statement.first,
         '@type': 'dcterms:RightsStatement',
-        prefLabel: RightsStatementService.new.label(solr_document.rights_statement.first)
+        pref_label: RightsStatementService.new.label(solr_document.rights_statement.first)
       }
     end
 
