@@ -1,0 +1,38 @@
+<aside id="form-progress" class="form-progress panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title"><%= t("hyrax.works.progress.header") %></h3>
+  </div>
+  <div class="list-group">
+    <div class="list-group-item">
+      <fieldset>
+        <legend class="legend-save-work"><%= t('.requirements') %></legend>
+        <ul class="requirements">
+          <li class="incomplete" id="required-metadata"><%= t('.required_descriptions') %></li>
+          <% if Hyrax.config.work_requires_files? %>
+            <li class="incomplete" id="required-files"><%= t('.required_files') %></li>
+          <% end %>
+        </ul>
+      </fieldset>
+    </div>
+
+    <div class="set-access-controls list-group-item">
+      <%= render 'form_visibility_component', f: f %>
+    </div>
+    <% unless current_user.can_make_deposits_for.empty? %>
+        <div class="list-group-item">
+          <%= f.input :on_behalf_of, collection: current_user.can_make_deposits_for.map(&:user_key), prompt: "Yourself" %>
+        </div>
+    <% end %>
+  </div>
+  <div class="panel-footer text-center">
+    <br>
+    <% if params[:action] == 'new' %>
+      <%= link_to t(:'helpers.action.cancel'), main_app.hyrax_ephemera_box_path(params[:parent_id]), class: 'btn btn-default' %>
+    <% else %>
+      <%= link_to t(:'helpers.action.cancel'), polymorphic_path([main_app, curation_concern]), class: 'btn btn-default' %>
+    <% end %>
+    <%= f.input Hyrax::Actors::OptimisticLockValidator.version_field, as: :hidden if f.object.persisted? %>
+    <%= f.submit class: 'btn btn-primary', id: "with_files_submit", name: "save_with_files" %>
+    <%= f.submit "Save and Create Another", class: 'btn btn-primary', id: "save_and_create_another", name: "save_and_create_another" %>
+  </div>
+</aside>
