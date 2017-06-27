@@ -52,6 +52,11 @@ describe Ability do
     FactoryGirl.create(:needs_qa_ephemera_folder, user: creating_user)
   }
 
+  let(:ephemera_folder_in_all_complete_box) {
+    box = FactoryGirl.create(:all_in_production_box)
+    FactoryGirl.create(:needs_qa_ephemera_folder, user: creating_user, member_of_collections: [box])
+  }
+
   let(:external_metadata_file) { FactoryGirl.build(:file_set, user: creating_user, geo_mime_type: 'application/xml; schema=fgdc') }
   let(:ephemera_editor_file) { FactoryGirl.build(:file_set, user: ephemera_editor) }
   let(:image_editor_file) { FactoryGirl.build(:file_set, user: image_editor) }
@@ -85,7 +90,7 @@ describe Ability do
     allow(image_editor_file).to receive(:id).and_return("image_editor_file")
     allow(ephemera_editor_file).to receive(:id).and_return("ephemera_editor_file")
     allow(admin_file).to receive(:id).and_return("admin_file")
-    [open_scanned_resource, private_scanned_resource, campus_only_scanned_resource, pending_scanned_resource, metadata_review_scanned_resource, final_review_scanned_resource, complete_scanned_resource, takedown_scanned_resource, flagged_scanned_resource, image_editor_file, ephemera_editor_file, admin_file, complete_ephemera_folder, needs_qa_ephemera_folder].each do |obj|
+    [open_scanned_resource, private_scanned_resource, campus_only_scanned_resource, pending_scanned_resource, metadata_review_scanned_resource, final_review_scanned_resource, complete_scanned_resource, takedown_scanned_resource, flagged_scanned_resource, image_editor_file, ephemera_editor_file, admin_file, complete_ephemera_folder, needs_qa_ephemera_folder, ephemera_folder_in_all_complete_box].each do |obj|
       allow(subject.cache).to receive(:get).with(obj.id).and_return(Hydra::PermissionsSolrDocument.new(obj.to_solr, nil))
     end
   end
@@ -169,6 +174,7 @@ describe Ability do
 
       should be_able_to(:manifest, presenter(complete_ephemera_folder))
       should be_able_to(:manifest, presenter(needs_qa_ephemera_folder))
+      should be_able_to(:manifest, presenter(ephemera_folder_in_all_complete_box))
 
       should_not be_able_to(:create, Role.new)
       should_not be_able_to(:destroy, role)
@@ -376,6 +382,8 @@ describe Ability do
       should_not be_able_to(:destroy, admin_file)
 
       should_not be_able_to(:manifest, needs_qa_ephemera_folder)
+      should_not be_able_to(:manifest, presenter(needs_qa_ephemera_folder))
+      should be_able_to(:manifest, ephemera_folder_in_all_complete_box)
       should be_able_to(:manifest, complete_ephemera_folder)
     }
     it "cannot create works" do

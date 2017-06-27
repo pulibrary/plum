@@ -1,0 +1,79 @@
+{
+  "workflows": [
+    {
+      "name": "ephemera_box_works",
+      "label": "Ephemera Box Works",
+      "actions": [
+        {
+          "name": "new",
+          "from_states": [],
+          "transition_to": "new",
+          "methods": [
+            "Workflow::Folders::GrantEditToGroups",
+            "Hyrax::Workflow::ActivateObject"
+          ]
+        },
+        {
+          "name": "ready_to_ship",
+          "from_states": [
+            {
+              "names": ["new"],
+              "roles": [
+                "admin",
+                "ephemera_editor"
+              ]
+            }
+          ],
+          "transition_to": "ready_to_ship",
+          "methods": [],
+          "notifications": []
+        },
+        {
+          "name": "shipped",
+          "from_states": [
+            {
+              "names": ["ready_to_ship"],
+              "roles": [
+                "admin",
+                "ephemera_editor"
+              ]
+            }
+          ],
+          "transition_to": "shipped",
+          "methods": [],
+          "notifications": []
+        },
+        {
+          "name": "received",
+          "from_states": [
+            {
+              "names": ["shipped"],
+              "roles": [
+                "admin",
+                "ephemera_editor"
+              ]
+            }
+          ],
+          "transition_to": "received",
+          "methods": [],
+          "notifications": []
+        },
+        {
+          "name": "all_in_production",
+          "from_states": [
+            {
+              "names": ["received"],
+              "roles": [
+                "admin",
+                "ephemera_editor"
+              ]
+            }
+          ],
+          "methods": [],
+          "transition_to": "all_in_production",
+          "notifications": []
+        }
+      ]
+    }
+  ]
+}

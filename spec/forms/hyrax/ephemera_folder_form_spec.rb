@@ -6,7 +6,7 @@ RSpec.describe Hyrax::EphemeraFolderForm do
 
   describe "#primary_terms" do
     it "has primary terms" do
-      expect(form.primary_terms).to eq(form.terms - [:member_of_collection_ids])
+      expect(form.primary_terms).to eq(form.terms - [:member_of_collection_ids, :visibility])
     end
   end
 

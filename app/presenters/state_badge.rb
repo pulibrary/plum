@@ -52,7 +52,11 @@ class StateBadge
         final_review: 'label-primary',
         complete: 'label-success',
         flagged: 'label-warning',
-        takedown: 'label-danger'
+        takedown: 'label-danger',
+        ready_to_ship: 'label-info',
+        shipped: 'label-info',
+        received: 'label-default',
+        all_in_production: 'label-success'
       }
     end
 

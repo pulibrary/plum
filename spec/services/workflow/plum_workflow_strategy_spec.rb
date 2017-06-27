@@ -30,4 +30,14 @@ RSpec.describe Workflow::PlumWorkflowStrategy, :no_clean, :admin_set do
       it { is_expected.to eq Sipity::Workflow.where(name: 'folder_works').first! }
     end
   end
+
+  context "when working with an Ephemera box" do
+    let(:work) { FactoryGirl.build(:ephemera_box) }
+    let(:workflow_strategy) { described_class.new(work) }
+
+    describe "#workflow" do
+      subject { workflow_strategy.workflow }
+      it { is_expected.to eq Sipity::Workflow.where(name: 'ephemera_box_works').first! }
+    end
+  end
 end

@@ -13,6 +13,8 @@ class EphemeraBox < ActiveFedora::Base
   property :barcode, predicate: ::PULTerms.barcode
   property :box_number, predicate: ::RDF::RDFS.label
   property :ephemera_project, predicate: ::PULTerms.ephemera_project
+  property :shipped_date, predicate: ::PULTerms.shipped_date
+  property :tracking_number, predicate: ::PULTerms.tracking_number
 
   self.human_readable_type = 'Ephemera Box'
   def box_number=(title)
