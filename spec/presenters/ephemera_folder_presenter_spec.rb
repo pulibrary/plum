@@ -154,7 +154,7 @@ RSpec.describe EphemeraFolderPresenter do
       expect(json["@id"]).to eq("http://plum.com/concern/ephemera_folders/abcd1234")
       expect(json["title"]).to eq("Example Folder")
       expect(json["edm_rights"]["@id"]).to eq("http://rightsstatements.org/vocab/NKC/1.0/")
-      expect(json["edm_rights"]["prefLabel"]).to eq("No Known Copyright")
+      expect(json["edm_rights"]["pref_label"]).to eq("No Known Copyright")
       expect(json["@type"]).to eq("pcdm:Object")
       expect(json["identifier"]).to eq(["32101091980639"])
       expect(json["label"]).to eq("Folder 3")

@@ -1,4 +1,6 @@
 class VocabulariesController < ApplicationController
+  include ServesLinkedData
+
   before_action :set_vocabulary, only: [:show, :edit, :update, :destroy]
   authorize_resource only: [:new, :edit, :create, :update, :destroy]
 
@@ -11,6 +13,13 @@ class VocabulariesController < ApplicationController
   # GET /vocabularies/1
   # GET /vocabularies/1.json
   def show
+    respond_to do |wants|
+      wants.html
+      wants.json
+      wants.jsonld { render body: export_as_jsonld, content_type: 'application/ld+json' }
+      wants.nt { render body: export_as_nt, content_type: 'application/n-triples' }
+      wants.ttl { render body: export_as_ttl, content_type: 'text/turtle' }
+    end
   end
 
   # GET /vocabularies/new
@@ -74,5 +83,14 @@ class VocabulariesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def vocabulary_params
       params.require(:vocabulary).permit(:label, :parent_id)
+    end
+
+    def export_as_jsonld
+      {
+        '@context': 'https://bibdata.princeton.edu/context.json',
+        '@id': vocabulary_url(@vocabulary, locale: nil),
+        '@type': 'skos:ConceptScheme',
+        pref_label: @vocabulary.label
+      }.to_json
     end
 end
