@@ -21,19 +21,42 @@ class IngestService
     klass = choose_class(Dir["#{dir}/*"].first)
     attribs = bib.nil? ? { title: [File.basename(dir)] } : { source_metadata_identifier: [bib] }
     r = minimal_record klass, user, attribs
+    attach_files(dir, r, user)
+
+    r.member_of_collections << collection if collection
+    r.save!
+    r
+  end
+
+  def attach_each_dir(dir, field, user, filter)
+    Dir["#{dir}/*"].sort.each do |subdir|
+      next unless File.directory? subdir
+      @logger.info "Attaching #{subdir}"
+      attach_dir(subdir, field, user, filter)
+    end
+  end
+
+  def attach_dir(dir, field, user, filter)
+    id = File.basename(dir)
+    r = ActiveFedora::Base.where(field.to_sym => id).first
+    @logger.info "Found #{r.id} for #{field}:#{id}"
+    attach_files(dir, r, user, filter)
+    r.save!
+    r
+  end
+
+  def attach_files(dir, r, user, filter = nil)
     members = []
     Dir["#{dir}/*"].sort.each do |f|
       if File.directory? f
         members << ingest_dir(f, nil, user)
       else
-        members << ingest_file(r, f, user, {}, file_set_attributes.merge(title: [File.basename(f)]))
+        if filter.nil? || f.ends_with?(filter)
+          members << ingest_file(r, f, user, {}, file_set_attributes.merge(title: [File.basename(f)]))
+        end
       end
     end
     r.ordered_members = members
-    r.member_of_collections << collection if collection
-    r.save!
-
-    r
   end
 
   def ingest_work(file_path, user)
@@ -55,7 +78,7 @@ class IngestService
     actor.create_metadata(file_options)
     actor.create_content(file)
     actor.attach_file_to_work(parent)
-    @logger.info "Ingested file #{file}"
+    @logger.info "Ingested file #{file} as #{file_set.id}"
 
     file_set
   end
