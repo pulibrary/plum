@@ -12,6 +12,22 @@ FactoryGirl.define do
       association :workflow_state, factory: :workflow_state, name: 'needs_qa'
     end
 
+    factory :ready_to_ship_sipity_entity, class: Sipity::Entity do
+      association :workflow_state, factory: :workflow_state, name: 'ready_to_ship'
+    end
+
+    factory :shipped_sipity_entity, class: Sipity::Entity do
+      association :workflow_state, factory: :workflow_state, name: 'shipped'
+    end
+
+    factory :received_sipity_entity, class: Sipity::Entity do
+      association :workflow_state, factory: :workflow_state, name: 'received'
+    end
+
+    factory :all_in_production_sipity_entity, class: Sipity::Entity do
+      association :workflow_state, factory: :workflow_state, name: 'all_in_production'
+    end
+
     factory :flagged_sipity_entity, class: Sipity::Entity do
       association :workflow_state, factory: :workflow_state, name: 'flagged'
     end

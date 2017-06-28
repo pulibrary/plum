@@ -10,6 +10,7 @@ module Workflow
     def workflow
       return Sipity::Workflow.where(name: 'book_works').first! if book_works.include? work_class
       return Sipity::Workflow.where(name: 'folder_works').first! if folder_works.include? work_class
+      return Sipity::Workflow.where(name: 'ephemera_box_works').first! if box_works.include? work_class
       return Sipity::Workflow.where(name: 'geo_works').first! if geo_works.include? work_class
     end
 
@@ -20,7 +21,11 @@ module Workflow
       end
 
       def book_works
-        %w(ScannedResource MultiVolumeWork EphemeraBox)
+        %w(ScannedResource MultiVolumeWork)
+      end
+
+      def box_works
+        %w(EphemeraBox)
       end
 
       def folder_works

@@ -153,6 +153,9 @@ class Ability
       readable_concern?(curation_concern)
     end
     cannot [:manifest], EphemeraFolder do |folder|
+      folder.workflow_state == "needs_qa" && !folder.member_of_collections.map(&:workflow_state).include?("all_in_production")
+    end
+    cannot [:manifest], EphemeraFolderPresenter do |folder|
       folder.workflow_state == "needs_qa"
     end
     can :pdf, (curation_concerns + [ScannedResourceShowPresenter]) do |curation_concern|
