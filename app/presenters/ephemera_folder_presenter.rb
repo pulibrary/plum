@@ -3,6 +3,10 @@ class EphemeraFolderPresenter < HyraxShowPresenter
   self.collection_presenter_class = DynamicShowPresenter.new
   delegate :barcode, :folder_number, :box_id, :ephemera_project_id, :ephemera_project_name, to: :solr_document
 
+  def member_presenter_factory
+    ::EfficientMemberPresenterFactory.new(solr_document, current_ability, request)
+  end
+
   def language
     Array.wrap(super).map do |id|
       authority_for(:language).find(id)[:label]

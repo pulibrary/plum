@@ -38,4 +38,22 @@ RSpec.describe IngestService, :admin_set do
       end
     end
   end
+
+  describe '#attach_dir' do
+    context 'with a set of LAE images' do
+      let(:barcode1) { '32101075851400' }
+      let(:barcode2) { '32101075851418' }
+      let(:lae_dir) { Rails.root.join('spec', 'fixtures', 'lae') }
+      before do
+        @folder1 = FactoryGirl.create(:ephemera_folder, barcode: [barcode1])
+        @folder2 = FactoryGirl.create(:ephemera_folder, barcode: [barcode2])
+      end
+
+      it 'attaches the files' do
+        subject.attach_each_dir(lae_dir, 'barcode_ssim', user, '.tif')
+        expect(@folder1.reload.members.size).to eq(1)
+        expect(@folder2.reload.members.size).to eq(2)
+      end
+    end
+  end
 end

@@ -43,4 +43,24 @@ namespace :bulk do
       puts e.backtrace
     end
   end
+  desc "Attach a set of directories of TIFFs to existing objects, using the directory names as identifiers to find the objects"
+  task attach_each_dir: :environment do
+    user = User.find_by_user_key( ENV['USER'] ) if ENV['USER']
+    user = User.all.select{ |u| u.admin? }.first unless user
+    dir = ENV['DIR']
+    field = ENV['FIELD']
+    filter = ENV['FILTER']
+    abort "usage: rake bulk:attach_each_dir DIR=/path/to/files FIELD=barcode FILTER=filter" unless field && dir && Dir.exist?(dir)
+
+    @logger = Logger.new(STDOUT)
+    @logger.info "attaching files from: #{dir}"
+    @logger.info "attaching as: #{user.user_key} (override with USER=foo)"
+    @logger.info "filtering to files ending with #{filter}" if filter
+    begin
+        IngestService.new(@logger).attach_each_dir dir, field, user, filter
+    rescue => e
+      puts "Error: #{e.message}"
+      puts e.backtrace
+    end
+  end
 end
