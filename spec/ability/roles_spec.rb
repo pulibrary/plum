@@ -61,6 +61,7 @@ describe Ability do
   let(:ephemera_editor) { FactoryGirl.create(:ephemera_editor) }
   let(:image_editor) { FactoryGirl.create(:image_editor) }
   let(:editor) { FactoryGirl.create(:editor) }
+  let(:completer) { FactoryGirl.create(:completer) }
   let(:fulfiller) { FactoryGirl.create(:fulfiller) }
   let(:curator) { FactoryGirl.create(:curator) }
   let(:campus_user) { FactoryGirl.create(:user) }
@@ -255,6 +256,44 @@ describe Ability do
       should_not be_able_to(:create, Role.new)
       should_not be_able_to(:destroy, role)
       should_not be_able_to(:complete, pending_scanned_resource)
+      should_not be_able_to(:destroy, complete_scanned_resource)
+      should_not be_able_to(:destroy, admin_file)
+    }
+    it "cannot create works" do
+      expect(subject.can_create_any_work?).to be false
+    end
+  end
+
+  describe 'as a completer' do
+    let(:creating_user) { image_editor }
+    let(:current_user) { completer }
+
+    it {
+      should be_able_to(:read, open_scanned_resource)
+      should be_able_to(:read, campus_only_scanned_resource)
+      should be_able_to(:read, private_scanned_resource)
+      should be_able_to(:read, pending_scanned_resource)
+      should be_able_to(:read, metadata_review_scanned_resource)
+      should be_able_to(:read, final_review_scanned_resource)
+      should be_able_to(:read, complete_scanned_resource)
+      should be_able_to(:read, takedown_scanned_resource)
+      should be_able_to(:read, flagged_scanned_resource)
+      should be_able_to(:manifest, open_scanned_resource)
+      should be_able_to(:pdf, open_scanned_resource)
+      should be_able_to(:color_pdf, open_scanned_resource)
+      should be_able_to(:file_manager, open_scanned_resource)
+      should be_able_to(:file_manager, open_multi_volume_work)
+      should be_able_to(:save_structure, open_scanned_resource)
+      should be_able_to(:update, open_scanned_resource)
+      should be_able_to(:complete, pending_scanned_resource)
+
+      should_not be_able_to(:download, image_editor_file)
+      should_not be_able_to(:create, ScannedResource.new)
+      should_not be_able_to(:create, FileSet.new)
+      should_not be_able_to(:destroy, image_editor_file)
+      should_not be_able_to(:destroy, pending_scanned_resource)
+      should_not be_able_to(:create, Role.new)
+      should_not be_able_to(:destroy, role)
       should_not be_able_to(:destroy, complete_scanned_resource)
       should_not be_able_to(:destroy, admin_file)
     }

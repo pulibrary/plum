@@ -42,6 +42,10 @@ class Ability
       @groups ||= super + auth_token.groups
     end
 
+    def completer?
+      groups.include?('completer')
+    end
+
     def ephemera_editor?
       groups.include?('ephemera_editor')
     end
@@ -104,6 +108,19 @@ class Ability
     cannot [:destroy], curation_concerns do |obj|
       !obj.identifier.blank?
     end
+  end
+
+  def completer_permissions
+    can [:read, :modify, :update], curation_concerns
+    can [:file_manager, :save_structure], ScannedResource
+    can [:file_manager, :save_structure], MultiVolumeWork
+    can [:read, :edit, :update], FileSet
+    can [:read, :edit, :update], Collection
+
+    # allow completing resources
+    can [:complete], curation_concerns
+
+    curation_concern_read_permissions
   end
 
   def editor_permissions
@@ -185,7 +202,7 @@ class Ability
   private
 
     def universal_reader?
-      current_user.curator? || current_user.image_editor? || current_user.fulfiller? || current_user.editor? || current_user.admin?
+      current_user.curator? || current_user.image_editor? || current_user.completer? || current_user.fulfiller? || current_user.editor? || current_user.admin?
     end
 
     def curation_concerns
@@ -193,6 +210,6 @@ class Ability
     end
 
     def roles
-      ['anonymous', 'campus_patron', 'curator', 'fulfiller', 'editor', 'ephemera_editor', 'image_editor', 'admin']
+      ['anonymous', 'campus_patron', 'completer', 'curator', 'fulfiller', 'editor', 'ephemera_editor', 'image_editor', 'admin']
     end
 end
