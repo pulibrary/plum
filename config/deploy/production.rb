@@ -9,7 +9,7 @@
 server 'lib-plum1', user: 'deploy', roles: %w(app db web)
 server 'lib-proc4', user: 'deploy', roles: %w(worker worker2)
 server 'lib-proc5', user: 'deploy', roles: %w(worker worker2)
-server 'lib-proc6', user: 'deploy', roles: %w(worker3)
+server 'lib-proc6', user: 'deploy', roles: %w(worker worker2)
 
 set :deploy_to, '/opt/rails_app'
 

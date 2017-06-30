@@ -60,12 +60,9 @@ namespace :sidekiq do
   end
   task :restart do
     on roles(:worker) do
-      execute :sudo, :initctl, :restart, "plum-workers"
+      execute :sudo, :service, "plum-workers", :restart
     end
     on roles(:worker2) do
-      execute :sudo, :initctl, :restart, "plum-derivatives"
-    end
-    on roles(:worker3) do
       execute :sudo, :service, "plum-derivatives", :restart
     end
   end
