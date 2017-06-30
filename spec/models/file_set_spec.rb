@@ -79,6 +79,7 @@ RSpec.describe FileSet do
       allow(Plum.config).to receive(:[]).with(:store_original_files).and_return(true)
       allow(Plum.config).to receive(:[]).with(:create_hocr_files).and_return(true)
       allow(Plum.config).to receive(:[]).with(:index_hocr_files).and_return(true)
+      allow(Plum.config).to receive(:[]).with(:create_word_boundaries).and_return(true)
 
       subject.create_derivatives(file.path)
 
@@ -98,6 +99,7 @@ RSpec.describe FileSet do
       allow_any_instance_of(HOCRDocument).to receive(:text).and_return("yo")
       allow(Plum.config).to receive(:[]).with(:store_original_files).and_return(true)
       allow(Plum.config).to receive(:[]).with(:create_hocr_files).and_return(false)
+      allow(Plum.config).to receive(:[]).with(:create_word_boundaries).and_return(false)
 
       subject.create_derivatives(file.path)
 
@@ -110,6 +112,7 @@ RSpec.describe FileSet do
       allow(Plum.config).to receive(:[]).with(:store_original_files).and_return(true)
       allow(Plum.config).to receive(:[]).with(:create_hocr_files).and_return(false)
       allow(Plum.config).to receive(:[]).with(:index_hocr_files).and_return(false)
+      allow(Plum.config).to receive(:[]).with(:create_word_boundaries).and_return(false)
 
       subject.create_derivatives(text_file.path)
 

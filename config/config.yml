@@ -9,6 +9,7 @@ defaults: &defaults
   purl_redirect_url: <%= ENV["PMP_PURL_REDIRECT_URL"] || "http://server1.variations2.indiana.edu/cgi-bin/access?%s" %>
   create_hocr_files: <%= ENV["PMP_CREATE_HOCR_FILES"] || true %>
   index_hocr_files: <%= ENV["PMP_INDEX_HOCR_FILES"] || true %>
+  create_word_boundaries: <%= ENV["PMP_CREATE_WORD_BOUNDARIES"] || true %>
 
   jp2_recipes:
     default_color: >
