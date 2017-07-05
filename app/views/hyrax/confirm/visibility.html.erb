@@ -1,0 +1,13 @@
+<div class="panel panel-default permissions-confirm">
+  <div class="panel-heading">
+    <h4>Apply changes to attached volumes?<h4>
+  </div>
+  <div class="panel-body">
+    <p>You have changed the visibility of work <i><%= curation_concern %></i></p>
+    <p>Would you like to change the visibility of all of the attached volumes to have the same visibility?</p>
+  </div>
+  <div class="form-actions panel-footer">
+    <%= button_to "Yes, update them", main_app.copy_visibility_hyrax_confirm_path(@curation_concern), class: 'btn btn-primary' %>
+    <%= link_to "No, I'll update them manually", [main_app, @curation_concern], class: 'btn' %>
+  </div>
+</div>

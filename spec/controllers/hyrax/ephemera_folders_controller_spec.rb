@@ -15,13 +15,22 @@ RSpec.describe Hyrax::EphemeraFoldersController, admin_set: true do
     }
   end
   describe "#create" do
-    it "creates it as a sub-resource of a box" do
+    before do
       sign_in user
+    end
+
+    it "creates it as a sub-resource of a box" do
       post :create, params: { ephemera_folder: attributes.merge(box_id: box.id, barcode: folder.barcode.first, rights_statement: "http://rightsstatements.org/vocab/NKC/1.0/") }
 
       expect(response).to be_redirect
       id = response.headers["Location"].match(/.*\/(.*)/)[1]
       expect(ActiveFedora::Base.find(id).member_of_collections).to eq [box]
+    end
+
+    it "uses the newly created record as a template when 'save and create another' is used" do
+      post :create, params: { ephemera_folder: attributes.merge(box_id: box.id, barcode: folder.barcode.first, rights_statement: "http://rightsstatements.org/vocab/NKC/1.0/"), save_and_create_another: true, parent_id: box.id }
+      expect(response).to be_redirect
+      expect(response.location).to include('create_another=')
     end
   end
 

@@ -27,7 +27,7 @@ RSpec.feature "MultiVolumeWorksController", type: :feature, admin_set: true do
 
   scenario "User can create a new scanned resource attached to the multi-volume work", vcr: { cassette_name: "locations" } do
     visit polymorphic_path [multi_volume_work]
-    expect(page).to have_text('This Multi Volume Work has no files associated with it.')
+    expect(page).to have_text('This Multi Volume Work has no volumes attached.')
 
     click_link 'Attach Scanned Resource'
     fill_in 'scanned_resource_title', with: 'Volume 1'

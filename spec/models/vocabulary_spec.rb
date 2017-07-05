@@ -5,7 +5,7 @@ RSpec.describe Vocabulary, type: :model do
   let(:parent) { FactoryGirl.build(:vocabulary, label: 'Parent Vocabulary') }
 
   it 'has a label' do
-    expect(subject.label).to eq('LAE Subjects')
+    expect(subject.label).to start_with('LAE Subjects')
     subject.label = 'Updated Label'
     expect(subject.label).to eq('Updated Label')
   end

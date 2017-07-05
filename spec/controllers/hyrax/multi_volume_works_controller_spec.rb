@@ -26,6 +26,36 @@ describe Hyrax::MultiVolumeWorksController, admin_set: true do
     end
   end
 
+  describe "update" do
+    let(:user) { FactoryGirl.create(:admin) }
+
+    before do
+      sign_in user
+    end
+
+    context "when an error occurs" do
+      let(:mvw) { FactoryGirl.create :multi_volume_work }
+      let(:actor) { instance_double('Actor') }
+      before do
+        allow(controller).to receive(:actor).and_return(actor)
+        allow(actor).to receive(:update).and_return(false)
+      end
+      it "does not update the object" do
+        expect {
+          post :update, params: { id: mvw.id, multi_volume_work: { member_of_collection_ids: ['foo'] } }
+        }.not_to change { mvw.date_modified }
+      end
+    end
+
+    context "when changing visibility" do
+      let(:mvw) { FactoryGirl.create :multi_volume_work_with_volume }
+      it "ask to copy visibility to attached volumes" do
+        post :update, params: { id: mvw.id, multi_volume_work: { visibility: Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PRIVATE } }
+        expect(response).to redirect_to "http://test.host/concern/confirm/#{mvw.id}/visibility?locale=en"
+      end
+    end
+  end
+
   describe "#browse_everything_files" do
     around { |example| perform_enqueued_jobs(&example) }
     let(:resource) { FactoryGirl.create(:multi_volume_work, user: user) }

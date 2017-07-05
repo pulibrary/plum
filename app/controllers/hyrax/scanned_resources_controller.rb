@@ -7,6 +7,11 @@ class Hyrax::ScannedResourcesController < Hyrax::HyraxController
   skip_load_and_authorize_resource only: SearchBuilder.show_actions
   before_action :authorize_pdf, only: [:pdf]
 
+  def new
+    copy_visibility(params[:parent_id]) if params[:parent_id]
+    super
+  end
+
   def show_presenter
     ScannedResourceShowPresenter
   end
@@ -38,6 +43,12 @@ class Hyrax::ScannedResourcesController < Hyrax::HyraxController
     def authorize_gray_pdf
       return if can?(:pdf, presenter)
       raise CanCan::AccessDenied.new(nil, params[:action].to_sym)
+    end
+
+    def copy_visibility(parent_id)
+      curation_concern.visibility = ActiveFedora::Base.find(parent_id).visibility
+    rescue StandardError => e
+      logger.warn "Error copying visibility from #{parent_id}: #{e}"
     end
 
     def pdf_path

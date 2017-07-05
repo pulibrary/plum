@@ -1,5 +1,5 @@
 FactoryGirl.define do
   factory :vocabulary do
-    label "LAE Subjects"
+    sequence(:label) { |n| "LAE Subjects #{n}" }
   end
 end
