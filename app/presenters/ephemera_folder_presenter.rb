@@ -1,7 +1,13 @@
 class EphemeraFolderPresenter < HyraxShowPresenter
   include PlumAttributes
   self.collection_presenter_class = DynamicShowPresenter.new
-  delegate :barcode, :folder_number, :box_id, :ephemera_project_id, :ephemera_project_name, to: :solr_document
+  delegate :barcode,
+           :box_id,
+           :description,
+           :ephemera_project_id,
+           :ephemera_project_name,
+           :folder_number,
+           to: :solr_document
 
   def member_presenter_factory
     ::EfficientMemberPresenterFactory.new(solr_document, current_ability, request)
@@ -64,6 +70,9 @@ class EphemeraFolderPresenter < HyraxShowPresenter
         fields[:origin_place] = lookup_objects(:geographic_origin)
         fields[:language] = lookup_objects(:language)
         fields[:subject] = lookup_objects(:subject)
+        fields[:description] = description
+        fields[:source] = to_uri(source)
+        fields[:related_url] = to_uri(related_url)
       end
     end
 
@@ -77,10 +86,14 @@ class EphemeraFolderPresenter < HyraxShowPresenter
       return id unless id.match(/^\d+/)
       term = VocabularyTerm.find(id)
       obj = { '@id': Rails.application.routes.url_helpers.vocabulary_term_url(id), pref_label: term.label }
-      obj[:exact_match] = { '@id': term.uri } if term.uri.present?
+      obj[:exact_match] = to_uri(term.uri) if term.uri.present?
       obj
     rescue
       Rails.logger.warn "Error looking up #{type} #{id}"
       id
+    end
+
+    def to_uri(value)
+      { "@id": Array.wrap(value).first }
     end
 end
