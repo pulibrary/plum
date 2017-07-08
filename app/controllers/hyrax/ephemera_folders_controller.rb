@@ -28,5 +28,13 @@ module Hyrax
         .except("id", "barcode", "folder_number", "state") if params[:create_another]
       super
     end
+
+    def parent_presenter
+      parent_id = params[:parent_id] || presenter.box_id
+      @parent_presenter ||=
+        begin
+          @parent_presenter ||= show_presenter.new(search_result_document(id: parent_id), current_ability, request) if parent_id
+        end
+    end
   end
 end

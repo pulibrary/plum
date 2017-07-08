@@ -8,6 +8,7 @@
   <% (PlumSchema.display_fields - [:creator, :created, :date_created] + [:date_uploaded, :date_modified]).each do |display_field| %>
     <%= @presenter.attribute_to_html(display_field) %>
   <% end %>
+  <%= @presenter.attribute_to_html(:description) %>
   <tr>
     <th>Access Rights</th>
     <td>

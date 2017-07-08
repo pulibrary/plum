@@ -21,6 +21,9 @@ en:
           well_formed: Well-formed
           publisher: Published/Created
           alternative: Alternative title
+          has_model: Model
+          related_url: DSpace URL
+          source: Source URL
         index:
           description_tesim: "Description"
           keyword_tesim: "Keyword"
