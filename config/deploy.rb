@@ -47,6 +47,15 @@ namespace :deploy do
       end
     end
   end
+  task :workflow do
+    on roles(:web) do
+      within release_path do
+        with rails_env: fetch(:rails_env) do
+          execute :rake, 'hyrax:workflow:load'
+        end
+      end
+    end
+  end
 end
 namespace :sidekiq do
   task :quiet do
