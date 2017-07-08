@@ -18,10 +18,7 @@ module Hyrax
         # Maps from box ID box
         def assign_box(box_id)
           return true unless box_id
-          # grab/save collections this user has no edit access to
-          collections_not_boxes = curation_concern.member_of_collections.select { |coll| !coll.is_a?(EphemeraBox) }
-          curation_concern.member_of_collections = [::EphemeraBox.find(box_id)]
-          curation_concern.member_of_collections.concat collections_not_boxes
+          curation_concern.member_of_collections.concat [::EphemeraBox.find(box_id)]
         end
     end
   end
