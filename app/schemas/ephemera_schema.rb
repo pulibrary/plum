@@ -18,4 +18,6 @@ class EphemeraSchema < ActiveTriples::Schema
   # Subject from BasicMetadata
   property :geo_subject, predicate: ::RDF::Vocab::DC.coverage
   # Description from BasicMetadata
+  # Source from BasicMetadata
+  # RelatedURL form BasicMetadata
 end

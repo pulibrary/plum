@@ -53,9 +53,12 @@ en:
         description: 'Free-text notes about the work.'
         files: ''
         publisher: 'The person or group making the work available.'
+        related_url: ''
         subject: 'Terms describing what the work is about.'
         title: ''
     labels:
       defaults:
         alternative: 'Alternative title'
         description: 'Description'
+        related_url: 'DSpace URL'
+        source: 'Source URL'

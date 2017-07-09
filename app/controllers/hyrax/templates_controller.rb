@@ -39,7 +39,7 @@ module Hyrax
     def destroy
       @template = Template.find(params[:id])
       @template.destroy
-      redirect_to :back
+      redirect_back fallback_location: templates_path
     end
 
     def class_type
