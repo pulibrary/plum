@@ -9,5 +9,4 @@ RSpec.describe Template, type: :model do
       expect(t.reload.params["title"]).to eq "test"
     end
   end
-  pending "add some examples to (or delete) #{__FILE__}"
 end
