@@ -149,6 +149,8 @@ RSpec.describe EphemeraFolderPresenter do
   end
 
   describe "linked data" do
+    let(:folder) { FactoryGirl.create(:ephemera_folder, id: 'abcd1234', language: [term.id.to_s], height: ['123'], width: ['456'], page_count: ['789'], sort_title: ['example folder'], date_uploaded: Time.now, date_modified: Time.now) }
+
     it 'generates json-ld with descriptive metadata' do
       json = JSON.parse(subject.export_as_jsonld)
       expect(json["@id"]).to eq("http://plum.com/concern/ephemera_folders/abcd1234")
@@ -156,8 +158,15 @@ RSpec.describe EphemeraFolderPresenter do
       expect(json["edm_rights"]["@id"]).to eq("http://rightsstatements.org/vocab/NKC/1.0/")
       expect(json["edm_rights"]["pref_label"]).to eq("No Known Copyright")
       expect(json["@type"]).to eq("pcdm:Object")
-      expect(json["identifier"]).to eq(["32101091980639"])
+      expect(json["barcode"]).to eq("32101091980639")
       expect(json["label"]).to eq("Folder 3")
+      expect(json['height']).to eq('123')
+      expect(json['width']).to eq('456')
+      expect(json['page_count']).to eq('789')
+      expect(json['sort_title']).to eq(['example folder'])
+      expect(json['created']).not_to be_nil
+      expect(json['modified']).not_to be_nil
+
       lang = json["language"].first
       expect(lang["@id"]).to eq(Rails.application.class.routes.url_helpers.vocabulary_term_url(term.id))
       expect(lang["pref_label"]).to eq("English")

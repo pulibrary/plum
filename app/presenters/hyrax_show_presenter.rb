@@ -47,6 +47,7 @@ class HyraxShowPresenter < Hyrax::WorkShowPresenter
     end
 
     def rights_object
+      return if solr_document.rights_statement.blank?
       {
         '@id': solr_document.rights_statement.first,
         '@type': 'dcterms:RightsStatement',
@@ -63,6 +64,7 @@ class HyraxShowPresenter < Hyrax::WorkShowPresenter
     end
 
     def collection_objects
+      return if member_of_collection_ids.blank?
       member_of_collection_ids.zip(collection).map { |arr| { '@id': col_url(arr.first), title: arr.last, '@type': 'pcdm:Collection' } }
     end
 

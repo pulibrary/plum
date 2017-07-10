@@ -67,6 +67,14 @@ class SolrDocument
     Array(self[Solrizer.solr_name('ephemera_project_id', :symbol)]).first
   end
 
+  def ephemera_height
+    Array(self[Solrizer.solr_name('height', :symbol)]).first
+  end
+
+  def ephemera_width
+    Array(self[Solrizer.solr_name('width', :symbol)]).first
+  end
+
   def box_id
     Array(self[Solrizer.solr_name('box_id', :symbol)]).first
   end

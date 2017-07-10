@@ -34,4 +34,14 @@ RSpec.describe EphemeraBoxPresenter do
       expect(subject.member_ids).to eq [folder.id]
     end
   end
+
+  describe "#export_as_jsonld" do
+    before do
+      allow(subject).to receive(:id).and_return('abcd1234')
+    end
+    it "generates json" do
+      json = JSON.parse(subject.export_as_jsonld)
+      expect(json['@id']).to eq('http://plum.com/concern/ephemera_boxes/abcd1234')
+    end
+  end
 end
