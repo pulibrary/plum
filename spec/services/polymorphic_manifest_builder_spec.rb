@@ -329,9 +329,11 @@ RSpec.describe PolymorphicManifestBuilder, vcr: { cassette_name: "iiif_manifest"
       expect(result.description).to eq Array(record.description)
     end
     context "when it has a bibdata ID" do
-      it "links to seeAlso" do
-        expect(json_result["seeAlso"]["@id"]).to eq "http://plum.com/concern/scanned_resources/1.jsonld"
-        expect(json_result["seeAlso"]["format"]).to eq "application/ld+json"
+      it "links to JSON-LD and bibdata" do
+        expect(json_result["seeAlso"].first["@id"]).to eq "http://plum.com/concern/scanned_resources/1.jsonld"
+        expect(json_result["seeAlso"].first["format"]).to eq "application/ld+json"
+        expect(json_result["seeAlso"].last["@id"]).to eq "https://bibdata.princeton.edu/bibliographic/1234567"
+        expect(json_result["seeAlso"].last["format"]).to eq "text/xml"
       end
     end
     context "when it has an identifier" do
