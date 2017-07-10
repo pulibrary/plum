@@ -1,8 +1,14 @@
 en:
   hyrax:
+    base:
+      items:
+        empty: "This %{type} has no files associated with it. Click \"File Manager\" to add more files."
     ephemera_boxes:
       items:
         header: 'Folders'
+    multi_volume_works:
+      items:
+        empty: "This %{type} has no volumes attached. Click \"Attach Child\" to attach volumes."
     visibility:
       open:
         text: "Open"

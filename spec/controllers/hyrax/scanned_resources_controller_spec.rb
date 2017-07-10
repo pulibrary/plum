@@ -30,6 +30,24 @@ describe Hyrax::ScannedResourcesController, admin_set: true do
       expect(manifest_generator).to have_received(:record_deleted)
     end
   end
+  describe "new" do
+    let(:user) { FactoryGirl.create(:admin) }
+    before do
+      sign_in user
+    end
+    context "when given a parent id" do
+      let(:mvw) { FactoryGirl.create :multi_volume_work }
+      it "copies the parent's visibility" do
+        get :new, params: { parent_id: mvw.id, locale: :en }
+        expect(assigns(:curation_concern).visibility).to eq mvw.visibility
+      end
+    end
+    context "when given a bogus parent id" do
+      it "does not error" do
+        expect { get :new, params: { parent_id: 'blargh' } }.not_to raise_error
+      end
+    end
+  end
   describe "create" do
     let(:user) { FactoryGirl.create(:admin) }
     before do

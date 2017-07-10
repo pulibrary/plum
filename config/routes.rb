@@ -121,6 +121,14 @@ Rails.application.routes.draw do
         get :text, defaults: { format: :json }
       end
     end
+    resources :confirm, only: [] do
+      member do
+        get :state
+        post :copy_state
+        get :visibility
+        post :copy_visibility
+      end
+    end
   end
 
   require 'sidekiq/web'

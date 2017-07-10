@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :vocabulary_term do
-    label "Literacy"
+    sequence(:label) { |n| "Literacy #{n}" }
     uri "http://id.loc.gov/authorities/subjects/sh85077482"
     code ""
     tgm_label ""
