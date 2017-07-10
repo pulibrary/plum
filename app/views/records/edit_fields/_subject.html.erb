@@ -9,6 +9,7 @@
     group_label_method: :label,
     label_method: :label,
     value_method: :id,
+    required: f.object.required?(:subject),
     input_html: { 
       class: 'form-control', 
       multiple: f.object.multiple?(key),
