@@ -2,5 +2,6 @@
               as: :select,
               collection: RightsStatementService.new.select_options,
               input_html: { class: 'form-control rights-statement' },
+              required: f.object.required?(:rights_statement),
               label: 'Rights Statement' %>
 
