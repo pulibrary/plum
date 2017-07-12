@@ -31,7 +31,7 @@ GeoWorks::Discovery::DocumentBuilder.root_path_class = Discovery::DocumentPath
 GeoWorks::Discovery::DocumentBuilder.services = [
   GeoWorks::Discovery::DocumentBuilder::BasicMetadataBuilder,
   GeoWorks::Discovery::DocumentBuilder::SpatialBuilder,
-  GeoWorks::Discovery::DocumentBuilder::DateBuilder,
+  Discovery::DateBuilder,
   GeoWorks::Discovery::DocumentBuilder::ReferencesBuilder,
   Discovery::LayerInfoBuilder,
   Discovery::SlugBuilder,

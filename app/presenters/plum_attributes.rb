@@ -1,5 +1,5 @@
 module PlumAttributes
-  delegate :state, :type, :identifier, :thumbnail_id, :source_metadata_identifier, :collection, to: :solr_document
+  delegate :state, :type, :identifier, :thumbnail_id, :source_metadata_identifier, :collection, :date, to: :solr_document
 
   def state_badge
     state_badge_instance.render
