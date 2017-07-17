@@ -27,6 +27,16 @@ class CollectionShowPresenter < Hyrax::CollectionPresenter
     []
   end
 
+  def size
+    # TODO: can we do a double or triple join to find FileSets attached to ScannedResources that are members
+    #       of a collection, and/or members of a MultiVolumeWork that are members of a collection?
+    nil
+  end
+
+  def total_items
+    ActiveFedora::SolrService.count("member_of_collection_ids_ssim:#{id}")
+  end
+
   private
 
     # TODO: Extract this to ActiveFedora::Aggregations::ListSource
