@@ -1,0 +1,19 @@
+<% if collector || editor %>
+  <div class="form-actions">
+    <% if editor %>
+      <%= link_to "Edit This #{@presenter.human_readable_type}", edit_polymorphic_path([main_app, @presenter]), class: 'btn btn-default' %>
+      <div class="btn-group">
+        <button class="btn btn-default btn-small dropdown-toggle" data-toggle="dropdown" href="#"> Attach File <span class="caret"></span></button>
+        <ul class="dropdown-menu">
+          <li>
+            <%= link_to "Attach Raster", main_app.new_hyrax_file_set_path(@presenter, type: 'raster-data') %>
+          </li>
+          <li>
+            <%= link_to "Attach Metadata", main_app.new_hyrax_file_set_path(@presenter, type: 'metadata') %>
+          </li>
+        </ul>
+      </div>
+    <% end %>
+      <%= link_to "Delete This #{@presenter.human_readable_type}", [main_app, @presenter], class: 'btn btn-danger pull-right', data: { confirm: "Delete this #{@presenter.human_readable_type}?" }, method: :delete %>
+  </div>
+<% end %>
