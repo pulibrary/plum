@@ -21,6 +21,10 @@ class Hyrax::CollectionsController < ApplicationController
     end
   end
 
+  def current_ability
+    ::Ability.new(current_user, auth_token: params[:auth_token])
+  end
+
   private
 
     def manifest_builder

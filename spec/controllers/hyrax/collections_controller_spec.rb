@@ -32,6 +32,16 @@ RSpec.describe Hyrax::CollectionsController do
 
         expect(response).to redirect_to "/users/auth/cas?locale=en"
       end
+      context "and an authentication token is given" do
+        it "renders the full manifest" do
+          coll = FactoryGirl.create(:private_collection)
+          authorization_token = AuthToken.create(groups: ["admin"])
+          get :manifest, params: { id: coll.id, format: :json, auth_token: authorization_token.token }
+
+          expect(response.status).to eq 200
+          expect(response.body).not_to eq "{}"
+        end
+      end
     end
   end
 
