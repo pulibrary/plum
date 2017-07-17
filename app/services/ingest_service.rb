@@ -17,9 +17,10 @@ class IngestService
     r
   end
 
-  def ingest_dir(dir, bib, user, collection = nil)
+  def ingest_dir(dir, bib, user, collection = nil, local_id = nil)
     klass = choose_class(Dir["#{dir}/*"].first)
     attribs = bib.nil? ? { title: [File.basename(dir)] } : { source_metadata_identifier: [bib] }
+    attribs.merge!(local_identifier: [local_id]) if local_id
     r = minimal_record klass, user, attribs
     attach_files(dir, r, user)
 

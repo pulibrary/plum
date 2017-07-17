@@ -7,6 +7,7 @@ RSpec.describe IngestService, :admin_set do
   let(:multi_dir) { Rails.root.join('spec', 'fixtures', 'ingest_multi') }
   let(:user) { FactoryGirl.create(:admin) }
   let(:bib) { '4609321' }
+  let(:local_id) { 'cico:xyz' }
   let(:resource1) { ScannedResource.new }
   let(:resource2) { ScannedResource.new }
   let(:multivol) { MultiVolumeWork.new }
@@ -19,10 +20,11 @@ RSpec.describe IngestService, :admin_set do
         allow(ScannedResource).to receive(:new).and_return(resource1)
       end
       it 'ingests them as a ScannedResource' do
-        subject.ingest_dir single_dir, bib, user, coll
+        subject.ingest_dir single_dir, bib, user, coll, local_id
         expect(resource1.file_sets.length).to eq 2
         expect(resource1.ordered_members.to_a.map(&:label)).to eq ['color.tif', 'gray.tif']
         expect(resource1.member_of_collection_ids).to eq [coll.id]
+        expect(resource1.local_identifier).to eq [local_id]
       end
     end
 

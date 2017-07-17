@@ -6,8 +6,9 @@ namespace :bulk do
     dir = ENV['DIR']
     bib = ENV['BIB']
     coll = ENV['COLL']
+    local_id = ENV['LOCAL_ID']
     background = ENV['BACKGROUND']
-    abort "usage: rake bulk:ingest DIR=/path/to/files BIB=1234567 COLL=collid" unless bib && dir && Dir.exist?(dir)
+    abort "usage: rake bulk:ingest DIR=/path/to/files BIB=1234567 COLL=collid LOCAL_ID=local_id" unless bib && dir && Dir.exist?(dir)
 
     coll = ActiveFedora::Base.find(coll) if coll.present?
     @logger = Logger.new(STDOUT)
@@ -16,9 +17,9 @@ namespace :bulk do
     @logger.info "adding item to collection #{coll.id}" if coll
     begin
       if background
-        IngestServiceJob.perform_later(dir, bib, user, coll.id)
+        IngestServiceJob.perform_later(dir, bib, user, coll.id, local_id)
       else
-        IngestService.new(@logger).ingest_dir dir, bib, user, coll
+        IngestService.new(@logger).ingest_dir dir, bib, user, coll, local_id
       end
     rescue => e
       puts "Error: #{e.message}"
