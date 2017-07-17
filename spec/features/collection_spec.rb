@@ -38,6 +38,7 @@ RSpec.feature 'Collections', type: :feature, admin_set: true do
       c = s.member_of_collections.first
 
       visit collection_path(c)
+      expect(page).to have_xpath("//span[@itemprop='total_items']", text: 1)
       within('.actions-controls-collections') do
         click_link 'Edit'
       end
