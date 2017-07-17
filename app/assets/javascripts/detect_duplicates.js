@@ -7,6 +7,10 @@ function detect_duplicates() {
   var $me = $(this);
   if ( $me.val() != '' ) {
     var url = '/catalog?f[source_metadata_identifier_ssim][]=' + $me.val();
+    var existing = $me.attr('data-id');
+    if ( existing ) {
+      url += '&q=NOT+id:' + existing;
+    }
     $.ajax({ url: url + '&format=json' })
     .done(function(data) {
       if ( data.response.docs.length > 0 ) {
