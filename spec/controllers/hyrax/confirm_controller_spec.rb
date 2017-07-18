@@ -11,6 +11,20 @@ describe Hyrax::ConfirmController do
     sign_in user
   end
 
+  describe "#state" do
+    render_views
+    it "renders" do
+      get :state, params: { id: parent.id }
+    end
+  end
+
+  describe "#visibility" do
+    render_views
+    it "renders" do
+      get :visibility, params: { id: parent.id }
+    end
+  end
+
   describe '#copy_state' do
     it 'copies state from the parent to the member' do
       expect {
