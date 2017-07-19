@@ -1,7 +1,7 @@
 module Workflow
   class UpdatedEvent
     def self.call(target:, **)
-      return unless target.is_a?(ScannedResource) || target.is_a?(MultiVolumeWork)
+      return unless target.is_a?(ScannedResource) || target.is_a?(MultiVolumeWork) || target.is_a?(EphemeraFolder)
       target.save
       messenger.record_updated(target)
       true
