@@ -25,6 +25,7 @@
             }
           ],
           "methods": [
+            "Workflow::UpdatedEvent"
           ],
           "transition_to": "needs_qa"
         },
@@ -40,7 +41,8 @@
             }
           ],
           "methods": [
-            "Workflow::CompleteRecord"
+            "Workflow::CompleteRecord",
+            "Workflow::UpdatedEvent"
           ],
           "transition_to": "complete"
         }

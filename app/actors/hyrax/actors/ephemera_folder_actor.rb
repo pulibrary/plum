@@ -2,7 +2,7 @@
 #  `rails generate hyrax:work EphemeraFolder`
 module Hyrax
   module Actors
-    class EphemeraFolderActor < Hyrax::Actors::BaseActor
+    class EphemeraFolderActor < PlumActor
       def create(attributes)
         box_id = attributes.delete(:box_id)
         assign_box(box_id) && super

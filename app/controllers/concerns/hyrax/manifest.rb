@@ -3,6 +3,7 @@ module Hyrax::Manifest
 
   included do
     def manifest
+      authorize! :manifest, presenter
       respond_to do |f|
         f.json do
           render json: manifest_builder
