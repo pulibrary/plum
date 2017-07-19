@@ -328,6 +328,12 @@ RSpec.describe PolymorphicManifestBuilder, vcr: { cassette_name: "iiif_manifest"
     it "has a description" do
       expect(result.description).to eq Array(record.description)
     end
+    it "has a license" do
+      expect(result.license).to eq('http://rightsstatements.org/vocab/NKC/1.0/')
+    end
+    it "has a logo" do
+      expect(result.logo).to eq('http://plum.com/assets/pul_logo_icon.png')
+    end
     context "when it has a bibdata ID" do
       it "links to JSON-LD and bibdata" do
         expect(json_result["seeAlso"].first["@id"]).to eq "http://plum.com/concern/scanned_resources/1.jsonld"
