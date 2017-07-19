@@ -91,13 +91,13 @@ class IngestYAMLJob < ActiveJob::Base
         @counter.increment
         file_set = FileSet.new
         file_set.attributes = f[:attributes]
-        copy_visibility(resource, file_set) unless assign_visibility?(f[:attributes])
         actor = FileSetActor.new(file_set, @user)
         if @file_association_method.in? ['batch', 'none']
           actor.create_metadata(nil, f[:file_opts])
         else
           actor.create_metadata(resource, f[:file_opts])
         end
+        actor.assign_visibility(resource) unless assign_visibility?(f[:attributes])
         actor.create_content(decorated_file(f))
         ingest_ocr(actor, f)
 
@@ -105,7 +105,7 @@ class IngestYAMLJob < ActiveJob::Base
         @file_sets << file_set if @file_association_method == 'batch'
         ingest_thumbnail(file_set, resource, parent) if thumbnail_path?(f[:path])
       end
-      attach_files_to_work(resource, @file_sets) if @file_sets.any?
+      MembershipBuilder.new(resource, @file_sets).attach_files_to_work if @file_sets.any?
     end
 
     def ingest_ocr(actor, f)
@@ -150,47 +150,9 @@ class IngestYAMLJob < ActiveJob::Base
       thumbnail_path.present? && thumbnail_path == path
     end
 
-    # Modified from FileSetActor#attach_file_to_work
-    def attach_files_to_work(work, file_sets)
-      logger.info "Starting batch file_set association on: #{work.id}"
-      acquire_lock_for(work.id) do
-        set_representative(work, file_sets.first)
-        set_thumbnail(work, file_sets.first)
-        # Ensure we have an up-to-date copy of the members association, so
-        # that we append to the end of the list.
-        work.reload unless work.new_record?
-        work.ordered_members = file_sets
-        # Save the work so the association between the work and the file_set is persisted (head_id)
-        work.save!
-        @file_sets.each(&:update_index)
-      end
-      logger.info "Completed batch file_set association"
-      messenger.record_updated(work)
-    end
-
     # Purloined from FileSetActor, unmodified
     def assign_visibility?(file_set_params = {})
       !((file_set_params || {}).keys & %w(visibility embargo_release_date lease_expiration_date)).empty?
-    end
-
-    # copy visibility from source_concern to destination_concern
-    def copy_visibility(source_concern, destination_concern)
-      destination_concern.visibility = source_concern.visibility
-    end
-
-    def set_representative(work, file_set)
-      return unless work.representative_id.blank?
-      work.representative = file_set
-    end
-
-    def set_thumbnail(work, file_set)
-      return unless work.thumbnail_id.blank?
-      work.thumbnail = file_set
-    end
-
-    # Purloined from Plum's FileSetActor, unmodified
-    def messenger
-      @messenger ||= ManifestEventGenerator.new(Plum.messaging_client)
     end
 end
 # rubocop:enable Metrics/ClassLength

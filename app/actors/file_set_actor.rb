@@ -11,6 +11,10 @@ class FileSetActor < ::CurationConcerns::Actors::FileSetActor
     resource.save
   end
 
+  def assign_visibility(resource, file_set_params = {})
+    copy_visibility(resource, file_set) unless assign_visibility?(file_set_params)
+  end
+
   def attach_content(file, relation = 'original_file')
     Hydra::Works::AddFileToFileSet.call(file_set, file, relation.to_sym, versioning: false)
   end

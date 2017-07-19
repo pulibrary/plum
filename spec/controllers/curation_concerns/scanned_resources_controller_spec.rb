@@ -477,11 +477,6 @@ describe CurationConcerns::ScannedResourcesController do
         expect(pending_upload.file_path).to eq file.path
         expect(pending_upload.upload_set_id).not_to be_blank
       end
-      it "doesn't delete the pending upload until after file is in Fedora" do
-        allow(IngestFileJob).to receive(:perform_now).and_return(true)
-        post :browse_everything_files, id: resource.id, selected_files: params["selected_files"]
-        expect(resource.pending_uploads.length).to eq 1
-      end
     end
   end
 
