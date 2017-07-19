@@ -149,7 +149,8 @@ RSpec.describe EphemeraFolderPresenter do
   end
 
   describe "linked data" do
-    let(:folder) { FactoryGirl.create(:ephemera_folder, id: 'abcd1234', language: [term.id.to_s], height: ['123'], width: ['456'], page_count: ['789'], sort_title: ['example folder'], date_uploaded: Time.now, date_modified: Time.now) }
+    let(:folder) { FactoryGirl.create(:ephemera_folder, id: 'abcd1234', language: [term.id.to_s], height: ['123'], width: ['456'], page_count: ['789'], sort_title: ['example folder'], date_uploaded: Time.now, date_modified: Time.now, folder_number: ['3'], member_of_collections: [box]) }
+    let(:box) { FactoryGirl.create(:ephemera_box) }
 
     it 'generates json-ld with descriptive metadata' do
       json = JSON.parse(subject.export_as_jsonld)
@@ -166,6 +167,8 @@ RSpec.describe EphemeraFolderPresenter do
       expect(json['sort_title']).to eq(['example folder'])
       expect(json['created']).not_to be_nil
       expect(json['modified']).not_to be_nil
+      expect(json['folder_number']).to eq('3')
+      expect(json['memberOf'].first['box_number']).to eq box.box_number.first
 
       lang = json["language"].first
       expect(lang["@id"]).to eq(Rails.application.class.routes.url_helpers.vocabulary_term_url(term.id))
