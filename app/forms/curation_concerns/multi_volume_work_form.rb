@@ -1,7 +1,7 @@
 module CurationConcerns
   class MultiVolumeWorkForm < ::CurationConcerns::CurationConcernsForm
     self.model_class = ::MultiVolumeWork
-    self.terms += [:viewing_direction, :viewing_hint, :sort_title, :published, :physical_description, :series, :publication_place, :date_published, :lccn_call_number, :local_call_number, :copyright_holder, :responsibility_note]
+    self.terms += [:viewing_direction, :viewing_hint, :alternative_title, :digital_date, :usage_right, :volume_and_issue_no, :sort_title, :published, :physical_description, :series, :publication_place, :date_published, :lccn_call_number, :local_call_number, :copyright_holder, :responsibility_note]
 
     # Kludge override of Work version, to get thumbnails to work correctly
     # @return [Hash] All volumes, volume.to_s is the key, volume.thumbnail_id is the value

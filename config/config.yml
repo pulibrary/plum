@@ -72,6 +72,10 @@ defaults: &defaults
     - :copyright_holder
     - :date_created
     - :subject
+    - :alternative_title
+    - :digital_date
+    - :usage_right
+    - :volume_and_issue_no
 
 development:
   <<: *defaults
