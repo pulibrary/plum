@@ -13,6 +13,10 @@ module PlumAttributes
     RightsStatementRenderer.new(solr_document.rights_statement, solr_document.rights_note).render
   end
 
+  def rights_statement_uri
+    Array.wrap(solr_document.rights_statement).first
+  end
+
   def holding_location
     HoldingLocationRenderer.new(solr_document.holding_location).render
   end

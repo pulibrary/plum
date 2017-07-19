@@ -44,6 +44,8 @@ class ManifestBuilder
           metadata_builder,
           thumbnail_builder,
           see_also_builder,
+          logo_builder,
+          license_builder,
           rendering_builder
         )
     end
@@ -70,6 +72,14 @@ class ManifestBuilder
 
     def see_also_builder
       SeeAlsoBuilder.new(record)
+    end
+
+    def logo_builder
+      LogoBuilder.new(ssl: @ssl)
+    end
+
+    def license_builder
+      LicenseBuilder.new(record)
     end
 
     def rendering_builder
