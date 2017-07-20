@@ -9,8 +9,10 @@ module CurationConcerns::MemberManagement
     end
 
     def save_structure
-      curation_concern.logical_order.order = { "label": params["label"], "nodes": params["nodes"] }
-      curation_concern.save
+      structure = { "label": params["label"], "nodes": params["nodes"] }
+      # Conversion to GlobalID is required so ActiveJob can serialize the curation_concern type as a param
+      gid = GlobalID::Locator.locate curation_concern.to_global_id
+      SaveStructureJob.perform_later(gid, structure)
       head 200
     end
   end

@@ -43,7 +43,7 @@ class IngestFileJob < ActiveJob::Base
     CharacterizeJob.perform_later(file_set, repository_file.id) if store_files?
 
     # Ensure that this runs for files that are external, before the master file is cleaned
-    CreateDerivativesJob.perform_later(file_set, repository_file.id, filepath) unless store_files?
+    CreateDerivativesJob.perform_now(file_set, repository_file.id, filepath) unless store_files?
   end
 
   private

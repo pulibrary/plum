@@ -17,6 +17,11 @@ class PlumSchema < ActiveTriples::Schema
   property :nav_date, predicate: ::RDF::URI("http://iiif.io/api/presentation/2#navDate"), multiple: false
   property :pdf_type, predicate: ::PULTerms.pdf_type
   property :start_canvas, predicate: ::RDF::Vocab::IIIF.hasStartCanvas, multiple: false
+  # Newspaper metadata
+  property :alternative_title, predicate: ::RDF::Vocab::DC.alternative
+  property :digital_date, predicate: ::RDF::Vocab::DC.available, multiple: false
+  property :usage_right, predicate: ::RDF::Vocab::DC.accessRights, multiple: false
+  property :volume_and_issue_no, predicate: ::RDF::Vocab::DC.hasPart, multiple: false
 
   # Generated from Context
   property :edition, predicate: RDF::URI("http://id.loc.gov/ontologies/bibframe/editionStatement")

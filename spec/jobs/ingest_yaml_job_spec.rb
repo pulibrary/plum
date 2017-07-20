@@ -49,6 +49,7 @@ RSpec.describe IngestYAMLJob do
         allow(actor1).to receive(:attach_content)
         allow(actor2).to receive(:create_metadata)
         allow(actor2).to receive(:create_content)
+        allow(actor2).to receive(:assign_visibility)
 
         call_count = 0
         allow_any_instance_of(Net::HTTP).to receive(:transport_request).and_wrap_original { |m, *args, &block|
@@ -87,6 +88,7 @@ RSpec.describe IngestYAMLJob do
           expect(actor2).to receive(:create_metadata).with(resource1, {})
         end
         expect(actor2).to receive(:create_content).with(file)
+        expect(actor2).to receive(:assign_visibility).with(resource1)
         expect(ingest_counter).to receive(:increment)
         described_class.perform_now(yaml_file_single, user, file_association_method: file_association_method)
         expect(resource1.title).to eq(["Fontane di Roma ; poema sinfonico per orchestra"])
@@ -100,6 +102,7 @@ RSpec.describe IngestYAMLJob do
         allow(actor1).to receive(:attach_content)
         allow(actor2).to receive(:create_metadata)
         allow(actor2).to receive(:create_content)
+        allow(actor2).to receive(:assign_visibility)
         described_class.perform_now(yaml_file_rtl, user)
         expect(resource1.viewing_direction).to eq('right-to-left')
       end
@@ -108,6 +111,7 @@ RSpec.describe IngestYAMLJob do
         allow(actor1).to receive(:attach_content)
         allow(actor2).to receive(:create_metadata)
         allow(actor2).to receive(:create_content)
+        allow(actor2).to receive(:assign_visibility)
         described_class.perform_now(yaml_file_ocr, user)
       end
       it "ingests a multi-volume yaml file" do
@@ -115,6 +119,7 @@ RSpec.describe IngestYAMLJob do
         allow(actor1).to receive(:attach_content)
         allow(actor2).to receive(:create_metadata)
         allow(actor2).to receive(:create_content)
+        allow(actor2).to receive(:assign_visibility)
         expect(resource1).to receive(:logical_order).at_least(:once).and_return(logical_order)
         expect(resource2).to receive(:logical_order).at_least(:once).and_return(logical_order)
         expect(logical_order).to receive(:order=).at_least(:once)

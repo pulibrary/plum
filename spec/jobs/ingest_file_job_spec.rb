@@ -8,7 +8,7 @@ describe IngestFileJob do
 
   context 'when :store_original_files is false' do
     it 'sets the mime_type to an external body redirect' do
-      expect(CreateDerivativesJob).to receive(:perform_later).with(file_set, String, String)
+      expect(CreateDerivativesJob).to receive(:perform_now).with(file_set, String, String)
       allow(Plum.config).to receive(:[]).with(:store_original_files).and_return(false)
       allow(Plum.config).to receive(:[]).with(:create_hocr_files).and_return(true)
       allow(Plum.config).to receive(:[]).with(:index_hocr_files).and_return(true)
