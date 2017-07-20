@@ -1,8 +1,7 @@
 class EphemeraFolderPresenter < HyraxShowPresenter
   include PlumAttributes
   self.collection_presenter_class = DynamicShowPresenter.new
-  delegate :barcode,
-           :box_id,
+  delegate :barcode, :box_id,
            :date_modified,
            :date_uploaded,
            :description,
@@ -78,7 +77,7 @@ class EphemeraFolderPresenter < HyraxShowPresenter
           subject: lookup_objects(:subject), category: subject_categories, description: description,
           source: to_uri(source), related_url: to_uri(related_url), height: ephemera_height,
           width: ephemera_width, sort_title: sort_title, page_count: Array.wrap(page_count).first,
-          created: date_uploaded, modified: date_modified
+          created: date_uploaded, modified: date_modified, folder_number: folder_number
         )
         fields[:identifier] = identifier unless identifier.blank?
       end
@@ -116,7 +115,8 @@ class EphemeraFolderPresenter < HyraxShowPresenter
       box = EphemeraBox.find(box_id)
       {
         '@id': Rails.application.routes.url_helpers.hyrax_ephemera_box_path(box), '@type': 'pcdm:Collection',
-        barcode: box.barcode.first, label: "Box #{box.box_number.first}", holding_location: 'rcpxr'
+        barcode: box.barcode.first, label: "Box #{box.box_number.first}", holding_location: 'rcpxr',
+        box_number: box.box_number.first
       }
     end
 end
