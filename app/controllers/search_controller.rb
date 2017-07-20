@@ -1,17 +1,16 @@
 class SearchController < ApplicationController
-
   def index
     render 'search/search.html.erb'
   end
 
   def search
-    #solr = RSolr.connect url: Rails.configuration.ocracoke['solr_url']
+    # solr = RSolr.connect url: Rails.configuration.ocracoke['solr_url']
     solr = RSolr.connect url: "http://localhost:8983/solr/hydra-development"
     solr_params = {
       q: params[:q],
       fq: "id:#{params[:id]}"
     }
-    # FIXME:iiifsi
+    # FIXME: iiifsi
     @response = solr.get 'select', params: solr_params
 
     @docs = @response["response"]["docs"].map do |doc|
@@ -26,7 +25,7 @@ class SearchController < ApplicationController
     end
 
     @pages_json = {}
-    first_two_chars = params[:id][0,2]
+    first_two_chars = params[:id][0, 2]
     @docs.map do |doc|
       json_file = File.join Rails.configuration.ocracoke['ocr_directory'], first_two_chars, doc['id'], doc['id'] + ".json"
       json = File.read json_file
