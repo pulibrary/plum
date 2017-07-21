@@ -18,6 +18,8 @@ Rails.application.configure do
     redis_port = Redis.current.client.options[:port]
     checks.register "redis", OkComputer::RedisCheck.new(host: redis_url, port: redis_port)
 
+    checks.register "sidekiq", IuDevOps::SidekiqProcessCheck.new
+
     checks.register "ruby", OkComputer::RubyVersionCheck.new
 
     checks.register "cache", OkComputer::GenericCacheCheck.new
