@@ -42,7 +42,7 @@
 
 #footer .signature { text-align: center; }
 
-#footer .signature-link { background: url("iu-sig-formal.svg") no-repeat left top; background-size: contain; display: inline-block; height: 0; padding-top: 36px; overflow: hidden; width: 240px; }
+#footer .signature-link { background: url("//assets.iu.edu/brand/3.x/iu-sig-formal.svg") no-repeat left top; background-size: contain; display: inline-block; height: 0; padding-top: 36px; overflow: hidden; width: 240px; }
 
 #footer p { font-size: 12px; line-height: 24px; margin: 0; clear: left; }
 
