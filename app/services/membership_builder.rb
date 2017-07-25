@@ -17,9 +17,10 @@ class MembershipBuilder
       # Ensure we have an up-to-date copy of the members association, so
       # that we append to the end of the list.
       work.reload unless work.new_record?
-      work.ordered_members = members
+      members.each do |member|
+        work.ordered_members << member
+      end
       work.save!
-      @members.each(&:update_index)
       messenger.record_updated(work)
     end
   end
