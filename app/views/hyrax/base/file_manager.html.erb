@@ -5,6 +5,7 @@
   <% end %>
   <li><%= link_to @form, ContextualPath.new(@form, @parent_presenter).show %></li>
   <li class="active">File Manager</li>
+  <li><%= @form.member_presenters.size %> File<%= 's' unless @form.member_presenters.size == 1 %></li>
 </ul>
 
 <% if !@form.member_presenters.empty? %>
