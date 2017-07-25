@@ -70,6 +70,10 @@ RSpec.describe "hyrax/base/file_manager.html.erb" do
     expect(rendered).to include "<h1>#{I18n.t('file_manager.link_text')}</h1>"
   end
 
+  it "displays the number of files" do
+    expect(rendered).to include "<li>1 File</li>"
+  end
+
   it "displays each file set's label" do
     expect(rendered).to have_selector "input[name='file_set[title][]'][type='text'][value='#{file_set}']"
   end
