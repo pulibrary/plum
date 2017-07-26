@@ -14,5 +14,12 @@ RSpec.describe MembershipBuilder do
       described_class.new(reloaded, appended).attach_files_to_work
       expect(reloaded.ordered_member_ids.length).to eq 5
     end
+    it "assigns first member as representative and thumbnail" do
+      subject.attach_files_to_work
+      # Attaching more should not change the initial assignment
+      described_class.new(reloaded, appended).attach_files_to_work
+      expect(reloaded.thumbnail.id).to eq members.first.id
+      expect(reloaded.representative.id).to eq members.first.id
+    end
   end
 end
