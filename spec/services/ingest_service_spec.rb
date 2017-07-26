@@ -25,6 +25,8 @@ RSpec.describe IngestService, :admin_set do
         expect(resource1.ordered_members.to_a.map(&:label)).to eq ['color.tif', 'gray.tif']
         expect(resource1.member_of_collection_ids).to eq [coll.id]
         expect(resource1.local_identifier).to eq [local_id]
+        expect(resource1.read_groups).to eq ['public']
+        expect(resource1.ordered_members.to_a.first.read_groups).to eq ['public']
       end
     end
 

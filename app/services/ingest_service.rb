@@ -5,7 +5,8 @@ class IngestService
 
   def minimal_record(klass, user, attributes)
     default_attributes = { rights_statement: ['http://rightsstatements.org/vocab/NKC/1.0/'],
-                           visibility: Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PUBLIC }
+                           visibility: Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PUBLIC,
+                           read_groups: ['public'] }
     r = klass.new
     r.attributes = default_attributes.merge(attributes)
     r.apply_depositor_metadata user
@@ -73,8 +74,9 @@ class IngestService
   end
 
   def ingest_file(parent, file, user, file_options, attributes)
+    default_attributes = { read_groups: ['public'] }
     file_set = FileSet.new
-    file_set.attributes = attributes
+    file_set.attributes = default_attributes.merge(attributes)
     actor = BatchFileSetActor.new(file_set, user)
     actor.create_metadata(file_options)
     actor.create_content(file)
