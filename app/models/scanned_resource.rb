@@ -10,6 +10,7 @@ class ScannedResource < ActiveFedora::Base
   include ::HasPendingUploads
   include ::CollectionIndexing
   include ::ApplyFirstAndLast
+  include ::DefaultReadGroups
   self.valid_child_concerns = []
 
   def to_solr(solr_doc = {})
