@@ -1,22 +1,12 @@
 class ManifestBuilder
   class LogoBuilder
-    include ActionView::Helpers::AssetUrlHelper
-
     def initialize(ssl: false)
-      @ssl = ssl
+      @host = "#{ssl ? 'https' : 'http'}://#{Plum.default_url_options[:host]}"
     end
 
     def apply(manifest)
-      manifest.logo = "#{protocol}://#{host}#{asset_path('assets/pul_logo_icon.png')}"
+      manifest.logo = ActionController::Base.helpers.image_url('pul_logo_icon.png', host: @host)
       manifest
-    end
-
-    def protocol
-      @ssl ? 'https' : 'http'
-    end
-
-    def host
-      Plum.default_url_options[:host]
     end
   end
 end
