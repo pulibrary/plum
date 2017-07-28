@@ -10,13 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170615174420) do
+ActiveRecord::Schema.define(version: 20170728124100) do
 
   create_table "auth_tokens", force: :cascade do |t|
     t.string   "token"
     t.string   "groups"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "label"
   end
 
   create_table "bookmarks", force: :cascade do |t|

@@ -63,6 +63,6 @@ class AuthTokensController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def auth_token_params
-      params.require(:auth_token).permit(groups: [])
+      params.require(:auth_token).permit(:label, groups: [])
     end
 end

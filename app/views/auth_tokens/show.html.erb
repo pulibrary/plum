@@ -3,11 +3,13 @@
 <table class="table">
   <thead>
     <th>Token</th>
+    <th>Label</th>
     <th>Groups</th>
   </thead>
   <tbody>
     <tr>
       <td><%= @auth_token.token %></td>
+      <td><%= @auth_token.label %></td>
       <td><%= @auth_token.groups.to_sentence %></td>
     </tr>
   </tbody>
