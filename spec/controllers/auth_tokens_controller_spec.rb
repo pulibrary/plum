@@ -23,7 +23,7 @@ RSpec.describe AuthTokensController, type: :controller do
   # AuthToken. As you add validations to AuthToken, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    { groups: ["admin"] }
+    { label: 'Test Token', groups: ["admin"] }
   }
   let(:user) { FactoryGirl.create(:admin) }
   before do
@@ -84,13 +84,14 @@ RSpec.describe AuthTokensController, type: :controller do
 
   describe "PUT #update" do
     context "with valid params" do
-      let(:new_attributes) { { groups: ['ephemera_editor'] } }
+      let(:new_attributes) { { label: 'Updated Label', groups: ['ephemera_editor'] } }
 
       it "updates the requested vocabulary_term" do
         auth_token = AuthToken.create! valid_attributes
         put :update, params: { id: auth_token.to_param, auth_token: new_attributes }
         auth_token.reload
         expect(auth_token.groups).to eq(['ephemera_editor'])
+        expect(auth_token.label).to eq('Updated Label')
       end
 
       it "assigns the requested auth_token as @auth_token" do
