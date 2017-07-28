@@ -9,6 +9,7 @@ class MultiVolumeWork < ActiveFedora::Base
   include ::HasPendingUploads
   include ::CollectionIndexing
   include ::ApplyFirstAndLast
+  include ::DefaultReadGroups
   self.valid_child_concerns = [ScannedResource]
 
   def thumbnail_id

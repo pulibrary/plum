@@ -162,8 +162,8 @@ describe Hyrax::ScannedResourcesController, admin_set: true do
       end
       context "and an authentication token is given" do
         it "renders the full manifest" do
-          resource = FactoryGirl.create(:campus_only_scanned_resource)
-          authorization_token = AuthToken.create(groups: ["admin"])
+          resource = FactoryGirl.create(:private_scanned_resource)
+          authorization_token = AuthToken.create(groups: ["fulfiller"])
           get :manifest, params: { id: resource.id, format: :json, auth_token: authorization_token.token }
 
           expect(response.body).not_to eq "{}"

@@ -311,6 +311,7 @@ describe Ability do
   describe 'as a fulfiller' do
     let(:creating_user) { image_editor }
     let(:current_user) { fulfiller }
+    let(:collection) { FactoryGirl.create :private_collection }
 
     it {
       should be_able_to(:read, open_scanned_resource)
@@ -325,6 +326,8 @@ describe Ability do
       should be_able_to(:manifest, open_scanned_resource)
       should be_able_to(:pdf, open_scanned_resource)
       should be_able_to(:download, image_editor_file)
+      should be_able_to(:manifest, collection)
+      should be_able_to(:read, collection)
 
       should_not be_able_to(:file_manager, open_scanned_resource)
       should_not be_able_to(:file_manager, open_multi_volume_work)

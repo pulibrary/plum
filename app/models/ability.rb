@@ -200,6 +200,10 @@ class Ability
     end
   end
 
+  def self.universal_readers
+    ['admin', 'completer', 'curator', 'fulfiller', 'editor', 'image_editor']
+  end
+
   delegate :admin?, to: :current_user
 
   private

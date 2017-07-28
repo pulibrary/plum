@@ -5,6 +5,7 @@ class Collection < ActiveFedora::Base
   include ::Hyrax::CollectionBehavior
   include Hyrax::BasicMetadata
   include ::CollectionTitleIndexing
+  include ::DefaultReadGroups
 
   def self.human_readable_short_description
   end

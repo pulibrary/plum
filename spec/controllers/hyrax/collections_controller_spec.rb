@@ -35,7 +35,7 @@ RSpec.describe Hyrax::CollectionsController do
       context "and an authentication token is given" do
         it "renders the full manifest" do
           coll = FactoryGirl.create(:private_collection)
-          authorization_token = AuthToken.create(groups: ["admin"])
+          authorization_token = AuthToken.create(groups: ["completer"])
           get :manifest, params: { id: coll.id, format: :json, auth_token: authorization_token.token }
 
           expect(response.status).to eq 200

@@ -6,6 +6,7 @@ class VectorWork < ActiveFedora::Base
   include ::StateBehavior
   include ::GeoWorks::BasicGeoMetadata
   include ::GeoWorks::GeoreferencedBehavior
+  include ::DefaultReadGroups
   self.valid_child_concerns = []
 
   # Use local indexer
