@@ -166,7 +166,7 @@ class Ability
     cannot [:read], curation_concerns do |curation_concern|
       !readable_concern?(curation_concern)
     end
-    can [:manifest], [ScannedResourceShowPresenter, MultiVolumeWorkShowPresenter, EphemeraFolderPresenter] do |curation_concern|
+    can [:manifest], [ScannedResourceShowPresenter, MultiVolumeWorkShowPresenter, EphemeraFolderPresenter, ImageWorkShowPresenter, MapSetShowPresenter] do |curation_concern|
       readable_concern?(curation_concern)
     end
     cannot [:manifest], EphemeraFolder do |folder|
