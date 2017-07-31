@@ -57,6 +57,10 @@ describe Ability do
     FactoryGirl.create(:needs_qa_ephemera_folder, user: creating_user, member_of_collections: [box])
   }
 
+  let(:complete_image_work) {
+    FactoryGirl.create(:complete_image_work, user: image_editor, identifier: ['ark:/99999/fk4445wg46'])
+  }
+
   let(:external_metadata_file) { FactoryGirl.build(:file_set, user: creating_user, geo_mime_type: 'application/xml; schema=fgdc') }
   let(:ephemera_editor_file) { FactoryGirl.build(:file_set, user: ephemera_editor) }
   let(:image_editor_file) { FactoryGirl.build(:file_set, user: image_editor) }
@@ -85,13 +89,14 @@ describe Ability do
     allow(metadata_review_scanned_resource).to receive(:id).and_return("metadata_review")
     allow(final_review_scanned_resource).to receive(:id).and_return("final_review")
     allow(complete_scanned_resource).to receive(:id).and_return("complete")
+    allow(complete_image_work).to receive(:id).and_return("complete")
     allow(takedown_scanned_resource).to receive(:id).and_return("takedown")
     allow(flagged_scanned_resource).to receive(:id).and_return("flagged")
     allow(external_metadata_file).to receive(:id).and_return("external_metadata_file")
     allow(image_editor_file).to receive(:id).and_return("image_editor_file")
     allow(ephemera_editor_file).to receive(:id).and_return("ephemera_editor_file")
     allow(admin_file).to receive(:id).and_return("admin_file")
-    [open_scanned_resource, private_scanned_resource, campus_only_scanned_resource, pending_scanned_resource, metadata_review_scanned_resource, final_review_scanned_resource, complete_scanned_resource, takedown_scanned_resource, flagged_scanned_resource, image_editor_file, ephemera_editor_file, admin_file, complete_ephemera_folder, needs_qa_ephemera_folder, ephemera_folder_in_all_complete_box].each do |obj|
+    [open_scanned_resource, private_scanned_resource, campus_only_scanned_resource, pending_scanned_resource, metadata_review_scanned_resource, final_review_scanned_resource, complete_scanned_resource, complete_image_work, takedown_scanned_resource, flagged_scanned_resource, image_editor_file, ephemera_editor_file, admin_file, complete_ephemera_folder, needs_qa_ephemera_folder, ephemera_folder_in_all_complete_box].each do |obj|
       allow(subject.cache).to receive(:get).with(obj.id).and_return(Hydra::PermissionsSolrDocument.new(obj.to_solr, nil))
     end
   end
@@ -450,6 +455,8 @@ describe Ability do
       should be_able_to(:read, complete_scanned_resource)
       should be_able_to(:manifest, complete_scanned_resource)
       should be_able_to(:manifest, presenter(complete_scanned_resource))
+      should be_able_to(:manifest, complete_image_work)
+      should be_able_to(:manifest, presenter(complete_image_work))
       should be_able_to(:read, flagged_scanned_resource)
       should be_able_to(:manifest, flagged_scanned_resource)
       should be_able_to(:color_pdf, color_enabled_resource)
