@@ -5,29 +5,32 @@ class SearchController < ApplicationController
 
   def search
     # solr = RSolr.connect url: Rails.configuration.ocracoke['solr_url']
+
+    search_term = params[:q]
+
     solr = RSolr.connect url: "http://localhost:8983/solr/hydra-development"
+    # solr_params = {
+    #   fq: "id:#{params[:id]}",
+    #   q: "full_text_tesim:#{params[:q]}"
+    # }
     solr_params = {
-      q: params[:q],
-      fq: "id:#{params[:id]}"
+      q: "full_text_tesim:#{search_term}",
+      fq: "ordered_by_ssim:#{params[:id]}"
     }
-    # FIXME: iiifsi
+
     @response = solr.get 'select', params: solr_params
 
     @docs = @response["response"]["docs"].map do |doc|
-      doc_hits = @response['highlighting'][doc['id']]['txt']
-      # Each "hit" here might have more than one match emphasized, so we pull those out now.
-      hits = doc_hits.map do |hit|
-        hit.scan(/<em>(.*?)<\/em>/).flatten
-      end.flatten
-      doc[:hit_number] = hits.length
-      doc[:hits] = hits
+      doc_text = doc['full_text_tesim'][0]
+      doc[:hit_number] = doc_text.scan(/\w+/).count(search_term)
+      doc[:word] = search_term
       doc
     end
 
     @pages_json = {}
-    first_two_chars = params[:id][0, 2]
+    # first_two_chars = params[:id][0, 2]
     @docs.map do |doc|
-      json_file = File.join Rails.configuration.ocracoke['ocr_directory'], first_two_chars, doc['id'], doc['id'] + ".json"
+      json_file = PairtreeDerivativePath.derivative_path_for_reference(doc['id'], "json")
       json = File.read json_file
       page_json = JSON.parse(json)
       @pages_json[doc['id']] = page_json

@@ -1,4 +1,5 @@
-json.set! "@id", annotation_url(doc[:id], doc[:resource], doc[:time])
+# json.set! "@id", annotation_url(doc[:id], doc[:resource], doc[:time])
+json.set! "@id", annotation_url(doc[:id], doc[:time])
 json.set! '@type', 'oa:Annotation'
 json.motivation 'sc:painting'
 

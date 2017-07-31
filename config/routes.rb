@@ -102,6 +102,6 @@ Rails.application.routes.draw do
   get '/purl/:id', to: 'purl#default', as: 'default_purl'
 
   # iiif search API
-  get 'search/:id', to: 'search#search', as: :search
-  get 'search', to: 'search#index'
+  get '/search/:id', to: 'search#search', as: :search
+  get '/search', to: 'search#index', as: :default_search
 end
