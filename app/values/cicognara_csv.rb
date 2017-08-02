@@ -9,14 +9,26 @@ class CicognaraCSV
   def self.values(collection)
     collection.member_objects.map do |o|
       # parse digital_cico_number from marc
-      xp = "//marc:datafield[@tag='024' and marc:subfield/text() = 'dclib']/marc:subfield[@code='a']"
-      dclnum = Nokogiri::XML(o.source_metadata.first).xpath(xp, marc: 'http://www.loc.gov/MARC21/slim').first.text
+      dclnum = extract_dclnum(o)
+      next unless dclnum && o.workflow_state == "complete"
 
       [dclnum, "Plum", manifest_url(o), "Princeton University Library",
-       o.call_number.first, o.source_metadata_identifier.first, o.identifier,
-       nil, o.publisher.first, Date.parse(o.date_created.first).strftime("%Y"),
-       nil, nil, o.extent.first, o.rights_statement.first, false]
+       o.call_number.first, o.source_metadata_identifier.first, o.identifier, nil, o.publisher.first,
+       date(o), nil, nil, o.extent.first, o.rights_statement.first, false]
     end
+  end
+
+  def self.date(obj)
+    Date.parse(obj.date_created.first).strftime("%Y")
+  rescue
+    nil
+  end
+
+  def self.extract_dclnum(obj)
+    xp = "//marc:datafield[@tag='024' and marc:subfield/text() = 'dclib']/marc:subfield[@code='a']"
+    Nokogiri::XML(obj.source_metadata.first).xpath(xp, marc: 'http://www.loc.gov/MARC21/slim').first.text
+  rescue
+    nil
   end
 
   def self.manifest_url(obj)
