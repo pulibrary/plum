@@ -34,10 +34,8 @@
 //= require modernizr
 //= require jquery.iiifOsdViewer
 
-Blacklight.onLoad(function() {
-  Initializer = require('plum_boot')
-  window.plum = new Initializer()
-})
 $(document).ready(function() {
   Blacklight.activate()
+  Initializer = require('plum_boot')
+  window.plum = new Initializer()
 })
