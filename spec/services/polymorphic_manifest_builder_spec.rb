@@ -334,6 +334,15 @@ RSpec.describe PolymorphicManifestBuilder, vcr: { cassette_name: "iiif_manifest"
     it "has a logo" do
       expect(result.logo).to eq('http://plum.com/assets/pul_logo_icon.png')
     end
+    context "with a Vatican/Cicognara rights statement" do
+      before do
+        record.rights_statement = ['http://cicognara.org/microfiche_copyright']
+      end
+      let(:result) { subject.manifest }
+      it "uses the Vatican logo" do
+        expect(result.logo).to eq('http://plum.com/assets/vatican.png')
+      end
+    end
     context "when it has a bibdata ID" do
       it "links to JSON-LD and bibdata" do
         expect(json_result["seeAlso"].first["@id"]).to eq "http://plum.com/concern/scanned_resources/1.jsonld"

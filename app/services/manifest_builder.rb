@@ -75,7 +75,7 @@ class ManifestBuilder
     end
 
     def logo_builder
-      LogoBuilder.new(ssl: @ssl)
+      LogoBuilder.new(record, ssl: @ssl)
     end
 
     def license_builder
