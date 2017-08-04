@@ -63,6 +63,60 @@ And run the test suite in another window:
    $ rake spec
    ```
 
+## Running the Services
+
+Pumpkin consists of several cooperating services:  Fedora, Solr, a
+Blacklight (i.e. Rails) application, Redis, and an AMQP 0.9 broker such
+as RabbitMQ.
+
+Redis and the broker (if used) are assumed to be running separately, as
+noted under Dependencies above.
+
+For development and testing, Pumpkin includes wrapper scripts for Fedora
+and Solr.  These will download the services as needed and start them for
+you.  Rake tasks to configure and run the wrappers are included, as
+detailed below.  You can stop these supporting services by typing the
+interrupt character (i.e. control-C) in the console where you are
+running the wrappers task.
+
+To start Fedora and Solr services to support development:
+
+   ```rake server:development```
+
+They can be configured by editing ```.fcrepo_wrapper``` and
+```.solr_wrapper```.
+
+To start Fedora and Solr to support testing:
+
+   ```rake hydra:test_server```
+
+They can be configured by editing ```config/fcrepo_wrapper_test.yml```
+and ```config/solr_wrapper_test.yml```.
+
+In either case, you can then start Blacklight in the normal fashion for
+Rails applications:
+
+   ```rails server```
+
+or
+
+   ```rails console```
+
+The Pumpkin user interface should then be available at
+```http://localhost:3000/```
+
+To start Fedora, Solr and Blacklight on the console:
+
+   ```rake hydra:server```
+
+Production deployment will vary depending on your local procedures and
+requirements.
+
+Please note that config/fedora.yml and config/solr.yml are for
+configuring the Blacklight application's connections to Fedora and Solr,
+which is separate from configuring instances of Fedora and Solr
+themselves.
+
 ## Adding an Admin user
 
 1. Run the development servers with `rake server:development`
