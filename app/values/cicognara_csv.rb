@@ -12,9 +12,9 @@ class CicognaraCSV
       dclnum = extract_dclnum(o)
       next unless dclnum && o.workflow_state == "complete"
 
-      [dclnum, "Plum", manifest_url(o), "Princeton University Library",
+      [dclnum, label(o), manifest_url(o), "Princeton University Library",
        o.call_number.first, o.source_metadata_identifier.first, o.identifier, nil, o.publisher.first,
-       date(o), nil, nil, o.extent.first, o.rights_statement.first, false]
+       date(o), nil, nil, o.extent.first, o.rights_statement.first, original(o)]
     end
   end
 
@@ -22,6 +22,15 @@ class CicognaraCSV
     Date.parse(obj.date_created.first).strftime("%Y")
   rescue
     nil
+  end
+
+  def self.label(obj)
+    return "Microfiche" if obj.rights_statement.first == 'http://cicognara.org/microfiche_copyright'
+    "Princeton University Library"
+  end
+
+  def self.original(obj)
+    obj.rights_statement.first == 'http://cicognara.org/microfiche_copyright'
   end
 
   def self.extract_dclnum(obj)
