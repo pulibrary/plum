@@ -4,6 +4,6 @@ module SearchHelper
   end
 
   def manifest_canvas_on_xywh(id, xywh)
-    "http://localhost:3000/#{id}/#xywh=#{xywh}"
+    Plum.config[:iiif_url] + "/#{id}/#xywh=#{xywh}"
   end
 end
