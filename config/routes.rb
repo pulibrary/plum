@@ -103,5 +103,5 @@ Rails.application.routes.draw do
 
   # iiif search API
   get '/search/:id', to: 'search#search', as: :search
-  get '/search', to: 'search#index', as: :search_index
+  get '/search', to: 'search#index', as: :default_search
 end
