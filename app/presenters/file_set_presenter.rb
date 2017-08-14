@@ -7,6 +7,10 @@ class FileSetPresenter < Hyrax::FileSetPresenter
     id
   end
 
+  def image?
+    width != nil
+  end
+
   def to_s
     if title.present?
       Array(title).join(' | ')

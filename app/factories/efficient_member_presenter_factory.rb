@@ -1,4 +1,6 @@
 class EfficientMemberPresenterFactory < Hyrax::MemberPresenterFactory
+  self.file_presenter_class = ::FileSetPresenter
+
   # @param [Array<String>] ids a list of ids to build presenters for
   # @param [Class] presenter_class the type of presenter to build
   # @return [Array<presenter_class>] presenters for the ordered_members (not filtered by class)
