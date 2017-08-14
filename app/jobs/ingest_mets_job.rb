@@ -107,17 +107,28 @@ class IngestMETSJob < ApplicationJob
 
     def ingest_volumes(parent)
       @mets.volume_ids.each do |volume_id|
-        r = @ingest.minimal_record(ScannedResource, @user, viewing_direction: [@mets.viewing_direction],
-                                                           title: [@mets.label_for_volume(volume_id)],
-                                                           viewing_hint: [@mets.viewing_hint])
+        r = find_volume("#{@mets.pudl_id}/#{volume_id}")
+        if r
+          logger.info "Found existing volume: #{r.id}"
+        else
+          r = @ingest.minimal_record(ScannedResource, @user, title: [@mets.label_for_volume(volume_id)])
+          ingest_files(parent: parent, resource: r, files: @mets.files_for_volume(volume_id))
+        end
         parent.ordered_members << r
         parent.save!
 
-        ingest_files(parent: parent, resource: r, files: @mets.files_for_volume(volume_id))
         r.logical_order.order = map_fileids(@mets.structure_for_volume(volume_id))
         r.thumbnail_id = r.file_sets.first.id unless r.thumbnail_id
+        r.title = [@mets.label_for_volume(volume_id)]
+        r.viewing_direction = [@mets.viewing_direction]
+        r.viewing_hint = [@mets.viewing_hint]
         r.save!
       end
+    end
+
+    def find_volume(replaces)
+      solr_rec = ActiveFedora::SolrService.query("replaces_ssim:#{replaces}").first
+      ActiveFedora::Base.find(solr_rec['id']) if solr_rec
     end
 
     def map_fileids(hsh)

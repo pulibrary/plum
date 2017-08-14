@@ -8,6 +8,7 @@ RSpec.describe IngestService, :admin_set do
   let(:user) { FactoryGirl.create(:admin) }
   let(:bib) { '4609321' }
   let(:local_id) { 'cico:xyz' }
+  let(:replaces) { 'pudl0001/4609321/331' }
   let(:resource1) { ScannedResource.new }
   let(:resource2) { ScannedResource.new }
   let(:multivol) { MultiVolumeWork.new }
@@ -20,11 +21,12 @@ RSpec.describe IngestService, :admin_set do
         allow(ScannedResource).to receive(:new).and_return(resource1)
       end
       it 'ingests them as a ScannedResource' do
-        subject.ingest_dir single_dir, bib, user, coll, local_id
+        subject.ingest_dir single_dir, bib, user, collection: coll, local_id: local_id, replaces: replaces
         expect(resource1.file_sets.length).to eq 2
         expect(resource1.ordered_members.to_a.map(&:label)).to eq ['color.tif', 'gray.tif']
         expect(resource1.member_of_collection_ids).to eq [coll.id]
         expect(resource1.local_identifier).to eq [local_id]
+        expect(resource1.replaces).to eq [replaces]
       end
     end
 
@@ -34,7 +36,7 @@ RSpec.describe IngestService, :admin_set do
         allow(ScannedResource).to receive(:new).and_return(resource1, resource2)
       end
       it 'ingests them as a MultiVolumeWork' do
-        subject.ingest_dir multi_dir, bib, user
+        subject.ingest_dir multi_dir, bib, user, {}
         expect(multivol.ordered_members.to_a.length).to eq 2
         expect(multivol.ordered_members).to eq [resource1, resource2]
       end
