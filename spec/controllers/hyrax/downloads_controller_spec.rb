@@ -15,20 +15,44 @@ RSpec.describe Hyrax::DownloadsController do
   end
 
   describe 'grayscale pdf download' do
-    before { sign_in user }
+    context 'as an authenticated user' do
+      before { sign_in user }
 
-    it 'sends the file' do
-      get :show, params: { id: file_set.to_param, file: 'gray-pdf' }
-      expect(response.headers['Content-Length']).to eq file.size.to_s
+      it 'sends the file' do
+        get :show, params: { id: file_set.to_param, file: 'gray-pdf' }
+        expect(response.headers['Content-Length']).to eq file.size.to_s
+      end
+    end
+
+    context 'as an anonymous user' do
+      let(:scanned_resource) { FactoryGirl.create(:scanned_resource_with_file) }
+      let(:file_set) { scanned_resource.file_sets.first }
+
+      it 'sends the file' do
+        get :show, params: { id: file_set.to_param, file: 'gray-pdf' }
+        expect(response.headers['Content-Length']).to eq file.size.to_s
+      end
     end
   end
 
   describe 'color pdf download' do
-    before { sign_in user }
+    context 'as an authenticated user' do
+      before { sign_in user }
 
-    it 'sends the file' do
-      get :show, params: { id: file_set.to_param, file: 'color-pdf' }
-      expect(response.headers['Content-Length']).to eq file.size.to_s
+      it 'sends the file' do
+        get :show, params: { id: file_set.to_param, file: 'color-pdf' }
+        expect(response.headers['Content-Length']).to eq file.size.to_s
+      end
+    end
+
+    context 'as an anonymous user' do
+      let(:scanned_resource) { FactoryGirl.create(:scanned_resource_with_file, pdf_type: ["color"]) }
+      let(:file_set) { scanned_resource.file_sets.first }
+
+      it 'sends the file' do
+        get :show, params: { id: file_set.to_param, file: 'color-pdf' }
+        expect(response.headers['Content-Length']).to eq file.size.to_s
+      end
     end
   end
 
