@@ -1,8 +1,8 @@
 class LogicalOrderBase < ActiveFedora::Base
   property :label, predicate: ::RDF::Vocab::RDFS.label
   property :nodes, predicate: ::RDF::Vocab::DC.hasPart
-  property :head, predicate: ::RDF::Vocab::IANA['first'], multiple: false
-  property :tail, predicate: ::RDF::Vocab::IANA.last, multiple: false
+  property :head, predicate: ::RDF::Vocab::IANA['first'], multiple: false, cast: false
+  property :tail, predicate: ::RDF::Vocab::IANA.last, multiple: false, cast: false
 
   def order=(order)
     nodes_will_change!
@@ -29,6 +29,14 @@ class LogicalOrderBase < ActiveFedora::Base
 
   def order
     @order ||= LogicalOrderGraph.new(resource, rdf_subject).to_h
+  end
+
+  def head
+    resource.get_values(:head, cast: false)
+  end
+
+  def tail
+    resource.get_values(:head, cast: false)
   end
 
   def object
