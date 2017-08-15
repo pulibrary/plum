@@ -120,6 +120,17 @@ RSpec.describe IngestMETSJob, :admin_set do
       expect(work.ordered_member_ids).to eq(['resource1', 'resource2'])
     end
 
+    context "when the volumes have already been ingested" do
+      let(:resource1) { FactoryGirl.create(:scanned_resource_with_file, replaces: ['pudl0001/4609321/s42/phys1']) }
+      let(:resource2) { FactoryGirl.create(:scanned_resource_with_file, replaces: ['pudl0001/4609321/s42/phys2']) }
+      it "ingests a multi-volume mets file", vcr: { cassette_name: 'bibdata-4609321' } do
+        allow(actor1).to receive(:attach_related_object)
+        allow(actor1).to receive(:attach_content)
+        described_class.perform_now(mets_file_multi, user)
+        expect(work.ordered_member_ids).to eq([resource1.id, resource2.id])
+      end
+    end
+
     context "when given a pudl0003 MVW with no structmap", vcr: { cassette_name: 'bibdata-4612596' } do
       let(:mets_file) { Rails.root.join("spec", "fixtures", "pudl0003-tc85_2621.mets") }
       it "hacks together a MVW from the path" do

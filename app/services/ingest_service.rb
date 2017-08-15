@@ -17,14 +17,15 @@ class IngestService
     r
   end
 
-  def ingest_dir(dir, bib, user, collection = nil, local_id = nil)
+  def ingest_dir(dir, bib, user, params)
     klass = choose_class(Dir["#{dir}/*"].first)
     attribs = bib.nil? ? { title: [File.basename(dir)] } : { source_metadata_identifier: [bib] }
-    attribs.merge!(local_identifier: [local_id]) if local_id
+    attribs.merge!(local_identifier: [params[:local_id]]) if params[:local_id]
+    attribs.merge!(replaces: [params[:replaces]]) if params[:replaces]
     r = minimal_record klass, user, attribs
     attach_files(dir, r, user)
 
-    r.member_of_collections << collection if collection
+    r.member_of_collections << params[:collection] if params[:collection]
     r.save!
     r
   end
@@ -50,7 +51,7 @@ class IngestService
     members = []
     Dir["#{dir}/*"].sort.each do |f|
       if File.directory? f
-        members << ingest_dir(f, nil, user)
+        members << ingest_dir(f, nil, user, {})
       else
         if filter.nil? || f.ends_with?(filter)
           members << ingest_file(r, f, user, {}, file_set_attributes.merge(title: [File.basename(f)]))

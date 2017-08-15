@@ -7,19 +7,23 @@ namespace :bulk do
     bib = ENV['BIB']
     coll = ENV['COLL']
     local_id = ENV['LOCAL_ID']
+    replaces = ENV['REPLACES']
     background = ENV['BACKGROUND']
-    abort "usage: rake bulk:ingest DIR=/path/to/files BIB=1234567 COLL=collid LOCAL_ID=local_id" unless bib && dir && Dir.exist?(dir)
+    abort "usage: rake bulk:ingest DIR=/path/to/files BIB=1234567 COLL=collid LOCAL_ID=local_id REPLACES=replaces" unless dir && Dir.exist?(dir)
 
     coll = ActiveFedora::Base.find(coll) if coll.present?
+
     @logger = Logger.new(STDOUT)
+    @logger.warn "No BIB id specified" unless bib
+
     @logger.info "ingesting files from: #{dir}"
     @logger.info "ingesting as: #{user.user_key} (override with USER=foo)"
     @logger.info "adding item to collection #{coll.id}" if coll
     begin
       if background
-        IngestServiceJob.perform_later(dir, bib, user, coll.id, local_id)
+        IngestServiceJob.perform_later(dir, bib, user, collection: coll, local_id: local_id, replaces: replaces)
       else
-        IngestService.new(@logger).ingest_dir dir, bib, user, coll, local_id
+        IngestService.new(@logger).ingest_dir dir, bib, user, collection: coll, local_id: local_id, replaces: replaces
       end
     rescue => e
       puts "Error: #{e.message}"
