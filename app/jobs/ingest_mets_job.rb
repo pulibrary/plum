@@ -17,6 +17,25 @@ class IngestMETSJob < ApplicationJob
   private
 
     def ingest
+      if @mets.multi_volume?
+        volumes = ingest_volumes
+        mvw = create_resource
+        mvw.ordered_members = volumes
+        mvw.thumbnail_id = volumes.first.thumbnail_id
+        mvw.save!
+      else
+        resource = create_resource
+        ingest_files(resource: resource, files: @mets.files)
+        if @mets.structure.present?
+          resource.logical_order.order = map_fileids(@mets.structure)
+        end
+        resource.viewing_hint = [@mets.viewing_hint]
+        resource.save!
+        validate!(resource)
+      end
+    end
+
+    def create_resource
       @ingest.delete_duplicates!("identifier_ssim:#{RSolr.solr_escape(@mets.ark_id)}")
       klass = @mets.multi_volume? ? MultiVolumeWork : ScannedResource
       cols = Array(@mets.collection_slugs).select(&:present?).map { |slug| find_or_create_collection(slug) }
@@ -26,18 +45,7 @@ class IngestMETSJob < ApplicationJob
                                                       source_metadata_identifier: [@mets.bib_id],
                                                       member_of_collections: cols)
       attach_mets resource
-
-      if @mets.multi_volume?
-        ingest_volumes(resource)
-      else
-        ingest_files(resource: resource, files: @mets.files)
-        if @mets.structure.present?
-          resource.logical_order.order = map_fileids(@mets.structure)
-        end
-        resource.viewing_hint = [@mets.viewing_hint]
-        resource.save!
-        validate!(resource)
-      end
+      resource
     end
 
     def validate!(resource)
@@ -74,17 +82,17 @@ class IngestMETSJob < ApplicationJob
       actor.attach_content(File.open(@mets.source_file, 'r:UTF-8'))
     end
 
-    def ingest_files(parent: nil, resource: nil, files: [])
+    def ingest_files(resource: nil, files: [])
       ordered_members = []
       files.each do |f|
-        file_set = ingest_file(parent: parent, resource: resource, f: f)
+        file_set = ingest_file(resource: resource, f: f)
         ordered_members << file_set if file_set
       end
 
       resource.ordered_members = ordered_members
     end
 
-    def ingest_file(parent: nil, resource: nil, f: nil, count: 0)
+    def ingest_file(resource: nil, f: nil, count: 0)
       file_set = @ingest.ingest_file(resource, @mets.decorated_file(f), @user, @mets.file_opts(f),
                                      title: [@mets.file_label(f[:id])], replaces: [f[:replaces]])
       mets_to_repo_map[f[:id]] = file_set.id
@@ -92,7 +100,6 @@ class IngestMETSJob < ApplicationJob
       if f[:path] == @mets.thumbnail_path
         resource.thumbnail_id = file_set.id
         resource.save!
-        parent.thumbnail_id = file_set.id if parent
       end
 
       return file_set
@@ -100,22 +107,20 @@ class IngestMETSJob < ApplicationJob
       raise e if count > 4
       count += 1
       logger.info "Failed ingesting #{f[:path]} #{count} times, retrying. Error: #{e.message}"
-      return ingest_file(parent: parent, resource: resource, f: f, count: count)
+      return ingest_file(resource: resource, f: f, count: count)
     end
 
     add_method_tracer :ingest_file, 'IngestMETSJob/ingest_file'
 
-    def ingest_volumes(parent)
-      @mets.volume_ids.each do |volume_id|
+    def ingest_volumes
+      @mets.volume_ids.map do |volume_id|
         r = find_volume("#{@mets.pudl_id}/#{volume_id}")
         if r
           logger.info "Found existing volume: #{r.id}"
         else
           r = @ingest.minimal_record(ScannedResource, @user, title: [@mets.label_for_volume(volume_id)])
-          ingest_files(parent: parent, resource: r, files: @mets.files_for_volume(volume_id))
+          ingest_files(resource: r, files: @mets.files_for_volume(volume_id))
         end
-        parent.ordered_members << r
-        parent.save!
 
         r.logical_order.order = map_fileids(@mets.structure_for_volume(volume_id))
         r.thumbnail_id = r.file_sets.first.id unless r.thumbnail_id
@@ -123,6 +128,8 @@ class IngestMETSJob < ApplicationJob
         r.viewing_direction = [@mets.viewing_direction]
         r.viewing_hint = [@mets.viewing_hint]
         r.save!
+
+        r
       end
     end
 
