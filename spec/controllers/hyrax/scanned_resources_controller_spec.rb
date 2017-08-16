@@ -593,5 +593,38 @@ describe Hyrax::ScannedResourcesController, admin_set: true do
     end
   end
 
+  describe "saving structure" do
+    let(:resource) { FactoryGirl.create(:scanned_resource, user: user) }
+    let(:file_set) { FactoryGirl.create(:file_set, user: user) }
+    let(:user) { FactoryGirl.create(:admin) }
+    before do
+      sign_in user
+      resource.ordered_members << file_set
+      resource.save
+    end
+    let(:nodes) do
+      [
+        {
+          "label": "Chapter 1",
+          "nodes": [
+            {
+              "proxy": file_set.id
+            }
+          ]
+        }
+      ]
+    end
+    it "works even if logical order was deleted badly" do
+      resource.logical_order.order = { label: "Bad news.", nodes: nodes }
+      resource.save!
+      resource.logical_order.destroy
+
+      post :save_structure, params: { nodes: nodes, id: resource.id, label: "TOP!" }
+
+      expect(response.status).to eq 200
+      expect(resource.reload.logical_order.order).to eq({ "label": "TOP!", "nodes": nodes }.with_indifferent_access)
+    end
+  end
+
   include_examples "structure persister", :scanned_resource, ScannedResourceShowPresenter
 end

@@ -9,13 +9,17 @@ module Hyrax::MemberManagement
     end
 
     def save_structure
-      curation_concern.logical_order.destroy(eradicate: true)
+      begin
+        curation_concern.logical_order.destroy(eradicate: true)
+      rescue Ldp::Gone
+        ActiveFedora::Base.eradicate("#{curation_concern.id}/logical_order")
+      end
       curation_concern.reload
-      curation_concern.logical_order.order = { "label": params["label"], "nodes": params["nodes"] }
+      curation_concern.logical_order.order = { "label": params.to_unsafe_h["label"], "nodes": params.to_unsafe_h["nodes"] }
       curation_concern.save!
       head 200
     rescue StandardError => e
-      Rails.logger.warn "Error: #{e}"
+      Rails.logger.warn "Error: #{e.message}"
     end
   end
 end
