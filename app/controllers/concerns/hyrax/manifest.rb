@@ -9,11 +9,15 @@ module Hyrax::Manifest
           render json: manifest_builder
         end
       end
+    rescue CanCan::AccessDenied => access_err
+      deny_access(access_err)
+    rescue => err
+      render json: { message: err.message }, status: :internal_server_error
     end
 
     def deny_access(exception)
       if exception.action == :manifest && !current_user
-        render json: {}, status: 401
+        render json: {}, status: :unauthorized
       elsif !current_user
         session['user_return_to'.freeze] = request.url
         redirect_to login_url, alert: exception.message
@@ -35,10 +39,16 @@ module Hyrax::Manifest
         end
     end
 
+    ##
+    # Retrieve the IIIF Manifest for a given Work
+    # @return IIIF::Presentation::Manifest
     def manifest_builder
       Rails.cache.fetch("manifest/#{presenter.id}/#{ResourceIdentifier.new(presenter.id)}") do
         PolymorphicManifestBuilder.new(presenter, ssl: request.ssl?).to_json
       end
+    rescue => e
+      Rails.logger.warn e.message
+      {}.to_json
     end
 
     def login_url

@@ -109,6 +109,30 @@ RSpec.describe Hyrax::EphemeraFoldersController, admin_set: true do
         expect(response_json['@id']).to eq "http://plum.com/concern/ephemera_folders/test2/manifest"
         expect(response_json["service"]).to eq nil
       end
+
+      context 'when the manifest is empty or invalid' do
+        let(:manifest) { instance_double(IIIF::Presentation::Manifest) }
+
+        it 'returns an error message' do
+          resource = FactoryGirl.create(:ephemera_folder)
+          resource_2 = FactoryGirl.create(:ephemera_folder)
+          allow(resource).to receive(:id).and_return("test")
+          allow(resource_2).to receive(:id).and_return("test2")
+          solr.add resource.to_solr
+          solr.add resource_2.to_solr
+          solr.commit
+          expect(EphemeraFolder).not_to receive(:find)
+
+          allow(manifest).to receive(:to_json).and_return("{}")
+          allow(ManifestBuilder).to receive(:new).and_return(manifest)
+          expect(Rails.logger).to receive(:warn).with("Image cannot be viewed at this time.")
+
+          get :manifest, params: { id: "test2", format: :json }
+
+          response_json = JSON.parse(response.body)
+          expect(response_json).to be_empty
+        end
+      end
     end
   end
 end

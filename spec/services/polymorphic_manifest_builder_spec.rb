@@ -475,4 +475,20 @@ RSpec.describe PolymorphicManifestBuilder, vcr: { cassette_name: "iiif_manifest"
       end
     end
   end
+
+  context 'with an invalid IIIF Manifest' do
+    describe '.new' do
+      let(:manifest_builder) { class_double(ManifestBuilder).as_stubbed_const(transfer_nested_constants: true) }
+      let(:manifest) { instance_double(IIIF::Presentation::Manifest) }
+
+      before do
+        allow(manifest).to receive(:to_json).and_return("{}")
+        allow(manifest_builder).to receive(:new).and_return(manifest)
+      end
+
+      it 'raises an error if the manifest is blank' do
+        expect { described_class.new(solr_document) }.to raise_error(ManifestBuilder::ManifestBuildError, I18n.t('works.show.no_image'))
+      end
+    end
+  end
 end

@@ -85,6 +85,20 @@ RSpec.describe Hyrax::MapSetsController, admin_set: true do
           expect(response_json['manifests']).to be_nil
         end
       end
+
+      context 'when the manifest is empty or invalid' do
+        let(:manifest) { instance_double(IIIF::Presentation::Manifest) }
+
+        it 'returns an error message' do
+          allow(manifest).to receive(:to_json).and_return("{}")
+          allow(SammelbandManifestBuilder).to receive(:new).and_return(manifest)
+
+          get :manifest, params: { id: map_set.id, format: :json }
+
+          response_json = JSON.parse(response.body)
+          expect(response_json).to be_empty
+        end
+      end
     end
 
     describe "#geoblacklight" do

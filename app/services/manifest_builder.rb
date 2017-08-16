@@ -2,6 +2,8 @@ class ManifestBuilder
   attr_reader :record, :services
   delegate :to_json, to: :manifest
 
+  class ManifestBuildError < EncodingError; end
+
   def initialize(record, ssl: false, services: nil)
     @record = record
     @ssl = ssl

@@ -16,6 +16,35 @@ RSpec.describe Hyrax::CollectionsController do
       expect(response).to be_success
     end
 
+    context 'when the manifest is empty or invalid' do
+      let(:coll) { FactoryGirl.create(:collection) }
+      let(:image_work) { FactoryGirl.create(:image_work) }
+      let(:file_set) { FactoryGirl.create(:file_set, id: 'x633f104m') }
+      let(:manifest) { instance_double(IIIF::Presentation::Manifest) }
+      render_views
+      before do
+        sign_in user
+        image_work.ordered_members << file_set
+        image_work.thumbnail_id = file_set.id
+        image_work.save
+        file_set.update_index
+        coll.ordered_members << image_work
+        coll.thumbnail_id = image_work.id
+        coll.save
+        image_work.update_index
+      end
+
+      it 'returns an error message' do
+        allow(manifest).to receive(:to_json).and_return("{}")
+        allow(ManifestBuilder).to receive(:new).and_return(manifest)
+
+        get :manifest, params: { id: coll.id, format: :json }
+
+        response_json = JSON.parse(response.body)
+        expect(response_json).to be_empty
+      end
+    end
+
     context "when not logged in" do
       let(:user) {}
       it "returns a manifest for a public collection" do
