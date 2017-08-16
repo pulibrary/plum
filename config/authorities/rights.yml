@@ -109,6 +109,10 @@ terms:
 
       <br/>In one or more jurisdictions, laws other than copyright are known to
       impose restrictions on the use of this Item.
+  - id: http://rightsstatements.org/vocab/NoC-NC/1.0/
+    term: No Copyright - Non-Commercial Use Only
+    notable: false
+    active: true
   - id: http://rightsstatements.org/vocab/NKC/1.0/
     term: No Known Copyright
     notable: false
