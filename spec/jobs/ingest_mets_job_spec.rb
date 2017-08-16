@@ -99,11 +99,15 @@ RSpec.describe IngestMETSJob, :admin_set do
     end
 
     it "ingests a multi-volume mets file", vcr: { cassette_name: 'bibdata-4609321' } do
-      allow(actor1).to receive(:attach_related_object)
+      allow(actor1).to receive(:create_metadata)
       allow(actor1).to receive(:attach_content)
+      allow(actor1).to receive(:create_content)
+      allow(actor1).to receive(:attach_file_to_work)
       allow(actor2).to receive(:create_metadata)
-      allow(actor2).to receive(:attach_file_to_work)
       allow(actor2).to receive(:create_content)
+      allow(actor2).to receive(:attach_file_to_work)
+      allow(actor2).to receive(:attach_content)
+      allow(actor2).to receive(:attach_related_object)
       expect(resource1).to receive(:logical_order).at_least(:once).and_return(logical_order)
       expect(resource2).to receive(:logical_order).at_least(:once).and_return(logical_order)
       expect(logical_order).to receive(:order=).at_least(:once)
@@ -124,8 +128,11 @@ RSpec.describe IngestMETSJob, :admin_set do
       let(:resource1) { FactoryGirl.create(:scanned_resource_with_file, replaces: ['pudl0001/4609321/s42/phys1']) }
       let(:resource2) { FactoryGirl.create(:scanned_resource_with_file, replaces: ['pudl0001/4609321/s42/phys2']) }
       it "ingests a multi-volume mets file", vcr: { cassette_name: 'bibdata-4609321' } do
-        allow(actor1).to receive(:attach_related_object)
+        allow(actor1).to receive(:create_metadata)
+        allow(actor1).to receive(:create_content)
+        allow(actor1).to receive(:attach_file_to_work)
         allow(actor1).to receive(:attach_content)
+        allow(actor1).to receive(:attach_related_object)
         described_class.perform_now(mets_file_multi, user)
         expect(work.ordered_member_ids).to eq([resource1.id, resource2.id])
       end
@@ -134,11 +141,15 @@ RSpec.describe IngestMETSJob, :admin_set do
     context "when given a pudl0003 MVW with no structmap", vcr: { cassette_name: 'bibdata-4612596' } do
       let(:mets_file) { Rails.root.join("spec", "fixtures", "pudl0003-tc85_2621.mets") }
       it "hacks together a MVW from the path" do
-        allow(actor1).to receive(:attach_related_object)
+        allow(actor1).to receive(:create_metadata)
         allow(actor1).to receive(:attach_content)
+        allow(actor1).to receive(:create_content)
+        allow(actor1).to receive(:attach_file_to_work)
         allow(actor2).to receive(:create_metadata)
         allow(actor2).to receive(:create_content)
         allow(actor2).to receive(:attach_file_to_work)
+        allow(actor2).to receive(:attach_content)
+        allow(actor2).to receive(:attach_related_object)
         expect(resource1).to receive(:logical_order).at_least(:once).and_return(logical_order)
         expect(resource2).to receive(:logical_order).at_least(:once).and_return(logical_order)
         expect(logical_order).to receive(:order=).at_least(:once)

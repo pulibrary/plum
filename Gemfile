@@ -31,7 +31,7 @@ gem 'modernizr-rails'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-gem 'hyrax', '~> 1.0.1'
+gem 'hyrax', '~> 1.0.2'
 gem 'blacklight', '~> 6.9'
 gem 'pul_metadata_services', github:'pulibrary/pul_metadata_services', branch: 'master'
 gem 'hydra-role-management', '~> 0.2.0'

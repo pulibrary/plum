@@ -11,7 +11,12 @@ namespace :mets do
     abort "usage: rake mets:ingest /path/to/mets/files" unless ARGV[1] && Dir.exist?(ARGV[1])
     Dir["#{ARGV[1]}/**/*.mets"].each do |file|
       begin
-        IngestMETSJob.perform_later(file, user)
+        background = ENV['BACKGROUND']
+        if background
+          IngestMETSJob.perform_later(file, user)
+        else
+          IngestMETSJob.perform_now(file, user)
+        end
       rescue => e
         puts "Error: #{e.message}"
         puts e.backtrace
