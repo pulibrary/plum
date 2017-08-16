@@ -148,8 +148,8 @@ describe Ability do
     it {
       should be_able_to(:read, open_scanned_resource)
       should be_able_to(:manifest, open_scanned_resource)
-      should be_able_to(:pdf, open_scanned_resource)
-      should_not be_able_to(:color_pdf, open_scanned_resource)
+      should be_able_to(:pdf, presenter(open_scanned_resource))
+      should_not be_able_to(:color_pdf, presenter(open_scanned_resource))
       should be_able_to(:read, campus_only_scanned_resource)
       should_not be_able_to(:read, private_scanned_resource)
       should_not be_able_to(:read, pending_scanned_resource)
@@ -462,7 +462,7 @@ describe Ability do
       should be_able_to(:color_pdf, color_enabled_resource)
       should be_able_to(:download, external_metadata_file)
 
-      should_not be_able_to(:pdf, no_pdf_scanned_resource)
+      should_not be_able_to(:pdf, presenter(no_pdf_scanned_resource))
       should_not be_able_to(:flag, open_scanned_resource)
       should_not be_able_to(:read, campus_only_scanned_resource)
       should_not be_able_to(:read, private_scanned_resource)

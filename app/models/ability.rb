@@ -10,8 +10,8 @@ class Ability
 
   # Define any customized permissions here.
   def custom_permissions
-    alias_action :show, :manifest, to: :read
-    alias_action :color_pdf, :pdf, :edit, :browse_everything_files, to: :modify
+    alias_action :show, :manifest, :color_pdf, :pdf, to: :read
+    alias_action :edit, :browse_everything_files, to: :modify
     roles.each do |role|
       send "#{role}_permissions" if current_user.send "#{role}?"
     end
@@ -175,8 +175,14 @@ class Ability
     cannot [:manifest], EphemeraFolderPresenter do |folder|
       folder.workflow_state == "needs_qa"
     end
+    can :pdf, FileSet do |file_set|
+      file_set.in_works.map { |curation_concern| ["color", "gray"].include?(Array(curation_concern.pdf_type).first) }.reduce(:|)
+    end
     can :pdf, (curation_concerns + [ScannedResourceShowPresenter]) do |curation_concern|
       ["color", "gray"].include?(Array(curation_concern.pdf_type).first)
+    end
+    can :color_pdf, FileSet do |file_set|
+      file_set.in_works.map { |curation_concern| curation_concern.pdf_type == ["color"] }.reduce(:|)
     end
     can :color_pdf, (curation_concerns + [ScannedResourceShowPresenter]) do |curation_concern|
       curation_concern.pdf_type == ["color"]
