@@ -23,6 +23,8 @@ class IngestMETSJob < ApplicationJob
         mvw.ordered_members = volumes
         mvw.thumbnail_id = volumes.first.thumbnail_id
         mvw.save!
+
+        volumes.each(&:update_index)
       else
         resource = create_resource
         ingest_files(resource: resource, files: @mets.files)
