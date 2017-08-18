@@ -3,6 +3,7 @@ class ManifestBuilder
   delegate :to_json, to: :manifest
 
   class ManifestBuildError < EncodingError; end
+  class ManifestEmptyError < StandardError; end
 
   def initialize(record, ssl: false, services: nil)
     @record = record

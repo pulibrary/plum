@@ -70,7 +70,7 @@ RSpec.describe Hyrax::EphemeraFoldersController, admin_set: true do
     context "when not signed in" do
       it "does not allow them to view it" do
         get :file_manager, params: { id: folder.id }
-        expect(response).not_to be_success
+        expect(response.status).to eq 302 # Redirection for the user login
       end
     end
     context "when logged in as an admin" do
@@ -79,12 +79,12 @@ RSpec.describe Hyrax::EphemeraFoldersController, admin_set: true do
       it "lets them see it" do
         sign_in user
         get :file_manager, params: { id: folder.id }
-        expect(response).to be_success
+        expect(response.status).to eq 200
       end
     end
   end
 
-  describe "#manifest" do
+  describe "#manifest", manifest: true do
     let(:solr) { ActiveFedora.solr.conn }
     let(:user) { FactoryGirl.create(:admin) }
     context "when requesting JSON" do
@@ -104,13 +104,13 @@ RSpec.describe Hyrax::EphemeraFoldersController, admin_set: true do
 
         get :manifest, params: { id: "test2", format: :json }
 
-        expect(response).to be_success
+        expect(response.status).to eq 200
         response_json = JSON.parse(response.body)
         expect(response_json['@id']).to eq "http://plum.com/concern/ephemera_folders/test2/manifest"
         expect(response_json["service"]).to eq nil
       end
 
-      context 'when the manifest is empty or invalid' do
+      context 'when the manifest is empty' do
         let(:manifest) { instance_double(IIIF::Presentation::Manifest) }
 
         it 'returns an error message' do
@@ -125,10 +125,10 @@ RSpec.describe Hyrax::EphemeraFoldersController, admin_set: true do
 
           allow(manifest).to receive(:to_json).and_return("{}")
           allow(ManifestBuilder).to receive(:new).and_return(manifest)
-          expect(Rails.logger).to receive(:warn).with("Image cannot be viewed at this time.")
 
           get :manifest, params: { id: "test2", format: :json }
 
+          expect(response.status).to eq 404
           response_json = JSON.parse(response.body)
           expect(response_json).to be_empty
         end

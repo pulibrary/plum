@@ -3,17 +3,18 @@ require 'rails_helper'
 RSpec.describe Hyrax::CollectionsController do
   describe "#manifest" do
     let(:user) { FactoryGirl.create(:admin) }
+
     before do
       sign_in user if user
     end
+
     it "returns a manifest for the collection" do
       coll = FactoryGirl.create(:collection)
-      allow(ManifestBuilder).to receive(:new).and_call_original
 
       get :manifest, params: { id: coll.id, format: :json }
 
-      expect(ManifestBuilder).to have_received(:new)
-      expect(response).to be_success
+      expect(response.status).to eq 200
+      expect(response.body).not_to be_empty
     end
 
     context 'when the manifest is empty or invalid' do
@@ -34,14 +35,25 @@ RSpec.describe Hyrax::CollectionsController do
         image_work.update_index
       end
 
-      it 'returns an error message' do
+      it 'returns a 404 status for empty manifests' do
         allow(manifest).to receive(:to_json).and_return("{}")
-        allow(ManifestBuilder).to receive(:new).and_return(manifest)
+        allow(SparseMemberCollectionManifest).to receive(:new).and_return(manifest)
 
         get :manifest, params: { id: coll.id, format: :json }
 
+        expect(response.status).to eq 404
         response_json = JSON.parse(response.body)
         expect(response_json).to be_empty
+      end
+
+      it 'returns an error message for invalid manifests' do
+        allow(SparseMemberCollectionManifest).to receive(:new).and_raise(StandardError)
+
+        get :manifest, params: { id: coll.id, format: :json }
+
+        expect(response.status).to eq 500
+        response_json = JSON.parse(response.body)
+        expect(response_json).to include "message" => I18n.t('works.show.no_image')
       end
     end
 
@@ -52,7 +64,8 @@ RSpec.describe Hyrax::CollectionsController do
 
         get :manifest, params: { id: coll.id, format: :json }
 
-        expect(response).to be_success
+        expect(response.status).to eq 200
+        expect(response.body).not_to be_empty
       end
       it "returns unauthorized for a collection they don't have access to" do
         coll = FactoryGirl.create(:private_collection)
@@ -74,19 +87,18 @@ RSpec.describe Hyrax::CollectionsController do
     end
   end
 
-  describe "#index_manifest" do
+  describe "#index_manifest", manifest: true do
     let(:user) { FactoryGirl.create(:admin) }
     before do
       sign_in user if user
     end
     it "returns a manifest for all collections" do
       FactoryGirl.create(:collection)
-      allow(AllCollectionsManifestBuilder).to receive(:new).and_call_original
 
       get :index_manifest, params: { format: :json }
 
-      expect(AllCollectionsManifestBuilder).to have_received(:new).with(nil, ability: anything, ssl: false)
-      expect(response).to be_success
+      expect(response.status).to eq 200
+      expect(response.body).not_to be_empty
     end
     context "if not signed in" do
       let(:user) { nil }
@@ -96,7 +108,7 @@ RSpec.describe Hyrax::CollectionsController do
 
         get :index_manifest, params: { format: :json }
 
-        expect(response).to be_success
+        expect(response.status).to eq 200
         json = IIIF::Service.parse(response.body)
         expect(json.collections.length).to eq 1
       end

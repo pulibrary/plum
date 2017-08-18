@@ -20,9 +20,11 @@ RSpec.describe Hyrax::Manifest do
       self.curation_concern_type = MyWork
     end
 
+    class MyWorkShowPresenter < HyraxShowPresenter; end
+
     routes.draw { get 'my_work/manifest' => "my_work#manifest" }
     @controller = MyWorkController.new
-    allow(@controller).to receive(:search_results).and_return([nil, [work.to_solr]])
+    allow(@controller).to receive(:presenter).and_return(MyWorkShowPresenter.new(SolrDocument.new(work.to_solr), Ability.new(user)))
   end
 
   after do
@@ -36,17 +38,22 @@ RSpec.describe Hyrax::Manifest do
       before { sign_in user }
 
       it 'returns a valid manifest for a work' do
+        manifest_helper_class = class_double(ManifestBuilder::ManifestHelper).as_stubbed_const(transfer_nested_constants: true)
+        manifest_helper = instance_double(ManifestBuilder::ManifestHelper)
+        allow(manifest_helper).to receive(:polymorphic_url).and_return('http://localhost')
+        allow(manifest_helper_class).to receive(:new).and_return(manifest_helper)
+
         get :manifest, params: { id: work.id, format: :json }
-        expect(response).to be_success
+        expect(response.status).to eq 200
         response_json = JSON.parse(response.body)
-        expect(response_json).to be_empty
+        expect(response_json).not_to be_empty
       end
     end
 
     context 'as an unauthenticated user' do
       it 'returns a 401 status and an empty manifest for a work' do
         get :manifest, params: { id: work.id, format: :json }
-        expect(response).not_to be_success
+        expect(response.status).to eq 401
         response_json = JSON.parse(response.body)
         expect(response_json).to be_empty
       end
@@ -58,11 +65,28 @@ RSpec.describe Hyrax::Manifest do
         allow(@controller).to receive(:manifest_builder).and_raise(ManifestBuilder::ManifestBuildError, 'Test error message')
       end
 
-      it 'returns a valid manifest for a work' do
+      it 'provides a 500 status code and serves an error message' do
         get :manifest, params: { id: work.id, format: :json }
-        expect(response).not_to be_success
+        expect(response.status).to eq 500
         response_json = JSON.parse(response.body)
         expect(response_json).to include 'message' => 'Test error message'
+      end
+    end
+
+    context 'with an empty manifests' do
+      let(:manifest) { instance_double(IIIF::Presentation::Manifest) }
+
+      before do
+        sign_in user
+        allow(manifest).to receive(:to_json).and_return("{}")
+        allow(@controller).to receive(:manifest_builder).and_raise(ManifestBuilder::ManifestEmptyError)
+      end
+
+      it 'provides a 404 status code and serves an empty JSON response' do
+        get :manifest, params: { id: work.id, format: :json }
+        expect(response.status).to eq 404
+        response_json = JSON.parse(response.body)
+        expect(response_json).to be_empty
       end
     end
   end
