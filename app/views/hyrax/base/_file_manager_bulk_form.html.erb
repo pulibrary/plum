@@ -10,7 +10,7 @@
       <% end %>
     </div>
   <% end %>
-  <% if @form.model.kind_of?(ScannedResource) %>
+  <% if @form.model.instance_of?(ScannedResource) %>
     <%= simple_form_for [main_app, :bulk_download, @form], html: { id: 'bulk_download_form', 'data-type': 'json', target: "_blank"}, method: :post do |f| %>
       <%= hidden_field_tag "file_sets[]", [] %>
       <%= f.submit "Download as Zip", class: 'btn btn-primary', data: { disable_with: false } %>
