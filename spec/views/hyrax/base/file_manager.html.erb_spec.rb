@@ -62,10 +62,6 @@ RSpec.describe "hyrax/base/file_manager.html.erb" do
     end
   end
 
-  it "displays helper text" do
-    expect(rendered).to include "Select files or directories to upload, or drag them here."
-  end
-
   it "has a file manager header" do
     expect(rendered).to include "<h1>#{I18n.t('file_manager.link_text')}</h1>"
   end
@@ -111,7 +107,7 @@ RSpec.describe "hyrax/base/file_manager.html.erb" do
   end
 
   it "renders a form for each member" do
-    expect(rendered).to have_selector("form", count: members.length + 4)
+    expect(rendered).to have_selector("form", count: members.length + 3)
   end
 
   it "renders an input for titles" do

@@ -44,29 +44,6 @@ RSpec.feature "ScannedResourcesController", type: :feature, admin_set: true do
 
     let(:file1) { File.open(Rails.root.join("spec", "fixtures", "files", "gray.tif")) }
     let(:uploaded_file1) { Hyrax::UploadedFile.create(file: file1, user: user) }
-    scenario "User can follow link to bulk edit scanned resource and add a new file", js: true do
-      allow(CharacterizeJob).to receive(:perform_later).once
-      allow_any_instance_of(FileSet).to receive(:warn) # suppress virus warning messages
-
-      visit polymorphic_path [scanned_resource]
-      expect(page).to have_link(I18n.t('file_manager.link_text'))
-      visit polymorphic_path [:file_manager, scanned_resource]
-
-      expect(page).to have_selector("form.edit_scanned_resource")
-      within("form.edit_scanned_resource") do
-        page.execute_script("$(\"#fileupload.edit_scanned_resource\").append('<input name=\"uploaded_files[]\" value=\"#{uploaded_file1.id}\" type=\"hidden\">');")
-        perform_enqueued_jobs do
-          click_on("Save")
-        end
-      end
-
-      visit polymorphic_path [parent_presenter.member_presenters.first]
-      expect(page).to have_content "gray.tif"
-
-      visit edit_polymorphic_path [scanned_resource]
-      expect(page).not_to have_text('Representative Media')
-      expect(page).not_to have_text('Thumbnail')
-    end
   end
 
   context "an anonymous user" do
