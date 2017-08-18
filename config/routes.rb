@@ -78,6 +78,7 @@ Rails.application.routes.draw do
         post :structure, action: :save_structure
         get :manifest, defaults: { format: :json }
         post :browse_everything_files
+        post :bulk_download
       end
       collection do
         resources :templates, defaults: { class_type: "ScannedResource" }, as: :scanned_resource_templates

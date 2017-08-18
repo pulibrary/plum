@@ -90,6 +90,10 @@ RSpec.describe "hyrax/base/file_manager.html.erb" do
     expect(rendered).to have_link "Test title", href: hyrax_scanned_resource_path(id: parent.id)
   end
 
+  it "has a save as ZIP link" do
+    expect(rendered).to have_button "Download as Zip", visible: false
+  end
+
   it "has an actions bar for labeling" do
     expect(rendered).to have_selector("input[name=start_with]")
     expect(rendered).to have_selector("input[name=method]")
@@ -107,7 +111,7 @@ RSpec.describe "hyrax/base/file_manager.html.erb" do
   end
 
   it "renders a form for each member" do
-    expect(rendered).to have_selector("form", count: members.length + 3)
+    expect(rendered).to have_selector("form", count: members.length + 4)
   end
 
   it "renders an input for titles" do

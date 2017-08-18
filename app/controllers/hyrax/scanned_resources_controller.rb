@@ -25,7 +25,16 @@ class Hyrax::ScannedResourcesController < Hyrax::HyraxController
     Hyrax::ScannedResourceForm
   end
 
+  def bulk_download
+    path = ZipGenerator.new(file_set_ids: file_set_ids).generate!
+    send_file path
+  end
+
   private
+
+    def file_set_ids
+      params[:file_sets].flat_map { |x| x.split(",") }
+    end
 
     def authorize_pdf
       if params[:pdf_quality] == "color"

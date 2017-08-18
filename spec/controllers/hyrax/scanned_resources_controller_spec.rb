@@ -626,5 +626,26 @@ describe Hyrax::ScannedResourcesController, admin_set: true do
     end
   end
 
+  describe "#bulk_download" do
+    let(:user) { FactoryGirl.create(:admin) }
+    let(:file) { File.open(Rails.root.join("spec", "fixtures", "files", "color.tif")) }
+    let(:scanned_resource) { FactoryGirl.create(:scanned_resource, user: user, ordered_members: [file_set]) }
+    let(:file_set) { FactoryGirl.create(:file_set, user: user, content: file) }
+    before do
+      sign_in user
+      allow(ActiveFedora::Base).to receive(:find).and_call_original
+      allow(ActiveFedora::Base).to receive(:find).with(file_set.id).and_return(file_set)
+      allow(file_set).to receive(:local_file).and_return(file.path)
+    end
+    context "when given a list of file sets" do
+      it "generates a zip file" do
+        post :bulk_download, params: { id: scanned_resource.id, file_sets: [file_set.id] }
+
+        expect(response).to be_success
+        expect(response.headers["Content-Type"]).to eq "application/zip"
+      end
+    end
+  end
+
   include_examples "structure persister", :scanned_resource, ScannedResourceShowPresenter
 end

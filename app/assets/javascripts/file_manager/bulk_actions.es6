@@ -2,6 +2,7 @@ export default class BulkActionManager {
   constructor(element) {
     this.sortable_element.on("selectablestop", this.stopped_selecting)
     this.element = element
+    this.element.find("#bulk_download_form").submit(this.submitted_download)
   }
   get stopped_selecting() {
     return () => {
@@ -13,6 +14,13 @@ export default class BulkActionManager {
         this.element.find("input[name=bulk_hint]").off("change")
         this.element.find("input[name=bulk_hint]").prop('checked', false)
       }
+    }
+  }
+
+  get submitted_download() {
+    let master = this
+    return function(event) {
+      $(this).find("#file_sets_").val(master.selected_ids)
     }
   }
 
@@ -32,6 +40,10 @@ export default class BulkActionManager {
 
   get selected_elements() {
     return this.sortable_element.find("li .panel.ui-selected")
+  }
+
+  get selected_ids() {
+    return this.selected_elements.map(function() { return $(this).parent().data("reorder-id")}).toArray()
   }
 
   get selected_viewing_hints() {
