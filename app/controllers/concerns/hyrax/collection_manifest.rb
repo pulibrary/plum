@@ -1,11 +1,11 @@
-module Hyrax::Manifest
+module Hyrax::CollectionManifest
   extend ActiveSupport::Concern
 
   included do
-    def manifest
+    def index_manifest
       respond_to do |f|
         f.json do
-          render json: manifest_builder
+          render json: all_manifests_builder
         end
       end
     rescue CanCan::AccessDenied => access_err
@@ -43,10 +43,8 @@ module Hyrax::Manifest
     ##
     # Retrieve the IIIF Manifest for a given Work
     # @return IIIF::Presentation::Manifest
-    def manifest_builder
-      Rails.cache.fetch("manifest/#{presenter.id}/#{ResourceIdentifier.new(presenter.id)}") do
-        PolymorphicManifestBuilder.new(presenter, ssl: request.ssl?).to_json
-      end
+    def all_manifests_builder
+      AllCollectionsManifestBuilder.new(nil, ability: current_ability, ssl: request.ssl?).to_json
     end
 
     def login_url

@@ -11,6 +11,18 @@ class Hyrax::HyraxController < ApplicationController
     super
   end
 
+  ##
+  # Override the "show" action
+  # Ensures that the URI for the IIIF Manifest and the Manifest itself are passed to the view
+  def show
+    @manifest_uri = polymorphic_path([main_app, :manifest, presenter])
+    @manifest = manifest_builder
+  rescue
+    Rails.logger.warn I18n.t('works.show.no_image')
+  ensure
+    super
+  end
+
   def file_manager
     parent_presenter
     @form = ::FileManagerForm.new(curation_concern, current_ability)

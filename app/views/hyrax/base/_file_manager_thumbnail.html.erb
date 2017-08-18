@@ -1,3 +1,5 @@
-<%= osd_modal_for(node.thumbnail_id) do %>
-  <%= render_thumbnail_tag node, { class: 'thumbnail-inner', onerror: default_icon_fallback } %>
+<% if node.respond_to? :thumbnail_id %>
+  <%= osd_modal_for(node.thumbnail_id) do %>
+    <%= render_thumbnail_tag node, { class: 'thumbnail-inner', onerror: default_icon_fallback } %>
+  <% end %>
 <% end %>

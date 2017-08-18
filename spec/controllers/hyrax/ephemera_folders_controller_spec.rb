@@ -70,7 +70,7 @@ RSpec.describe Hyrax::EphemeraFoldersController, admin_set: true do
     context "when not signed in" do
       it "does not allow them to view it" do
         get :file_manager, params: { id: folder.id }
-        expect(response).not_to be_success
+        expect(response.status).to eq 302 # Redirection for the user login
       end
     end
     context "when logged in as an admin" do
@@ -79,12 +79,12 @@ RSpec.describe Hyrax::EphemeraFoldersController, admin_set: true do
       it "lets them see it" do
         sign_in user
         get :file_manager, params: { id: folder.id }
-        expect(response).to be_success
+        expect(response.status).to eq 200
       end
     end
   end
 
-  describe "#manifest" do
+  describe "#manifest", manifest: true do
     let(:solr) { ActiveFedora.solr.conn }
     let(:user) { FactoryGirl.create(:admin) }
     context "when requesting JSON" do
@@ -104,10 +104,34 @@ RSpec.describe Hyrax::EphemeraFoldersController, admin_set: true do
 
         get :manifest, params: { id: "test2", format: :json }
 
-        expect(response).to be_success
+        expect(response.status).to eq 200
         response_json = JSON.parse(response.body)
         expect(response_json['@id']).to eq "http://plum.com/concern/ephemera_folders/test2/manifest"
         expect(response_json["service"]).to eq nil
+      end
+
+      context 'when the manifest is empty' do
+        let(:manifest) { instance_double(IIIF::Presentation::Manifest) }
+
+        it 'returns an error message' do
+          resource = FactoryGirl.create(:ephemera_folder)
+          resource_2 = FactoryGirl.create(:ephemera_folder)
+          allow(resource).to receive(:id).and_return("test")
+          allow(resource_2).to receive(:id).and_return("test2")
+          solr.add resource.to_solr
+          solr.add resource_2.to_solr
+          solr.commit
+          expect(EphemeraFolder).not_to receive(:find)
+
+          allow(manifest).to receive(:to_json).and_return("{}")
+          allow(ManifestBuilder).to receive(:new).and_return(manifest)
+
+          get :manifest, params: { id: "test2", format: :json }
+
+          expect(response.status).to eq 404
+          response_json = JSON.parse(response.body)
+          expect(response_json).to be_empty
+        end
       end
     end
   end

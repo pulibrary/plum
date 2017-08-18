@@ -78,3 +78,6 @@ en:
     all_in_production:
       label: 'All in Production'
       desc: 'Mark all contained folders as having received QA, and put them into the public display.'
+  works:
+    show:
+      no_image: "Image cannot be viewed at this time."
