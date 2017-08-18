@@ -15,6 +15,7 @@ RSpec.describe EphemeraFieldsHelper, type: :helper do
     "EphemeraFolder.genre",
     "EphemeraFolder.language",
     "EphemeraFolder.geographic_origin",
+    "EphemeraFolder.geo_subject",
     "EphemeraFolder.subject"
   ] }
 

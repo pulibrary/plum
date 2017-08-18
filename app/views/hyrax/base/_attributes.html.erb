@@ -5,7 +5,7 @@
   </thead>
   <tbody>
   <%= @presenter.attribute_to_html(:creator, render_as: 'rtl_linked' ) %>
-  <% (PlumSchema.display_fields - [:creator, :created, :date_created] + [:date_uploaded, :date_modified]).each do |display_field| %>
+  <% (PlumSchema.display_fields - [:creator, :created, :date_created, :resource_type] + [:date_uploaded, :date_modified]).each do |display_field| %>
     <%= @presenter.attribute_to_html(display_field) %>
   <% end %>
   <%= @presenter.attribute_to_html(:description) %>

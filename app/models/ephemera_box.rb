@@ -13,6 +13,7 @@ class EphemeraBox < ActiveFedora::Base
   property :barcode, predicate: ::PULTerms.barcode
   property :box_number, predicate: ::RDF::RDFS.label
   property :ephemera_project, predicate: ::PULTerms.ephemera_project
+  property :local_identifier, predicate: ::RDF::Vocab::DC11.identifier
   property :shipped_date, predicate: ::PULTerms.shipped_date
   property :tracking_number, predicate: ::PULTerms.tracking_number
 

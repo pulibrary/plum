@@ -16,7 +16,7 @@ class EphemeraFolder < ActiveFedora::Base
   validates :barcode, with: :barcode_valid?
 
   def self.controlled_fields
-    [:language, :geographic_origin, :genre, :subject]
+    [:language, :geographic_origin, :geo_subject, :genre, :subject]
   end
 
   self.human_readable_type = 'Ephemera Folder'
