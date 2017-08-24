@@ -46,7 +46,7 @@ class IngestEphemeraService
     @logger.info "Created box: #{box.id}"
 
     # box workflow
-    initialize_state(box state)
+    initialize_state(box, state)
 
     box
   end
