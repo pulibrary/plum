@@ -19,6 +19,18 @@ describe SearchController do
         expect(response).to be_success
       end
     end
+    describe "when an id and q are given but no word boundary file exists" do
+      it "will return page" do
+        file_set = FactoryGirl.build(:file_set, title: ["Dinning Room"])
+        allow(file_set).to receive(:ocr_text).and_return("Table")
+        file_set.save
+        resource = FactoryGirl.build(:scanned_resource, title: ["Places to Eat"])
+        resource.ordered_members << file_set
+        resource.save!
+        get :search, id: resource.id, q: "Table"
+        expect(response).to be_success
+      end
+    end
     describe "when no id is given" do
       it "will return API description page" do
         get :index

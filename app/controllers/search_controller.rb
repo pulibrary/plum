@@ -16,6 +16,7 @@ class SearchController < ApplicationController
     @pages_json = {}
     @docs.map do |doc|
       json_file = PairtreeDerivativePath.derivative_path_for_reference(doc['id'], "json")
+      next unless File.exist?(json_file)
       json = File.read json_file
       page_json = JSON.parse(json)
       @pages_json[doc['id']] = page_json
