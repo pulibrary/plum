@@ -10,6 +10,8 @@ class IngestEphemeraService
     @vocabs = {}
     @visibility_public = Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PUBLIC
     @visibility_private = Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PRIVATE
+    @state_map = { 'New': 'new', 'Ready to Ship': 'ready_to_ship', 'Shipped': 'shipped',
+                   'Received': 'received', 'All in Production': 'all_in_production' }.stringify_keys
   end
 
   def ingest
@@ -52,14 +54,7 @@ class IngestEphemeraService
   end
 
   def initialize_state(box, state)
-    workflow_state = case state
-                     when 'New' then 'new'
-                     when 'Ready to Ship' then 'ready_to_ship'
-                     when 'Shipped' then 'shipped'
-                     when 'Received' then 'received'
-                     when 'All in Production' then 'all_in_production'
-                     end
-    Workflow::InitializeState.call box, 'ephemera_box_works', workflow_state
+    Workflow::InitializeState.call(box, 'ephemera_box_works', @state_map[state])
   end
 
   def basedir
@@ -113,11 +108,12 @@ class IngestEphemeraService
         term = VocabularyTerm.find_by(label: term_label)
       end
 
-      unless term
+      if term
+        term.id.to_s
+      else
         @logger.warn "Can't find #{vocab_label} >> #{term_label}"
         nil
       end
-      term.id.to_s
     end
   end
 
