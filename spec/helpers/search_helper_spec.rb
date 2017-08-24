@@ -2,12 +2,12 @@ require 'rails_helper'
 
 describe SearchHelper do
   context "#annotation_url" do
-    describe "When only an is is given" do
+    describe "When only an ID is given" do
       it "Returns annotaion url" do
         expect(helper.annotation_url("123")).to eq("urn:pmp:123_0")
       end
     end
-    describe "When both and id and num are given" do
+    describe "When both an ID and a sequence number are given" do
       it "Returns annotation url" do
         expect(helper.annotation_url("123", "4")).to eq("urn:pmp:123_4")
       end
