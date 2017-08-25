@@ -7,12 +7,13 @@
         <th><%= t('.workflow_state') %></th>
         <th><%= t('.title') %></th>
         <th><%= t('.barcode') %></th>
+        <th><%= t('.identifier') %></th>
         <th><%= t('.genre') %></th>
         <th><%= t('.actions') %></th>
       </tr>
     </thead>
     <tbody>
-      <%= render partial: 'member', collection: presenter.member_presenters.sort_by(&:folder_number), locals: { box: presenter } %>
+      <%= render partial: 'member', collection: presenter.member_presenters.sort_by { |mem| mem.folder_number.to_i }, locals: { box: presenter } %>
     </tbody>
   </table>
 <% elsif can? :edit, presenter.id %>
