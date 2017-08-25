@@ -65,5 +65,10 @@ RSpec.describe IngestEphemeraService, :admin_set do
       graph << [RDF::URI.new, RDF::Vocab::DC.format, "Flyers"]
       expect(subject.lookup(graph, RDF::Vocab::DC.format, "LAE Genres")).to eq([nil])
     end
+    it "handles missing data" do
+      graph = RDF::Graph.new
+      graph << [RDF::URI.new, RDF::Vocab::DC.subject, ""]
+      expect(subject.lookup(graph, RDF::Vocab::DC.subject, nil)).to eq([nil])
+    end
   end
 end

@@ -9,6 +9,7 @@
 <info:fedora/puls:0003d> <http://purl.org/dc/terms/publisher> "Museo de la Memoria - Municipalidad de Rosario" .
 <info:fedora/puls:0003d> <http://princeton.edu/pulstore/terms/isPartOfSeries> "" .
 <info:fedora/puls:0003d> <http://purl.org/dc/terms/subject> "Museums" .
+<info:fedora/puls:0003d> <http://purl.org/dc/terms/subject> "" .
 <info:fedora/puls:0003d> <http://purl.org/dc/terms/creator> "" .
 <info:fedora/puls:0003d> <http://purl.org/dc/terms/contributor> "" .
 <info:fedora/puls:0003d> <http://princeton.edu/pulstore/terms/pageCount> "2"^^<http://www.w3.org/2001/XMLSchema#integer> .
