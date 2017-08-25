@@ -5,6 +5,7 @@ class SearchController < ApplicationController
 
   def search
     search_term = params[:q]
+    @parent_id = params[:id]
     @response = ActiveFedora::SolrService.query("full_text_tesim:#{search_term}", fq: "ordered_by_ssim:#{params[:id]}")
     @docs = @response.map do |doc|
       doc_text = doc['full_text_tesim'][0]
