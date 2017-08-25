@@ -11,6 +11,7 @@ RSpec.describe RightsStatementService do
       'http://rightsstatements.org/vocab/InC-NC/1.0/',
       'http://rightsstatements.org/vocab/NoC-CR/1.0/',
       'http://rightsstatements.org/vocab/NoC-OKLR/1.0/',
+      'http://rightsstatements.org/vocab/NoC-NC/1.0/',
       'http://rightsstatements.org/vocab/NKC/1.0/'
     ]
   }
