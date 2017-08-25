@@ -31,7 +31,7 @@ class IngestMETSJob < ApplicationJob
         if @mets.structure.present?
           resource.logical_order.order = map_fileids(@mets.structure)
         end
-        resource.viewing_hint = [@mets.viewing_hint]
+        resource.viewing_hint = [@mets.viewing_hint] if @mets.viewing_hint
         resource.save!
         validate!(resource)
       end
@@ -128,7 +128,7 @@ class IngestMETSJob < ApplicationJob
         r.thumbnail_id = r.file_sets.first.id unless r.thumbnail_id
         r.title = [@mets.label_for_volume(volume_id)]
         r.viewing_direction = [@mets.viewing_direction]
-        r.viewing_hint = [@mets.viewing_hint]
+        r.viewing_hint = [@mets.viewing_hint] if @mets.viewing_hint
         r.save!
 
         r
