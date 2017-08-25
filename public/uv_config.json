@@ -1,4 +1,7 @@
 {
+  "options": {
+    "searchWithinEnabled": true
+  },
   "modules": {
     "contentLeftPanel" : {
       "options": {
