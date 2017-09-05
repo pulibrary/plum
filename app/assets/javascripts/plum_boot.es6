@@ -39,7 +39,7 @@ export default class Initializer {
       secondMax: 0
     })
   }
-  
+
   initialize_plum_file_manager() {
     this.plum_file_manager = new PlumFileManager
   }
