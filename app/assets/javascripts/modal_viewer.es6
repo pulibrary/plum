@@ -1,11 +1,10 @@
 export default class ModalViewer {
   constructor() {
-    this.element = $(this.selector)
-    $("a", this.element).unbind("click")
-    $("body").on("click", this.selector, (event) => {
-      event.stopPropagation()
+    $("a", this.selector).unbind("click")
+    $("a", this.selector).on("click", (event) => {
       event.preventDefault()
-      let manifest_url = $(event.currentTarget).attr("data-modal-manifest")
+      event.stopImmediatePropagation()
+      let manifest_url = $(event.currentTarget).parents(this.selector).attr("data-modal-manifest")
       let osd_viewer = $("picture[data-openseadragon]")
       let new_source = $("<source>", { class: "osd-image", src: manifest_url, media: "openseadragon" })
       $("#viewer-modal").modal()
