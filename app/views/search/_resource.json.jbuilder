@@ -24,4 +24,4 @@ else
   end
 end
 
-json.on manifest_canvas_on_xywh(@parent_id, doc[:id], xywh)
+json.on manifest_canvas_on_xywh(@parent_path, doc[:id], xywh)

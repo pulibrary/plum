@@ -22,7 +22,6 @@ RSpec.describe CollectionsController do
         coll = FactoryGirl.create(:collection)
 
         get :manifest, id: coll.id, format: :json
-
         expect(response).to be_success
       end
       it "returns unauthorized for a collection they don't have access to" do

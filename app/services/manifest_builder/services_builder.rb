@@ -7,6 +7,9 @@ class ManifestBuilder
     end
 
     def apply(manifest)
+      return if
+        record.class == AllCollectionsPresenter ||
+        record.class == CollectionShowPresenter
       service_array = {
         "@context"  => "http://iiif.io/api/search/0/context.json",
         "@id"       => "http://localhost:3000/search/#{record.id}",

@@ -12,7 +12,7 @@ class CanvasBuilder
   end
 
   def path
-    CanvasID.new(record.id, parent_path.to_s, parent_path.record.id).to_s
+    CanvasID.new(record.id, parent_path.to_s).to_s
   end
 
   def apply(sequence)

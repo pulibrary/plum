@@ -6,6 +6,9 @@ class SearchController < ApplicationController
   def search
     search_term = params[:q]
     @parent_id = params[:id]
+    @parent_path = find_parent_path(@parent_id)
+    # solr query for has_model_ssim
+    # convert camel case to snake case
     @response = ActiveFedora::SolrService.query("full_text_tesim:#{search_term}", fq: "ordered_by_ssim:#{params[:id]}")
     @docs = @response.map do |doc|
       doc_text = doc['full_text_tesim'][0]
@@ -31,4 +34,11 @@ class SearchController < ApplicationController
     request.format = :json
     respond_to :json
   end
+
+  private
+
+    def find_parent_path(id)
+      response = ActiveFedora::SolrService.query("id:#{id}")
+      "#{request.base_url}/concern/#{response[0]['has_model_ssim'][0].to_s.underscore}s/#{id}"
+    end
 end
