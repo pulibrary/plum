@@ -28,6 +28,7 @@ Metrics/ClassLength:
   Exclude:
     - 'app/controllers/catalog_controller.rb'
     - 'app/jobs/ingest_mets_job.rb'
+    - 'app/services/ingest_ephemera_service.rb'
     - 'app/services/ingest_existing_scanned_map.rb'
     - 'app/models/ability.rb'
 
