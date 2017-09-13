@@ -1,5 +1,7 @@
 class ManifestBuilder
   class ServicesBuilder
+    include Rails.application.routes.url_helpers
+
     attr_reader :record
 
     def initialize(record)
@@ -12,7 +14,7 @@ class ManifestBuilder
         record.class == CollectionShowPresenter
       service_array = {
         "@context"  => "http://iiif.io/api/search/0/context.json",
-        "@id"       => "http://localhost:3000/search/#{record.id}",
+        "@id"       => "#{root_url}search/#{record.id}",
         "profile"   => "http://iiif.io/api/search/0/search",
         "label"     => "Search within item."
       }
