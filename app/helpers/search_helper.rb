@@ -3,7 +3,7 @@ module SearchHelper
     "urn:pmp:#{id}_#{num}"
   end
 
-  def manifest_canvas_on_xywh(id, xywh)
-    Plum.config[:iiif_url] + "/#{id}/#xywh=#{xywh}"
+  def manifest_canvas_on_xywh(parent_path, id, xywh)
+    "#{parent_path}/manifest/canvas/#{id}#xywh=#{xywh}"
   end
 end

@@ -16,7 +16,7 @@ describe SearchHelper do
   context "#manifest_canvas_on_xywh" do
     describe "When id and coordinates are given" do
       it "Returns manifest url" do
-        expect(helper.manifest_canvas_on_xywh("123", "0,0,0,0")).to eq(Plum.config[:iiif_url] + "/123/#xywh=0,0,0,0")
+        expect(helper.manifest_canvas_on_xywh("http://sample.com/123", "456", "0,0,0,0")).to eq("http://sample.com/123/manifest/canvas/456#xywh=0,0,0,0")
       end
     end
   end
