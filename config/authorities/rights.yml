@@ -11,13 +11,6 @@ terms:
       obtained permission from the rights­holder(s) to make the Work available,
       or makes the Work available under an exception or limitation to copyright
       (including Fair Use) that entitles it to make the Work available.
-    definition: >-
-      This Item is protected by copyright and/or related rights.
-
-      <br/>You are free to use this Item in any way that is permitted by the
-      copyright and related rights legislation that applies to your use.
-
-      <br/>For other uses you need to obtain permission from the rights-holder(s).
   - id: http://rightsstatements.org/vocab/InC-RUU/1.0/
     term: In Copyright - Rights-holder(s) Unlocatable or Unidentifiable
     notable: true
@@ -31,13 +24,6 @@ terms:
       use by EU-based data providers who have identified works as Orphan Works
       in accordance with the EU Orphan Works Directive (they must use InC-OW-EU
       instead).
-    definition: >-
-      This Item is protected by copyright and/or related rights. However, for
-      this Item, either (a) no rights-holder(s) have been identified or (b) one
-      or more rights-holder(s) have been identified but none have been located.
-
-      <br/>You are free to use this Item in any way that is permitted by the
-      copyright and related rights legislation that applies to your use.
   - id: http://rightsstatements.org/vocab/InC-EDU/1.0/
     term: In Copyright - Educational Use Permitted
     notable: false
@@ -47,15 +33,6 @@ terms:
       Indiana University is the rights-holder or has been explicitly
       authorized by the rights-holder(s) to allow third parties to use the Work
       for educational purposes without first obtaining permission.
-    definition: >-
-      This Item is protected by copyright and/or related rights.
-
-      <br/>You are free to use this Item in any way that is permitted by the
-      copyright and related rights legislation that applies to your use. In
-      addition, no permission is required from the rights-holder(s) for
-      educational uses.
-
-      <br/>For other uses, you need to obtain permission from the rights-holder(s).
   - id: http://rightsstatements.org/vocab/InC-NC/1.0/
     term: In Copyright - NonCommercial Use Permitted
     notable: false
@@ -65,15 +42,6 @@ terms:
       Indiana University is the rights-holder or has been explicitly
       authorized by the rights-holder(s) to allow third parties to use the Work
       for non-commercial purposes without obtaining permission first.
-    definition: >-
-      This Item is protected by copyright and/or related rights.
-
-      <br/>You are free to use this Item in any way that is permitted by the
-      copyright and related rights legislation that applies to your use. In
-      addition, no permission is required from the rights-holder(s) for
-      non-commercial uses.
-
-      <br/>For other uses you need to obtain permission from the rightsholder(s).
   - id: http://rightsstatements.org/vocab/NoC-CR/1.0/
     term: No Copyright - Contractual Restrictions
     notable: false
@@ -85,13 +53,6 @@ terms:
       the Item. In order for this Rights Statement to be conclusive, the data
       provider must provide a link to a page detailing the the contractual
       restrictions that apply to the use of the Item.
-    definition: >-
-      Use of this Item is not restricted by copyright and/or related rights.
-
-      <br/>As part of the acquisition or digitization of this Item, Indiana
-      University is contractually required to limit the use of this
-      Item. Limitations may include, but are not limited to, privacy issues,
-      cultural protections, digitization agreements or donor agreements.
   - id: http://rightsstatements.org/vocab/NoC-OKLR/1.0/
     term: No Copyright - Other Known Legal Restrictions
     notable: false
@@ -104,11 +65,6 @@ terms:
       expression protections. In order for this Rights Statement to be
       conclusive, the data provider must provide a link to a page detailing
       the the legal restrictions that limit re-use of the Item.
-    definition: >-
-      Use of this Item is not restricted by copyright and/or related rights.
-
-      <br/>In one or more jurisdictions, laws other than copyright are known to
-      impose restrictions on the use of this Item.
   - id: http://rightsstatements.org/vocab/NoC-NC/1.0/
     term: No Copyright - Non-Commercial Use Only
     notable: false
@@ -125,10 +81,3 @@ terms:
       used for Orphan Works (which are assumed to be in-copyright) or for Works
       where the data provider has not undertaken an effort to ascertain the
       copyright status of the Work.
-    definition: >-
-      Indiana University reasonably believes that the Item is not
-      restricted by copyright or related rights, but a conclusive determination
-      could not be made.
-
-      <br/>You are free to use this Item in any way that is permitted by the
-      copyright and related rights legislation that applies to your use.
