@@ -27,10 +27,8 @@ en:
   rights:
     pdf_boilerplate: |
       Indiana University claims no copyright governing this digital resource. It is provided for free, on a non-commercial, open-access basis, for fair-use academic and research purposes only. Anyone who claims copyright over any part of these resources and feels that they should not be presented in this manner is invited to contact Indiana University, who will in turn consider such concerns and make every effort to respond appropriately.
-    boilerplate: |
-      Indiana University claims no copyright governing this digital resource. It is provided for free, on a non-commercial, open-access basis, for fair-use academic and research purposes only. Anyone who claims copyright over any part of these resources and feels that they should not be presented in this manner is invited to contact Indiana University, who will in turn consider such concerns and make every effort to respond appropriately. We request that users reproducing this resource cite it according the guidelines described at <a href="https://libraries.indiana.edu/help-citing-sources">https://libraries.indiana.edu/help-citing-sources</a>.
-
-      Indiana University users with copyright questions or concerns should refer to <a href="https://libraries.indiana.edu/copyright">https://libraries.indiana.edu/copyright</a>.
+    boilerplate:
+      ""
   services:
     metadata: "IUCAT"
   simple_form:
