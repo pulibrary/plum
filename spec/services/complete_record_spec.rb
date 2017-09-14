@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe CompleteRecord do
   subject { described_class.new(obj) }
-  let(:ark) { 'ark:88435/x1234567' }
+  let(:ark) { 'ark:/88435/x1234567' }
   let(:minter) { double('Ezid::Identifier') }
   let(:base_metadata) {{
     dc_publisher: 'Princeton University Library',
@@ -40,6 +40,15 @@ RSpec.describe CompleteRecord do
       let(:metadata) { base_metadata.merge(target: "http://plum.com/concern/scanned_resources/#{obj.id}") }
       let(:obj) { FactoryGirl.create :scanned_resource, id: '1234567', identifier: [ark], source_metadata_identifier: nil }
       it "links to OrangeLight" do
+        expect(minter).to receive(:modify).with(ark, metadata)
+        subject.complete
+      end
+    end
+
+    context "with a bibdata source_metadata_identifier" do
+      let(:metadata) { base_metadata.merge(target: "https://maps.princeton.edu/catalog/princeton-x1234567") }
+      let(:obj) { FactoryGirl.create :vector_work, identifier: [ark], source_metadata_identifier: nil }
+      it "links to Pulmap" do
         expect(minter).to receive(:modify).with(ark, metadata)
         subject.complete
       end

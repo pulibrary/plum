@@ -3,7 +3,6 @@ class GeoWorksService
   self.geo_works_classes = [ImageWork, RasterWork, VectorWork, MapSet]
 
   attr_reader :record
-
   def initialize(record)
     @record = record
   end
