@@ -76,6 +76,11 @@ defaults: &defaults
     - :digital_date
     - :usage_right
     - :volume_and_issue_no
+    - :digital_collection
+    - :owning_institution
+    - :funding
+    - :digital_specifications
+    - :author
 
 development:
   <<: *defaults

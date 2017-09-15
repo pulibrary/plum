@@ -28,8 +28,8 @@ class PlumSchema < ActiveTriples::Schema
   property :series, predicate: RDF::URI("http://id.loc.gov/ontologies/bibframe/seriesStatement")
   property :coverage, predicate: RDF::Vocab::DC11.coverage
   property :date, predicate: RDF::Vocab::DC11.date
-  property :format, predicate: RDF::Vocab::DC11.format
-  property :source, predicate: RDF::Vocab::DC11.source
+  property :digital_specifications, predicate: RDF::Vocab::DC11.format
+  property :digital_collection, predicate: RDF::Vocab::DC11.source
   property :extent, predicate: RDF::Vocab::DC.extent
   property :date_published, predicate: RDF::Vocab::DC.issued
   property :modified, predicate: RDF::Vocab::DC.modified
@@ -130,7 +130,7 @@ class PlumSchema < ActiveTriples::Schema
   property :dissertant, predicate: RDF::Vocab::MARCRelators.dis
   property :distribution_place, predicate: RDF::Vocab::MARCRelators.dbp
   property :distributor, predicate: RDF::Vocab::MARCRelators.dst
-  property :donor, predicate: RDF::Vocab::MARCRelators.dnr
+  property :owning_institution, predicate: RDF::Vocab::MARCRelators.dnr
   property :draftsman, predicate: RDF::Vocab::MARCRelators.drm
   property :dubious_author, predicate: RDF::Vocab::MARCRelators.dub
   property :editor, predicate: RDF::Vocab::MARCRelators.edt
@@ -154,7 +154,7 @@ class PlumSchema < ActiveTriples::Schema
   property :first_party, predicate: RDF::Vocab::MARCRelators.fpy
   property :forger, predicate: RDF::Vocab::MARCRelators.frg
   property :former_owner, predicate: RDF::Vocab::MARCRelators.fmo
-  property :funder, predicate: RDF::Vocab::MARCRelators.fnd
+  property :funding, predicate: RDF::Vocab::MARCRelators.fnd
   property :geographic_information_specialist, predicate: RDF::Vocab::MARCRelators.gis
   property :honoree, predicate: RDF::Vocab::MARCRelators.hnr
   property :host, predicate: RDF::Vocab::MARCRelators.hst
@@ -165,7 +165,7 @@ class PlumSchema < ActiveTriples::Schema
   property :instrumentalist, predicate: RDF::Vocab::MARCRelators.itr
   property :interviewee, predicate: RDF::Vocab::MARCRelators.ive
   property :interviewer, predicate: RDF::Vocab::MARCRelators.ivr
-  property :inventor, predicate: RDF::Vocab::MARCRelators.inv
+  property :author, predicate: RDF::Vocab::MARCRelators.inv
   property :issuing_body, predicate: RDF::Vocab::MARCRelators.isb
   property :judge, predicate: RDF::Vocab::MARCRelators.jud
   property :jurisdiction_governed, predicate: RDF::Vocab::MARCRelators.jug
