@@ -1,5 +1,6 @@
 class CanvasID
   attr_reader :id, :parent_path
+
   def initialize(id, parent_path)
     @id = id
     @parent_path = parent_path

@@ -2,7 +2,6 @@ require 'rails_helper'
 
 RSpec.describe RightsStatementService do
   let(:uri) { 'http://rightsstatements.org/vocab/InC/1.0/' }
-  let(:desc) { 'This Item is protected by copyright and/or related rights.' }
   let(:valid_statements) {
     [
       'http://rightsstatements.org/vocab/InC/1.0/',
@@ -17,11 +16,6 @@ RSpec.describe RightsStatementService do
   }
 
   context "rights statements" do
-    it "provides definitions of rights statements" do
-      expect(described_class.definition(uri)).to include(desc)
-      expect(described_class.definition(uri)).to include('<br/>')
-    end
-
     it "lists all valid rights statements" do
       expect(described_class.valid_statements).to eq(valid_statements)
     end

@@ -163,7 +163,7 @@ describe CurationConcerns::ScannedResourcesController do
         expect(response).to be_success
         response_json = JSON.parse(response.body)
         expect(response_json['@id']).to eq "http://plum.com/concern/scanned_resources/test2/manifest"
-        expect(response_json["service"]).to eq nil
+        expect(response_json["service"]).to include(a_kind_of(Hash))
       end
     end
   end

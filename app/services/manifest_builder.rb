@@ -36,7 +36,7 @@ class ManifestBuilder
       @builders ||=
         CompositeBuilder.new(
           record_property_builder,
-          services,
+          services_builder,
           sequence_builder,
           range_builder,
           manifest_builders,
@@ -49,6 +49,10 @@ class ManifestBuilder
 
     def record_property_builder
       RecordPropertyBuilder.new(record, root_path)
+    end
+
+    def services_builder
+      ServicesBuilder.new(record)
     end
 
     def pdf_link_builder
