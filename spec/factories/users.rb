@@ -16,6 +16,10 @@ FactoryGirl.define do
       # All CAS users are campus patrons.
     end
 
+    factory :geo_editor do
+      roles { [Role.where(name: 'geo_editor').first_or_create] }
+    end
+
     factory :ephemera_editor do
       roles { [Role.where(name: 'ephemera_editor').first_or_create] }
     end
