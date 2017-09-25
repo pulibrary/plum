@@ -16,12 +16,11 @@ module ThumbnailHelper
   # @return [Symbol]
   def plum_thumbnail_method(document)
     document = document.solr_document if document.respond_to?(:solr_document)
-    class_name = document.to_model.class_name
 
     if document['geo_mime_type_tesim']
       # geo fileset
       :geo_works_thumbnail_path
-    elsif ["ImageWork", "RasterWork", "VectorWork", "MapSet"].include?(class_name)
+    elsif GeoWorksService.new(document.to_model).geo_work?
       # geo work
       :geo_works_thumbnail_path
     else

@@ -43,7 +43,10 @@ class CompleteRecord
     end
 
     def url
-      if record.try(:source_metadata_identifier).blank?
+      if GeoWorksService.new(record).geo_work?
+        noid = identifier.gsub(%r(ark:/\d{5}/), '')
+        return "https://maps.princeton.edu/catalog/princeton-#{noid}"
+      elsif record.try(:source_metadata_identifier).blank?
         return ManifestBuilder::ManifestHelper.new.polymorphic_url(record)
       elsif RemoteRecord.bibdata?(record.source_metadata_identifier.first)
         return "https://pulsearch.princeton.edu/catalog/#{record.source_metadata_identifier.first}#view"
