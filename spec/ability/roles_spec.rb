@@ -61,12 +61,18 @@ describe Ability do
     FactoryGirl.create(:complete_image_work, user: image_editor, identifier: ['ark:/99999/fk4445wg46'])
   }
 
+  let(:pending_vector_work) {
+    FactoryGirl.create(:pending_vector_work, user: image_editor, identifier: ['ark:/99999/fk4445wg46'])
+  }
+
   let(:external_metadata_file) { FactoryGirl.build(:file_set, user: creating_user, geo_mime_type: 'application/xml; schema=fgdc') }
+  let(:geo_editor_file) { FactoryGirl.build(:file_set, user: geo_editor) }
   let(:ephemera_editor_file) { FactoryGirl.build(:file_set, user: ephemera_editor) }
   let(:image_editor_file) { FactoryGirl.build(:file_set, user: image_editor) }
   let(:admin_file) { FactoryGirl.build(:file_set, user: admin_user) }
 
   let(:admin_user) { FactoryGirl.create(:admin) }
+  let(:geo_editor) { FactoryGirl.create(:geo_editor) }
   let(:ephemera_editor) { FactoryGirl.create(:ephemera_editor) }
   let(:image_editor) { FactoryGirl.create(:image_editor) }
   let(:editor) { FactoryGirl.create(:editor) }
@@ -86,6 +92,7 @@ describe Ability do
     allow(private_scanned_resource).to receive(:id).and_return("private")
     allow(campus_only_scanned_resource).to receive(:id).and_return("campus_only")
     allow(pending_scanned_resource).to receive(:id).and_return("pending")
+    allow(pending_vector_work).to receive(:id).and_return("pending")
     allow(metadata_review_scanned_resource).to receive(:id).and_return("metadata_review")
     allow(final_review_scanned_resource).to receive(:id).and_return("final_review")
     allow(complete_scanned_resource).to receive(:id).and_return("complete")
@@ -137,6 +144,50 @@ describe Ability do
     it "can create works" do
       expect(subject.can_create_any_work?).to be true
     end
+  end
+
+  describe "as a geo editor" do
+    let(:creating_user) { image_editor }
+    let(:current_user) { geo_editor }
+
+    it {
+      should be_able_to(:read, open_scanned_resource)
+      should be_able_to(:manifest, open_scanned_resource)
+      should be_able_to(:pdf, presenter(open_scanned_resource))
+      should_not be_able_to(:color_pdf, presenter(open_scanned_resource))
+      should be_able_to(:read, campus_only_scanned_resource)
+      should_not be_able_to(:read, private_scanned_resource)
+      should_not be_able_to(:read, pending_scanned_resource)
+      should_not be_able_to(:read, metadata_review_scanned_resource)
+      should_not be_able_to(:read, final_review_scanned_resource)
+      should be_able_to(:read, complete_scanned_resource)
+      should_not be_able_to(:read, takedown_scanned_resource)
+      should be_able_to(:read, flagged_scanned_resource)
+      should be_able_to(:download, image_editor_file)
+      should_not be_able_to(:file_manager, open_scanned_resource)
+      should_not be_able_to(:file_manager, open_multi_volume_work)
+      should_not be_able_to(:save_structure, open_scanned_resource)
+      should_not be_able_to(:update, open_scanned_resource)
+      should_not be_able_to(:create, ScannedResource.new)
+      should be_able_to(:create, FileSet.new)
+      should_not be_able_to(:destroy, image_editor_file)
+      should be_able_to(:destroy, geo_editor_file)
+      should_not be_able_to(:destroy, pending_scanned_resource)
+
+      should be_able_to(:create, ImageWork.new)
+      should be_able_to(:create, VectorWork.new)
+      should be_able_to(:create, RasterWork.new)
+      should be_able_to(:create, MapSet.new)
+
+      should_not be_able_to(:create, Role.new)
+      should_not be_able_to(:destroy, role)
+      should_not be_able_to(:complete, pending_scanned_resource)
+      should_not be_able_to(:complete, pending_vector_work)
+      should_not be_able_to(:destroy, complete_scanned_resource)
+      should_not be_able_to(:destroy, admin_file)
+      should_not be_able_to(:destroy, ephemera_editor_file)
+      should_not be_able_to(:manifest, presenter(pending_scanned_resource))
+    }
   end
 
   describe 'as an ephemera editor' do
@@ -297,6 +348,7 @@ describe Ability do
       should be_able_to(:save_structure, open_scanned_resource)
       should be_able_to(:update, open_scanned_resource)
       should be_able_to(:complete, pending_scanned_resource)
+      should be_able_to(:complete, pending_vector_work)
 
       should_not be_able_to(:download, image_editor_file)
       should_not be_able_to(:create, ScannedResource.new)

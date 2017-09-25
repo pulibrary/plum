@@ -46,6 +46,10 @@ class Ability
       groups.include?('completer')
     end
 
+    def geo_editor?
+      groups.include?('geo_editor')
+    end
+
     def ephemera_editor?
       groups.include?('ephemera_editor')
     end
@@ -78,6 +82,19 @@ class Ability
   # Abilities that should only be granted to admin users
   def admin_permissions
     can [:manage], :all
+  end
+
+  def geo_editor_permissions
+    can [:manage], ImageWork
+    can [:manage], RasterWork
+    can [:manage], VectorWork
+    can [:manage], MapSet
+    can [:create, :read, :edit, :update, :publish], Collection
+    can [:create, :read, :edit, :update, :publish, :download], FileSet
+    can [:destroy], FileSet, depositor: current_user.uid
+
+    # do not allow completing resources
+    cannot [:complete], curation_concerns
   end
 
   # Abilities that should be granted to ephemera editors
@@ -223,6 +240,6 @@ class Ability
     end
 
     def roles
-      ['anonymous', 'campus_patron', 'completer', 'curator', 'fulfiller', 'editor', 'ephemera_editor', 'image_editor', 'admin']
+      ['anonymous', 'campus_patron', 'completer', 'curator', 'fulfiller', 'editor', 'geo_editor', 'ephemera_editor', 'image_editor', 'admin']
     end
 end
