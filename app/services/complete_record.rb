@@ -43,7 +43,7 @@ class CompleteRecord
     end
 
     def url
-      if GeoWorksService.new(record).geo_work?
+      if GeoWorksService.new(record).geo_work? && identifier.present?
         noid = identifier.gsub(%r(ark:/\d{5}/), '')
         return "https://maps.princeton.edu/catalog/princeton-#{noid}"
       elsif record.try(:source_metadata_identifier).blank?
