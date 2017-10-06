@@ -224,7 +224,7 @@ class Ability
   end
 
   def self.universal_readers
-    ['admin', 'completer', 'curator', 'fulfiller', 'editor', 'image_editor']
+    ['admin', 'completer', 'curator', 'fulfiller', 'editor', 'image_editor', 'geo_editor']
   end
 
   delegate :admin?, to: :current_user
@@ -232,7 +232,11 @@ class Ability
   private
 
     def universal_reader?
-      current_user.curator? || current_user.image_editor? || current_user.completer? || current_user.fulfiller? || current_user.editor? || current_user.admin?
+      Ability.universal_readers.each do |role|
+        return true if current_user.send "#{role}?"
+      end
+
+      false
     end
 
     def curation_concerns

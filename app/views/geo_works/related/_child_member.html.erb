@@ -1,0 +1,13 @@
+<tr class="attributes" data-work-id="<%= child_member.id %>">
+  <td class="thumbnail" style="margin-bottom: 0px">
+    <%= render_thumbnail_tag child_member %>
+  </td>
+  <td>
+    <%= link_to child_member.title.first, contextual_path(child_member, @presenter) %>
+  </td>
+   <td>
+    <% if can?(:edit, @presenter.model_name.to_s.constantize) %>
+      <a class="btn btn-danger btn-remove-row">Remove</a>
+    <% end %>
+   </td>
+</tr>

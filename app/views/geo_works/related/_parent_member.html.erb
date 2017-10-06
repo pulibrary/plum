@@ -1,0 +1,13 @@
+<tr class="attributes" data-work-id="<%= parent_member.id %>">
+  <td class="thumbnail" style="margin-bottom: 0px">
+    <%= render_thumbnail_tag parent_member.solr_document %>
+  </td>
+  <td>
+    <%= link_to parent_member.title.first, polymorphic_path([main_app, parent_member]) %>
+  </td>
+   <td>
+    <% if can?(:edit, @presenter.model_name.to_s.constantize) %>
+      <a class="btn btn-danger btn-remove-row">Remove</a>
+    <% end %>
+   </td>
+</tr>

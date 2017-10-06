@@ -1,0 +1,13 @@
+<% if can? :edit, @presenter.model_name.to_s.constantize %>
+  <div class="row member-actions">
+    <div class="col-sm-5">
+      <div class="input-group">
+        <input class="related_works_ids work_parent_members_ids form-control" id="work_parent_members_ids"  value="" aria-labelledby="work_parent_members_ids_label" type="text" placeholder="Existing parent id...">
+        <span class="input-group-btn">
+          <a class="btn btn-primary btn-add-row">Attach</a>
+        </span>
+      </div>
+      <div class="message has-warning hidden"></div>
+    </div>
+  </div>
+<% end %>
