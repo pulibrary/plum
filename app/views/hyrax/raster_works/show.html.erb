@@ -12,7 +12,7 @@
 <% end %>
 
 <% collector = can?(:collect, @presenter.id) %>
-<% editor    = can?(:edit,    @presenter.id) %>
+<% editor    = can?(:edit, @presenter.model_name.to_s.constantize) %>
 
 <%= render 'geo_works/representative_media', presenter: @presenter %>
 <%= render 'geo_works/metadata', presenter: @presenter %>

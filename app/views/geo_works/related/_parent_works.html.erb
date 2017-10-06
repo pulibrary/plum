@@ -1,0 +1,22 @@
+<div class="panel panel-default" id="parent-works">
+  <div class="panel-heading">
+    <h2>Parent Works</h2>
+  </div>
+  <table class="table table-striped" data-query-url="<%= polymorphic_path([main_app, :hyrax, presenter.model_name.singular], id: @presenter.id) %>" data-members="<%= @presenter.parent_work_presenters.map(&:id) %>" data-param-key="<%= @presenter.model_name.param_key %>">
+    <thead>
+      <% if presenter.parent_work_presenters.present? %>
+        <tr>
+          <th class="col-xs-3"></th>
+          <th>Work Name</th>
+          <th>Actions</th>
+        </tr>
+      <% end %>
+    </thead>
+    <tbody>
+      <% if presenter.parent_work_presenters.present? %>
+        <%= render partial: 'geo_works/related/parent_member', collection: @presenter.parent_work_presenters %>
+      <% end %>
+    </tbody>
+  </table>
+  <%= render partial: 'geo_works/related/new_parent_member' %>
+</div>

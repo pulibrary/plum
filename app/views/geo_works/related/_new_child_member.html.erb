@@ -1,0 +1,22 @@
+<% if can? :edit, @presenter.model_name.to_s.constantize %>
+  <% if @presenter.valid_child_concerns.length > 0 %>
+    <div class="row member-actions">
+      <div class="col-sm-5">
+        <div class="input-group">
+          <input class="related_works_ids work_child_members_ids form-control" id="work_child_members_ids"  value="" aria-labelledby="work_child_members_ids_label" type="text" placeholder="Existing child id...">
+          <span class="input-group-btn">
+            <a class="btn btn-primary btn-add-row">Attach</a>
+          </span>
+        </div>
+        <div class="message has-warning hidden"></div>
+      </div>
+      <div class="col-sm-7">
+        <div class="btn-group">
+          <% @presenter.valid_child_concerns.each do |concern| %>
+            <%= link_to "Attach New #{concern.human_readable_type}", polymorphic_path([main_app, :new, :hyrax, :parent, concern.model_name.singular], parent_id: @presenter.id), class: 'btn btn-default' %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+<% end %>
