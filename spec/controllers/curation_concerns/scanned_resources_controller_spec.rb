@@ -449,6 +449,7 @@ describe CurationConcerns::ScannedResourcesController do
     before do
       sign_in user
       allow(CharacterizeJob).to receive(:perform_later)
+      allow(CurationConcerns.config).to receive(:whitelisted_ingest_dirs).and_return([Rails.root.join("spec/fixtures").to_s])
     end
     it "appends a new file set" do
       post :browse_everything_files, id: resource.id, selected_files: params["selected_files"]

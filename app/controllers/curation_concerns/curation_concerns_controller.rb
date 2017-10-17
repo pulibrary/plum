@@ -95,6 +95,28 @@ class CurationConcerns::CurationConcernsController < ApplicationController
     end
 
     def selected_files_params
-      params[:selected_files]
+      @whitelisted_upload_files ||= params[:selected_files].delete_if do |_key, value|
+        !validate_remote_url(value['url'])
+      end
+    end
+
+    def whitelisted_ingest_dirs
+      CurationConcerns.config.whitelisted_ingest_dirs
+    end
+
+    def validate_remote_url(url)
+      uri = URI.parse(URI.encode(url))
+      if uri.scheme == 'file'
+        path = File.absolute_path(URI.decode(uri.path))
+        result = whitelisted_ingest_dirs.any? do |dir|
+          path.start_with?(dir) && path.length > dir.length
+        end
+        Rails.logger.error "User #{current_user.user_key} attempted to ingest file from url #{url}, which doesn't pass validation and has been skipped." unless result
+        result
+      else
+        # TODO: It might be a good idea to validate other URLs as well.
+        #       The server can probably access URLs the user can't.
+        true
+      end
     end
 end
