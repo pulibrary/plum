@@ -325,6 +325,15 @@ describe CurationConcerns::ScannedResourcesController do
         expect(response).to be_success
       end
     end
+    context "when there is a lock" do
+      render_views
+      it "shows a lock warning" do
+        resource = FactoryGirl.create(:scanned_resource)
+        resource.lock
+        get :show, id: resource.id
+        expect(response.body).to match(/alert.*This object is currently queued for processing/im)
+      end
+    end
   end
 
   describe "show uv format" do

@@ -2,6 +2,7 @@ class CurationConcerns::CurationConcernsController < ApplicationController
   include CurationConcerns::CurationConcernController
   include CurationConcerns::Manifest
   include CurationConcerns::MemberManagement
+  include CurationConcerns::LockWarning
   include CurationConcerns::UpdateOCR
   include CurationConcerns::RemoteMetadata
 

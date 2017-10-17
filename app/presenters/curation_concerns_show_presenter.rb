@@ -1,4 +1,6 @@
 class CurationConcernsShowPresenter < CurationConcerns::WorkShowPresenter
+  include ExtraLockable
+
   delegate :viewing_hint, :viewing_direction, :state, :type, :identifier, :workflow_note, :logical_order, :logical_order_object, :ocr_language, :thumbnail_id, :source_metadata_identifier, :collection, to: :solr_document
   delegate :flaggable?, to: :state_badge_instance
   delegate(*ScannedResource.properties.values.map(&:term), to: :solr_document, allow_nil: true)
