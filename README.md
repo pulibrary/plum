@@ -17,6 +17,9 @@ Pumpkin is a Hydra head based on [Plum](https://github.com/pulibrary/plum) and  
 * Simple state-based workflow
 * Retrieving external metadata from our finding aids and catalog web services
 
+## Known Issues
+* When ingesting or uploading files, the filename cannot have spaces.
+
 ## Dependencies
 
 * [Redis](http://redis.io/)
