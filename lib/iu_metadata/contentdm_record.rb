@@ -128,6 +128,7 @@ module IuMetadata
           end
           attributes[pmp] = vals
         end
+        attributes['subject'] = item.xpath('subject').split(';') if item.xpath('subject').present?
         attributes
       end
 
