@@ -112,7 +112,6 @@ module IuMetadata
           date_created:           'created',
           resource_type:          'type',
           publisher:              'publisher',
-          subject:                'subject',
           source:                 'source',
           digital_specifications: 'format'
 
@@ -128,7 +127,7 @@ module IuMetadata
           end
           attributes[pmp] = vals
         end
-        attributes['subject'] = item.xpath('subject').split(';') if item.xpath('subject').present?
+        attributes[:subject] = item.xpath('subject').first&.content.to_s.split(';').map(&:strip) if item.xpath('subject').present?
         attributes
       end
 

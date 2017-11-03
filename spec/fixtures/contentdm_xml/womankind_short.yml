@@ -14,7 +14,7 @@
 :collections: []
 :volumes:
 - :title:
-  - Womankind, 1978, vol. 2, no. 7
+  - Womankind, 1978, vol. 1, no. 6
   :attributes:
     :alternative_title:
     - Womankind (Indianapolis, Ind.)
@@ -24,40 +24,51 @@
     - Text
     :publisher:
     - Womankind
-    - IUPUI University Library
-    :subject:
-    - Feminism -- Periodicals; Women -- Indiana -- Periodicals
     :source:
-    - LaFourest, Judith
     - LaFourest, Judith
     :digital_specifications:
     - 'Scanner: Bookeye 4V1, Archive view: 400 dpi tiff, Full view: 400 dpi jpg 2000'
+    :subject:
+    - Feminism -- Periodicals
+    - Women -- Indiana -- Periodicals
   :structure:
     :nodes:
     - :label: page1
       :proxy: page1
     - :label: page2
       :proxy: page2
+    - :label: page3
+      :proxy: page3
   :files:
   - :id: page1
     :mime_type: image/jp2
     :attributes:
       :title:
       - page1
-    :thumbnail: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/thumbnail.exe?CISOROOT=/Womankind&CISOPTR=0
-    :path: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/showfile.exe?CISOROOT=/Womankind&CISOPTR=0
-    :ocr_path: spec/fixtures/contentdm_xml/womankind_short/Womankind, 1978, vol. 2,
-      no. 7/page1/fulltext.txt
+    :thumbnail: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/thumbnail.exe?CISOROOT=/Womankind&CISOPTR=186
+    :path: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/showfile.exe?CISOROOT=/Womankind&CISOPTR=186
+    :ocr_path: spec/fixtures/contentdm_xml/womankind_short/Womankind, 1978, vol. 1,
+      no. 6/page1/fulltext.txt
     :file_opts: {}
   - :id: page2
     :mime_type: image/jp2
     :attributes:
       :title:
       - page2
-    :thumbnail: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/thumbnail.exe?CISOROOT=/Womankind&CISOPTR=1
-    :path: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/showfile.exe?CISOROOT=/Womankind&CISOPTR=1
-    :ocr_path: spec/fixtures/contentdm_xml/womankind_short/Womankind, 1978, vol. 2,
-      no. 7/page2/fulltext.txt
+    :thumbnail: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/thumbnail.exe?CISOROOT=/Womankind&CISOPTR=187
+    :path: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/showfile.exe?CISOROOT=/Womankind&CISOPTR=187
+    :ocr_path: spec/fixtures/contentdm_xml/womankind_short/Womankind, 1978, vol. 1,
+      no. 6/page2/fulltext.txt
+    :file_opts: {}
+  - :id: page3
+    :mime_type: image/jp2
+    :attributes:
+      :title:
+      - page3
+    :thumbnail: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/thumbnail.exe?CISOROOT=/Womankind&CISOPTR=188
+    :path: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/showfile.exe?CISOROOT=/Womankind&CISOPTR=188
+    :ocr_path: spec/fixtures/contentdm_xml/womankind_short/Womankind, 1978, vol. 1,
+      no. 6/page3/fulltext.txt
     :file_opts: {}
 - :title:
   - Womankind, 1983, vol. 4, no. 24
@@ -70,24 +81,19 @@
     - Text
     :publisher:
     - Womankind
-    - IUPUI University Library
-    :subject:
-    - Feminism -- Periodicals; Women -- Indiana -- Periodicals
     :source:
-    - LaFourest, Judith
     - LaFourest, Judith
     :digital_specifications:
     - 'Scanner: Bookeye 4V1, Archive view: 400 dpi tiff, Full view: 400 dpi jpg 2000'
+    :subject:
+    - Feminism -- Periodicals
+    - Women -- Indiana -- Periodicals
   :structure:
     :nodes:
     - :label: page1
       :proxy: page1
     - :label: page2
       :proxy: page2
-    - :label: page3
-      :proxy: page3
-    - :label: page4
-      :proxy: page4
   :files:
   - :id: page1
     :mime_type: image/jp2
@@ -108,26 +114,6 @@
     :path: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/showfile.exe?CISOROOT=/Womankind&CISOPTR=199
     :ocr_path: spec/fixtures/contentdm_xml/womankind_short/Womankind, 1983, vol. 4,
       no. 24/page2/fulltext.txt
-    :file_opts: {}
-  - :id: page3
-    :mime_type: image/jp2
-    :attributes:
-      :title:
-      - page3
-    :thumbnail: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/thumbnail.exe?CISOROOT=/Womankind&CISOPTR=200
-    :path: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/showfile.exe?CISOROOT=/Womankind&CISOPTR=200
-    :ocr_path: spec/fixtures/contentdm_xml/womankind_short/Womankind, 1983, vol. 4,
-      no. 24/page3/fulltext.txt
-    :file_opts: {}
-  - :id: page4
-    :mime_type: image/jp2
-    :attributes:
-      :title:
-      - page4
-    :thumbnail: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/thumbnail.exe?CISOROOT=/Womankind&CISOPTR=201
-    :path: http://indiamond6.ulib.iupui.edu:2012/cgi-bin/showfile.exe?CISOROOT=/Womankind&CISOPTR=201
-    :ocr_path: spec/fixtures/contentdm_xml/womankind_short/Womankind, 1983, vol. 4,
-      no. 24/page4/fulltext.txt
     :file_opts: {}
 :sources:
 - :title:
