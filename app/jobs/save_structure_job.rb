@@ -1,4 +1,5 @@
 class SaveStructureJob < ActiveJob::Base
+  prepend ::LockableJob
   queue_as :default
 
   def perform(curation_concern, structure)

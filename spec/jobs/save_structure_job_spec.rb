@@ -14,21 +14,6 @@ RSpec.describe SaveStructureJob do
       }] }
   end
 
-  it "matches with enqueued job" do
-    # The :test adapter is required for these matchers
-    ActiveJob::Base.queue_adapter = :test
-    expect {
-      described_class.perform_later
-    }.to have_enqueued_job(described_class)
-
-    expect {
-      described_class.perform_later("work", "structure")
-    }.to have_enqueued_job.with("work", "structure")
-
-    # Set the adapter back to :inline for subsequent tests
-    ActiveJob::Base.queue_adapter = :inline
-  end
-
   it "saves logical order without accumulating fragments" do
     expect(work.logical_order.nodes.empty?)
 
@@ -48,5 +33,11 @@ RSpec.describe SaveStructureJob do
     # FIXME: The call to logger is not being detected
     # expect(Rails.logger).to receive(:error) #.with(/^SaveStructureJob failed.*{.*}$/)
     expect { described_class.perform_now(work, structure) }.to raise_error(ActiveFedora::RecordNotSaved)
+  end
+
+  it 'locks and unlocks the work' do
+    expect(work).to receive(:lock).ordered
+    expect(work).to receive(:unlock).ordered
+    described_class.perform_now(work, structure)
   end
 end

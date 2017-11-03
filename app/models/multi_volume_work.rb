@@ -6,5 +6,6 @@ class MultiVolumeWork < ActiveFedora::Base
   include ::StructuralMetadata
   include ::HasPendingUploads
   include ::CollectionIndexing
+  include ExtraLockable
   self.valid_child_concerns = [ScannedResource]
 end
