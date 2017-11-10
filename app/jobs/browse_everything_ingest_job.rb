@@ -1,4 +1,5 @@
 class BrowseEverythingIngestJob < ActiveJob::Base
+  prepend ::LockableJob
   queue_as :default
 
   def perform(curation_concern_id, upload_set_id, current_user, selected_files)
@@ -10,5 +11,9 @@ class BrowseEverythingIngestJob < ActiveJob::Base
       actor
     end
     MembershipBuilder.new(curation_concern, actors.map(&:file_set)).attach_files_to_work if actors.any?
+  end
+
+  def job_subject(job)
+    ActiveFedora::Base.find(job.arguments.first)
   end
 end

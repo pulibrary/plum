@@ -325,6 +325,15 @@ describe CurationConcerns::ScannedResourcesController do
         expect(response).to be_success
       end
     end
+    context "when there is a lock" do
+      render_views
+      it "shows a lock warning" do
+        resource = FactoryGirl.create(:scanned_resource)
+        resource.lock
+        get :show, id: resource.id
+        expect(response.body).to match(/alert.*This object is currently queued for processing/im)
+      end
+    end
   end
 
   describe "show uv format" do
@@ -449,6 +458,7 @@ describe CurationConcerns::ScannedResourcesController do
     before do
       sign_in user
       allow(CharacterizeJob).to receive(:perform_later)
+      allow(CurationConcerns.config).to receive(:whitelisted_ingest_dirs).and_return([Rails.root.join("spec/fixtures").to_s])
     end
     it "appends a new file set" do
       post :browse_everything_files, id: resource.id, selected_files: params["selected_files"]

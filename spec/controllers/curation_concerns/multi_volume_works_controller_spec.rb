@@ -49,6 +49,7 @@ describe CurationConcerns::MultiVolumeWorksController do
       sign_in user
       allow(CharacterizeJob).to receive(:perform_later).once
       allow(BrowseEverythingIngestJob).to receive(:perform_later).and_return(true) if stub
+      allow(CurationConcerns.config).to receive(:whitelisted_ingest_dirs).and_return([Rails.root.join("spec/fixtures").to_s])
       post :browse_everything_files, id: resource.id, selected_files: params["selected_files"]
     end
     it "appends a new file set" do
