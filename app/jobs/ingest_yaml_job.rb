@@ -68,6 +68,7 @@ class IngestYAMLJob < ActiveJob::Base
       @yaml[:volumes].each do |volume|
         r = ScannedResource.new
         r.attributes = @yaml[:attributes][:default] if @yaml[:attributes].present? && @yaml[:attributes][:default].present?
+        r.attributes = volume[:attributes] if volume[:attributes].present?
         r.viewing_direction = parent.viewing_direction
         r.title = volume[:title]
         r.apply_depositor_metadata @user

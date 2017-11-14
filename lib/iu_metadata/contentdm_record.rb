@@ -86,6 +86,7 @@ module IuMetadata
             volume = {}
             volume[:title] = [item['title']]
             volume[:title] = [item.xpath('title').map(&:content).first.to_s]
+            volume[:attributes] = volume_attributes(item)
             volume[:structure] = { nodes: record_to_structure_array(item) }
             volume[:files] = @files[@file_start, @file_index - @file_start]
             @file_start = @file_index
@@ -94,6 +95,41 @@ module IuMetadata
         else
           @structure = { nodes: record_to_structure(items.first) }
         end
+      end
+
+      # Convert CDM fields to PMP attributes
+      #
+      # @param [XML_Object] item
+      # @return [HASH] attributes
+      def volume_attributes(item)
+        attributes = {}
+        cdm2pmp_single = {
+          description: 'description',
+          identifier: 'identifier'
+        }
+        cdm2pmp_multi = {
+          alternative_title:      'alternative',
+          date_created:           'created',
+          resource_type:          'type',
+          publisher:              'publisher',
+          source:                 'source',
+          digital_specifications: 'format',
+          provider:               'mediator'
+
+        }
+        cdm2pmp_single.each do |pmp, cdm|
+          attributes[pmp] = item.xpath(cdm).first&.content.to_s unless item.xpath(cdm).first&.content.to_s.empty?
+        end
+        cdm2pmp_multi.each do |pmp, cdm|
+          next unless item.xpath(cdm).present?
+          vals = []
+          item.xpath(cdm).each do |val|
+            vals.push val.text
+          end
+          attributes[pmp] = vals
+        end
+        attributes[:subject] = item.xpath('subject').first&.content.to_s.split(';').map(&:strip) if item.xpath('subject').present?
+        attributes
       end
 
       def record_to_structure_array(record)
