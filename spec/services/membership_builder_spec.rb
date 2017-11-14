@@ -10,8 +10,10 @@ RSpec.describe MembershipBuilder do
   describe "#attach_files_to_work" do
     it "apppends file_sets to a work" do
       subject.attach_files_to_work
+      expect(members.first.to_solr["ordered_by_ssim"]).to eq [scanned_resource.id]
       expect(reloaded.ordered_member_ids.length).to eq 3
       described_class.new(reloaded, appended).attach_files_to_work
+      expect(members.last.to_solr["ordered_by_ssim"]).to eq [scanned_resource.id]
       expect(reloaded.ordered_member_ids.length).to eq 5
     end
     it "assigns first member as representative and thumbnail" do
