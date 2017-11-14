@@ -17,6 +17,7 @@ class MembershipBuilder
       work.reload unless work.new_record?
       members.each do |member|
         work.ordered_members << member
+        ActiveFedora.solr.conn.add member.to_solr.merge(ordered_by_ssim: [work.id])
       end
       set_representative(work, members.first)
       set_thumbnail(work, members.first)
