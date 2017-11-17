@@ -15,6 +15,8 @@ Rails.application.routes.draw do
     end
   end
 
+  # May need to set this in production for search highlighting to work.
+  # Rails.application.routes.default_url_options[:host]= 'example.iu.edu'
   devise_for :users, controllers: { sessions: 'users/sessions', omniauth_callbacks: "users/omniauth_callbacks" }, skip: [:passwords, :registration]
   devise_scope :user do
     get('global_sign_out',
