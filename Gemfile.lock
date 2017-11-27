@@ -447,7 +447,7 @@ GEM
     multi_json (1.12.1)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
-    mysql2 (0.4.5)
+    mysql2 (0.4.10)
     nenv (0.3.0)
     net-http-persistent (2.9.4)
     net-ldap (0.15.0)
@@ -814,4 +814,4 @@ RUBY VERSION
    ruby 2.3.1p112
 
 BUNDLED WITH
-   1.15.1
+   1.16.0
