@@ -2,7 +2,6 @@ require: rubocop-rspec
 
 AllCops:
   TargetRubyVersion: 2.3
-  RunRailsCops: true
   DisplayCopNames: true
   Include:
     - '**/Rakefile'
@@ -47,24 +46,24 @@ Style/BlockComments:
   Exclude:
     - 'spec/spec_helper.rb'
 
-Style/BlockEndNewline:
+Layout/BlockEndNewline:
   Exclude:
     - 'spec/**/*'
 
-Style/IndentHash:
+Layout/IndentHash:
   Exclude:
     - 'app/controllers/catalog_controller.rb'
 
-Style/LeadingCommentSpace:
+Layout/LeadingCommentSpace:
   Exclude:
     - 'spec/**/*'
 
-Style/MultilineBlockLayout:
+Layout/MultilineBlockLayout:
   Exclude:
     - 'spec/**/*'
 
 
-Style/IndentationConsistency:
+Layout/IndentationConsistency:
   EnforcedStyle: rails
 
 Style/CollectionMethods:
