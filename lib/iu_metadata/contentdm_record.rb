@@ -114,7 +114,7 @@ module IuMetadata
           publisher:              'publisher',
           source:                 'source',
           digital_specifications: 'format',
-          provider:               'mediator'
+          digital_publisher:      'mediator'
 
         }
         cdm2pmp_single.each do |pmp, cdm|

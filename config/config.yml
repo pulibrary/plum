@@ -81,6 +81,7 @@ defaults: &defaults
     - :funding
     - :digital_specifications
     - :author
+    - :digital_publisher
 
 development:
   <<: *defaults

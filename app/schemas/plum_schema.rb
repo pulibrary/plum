@@ -30,6 +30,7 @@ class PlumSchema < ActiveTriples::Schema
   property :date, predicate: RDF::Vocab::DC11.date
   property :digital_specifications, predicate: RDF::Vocab::DC11.format
   property :digital_collection, predicate: RDF::Vocab::DC11.source
+  property :digital_publisher, predicate: RDF::Vocab::DC.mediator
   property :extent, predicate: RDF::Vocab::DC.extent
   property :date_published, predicate: RDF::Vocab::DC.issued
   property :modified, predicate: RDF::Vocab::DC.modified
