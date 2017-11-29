@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module Extractors
   class FgdcMetadataExtractor < GeoWorks::Extractors::FgdcMetadataExtractor
     # Override keywords method to exlcude non-ISO topic categories

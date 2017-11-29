@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module MembershipService
   def self.copy_membership(from_collection, to_collection)
     from_collection.member_objects.each do |obj|

@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module Discovery
   class DateBuilder < GeoWorks::Discovery::DocumentBuilder::DateBuilder
     private

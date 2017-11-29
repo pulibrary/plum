@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class HoldingLocationAuthority
   include Qa::Authorities::WebServiceBase
 

@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require 'csv'
 
 class IngestVocab
@@ -14,7 +15,8 @@ class IngestVocab
         tgm_label: fetch(row, columns, :tgm_label),
         lcsh_label: fetch(row, columns, :lcsh_label),
         uri: fetch(row, columns, :uri),
-        vocabulary: category || vocab)
+        vocabulary: category || vocab
+      )
       logger.info row[columns[:label]]
     end
   end

@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class EfficientMemberPresenterFactory < Hyrax::MemberPresenterFactory
   self.file_presenter_class = ::FileSetPresenter
 
@@ -25,7 +26,7 @@ class EfficientMemberPresenterFactory < Hyrax::MemberPresenterFactory
                        ActiveFedora::SolrService.query("proxy_in_ssi:#{id}",
                                                        rows: 10_000,
                                                        fl: "ordered_targets_ssim")
-                       .flat_map { |x| x.fetch("ordered_targets_ssim", []) }
+                                                .flat_map { |x| x.fetch("ordered_targets_ssim", []) }
                      end
   end
 end

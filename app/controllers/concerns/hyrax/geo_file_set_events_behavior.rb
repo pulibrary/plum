@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module Hyrax
   module GeoFileSetEventsBehavior
     extend ActiveSupport::Concern

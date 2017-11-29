@@ -1,5 +1,5 @@
+# frozen_string_literal: true
 RSpec.shared_examples "structural metadata" do
-  # rubocop:disable RSpec/DescribeClass
   describe "#logical_order" do
     # rubocop:enable RSpec/DescribeClass
     let(:params) do

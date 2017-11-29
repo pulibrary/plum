@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class HOCRDocument
   class TitleValue
     def initialize(title_value)

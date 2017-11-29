@@ -1,6 +1,8 @@
+# frozen_string_literal: true
 require 'rails_helper'
 
 RSpec.describe VocabularySelectService do
+  subject(:select_service) { described_class.new(vocabulary_label) }
   let(:vocabulary_label) { "Subjects" }
   let(:vocabulary) do
     Vocabulary.create!(label: "Subjects").tap do |vocab|
@@ -9,7 +11,6 @@ RSpec.describe VocabularySelectService do
       end
     end
   end
-  subject(:select_service) { described_class.new(vocabulary_label) }
   before do
     Qa::Authorities::Local.registry.instance_variable_get(:@hash).delete(vocabulary_label)
     Qa::Authorities::Local.registry.instance_variable_get(:@hash).delete("Test")

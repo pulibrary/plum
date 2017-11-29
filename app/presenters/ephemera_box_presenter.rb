@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class EphemeraBoxPresenter < HyraxShowPresenter
   include PlumAttributes
   delegate :barcode, :ephemera_project_id, :ephemera_project_name, :ephemera_project_name, to: :solr_document
@@ -12,7 +13,7 @@ class EphemeraBoxPresenter < HyraxShowPresenter
                        ActiveFedora::SolrService.query("member_of_collection_ids_ssim:#{id}",
                                                        rows: 10_000,
                                                        fl: "id")
-                       .flat_map { |x| x.fetch("id", nil) }.compact
+                                                .flat_map { |x| x.fetch("id", nil) }.compact
                      end
   end
 end

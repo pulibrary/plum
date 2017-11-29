@@ -1,6 +1,8 @@
+# frozen_string_literal: true
 require 'rails_helper'
 
 RSpec.describe EphemeraFolderPresenter do
+  subject { described_class.new(SolrDocument.new(folder.to_solr), controller) }
   let(:folder) { FactoryGirl.build(:ephemera_folder, id: 'abcd1234', language: [term.id.to_s]) }
   let(:box) { FactoryGirl.create(:ephemera_box, ephemera_project: [project.id]) }
   let(:project) { FactoryGirl.create(:ephemera_project) }
@@ -14,8 +16,6 @@ RSpec.describe EphemeraFolderPresenter do
     )
   end
   let(:controller) { double(blacklight_config: blacklight_config) }
-  subject { described_class.new(SolrDocument.new(folder.to_solr), controller) }
-
   describe "#language" do
     context "when given a set of language IDs" do
       after do

@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class ManifestBuilder
   class ManifestBuilderFactory
     attr_reader :record, :ssl, :child_factory

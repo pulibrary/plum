@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module Processors
   class OCR < Hydra::Derivatives::Processors::Processor
     include Hydra::Derivatives::Processors::ShellBasedProcessor

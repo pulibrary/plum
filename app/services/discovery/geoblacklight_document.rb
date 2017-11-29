@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module Discovery
   class GeoblacklightDocument < GeoWorks::Discovery::GeoblacklightDocument
     attr_accessor :iiif, :iiif_manifest, :source, :suppressed

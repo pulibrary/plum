@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 Hyrax.config do |config|
   # Injected via `rails g hyrax:work MultiVolumeWork`
   config.register_curation_concern :multi_volume_work

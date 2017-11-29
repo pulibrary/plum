@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 # A work which has metadata and may have one or more ScannedResources members.
 class MultiVolumeWork < ActiveFedora::Base
   include ::Hyrax::WorkBehavior

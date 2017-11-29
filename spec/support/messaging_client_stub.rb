@@ -1,5 +1,6 @@
+# frozen_string_literal: true
 RSpec.configure do |config|
-  config.before(:each) do
+  config.before do
     messaging_client = instance_double(MessagingClient, publish: true)
     allow(Plum).to receive(:messaging_client).and_return(messaging_client)
 

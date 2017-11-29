@@ -1,10 +1,10 @@
+# frozen_string_literal: true
 require 'rails_helper'
 
 RSpec.describe MapSetShowPresenter do
+  subject { described_class.new(solr_document, ability) }
   let(:solr_document) { SolrDocument.new(attributes) }
   let(:ability) { nil }
-
-  subject { described_class.new(solr_document, ability) }
 
   describe 'file presenters' do
     let(:obj) { FactoryGirl.create(:map_set_with_metadata_file) }

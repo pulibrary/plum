@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class CanvasID
   attr_reader :id, :parent_path
   def initialize(id, parent_path)

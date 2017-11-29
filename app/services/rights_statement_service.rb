@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class RightsStatementService < Hyrax::LicenseService
   def definition(id)
     obj = authority.find(id)

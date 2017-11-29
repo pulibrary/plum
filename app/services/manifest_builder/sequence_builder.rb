@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class ManifestBuilder
   class SequenceBuilder
     attr_reader :parent_path, :canvas_builder, :start_canvas_builder
@@ -13,7 +14,7 @@ class ManifestBuilder
     end
 
     def empty?
-      sequence.canvases.length == 0
+      sequence.canvases.empty?
     end
 
     private
@@ -24,7 +25,7 @@ class ManifestBuilder
             sequence = IIIF::Presentation::Sequence.new
             sequence["@id"] ||= parent_path.to_s + "/sequence/normal"
             canvas_builder.apply(sequence)
-            start_canvas_builder.apply(sequence) if start_canvas_builder
+            start_canvas_builder&.apply(sequence)
             sequence
           end
       end

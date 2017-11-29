@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 ##
 # Primarily responsible for going from an ordered graph to a params
 #   representation of an order.

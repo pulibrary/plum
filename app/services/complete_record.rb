@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class CompleteRecord
   attr_reader :record, :identifier
 
@@ -45,13 +46,13 @@ class CompleteRecord
     def url
       if GeoWorksService.new(record).geo_work? && identifier.present?
         noid = identifier.gsub(%r(ark:/\d{5}/), '')
-        return "https://maps.princeton.edu/catalog/princeton-#{noid}"
+        "https://maps.princeton.edu/catalog/princeton-#{noid}"
       elsif record.try(:source_metadata_identifier).blank?
-        return ManifestBuilder::ManifestHelper.new.polymorphic_url(record)
+        ManifestBuilder::ManifestHelper.new.polymorphic_url(record)
       elsif RemoteRecord.bibdata?(record.source_metadata_identifier.first)
-        return "https://pulsearch.princeton.edu/catalog/#{record.source_metadata_identifier.first}#view"
+        "https://pulsearch.princeton.edu/catalog/#{record.source_metadata_identifier.first}#view"
       else
-        return "http://findingaids.princeton.edu/collections/#{record.source_metadata_identifier.first.tr('_', '/')}"
+        "http://findingaids.princeton.edu/collections/#{record.source_metadata_identifier.first.tr('_', '/')}"
       end
     end
 

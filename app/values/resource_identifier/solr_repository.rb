@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class ResourceIdentifier
   ##
   # Repository for querying solr for a single ID and getting back a

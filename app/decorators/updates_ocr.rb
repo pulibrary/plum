@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class UpdatesOCR < Decorator
   delegate :class, to: :__getobj__
 

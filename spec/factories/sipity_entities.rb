@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 FactoryGirl.define do
   factory :sipity_entity, aliases: [:complete_sipity_entity], class: Sipity::Entity do
     proxy_for_global_id 'gid://internal/Mock/1'

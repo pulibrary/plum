@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 desc "Generate default Plum roles"
 task generate_roles: :environment do
   ['admin', 'image_editor'].each do |role|

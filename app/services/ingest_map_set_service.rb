@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class IngestMapSetService < IngestScannedMapsService
   attr_reader :record, :base_file_path, :user
 

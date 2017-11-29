@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class FileInfo
   attr_reader :file_info
   delegate :[], :has_key?, :key?, to: :file_info

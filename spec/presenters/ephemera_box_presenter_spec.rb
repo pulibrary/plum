@@ -1,6 +1,8 @@
+# frozen_string_literal: true
 require 'rails_helper'
 
 RSpec.describe EphemeraBoxPresenter do
+  subject { described_class.new(SolrDocument.new(box.to_solr), controller) }
   let(:box) { FactoryGirl.build(:ephemera_box) }
   let(:folder) { FactoryGirl.build(:ephemera_folder, member_of_collections: [box]) }
 
@@ -12,8 +14,6 @@ RSpec.describe EphemeraBoxPresenter do
     )
   end
   let(:controller) { double(blacklight_config: blacklight_config) }
-  subject { described_class.new(SolrDocument.new(box.to_solr), controller) }
-
   describe "#member_presenters" do
     before do
       box.save

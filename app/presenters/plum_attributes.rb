@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module PlumAttributes
   delegate :state, :type, :identifier, :thumbnail_id, :source_metadata_identifier, :collection, :date, to: :solr_document
 

@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class ManifestBuilder
   class ManifestHelper
     include ActionDispatch::Routing::PolymorphicRoutes

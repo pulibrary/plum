@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class FilePath
   attr_reader :uri
   def initialize(uri)

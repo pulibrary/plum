@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module Hyrax::Actors
   class PlumActor < ::Hyrax::Actors::BaseActor
     def update(attributes)

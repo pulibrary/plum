@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require 'vocab/f3_access'
 require 'vocab/opaque_mods'
 require 'vocab/pul_terms'

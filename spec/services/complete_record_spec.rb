@@ -1,10 +1,11 @@
+# frozen_string_literal: true
 require 'rails_helper'
 
 RSpec.describe CompleteRecord do
   subject { described_class.new(obj) }
   let(:ark) { 'ark:/88435/x1234567' }
   let(:minter) { double('Ezid::Identifier') }
-  let(:base_metadata) {{
+  let(:base_metadata) { {
     dc_publisher: 'Princeton University Library',
     dc_title: 'Test title',
     dc_type: 'Text'

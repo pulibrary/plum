@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require 'rails_helper'
 
 RSpec.describe FileSet do
@@ -113,7 +114,7 @@ RSpec.describe FileSet do
     end
 
     it 'retrieves a fileset by the original file checksum' do
-      expect(described_class.where(digest_ssim: "urn:sha1:#{sha1}").first).to_not be_nil
+      expect(described_class.where(digest_ssim: "urn:sha1:#{sha1}").first).not_to be_nil
       expect(described_class.where(digest_ssim: "urn:sha1:#{sha1}").first.id).to eq(file_set.id)
     end
   end

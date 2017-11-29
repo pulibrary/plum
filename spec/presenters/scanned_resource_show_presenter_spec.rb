@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require 'rails_helper'
 
 RSpec.describe ScannedResourceShowPresenter do
@@ -55,10 +56,9 @@ RSpec.describe ScannedResourceShowPresenter do
   end
 
   describe "export linked data", vcr: { cassette_name: 'bibdata-jsonld' } do
+    subject { described_class.new(SolrDocument.new(resource.to_solr), ability) }
     let(:resource) { FactoryGirl.create(:scanned_resource_in_collection, source_metadata_identifier: ['2028405']) }
     let(:collection) { resource.member_of_collections.first }
-    subject { described_class.new(SolrDocument.new(resource.to_solr), ability) }
-
     context "when the resource has remote metadata" do
       before do
         resource.apply_remote_metadata

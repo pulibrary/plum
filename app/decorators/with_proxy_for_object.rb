@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class WithProxyForObject < SimpleDelegator
   attr_reader :members
   def initialize(logical_order, members)

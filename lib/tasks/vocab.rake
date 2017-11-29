@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 namespace :vocab do
   task load: :environment do
     file = ENV['CSV']

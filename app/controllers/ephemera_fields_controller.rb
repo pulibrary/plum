@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class EphemeraFieldsController < ApplicationController
   before_action :set_ephemera_field, only: [:edit, :update, :destroy]
   before_action :set_ephemera_project
@@ -9,8 +10,7 @@ class EphemeraFieldsController < ApplicationController
   end
 
   # GET /ephemera_fields/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /ephemera_fields
   # POST /ephemera_fields.json

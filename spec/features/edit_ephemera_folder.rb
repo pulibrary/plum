@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require 'rails_helper'
 
 RSpec.feature 'EphemeraFoldersController', type: :feature, admin_set: true do
@@ -5,7 +6,7 @@ RSpec.feature 'EphemeraFoldersController', type: :feature, admin_set: true do
   let(:box) { FactoryGirl.create(:ephemera_box) }
   let(:folder) { FactoryGirl.create(:ephemera_folder, language: ['Spanish']) }
 
-  before(:each) do
+  before do
     sign_in user
   end
 

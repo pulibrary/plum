@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class BrowseEverythingIngester
   attr_reader :curation_concern, :upload_set_id, :actor, :file_info
   delegate :mime_type, :file_name, :file_path, to: :file_info

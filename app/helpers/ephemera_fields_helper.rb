@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module EphemeraFieldsHelper
   def controllable_fields
     controllable_concerns.map { |t| t.controlled_fields.map { |field| "#{t}.#{field}" } }.flatten

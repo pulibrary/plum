@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require 'rails_helper'
 
 describe Hyrax::VectorWorksController, admin_set: true do
@@ -46,7 +47,7 @@ describe Hyrax::VectorWorksController, admin_set: true do
     context 'with a non-complete state' do
       let(:vector_work) { FactoryGirl.create(:pending_vector_work, user: user) }
       it 'does not fire an update event' do
-        expect(manifest_generator).to_not receive(:record_updated)
+        expect(manifest_generator).not_to receive(:record_updated)
         post :update, params: { id: vector_work, vector_work: vector_work_attributes }
       end
     end

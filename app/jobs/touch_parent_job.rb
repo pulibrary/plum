@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class TouchParentJob < ApplicationJob
   queue_as :lowest
 

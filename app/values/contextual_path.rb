@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class ContextualPath < Hyrax::ContextualPath
   def file_manager
     action_path(:file_manager)

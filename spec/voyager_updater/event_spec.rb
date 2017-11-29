@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require 'rails_helper'
 
 RSpec.describe VoyagerUpdater::Event, vcr: { cassette_name: 'voyager_dump' } do

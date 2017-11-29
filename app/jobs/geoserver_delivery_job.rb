@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require 'uri'
 
 ##
@@ -22,11 +23,11 @@ class GeoserverDeliveryJob < ActiveJob::Base
   def content_url
     case file_set.geo_mime_type
     when *GeoWorks::RasterFormatService.select_options.map(&:last)
-      return derivatives_service.send(:derivative_url, 'display_raster')
+      derivatives_service.send(:derivative_url, 'display_raster')
     when *GeoWorks::VectorFormatService.select_options.map(&:last)
-      return derivatives_service.send(:derivative_url, 'display_vector')
+      derivatives_service.send(:derivative_url, 'display_vector')
     else
-      return ''
+      ''
     end
   end
 

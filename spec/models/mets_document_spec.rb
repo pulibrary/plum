@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require 'rails_helper'
 
 RSpec.describe METSDocument do
@@ -15,7 +16,8 @@ RSpec.describe METSDocument do
       label: "Title page", nodes: [{
         label: "Title page",
         proxy: "goszd"
-      }] },
+      }]
+    },
             {
               label: "Preamble", nodes: [
                 {
@@ -203,7 +205,7 @@ RSpec.describe METSDocument do
 
     context "a multi-volume item with smLink references to volume structure" do
       subject { described_class.new mets_file_multi4 }
-      let(:expected_structure) {{
+      let(:expected_structure) { {
         "nodes":
         [
           {

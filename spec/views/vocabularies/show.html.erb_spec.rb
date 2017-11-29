@@ -1,7 +1,8 @@
+# frozen_string_literal: true
 require 'rails_helper'
 
 RSpec.describe "vocabularies/show", type: :view do
-  before(:each) do
+  before do
     @parent = FactoryGirl.create(:vocabulary, label: 'LAE Subjects')
     @vocabulary = assign(:vocabulary, FactoryGirl.create(:vocabulary, label: 'Education', parent: @parent))
   end

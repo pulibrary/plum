@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class CollectionShowPresenter < Hyrax::CollectionPresenter
   include Hyrax::Serializers
   delegate :id, :title, :exhibit_id, :date_created, to: :solr_document, allow_nil: true

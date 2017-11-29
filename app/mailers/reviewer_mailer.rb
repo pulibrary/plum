@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class ReviewerMailer < ApplicationMailer
   def notify(args)
     @message = args[:message]

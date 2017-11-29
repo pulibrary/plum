@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class SammelbandLogicalOrder
   attr_reader :source_presenter, :source_structure
   delegate :member_presenters, to: :source_presenter

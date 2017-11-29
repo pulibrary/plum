@@ -1,10 +1,11 @@
+# frozen_string_literal: true
 require 'rails_helper'
 
 RSpec.feature 'Home Page', type: :feature do
   describe 'a logged in user' do
     let(:user) { FactoryGirl.create(:image_editor) }
 
-    before(:each) do
+    before do
       sign_in user
     end
 

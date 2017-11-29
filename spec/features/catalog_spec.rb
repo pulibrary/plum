@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require 'rails_helper'
 
 RSpec.feature "CatalogController", type: :feature do
@@ -5,7 +6,7 @@ RSpec.feature "CatalogController", type: :feature do
     let(:user) { FactoryGirl.create(:admin) }
     let(:scanned_resource) { FactoryGirl.create(:complete_scanned_resource_in_collection, user: user, language: ['English']) }
 
-    before(:each) do
+    before do
       sign_in user
       scanned_resource.update_index
     end
@@ -23,7 +24,7 @@ RSpec.feature "CatalogController", type: :feature do
     let(:user) { FactoryGirl.create(:image_editor) }
     let(:scanned_resource) { FactoryGirl.create(:complete_scanned_resource, user: user) }
 
-    before(:each) do
+    before do
       sign_in user
       scanned_resource.update_index
     end
@@ -39,7 +40,7 @@ RSpec.feature "CatalogController", type: :feature do
     let(:user) { FactoryGirl.create(:image_editor) }
     let(:scanned_resource) { FactoryGirl.create(:complete_scanned_resource, user: user) }
 
-    before(:each) do
+    before do
       scanned_resource.update_index
     end
 
@@ -54,7 +55,7 @@ RSpec.feature "CatalogController", type: :feature do
     let(:user) { FactoryGirl.create(:admin) }
     let(:scanned_resource) { FactoryGirl.create(:complete_scanned_resource, user: user, title: ['This is a persimmon title'], creator: ['Smithee, Al'], replaces: ['pudl8675/309'], identifier: ['ark:/99999/p12345678'], call_number: ['998y']) }
 
-    before(:each) do
+    before do
       scanned_resource.update_index
     end
 

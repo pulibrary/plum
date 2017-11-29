@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class ZipGenerator
   attr_reader :file_set_ids
   def initialize(file_set_ids:)

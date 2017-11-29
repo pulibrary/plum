@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class MapSetShowPresenter < HyraxShowPresenter
   include PlumAttributes
   delegate :spatial, :temporal, :issued, :coverage, :provenance, :layer_modified, to: :solr_document

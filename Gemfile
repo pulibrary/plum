@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -31,27 +32,27 @@ gem 'modernizr-rails'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-gem 'hyrax', '~> 1.0.2'
 gem 'blacklight', '~> 6.9'
-gem 'pul_metadata_services', github:'pulibrary/pul_metadata_services', branch: 'master'
-gem 'hydra-role-management', '~> 0.2.0'
-gem 'rsolr', '~> 1.1.0'
-gem 'devise' , '~> 4.2.0'
+gem 'devise', '~> 4.2.0'
 gem 'devise-guests', '~> 0.3'
-gem 'iiif-presentation', github: 'iiif/osullivan', branch: 'development'
 gem 'geo_works', '~> 0.2.0'
+gem 'hydra-role-management', '~> 0.2.0'
+gem 'hyrax', '~> 1.0.2'
+gem 'iiif-presentation', github: 'iiif/osullivan', branch: 'development'
+gem 'pul_metadata_services', github: 'pulibrary/pul_metadata_services', branch: 'master'
+gem 'rsolr', '~> 1.1.0'
 
 # PDF generation
 gem 'prawn'
 # gem 'pdf-inspector', '~> 1.2.0', group: [:test]
 
 # Copied from hyrax Gemfile.extra
-gem 'hydra-works', '~> 0.16.0'
-gem 'hydra-pcdm', '~> 0.9.0'
-gem 'hydra-derivatives', '3.1.3'
 gem 'active-fedora', '~> 11.2.0'
 gem 'active-triples', '~> 0.11.0'
 gem 'active_fedora-noid', '2.0.2'
+gem 'hydra-derivatives', '3.1.3'
+gem 'hydra-pcdm', '~> 0.9.0'
+gem 'hydra-works', '~> 0.16.0'
 
 gem 'bixby', require: false
 gem 'rake', '11.3.0'
@@ -59,75 +60,75 @@ gem 'rake', '11.3.0'
 group :development, :test do
   gem 'simplecov', '~> 0.9', require: false
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'pry-byebug'
-  gem 'rspec-rails'
   gem "factory_girl"
-  gem 'jasmine-rails'
   gem 'jasmine-jquery-rails'
+  gem 'jasmine-rails'
   gem 'pdf-reader', github: 'yob/pdf-reader'
+  gem 'pry-byebug'
   gem 'pry-rails'
+  gem 'rspec-rails'
   # Use sqlite3 as the database for Active Record
-  gem 'sqlite3'
   gem 'rails-controller-testing', require: false
+  gem 'sqlite3'
 end
 
-gem 'solr_wrapper', '~> 1.0.0'
-gem 'fcrepo_wrapper', '~> 0.8.0'
 gem 'coveralls', '0.8.3', require: false
+gem 'fcrepo_wrapper', '~> 0.8.0'
+gem 'solr_wrapper', '~> 1.0.0'
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem 'spring'
-  gem 'capistrano-rails'
-  gem 'capistrano-passenger'
-  gem 'capistrano-rails-console'
   gem 'capistrano', '~> 3.7.1'
+  gem 'capistrano-passenger'
+  gem 'capistrano-rails'
+  gem 'capistrano-rails-console'
+  gem 'spring'
 end
 
 group :test do
   gem "capybara"
+  gem "database_cleaner"
   gem "launchy"
   gem "vcr", '~> 2.9'
   gem "webmock", '~> 1.0', require: false
-  gem "database_cleaner"
 end
 
 group :production do
-  gem 'pg'
   gem 'dalli'
+  gem 'pg'
 end
-gem 'posix-spawn'
-gem 'openseadragon'
-gem 'sidekiq'
-gem "omniauth-cas"
+gem 'arabic-letter-connector'
+gem 'browse-everything', github: 'projecthydra/browse-everything'
+gem 'bunny'
 gem 'ezid-client'
+gem 'iso-639'
+gem 'newrelic_rpm'
+gem "omniauth-cas"
+gem 'openseadragon'
+gem 'posix-spawn'
+gem 'redis-namespace'
+gem 'sidekiq'
+gem 'sprockets', '~> 3.5.0'
 gem 'sprockets-es6'
 gem 'sprockets-rails', '~> 2.3.3'
-gem 'sprockets', '~> 3.5.0'
-gem 'browse-everything', github: 'projecthydra/browse-everything'
-gem 'newrelic_rpm'
-gem 'iso-639'
-gem 'bunny'
 gem 'string_rtl'
-gem 'redis-namespace'
-gem 'arabic-letter-connector'
 group :staging, :development do
   gem 'ruby-prof'
 end
-gem 'rbtrace', require: false
-gem 'pul_uv_rails', github: 'pulibrary/pul_uv_rails', branch: 'master'
 gem 'grocer', github: 'pulibrary/grocer'
+gem 'pul_uv_rails', github: 'pulibrary/pul_uv_rails', branch: 'master'
+gem 'rbtrace', require: false
 source 'https://rails-assets.org' do
   gem 'rails-assets-babel-polyfill'
-  gem 'rails-assets-jquery', '2.2.4'
   gem 'rails-assets-bootstrap-select', '1.12.2'
+  gem 'rails-assets-jquery', '2.2.4'
   gem 'rails-assets-jqueryui-timepicker-addon'
 end
+gem 'flipflop', github: 'voormedia/flipflop'
 gem 'poltergeist'
 gem 'tinymce-rails-imageupload', github: 'PerfectlyNormal/tinymce-rails-imageupload'
-gem 'flipflop', github: 'voormedia/flipflop'
 group :staging, :production do
   gem 'ddtrace'
 end

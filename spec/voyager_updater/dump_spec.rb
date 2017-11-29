@@ -1,6 +1,7 @@
+# frozen_string_literal: true
 require 'rails_helper'
 
-RSpec.describe VoyagerUpdater::Dump, vcr: { cassette_name: "voyager_dump" }do
+RSpec.describe VoyagerUpdater::Dump, vcr: { cassette_name: "voyager_dump" } do
   subject { described_class.new(dump_url) }
   let(:dump_url) { "https://bibdata.princeton.edu/dumps/1081.json" }
 

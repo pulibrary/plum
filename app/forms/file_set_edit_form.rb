@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class FileSetEditForm < Hyrax::Forms::FileSetEditForm
   include SingleValuedForm
   self.terms += [:viewing_hint]

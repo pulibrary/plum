@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require 'rdf/ntriples'
 require 'vocab/pul_store'
 
@@ -20,7 +21,7 @@ class IngestEphemeraService
     folder.save!
     @logger.info "Created folder: #{folder.id}"
 
-    workflow_state = (state == 'In Production') ? 'complete' : 'needs_qa'
+    workflow_state = state == 'In Production' ? 'complete' : 'needs_qa'
     Workflow::InitializeState.call folder, 'folder_works', workflow_state
 
     ingest_pages(folder)
@@ -89,7 +90,7 @@ class IngestEphemeraService
       obj.barcode = value(g, ::PULStore.barcode)
       obj.folder_number = value(g, ::PULStore.physicalNumber) if obj.is_a?(EphemeraFolder)
       obj.box_number = value(g, ::PULStore.physicalNumber) if obj.is_a?(EphemeraBox)
-      obj.visibility = (value(g, ::PULStore.suppressed) == 'true') ? visibility_private : visibility_public
+      obj.visibility = value(g, ::PULStore.suppressed) == 'true' ? visibility_private : visibility_public
 
       value(g, PULStore.state)
     end
@@ -111,7 +112,7 @@ class IngestEphemeraService
 
     def value(graph, predicate)
       stmt = graph.query([nil, predicate, nil]).first
-      [stmt.object.to_s] if stmt && stmt.object.to_s
+      [stmt.object.to_s] if stmt&.object.to_s
     end
 
     def ingest_pages(folder)

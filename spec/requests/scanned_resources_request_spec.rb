@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require 'rails_helper'
 
 RSpec.describe 'ScannedResourcesController', type: :request, admin_set: true do

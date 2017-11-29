@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 # rubocop:disable Metrics/ClassLength
 class PlumSchema < ActiveTriples::Schema
   property :sort_title, predicate: ::OpaqueMods.titleForSort

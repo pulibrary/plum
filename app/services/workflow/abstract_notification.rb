@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 # Adapted from Sufia
 module Workflow
   class AbstractNotification

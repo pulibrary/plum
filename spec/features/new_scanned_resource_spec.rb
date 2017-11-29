@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require 'rails_helper'
 
 RSpec.feature "ScannedResourcesController", type: :feature, admin_set: true do
@@ -10,17 +11,17 @@ RSpec.feature "ScannedResourcesController", type: :feature, admin_set: true do
       allow(Ezid::Identifier).to receive(:mint).and_return(identifier)
     end
 
-    before(:each) do
+    before do
       sign_in user
     end
 
     scenario "Logged in user can create a new scanned resource and advance workflow state", vcr: { cassette_name: "locations" } do
       visit new_polymorphic_path [ScannedResource]
-      expect(page).to_not have_selector("label.label-warning", text: "Pending")
-      expect(page).to_not have_text("To create a separate work for each of the files")
-      expect(page).to_not have_text("The more descriptive information you provide")
-      expect(page).to_not have_selector("span.warning", text: "Embargo")
-      expect(page).to_not have_selector("span.warning", text: "Lease")
+      expect(page).not_to have_selector("label.label-warning", text: "Pending")
+      expect(page).not_to have_text("To create a separate work for each of the files")
+      expect(page).not_to have_text("The more descriptive information you provide")
+      expect(page).not_to have_selector("span.warning", text: "Embargo")
+      expect(page).not_to have_selector("span.warning", text: "Lease")
 
       fill_in 'scanned_resource_title', with: 'Test Title'
       expect(page).to have_select 'scanned_resource_rights_statement', selected: 'No Known Copyright'

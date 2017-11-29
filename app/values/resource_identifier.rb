@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 ##
 # Returns a unique resource identifier for the current state of a given scanned
 #   resource ID in Fedora.

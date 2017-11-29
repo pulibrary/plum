@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class LogicalOrderBase < ActiveFedora::Base
   property :label, predicate: ::RDF::Vocab::RDFS.label
   property :nodes, predicate: ::RDF::Vocab::DC.hasPart
@@ -9,7 +10,7 @@ class LogicalOrderBase < ActiveFedora::Base
     head_will_change!
     tail_will_change!
     label_will_change!
-    order = LogicalOrder.new((order), (::RDF::URI(rdf_subject)))
+    order = LogicalOrder.new(order, ::RDF::URI(rdf_subject))
     graph = order.to_graph
     # Delete old statements
     subj = resource.subjects.to_a.select { |x| x.to_s.split("/").last.to_s.include?("#g") }

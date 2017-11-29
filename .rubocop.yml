@@ -1,6 +1,7 @@
 require: rubocop-rspec
 inherit_gem:
   bixby: bixby_default.yml
+inherit_from: .rubocop_todo.yml
 
 AllCops:
   DisplayCopNames: true
@@ -13,6 +14,7 @@ AllCops:
     - 'vendor/**/*'
     - 'bin/*'
     - 'config/deploy.rb'
+  TargetRubyVersion: '2.3.4'
 
 Rails:
   Enabled: true
@@ -144,3 +146,17 @@ RSpec/DescribeClass:
     - 'spec/views/**/*'
     - 'spec/routing/**/*'
     - 'spec/inputs/**/*'
+
+Spec/NamedSubject:
+  Enabled: false
+
+Spec/MultipleExpectations:
+  Enabled: false
+
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*'
+
+RSpec/ExampleLength:
+  Exclude:
+    - 'spec/**/*'

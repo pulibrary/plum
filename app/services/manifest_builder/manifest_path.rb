@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class ManifestBuilder
   class ManifestPath
     attr_reader :record, :ssl

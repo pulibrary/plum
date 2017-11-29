@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class HOCRDocument
   class BoundingBox
     attr_reader :bbox_values

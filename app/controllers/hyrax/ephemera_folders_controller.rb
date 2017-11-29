@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 # Generated via
 #  `rails generate hyrax:work EphemeraFolder`
 
@@ -24,8 +25,10 @@ module Hyrax
     end
 
     def new
-      curation_concern.attributes = ActiveFedora::Base.find(params[:create_another]).attributes
-        .except("id", "barcode", "folder_number", "state") if params[:create_another]
+      if params[:create_another]
+        curation_concern.attributes = ActiveFedora::Base.find(params[:create_another]).attributes
+                                                        .except("id", "barcode", "folder_number", "state")
+      end
       super
     end
 

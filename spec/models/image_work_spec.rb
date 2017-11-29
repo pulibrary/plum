@@ -1,15 +1,15 @@
+# frozen_string_literal: true
 require 'rails_helper'
 
 describe ImageWork do
-  let(:image_work) { FactoryGirl.build(:image_work, rights_statement: ['http://rightsstatements.org/vocab/NKC/1.0/']) }
   subject { image_work }
-
+  let(:image_work) { FactoryGirl.build(:image_work, rights_statement: ['http://rightsstatements.org/vocab/NKC/1.0/']) }
   describe 'apply_remote_metadata' do
     context 'when source_metadata_identifier is not set' do
       before { subject.source_metadata_identifier = nil }
       it 'does nothing' do
         original_attributes = subject.attributes
-        expect(subject.send(:remote_metadata_factory)).to_not receive(:new)
+        expect(subject.send(:remote_metadata_factory)).not_to receive(:new)
         subject.apply_remote_metadata
         expect(subject.attributes).to eq(original_attributes)
       end
@@ -33,7 +33,7 @@ describe ImageWork do
       it 'Saves a record with extacted Voyager metadata' do
         subject.apply_remote_metadata
         subject.save
-        expect { subject.save }.to_not raise_error
+        expect { subject.save }.not_to raise_error
         expect(subject.id).to be_truthy
       end
     end

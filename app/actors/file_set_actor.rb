@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class FileSetActor < ::Hyrax::Actors::FileSetActor
   def attach_file_to_work(*args)
     super.tap do |_result|

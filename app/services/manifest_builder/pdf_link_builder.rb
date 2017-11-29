@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class ManifestBuilder
   class PDFLinkBuilder
     attr_reader :record, :ssl
@@ -7,9 +8,9 @@ class ManifestBuilder
     end
 
     def apply(manifest)
-      return if record.member_presenters.length == 0
+      return if record.member_presenters.empty?
       return if manifest['sequences'].blank?
-      return if record.pdf_type && record.pdf_type.first == 'none'
+      return if record.pdf_type&.first == 'none'
       return unless path
       manifest['sequences'].first['rendering'] = {
         '@id' => path,

@@ -1,24 +1,24 @@
+# frozen_string_literal: true
 # Generated via
 #  `rails generate worthwhile:work ScannedResource`
 require 'rails_helper'
 
 describe ScannedResource do
+  subject { scanned_resource }
   let(:scanned_resource) { FactoryGirl.build(:scanned_resource, source_metadata_identifier: ['12345'], rights_statement: ['http://rightsstatements.org/vocab/NKC/1.0/']) }
   let(:reloaded)         { described_class.find(scanned_resource.id) }
-  subject { scanned_resource }
-
   describe 'has note fields' do
     it "lets me set a portion_note" do
       note = 'This is note text'
       subject.portion_note = [note]
-      expect { subject.save }.to_not raise_error
+      expect { subject.save }.not_to raise_error
       expect(reloaded.portion_note).to eq [note]
     end
 
     it "lets me set a description" do
       note = 'This is note text'
       subject.description = [note]
-      expect { subject.save }.to_not raise_error
+      expect { subject.save }.not_to raise_error
       expect(reloaded.description).to eq [note]
     end
   end
@@ -27,7 +27,7 @@ describe ScannedResource do
     it 'allows setting of metadata id' do
       id = '12345'
       subject.source_metadata_identifier = [id]
-      expect { subject.save }.to_not raise_error
+      expect { subject.save }.not_to raise_error
       expect(reloaded.source_metadata_identifier).to eq [id]
     end
   end
@@ -64,7 +64,7 @@ describe ScannedResource do
     it "sets rights_statement" do
       nkc = 'http://rightsstatements.org/vocab/NKC/1.0/'
       subject.rights_statement = [nkc]
-      expect { subject.save }.to_not raise_error
+      expect { subject.save }.not_to raise_error
       expect(reloaded.rights_statement).to eq [nkc]
     end
 
@@ -79,7 +79,7 @@ describe ScannedResource do
       before { subject.source_metadata_identifier = nil }
       it 'does nothing' do
         original_attributes = subject.attributes
-        expect(subject.send(:remote_metadata_factory)).to_not receive(:new)
+        expect(subject.send(:remote_metadata_factory)).not_to receive(:new)
         subject.apply_remote_metadata
         expect(subject.attributes).to eq(original_attributes)
       end
@@ -102,12 +102,12 @@ describe ScannedResource do
       it 'Saves a record with extacted ead metadata' do
         subject.apply_remote_metadata
         subject.save
-        expect { subject.save }.to_not raise_error
+        expect { subject.save }.not_to raise_error
         expect(subject.id).to be_truthy
       end
     end
 
-    context 'With a Voyager ID', vcr: { cassette_name: "bibdata", record: :new_episodes }do
+    context 'With a Voyager ID', vcr: { cassette_name: "bibdata", record: :new_episodes } do
       before do
         subject.source_metadata_identifier = ['2028405']
       end
@@ -124,7 +124,7 @@ describe ScannedResource do
       it 'Saves a record with extacted Voyager metadata' do
         subject.apply_remote_metadata
         subject.save
-        expect { subject.save }.to_not raise_error
+        expect { subject.save }.not_to raise_error
         expect(subject.id).to be_truthy
       end
     end
@@ -132,12 +132,12 @@ describe ScannedResource do
 
   describe 'gets a noid' do
     it 'that conforms to a valid pattern' do
-      expect { subject.save }.to_not raise_error
+      expect { subject.save }.not_to raise_error
       noid_service = ActiveFedora::Noid::Service.new
-      expect(noid_service.valid? subject.id).to be_truthy
+      expect(noid_service.valid?(subject.id)).to be_truthy
     end
     it "generates an ID which starts with the environment's first letter" do
-      expect { subject.save }.to_not raise_error
+      expect { subject.save }.not_to raise_error
       expect(subject.id.first).to eq "t"
     end
   end
@@ -217,8 +217,7 @@ describe ScannedResource do
   describe "sort title indexing" do
     let(:scanned_resource) do
       FactoryGirl.create(:scanned_resource_in_collection,
-                         title: [::RDF::Literal.new("Test", language: :fr), ::RDF::Literal.new("Me", language: :en)]
-                        )
+                         title: [::RDF::Literal.new("Test", language: :fr), ::RDF::Literal.new("Me", language: :en)])
     end
     let(:solr_doc) { scanned_resource.to_solr }
     it "combines multiple titles into string" do

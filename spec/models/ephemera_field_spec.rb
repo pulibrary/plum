@@ -1,10 +1,10 @@
+# frozen_string_literal: true
 require 'rails_helper'
 
 RSpec.describe EphemeraField, type: :model do
+  subject { described_class.new name: "EphemeraFolder.subject", ephemera_project: project, vocabulary: vocab }
   let(:project) { FactoryGirl.build :ephemera_project }
   let(:vocab) { FactoryGirl.build :vocabulary }
-
-  subject { described_class.new name: "EphemeraFolder.subject", ephemera_project: project, vocabulary: vocab }
 
   it "has a name" do
     expect(subject.name).to eq("EphemeraFolder.subject")

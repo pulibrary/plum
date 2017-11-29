@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class SparseMemberCollectionManifest < ManifestBuilder
   def apply(manifest)
     manifest['collections'] ||= []

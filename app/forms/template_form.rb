@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class TemplateForm < SimpleDelegator
   attr_reader :form, :model
   delegate :to_model, :persisted?, :template_label, to: :model

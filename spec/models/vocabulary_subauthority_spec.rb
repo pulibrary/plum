@@ -1,11 +1,11 @@
+# frozen_string_literal: true
 require 'rails_helper'
 
 RSpec.describe VocabularySubauthority, type: :model do
+  subject { described_class.new(parent.label) }
   let(:parent) { FactoryGirl.create(:vocabulary, label: 'Parent Vocabulary') }
   let(:child) { FactoryGirl.create(:vocabulary, label: 'Child Vocabulary', parent: parent) }
   let(:term) { FactoryGirl.create(:vocabulary_term, label: 'My Term', vocabulary: parent) }
-  subject { described_class.new(parent.label) }
-
   it 'lists terms and vocabularies' do
     child_hash = { id: child.id, label: child.label, type: child.class.name, vocabulary: 'Parent Vocabulary', active: true }.with_indifferent_access
     term_hash = { id: term.id, label: term.label, type: term.class.name, vocabulary: 'Parent Vocabulary', active: true }.with_indifferent_access

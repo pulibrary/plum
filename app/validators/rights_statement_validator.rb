@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class RightsStatementValidator < ActiveModel::Validator
   delegate :validate, to: :inclusivity_validator
 

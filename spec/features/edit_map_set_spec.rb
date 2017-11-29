@@ -1,10 +1,11 @@
+# frozen_string_literal: true
 require 'rails_helper'
 
 RSpec.feature 'MapSetsController', type: :feature, admin_set: true do
   let(:user) { FactoryGirl.create(:image_editor) }
   let(:map_set) { FactoryGirl.create(:complete_map_set, user: user) }
 
-  before(:each) do
+  before do
     sign_in user
   end
 

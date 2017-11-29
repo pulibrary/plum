@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class IngestExistingScannedMap < IngestScannedMapsService
   def ingest_map_record(map_record, file_path, user)
     @map = OpenStruct.new(map_record)

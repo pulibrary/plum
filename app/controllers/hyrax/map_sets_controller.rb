@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class Hyrax::MapSetsController < Hyrax::HyraxController
   include Hyrax::RemoteMetadata
   include GeoWorks::GeoblacklightControllerBehavior

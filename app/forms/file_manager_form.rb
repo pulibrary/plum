@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class FileManagerForm < Hyrax::Forms::FileManagerForm
   include SingleValuedForm
   self.terms += [:viewing_direction, :viewing_hint, :ocr_language, :start_canvas]

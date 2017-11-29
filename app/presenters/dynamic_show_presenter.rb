@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class DynamicShowPresenter
   def new(*args)
     type = args.first.type

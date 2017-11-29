@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class EphemeraFolderPresenter < HyraxShowPresenter
   include PlumAttributes
   self.collection_presenter_class = DynamicShowPresenter.new
@@ -51,7 +52,7 @@ class EphemeraFolderPresenter < HyraxShowPresenter
   def subject_categories
     Array.wrap(solr_document.subject).map do |id|
       subject = VocabularyTerm.find(id)
-      subject.vocabulary.label if subject.vocabulary
+      subject.vocabulary&.label
     end
   end
 
@@ -90,7 +91,7 @@ class EphemeraFolderPresenter < HyraxShowPresenter
     end
 
     def convert_to_object(id)
-      return id unless id.match(/^\d+/)
+      return id unless id =~ /^\d+/
       term = VocabularyTerm.find(id)
       obj = { '@id': Rails.application.routes.url_helpers.vocabulary_term_url(id), '@type': 'skos:Concept', pref_label: term.label }
       obj[:exact_match] = to_uri(term.uri) if term.uri.present?

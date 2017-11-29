@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module Workflow
   class PlumWorkflowStrategy
     attr_reader :work
@@ -21,19 +22,19 @@ module Workflow
       end
 
       def book_works
-        %w(ScannedResource MultiVolumeWork)
+        %w[ScannedResource MultiVolumeWork]
       end
 
       def box_works
-        %w(EphemeraBox)
+        %w[EphemeraBox]
       end
 
       def folder_works
-        %w(EphemeraFolder)
+        %w[EphemeraFolder]
       end
 
       def geo_works
-        %w(ImageWork VectorWork RasterWork MapSet)
+        %w[ImageWork VectorWork RasterWork MapSet]
       end
   end
 end

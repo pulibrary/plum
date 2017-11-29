@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module RDF
   class Literal
     def as_json(*_args)

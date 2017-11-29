@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require 'rails_helper'
 
 RSpec.describe Workflow::PlumWorkflowStrategy, :no_clean, :admin_set do

@@ -1,8 +1,9 @@
+# frozen_string_literal: true
 namespace :mets do
   desc "Ingest one or more METS files"
   task ingest: :environment do
-    user = User.find_by_user_key( ENV['USER'] ) if ENV['USER']
-    user = User.all.select{ |u| u.admin? }.first unless user
+    user = User.find_by_user_key(ENV['USER']) if ENV['USER']
+    user = User.all.select(&:admin?).first unless user
 
     logger = Logger.new(STDOUT)
     IngestMETSJob.logger = logger

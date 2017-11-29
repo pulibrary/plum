@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module Workflow
   module InitializeState
     def self.call(resource, workflow_name, state_name)

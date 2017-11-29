@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class CanvasBuilder
   attr_reader :record, :parent_path
 

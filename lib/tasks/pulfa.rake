@@ -1,8 +1,9 @@
+# frozen_string_literal: true
 namespace :pulfa do
   desc "Ingest a PULFA METS file"
   task ingest: :environment do
-    user = User.find_by_user_key( ENV['USER'] ) if ENV['USER']
-    user = User.all.select{ |u| u.admin? }.first unless user
+    user = User.find_by_user_key(ENV['USER']) if ENV['USER']
+    user = User.all.select(&:admin?).first unless user
 
     logger = Logger.new(STDOUT)
     IngestPULFAJob.logger = logger

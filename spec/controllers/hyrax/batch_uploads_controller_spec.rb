@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require 'rails_helper'
 
 RSpec.describe Hyrax::BatchUploadsController do
@@ -19,7 +20,7 @@ RSpec.describe Hyrax::BatchUploadsController do
   describe 'batch image work upload' do
     context 'with no upload files in params' do
       it 'redirects to root' do
-        expect(BatchCreateJob).to_not receive(:perform_later)
+        expect(BatchCreateJob).not_to receive(:perform_later)
         post :create
         expect(response).to redirect_to root_url
       end

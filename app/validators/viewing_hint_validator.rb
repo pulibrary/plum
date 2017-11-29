@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class ViewingHintValidator < ActiveModel::Validator
   delegate :validate, to: :inclusivity_validator
 

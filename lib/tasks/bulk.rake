@@ -1,8 +1,9 @@
+# frozen_string_literal: true
 namespace :bulk do
   desc "Ingest a directory of TIFFs as a ScannedResource, or a directory of directories as a MultiVolumeWork"
   task ingest: :environment do
-    user = User.find_by_user_key( ENV['USER'] ) if ENV['USER']
-    user = User.all.select{ |u| u.admin? }.first unless user
+    user = User.find_by_user_key(ENV['USER']) if ENV['USER']
+    user = User.all.select(&:admin?).first unless user
     dir = ENV['DIR']
     bib = ENV['BIB']
     coll = ENV['COLL']
@@ -32,8 +33,8 @@ namespace :bulk do
   end
   desc "Ingest a directory of scanned map TIFFs, each filename corresponds to a Bib ID"
   task ingest_scanned_maps: :environment do
-    user = User.find_by_user_key( ENV['USER'] ) if ENV['USER']
-    user = User.all.select{ |u| u.admin? }.first unless user
+    user = User.find_by_user_key(ENV['USER']) if ENV['USER']
+    user = User.all.select(&:admin?).first unless user
     dir = ENV['DIR']
 
     abort "usage: rake bulk:ingest_scanned_maps DIR=/path/to/files" unless dir && Dir.exist?(dir)
@@ -50,8 +51,8 @@ namespace :bulk do
   end
   desc "Attach a set of directories of TIFFs to existing objects, using the directory names as identifiers to find the objects"
   task attach_each_dir: :environment do
-    user = User.find_by_user_key( ENV['USER'] ) if ENV['USER']
-    user = User.all.select{ |u| u.admin? }.first unless user
+    user = User.find_by_user_key(ENV['USER']) if ENV['USER']
+    user = User.all.select(&:admin?).first unless user
     dir = ENV['DIR']
     field = ENV['FIELD']
     filter = ENV['FILTER']
@@ -62,7 +63,7 @@ namespace :bulk do
     @logger.info "attaching as: #{user.user_key} (override with USER=foo)"
     @logger.info "filtering to files ending with #{filter}" if filter
     begin
-        IngestService.new(@logger).attach_each_dir dir, field, user, filter
+      IngestService.new(@logger).attach_each_dir dir, field, user, filter
     rescue => e
       puts "Error: #{e.message}"
       puts e.backtrace

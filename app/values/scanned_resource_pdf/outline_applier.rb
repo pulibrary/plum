@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class ScannedResourcePDF
   class OutlineApplier
     attr_reader :order
@@ -25,11 +26,7 @@ class ScannedResourcePDF
 
       def apply_section(prawn_document, node)
         target_node = node.each_node.first
-        if target_node
-          destination = flattened_order.index(target_node.id) + 1
-        else
-          destination = nil
-        end
+        destination = (flattened_order.index(target_node.id) + 1 if target_node)
         prawn_document.outline.section(node.label, destination: destination) do
           apply_nodes(prawn_document, node.nodes)
         end

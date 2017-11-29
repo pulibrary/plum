@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module Plum
   def config
     @config ||= config_yaml.with_indifferent_access
@@ -18,7 +19,7 @@ module Plum
   private
 
     def config_yaml
-      YAML.load(ERB.new(File.read("#{Rails.root}/config/config.yml")).result)[Rails.env]
+      YAML.safe_load(ERB.new(File.read("#{Rails.root}/config/config.yml")).result)[Rails.env]
     end
 
     module_function :config, :config_yaml, :messaging_client, :geoblacklight_messaging_client, :default_url_options

@@ -1,14 +1,14 @@
+# frozen_string_literal: true
 require 'rails_helper'
 
 describe Geoserver do
+  subject { described_class.new file_set, path }
   let(:file_set) { instance_double("FileSet") }
   let(:visibility) { 'open' }
   let(:geo_derivatives_path) { 'path/to/geo-derivatives' }
   let(:plum_config) { { geo_derivatives_path: geo_derivatives_path } }
   let(:relative_derivative_path) { '/d5/13/8j/d8/7v-display_vector/test.shp' }
   let(:path) { "#{geo_derivatives_path}#{relative_derivative_path}" }
-
-  subject { described_class.new file_set, path }
 
   before do
     allow(file_set).to receive(:visibility).and_return(visibility)

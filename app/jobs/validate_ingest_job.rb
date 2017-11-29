@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class ValidateIngestJob < ApplicationJob
   queue_as :ingest
 
