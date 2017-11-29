@@ -9,11 +9,12 @@ AllCops:
     - '**/Rakefile'
     - '**/config.ru'
   Exclude:
-    - 'db/**/*'
-    - 'script/**/*'
-    - 'vendor/**/*'
     - 'bin/*'
     - 'config/deploy.rb'
+    - 'db/**/*'
+    - 'script/**/*'
+    - 'tmp/**/*'
+    - 'vendor/**/*'
   TargetRubyVersion: '2.3.4'
 
 Rails:
@@ -147,10 +148,10 @@ RSpec/DescribeClass:
     - 'spec/routing/**/*'
     - 'spec/inputs/**/*'
 
-Spec/NamedSubject:
+RSpec/NamedSubject:
   Enabled: false
 
-Spec/MultipleExpectations:
+RSpec/MultipleExpectations:
   Enabled: false
 
 Metrics/BlockLength:
