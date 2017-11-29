@@ -1,7 +1,8 @@
 require: rubocop-rspec
+inherit_gem:
+  bixby: bixby_default.yml
 
 AllCops:
-  RunRailsCops: true
   DisplayCopNames: true
   Include:
     - '**/Rakefile'
@@ -12,6 +13,9 @@ AllCops:
     - 'vendor/**/*'
     - 'bin/*'
     - 'config/deploy.rb'
+
+Rails:
+  Enabled: true
 
 Lint/UnusedBlockArgument:
   Exclude:
@@ -56,24 +60,24 @@ Style/BlockComments:
   Exclude:
     - 'spec/spec_helper.rb'
 
-Style/BlockEndNewline:
+Layout/BlockEndNewline:
   Exclude:
     - 'spec/**/*'
 
-Style/IndentHash:
+Layout/IndentHash:
   Exclude:
     - 'app/controllers/catalog_controller.rb'
 
-Style/LeadingCommentSpace:
+Layout/LeadingCommentSpace:
   Exclude:
     - 'spec/**/*'
 
-Style/MultilineBlockLayout:
+Layout/MultilineBlockLayout:
   Exclude:
     - 'spec/**/*'
 
 
-Style/IndentationConsistency:
+Layout/IndentationConsistency:
   EnforcedStyle: rails
 
 Style/CollectionMethods:

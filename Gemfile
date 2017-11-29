@@ -53,8 +53,7 @@ gem 'active-fedora', '~> 11.2.0'
 gem 'active-triples', '~> 0.11.0'
 gem 'active_fedora-noid', '2.0.2'
 
-gem 'rubocop', '~> 0.34.0', require: false
-gem 'rubocop-rspec', '~> 1.3.0', require: false
+gem 'bixby', require: false
 gem 'rake', '11.3.0'
 
 group :development, :test do
