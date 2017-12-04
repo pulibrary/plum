@@ -60,8 +60,8 @@ gem 'rake', '~> 11.3.0'
 gem 'net-http-persistent', '~> 2.9.4'
 
 group :development, :test do
-  gem 'rubocop', '~> 0.34.0', require: false
-  gem 'rubocop-rspec', '~> 1.3.0', require: false
+  gem 'rubocop', '~> 0.51.0', require: false
+  gem 'rubocop-rspec', '~> 1.20.0', require: false
   gem 'simplecov', require: false
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'pry-byebug'
