@@ -141,7 +141,7 @@ RSpec.describe CatalogController do
 
           get :lookup_manifest, params: { prefix: 'ark:', naan: '99999', arkid: '12345678', no_redirect: 'true' }
           expect(response).to be_success
-          expect(JSON.parse(response.body)["url"]).to eq "http://test.host/concern/scanned_resources/#{resource.id}/manifest?locale=en"
+          expect(JSON.parse(response.body)["url"]).to eq "http://test.host/concern/scanned_resources/#{resource.id}/manifest"
         end
       end
     end

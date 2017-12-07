@@ -259,7 +259,7 @@ class CatalogController < ApplicationController
       object_id = result.first['id']
       model_name = result.first['has_model_ssim'].first
       if params[:no_redirect]
-        render json: { url: polymorphic_url([:manifest, :hyrax, model_name.underscore.to_sym], id: object_id) }
+        render json: { url: polymorphic_url([:manifest, :hyrax, model_name.underscore.to_sym], id: object_id, locale: nil) }
       else
         redirect_to polymorphic_url([:manifest, :hyrax, model_name.underscore.to_sym], id: object_id)
       end
