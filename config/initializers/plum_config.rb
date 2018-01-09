@@ -19,7 +19,7 @@ module Plum
   private
 
     def config_yaml
-      YAML.safe_load(ERB.new(File.read("#{Rails.root}/config/config.yml")).result)[Rails.env]
+      YAML.safe_load(ERB.new(File.read("#{Rails.root}/config/config.yml")).result, [], [], true)[Rails.env]
     end
 
     module_function :config, :config_yaml, :messaging_client, :geoblacklight_messaging_client, :default_url_options
