@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 RSpec.shared_examples "structure persister" do |resource_symbol, presenter_factory|
   describe "#structure" do
     let(:user) { FactoryGirl.create(:admin) }

@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 ##
 # An adapter class to handle the difference between PUL's opinions on metadata
 # and CC's "open world" assumptions. IE the date_created field is single-valued

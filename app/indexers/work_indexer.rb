@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class WorkIndexer < Hyrax::WorkIndexer
   # TODO: Refactor complexity here.
   def generate_solr_document
@@ -21,7 +22,7 @@ class WorkIndexer < Hyrax::WorkIndexer
           ::RDF::Statement.from([object.rdf_subject, ::RDF::URI(""), obj])
         end
         output = JSON::LD::API.fromRdf(statements)
-        next unless output.length > 0
+        next if output.empty?
         output = output[0][""]
         output.map! do |object|
           if object.is_a?(Hash) && object["@value"] && object.keys.length == 1
@@ -44,13 +45,13 @@ class WorkIndexer < Hyrax::WorkIndexer
         next unless object.respond_to?(property)
         solr_doc[Solrizer.solr_name(property.to_s, :facetable)] = object.send(property).map do |code|
           authority = AuthorityFinder.for(property: "#{object.model_name}.#{property}", project: object.try(:project))
-          authority.find(code)[:label] if authority
+          authority&.find(code)[:label]
         end.compact
       end
       subject_authority = AuthorityFinder.for(property: "#{object.model_name}.subject", project: object.try(:project))
       if subject_authority
         solr_doc[Solrizer.solr_name("category", :facetable)] = object.send(:subject).map do |code|
-          subject_authority.find(code)[:vocabulary] if subject_authority
+          subject_authority&.find(code)[:vocabulary]
         end.compact
       end
       solr_doc[Solrizer.solr_name("language", :facetable)] = object.language.map do |code|

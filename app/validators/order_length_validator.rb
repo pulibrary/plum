@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class OrderLengthValidator < ActiveModel::Validator
   def validate(record)
     length_validator(record.proxy_length).validate(record)

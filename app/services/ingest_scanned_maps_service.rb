@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class IngestScannedMapsService < IngestService
   def ingest_dir(dir, user)
     Dir["#{dir}/*"].sort.each do |f|

@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class FileSetPresenter < Hyrax::FileSetPresenter
   include Hyrax::Serializers
   delegate :viewing_hint, :title, :file_label, :width, :height, :digest, :date_modified,

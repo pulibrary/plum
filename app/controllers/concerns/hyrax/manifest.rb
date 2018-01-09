@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module Hyrax::Manifest
   extend ActiveSupport::Concern
 
@@ -20,7 +21,7 @@ module Hyrax::Manifest
       if exception.action == :manifest && !current_user
         render json: {}, status: :unauthorized
       elsif !current_user
-        session['user_return_to'.freeze] = request.url
+        session['user_return_to'] = request.url
         redirect_to login_url, alert: exception.message
       else
         super

@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class ScannedResourcePDF
   attr_reader :scanned_resource, :quality
   def initialize(scanned_resource, quality: "gray")

@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class ThumbnailPathService < Hyrax::ThumbnailPathService
   class << self
     def thumbnail_filepath(thumb)

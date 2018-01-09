@@ -1,28 +1,28 @@
+# frozen_string_literal: true
 # Generated via
 #  `rails generate hyrax:work MultiVolumeWork`
 require 'rails_helper'
 
 describe MultiVolumeWork do
+  subject { multi_volume_work }
   let(:nkc) { 'http://rightsstatements.org/vocab/NKC/1.0/' }
   let(:multi_volume_work) { FactoryGirl.build(:multi_volume_work, source_metadata_identifier: ['12345'], rights_statement: [nkc]) }
   let(:scanned_resource1) { FactoryGirl.build(:scanned_resource, title: ['Volume 1'], rights_statement: [nkc]) }
   let(:scanned_resource2) { FactoryGirl.build(:scanned_resource, title: ['Volume 2'], rights_statement: [nkc]) }
   let(:file_set)          { FactoryGirl.build(:file_set) }
   let(:reloaded)          { described_class.find(multi_volume_work.id) }
-  subject { multi_volume_work }
-
   describe 'has note fields' do
     it "lets me set a portion_note" do
       note = ['This is note text']
       subject.portion_note = note
-      expect { subject.save }.to_not raise_error
+      expect { subject.save }.not_to raise_error
       expect(reloaded.portion_note).to eq note
     end
 
     it "lets me set a description" do
       note = 'This is note text'
       subject.description = [note]
-      expect { subject.save }.to_not raise_error
+      expect { subject.save }.not_to raise_error
       expect(reloaded.description).to eq [note]
     end
   end
@@ -31,7 +31,7 @@ describe MultiVolumeWork do
     it 'allows setting of metadata id' do
       id = ['12345']
       subject.source_metadata_identifier = id
-      expect { subject.save }.to_not raise_error
+      expect { subject.save }.not_to raise_error
       expect(reloaded.source_metadata_identifier).to eq id
     end
   end

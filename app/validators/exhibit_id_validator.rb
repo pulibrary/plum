@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class ExhibitIdValidator < ActiveModel::Validator
   def validate(record)
     if record.exhibit_id_changed?

@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class Hyrax::CollectionsController < ApplicationController
   include Hyrax::Manifest
   include Hyrax::CollectionManifest

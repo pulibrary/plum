@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class ManifestBuilder
   attr_reader :record, :services
   delegate :to_json, to: :manifest
@@ -90,7 +91,7 @@ class ManifestBuilder
     end
 
     def manifest_builder_class
-      if manifest_builders.length > 0
+      if !manifest_builders.empty?
         IIIF::Presentation::Collection.new
       else
         IIIF::Presentation::Manifest.new

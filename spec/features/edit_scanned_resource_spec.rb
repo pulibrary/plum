@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require 'rails_helper'
 
 RSpec.feature "ScannedResourcesController", type: :feature, admin_set: true do
@@ -12,7 +13,7 @@ RSpec.feature "ScannedResourcesController", type: :feature, admin_set: true do
   end
 
   context "an authorized user", vcr: { cassette_name: "locations", allow_playback_repeats: :multiple } do
-    before(:each) do
+    before do
       sign_in user
     end
 

@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class Barcode
   attr_reader :barcode
   def initialize(barcode)

@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require 'rails_helper'
 
 RSpec.describe ScannedResourcePDF, vcr: { cassette_name: "iiif_manifest" } do
@@ -129,7 +130,7 @@ RSpec.describe ScannedResourcePDF, vcr: { cassette_name: "iiif_manifest" } do
       # Outline titles are stored as UTF-16. This method accepts a UTF-8 outline title
       # and returns the PDF Object that contains an outline with that name
       def find_by_title(title)
-        @hash.values.find {|obj|
+        @hash.values.find { |obj|
           next unless obj.is_a?(Hash) && obj[:Title]
           title_codepoints = obj[:Title].unpack("n*")
           title_codepoints.shift

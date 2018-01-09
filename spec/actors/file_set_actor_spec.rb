@@ -1,6 +1,8 @@
+# frozen_string_literal: true
 require 'rails_helper'
 
 describe FileSetActor do
+  subject { actor }
   let(:user) { FactoryGirl.create(:user) }
   let(:scanned_resource) { FactoryGirl.build(:scanned_resource, id: 'id') }
   let(:vector_work) { FactoryGirl.build(:vector_work, id: 'id') }
@@ -9,8 +11,6 @@ describe FileSetActor do
   let(:actor) do
     described_class.new(file_set, user)
   end
-  subject { actor }
-
   before do
     allow(ManifestEventGenerator).to receive(:new).and_return(messenger)
   end
@@ -25,7 +25,7 @@ describe FileSetActor do
 
     context 'when the parent work is a VectorWork' do
       it 'does not fire a record_updated manifest event' do
-        expect(messenger).to_not receive(:record_updated)
+        expect(messenger).not_to receive(:record_updated)
         subject.attach_file_to_work(vector_work, {})
       end
     end

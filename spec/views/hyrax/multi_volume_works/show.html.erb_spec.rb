@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require 'rails_helper'
 
 describe "hyrax/multi_volume_works/show.html.erb" do

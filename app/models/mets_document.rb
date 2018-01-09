@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class METSDocument
   include MetsStructure
   attr_reader :source_file, :mets
@@ -101,6 +102,6 @@ class METSDocument
     def logical_volumes
       xp = "/mets:mets/mets:structMap[@TYPE='Logical']/mets:div/mets:div[starts-with(@TYPE, 'Bound')]"
       log = @mets.xpath(xp)
-      log if log && !log.empty?
+      log unless log&.empty?
     end
 end

@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class ScannedMapDerivativesService
   attr_reader :file_set
   delegate :mime_type, :geo_mime_type, :mime_type_storage, :id, :parent, to: :file_set

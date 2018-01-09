@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class SammelbandManifestBuilder
   class SammelbandCanvasBuilderFactory < ::ManifestBuilder::CanvasBuilderFactory
     def file_set_presenters

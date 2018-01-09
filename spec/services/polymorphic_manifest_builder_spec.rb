@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require 'rails_helper'
 
 RSpec.describe PolymorphicManifestBuilder, vcr: { cassette_name: "iiif_manifest" } do
@@ -55,7 +56,7 @@ RSpec.describe PolymorphicManifestBuilder, vcr: { cassette_name: "iiif_manifest"
       expect(ManifestBuilder::SequenceBuilder).to have_received(:new).exactly(1).times
     end
     it "doesn't generate a PDF link" do
-      expect(manifest['rendering']).to eql nil
+      expect(manifest['rendering']).to be nil
     end
     context "with SSL on" do
       subject { described_class.new(mvw_document, ssl: true) }

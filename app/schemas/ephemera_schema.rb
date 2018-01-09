@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class EphemeraSchema < ActiveTriples::Schema
   # Administrative
   property :barcode, predicate: ::PULTerms.barcode

@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class AnnotationListBuilder
   attr_reader :file_set, :parent_path, :canvas_id
   delegate :to_json, to: :annotation_list

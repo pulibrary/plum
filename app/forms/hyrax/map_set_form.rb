@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module Hyrax
   class MapSetForm < ::Hyrax::GeoWorkForm
     self.model_class = ::MapSet

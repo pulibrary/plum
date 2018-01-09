@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require 'rails_helper'
 
 describe Hyrax::ScannedResourcesController, admin_set: true do
@@ -296,7 +297,7 @@ describe Hyrax::ScannedResourcesController, admin_set: true do
       end
 
       it "updates collection membership" do
-        expect(resource.member_of_collections).to_not be_empty
+        expect(resource.member_of_collections).not_to be_empty
 
         updated_attributes = {}
         updated_attributes[:member_of_collection_ids] = [col2.id]

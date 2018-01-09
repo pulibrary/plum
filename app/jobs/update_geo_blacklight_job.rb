@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class UpdateGeoBlacklightJob < ApplicationJob
   queue_as :ingest
 

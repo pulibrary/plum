@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class CatalogController < ApplicationController
   before_action :admin_state_facet
 
@@ -5,7 +6,7 @@ class CatalogController < ApplicationController
   include Hydra::Controller::ControllerBehavior
   def self.search_config
     {
-      'qf' => %w(title_tesim creator_tesim name_tesim source_metadata_identifier_ssim identifier_tesim replaces_tesim call_number_tesim logical_order_headings_tesim member_of_collection_slugs_ssim full_text_tesim),
+      'qf' => %w[title_tesim creator_tesim name_tesim source_metadata_identifier_ssim identifier_tesim replaces_tesim call_number_tesim logical_order_headings_tesim member_of_collection_slugs_ssim full_text_tesim],
       'qt' => 'search',
       'rows' => 10
     }
@@ -88,7 +89,7 @@ class CatalogController < ApplicationController
       contributor_name = solr_name('contributor', :stored_searchable, type: :string)
       field.solr_parameters = {
           qf: "#{title_name} #{label_name} file_format_tesim #{contributor_name}",
-          pf: "#{title_name}"
+          pf: title_name.to_s
       }
     end
 

@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class ScannedResourcePDF
   class Renderer
     attr_reader :scanned_resource_pdf, :path

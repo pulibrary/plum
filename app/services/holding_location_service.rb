@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module HoldingLocationService
   mattr_accessor :authority
   self.authority = HoldingLocationAuthority.new

@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class GeoDerivativesService < GeoWorks::FileSetDerivativesService
   # Remove files as well as shapefile directories
   def cleanup_derivatives

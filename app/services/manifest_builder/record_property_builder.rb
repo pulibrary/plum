@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class ManifestBuilder
   class RecordPropertyBuilder
     attr_reader :record, :path

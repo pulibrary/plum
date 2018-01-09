@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class Hyrax::ImageWorksController < Hyrax::GeoWorksController
   include GeoWorks::ImageWorksControllerBehavior
   include Hyrax::Manifest

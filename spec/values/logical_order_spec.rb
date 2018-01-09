@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require 'rails_helper'
 
 RSpec.describe LogicalOrder do
@@ -106,7 +107,7 @@ RSpec.describe LogicalOrder do
         }
       end
       let(:label) { "Test Label" }
-      it "returns a tiny ordered graph"do
+      it "returns a tiny ordered graph" do
         expect(result.statements.to_a.length).to eq 3
       end
     end

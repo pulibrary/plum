@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class IoDecorator < Hydra::Derivatives::IoDecorator
   def original_filename
     original_name

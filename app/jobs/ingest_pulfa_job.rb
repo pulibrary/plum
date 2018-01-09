@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class IngestPULFAJob < ApplicationJob
   queue_as :ingest
 
@@ -48,10 +49,10 @@ class IngestPULFAJob < ApplicationJob
     end
 
     def file_info(file)
-      return {} unless file.length > 0
+      return {} if file.empty?
       file_urn = file.xpath("mets:FLocat/@xlink:href").first.value
       use = file.attribute('USE').value
-      fn = (use == 'master') ? master_for(file_urn) : service_for(file_urn)
+      fn = use == 'master' ? master_for(file_urn) : service_for(file_urn)
       groupid = file.xpath('../@ID').first.value
       title = file.xpath("//mets:div[mets:fptr/@FILEID='" + groupid + "']/@LABEL").first.value
       { id: id_for(file_urn), file: fn, use: use, type: file.attribute('MIMETYPE').value, title: title }

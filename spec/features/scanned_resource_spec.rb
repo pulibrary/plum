@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require 'rails_helper'
 
 RSpec.feature "ScannedResourcesController", type: :feature do
@@ -5,7 +6,7 @@ RSpec.feature "ScannedResourcesController", type: :feature do
 
   context "an authorized user" do
     let(:scanned_resource) { FactoryGirl.create(:scanned_resource, title: ["first title", "second title"], user: user) }
-    before(:each) do
+    before do
       sign_in user
       scanned_resource
     end

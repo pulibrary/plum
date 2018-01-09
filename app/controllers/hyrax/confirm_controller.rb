@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 # see Hyrax::PermissionsControllerBehavior
 class Hyrax::ConfirmController < ApplicationController
   helper_method :curation_concern

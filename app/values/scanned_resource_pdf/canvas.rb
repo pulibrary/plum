@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class ScannedResourcePDF
   class Canvas
     # Letter width/height in points for a PDF.

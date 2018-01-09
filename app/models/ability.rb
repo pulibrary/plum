@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class Ability
   include Hydra::Ability
   include GeoWorks::Ability
@@ -215,11 +216,11 @@ class Ability
 
   def unreadable_states
     if current_user.curator?
-      %w(pending)
+      %w[pending]
     elsif universal_reader?
       []
     else
-      %w(pending metadata_review final_review takedown)
+      %w[pending metadata_review final_review takedown]
     end
   end
 

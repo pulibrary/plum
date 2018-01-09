@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class Pudl3MVWMetsDocument < METSDocument
   def multi_volume?
     true

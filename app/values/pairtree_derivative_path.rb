@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class PairtreeDerivativePath < Hyrax::DerivativePath
   def initialize(object, destination_name = nil)
     @object = object

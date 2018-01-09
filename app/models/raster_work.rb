@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class RasterWork < ActiveFedora::Base
   include ::Hyrax::WorkBehavior
   include ::GeoWorks::RasterWorkBehavior

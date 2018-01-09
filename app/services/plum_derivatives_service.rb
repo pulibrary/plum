@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class PlumDerivativesService
   attr_reader :file_set
   delegate :uri, :mime_type, :mime_type_storage, :replaces, :id, to: :file_set

@@ -1,7 +1,8 @@
+# frozen_string_literal: true
 require 'rails_helper'
 
 RSpec.describe "vocabularies/edit", type: :view do
-  before(:each) do
+  before do
     @vocabulary = assign(:vocabulary, FactoryGirl.create(:vocabulary))
   end
 

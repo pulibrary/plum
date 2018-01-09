@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class EphemeraProjectsController < ApplicationController
   before_action :set_ephemera_project, only: [:show, :edit, :update, :destroy]
   authorize_resource only: [:new, :edit, :create, :update, :destroy]
@@ -20,8 +21,7 @@ class EphemeraProjectsController < ApplicationController
   end
 
   # GET /ephemera_projects/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /ephemera_projects
   # POST /ephemera_projects.json

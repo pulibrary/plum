@@ -1,9 +1,9 @@
+# frozen_string_literal: true
 require 'rails_helper'
 
 RSpec.describe OCRRunner do
-  let(:file_set) { FactoryGirl.build(:file_set) }
   subject { described_class.new(file_set) }
-
+  let(:file_set) { FactoryGirl.build(:file_set) }
   before do
     allow(file_set).to receive(:in_works).and_return([parent])
     allow(Tesseract).to receive(:languages).and_return(eng: ["English"], ita: ["Italian"], spa: ["Spanish"])

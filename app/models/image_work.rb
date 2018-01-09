@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class ImageWork < ActiveFedora::Base
   include ::Hyrax::WorkBehavior
   include ::GeoWorks::ImageWorkBehavior

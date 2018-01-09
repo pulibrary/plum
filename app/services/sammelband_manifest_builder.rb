@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class SammelbandManifestBuilder < ManifestBuilder
   def record
     @decorated_record ||= SammelbandViewingHint.new(super)

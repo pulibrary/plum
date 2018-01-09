@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class CompositeDecorator
   attr_reader :decorators
   def initialize(*decorators)

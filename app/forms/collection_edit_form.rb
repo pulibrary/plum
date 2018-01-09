@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class CollectionEditForm < Hyrax::Forms::CollectionForm
   terms << :exhibit_id
   delegate :exhibit_id, to: :model

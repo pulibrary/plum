@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require 'rails_helper'
 
 RSpec.feature "ScannedResourcesController", type: :feature do
@@ -18,7 +19,7 @@ RSpec.feature "ScannedResourcesController", type: :feature do
   end
 
   context "an authenticated user" do
-    before(:each) do
+    before do
       sign_in user
     end
 

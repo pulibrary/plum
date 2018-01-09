@@ -1,7 +1,8 @@
+# frozen_string_literal: true
 require 'rails_helper'
 
 RSpec.describe "auth_tokens/show", type: :view do
-  before(:each) do
+  before do
     @auth_token = assign(:auth_token, AuthToken.create!)
   end
 

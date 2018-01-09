@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require "rails_helper"
 
 RSpec.describe ReviewerMailer, type: :mailer do
@@ -20,7 +21,7 @@ RSpec.describe ReviewerMailer, type: :mailer do
     context "singe address" do
       let(:addresses) { [recipient_1] }
 
-      before(:each) do
+      before do
         described_class.notify(args).deliver_now
       end
 
@@ -35,7 +36,7 @@ RSpec.describe ReviewerMailer, type: :mailer do
     context "multiple addresses" do
       let(:addresses) { [recipient_1, recipient_2] }
 
-      before(:each) do
+      before do
         described_class.notify(args).deliver_now
       end
 

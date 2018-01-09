@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class Hyrax::GeoWorksController < ApplicationController
   include Hyrax::WorksControllerBehavior
   include Hyrax::BreadcrumbsForWorks

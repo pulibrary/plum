@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class CicognaraCSV
   def self.headers
     ['digital_cico_number', 'label', 'manifest', 'contributing_library',

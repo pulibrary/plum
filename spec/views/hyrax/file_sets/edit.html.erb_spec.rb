@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require 'rails_helper'
 
 describe 'hyrax/file_sets/edit.html.erb', type: :view do

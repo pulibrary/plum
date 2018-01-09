@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class RangeBuilder
   attr_reader :node, :parent_path, :top
   def initialize(node, parent_path, top: false, label: nil)
@@ -50,7 +51,7 @@ class RangeBuilder
     end
 
     def regular_nodes
-      @regular_nodes ||= nodes.select { |x| !x.proxy_for.present? && x.nodes.length > 0 }
+      @regular_nodes ||= nodes.select { |x| !x.proxy_for.present? && !x.nodes.empty? }
     end
 
     def canvas_id(id)

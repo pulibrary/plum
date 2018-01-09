@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class VocabularyTermsController < ApplicationController
   include ServesLinkedData
 
@@ -29,8 +30,7 @@ class VocabularyTermsController < ApplicationController
   end
 
   # GET /vocabulary_terms/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /vocabulary_terms
   # POST /vocabulary_terms.json
@@ -92,7 +92,8 @@ class VocabularyTermsController < ApplicationController
         pref_label: @vocabulary_term.label,
         in_scheme: {
           '@id': vocabulary_url(@vocabulary_term.vocabulary, locale: nil),
-          pref_label: @vocabulary_term.vocabulary.label }
+          pref_label: @vocabulary_term.vocabulary.label
+        }
       }.to_json
     end
 end

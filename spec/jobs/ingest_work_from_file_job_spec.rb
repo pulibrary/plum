@@ -1,14 +1,14 @@
+# frozen_string_literal: true
 require 'rails_helper'
 
 RSpec.describe IngestWorkFromFileJob do
   let(:user) { FactoryGirl.create(:user) }
 
   describe "#perform" do
+    subject { described_class.perform_now(user, file_path, model) }
     let(:map_ingest_service) { instance_double(IngestScannedMapsService) }
     let(:ingest_service) { instance_double(IngestService) }
     let(:file_path) { '/path/to/upload' }
-
-    subject { described_class.perform_now(user, file_path, model) }
 
     context 'when the model is ImageWork' do
       let(:model) { 'ImageWork' }

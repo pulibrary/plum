@@ -1,11 +1,12 @@
+# frozen_string_literal: true
 require 'rails_helper'
 
 RSpec.describe "vocabularies/index", type: :view do
-  before(:each) do
+  before do
     assign(:vocabularies, [
-      FactoryGirl.create(:vocabulary, label: 'Label 1'),
-      FactoryGirl.create(:vocabulary, label: 'Label 2')
-    ])
+             FactoryGirl.create(:vocabulary, label: 'Label 1'),
+             FactoryGirl.create(:vocabulary, label: 'Label 2')
+           ])
   end
 
   it "renders a list of vocabularies" do

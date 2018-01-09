@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module MetsStructure
   def structure
     structure_type('Logical') || default_structure
@@ -34,7 +35,7 @@ module MetsStructure
     def structure_type(type)
       return nil unless structure_map(type)
       top = structure_map(type).xpath("mets:div/mets:div")
-      return nil unless top.length > 0
+      return nil if top.empty?
       { nodes: structure_for_nodeset(top) }
     end
 

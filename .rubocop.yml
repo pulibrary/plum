@@ -1,17 +1,24 @@
 require: rubocop-rspec
+inherit_gem:
+  bixby: bixby_default.yml
+inherit_from: .rubocop_todo.yml
 
 AllCops:
-  RunRailsCops: true
   DisplayCopNames: true
   Include:
     - '**/Rakefile'
     - '**/config.ru'
   Exclude:
-    - 'db/**/*'
-    - 'script/**/*'
-    - 'vendor/**/*'
     - 'bin/*'
     - 'config/deploy.rb'
+    - 'db/**/*'
+    - 'script/**/*'
+    - 'tmp/**/*'
+    - 'vendor/**/*'
+  TargetRubyVersion: '2.3.4'
+
+Rails:
+  Enabled: true
 
 Lint/UnusedBlockArgument:
   Exclude:
@@ -56,24 +63,24 @@ Style/BlockComments:
   Exclude:
     - 'spec/spec_helper.rb'
 
-Style/BlockEndNewline:
+Layout/BlockEndNewline:
   Exclude:
     - 'spec/**/*'
 
-Style/IndentHash:
+Layout/IndentHash:
   Exclude:
     - 'app/controllers/catalog_controller.rb'
 
-Style/LeadingCommentSpace:
+Layout/LeadingCommentSpace:
   Exclude:
     - 'spec/**/*'
 
-Style/MultilineBlockLayout:
+Layout/MultilineBlockLayout:
   Exclude:
     - 'spec/**/*'
 
 
-Style/IndentationConsistency:
+Layout/IndentationConsistency:
   EnforcedStyle: rails
 
 Style/CollectionMethods:
@@ -140,3 +147,17 @@ RSpec/DescribeClass:
     - 'spec/views/**/*'
     - 'spec/routing/**/*'
     - 'spec/inputs/**/*'
+
+RSpec/NamedSubject:
+  Enabled: false
+
+RSpec/MultipleExpectations:
+  Enabled: false
+
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*'
+
+RSpec/ExampleLength:
+  Exclude:
+    - 'spec/**/*'

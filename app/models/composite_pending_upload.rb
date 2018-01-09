@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class CompositePendingUpload
   def self.create(params, curation_concern_id, upload_set_id)
     params.each do |_index, file_options|

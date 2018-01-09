@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class PlumGeoblacklightEventGenerator
   def record_created
     publish_message(

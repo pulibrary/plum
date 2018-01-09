@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module Discovery
   class DocumentPath < GeoWorks::Discovery::DocumentBuilder::DocumentPath
     # Override thumbnail method for MapSets

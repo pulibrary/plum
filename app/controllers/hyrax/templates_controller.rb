@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module Hyrax
   class TemplatesController < ApplicationController
     authorize_resource

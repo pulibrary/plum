@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 FactoryGirl.define do
   # The ::FileSet model is defined in spec/internal/app/models by the
   # hyrax:install generator.

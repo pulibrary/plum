@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class GeoWorksService
   class_attribute :geo_works_classes
   self.geo_works_classes = [ImageWork, RasterWork, VectorWork, MapSet]

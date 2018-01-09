@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require 'rails_helper'
 
 RSpec.describe ScannedResourcePDF::CanvasDownloader, vcr: { cassette_name: "iiif_manifest" } do

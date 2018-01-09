@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 desc "Update Voyager Data"
 task update_bib_ids: :environment do
   if defined?(Rails) && (Rails.env == 'development')

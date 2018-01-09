@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 namespace :state do
   desc "Migrate state from the state property to Sipity"
   task migrate: :environment do
@@ -7,15 +8,14 @@ namespace :state do
     }
     workflows.keys.each do |workflow_name|
       workflows[workflow_name].each do |model|
-        ActiveFedora::SolrService.query("has_model_ssim:#{model}", fl: "id", rows: 10000).map{|x| x["id"]}.each do |id|
+        ActiveFedora::SolrService.query("has_model_ssim:#{model}", fl: "id", rows: 10_000).map { |x| x["id"] }.each do |id|
           puts "#{id} (#{model})"
           obj = ActiveFedora::Base.find(id)
-          unless obj.workflow_state
-            Workflow::InitializeState.call(obj, workflow_name, obj.state)
-            obj.apply_remote_metadata
-            obj.state = Vocab::FedoraResourceStatus.active
-            obj.save!
-          end
+          next if obj.workflow_state
+          Workflow::InitializeState.call(obj, workflow_name, obj.state)
+          obj.apply_remote_metadata
+          obj.state = Vocab::FedoraResourceStatus.active
+          obj.save!
         end
       end
     end

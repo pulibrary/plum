@@ -1,7 +1,9 @@
+# frozen_string_literal: true
 require 'rails_helper'
 require 'hyrax/specs/shared_specs'
 
 RSpec.describe ScannedMapDerivativesService do
+  subject { described_class.new(file_set) }
   let(:visibility) { Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PUBLIC }
   let(:parent) { instance_double(ImageWork, visibility: visibility) }
   let(:valid_file_set) do
@@ -15,8 +17,6 @@ RSpec.describe ScannedMapDerivativesService do
     FileSet.new
   end
   let(:file_set) { valid_file_set }
-  subject { described_class.new(file_set) }
-
   it_behaves_like "a Hyrax::DerivativeService"
 
   describe '#create_derivatives' do

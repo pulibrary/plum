@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require 'rails_helper'
 
 RSpec.describe WithProxyForObject do
@@ -35,10 +36,10 @@ RSpec.describe WithProxyForObject do
   describe "#unstructured_objects" do
     let(:logical_order) do
       WithProxyForObject::Factory.new(members).new("nodes": [
-        {
-          "proxy": "test"
-        }
-      ])
+                                                     {
+                                                       "proxy": "test"
+                                                     }
+                                                   ])
     end
     let(:members) do
       [

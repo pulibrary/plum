@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class VectorWork < ActiveFedora::Base
   include ::Hyrax::WorkBehavior
   include ::GeoWorks::VectorWorkBehavior

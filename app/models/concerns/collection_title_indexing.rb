@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module CollectionTitleIndexing
   extend ActiveSupport::Concern
   included do

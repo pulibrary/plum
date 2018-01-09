@@ -1,11 +1,12 @@
+# frozen_string_literal: false
 class RightsStatementRenderer < Hyrax::Renderers::RightsAttributeRenderer
   def initialize(rights_statement, rights_note, options = {})
     super(:rights, rights_statement, options)
-    if !rights_note.nil? && RightsStatementService.new.notable?(rights_statement)
-      @rights_note = rights_note
-    else
-      @rights_note = []
-    end
+    @rights_note = if !rights_note.nil? && RightsStatementService.new.notable?(rights_statement)
+                     rights_note
+                   else
+                     []
+                   end
   end
 
   def render

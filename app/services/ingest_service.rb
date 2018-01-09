@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class IngestService
   def initialize(logger = nil)
     @logger = logger || Logger.new(STDOUT)
@@ -20,8 +21,8 @@ class IngestService
   def ingest_dir(dir, bib, user, params)
     klass = choose_class(Dir["#{dir}/*"].first)
     attribs = bib.nil? ? { title: [File.basename(dir)] } : { source_metadata_identifier: [bib] }
-    attribs.merge!(local_identifier: [params[:local_id]]) if params[:local_id]
-    attribs.merge!(replaces: [params[:replaces]]) if params[:replaces]
+    attribs[:local_identifier] = [params[:local_id]] if params[:local_id]
+    attribs[:replaces] = [params[:replaces]] if params[:replaces]
     r = minimal_record klass, user, attribs
     attach_files(dir, r, user)
 

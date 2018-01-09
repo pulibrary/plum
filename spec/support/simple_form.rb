@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module SimpleFormHelper
   extend ActiveSupport::Concern
   def simple_form_for(*args)

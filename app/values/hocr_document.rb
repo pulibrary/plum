@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class HOCRDocument
   attr_reader :document
   delegate :text, to: :nokogiri_document

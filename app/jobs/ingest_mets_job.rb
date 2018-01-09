@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require 'new_relic/agent/method_tracer'
 class IngestMETSJob < ApplicationJob
   include ::NewRelic::Agent::MethodTracer

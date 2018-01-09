@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class AllCollectionsPresenter < CollectionShowPresenter
   def initialize(current_ability = nil)
     @current_ability = current_ability
@@ -33,8 +34,7 @@ class AllCollectionsPresenter < CollectionShowPresenter
     end
   end
 
-  def model_name
-  end
+  def model_name; end
 
   def solr_document
     NullSolrDocument.new

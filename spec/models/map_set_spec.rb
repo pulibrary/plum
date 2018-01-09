@@ -1,14 +1,14 @@
+# frozen_string_literal: true
 require 'rails_helper'
 
 RSpec.describe MapSet do
+  subject { map_set }
   let(:nkc) { 'http://rightsstatements.org/vocab/NKC/1.0/' }
   let(:map_set) { FactoryGirl.build(:map_set, source_metadata_identifier: ['12345'], rights_statement: [nkc]) }
   let(:image_work1) { FactoryGirl.build(:image_work, title: ['Sheet 1'], rights_statement: [nkc]) }
   let(:image_work2) { FactoryGirl.build(:image_work, title: ['Sheet 2'], rights_statement: [nkc]) }
   let(:file_set) { FactoryGirl.build(:file_set) }
   let(:reloaded) { described_class.find(map_set.id) }
-  subject { map_set }
-
   describe 'has image work members' do
     before do
       subject.ordered_members = [image_work1, image_work2]

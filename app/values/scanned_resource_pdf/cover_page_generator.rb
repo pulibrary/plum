@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class ScannedResourcePDF
   class CoverPageGenerator
     attr_reader :scanned_resource_pdf
@@ -101,13 +102,13 @@ class ScannedResourcePDF
       end
 
       def lang_is_arabic?
-        solr_document.language && solr_document.language.first && solr_document.language.first == 'ara'
+        solr_document.language&.first && solr_document.language.first == 'ara'
       end
 
       def dir_split(s)
         chunks = []
         s.split(/\s/).each do |word|
-          (chunks.last && chunks.last.dir == word.dir) ? chunks << "#{chunks.pop} #{word}" : chunks << word
+          chunks << (chunks.last&.dir == word.dir ? "#{chunks.pop} #{word}" : word)
         end
         chunks
       end

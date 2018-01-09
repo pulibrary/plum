@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class MapSet < ActiveFedora::Base
   include ::Hyrax::WorkBehavior
   include ::Hyrax::BasicMetadata

@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module Workflow
   class GrantEditToGroups
     def self.call(target:, **)

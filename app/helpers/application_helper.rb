@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module ApplicationHelper
   def find_authority(parent_id, property)
     parent = ActiveFedora::Base.find(parent_id) if parent_id

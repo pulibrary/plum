@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 namespace :queue do
   task ingest: :environment do
     list_queue('ingest')
@@ -21,7 +22,7 @@ def list_queue(name)
 end
 
 def job_to_s(job)
-  "#{job.args.first['job_class']} #{job.args.first['arguments'].select {|v| v.kind_of? String}} #{err(job)}"
+  "#{job.args.first['job_class']} #{job.args.first['arguments'].select { |v| v.is_a? String }} #{err(job)}"
 end
 
 def err(job)

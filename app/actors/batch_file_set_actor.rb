@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class BatchFileSetActor < ::Hyrax::Actors::FileSetActor
   # def attach_file_to_work(work, file_set, file_set_params)
   #   copy_visibility(work, file_set) unless assign_visibility?(file_set_params)

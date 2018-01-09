@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class AllCollectionsManifestBuilder < ManifestBuilder
   attr_reader :ability
   def initialize(record = nil, ability: nil, ssl: false)

@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 namespace :collection do
   desc "Mark all members of a Collection complete"
   task complete: :environment do
@@ -5,7 +6,7 @@ namespace :collection do
     userid = ENV['USER']
     abort "usage: COLLECTION=[collection id] USER=[userid] rake collection:complete" unless colid && userid
     begin
-      col = Collection.find( colid )
+      col = Collection.find(colid)
       user = User.where(username: userid).first!
       puts "completing objects in collection: #{col.title.first}"
       col.member_objects.each do |obj|
@@ -47,7 +48,7 @@ end
 def advance(obj, state, user)
   entity = PowerConverter.convert_to_sipity_entity(obj)
   puts "#{obj.id}: #{entity.workflow_state.name} -> #{state}"
-  Hyrax::Forms::WorkflowActionForm.new(current_ability: Ability.new(user), work: obj, attributes: { name: state}).save
+  Hyrax::Forms::WorkflowActionForm.new(current_ability: Ability.new(user), work: obj, attributes: { name: state }).save
   manifest_event_generator.record_updated(obj)
 end
 

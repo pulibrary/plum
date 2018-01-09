@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 FactoryGirl.define do
   factory :ephemera_folder do
     title ["Example Folder"]

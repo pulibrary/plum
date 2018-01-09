@@ -1,3 +1,4 @@
+# frozen_string_literal: false
 class RtlLinkedAttributeRenderer < AttributeRenderer
   def li_value(value)
     link_to(ERB::Util.h(value), search_path(value))
@@ -9,7 +10,8 @@ class RtlLinkedAttributeRenderer < AttributeRenderer
 
   def search_path(value)
     Rails.application.routes.url_helpers.search_catalog_path(
-      search_field: search_field, q: ERB::Util.h(value))
+      search_field: search_field, q: ERB::Util.h(value)
+    )
   end
 
   def search_field

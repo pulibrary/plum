@@ -1,3 +1,4 @@
+# frozen_string_literal: false
 class HoldingLocationRenderer < Hyrax::Renderers::AttributeRenderer
   def initialize(value, options = {})
     super(:location, value, options)

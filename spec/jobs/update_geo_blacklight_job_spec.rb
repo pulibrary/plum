@@ -1,11 +1,11 @@
+# frozen_string_literal: true
 require 'rails_helper'
 
 RSpec.describe UpdateGeoBlacklightJob do
   describe "#perform" do
+    subject { described_class.perform_now(image_work.id, 'ImageWork') }
     let(:image_work) { FactoryGirl.create(:image_work) }
     let(:events_generator) { instance_double(GeoWorks::EventsGenerator) }
-
-    subject { described_class.perform_now(image_work.id, 'ImageWork') }
 
     before do
       allow(GeoWorks::EventsGenerator).to receive(:new).and_return(events_generator)

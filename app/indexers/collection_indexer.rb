@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class CollectionIndexer < Hyrax::CollectionIndexer
   def generate_solr_document
     super.tap do |solr_doc|

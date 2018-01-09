@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module Hyrax
   class GeoWorkForm < Hyrax::HyraxForm
     include ::GeoWorks::BasicGeoMetadataForm

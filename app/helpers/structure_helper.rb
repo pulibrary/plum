@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module StructureHelper
   def structure_page_header
     h = content_tag(:h1, 'Edit Structure')

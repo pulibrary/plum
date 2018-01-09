@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module Discovery
   class RelationshipBuilder
     attr_reader :geo_work

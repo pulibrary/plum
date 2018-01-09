@@ -1,12 +1,12 @@
+# frozen_string_literal: true
 require 'rails_helper'
 
 RSpec.describe HoldingLocationService, vcr: { cassette_name: 'locations' } do
+  subject { described_class.find(uri) }
   let(:uri) { 'https://bibdata.princeton.edu/locations/delivery_locations/3' }
   let(:email) { 'ues@princeton.edu' }
   let(:label) { 'Architecture Library' }
   let(:phone) { '609-258-3256' }
-
-  subject { described_class.find(uri) }
 
   context "rights statements" do
     it "gets the email of a holding location" do

@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class ManifestBuilder
   class StartCanvasBuilder
     attr_reader :record, :canvas_builders

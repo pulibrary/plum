@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class Hyrax::VectorWorksController < Hyrax::GeoWorksController
   include Hyrax::ParentContainer
   include GeoWorks::VectorWorksControllerBehavior

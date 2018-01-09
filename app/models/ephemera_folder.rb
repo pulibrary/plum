@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 # Generated via
 #  `rails generate hyrax:work EphemeraFolder`
 class EphemeraFolder < ActiveFedora::Base
@@ -37,7 +38,7 @@ class EphemeraFolder < ActiveFedora::Base
   end
 
   def project
-    box.ephemera_project.first if box
+    box&.ephemera_project&.first
   end
 
   def identifier

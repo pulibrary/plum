@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class VocabularySubauthority < Qa::Authorities::Base
   attr_reader :vocabulary, :subauthority_name
 

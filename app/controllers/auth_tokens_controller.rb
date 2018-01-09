@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class AuthTokensController < ApplicationController
   before_action :set_auth_token, only: [:show, :edit, :update, :destroy]
   authorize_resource only: [:new, :edit, :create, :update, :destroy]
@@ -10,8 +11,7 @@ class AuthTokensController < ApplicationController
 
   # GET /auth_tokens/1
   # GET /auth_tokens/1.json
-  def show
-  end
+  def show; end
 
   # GET /auth_tokens/new
   def new
@@ -19,8 +19,7 @@ class AuthTokensController < ApplicationController
   end
 
   # GET /auth_tokens/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /auth_tokens
   # POST /auth_tokens.json

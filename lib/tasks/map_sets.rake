@@ -1,8 +1,9 @@
+# frozen_string_literal: true
 namespace :bulk do
   desc "Ingest maps sets from JSON file"
   task ingest_map_sets: :environment do
-    user = User.find_by_user_key( ENV['USER'] ) if ENV['USER']
-    user = User.all.select{ |u| u.admin? }.first unless user
+    user = User.find_by_user_key(ENV['USER']) if ENV['USER']
+    user = User.all.select(&:admin?).first unless user
     json_file = ENV['JSON']
     tiff_dir = ENV['TIFF']
     background = ENV['BACKGROUND']
@@ -12,7 +13,7 @@ namespace :bulk do
 
     @logger = Logger.new(STDOUT)
     @logger.info "ingesting as: #{user.user_key} (override with USER=foo)"
-    map_set_records.each do |record|  
+    map_set_records.each do |record|
       begin
         if background
           IngestMapSetJob.perform_later(record, tiff_dir, user)

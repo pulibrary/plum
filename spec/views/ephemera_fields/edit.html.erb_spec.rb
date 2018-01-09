@@ -1,7 +1,8 @@
+# frozen_string_literal: true
 require 'rails_helper'
 
 RSpec.describe "ephemera_fields/edit", type: :view do
-  before(:each) do
+  before do
     @project = assign(:ephemera_project, EphemeraProject.create!(name: "My Project"))
     @vocab = Vocabulary.create!(label: "My Vocab")
     @ephemera_field = assign(:ephemera_field, EphemeraField.create!(

@@ -1,11 +1,13 @@
+# frozen_string_literal: true
 require 'rails_helper'
 
 RSpec.describe "vocabulary_terms/index", type: :view do
   let(:vocabulary_terms) { [
     FactoryGirl.create(:vocabulary_term, label: "Label 1"),
     FactoryGirl.create(:vocabulary_term, label: "Test", uri: 'http://example.org/test', code: 'test',
-                                         tgm_label: "TGM Label", lcsh_label: "LCSH Label")] }
-  before(:each) do
+                                         tgm_label: "TGM Label", lcsh_label: "LCSH Label")
+  ] }
+  before do
     assign(:vocabulary_terms, vocabulary_terms)
   end
 

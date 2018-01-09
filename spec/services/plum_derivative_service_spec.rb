@@ -1,7 +1,9 @@
+# frozen_string_literal: true
 require 'rails_helper'
 require 'hyrax/specs/shared_specs'
 
 RSpec.describe PlumDerivativesService do
+  subject { described_class.new(file_set) }
   let(:valid_file_set) do
     FileSet.new.tap do |f|
       allow(f).to receive(:mime_type_storage).and_return(["image/tiff"])
@@ -11,8 +13,6 @@ RSpec.describe PlumDerivativesService do
     FileSet.new
   end
   let(:file_set) { valid_file_set }
-  subject { described_class.new(file_set) }
-
   it_behaves_like "a Hyrax::DerivativeService"
 
   describe "#cleanup_derivatives" do

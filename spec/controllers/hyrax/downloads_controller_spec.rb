@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require 'rails_helper'
 
 RSpec.describe Hyrax::DownloadsController do
@@ -68,7 +69,7 @@ RSpec.describe Hyrax::DownloadsController do
 
     it 'sends the default file' do
       get :show, params: { id: file_set.to_param }
-      expect(response.headers['Content-Length']).to_not eq file.size.to_s
+      expect(response.headers['Content-Length']).not_to eq file.size.to_s
       expect(response.headers['Content-Length']).to eq default_file.size.to_s
     end
   end
@@ -77,7 +78,7 @@ RSpec.describe Hyrax::DownloadsController do
     context 'with a non-geo file set' do
       it 'does not send the file' do
         get :show, params: { id: file_set.to_param, file: 'thumbnail' }
-        expect(response.headers['Content-Length']).to_not eq file.size.to_s
+        expect(response.headers['Content-Length']).not_to eq file.size.to_s
         expect(response.content_type).to eq 'text/html'
       end
     end

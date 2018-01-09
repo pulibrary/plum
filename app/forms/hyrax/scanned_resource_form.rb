@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module Hyrax
   class ScannedResourceForm < ::Hyrax::HyraxForm
     self.model_class = ::ScannedResource

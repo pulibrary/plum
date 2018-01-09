@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class DeliverToGeoBlacklight
   attr_reader :record
 

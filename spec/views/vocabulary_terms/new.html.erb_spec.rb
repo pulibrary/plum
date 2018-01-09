@@ -1,7 +1,8 @@
+# frozen_string_literal: true
 require 'rails_helper'
 
 RSpec.describe "vocabulary_terms/new", type: :view do
-  before(:each) do
+  before do
     assign(:vocabulary_term, VocabularyTerm.new)
   end
 
