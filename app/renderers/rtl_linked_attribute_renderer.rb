@@ -1,4 +1,4 @@
-# frozen_string_literal: true
+# frozen_string_literal: false
 class RtlLinkedAttributeRenderer < AttributeRenderer
   def li_value(value)
     link_to(ERB::Util.h(value), search_path(value))
