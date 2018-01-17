@@ -104,26 +104,26 @@ RSpec.describe ScannedResourcePDF, vcr: { cassette_name: "iiif_manifest" } do
         @pdf = renderer.send(:prawn_document)
         render_and_find_objects
         # First element is Chapter 1
-        expect(referenced_object(@outline_root[:First])).to eql @section_1
+        expect(referenced_object(@outline_root[:First])).to eql @section1
         # Last element is Page 2
-        expect(referenced_object(@outline_root[:Last])).to eql @page_2
+        expect(referenced_object(@outline_root[:Last])).to eql @page2
         # First element of Chapter 1 is Chapter 1a
-        expect(referenced_object(@section_1[:First])).to eql @section_1a
+        expect(referenced_object(@section1[:First])).to eql @section1a
         # Last element of Chapter 1 is Chapter 1b
-        expect(referenced_object(@section_1[:Last])).to eql @section_1b
+        expect(referenced_object(@section1[:Last])).to eql @section1b
         # First element of Chapter 1a is Page 1
-        expect(referenced_object(@section_1a[:First])).to eql @page_1
+        expect(referenced_object(@section1a[:First])).to eql @page1
       end
       def render_and_find_objects
         output = StringIO.new(@pdf.render, 'r+')
         @hash = PDF::Reader::ObjectHash.new(output)
         @outline_root = @hash.values.find { |obj| obj.is_a?(Hash) && obj[:Type] == :Outlines }
         @pages = @hash.values.find { |obj| obj.is_a?(Hash) && obj[:Type] == :Pages }[:Kids]
-        @section_1 = find_by_title('Chapter 1')
-        @page_1 = find_by_title('Page 1')
-        @section_1a = find_by_title('Chapter 1a')
-        @section_1b = find_by_title('Chapter 1b')
-        @page_2 = find_by_title('Page 2')
+        @section1 = find_by_title('Chapter 1')
+        @page1 = find_by_title('Page 1')
+        @section1a = find_by_title('Chapter 1a')
+        @section1b = find_by_title('Chapter 1b')
+        @page2 = find_by_title('Page 2')
       end
 
       # Outline titles are stored as UTF-16. This method accepts a UTF-8 outline title
