@@ -1,3 +1,6 @@
+# Note: Plum was retired on 2018-04-16.  Please see [Figgy](https://github.com/pulibrary/figgy/) for current development.
+---
+
 # Plum. A Hydra head to support digitization workflows
 
 [![Circle CI](https://circleci.com/gh/pulibrary/plum.svg?style=svg)](https://circleci.com/gh/pulibrary/plum)
